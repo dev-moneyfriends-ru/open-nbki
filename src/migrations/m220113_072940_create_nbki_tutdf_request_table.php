@@ -13,6 +13,11 @@ class m220113_072940_create_nbki_tutdf_request_table extends Migration
      */
     public function safeUp()
     {
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
+        }
+        
         $env = Env::ensure();
         $this->createTable($env->nbchTutdfRequestTableName, [
             'id' => $this->primaryKey(),
@@ -27,7 +32,7 @@ class m220113_072940_create_nbki_tutdf_request_table extends Migration
             'offerUuid' => $this->string(50),
             'checkAt' => $this->integer(),
             'checkBy' => $this->integer(),
-        ]);
+        ], $tableOptions);
         
         $this->createIndex('idx-offerUuid', $env->nbchTutdfRequestTableName, 'offerUuid');
         $this->createIndex('idx-state', $env->nbchTutdfRequestTableName, 'state');

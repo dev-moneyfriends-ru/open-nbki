@@ -15,6 +15,10 @@ class m220420_123001_create_nbch_request_table extends Migration
      */
     public function safeUp()
     {
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
+        }
         $this->createTable('{{%nbch_ch_request}}', [
             'id' => $this->primaryKey(),
             'consentId' => $this->integer(),
@@ -24,7 +28,7 @@ class m220420_123001_create_nbch_request_table extends Migration
             'requestData' => $this->text(),
             'responseData' => $this->text(),
             'errorText' => $this->text()
-        ]);
+        ], $tableOptions);
 
         // creates index for column `consentId`
         $this->createIndex(
