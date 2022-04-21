@@ -228,8 +228,8 @@ class CreditHistoryComponent extends Component
         if ($this->_model === null) {
             return;
         }
-        $this->_model->requestData = $this->_request->content;
-        $this->_model->responseData = $response->content;
+        $this->_model->requestData = base64_encode($this->_request->content);
+        $this->_model->responseData = base64_encode($response->content);
         $this->_model->status = NbchChRequest::STATE_PREPARING;
         if (!$this->_model->save()) {
             throw new Exception(VarDumper::dumpAsString($this->_model->errors));
