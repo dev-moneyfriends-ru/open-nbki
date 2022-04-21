@@ -7,7 +7,6 @@
     "module",
     "nbch"
   ],
-  "license": "GPL-3.0+",
   "authors": [
     {
       "name": "Mikhail Glazkov",
@@ -19,9 +18,23 @@
     "yiisoft/yii2": "~2.0.13",
     "yiisoft/yii2-httpclient": "~2.0.0"
   },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest"
+  },
   "autoload": {
     "psr-4": {
       "mfteam\\nbch\\": "src/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "config": {
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true
     }
   }
 }
