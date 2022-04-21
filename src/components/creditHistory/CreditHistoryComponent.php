@@ -212,6 +212,7 @@ class CreditHistoryComponent extends Component
         if ($this->_model === null) {
             return;
         }
+        $this->_model->requestData = $this->_request->content;
         $this->_model->status = NbchChRequest::STATE_ERROR;
         $this->_model->errorText = $message;
         $this->_model->save(false);
