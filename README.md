@@ -10,13 +10,13 @@ The preferred way to install this extension is through
 Either run
 
 ```
-php composer.phar require --prefer-dist dev-moneyfriends-ru/open-nbki "*"
+php composer.phar require --prefer-dist mf-team/yii2-mf-nbch "*"
 ```
 
 or add
 
 ```
-"dev-moneyfriends-ru/open-nbki": "*"
+"mf-team/yii2-mf-nbch": "*"
 ```
 
 to the require section of your `composer.json` file.
