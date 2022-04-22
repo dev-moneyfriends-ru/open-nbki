@@ -26,7 +26,7 @@ class m220420_123001_create_nbch_request_table extends Migration
             'updatedAt' => $this->integer(),
             'status' => $this->integer(2)->defaultValue(0),
             'requestData' => $this->text(),
-            'responseData' => $this->text(),
+            'responseData' => 'LONGTEXT',
             'errorText' => $this->text()
         ], $tableOptions);
 
