@@ -234,11 +234,11 @@ class CreditHistoryComponent extends Component
         $this->_model->responseData = base64_encode($response->content);
         $parser = new XmlToArrayParser();
         $data = $parser->parseXml($response->content);
-        if (ArrayHelper::getValue($data, 'preply.err') !== null){
+        if (ArrayHelper::getValue($data, 'product.preply.err') !== null){
             $this->_model->status = NbchChRequest::STATE_ERROR;
             $this->_model->errorText = \Yii::t('app', 'Code {0}: {1}',[
-                ArrayHelper::getValue($data, 'preply.err.ctErr.Code'),
-                ArrayHelper::getValue($data, 'preply.err.ctErr.Text'),
+                ArrayHelper::getValue($data, 'product.preply.err.ctErr.Code'),
+                ArrayHelper::getValue($data, 'product.preply.err.ctErr.Text'),
             ]);
         }else{
             $this->_model->status = NbchChRequest::STATE_PREPARING;
