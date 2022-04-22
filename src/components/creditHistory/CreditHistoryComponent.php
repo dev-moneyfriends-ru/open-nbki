@@ -281,6 +281,7 @@ class CreditHistoryComponent extends Component
         file_put_contents($tempPath, $content);
         $file = new NbchFile();
         $file->setStoragePath($tempPath)
+            ->setFileName('nbki_request_'. $this->_model->id . '_' . time())
             ->setContent($content)
             ->setEntity($this->_model->formName())
             ->setEntityId($this->_model->id)
