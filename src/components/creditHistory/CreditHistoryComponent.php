@@ -4,6 +4,7 @@ namespace mfteam\nbch\components\creditHistory;
 
 use mfteam\nbch\components\file\NbchFile;
 use mfteam\nbch\Env;
+use mfteam\nbch\helpers\XmlToArrayParser;
 use mfteam\nbch\models\AddressReq;
 use mfteam\nbch\models\BaseItem;
 use mfteam\nbch\models\BusinessReq;
@@ -231,12 +232,13 @@ class CreditHistoryComponent extends Component
         }
         $this->_model->requestData = base64_encode($this->_request->content);
         $this->_model->responseData = base64_encode($response->content);
-        
-        if (ArrayHelper::getValue($response->data, 'preply.err') !== null){
+        $parser = new XmlToArrayParser();
+        $data = $parser->parseXml($response->content);
+        if (ArrayHelper::getValue($data, 'preply.err') !== null){
             $this->_model->status = NbchChRequest::STATE_ERROR;
             $this->_model->errorText = \Yii::t('app', 'Code {0}: {1}',[
-                ArrayHelper::getValue($response->data, 'preply.err.ctErr.Code'),
-                ArrayHelper::getValue($response->data, 'preply.err.ctErr.Text'),
+                ArrayHelper::getValue($data, 'preply.err.ctErr.Code'),
+                ArrayHelper::getValue($data, 'preply.err.ctErr.Text'),
             ]);
         }else{
             $this->_model->status = NbchChRequest::STATE_PREPARING;
