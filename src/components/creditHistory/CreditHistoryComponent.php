@@ -17,6 +17,7 @@ use yii\base\Component;
 use yii\base\Exception;
 use yii\base\InvalidConfigException;
 use yii\di\NotInstantiableException;
+use yii\helpers\ArrayHelper;
 use yii\helpers\VarDumper;
 use yii\httpclient\Response;
 
@@ -230,7 +231,19 @@ class CreditHistoryComponent extends Component
         }
         $this->_model->requestData = base64_encode($this->_request->content);
         $this->_model->responseData = base64_encode($response->content);
-        $this->_model->status = NbchChRequest::STATE_PREPARING;
+        if(!$response->isOk){
+            $this->_model->status = NbchChRequest::STATE_ERROR;
+            $this->_model->errorText = $response->statusCode;
+        }elseif (ArrayHelper::getValue($response->data, 'preply.err') !== null){
+            $this->_model->status = NbchChRequest::STATE_ERROR;
+            $this->_model->errorText = \Yii::t('app', 'Code {0}: {1}',[
+                ArrayHelper::getValue($response->data, 'preply.err.ctErr.Code'),
+                ArrayHelper::getValue($response->data, 'preply.err.ctErr.Text'),
+            ]);
+        }else{
+            $this->_model->status = NbchChRequest::STATE_PREPARING;
+        }
+       
         if (!$this->_model->save()) {
             throw new Exception(VarDumper::dumpAsString($this->_model->errors));
         }
