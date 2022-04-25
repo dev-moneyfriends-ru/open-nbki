@@ -10,13 +10,13 @@ The preferred way to install this extension is through
 Either run
 
 ```
-php composer.phar require --prefer-dist moneyfriends/yii2-mf-nbch "*"
+php composer.phar require --prefer-dist mf-team/yii2-mf-nbch "dev-main"
 ```
 
 or add
 
 ```
-"moneyfriends/yii2-mf-nbch": "*"
+"mf-team/yii2-mf-nbch": "dev-main"
 ```
 
 to the require section of your `composer.json` file.

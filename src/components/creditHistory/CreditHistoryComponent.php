@@ -171,6 +171,13 @@ class CreditHistoryComponent extends Component
         return $this;
     }
     
+    /**
+     * @return Response
+     * @throws Exception
+     * @throws InvalidConfigException
+     * @throws NotInstantiableException
+     * @throws \yii\httpclient\Exception
+     */
     public function send()
     {
         try {
@@ -180,7 +187,18 @@ class CreditHistoryComponent extends Component
             $this->updateModel($response);
             $this->saveFiles($response);
             
-            $this->_model->status = NbchChRequest::STATE_FINISH;
+            $parser = new XmlToArrayParser();
+            $data = $parser->parseXml($response->content);
+            if (ArrayHelper::getValue($data, 'preply.err') !== null) {
+                $this->_model->status = NbchChRequest::STATE_ERROR;
+                $this->_model->errorText = \Yii::t('app', 'Code {0}: {1}', [
+                    ArrayHelper::getValue($data, 'preply.err.ctErr.Code'),
+                    ArrayHelper::getValue($data, 'preply.err.ctErr.Text'),
+                ]);
+            } else {
+                $this->_model->status = NbchChRequest::STATE_FINISH;
+            }
+            
             if (!$this->_model->save()) {
                 throw new Exception(VarDumper::dumpAsString($this->_model->errors));
             }
@@ -209,6 +227,10 @@ class CreditHistoryComponent extends Component
         }
     }
     
+    /**
+     * @param string $message
+     * @return void
+     */
     private function saveError(string $message)
     {
         if ($this->_model === null) {
@@ -230,20 +252,11 @@ class CreditHistoryComponent extends Component
         if ($this->_model === null) {
             return;
         }
+        
         $this->_model->requestData = base64_encode($this->_request->content);
         $this->_model->responseData = base64_encode($response->content);
-        $parser = new XmlToArrayParser();
-        $data = $parser->parseXml($response->content);
-        if (ArrayHelper::getValue($data, 'product.preply.err') !== null){
-            $this->_model->status = NbchChRequest::STATE_ERROR;
-            $this->_model->errorText = \Yii::t('app', 'Code {0}: {1}',[
-                ArrayHelper::getValue($data, 'product.preply.err.ctErr.Code'),
-                ArrayHelper::getValue($data, 'product.preply.err.ctErr.Text'),
-            ]);
-        }else{
-            $this->_model->status = NbchChRequest::STATE_PREPARING;
-        }
-       
+        $this->_model->status = NbchChRequest::STATE_PREPARING;
+        
         if (!$this->_model->save()) {
             throw new Exception(VarDumper::dumpAsString($this->_model->errors));
         }
@@ -294,7 +307,7 @@ class CreditHistoryComponent extends Component
         file_put_contents($tempPath, $content);
         $file = new NbchFile();
         $file->setStoragePath($tempPath)
-            ->setFileName('nbki_request_'. $this->_model->id . '_' . time())
+            ->setFileName('nbki_request_' . $this->_model->id . '_' . time().'.xml')
             ->setContent($content)
             ->setEntity($this->_model->formName())
             ->setEntityId($this->_model->id)
