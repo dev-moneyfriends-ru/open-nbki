@@ -185,7 +185,11 @@ class NbchConsent extends ActiveRecord
      */
     private function getFile(string $type): ?NbchFile
     {
-        return Env::ensure()->module->file->getFile($type, $this->formName(), $this->id);
+        try{
+            return Env::ensure()->module->file->getFile($type, $this->formName(), $this->id);
+        }catch (\Throwable $e){
+            return null;
+        }
     }
     
     /**
