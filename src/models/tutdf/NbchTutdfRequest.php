@@ -35,6 +35,7 @@ use yii\helpers\ArrayHelper;
  * @property-read null|NbchFile $tutdfFile
  * @property-read null|NbchFile $rejectFile
  * @property-read null|NbchFile $tutdfZipFile
+ * @property-read null|NbchFile $tutdfSigFile
  * @property int $checkBy [int(11)]
  */
 class NbchTutdfRequest extends ActiveRecord
