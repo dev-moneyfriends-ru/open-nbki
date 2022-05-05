@@ -6,10 +6,6 @@ use Exception;
 use mfteam\nbch\components\file\NbchFile;
 use mfteam\nbch\components\file\NbchFileInterface;
 use mfteam\nbch\Env;
-use mfteam\nbch\models\GetNbchOfferTrait;
-use mfteam\nbch\models\NbchOfferInterface;
-use mfteam\nbch\models\tutdf\NbchTutdfRequestQuery;
-use Yii;
 use yii\base\InvalidConfigException;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -33,18 +29,16 @@ use yii\helpers\ArrayHelper;
  * @property string|null $offerUuid
  * @property int $checkAt [int(11)]
  * @property-read string $nbchConfirmZipP7mDownloadUrl
- * @property-read null|NbchFileInterface $ticketFile
- * @property-read null|NbchFileInterface $nbchConfirmZipP7mFile
+ * @property-read null|NbchFile $ticketFile
+ * @property-read null|NbchFile $nbchConfirmZipP7mFile
  * @property-read string $tutdfDownloadUrl
- * @property-read null|NbchFileInterface $tutdfFile
- * @property-read null|NbchFileInterface $rejectFile
- * @property-read null|\mfteam\nbch\models\NbchOfferInterface $offer
+ * @property-read null|NbchFile $tutdfFile
+ * @property-read null|NbchFile $rejectFile
+ * @property-read null|NbchFile $tutdfZipFile
  * @property int $checkBy [int(11)]
  */
 class NbchTutdfRequest extends ActiveRecord
 {
-    use GetNbchOfferTrait;
-    
     public const ENTITY = 'NbchTutdfRequest';
     
     public const STATE_NEW = 0;
@@ -63,6 +57,7 @@ class NbchTutdfRequest extends ActiveRecord
     public const STATE_NBCH_ERROR = 41;
     
     public const FILE_TUTDF_TYPE = 'TUTDFTemplateEntity';
+    public const FILE_TUTDF_ZIP = 'TUTDF_ZIP_ARCHIVE';
     public const FILE_CONFIRM_ZIP_P7M_TYPE = 'FILE_CONFIRM_ZIP_P7M';
     public const FILE_REJECT = 'FILE_REJECT';
     public const FILE_TICKET = 'FILE_TICKET';
@@ -208,7 +203,7 @@ class NbchTutdfRequest extends ActiveRecord
     
     /**
      * Запакованный файл квитанции
-     * @return NbchFileInterface|null
+     * @return NbchFile|null
      * @throws InvalidConfigException
      * @throws NotInstantiableException
      */
@@ -218,8 +213,8 @@ class NbchTutdfRequest extends ActiveRecord
     }
     
     /**
-     * Файл для отправки
-     * @return NbchFileInterface|null
+     * Файл с данными
+     * @return NbchFile|null
      * @throws InvalidConfigException
      * @throws NotInstantiableException
      */
@@ -229,8 +224,19 @@ class NbchTutdfRequest extends ActiveRecord
     }
     
     /**
+     * Файл для отправки
+     * @return NbchFile|null
+     * @throws InvalidConfigException
+     * @throws NotInstantiableException
+     */
+    public function getTutdfZipFile(): ?NbchFileInterface
+    {
+        return Env::ensure()->module->file->getFile(self::FILE_TUTDF_ZIP, self::ENTITY, $this->id);
+    }
+    
+    /**
      * Файл отказа принятия данных
-     * @return NbchFileInterface|null
+     * @return NbchFile|null
      * @throws InvalidConfigException
      * @throws NotInstantiableException
      */
@@ -241,7 +247,7 @@ class NbchTutdfRequest extends ActiveRecord
     
     /**
      * Файл квитанции
-     * @return NbchFileInterface|null
+     * @return NbchFile|null
      * @throws InvalidConfigException
      * @throws NotInstantiableException
      */

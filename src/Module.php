@@ -7,6 +7,7 @@ use mfteam\nbch\components\file\FileManagerInterface;
 use mfteam\nbch\components\NbchEsignClientInterface;
 use mfteam\nbch\components\tutdf\TutdfRequestComponent;
 use yii\base\BootstrapInterface;
+use yii\mail\MailerInterface;
 
 /**
  * Модуль обмена данными НБКИ
@@ -14,6 +15,7 @@ use yii\base\BootstrapInterface;
  * @property-read TutdfRequestComponent $tutdf
  * @property-read CreditHistoryComponent $creditHistory
  * @property-read NbchEsignClientInterface $esignClient
+ * @property-read MailerInterface $mailer
  */
 class Module extends \yii\base\Module implements BootstrapInterface
 {

@@ -87,7 +87,7 @@ class TutdfTemplate extends BaseRequestTemplate
     public function getTemplatePath(): string
     {
         $template = $this->subject->getSubjectType() . '_v' . $this->_version;
-        return '@vendor/moneyfriends/yii2-mf-nbch/components/tutdf/template/views/' . $template;
+        return '@vendor/mf-team/yii2-mf-nbch/src/components/tutdf/template/views/' . $template;
     }
     
     /**
@@ -330,7 +330,7 @@ class TutdfTemplate extends BaseRequestTemplate
      */
     public function getCLSegments()
     {
-        $models = $this->offer->getCollaterals();
+        $models = $this->offer->getCollateralArray();
         if(count($models) < 2){
             return [];
         }
@@ -348,7 +348,7 @@ class TutdfTemplate extends BaseRequestTemplate
      */
     public function getBGSegments()
     {
-        $models = $this->offer->getBankGuarantees();
+        $models = $this->offer->getBankGuaranteeArray();
         if(count($models) < 2){
             return [];
         }
@@ -366,7 +366,7 @@ class TutdfTemplate extends BaseRequestTemplate
      */
     public function getGRSegments()
     {
-        $models = $this->offer->getGuarantors();
+        $models = $this->offer->getGuarantorArray();
         if(count($models) < 2){
             return [];
         }
@@ -397,7 +397,7 @@ class TutdfTemplate extends BaseRequestTemplate
     public function getPASegments()
     {
         $segments = [];
-        foreach ($this->offer->getPayments() as $payment){
+        foreach ($this->offer->getPaymentArray() as $payment){
             $segments[] = new PASegment($this, $this->nextSegmentNum($segments), $payment);
         }
         return $segments;

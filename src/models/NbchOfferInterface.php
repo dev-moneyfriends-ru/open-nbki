@@ -24,25 +24,25 @@ interface NbchOfferInterface
      * Поручители
      * @return Guarantor[]
      */
-    public function getGuarantors():array;
+    public function getGuarantorArray():array;
     
     /**
      * Залоги
      * @return Collateral[]
      */
-    public function getCollaterals(): array;
+    public function getCollateralArray(): array;
     
     /**
      * Платежи
      * @return Payment[]
      */
-    public function getPayments(): array;
+    public function getPaymentArray(): array;
     
     /**
      * Банковские гарантии
      * @return BankGuarantee[]
      */
-    public function getBankGuarantees(): array;
+    public function getBankGuaranteeArray(): array;
     
     /**
      * Информация по договору

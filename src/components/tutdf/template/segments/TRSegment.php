@@ -91,7 +91,7 @@ class TRSegment extends BaseSegment
             $this->trade->guarantorIndicatorCode??$this->emptyValue, //Флаг о наличии поручителя
             $this->trade->guaranteeVolumeCode??$this->emptyValue, //Объем обязательства, обеспечиваемого поручительством
             $this->trade->guaranteeAmt?$this->formatCurrency($this->trade->guaranteeAmt):$this->emptyValue, //Сумма поручительства
-            $this->trade->guaranteeTerm?$this->formatDate($this->guaranteeTerm()):$this->emptyValue, //Срок поручительства
+            $this->trade->guaranteeTerm?$this->formatDate($this->trade->guaranteeTerm):$this->emptyValue, //Срок поручительства
             
             $this->trade->bankGuaranteeIndicatorCode, //Флаг о наличии банковской гарантии
             $this->trade->bankGuaranteeVolumeCode??$this->emptyValue, //Объем обязательства, обеспечиваемого банковской гарантией
@@ -110,13 +110,13 @@ class TRSegment extends BaseSegment
             
             $this->trade->completePerformDt?$this->formatDate($this->trade->completePerformDt):$this->emptyValue, //Дата фактического исполнения обязательств в полном объеме
             
-            $this->trade->principalOutstanding?$this->formatCurrency($this->trade->principalOutstanding):$this->emptyValue, //Срочная задолженность по основному долгу на дату последнего платежа
-            $this->trade->intOutstanding?$this->formatCurrency($this->trade->intOutstanding):$this->emptyValue, //Срочная задолженность по процентам на дату последнего платежа
-            $this->trade->otherAmtOutstanding?$this->formatCurrency($this->trade->otherAmtOutstanding):$this->emptyValue, //Сумма подлежащих уплате комиссий и иных аналогичных требований к заемщику в составе срочной задолженности на дату последнего платежа
+            $this->trade->principalOutstanding  !== null?$this->formatCurrency($this->trade->principalOutstanding):$this->emptyValue, //Срочная задолженность по основному долгу на дату последнего платежа
+            $this->trade->intOutstanding !== null?$this->formatCurrency($this->trade->intOutstanding):$this->emptyValue, //Срочная задолженность по процентам на дату последнего платежа
+            $this->trade->otherAmtOutstanding !== null?$this->formatCurrency($this->trade->otherAmtOutstanding):$this->emptyValue, //Сумма подлежащих уплате комиссий и иных аналогичных требований к заемщику в составе срочной задолженности на дату последнего платежа
     
-            $this->trade->principalPastDue?$this->formatCurrency($this->trade->principalPastDue):$this->emptyValue, //Просроченная задолженность по основному долгу на дату последнего платежа
-            $this->trade->intPastDue?$this->formatCurrency($this->trade->intPastDue):$this->emptyValue, //Просроченная задолженность по процентам на дату последнего платежа
-            $this->trade->otherAmtPastDue?$this->formatCurrency($this->trade->otherAmtPastDue):$this->emptyValue, //Сумма просроченных комиссий, а также сумма неустойки (штрафы, пени) и иных аналогичных требований к заемщику на дату последнего платежа
+            $this->trade->principalPastDue !== null?$this->formatCurrency($this->trade->principalPastDue):$this->emptyValue, //Просроченная задолженность по основному долгу на дату последнего платежа
+            $this->trade->intPastDue !== null?$this->formatCurrency($this->trade->intPastDue):$this->emptyValue, //Просроченная задолженность по процентам на дату последнего платежа
+            $this->trade->otherAmtPastDue !== null?$this->formatCurrency($this->trade->otherAmtPastDue):$this->emptyValue, //Сумма просроченных комиссий, а также сумма неустойки (штрафы, пени) и иных аналогичных требований к заемщику на дату последнего платежа
     
             $this->emptyValue, //Дата окончания льготного периода
             $this->tradeUniversallyUniqueID(), //Уникальный идентификатор договора (сделки)

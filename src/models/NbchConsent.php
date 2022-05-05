@@ -42,8 +42,6 @@ use yii\helpers\ArrayHelper;
  */
 class NbchConsent extends ActiveRecord
 {
-    use GetNbchOfferTrait;
-    
     /**
      * Согласие на получение отчетов по физ лицу
      */

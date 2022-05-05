@@ -20,6 +20,18 @@ interface NbchEsignClientInterface
     public function nbkiUnzip();
     
     /**
+     * @return bool
+     * @throws Exception
+     */
+    public function signTutdf(): bool;
+    
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function signTutdfZip(): bool;
+    
+    /**
      * @return array|string
      */
     public function getResponseResult();
