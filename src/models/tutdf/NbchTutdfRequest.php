@@ -57,6 +57,7 @@ class NbchTutdfRequest extends ActiveRecord
     public const STATE_NBCH_ERROR = 41;
     
     public const FILE_TUTDF_TYPE = 'TUTDFTemplateEntity';
+    public const FILE_TUTDF_SIG = 'TUTDFTemplateEntity';
     public const FILE_TUTDF_ZIP = 'TUTDF_ZIP_ARCHIVE';
     public const FILE_CONFIRM_ZIP_P7M_TYPE = 'FILE_CONFIRM_ZIP_P7M';
     public const FILE_REJECT = 'FILE_REJECT';
@@ -221,6 +222,17 @@ class NbchTutdfRequest extends ActiveRecord
     public function getTutdfFile(): ?NbchFileInterface
     {
         return Env::ensure()->module->file->getFile(self::FILE_TUTDF_TYPE, self::ENTITY, $this->id);
+    }
+    
+    /**
+     * Файл с данными
+     * @return NbchFile|null
+     * @throws InvalidConfigException
+     * @throws NotInstantiableException
+     */
+    public function getTutdfSigFile(): ?NbchFileInterface
+    {
+        return Env::ensure()->module->file->getFile(self::FILE_TUTDF_SIG, self::ENTITY, $this->id);
     }
     
     /**
