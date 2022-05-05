@@ -109,6 +109,19 @@ class CreateZipArchiveComponent extends BaseObject
             throw new Exception('Save file ' . $tmpSigFile . ' error');
         }
         $this->_tmpSigFile = $tmpSigFile;
+    
+        $fileManager = Env::ensure()->module->file;
+    
+        $file = new NbchFile();
+        $file->setContent(base64_decode($this->_client->getResponseResult()))
+            ->setFileName($this->_file->fileName . '.sig')
+            ->setEntityId($this->_request->id)
+            ->setEntity(NbchTutdfRequest::ENTITY)
+            ->setType(NbchTutdfRequest::FILE_TUTDF_SIG);
+    
+        if(!$fileManager->save($file)){
+            throw new Exception('Save sig error');
+        }
         
         $this->_request->state = NbchTutdfRequest::STATE_SIGNED_TUTDF;
         $this->_request->save();

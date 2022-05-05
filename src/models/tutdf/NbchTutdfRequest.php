@@ -58,7 +58,7 @@ class NbchTutdfRequest extends ActiveRecord
     public const STATE_NBCH_ERROR = 41;
     
     public const FILE_TUTDF_TYPE = 'TUTDFTemplateEntity';
-    public const FILE_TUTDF_SIG = 'TUTDFTemplateEntity';
+    public const FILE_TUTDF_SIG = 'TUTDF_SIG';
     public const FILE_TUTDF_ZIP = 'TUTDF_ZIP_ARCHIVE';
     public const FILE_CONFIRM_ZIP_P7M_TYPE = 'FILE_CONFIRM_ZIP_P7M';
     public const FILE_REJECT = 'FILE_REJECT';
