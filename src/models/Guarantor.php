@@ -22,7 +22,7 @@ class Guarantor extends BaseItem
      */
     public const GUARANTEE_VOLUME_PART = 'P';
     
-    public const CODE_YES = 'B';
+    public const CODE_YES = 'G';
     
     public const CODE_NO = 'N';
     

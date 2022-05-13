@@ -15,7 +15,7 @@ class AccountRelationship
     public const JOINT   = 4;
     public const GUARANTOR   = 5;
     public const PRINCIPAL    = 6;
-    public const BUSINESS    = 7;
+    public const BUSINESS    = 9;
     
     /**
      * @return string[]
