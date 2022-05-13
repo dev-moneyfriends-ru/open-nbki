@@ -35,4 +35,10 @@ interface NbchEsignClientInterface
      * @return array|string
      */
     public function getResponseResult();
+    
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function nbkiDecryptArchive(): bool;
 }
