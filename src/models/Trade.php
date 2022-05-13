@@ -446,8 +446,6 @@ class Trade extends BaseItem
                     'amtOutstanding',
                     'ownerIndic',
                     'currencyCode',
-                    'guaranteeAmt',
-                    'guaranteeTerm',
                     'intOutstanding',
                     'intPastDue',
                     'openedDt',
@@ -506,6 +504,8 @@ class Trade extends BaseItem
             [
                 [
                     'guaranteeVolumeCode',
+                    'guaranteeAmt',
+                    'guaranteeTerm',
                 ],
                 'required',
                 'when' => function (Trade $model) {
