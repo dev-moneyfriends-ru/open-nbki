@@ -75,6 +75,7 @@ class SendToNbchComponent extends BaseObject
     private function afterExecute()
     {
         $this->_request->state = NbchTutdfRequest::STATE_SENT;
+        $this->_request->sendAt = time();
         $this->_request->save();
     }
 }
