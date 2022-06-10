@@ -69,10 +69,10 @@ class NbchTutdfRequestSearch extends tutdf\NbchTutdfRequest
             'state' => $this->state,
             'checkAt' => $this->checkAt,
             'checkBy' => $this->checkBy,
+            'offerUuid' => $this->offerUuid,
         ]);
 
-        $query->andFilterWhere(['like', 'errorMessage', $this->errorMessage])
-            ->andFilterWhere(['like', 'offerUuid', $this->offerUuid]);
+        $query->andFilterWhere(['like', 'errorMessage', $this->errorMessage]);
 
         return $dataProvider;
     }
