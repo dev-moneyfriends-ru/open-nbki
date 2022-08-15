@@ -8,7 +8,7 @@ use mfteam\nbch\models\Collateral;
 /**
  * Сегмент Дополнительные залоги (CL)
  */
-class CASegment extends BaseSegment
+class CLSegment extends BaseSegment
 {
     /**
      * @var string

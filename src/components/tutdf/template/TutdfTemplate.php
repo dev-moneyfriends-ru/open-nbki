@@ -6,7 +6,7 @@ use Exception;
 use mfteam\nbch\components\tutdf\template\segments\ADSegment;
 use mfteam\nbch\components\tutdf\template\segments\BGSegment;
 use mfteam\nbch\components\tutdf\template\segments\BUSegment;
-use mfteam\nbch\components\tutdf\template\segments\CASegment;
+use mfteam\nbch\components\tutdf\template\segments\CLSegment;
 use mfteam\nbch\components\tutdf\template\segments\GRSegment;
 use mfteam\nbch\components\tutdf\template\segments\INNSegment;
 use mfteam\nbch\components\tutdf\template\segments\NASegment;
@@ -337,7 +337,7 @@ class TutdfTemplate extends BaseRequestTemplate
         $segments = [];
         unset($models[0]);
         foreach ($models as $model){
-            $segments[] = new CASegment($this, $this->nextSegmentNum($segments), $model);
+            $segments[] = new CLSegment($this, $this->nextSegmentNum($segments), $model);
         }
         return $segments;
     }
