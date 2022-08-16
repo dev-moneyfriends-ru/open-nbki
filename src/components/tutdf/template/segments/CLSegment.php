@@ -42,7 +42,7 @@ class CLSegment extends BaseSegment
      */
     public function getSegmentName(): string
     {
-        return 'CA' . $this->sequenceNumber;
+        return 'CL' . $this->sequenceNumber;
     }
     
     /**
