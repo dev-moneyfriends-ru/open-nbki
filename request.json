@@ -1,0 +1,167 @@
+{
+  "event": "1.1.1",
+  "subject": {
+    "actualAddress": {
+      "addressType": 1,
+      "addrSinceDt": "yyyy-MM-dd",
+      "apartment": null,
+      "block": null,
+      "building": null,
+      "city": null,
+      "countryCode": "RU",
+      "countryCodeText": null,
+      "district": null,
+      "houseNumber": null,
+      "postal": null,
+      "prov": null,
+      "provText": null,
+      "street": null,
+      "streetType": null,
+      "streetTypeText": null,
+      "addressString": null
+    },
+    "legalAddress": {
+      "addressType": 1,
+      "addrSinceDt": "yyyy-MM-dd",
+      "apartment": null,
+      "block": null,
+      "building": null,
+      "city": null,
+      "countryCode": "RU",
+      "countryCodeText": null,
+      "district": null,
+      "houseNumber": null,
+      "postal": null,
+      "prov": null,
+      "provText": null,
+      "street": null,
+      "streetType": null,
+      "streetTypeText": null,
+      "addressString": null
+    },
+    "workPhone": {
+      "number": null,
+      "phoneType": 5
+    },
+    "phones": [
+      {
+        "number": null,
+        "phoneType": 5
+      }
+    ],
+    "subjectType": "s",
+    "offerRelationType": "string",
+    "inn": null,
+    "ogrn": null,
+    "snils": null,
+    "passport": {
+      "series": null,
+      "number": null,
+      "issueDate": null,
+      "issueAuthority": null
+    },
+    "person": {
+      "birthDt": null,
+      "first": null,
+      "gender": null,
+      "genderText": null,
+      "name1": null,
+      "paternal": null,
+      "placeOfBirth": null,
+      "maritalStatus": null,
+      "maritalStatusText": null
+    },
+    "business": {
+      "abbreviatedBusinessName": null,
+      "businessName": null,
+      "businessNameAlt": null,
+      "businessNameRF": null,
+      "businessStatus": 0
+    }
+  },
+  "offer": {
+    "uuid": "",
+    "guarantorArray": [
+      {
+        "guaranteeAmt": null,
+        "guaranteeTerm": null,
+        "guaranteeVolumeCode": null,
+        "currencyCode": "RUB",
+        "serialNum": ""
+      }
+    ],
+    "collateralArray": [
+      {
+        "collateralCode": null,
+        "collateralValue": null,
+        "collateralDate": null,
+        "collateralExpirationDate": null,
+        "currencyCode": "RUB",
+        "serialNum": ""
+      }
+    ],
+    "paymentArray": [
+      {
+        "currencyCode": "RUB",
+        "m24Total": null,
+        "paymtAmt": null,
+        "paymtAmtDue": null,
+        "paymtDate": null,
+        "paymtVolume": null
+      }
+    ],
+    "bankGuaranteeArray": [
+      {
+        "bankGuaranteeAmt": null,
+        "bankGuaranteeTerm": null,
+        "bankGuaranteeVolumeCode": null,
+        "bankGuaranteeOtherTermination": null,
+        "currencyCode": "RUB",
+        "bankGuaranteeIndicatorCode": null
+      }
+    ],
+    "trade": {
+      "accountRating": null,
+      "accountRatingDate": null,
+      "acctNum": null,
+      "acctType": null,
+      "amtOutstanding": null,
+      "amtPastDue": null,
+      "bankGuaranteeAmt": null,
+      "bankGuaranteeIndicatorCode": "N",
+      "ownerIndic": null,
+      "bankGuaranteeTerm": null,
+      "bankGuaranteeVolumeCode": null,
+      "closedDt": null,
+      "collateralCode": null,
+      "collateralValue": null,
+      "collateralDate": null,
+      "collateralExpirationDate": null,
+      "creditLimit": null,
+      "curBalanceAmt": null,
+      "currencyCode": "RUB",
+      "graceEndDt": null,
+      "guaranteeAmt": null,
+      "guaranteeTerm": null,
+      "guaranteeVolumeCode": null,
+      "guarantorIndicatorCode": "N",
+      "interestPaymentDueDate": null,
+      "interestPaymentFrequencyCode": null,
+      "intOutstanding": 0,
+      "intPastDue": 0,
+      "lastPaymtDt": "1900-01-02",
+      "openedDt": null,
+      "otherAmtOutstanding": null,
+      "otherAmtPastDue": null,
+      "paymentDueDate": null,
+      "paymentPatternValue": null,
+      "principalOutstanding": null,
+      "principalPastDue": null,
+      "reportingDt": null,
+      "termsAmt": null,
+      "termsFrequency": null,
+      "uuid": null,
+      "completePerformDt": null
+    }
+  }
+}

@@ -2,6 +2,7 @@
 
 namespace mfteam\nbch\components\tutdf\template\segments;
 
+use mfteam\nbch\components\BaseSegment;
 use mfteam\nbch\components\tutdf\template\TutdfTemplate;
 use mfteam\nbch\models\Collateral;
 
@@ -32,7 +33,7 @@ class CLSegment extends BaseSegment
     public function validate(): bool
     {
         if ($this->collateral->validate()) {
-            $this->_errors = $this->collateral->errors;
+            $this->errors = $this->collateral->errors;
         }
         return $this->isEmptyErrors;
     }

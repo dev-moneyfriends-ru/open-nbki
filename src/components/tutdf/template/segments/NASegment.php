@@ -8,6 +8,8 @@
 
 namespace mfteam\nbch\components\tutdf\template\segments;
 
+use mfteam\nbch\components\BaseSegment;
+
 /**
  * Сегмент имени
  * Class NASegment
@@ -21,25 +23,25 @@ class NASegment extends BaseSegment
      */
     public function validate(): bool
     {
-        $person = $this->_template->subject->getPerson();
+        $person = $this->template->subject->getPerson();
         if($person === null){
-            $this->_errors[] = 'Нет данных по ФЛ или ИП';
+            $this->errors[] = 'Нет данных по ФЛ или ИП';
             return false;
         }
         if(empty($person->name1)){
-            $this->_errors[] = 'Отсутствует фамилия';
+            $this->errors[] = 'Отсутствует фамилия';
         }
         if(empty($person->paternal)){
-            $this->_errors[] = 'Отсутствует отчество';
+            $this->errors[] = 'Отсутствует отчество';
         }
         if(empty($person->first)){
-            $this->_errors[] = 'Отсутствует имя';
+            $this->errors[] = 'Отсутствует имя';
         }
         if(empty($person->birthDt)){
-            $this->_errors[] = 'Отсутствует дата рождения';
+            $this->errors[] = 'Отсутствует дата рождения';
         }
         if(empty($person->placeOfBirth)){
-            $this->_errors[] = 'Отсутствует место рождения';
+            $this->errors[] = 'Отсутствует место рождения';
         }
         return $this->isEmptyErrors;
     }
@@ -59,12 +61,12 @@ class NASegment extends BaseSegment
     {
         return [
             $this->getSegmentName(),
-            $this->_template->subject->getPerson()->name1,
-            $this->_template->subject->getPerson()->paternal,
-            $this->_template->subject->getPerson()->first,
+            $this->template->subject->getPerson()->name1,
+            $this->template->subject->getPerson()->paternal,
+            $this->template->subject->getPerson()->first,
             $this->emptyValue,
-            $this->formatDate($this->_template->subject->getPerson()->birthDt),
-            $this->_template->subject->getPerson()->placeOfBirth,
+            $this->formatDate($this->template->subject->getPerson()->birthDt),
+            $this->template->subject->getPerson()->placeOfBirth,
             $this->emptyValue,
             $this->emptyValue,
             $this->emptyValue,

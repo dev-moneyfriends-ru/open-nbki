@@ -37,7 +37,7 @@ class SNILSSegment extends IDSegment
      */
     public function getNumber(): string
     {
-        return $this->_template->subject->getSnils();
+        return $this->template->subject->getSnils();
     }
     
     /**

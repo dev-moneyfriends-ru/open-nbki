@@ -27,7 +27,7 @@ class INNSegment extends IDSegment
      */
     public function getNumber(): string
     {
-        return $this->_template->subject->getInn();
+        return $this->template->subject->getInn();
     }
     
     /**

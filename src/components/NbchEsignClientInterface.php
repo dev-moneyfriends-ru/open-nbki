@@ -17,19 +17,19 @@ interface NbchEsignClientInterface
      * @return bool
      * @throws Exception
      */
-    public function nbkiUnzip();
+    public function nbchUnzip();
     
     /**
      * @return bool
      * @throws Exception
      */
-    public function signTutdf(): bool;
+    public function signNbchFile(): bool;
     
     /**
      * @return bool
      * @throws Exception
      */
-    public function signTutdfZip(): bool;
+    public function signNbchZip(): bool;
     
     /**
      * @return array|string
@@ -40,5 +40,5 @@ interface NbchEsignClientInterface
      * @return bool
      * @throws Exception
      */
-    public function nbkiDecryptArchive(): bool;
+    public function nbchDecryptArchive(): bool;
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace mfteam\nbch\components\tutdf\template\segments;
+namespace mfteam\nbch\components;
 
 use mfteam\nbch\components\tutdf\template\TutdfTemplate;
 use yii\base\InvalidConfigException;
@@ -9,7 +9,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\VarDumper;
 
 /**
- * Сегмент данных файла TUTDF
+ * Сегмент данных файла НБКИ
  *
  * @property-read bool $isEmptyErrors
  * @property-read string $description
@@ -22,14 +22,14 @@ use yii\helpers\VarDumper;
 abstract class BaseSegment extends \yii\base\BaseObject
 {
     /**
-     * @var TUTDFTemplate
+     * @var BaseRequestTemplate
      */
-    protected $_template;
+    protected $template;
     
     /**
      * @var array
      */
-    protected $_errors = [];
+    protected $errors = [];
     
     /**
      * Значение пустого поля
@@ -40,16 +40,16 @@ abstract class BaseSegment extends \yii\base\BaseObject
     /**
      * @var array
      */
-    protected $_fieldValues;
+    protected $fieldValues;
     
     /**
      * BaseSegment constructor.
      * @param TUTDFTemplate $template
      * @param array $config
      */
-    public function __construct(TUTDFTemplate $template, $config = [])
+    public function __construct(BaseRequestTemplate $template, $config = [])
     {
-        $this->_template = $template;
+        $this->template = $template;
         parent::__construct($config);
     }
     
@@ -64,12 +64,22 @@ abstract class BaseSegment extends \yii\base\BaseObject
     }
     
     /**
+     * @param $date
+     * @return string
+     * @throws InvalidConfigException
+     */
+    public function formatNewDate($date): string
+    {
+        return \Yii::$app->formatter->asDate($date, 'dd.MM.yyyy');
+    }
+    
+    /**
      * @param $value
      * @return false|float
      */
     public function formatCurrency($value)
     {
-        return round((float)$value, 0,PHP_ROUND_HALF_UP);
+        return round((float)$value);
     }
     
     /**
@@ -78,8 +88,8 @@ abstract class BaseSegment extends \yii\base\BaseObject
      */
     public function render(): string
     {
-        if (!$this->validate() || count($this->_errors) > 0) {
-            \Yii::error($this->_errors);
+        if (!$this->validate() || count($this->errors) > 0) {
+            \Yii::error($this->errors);
             $this->throwError();
         }
         return implode("\t", $this->getFields()) . PHP_EOL;
@@ -90,7 +100,7 @@ abstract class BaseSegment extends \yii\base\BaseObject
      */
     public function getIsEmptyErrors(): bool
     {
-        return count($this->_errors) === 0;
+        return count($this->errors) === 0;
     }
     
     /**
@@ -144,21 +154,21 @@ abstract class BaseSegment extends \yii\base\BaseObject
      */
     protected function getErrorsAsString()
     {
-        return VarDumper::dumpAsString($this->_errors);
+        return VarDumper::dumpAsString($this->errors);
     }
     
     /**
-     * Возвращает данные поля из файла TUTDF
+     * Возвращает данные поля из файла НБКИ
      * @param int $index Номер поля по порядку
      * @return mixed|null
      * @throws \Exception
      */
     public function getFieldFromFile(int $index)
     {
-        if($this->_fieldValues === null){
+        if ($this->fieldValues === null) {
             $this->loadFieldValues();
         }
-        return ArrayHelper::getValue($this->_fieldValues, $index);
+        return ArrayHelper::getValue($this->fieldValues, $index);
     }
     
     /**
@@ -166,14 +176,14 @@ abstract class BaseSegment extends \yii\base\BaseObject
      */
     private function loadFieldValues(): void
     {
-        $this->_fieldValues = [];
-        if(empty($this->_template->fileContent)){
+        $this->fieldValues = [];
+        if (empty($this->template->fileContent)) {
             return;
         }
-        $lines = explode("\n", $this->_template->fileContent);
-        foreach ($lines as $str){
-            if(strpos($str,$this->getSegmentName()) === 0){
-                $this->_fieldValues = explode("\t", $str);
+        $lines = explode("\n", $this->template->fileContent);
+        foreach ($lines as $str) {
+            if (strpos($str, $this->getSegmentName()) === 0) {
+                $this->fieldValues = explode("\t", $str);
                 break;
             }
         }

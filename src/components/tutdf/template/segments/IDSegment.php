@@ -9,6 +9,7 @@
 namespace mfteam\nbch\components\tutdf\template\segments;
 
 
+use mfteam\nbch\components\BaseSegment;
 use mfteam\nbch\components\tutdf\template\TutdfTemplate;
 use mfteam\nbch\models\Identification;
 
@@ -52,17 +53,17 @@ abstract class IDSegment extends BaseSegment
         $typeId = (int)$this->getType();
         if ($typeId < 28) {
             if (empty($this->getIssueDate())) {
-                $this->_errors[] = 'Отсутствует дата выдачи документа'.$this->getIssueDate();
+                $this->errors[] = 'Отсутствует дата выдачи документа'.$this->getIssueDate();
             }
             if (empty($this->getIssueAuthority())) {
-                $this->_errors[] = 'Отсутствует поле кем выдан документа';
+                $this->errors[] = 'Отсутствует поле кем выдан документа';
             }
         }
         if (empty($this->seriesNumber) && in_array($typeId, [1, 2, 21, 22])) {
-            $this->_errors[] = 'Отсутствует поле Серийный номер документа';
+            $this->errors[] = 'Отсутствует поле Серийный номер документа';
         }
         if ($typeId !== 97 && empty($this->number)) {
-            $this->_errors[] = 'Отсутствует поле номер документа';
+            $this->errors[] = 'Отсутствует поле номер документа';
         }
         return $this->isEmptyErrors;
     }

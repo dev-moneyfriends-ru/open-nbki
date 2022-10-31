@@ -13,10 +13,15 @@ use yii\di\NotInstantiableException;
 class Env extends BaseObject
 {
     /**
-     * Таблица хранящая отправленные в НБКИ отчеты
+     * Таблица хранящая отправленные в НБКИ TUTDF отчеты
      * @var string
      */
     public $nbchTutdfRequestTableName = '{{%nbch_tutdf_request}}';
+    /**
+     * Таблица хранящая отправленные в НБКИ TUTDF отчеты
+     * @var string
+     */
+    public $nbchRutdfRequestTableName = '{{%nbch_rutdf_request}}';
     
     /**
      * Таблица для хранения согласий
@@ -29,6 +34,12 @@ class Env extends BaseObject
      * @var string
      */
     public $nbchConsentRelationsTableName = '{{%nbch_consent_relations}}';
+    
+    /**
+     * Таблица для хранения контрольных данных
+     * @var string
+     */
+    public $nbchControlTableName = '{{%nbch_control}}';
     
     /**
      * @return Env|object

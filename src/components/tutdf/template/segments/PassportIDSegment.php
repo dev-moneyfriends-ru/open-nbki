@@ -73,7 +73,7 @@ class PassportIDSegment extends IDSegment
      */
     protected function getSubjectPassport(): NbchSubjectPassportInterface
     {
-        $model = $this->_template->subject->getPassport();
+        $model = $this->template->subject->getPassport();
         if($model === null){
             throw new InvalidArgumentException('Empty subkect passport');
         }

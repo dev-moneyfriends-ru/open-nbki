@@ -107,7 +107,7 @@ class Trade extends BaseItem
     public $collateralValue;
     
     /**
-     *
+     * Дата оценки
      * @var string
      */
     public $collateralDate;
@@ -351,7 +351,7 @@ class Trade extends BaseItem
     
     /**
      * The unique ID of the trade record.
-     * @var int
+     * @var string
      */
     public $serialNum;
     

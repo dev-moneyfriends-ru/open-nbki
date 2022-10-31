@@ -9,6 +9,7 @@
 namespace mfteam\nbch\components\tutdf\template\segments;
 
 
+use mfteam\nbch\components\BaseSegment;
 use mfteam\nbch\models\Business;
 use yii\base\InvalidArgumentException;
 
@@ -157,6 +158,6 @@ class BUSegment extends BaseSegment
      */
     public function getBusiness(): Business
     {
-        return $this->_template->subject->getBusiness();
+        return $this->template->subject->getBusiness();
     }
 }

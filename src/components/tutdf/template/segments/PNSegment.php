@@ -9,6 +9,7 @@
 namespace mfteam\nbch\components\tutdf\template\segments;
 
 
+use mfteam\nbch\components\BaseSegment;
 use mfteam\nbch\components\tutdf\template\TutdfTemplate;
 use mfteam\nbch\models\Phone;
 
@@ -41,7 +42,7 @@ class PNSegment extends BaseSegment
     public function validate(): bool
     {
         if(!$this->phone->validate()){
-            $this->_errors = $this->phone->errors;
+            $this->errors = $this->phone->errors;
         }
         return $this->isEmptyErrors;
     }

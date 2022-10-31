@@ -2,6 +2,7 @@
 
 namespace mfteam\nbch\components\tutdf\template\segments;
 
+use mfteam\nbch\components\BaseSegment;
 use mfteam\nbch\components\tutdf\template\TutdfTemplate;
 use mfteam\nbch\models\BankGuarantee;
 
@@ -32,7 +33,7 @@ class BGSegment extends BaseSegment
     public function validate(): bool
     {
         if (!$this->bankGuarantee->validate()) {
-            $this->_errors = $this->bankGuarantee->errors;
+            $this->errors = $this->bankGuarantee->errors;
         }
         return $this->isEmptyErrors;
     }

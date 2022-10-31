@@ -1,15 +1,9 @@
-НБКИ модуль
-===========
-Обмен данными с НБКИ
+<?php
 
-RUTDF
-------------
+namespace mfteam\nbch\models\rutdf;
 
-Коды событий:
--
-Коды событий находятся вспомогательном классе `\mfteam\nbch\models\rutdf\NbchEvents`
-Список реализованных кодов:
-```php
+class NbchEvents
+{
     public const EVENT_1_1 = "1.1";
     public const EVENT_1_2 = "1.2";
     public const EVENT_1_3 = "1.3";
@@ -46,64 +40,114 @@ RUTDF
             self::EVENT_2_6 => 'Изменились сведения о судебном споре или требовании по обязательству ',
         ];
     }
-```
-
-Настройка:
--
-Необходимо реализовать интерфейсы:
-`\mfteam\nbch\components\file\FileManagerInterface` - компонент реализующий файловое хранилище
-`\mfteam\nbch\components\NbchEsignClientInterface` - компонент реализующий подписание файлов
-
-В конфиге прописать:
-```php
-modules =>[
-    ...
     
-     'nbch' => [
-            'class' => \mfteam\nbch\Module::class,
-            'memberCode' => '2I01RR000000',
-            'partnerName' => 'ООО «МАНИ ФРЕНДС»',
-            'components' => [
-                'file' => [
-                    'class' => \mfteam\nbch\components\file\FileManagerInterface::class,
-                ],
-                'tutdf' => [
-                    'class' => \mfteam\nbch\components\tutdf\TutdfRequestComponent::class,
-                    'userName' => '2I01RR000005',
-                    'password' => '2I01rr00',
-                    'reportEmail' => 'CreditHistory@nbki.ru'
-                ],
-                'rutdf' => [
-                    'class' => \mfteam\nbch\components\rutdf\RutdfRequestComponent::class,
-                    'userName' => '2I01RR000005',
-                    'password' => '2I01rr00',
-                    'reportEmail' => 'RUTDF@nbki.ru',
-                    'sourceInn' => '6163209391',
-                    'sourceOgrn' => '1186196015510'
-                ],
-                'creditHistory' => [
-                    'class' => \mfteam\nbch\components\creditHistory\CreditHistoryComponent::class,
-                    'userName' => '2I01RR000005',
-                    'password' => '2I01rr00',
-                    'apiUrl' => 'https://reports.demo.nbki.ru/products/B2BRequestServlet',
-                ],
-                'esignClient' => [
-                    'class' =>\mfteam\nbch\components\NbchEsignClientInterface::class,
-                ],
-                'mailer' => [
-                    'class' => Mailer::class,
-                    'useFileTransport' => false,
-                    'messageConfig' => [
-                        'charset' => 'UTF-8',
-                    ],
-                ],
+    /**
+     * Блоки формируемые по событию для ФЛ
+     * @return \int[][]
+     */
+    public static function personBlocks()
+    {
+        return [
+            self::EVENT_1_1 => [
+                1, 2, 3, 4, 5, 6, 7, 55,
             ],
-        ],
+            self::EVENT_1_2 => [
+                1, 2, 3, 4, 5, 6, 7, 55,
+            ],
+            self::EVENT_1_3 => [
+                1, 2, 3, 4, 5, 6, 7, 55, 57,
+            ],
+            self::EVENT_1_4 => [
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 17, 18, 19, 20, 21, 22, 54,
+            ],
+            self::EVENT_1_4_1 => [
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 17, 18, 19, 20, 21, 22, 24, 25, 26, 27, 28, 30, 54, 56,
+            ],
+            self::EVENT_1_7 => [
+                1, 2, 3, 4, 5, 6, 7,
+            ],
+            self::EVENT_1_9 => [
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+            ],
+            self::EVENT_2_1 => [
+                17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 54,
+            ],
+            self::EVENT_2_2 => [
+                17, 18, 19, 21, 22, 24, 25, 26, 27, 28, 29, 56,
+            ],
+            self::EVENT_2_3_1 => [
+                17, 18, 19, 21, 22, 24, 25, 26, 27, 28, 29, 54, 56,
+            ],
+            self::EVENT_2_3_2 => [
+                17, 18, 31, 54, 56,
+            ],
+            self::EVENT_2_4 => [
+                17, 32, 33, 34, 35, 36, 37,
+            ],
+            self::EVENT_2_5_1 => [
+                17, 18, 19, 21, 22, 24, 25, 26, 27, 28, 29, 38, 56,
+            ],
+            self::EVENT_2_5_2 => [
+                17, 18, 31, 38, 56,
+            ],
+            self::EVENT_2_6 => [
+                17, 39
+            ],
+        ];
+    }
     
-]
-```
-
-Передача сведений:
--
-Получение КИ:
--
+    /**
+     * Блоки формируемые по событию для ЮЛ
+     * @return \int[][]
+     */
+    public static function legalBlocks()
+    {
+        return [
+            self::EVENT_1_1 => [
+                1, 2, 3, 4, 5, 45,
+            ],
+            self::EVENT_1_2 => [
+                1, 2, 3, 4, 5, 45,
+            ],
+            self::EVENT_1_3 => [
+                1, 2, 3, 4, 5, 47,
+            ],
+            self::EVENT_1_4 => [
+                1, 2, 3, 4, 5, 8, 10, 11, 12, 13, 14, 44,
+            ],
+            self::EVENT_1_4_1 => [
+                1, 2, 3, 4, 5, 8, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21, 44, 46,
+            ],
+            self::EVENT_1_7 => [
+                1, 2, 3, 4, 5,
+            ],
+            self::EVENT_1_9 => [
+                1, 2, 3, 4, 5, 8,
+            ],
+            self::EVENT_2_1 => [
+                10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 44,
+            ],
+            self::EVENT_2_2 => [
+                10, 11, 12, 14, 16, 17, 18, 19, 20, 46,
+            ],
+            self::EVENT_2_3_1 => [
+                10, 11, 12, 14, 16, 17, 18, 19, 20, 44, 46,
+            ],
+            self::EVENT_2_3_2 => [
+                10, 11, 22, 44, 46,
+            ],
+            self::EVENT_2_4 => [
+                10, 23, 24, 25, 26, 27, 28,
+            ],
+            self::EVENT_2_5_1 => [
+                10, 11, 12, 14, 16, 17, 18, 19, 20, 22, 46,
+            ],
+            self::EVENT_2_5_2 => [
+                10, 11, 22, 29, 46,
+            ],
+            self::EVENT_2_6 => [
+                17, 30
+            ],
+        ];
+    }
+}

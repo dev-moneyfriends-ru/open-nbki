@@ -9,6 +9,7 @@
 namespace mfteam\nbch\components\tutdf\template\segments;
 
 
+use mfteam\nbch\components\BaseSegment;
 use mfteam\nbch\components\tutdf\template\TutdfTemplate;
 use mfteam\nbch\Env;
 use mfteam\nbch\Module;
@@ -41,7 +42,7 @@ class TUTDFSegment extends BaseSegment
     public function validate(): bool
     {
         if ($this->_module === null) {
-            $this->_errors[] = 'Модуль не найден';
+            $this->errors[] = 'Модуль не найден';
         }
         return true;
     }
@@ -64,7 +65,7 @@ class TUTDFSegment extends BaseSegment
             $this->emptyValue,
             $this->formatDate(time()),
             $this->_module->tutdf->password,
-            $this->_template->offer->getUuid(),
+            $this->template->offer->getUuid(),
         ];
     }
     

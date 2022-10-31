@@ -9,6 +9,7 @@
 namespace mfteam\nbch\components\tutdf\template\segments;
 
 
+use mfteam\nbch\components\BaseSegment;
 use mfteam\nbch\components\tutdf\template\TutdfTemplate;
 use mfteam\nbch\models\Address;
 
@@ -45,7 +46,7 @@ class ADSegment extends BaseSegment
     {
         $this->address->validate();
         if($this->address->hasErrors()){
-            $this->_errors = $this->address->errors;
+            $this->errors = $this->address->errors;
         }
         return $this->isEmptyErrors;
     }

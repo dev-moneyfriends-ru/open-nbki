@@ -2,6 +2,7 @@
 
 namespace mfteam\nbch\components\tutdf\template\segments;
 
+use mfteam\nbch\components\BaseSegment;
 use mfteam\nbch\components\tutdf\template\TutdfTemplate;
 use mfteam\nbch\models\Guarantor;
 
@@ -32,7 +33,7 @@ class GRSegment extends BaseSegment
     public function validate(): bool
     {
         if(!$this->guarantor->validate()){
-            $this->_errors = $this->guarantor->errors;
+            $this->errors = $this->guarantor->errors;
         }
         return $this->isEmptyErrors;
     }

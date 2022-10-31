@@ -2,6 +2,8 @@
 
 namespace mfteam\nbch\components\tutdf;
 
+use mfteam\nbch\components\CreateZipArchiveComponent;
+use mfteam\nbch\components\SendToNbchComponent;
 use mfteam\nbch\models\NbchControl;
 use mfteam\nbch\models\tutdf\NbchTutdfRequest;
 use Yii;
@@ -11,6 +13,7 @@ use yii\base\InvalidConfigException;
 
 /**
  * Компонент для отправки данных в НБКИ в формате TUTDF с помощью EMAIL
+ * @deprecated
  */
 class TutdfRequestComponent extends Component
 {

@@ -1,9 +1,11 @@
 <?php
 
-namespace mfteam\nbch\components\tutdf;
+namespace mfteam\nbch\components;
 
 use mfteam\nbch\components\file\NbchFile;
 use mfteam\nbch\Env;
+use mfteam\nbch\models\BaseSendNbchRequestInterface;
+use mfteam\nbch\models\rutdf\NbchRutdfRequest;
 use mfteam\nbch\models\tutdf\NbchTutdfRequest;
 use yii\base\BaseObject;
 use yii\base\Exception;
@@ -14,17 +16,22 @@ use yii\base\Exception;
 class SendToNbchComponent extends BaseObject
 {
     /**
-     * @var NbchTutdfRequest
+     * @var BaseSendNbchRequestInterface
      */
-    private $_request;
+    private $request;
     /**
      * @var NbchFile|null
      */
-    private $_file;
+    private $file;
     
-    public function __construct(NbchTutdfRequest $request, $config = [])
+    /**
+     * @var string
+     */
+    private $reportEmail;
+    
+    public function __construct(BaseSendNbchRequestInterface $request, $config = [])
     {
-        $this->_request = $request;
+        $this->request = $request;
         parent::__construct($config);
     }
     
@@ -42,13 +49,13 @@ class SendToNbchComponent extends BaseObject
         $mailer = $module->mailer;
         
         $message = $mailer->compose()
-            ->attachContent($this->_file->content, [
-                'fileName' => $this->_file->fileName
+            ->attachContent($this->file->content, [
+                'fileName' => $this->file->fileName,
             ])
-            ->setTo($module->tutdf->reportEmail)
+            ->setTo($this->reportEmail)
             ->setSubject($module->partnerName)
             ->setHtmlBody($module->partnerName);
-        if(!$message->send()){
+        if (!$message->send()) {
             throw new Exception('Send error');
         }
         
@@ -61,12 +68,20 @@ class SendToNbchComponent extends BaseObject
      */
     private function beforeExecute()
     {
-        $this->_file = $this->_request->tutdfZipFile;
-        if($this->_file === null){
+        $this->file = $this->request->getZipFile();
+        if ($this->file === null) {
             throw new Exception('File not found');
         }
-        $this->_request->state = NbchTutdfRequest::STATE_SENDING;
-        $this->_request->save();
+        $this->request->setStateSending();
+        $this->request->save();
+        
+        $module = Env::ensure()->module;
+        if ($this->request instanceof NbchTutdfRequest) {
+            $this->reportEmail = $module->tutdf->reportEmail;
+        }
+        if ($this->request instanceof NbchRutdfRequest) {
+            $this->reportEmail = $module->rutdf->reportEmail;
+        }
     }
     
     /**
@@ -74,8 +89,7 @@ class SendToNbchComponent extends BaseObject
      */
     private function afterExecute()
     {
-        $this->_request->state = NbchTutdfRequest::STATE_SENT;
-        $this->_request->sendAt = time();
-        $this->_request->save();
+        $this->request->setStateSent();
+        $this->request->save();
     }
 }

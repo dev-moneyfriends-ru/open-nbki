@@ -44,7 +44,7 @@ class m220208_071754_create_nbch_consent_relations_table extends Migration
         $env = Env::ensure();
         $this->dropForeignKey(
             'fk-nbch_consent_relations-consentId',
-            $env->nbchConsentRelationsTableName,
+            $env->nbchConsentRelationsTableName
         );
         
         $this->dropIndex('idx-nbch_consent_relations-consentId', $env->nbchConsentRelationsTableName);

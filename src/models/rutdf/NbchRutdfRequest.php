@@ -1,6 +1,6 @@
 <?php
 
-namespace mfteam\nbch\models\tutdf;
+namespace mfteam\nbch\models\rutdf;
 
 use Exception;
 use mfteam\nbch\components\file\NbchFile;
@@ -16,8 +16,6 @@ use yii\di\NotInstantiableException;
 use yii\helpers\ArrayHelper;
 
 /**
- * This is the model class for table "nbch_tutdf_request".
- *
  * @property int $id
  * @property int $createdBy
  * @property int $updatedBy
@@ -29,26 +27,28 @@ use yii\helpers\ArrayHelper;
  * @property int $state
  * @property-read mixed $stateName
  * @property string|null $offerUuid
+ * @property string $event
  * @property int $checkAt [int(11)]
  * @property-read string $nbchConfirmZipP7mDownloadUrl
  * @property-read null|NbchFile $ticketFile
  * @property-read null|NbchFile $nbchConfirmZipP7mFile
  * @property-read string $tutdfDownloadUrl
- * @property-read null|NbchFile $tutdfFile
  * @property-read null|NbchFile $rejectFile
- * @property-read null|NbchFile $tutdfZipFile
- * @property-read null|NbchFile $tutdfSigFile
+ * @property-read null|NbchFile $rutdfZipFile
+ * @property-read string $rutdfDownloadUrl
+ * @property-read null|NbchFile $rutdfFile
+ * @property-read null|NbchFile $rutdfSigFile
  * @property int $checkBy [int(11)]
  */
-class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterface
+class NbchRutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterface
 {
-    public const ENTITY = 'NbchTutdfRequest';
+    public const ENTITY = 'NbchRutdfRequest';
     
     public const STATE_NEW = 0;
-    public const STATE_EXECUTE_CREATE_TUTDF = 1;
-    public const STATE_CREATED_TUTDF = 2;
-    public const STATE_EXECUTE_SIGN_TUTDF = 3;
-    public const STATE_SIGNED_TUTDF = 4;
+    public const STATE_EXECUTE_CREATE_RUTDF = 1;
+    public const STATE_CREATED_RUTDF = 2;
+    public const STATE_EXECUTE_SIGN_RUTDF = 3;
+    public const STATE_SIGNED_RUTDF = 4;
     public const STATE_EXECUTE_CREATE_ZIP = 5;
     public const STATE_CREATED_ZIP = 6;
     public const STATE_EXECUTE_SIGN_ZIP = 7;
@@ -59,21 +59,20 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
     public const STATE_ERROR = 40;
     public const STATE_NBCH_ERROR = 41;
     
-    public const FILE_TUTDF_TYPE = 'TUTDFTemplateEntity';
-    public const FILE_TUTDF_SIG = 'TUTDF_SIG';
-    public const FILE_TUTDF_ZIP = 'TUTDF_ZIP_ARCHIVE';
+    public const FILE_RUTDF_TYPE = 'RUTDFTemplateEntity';
+    public const FILE_RUTDF_SIG = 'RUTDF_SIG';
+    public const FILE_RUTDF_ZIP = 'RUTDF_ZIP_ARCHIVE';
     public const FILE_CONFIRM_ZIP_P7M_TYPE = 'FILE_CONFIRM_ZIP_P7M';
     public const FILE_REJECT = 'FILE_REJECT';
     public const FILE_TICKET = 'FILE_TICKET';
     public const FILE_TICKET_SIG = 'FILE_TICKET_SIG';
-    
     
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return Env::ensure()->nbchTutdfRequestTableName;
+        return Env::ensure()->nbchRutdfRequestTableName;
     }
     
     /**
@@ -85,28 +84,39 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
             [
                 'class' => TimestampBehavior::class,
                 'createdAtAttribute' => 'createdAt',
-                'updatedAtAttribute' => 'updatedAt'
+                'updatedAtAttribute' => 'updatedAt',
             ],
             [
                 'class' => BlameableBehavior::class,
                 'createdByAttribute' => 'createdBy',
-                'updatedByAttribute' => 'updatedBy'
+                'updatedByAttribute' => 'updatedBy',
             ],
         ];
     }
+    
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['createdBy', 'updatedBy', 'createdAt', 'updatedAt', 'sendAt', 'acceptAt', 'state', 'checkAt', 'checkBy'], 'integer'],
+            [['createdBy',
+                'updatedBy',
+                'createdAt',
+                'updatedAt',
+                'sendAt',
+                'acceptAt',
+                'state',
+                'checkAt',
+                'checkBy'], 'integer'],
             [['errorMessage'], 'string'],
-            [['offerUuid'], 'required'],
+            [['offerUuid', 'event'], 'required'],
             [['offerUuid'], 'string', 'max' => 50],
+            [['event'], 'string', 'max' => 10],
+            [['event'], 'in', 'range' => array_keys(NbchEvents::list())],
         ];
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -126,16 +136,8 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
             'offerUuid' => 'UUID договора',
             'checkAt' => 'Дата проверки',
             'checkBy' => 'Проверил',
+            'event' => 'Событие',
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     * @return NbchTutdfRequestQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new NbchTutdfRequestQuery(get_called_class());
     }
     
     /**
@@ -154,10 +156,10 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
     {
         return [
             self::STATE_NEW => 'Новый',
-            self::STATE_EXECUTE_CREATE_TUTDF => 'Создается TUTDF файл',
-            self::STATE_CREATED_TUTDF => 'Создан TUTDF',
-            self::STATE_EXECUTE_SIGN_TUTDF => 'Идет подписание TUTDF',
-            self::STATE_SIGNED_TUTDF => 'Подписан TUTDF',
+            self::STATE_EXECUTE_CREATE_RUTDF => 'Создается RUTDF файл',
+            self::STATE_CREATED_RUTDF => 'Создан RUTDF',
+            self::STATE_EXECUTE_SIGN_RUTDF => 'Идет подписание RUTDF',
+            self::STATE_SIGNED_RUTDF => 'Подписан RUTDF',
             self::STATE_EXECUTE_CREATE_ZIP => 'Создаентся архив',
             self::STATE_CREATED_ZIP => 'Архив создан',
             self::STATE_EXECUTE_SIGN_ZIP => 'Идет шифрование архива',
@@ -180,28 +182,29 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
             self::STATE_SENDING,
             self::STATE_SENT,
             self::STATE_COMPLETE,
-            self::STATE_NBCH_ERROR
-        ]);
+            self::STATE_NBCH_ERROR,
+        ], true);
     }
+    
     /**
      * Можно отправить в НБКИ
      * @return bool
      */
     public function canSend(): bool
     {
-        return $this->state === self::STATE_CREATED_TUTDF;
+        return $this->state === self::STATE_CREATED_RUTDF;
     }
     
     /**
      * Можно сгенерировать файл
      * @return bool
      */
-    public function canCreateTutdf(): bool
+    public function canCreateFile(): bool
     {
         return in_array($this->state, [
             self::STATE_ERROR,
             self::STATE_NEW,
-            self::STATE_CREATED_TUTDF
+            self::STATE_CREATED_RUTDF,
         ]);
     }
     
@@ -222,9 +225,9 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
      * @throws InvalidConfigException
      * @throws NotInstantiableException
      */
-    public function getTutdfFile(): ?NbchFileInterface
+    public function getFile(): ?NbchFileInterface
     {
-        return Env::ensure()->module->file->getFile(self::FILE_TUTDF_TYPE, self::ENTITY, $this->id);
+        return Env::ensure()->module->file->getFile(self::FILE_RUTDF_TYPE, self::ENTITY, $this->id);
     }
     
     /**
@@ -233,9 +236,9 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
      * @throws InvalidConfigException
      * @throws NotInstantiableException
      */
-    public function getTutdfSigFile(): ?NbchFileInterface
+    public function getSigFile(): ?NbchFileInterface
     {
-        return Env::ensure()->module->file->getFile(self::FILE_TUTDF_SIG, self::ENTITY, $this->id);
+        return Env::ensure()->module->file->getFile(self::FILE_RUTDF_SIG, self::ENTITY, $this->id);
     }
     
     /**
@@ -244,9 +247,9 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
      * @throws InvalidConfigException
      * @throws NotInstantiableException
      */
-    public function getTutdfZipFile(): ?NbchFileInterface
+    public function getZipFile(): ?NbchFileInterface
     {
-        return Env::ensure()->module->file->getFile(self::FILE_TUTDF_ZIP, self::ENTITY, $this->id);
+        return Env::ensure()->module->file->getFile(self::FILE_RUTDF_ZIP, self::ENTITY, $this->id);
     }
     
     /**
@@ -274,11 +277,11 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
     /**
      * @return string
      */
-    public function getTutdfDownloadUrl(): string
+    public function getFileDownloadUrl(): string
     {
         $file = $this->tutdfFile;
-        if($file === null){
-            return  '';
+        if ($file === null) {
+            return '';
         }
         return $file->storagePath;
     }
@@ -286,73 +289,25 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
     /**
      * @return string
      */
-    public function getNbchConfirmZipP7mDownloadUrl(): string
+    public function getConfirmZipP7mDownloadUrl(): string
     {
         $file = $this->nbchConfirmZipP7mFile;
-        if($file === null){
-            return  '';
+        if ($file === null) {
+            return '';
         }
         return $file->storagePath;
     }
     
     /**
-     * @inheritDoc
+     * @return string
      */
     public function getTmpPath(): string
     {
-        return Yii::getAlias('@runtime/nbch/tutdf/' . $this->id);
+        return Yii::getAlias('@runtime/nbch/rutdf/' . $this->id);
     }
     
     /**
-     * @inheritDoc
-     */
-    public function getFile(): ?NbchFileInterface
-    {
-        return $this->tutdfFile;
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function getSigFile(): ?NbchFileInterface
-    {
-        return $this->tutdfSigFile;
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function getZipFile(): ?NbchFileInterface
-    {
-        return $this->tutdfZipFile;
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function getFileDownloadUrl(): string
-    {
-        return $this->tutdfDownloadUrl;
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function getConfirmZipP7mDownloadUrl(): string
-    {
-        return $this->nbchConfirmZipP7mDownloadUrl;
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function canCreateFile(): bool
-    {
-        return $this->canCreateTutdf();
-    }
-    
-    /**
-     * @inheritDoc
+     * @return string
      */
     public function getEntity(): string
     {
@@ -360,51 +315,51 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
     }
     
     /**
-     * @inheritDoc
+     * @return string
      */
     public function getSigFileType(): string
     {
-        return self::FILE_TUTDF_SIG;
+        return self::FILE_RUTDF_SIG;
     }
     
     /**
-     * @inheritDoc
-     */
-    public function getFileZipType(): string
-    {
-        return self::FILE_TUTDF_ZIP;
-    }
-    
-    /**
-     * @inheritDoc
+     * @return void
      */
     public function setStateSigned(): void
     {
-        // TODO: Implement setStateSigned() method.
+        $this->state = self::STATE_SIGNED_RUTDF;
     }
     
     /**
-     * @inheritDoc
+     * @return void
      */
     public function setStateExecuteCreateZip(): void
     {
-        // TODO: Implement setStateExecuteCreateZip() method.
+        $this->state = self::STATE_EXECUTE_CREATE_ZIP;
     }
     
     /**
-     * @inheritDoc
+     * @return void
      */
     public function setStateCreatedZip(): void
     {
-        // TODO: Implement setStateCreatedZip() method.
+        $this->state = self::STATE_CREATED_ZIP;
     }
     
     /**
-     * @inheritDoc
+     * @return void
      */
     public function setStateExecuteSignZip(): void
     {
-        // TODO: Implement setStateExecuteSignZip() method.
+        $this->state = self::STATE_EXECUTE_SIGN_ZIP;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getFileZipType(): string
+    {
+        return self::FILE_RUTDF_ZIP;
     }
     
     /**
@@ -412,22 +367,31 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
      */
     public function setStateSignedZip(): void
     {
-        // TODO: Implement setStateSignedZip() method.
+        $this->state = self::STATE_SIGNED_ZIP;
     }
     
     /**
-     * @inheritDoc
+     * @return void
      */
     public function setStateSending(): void
     {
-        // TODO: Implement setStateSending() method.
+        $this->state = self::STATE_SENDING;
     }
     
     /**
-     * @inheritDoc
+     * @return void
      */
     public function setStateSent(): void
     {
-        // TODO: Implement setStateSent() method.
+        $this->state = self::STATE_SENT;
+        $this->sendAt = time();
+    }
+    
+    /**
+     * @return NbchRutdfRequestQuery
+     */
+    public static function find()
+    {
+        return new NbchRutdfRequestQuery(get_called_class());
     }
 }

@@ -5,6 +5,7 @@ namespace mfteam\nbch;
 use mfteam\nbch\components\creditHistory\CreditHistoryComponent;
 use mfteam\nbch\components\file\FileManagerInterface;
 use mfteam\nbch\components\NbchEsignClientInterface;
+use mfteam\nbch\components\rutdf\RutdfRequestComponent;
 use mfteam\nbch\components\tutdf\TutdfRequestComponent;
 use yii\base\BootstrapInterface;
 use yii\mail\MailerInterface;
@@ -13,6 +14,7 @@ use yii\mail\MailerInterface;
  * Модуль обмена данными НБКИ
  * @property-read FileManagerInterface $file
  * @property-read TutdfRequestComponent $tutdf
+ * @property-read RutdfRequestComponent $rutdf
  * @property-read CreditHistoryComponent $creditHistory
  * @property-read NbchEsignClientInterface $esignClient
  * @property-read MailerInterface $mailer

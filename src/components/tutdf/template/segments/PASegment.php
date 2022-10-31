@@ -9,6 +9,7 @@
 namespace mfteam\nbch\components\tutdf\template\segments;
 
 
+use mfteam\nbch\components\BaseSegment;
 use mfteam\nbch\components\tutdf\template\TutdfTemplate;
 use mfteam\nbch\models\Payment;
 
@@ -39,7 +40,7 @@ class PASegment extends BaseSegment
     public function validate(): bool
     {
         if ($this->payment->validate()) {
-            $this->_errors = $this->payment->errors;
+            $this->errors = $this->payment->errors;
         }
         return $this->isEmptyErrors;
     }

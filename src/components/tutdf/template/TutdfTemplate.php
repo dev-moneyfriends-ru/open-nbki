@@ -46,6 +46,7 @@ use yii\web\NotFoundHttpException;
  * @property-read array $tokenList
  * @property-read string $baseName
  * @property-read string $fileContent
+ * @deprecated
  */
 class TutdfTemplate extends BaseRequestTemplate
 {

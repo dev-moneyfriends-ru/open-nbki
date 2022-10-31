@@ -10,6 +10,7 @@ namespace mfteam\nbch\components\tutdf\template\segments;
 
 
 use Exception;
+use mfteam\nbch\components\BaseSegment;
 use mfteam\nbch\components\tutdf\template\TutdfTemplate;
 use mfteam\nbch\Env;
 use mfteam\nbch\models\Trade;
@@ -29,7 +30,7 @@ class TRSegment extends BaseSegment
     public function __construct(TutdfTemplate $template, $config = [])
     {
         parent::__construct($template, $config);
-        $this->trade = $this->_template->offer->getTrade();
+        $this->trade = $this->template->offer->getTrade();
     }
     
     /**
@@ -38,7 +39,7 @@ class TRSegment extends BaseSegment
     public function validate(): bool
     {
         if (!$this->trade->validate()) {
-            $this->_errors = $this->trade->errors;
+            $this->errors = $this->trade->errors;
         }
         return $this->isEmptyErrors;
     }

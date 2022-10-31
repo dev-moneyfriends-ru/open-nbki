@@ -9,6 +9,8 @@
 namespace mfteam\nbch\components\tutdf\template\segments;
 
 
+use mfteam\nbch\components\BaseSegment;
+
 class TRLRSegment extends BaseSegment
 {
     
@@ -41,7 +43,7 @@ class TRLRSegment extends BaseSegment
     
     private function getCounter()
     {
-        $tokens = $this->_template->getTokenList();
+        $tokens = $this->template->getTokenList();
         $counter = 0;
         foreach ($tokens as $value) {
             if (is_array($value)) {

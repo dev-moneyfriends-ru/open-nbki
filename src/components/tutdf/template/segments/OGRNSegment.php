@@ -23,10 +23,10 @@ class OGRNSegment extends IDSegment
      */
     public function getType(): string
     {
-        if($this->_template->subject->isIP()){
+        if($this->template->subject->isIP()){
             return self::TYPE_OGRNIP;
         }
-        if($this->_template->subject->isLegal()){
+        if($this->template->subject->isLegal()){
             return self::TYPE_OGRN;
         }
         throw new InvalidArgumentException('Неверный тип акаунта');
@@ -37,7 +37,7 @@ class OGRNSegment extends IDSegment
      */
     public function getNumber(): string
     {
-       return $this->_template->subject->getOgrn();
+       return $this->template->subject->getOgrn();
     }
     
     public function getTitle(): string
