@@ -107,7 +107,10 @@ abstract class BaseSegment extends \yii\base\BaseObject
      * Проверка данных на правильность
      * @return bool
      */
-    abstract public function validate(): bool;
+    public function validate(): bool
+    {
+        return true;
+    }
     
     /**
      * Возвращает название сегмента. Например 'TUTDF' или 'ID01'
@@ -141,7 +144,10 @@ abstract class BaseSegment extends \yii\base\BaseObject
      * Описание сегмента
      * @return string
      */
-    abstract public function getDescription(): string;
+    public function getDescription(): string
+    {
+        return '';
+    }
     
     /**
      * Заголовок

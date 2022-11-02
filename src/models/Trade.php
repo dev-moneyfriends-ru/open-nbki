@@ -414,6 +414,18 @@ class Trade extends BaseItem
     public $tradeTypeCode;
     
     /**
+     * Дата ближайшего следующего платежа по основному долгу
+     * @var string
+     */
+    public $principalTermsAmtDt;
+    
+    /**
+     * Дата ближайшего следующего платежа по процентам
+     * @var string
+     */
+    public $interestTermsAmtDt;
+    
+    /**
      * @return array[]
      */
     public function rangeRules()

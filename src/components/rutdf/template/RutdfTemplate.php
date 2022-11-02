@@ -3,6 +3,18 @@
 namespace mfteam\nbch\components\rutdf\template;
 
 use mfteam\nbch\components\BaseRequestTemplate;
+use mfteam\nbch\components\rutdf\template\segments\B10UID;
+use mfteam\nbch\components\rutdf\template\segments\B11Trade;
+use mfteam\nbch\components\rutdf\template\segments\B12AccountAmt;
+use mfteam\nbch\components\rutdf\template\segments\B13CoBorrower;
+use mfteam\nbch\components\rutdf\template\segments\B1Name;
+use mfteam\nbch\components\rutdf\template\segments\B2Addr;
+use mfteam\nbch\components\rutdf\template\segments\B3RegNum;
+use mfteam\nbch\components\rutdf\template\segments\B4TaxPayerID;
+use mfteam\nbch\components\rutdf\template\segments\B5Reorg;
+use mfteam\nbch\components\rutdf\template\segments\B6Bankruptcy;
+use mfteam\nbch\components\rutdf\template\segments\B7Setled;
+use mfteam\nbch\components\rutdf\template\segments\B8PrevCred;
 use mfteam\nbch\components\rutdf\template\segments\C10ContactInfo;
 use mfteam\nbch\components\rutdf\template\segments\C11Entrep;
 use mfteam\nbch\components\rutdf\template\segments\C12Capability;
@@ -106,7 +118,19 @@ class RutdfTemplate extends BaseRequestTemplate
                 "C17_UID" => new C17UID($this),
                 "C18_TRADE" => new C18Trade($this),
                 "C19_ACCOUNTAMT" => new C19AccountAmt($this),
-                "C20_COBORROWER" => new C20CoBorrower($this)
+                "C20_COBORROWER" => new C20CoBorrower($this),
+                "B1_NAME" => new B1Name($this),
+                "B2_ADDR" => new B2Addr($this),
+                "B3_REGNUM" => new B3RegNum($this),
+                "B4_TAXPAYERID" => new B4TaxPayerID($this),
+                "B5_REORG" => new B5Reorg($this),
+                "B6_BANKRUPTCY" => new B6Bankruptcy($this),
+                "B7_SETTLED" => new B7Setled($this),
+                "B8_PREVCRED" => new B8PrevCred($this),
+                "B10_UID" => new B10UID($this),
+                "B11_TRADE" => new B11Trade($this),
+                "B12_ACCOUNTAMT" => new B12AccountAmt($this),
+                "B13_COBORROWER" => new B13CoBorrower($this)
             ]
         ];
     }

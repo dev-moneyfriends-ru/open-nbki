@@ -175,6 +175,19 @@ class NbchEvents
     
     public static function legalBlockCode()
     {
-        return [];
+        return [
+            1 => "B1_NAME",
+            2 => "B2_ADDR",
+            3 => "B3_REGNUM",
+            4 => "B4_TAXPAYERID",
+            5 => "B5_REORG",
+            6 => "B6_BANKRUPTCY",
+            7 => "B7_SETTLED",
+            8 => "B8_PREVCRED",
+            10 => "B10_UID",
+            11 => "B11_TRADE",
+            12 => "B12_ACCOUNTAMT",
+            13 => "B13_COBORROWER"
+        ];
     }
 }

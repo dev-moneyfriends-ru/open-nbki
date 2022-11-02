@@ -3,25 +3,17 @@
 namespace mfteam\nbch\components\rutdf\template\segments;
 
 /**
- * Блок 18. Общие сведения о сделке - C18_TRADE
+ * Блок 11. Общие сведения о сделке – B11_TRADE
  */
-class C18Trade extends \mfteam\nbch\components\BaseSegment
+class B11Trade extends \mfteam\nbch\components\BaseSegment
 {
-    
-    /**
-     * @inheritDoc
-     */
-    public function validate(): bool
-    {
-        return true;
-    }
     
     /**
      * @inheritDoc
      */
     public function getSegmentName(): string
     {
-        return "C18_TRADE";
+        return "B11_TRADE";
     }
     
     /**
@@ -31,13 +23,12 @@ class C18Trade extends \mfteam\nbch\components\BaseSegment
     {
         $trade = $this->template->offer->getTrade();
         return [
-          $this->segmentName,
+            $this->segmentName,
             $trade->ownerIndic,
             $this->formatNewDate($trade->openedDt),
             $trade->tradeTypeCode,
             $trade->loanKindCode,
             $trade->acctType,
-            0,
             0,
             0,
             1,
@@ -52,13 +43,12 @@ class C18Trade extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
-            'Наименование сегмента',
-          'Код вида участия в сделке',
-          'Дата совершения сделки',
-            'Код типа сделки',
-            'Код вида займа (кредита)',
-            'Код цели займа (кредита)',
-            'Признак потребительского кредита (займа)',
+            'Наименование сегмента' => '',
+            'Код вида участия в сделке' => 'Заполняется по справочнику 2.1.',
+            'Дата совершения сделки' => 'Дата совершения сделки, по обязательствам из которой формируется КИ.',
+            'Код типа сделки' => 'Заполняется по справочнику 2.2.',
+            'Код вида займа (кредита)' => 'Заполняется по справочнику 2.3.',
+            'Код цели займа (кредита)' => 'Заполняется по справочнику 2.4. При наличии нескольких целей займа (кредита) значения указываются через запятую.',
             'Признак использования платежной карты',
             'Признак возникновения обязательства в результате новации',
             'Признак денежного обязательства источника',
@@ -70,16 +60,8 @@ class C18Trade extends \mfteam\nbch\components\BaseSegment
     /**
      * @inheritDoc
      */
-    public function getDescription(): string
-    {
-        return '';
-    }
-    
-    /**
-     * @inheritDoc
-     */
     public function getTitle(): string
     {
-        return "Блок 18. Общие сведения о сделке - C18_TRADE";
+        return "Блок 11. Общие сведения о сделке – B11_TRADE";
     }
 }
