@@ -396,6 +396,12 @@ class Trade extends BaseItem
     public $loanKindCode;
     
     /**
+     * Код типа сделки @see TradeType
+     * @var int
+     */
+    public $tradeTypeCode;
+    
+    /**
      * @return array[]
      */
     public function rangeRules()

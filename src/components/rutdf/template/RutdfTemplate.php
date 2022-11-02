@@ -24,6 +24,7 @@ use mfteam\nbch\exceptions\UnknownEventException;
 use mfteam\nbch\models\NbchOfferInterface;
 use mfteam\nbch\models\NbchSubjectInterface;
 use mfteam\nbch\models\rutdf\NbchEvents;
+use mfteam\nbch\models\rutdf\NbchRutdfRequest;
 use mfteam\nbch\models\tutdf\NbchTutdfRequest;
 use Yii;
 use yii\base\InvalidConfigException;
@@ -52,6 +53,11 @@ class RutdfTemplate extends BaseRequestTemplate
      * @var string
      */
     protected $eventId;
+    
+    /**
+     * @var NbchRutdfRequest|null
+     */
+    protected $request;
     
     public function __construct(string $eventId, NbchSubjectInterface $subject, NbchOfferInterface $offer, $config = [])
     {
@@ -91,7 +97,7 @@ class RutdfTemplate extends BaseRequestTemplate
             "C10_CONTACTINFO" => new C10ContactInfo($this),
             "C11_ENTREP" => new C11Entrep($this),
             "C12_CAPABILITY" => new C12Capability($this),
-            "C17_UID" => new C17UID($this)
+            "C17_UID" => new C17UID($this),
         ];
     }
     
@@ -134,5 +140,36 @@ class RutdfTemplate extends BaseRequestTemplate
     public function getEventId(): string
     {
         return $this->eventId;
+    }
+    
+    /**
+     * Содержимое файла отчета
+     * @return string
+     * @throws \Exception
+     */
+    public function getFileContent(): string
+    {
+        if ($this->_fileContent === null) {
+            $this->loadFileContent();
+        }
+        return $this->_fileContent;
+    }
+    
+    /**
+     * Загружает содержимое файла отчета
+     * @throws \yii\base\Exception
+     */
+    private function loadFileContent(): void
+    {
+        if ($this->request === null || $this->request->getFile() === null) {
+            $this->_fileContent = '';
+            return;
+        }
+        
+        $content = $this->request->getFile()->getContent();
+        if ($content === false) {
+            throw new \yii\base\Exception('Невозможно получить содержимое файла');
+        }
+        $this->_fileContent = mb_convert_encoding($content, 'UTF-8', 'WINDOWS-1251');
     }
 }

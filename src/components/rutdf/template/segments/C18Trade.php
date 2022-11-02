@@ -33,7 +33,8 @@ class C18Trade extends \mfteam\nbch\components\BaseSegment
         return [
           $this->segmentName,
             $trade->ownerIndic,
-            $trade->acctType,
+            $trade->openedDt,
+            $trade->tradeTypeCode,
             $trade->loanKindCode
         ];
     }
