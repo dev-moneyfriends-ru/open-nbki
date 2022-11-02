@@ -21,7 +21,7 @@ class C9ActualAddr extends \mfteam\nbch\components\BaseSegment
      */
     public function getSegmentName(): string
     {
-       return "C9_ACTUALADDR";
+        return "C9_ACTUALADDR";
     }
     
     /**
@@ -29,22 +29,26 @@ class C9ActualAddr extends \mfteam\nbch\components\BaseSegment
      */
     public function getFields(): array
     {
-       return [
-         $this->segmentName,
-         0,
-         $this->emptyValue,
-         $this->emptyValue,
-         $this->emptyValue,
-         $this->emptyValue,
-         $this->emptyValue,
-         $this->emptyValue,
-         $this->emptyValue,
-         $this->emptyValue,
-         $this->emptyValue,
-         $this->emptyValue,
-         $this->emptyValue,
-         $this->emptyValue,
-       ];
+        return [
+            $this->segmentName,
+            0,
+            $this->emptyValue,
+            $this->emptyValue,
+            $this->emptyValue,
+            $this->emptyValue,
+            $this->emptyValue,
+            $this->emptyValue,
+            $this->emptyValue,
+            $this->emptyValue,
+            $this->emptyValue,
+            $this->emptyValue,
+            $this->emptyValue,
+            $this->emptyValue,
+            $this->emptyValue,
+            $this->emptyValue,
+            $this->emptyValue,
+            $this->emptyValue,
+        ];
     }
     
     /**

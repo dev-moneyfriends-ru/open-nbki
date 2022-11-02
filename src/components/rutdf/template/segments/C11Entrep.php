@@ -41,7 +41,7 @@ class C11Entrep extends \mfteam\nbch\components\BaseSegment
             $this->segmentName,
             1,
             $this->template->subject->getOgrn(),
-            $this->template->subject->getRegDate(),
+            $this->formatNewDate($this->template->subject->getRegDate()),
         ];
     }
     

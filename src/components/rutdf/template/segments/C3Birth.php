@@ -2,6 +2,9 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments;
 
+/**
+ * Блок 3. Дата и место рождения – C3_BIRTH
+ */
 class C3Birth extends \mfteam\nbch\components\BaseSegment
 {
     
@@ -69,6 +72,6 @@ class C3Birth extends \mfteam\nbch\components\BaseSegment
      */
     public function getTitle(): string
     {
-        return "";
+        return "Блок 3. Дата и место рождения – C3_BIRTH";
     }
 }

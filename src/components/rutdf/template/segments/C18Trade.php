@@ -33,7 +33,7 @@ class C18Trade extends \mfteam\nbch\components\BaseSegment
         return [
           $this->segmentName,
             $trade->ownerIndic,
-            $trade->openedDt,
+            $this->formatNewDate($trade->openedDt),
             $trade->tradeTypeCode,
             $trade->loanKindCode,
             $trade->acctType,
@@ -42,7 +42,7 @@ class C18Trade extends \mfteam\nbch\components\BaseSegment
             0,
             1,
             0,
-            $trade->closedDt
+            $this->formatNewDate($trade->closedDt)
         ];
     }
     

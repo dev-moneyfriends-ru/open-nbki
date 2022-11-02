@@ -31,7 +31,7 @@ class C19AccountAmt extends \mfteam\nbch\components\BaseSegment
     {
         return [
             $this->segmentName,
-            $this->template->getOffer()->getTrade()->creditLimit,
+            $this->formatCurrency($this->template->getOffer()->getTrade()->creditLimit),
             $this->template->getOffer()->getTrade()->currencyCode,
             $this->emptyValue,
         ];

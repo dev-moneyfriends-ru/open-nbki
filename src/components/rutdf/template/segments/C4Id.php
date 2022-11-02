@@ -78,6 +78,7 @@ class C4Id extends \mfteam\nbch\components\BaseSegment
             $this->identification->oksm,
             $this->emptyValue,
             $this->identification->idType,
+            $this->emptyValue,
             $this->identification->seriesNumber,
             $this->identification->idNum,
             $this->formatNewDate($this->identification->issueDate),

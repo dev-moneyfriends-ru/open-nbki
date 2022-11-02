@@ -8,7 +8,7 @@ use yii\helpers\ArrayHelper;
 
 /**
  * @var $isLegal bool
- * @var $ebentId string
+ * @var $eventId string
  * @var $HEADER Header
  * @var $TRAILER Trailer
  * @var $GROUPHEADER GroupHeader
@@ -22,10 +22,10 @@ use yii\helpers\ArrayHelper;
 <?php
 if ($isLegal) {
     $tokens = NbchEvents::legalBlockCode();
-    $blocks = NbchEvents::legalBlocks()[$ebentId];
+    $blocks = NbchEvents::legalBlocks()[$eventId];
 } else {
     $tokens = NbchEvents::personBlockCode();
-    $blocks = NbchEvents::personBlocks()[$ebentId];
+    $blocks = NbchEvents::personBlocks()[$eventId];
 }
 foreach ($blocks as $block) {
     $segmentCode = ArrayHelper::getValue($tokens, $block);

@@ -8,6 +8,7 @@ use mfteam\nbch\components\rutdf\template\segments\C11Entrep;
 use mfteam\nbch\components\rutdf\template\segments\C12Capability;
 use mfteam\nbch\components\rutdf\template\segments\C17UID;
 use mfteam\nbch\components\rutdf\template\segments\C18Trade;
+use mfteam\nbch\components\rutdf\template\segments\C19AccountAmt;
 use mfteam\nbch\components\rutdf\template\segments\C1Name;
 use mfteam\nbch\components\rutdf\template\segments\C2PrevName;
 use mfteam\nbch\components\rutdf\template\segments\C3Birth;
@@ -103,6 +104,7 @@ class RutdfTemplate extends BaseRequestTemplate
                 "C12_CAPABILITY" => new C12Capability($this),
                 "C17_UID" => new C17UID($this),
                 "C18_TRADE" => new C18Trade($this),
+                "C19_ACCOUNTAMT" => new C19AccountAmt($this)
             ]
         ];
     }
