@@ -148,4 +148,14 @@ class Offer implements \mfteam\nbch\models\NbchOfferInterface
         return $this->trade;
     }
     
+    /**
+     * @param Trade $trade
+     * @return Offer
+     */
+    public function setTrade(Trade $trade): Offer
+    {
+        $this->trade = $trade;
+        return $this;
+    }
+    
 }

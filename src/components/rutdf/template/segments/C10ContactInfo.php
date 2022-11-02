@@ -31,7 +31,7 @@ class C10ContactInfo extends \mfteam\nbch\components\BaseSegment
     {
         return [
             $this->segmentName,
-            $this->template->subject->getWorkPhone(),
+            $this->emptyValue,
             $this->emptyValue,
             $this->emptyValue,
         ];
