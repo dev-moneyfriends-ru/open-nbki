@@ -100,6 +100,7 @@ class CreateZipArchiveComponent extends BaseObject
     {
         $file = $this->file;
         $this->client->setSrcContent($file->getContent());
+        $this->client->srcFile = base64_decode($this->client->srcFile);
         if (!$this->client->signNbchFile()) {
             throw new Exception(VarDumper::dumpAsString($this->client->getResponseResult()));
         }

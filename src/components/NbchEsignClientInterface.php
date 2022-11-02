@@ -4,6 +4,9 @@ namespace mfteam\nbch\components;
 
 use yii\base\Exception;
 
+/**
+ * @property string $srcFile;
+ */
 interface NbchEsignClientInterface
 {
     /**
@@ -41,4 +44,11 @@ interface NbchEsignClientInterface
      * @throws Exception
      */
     public function nbchDecryptArchive(): bool;
+    
+    /**
+     * Устанавливаем контент файла
+     * @param string $filePath
+     * @return $this
+     */
+    public function setSrcContentByPath(string $filePath);
 }
