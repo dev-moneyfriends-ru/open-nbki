@@ -37,7 +37,7 @@ class Header extends \mfteam\nbch\components\BaseSegment
             Env::ensure()->module->rutdf->sourceInn,
             Env::ensure()->module->rutdf->sourceOgrn,
             $this->template->getBaseName(),
-            $this->formatDate(time()),
+            $this->formatNewDate(time()),
             $this->emptyValue,
             Env::ensure()->module->rutdf->userName,
             Env::ensure()->module->rutdf->password,

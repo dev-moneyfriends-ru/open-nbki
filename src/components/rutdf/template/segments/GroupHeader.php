@@ -45,7 +45,7 @@ class GroupHeader extends \mfteam\nbch\components\BaseSegment
             $this->template->getEventId(),
             $this->getOperationCode(),
             $this->emptyValue,
-            $this->formatDate($this->template->getOffer()->getTrade()->reportingDt)
+            $this->formatNewDate($this->template->getOffer()->getTrade()->reportingDt)
         ];
     }
     
