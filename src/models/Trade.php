@@ -362,6 +362,18 @@ class Trade extends BaseItem
     public $termsAmt;
     
     /**
+     * Сумма ближайшего следующего платежа по основному долгу
+     * @var float
+     */
+    public $principalTermsAmt;
+    
+    /**
+     * Сумма ближайшего следующего платежа по процентам
+     * @var float
+     */
+    public $interestTermsAmt;
+    
+    /**
      * Частота выплат
      * @var int
      */

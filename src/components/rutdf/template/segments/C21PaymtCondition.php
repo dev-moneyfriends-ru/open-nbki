@@ -2,7 +2,10 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments;
 
-class C20_COBORROWER extends \mfteam\nbch\components\BaseSegment
+/**
+ * Блок 21. Сведения об условиях платежей – C21_PAYMTCONDITION
+ */
+class C21PaymtCondition extends \mfteam\nbch\components\BaseSegment
 {
     
     /**
@@ -18,7 +21,7 @@ class C20_COBORROWER extends \mfteam\nbch\components\BaseSegment
      */
     public function getSegmentName(): string
     {
-        // TODO: Implement getSegmentName() method.
+        return 'C21_PAYMTCONDITION';
     }
     
     /**
@@ -26,7 +29,10 @@ class C20_COBORROWER extends \mfteam\nbch\components\BaseSegment
      */
     public function getFields(): array
     {
-        // TODO: Implement getFields() method.
+        return [
+          $this->segmentName,
+          $this->formatCurrency($this->template->offer->getTrade()->principalPastDue)
+        ];
     }
     
     /**
@@ -42,7 +48,7 @@ class C20_COBORROWER extends \mfteam\nbch\components\BaseSegment
      */
     public function getDescription(): string
     {
-        // TODO: Implement getDescription() method.
+        return '';
     }
     
     /**
@@ -50,6 +56,6 @@ class C20_COBORROWER extends \mfteam\nbch\components\BaseSegment
      */
     public function getTitle(): string
     {
-        // TODO: Implement getTitle() method.
+        return 'Блок 21. Сведения об условиях платежей – C21_PAYMTCONDITION';
     }
 }

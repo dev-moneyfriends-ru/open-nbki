@@ -168,7 +168,8 @@ class NbchEvents
             12 => "C12_CAPABILITY",
             17 => "C17_UID",
             18 => "C18_TRADE",
-            19 => "C19_ACCOUNTAMT"
+            19 => "C19_ACCOUNTAMT",
+            20 => "C20_COBORROWER"
         ];
     }
     
