@@ -32,10 +32,10 @@ foreach ($blocks as $block) {
     if ($segmentCode) {
         $segment = ArrayHelper::getValue($segments, $segmentCode);
         if ($segment instanceof \mfteam\nbch\components\BaseSegment) {
-            $segment->render();
+            echo $segment->render();
         } elseif (is_array($segment)) {
             foreach ($segment as $item) {
-                $item->render();
+                echo $item->render();
             }
         }
     }
