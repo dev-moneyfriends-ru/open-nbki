@@ -187,7 +187,16 @@ class NbchEvents
             10 => "B10_UID",
             11 => "B11_TRADE",
             12 => "B12_ACCOUNTAMT",
-            13 => "B13_COBORROWER"
+            13 => "B13_COBORROWER",
+            14 => "B14_PAYMTCONDITION",
+            15 => "B15_AMENDMENT",
+            16 => "B16_FUNDDATE",
+            17 => "B17_ARREAR",
+            18 => "B18_DUEARREAR",
+            19 => "B19_PASTDUEARREAR",
+            20 => "B20_PAYMT",
+            44 => "B44_OBLIGACCOUNT",
+            46 => "B46_OBLIGPARTTAKE"
         ];
     }
 }

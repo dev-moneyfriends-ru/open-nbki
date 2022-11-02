@@ -7,9 +7,18 @@ use mfteam\nbch\components\rutdf\template\segments\B10UID;
 use mfteam\nbch\components\rutdf\template\segments\B11Trade;
 use mfteam\nbch\components\rutdf\template\segments\B12AccountAmt;
 use mfteam\nbch\components\rutdf\template\segments\B13CoBorrower;
+use mfteam\nbch\components\rutdf\template\segments\B14PaymtCondition;
+use mfteam\nbch\components\rutdf\template\segments\B15Amendment;
+use mfteam\nbch\components\rutdf\template\segments\B16FundDate;
+use mfteam\nbch\components\rutdf\template\segments\B17Arrear;
+use mfteam\nbch\components\rutdf\template\segments\B18DueArrear;
+use mfteam\nbch\components\rutdf\template\segments\B19PastDsueArrear;
 use mfteam\nbch\components\rutdf\template\segments\B1Name;
+use mfteam\nbch\components\rutdf\template\segments\B20Paymt;
 use mfteam\nbch\components\rutdf\template\segments\B2Addr;
 use mfteam\nbch\components\rutdf\template\segments\B3RegNum;
+use mfteam\nbch\components\rutdf\template\segments\B44ObligacCount;
+use mfteam\nbch\components\rutdf\template\segments\B46ObligPartTake;
 use mfteam\nbch\components\rutdf\template\segments\B4TaxPayerID;
 use mfteam\nbch\components\rutdf\template\segments\B5Reorg;
 use mfteam\nbch\components\rutdf\template\segments\B6Bankruptcy;
@@ -130,8 +139,17 @@ class RutdfTemplate extends BaseRequestTemplate
                 "B10_UID" => new B10UID($this),
                 "B11_TRADE" => new B11Trade($this),
                 "B12_ACCOUNTAMT" => new B12AccountAmt($this),
-                "B13_COBORROWER" => new B13CoBorrower($this)
-            ]
+                "B13_COBORROWER" => new B13CoBorrower($this),
+                "B14_PAYMTCONDITION" => new B14PaymtCondition($this),
+                "B15_AMENDMENT" => new B15Amendment($this),
+                "B16_FUNDDATE" => new B16FundDate($this),
+                "B17_ARREAR" => new B17Arrear($this),
+                "B18_DUEARREAR" => new B18DueArrear($this),
+                "B19_PASTDUEARREAR" => new B19PastDsueArrear($this),
+                "B20_PAYMT" => new B20Paymt($this),
+                "B44_OBLIGACCOUNT" => new B44ObligacCount($this),
+                "B46_OBLIGPARTTAKE" => new B46ObligPartTake($this)
+             ]
         ];
     }
     

@@ -53,8 +53,7 @@ class Trade extends BaseItem
     
     /**
      * Общая сумма всех находящихся в просрочке средств, на последнюю дату обновления, указанную в поле Даты отчёта.
-     * Сумма составляет целое число и должна быть неотрицательной.
-     * @var int
+     * @var float
      */
     public $amtPastDue;
     
@@ -208,7 +207,7 @@ class Trade extends BaseItem
      * Дата последнего фактически произведенного платежа.
      * @var string
      */
-    public $lastPaymtDt = '1900-01-02';
+    public $lastPaymtDt = '';
     
     /**
      * The date the record was last updated by iCRS.
@@ -424,6 +423,53 @@ class Trade extends BaseItem
      * @var string
      */
     public $interestTermsAmtDt;
+    
+    /**
+     * @var string
+     */
+    public $startDt;
+    
+    /**
+     * Сумма срочной задолженности
+     * @var float
+     */
+    public $currentAmtOutstanding;
+    
+    /**
+     * Сумма срочной задолженности по основному долгу
+     * @var float
+     */
+    public $currentPrincipalOutstanding;
+    
+    /**
+     * Сумма срочной задолженности по процентам
+     * @var float
+     */
+    public $currentIntOutstanding;
+    
+    /**
+     * Сумма срочной задолженности по иным требованиям
+     * @var float
+     */
+    public $currentOtherAmtOutstanding;
+    
+    /**
+     * Дата возникновения просроченной задолженности
+     * @var string
+     */
+    public $pastDueDt;
+    
+    /**
+     * Дата последнего пропущенного платежа по основному долгу
+     * @var string
+     */
+    public $principalMissedDate;
+    
+    /**
+     * Дата последнего пропущенного платежа по процентам
+     * @var string
+     */
+    public $intMissedDate;
     
     /**
      * @return array[]

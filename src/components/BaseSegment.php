@@ -60,6 +60,9 @@ abstract class BaseSegment extends \yii\base\BaseObject
      */
     public function formatDate($date): string
     {
+        if(empty($date)){
+            return '';
+        }
         return \Yii::$app->formatter->asDate($date, 'yyyyMMdd');
     }
     
