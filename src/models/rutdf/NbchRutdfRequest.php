@@ -279,7 +279,7 @@ class NbchRutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
      */
     public function getFileDownloadUrl(): string
     {
-        $file = $this->tutdfFile;
+        $file = $this->getFile();
         if ($file === null) {
             return '';
         }
