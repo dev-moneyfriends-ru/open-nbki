@@ -44,6 +44,7 @@ class C7Snils extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
+            'Наименование сегмента',
           "СНИЛС"
         ];
     }

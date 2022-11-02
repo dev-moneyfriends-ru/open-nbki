@@ -93,6 +93,7 @@ class C4Id extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
+            'Наименование сегмента',
             "Код страны гражданства по ОКСМ",
             "Наименование иной страны",
             "Код документа",

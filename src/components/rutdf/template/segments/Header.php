@@ -52,6 +52,7 @@ class Header extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
+            'Наименование сегмента',
             'ИНН источника.',
             'ОГРН источника.',
             'Уникальный исходящий регистрационный номер документа (совпадает с именем файла без расширений).',

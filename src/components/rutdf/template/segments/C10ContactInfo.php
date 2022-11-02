@@ -43,6 +43,7 @@ class C10ContactInfo extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
+            'Наименование сегмента',
             'Номер телефона',
             'Комментарий к номеру телефона',
             'Адрес электронной почты',

@@ -55,6 +55,7 @@ class GroupHeader extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
+            'Наименование сегмента',
             "Порядковый номер группы в документе (файле)",
             "Номер события, вследствие которого сформирована данная группа блоков",
             "Код операции, в рамках которой сформирована группа блоков показателей",

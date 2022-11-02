@@ -53,6 +53,7 @@ class C9ActualAddr extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
+            'Наименование сегмента',
             'Код адреса регистрации',
             'Почтовый индекс',
             'Код страны по ОКСМ',

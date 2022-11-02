@@ -50,6 +50,7 @@ class C1Name extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
+            'Наименование сегмента',
             "Фамилия",
             "Имя",
             "Отчество",

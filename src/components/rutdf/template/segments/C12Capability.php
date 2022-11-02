@@ -47,6 +47,7 @@ class C12Capability extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
+            'Наименование сегмента',
             'Код дееспособности',
             'Дата вступления в силу решения суда о признании недееспособным или об ограничении дееспособности',
             'Номер решения суда',

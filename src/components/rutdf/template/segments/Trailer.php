@@ -53,6 +53,7 @@ class Trailer extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
+            'Наименование сегмента',
             "Количество субъектов в файле.",
             "Количество групп блоков в файле.",
         ];

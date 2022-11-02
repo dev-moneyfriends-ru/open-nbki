@@ -51,6 +51,7 @@ class C5PrevId extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
+            'Наименование сегмента',
             'Признак наличия документа',
             "Код страны гражданства по ОКСМ",
             "Наименование иной страны",

@@ -45,6 +45,7 @@ class C2PrevName extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
+            'Наименование сегмента',
             'Признак наличия предыдущего имени',
             'Фамилия предыдущая',
             'Имя предыдущее',

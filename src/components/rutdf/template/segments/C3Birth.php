@@ -49,6 +49,7 @@ class C3Birth extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
+            'Наименование сегмента',
             "Дата рождения",
             "Код страны по ОКСМ",
             "Место рождения"

@@ -41,6 +41,7 @@ class C17UID extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
+            'Наименование сегмента',
             'УИд сделки'
         ];
     }

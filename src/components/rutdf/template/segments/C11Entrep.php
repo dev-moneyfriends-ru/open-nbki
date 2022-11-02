@@ -51,6 +51,7 @@ class C11Entrep extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
+            'Наименование сегмента',
             'Признак индивидуального предпринимателя',
             'Регистрационный номер',
             'Дата регистрации индивидуального предпринимателя',

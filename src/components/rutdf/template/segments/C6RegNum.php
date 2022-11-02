@@ -43,6 +43,7 @@ class C6RegNum extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
+            'Наименование сегмента',
             'Код номера налогоплательщика',
             'Номер налогоплательщика',
             'Регистрационный номер',

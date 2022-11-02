@@ -52,6 +52,7 @@ class C18Trade extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
+            'Наименование сегмента',
           'Код вида участия в сделке',
           'Дата совершения сделки',
             'Код типа сделки',

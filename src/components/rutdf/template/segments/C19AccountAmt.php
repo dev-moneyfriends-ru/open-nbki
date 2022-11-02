@@ -43,6 +43,7 @@ class C19AccountAmt extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
+            'Наименование сегмента',
             'Сумма обязательства',
             'Валюта обязательства',
             'Сумма обеспечиваемого обязательства',
