@@ -113,6 +113,7 @@ class CreateZipArchiveComponent extends BaseObject
         
         $file = new NbchFile();
         $file->setContent(base64_decode($this->client->getResponseResult()))
+            ->setStoragePath($tmpSigFile)
             ->setFileName($this->file->fileName . '.sig')
             ->setEntityId($this->request->id)
             ->setEntity($this->request->getEntity())
@@ -177,9 +178,15 @@ class CreateZipArchiveComponent extends BaseObject
         $content = base64_decode($client->getResponseResult());
         
         $fileManager = Env::ensure()->module->file;
+    
+        $tmpFile = $this->tmpPath . DIRECTORY_SEPARATOR . $this->file->fileName . '.zip.p7m';
+        if (!file_put_contents($tmpFile, base64_decode($this->client->getResponseResult()))) {
+            throw new Exception('Save file ' . $tmpFile . ' error');
+        }
         
         $file = new NbchFile();
         $file->setContent($content)
+            ->setStoragePath($tmpFile)
             ->setFileName($this->file->fileName . '.zip.p7m')
             ->setEntityId($this->request->id)
             ->setEntity($this->request->getEntity())
