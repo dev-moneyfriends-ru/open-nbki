@@ -34,7 +34,7 @@ class Passport extends BaseObject implements NbchSubjectPassportInterface
     /**
      * @var string
      */
-    private $oksm;
+    private $oksm = '';
     
     /**
      * @param string $series
