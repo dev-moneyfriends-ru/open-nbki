@@ -12,11 +12,11 @@ namespace mfteam\nbch\models;
  */
 class Identification extends BaseItem
 {
-    public const TYPE_OGRN = 34;
-    public const TYPE_OGRNIP = 33;
-    public const TYPE_INN = 81;
-    public const TYPE_SNILS = 32;
-    public const TYPE_PASSPORT = 21;
+    public const TYPE_OGRN = '34';
+    public const TYPE_OGRNIP = '33';
+    public const TYPE_INN = '81';
+    public const TYPE_SNILS = '32';
+    public const TYPE_PASSPORT = '21';
     
     /**
      * Флаг проверки данных.
@@ -77,6 +77,18 @@ class Identification extends BaseItem
      */
     public $suppressFlag;
     
+    /**
+     * Код страны по ОКСМ
+     * @var string
+     */
+    public $oksm;
+    
+    /**
+     * Код подразделения
+     * @var string
+     */
+    public $divCode;
+    
     public function attributeLabels()
     {
         return array_merge(
@@ -113,6 +125,7 @@ class Identification extends BaseItem
                     'dataValidity',
                     'seriesNumber',
                     'idNum',
+                    'oksm'
                 ], 'string'],
             ]
         );
@@ -130,29 +143,7 @@ class Identification extends BaseItem
     public static function typeList()
     {
         return [
-            1 => 'Паспорт гражданина СССР',
-            2 => 'Загранпаспорт гражданина СССР',
-            3 => 'Свидетельство о рождении',
-            4 => 'Удостоверение офицера',
-            6 => 'Паспорт министерства военно-морского флота',
-            7 => 'Военный билет',
-            9 => 'Дипломатический паспорт гражданина РФ',
-            10 => 'Паспорт иностранного гражданина',
-            12 => 'Вид на жительство',
-            13 => 'Удостоверение беженца',
-            14 => 'Временное удостоверение гражданина РФ',
-            15 => 'Разрешение на временное проживание лица без гражданства',
-            21 => 'Паспорт гражданина РФ',
-            22 => 'Загранпаспорт гражданина РФ',
-            26 => 'Паспорт моряка',
-            27 => 'Удостоверение офицера в запасе',
-            31 => 'Водительское удостоверение',
-            32 => 'Номер карточки обязательного пенсионного страхования',
-            33 => 'Регистрационный номер предпринимателя',
-            34 => 'ОГРН',
-            81 => 'Индивидуальный номер налогоплательщика (ИНН)',
-            91 => 'Прочие документы, выдаваемые Министерством Внутренних Дел',
-            97 => 'Без указания СНИЛС',
+            '21' => 'Паспорт гражданина РФ',
         ];
     }
     

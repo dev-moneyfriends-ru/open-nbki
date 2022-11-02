@@ -91,7 +91,7 @@ class NbchEvents
                 17, 18, 31, 38, 56,
             ],
             self::EVENT_2_6 => [
-                17, 39
+                17, 39,
             ],
         ];
     }
@@ -146,8 +146,27 @@ class NbchEvents
                 10, 11, 22, 29, 46,
             ],
             self::EVENT_2_6 => [
-                17, 30
+                17, 30,
             ],
+        ];
+    }
+    
+    public static function personBlockCode()
+    {
+        return [
+            1 => "C1_NAME",
+            2 => "C2_PREVNAME",
+            3 => "C3_BIRTH",
+            4 => "C4_ID",
+            5 => "C5_PREVID",
+            6 => "C6_REGNUM",
+            7 => "C7_SNILS",
+            8 => "C8_REGADDR",
+            9 => "C9_ACTUALADDR",
+            10 => "C10_CONTACTINFO",
+            11 => "C11_ENTREP",
+            12 => "C12_CAPABILITY",
+            17 => "C17_UID"
         ];
     }
 }

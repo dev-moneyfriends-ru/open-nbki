@@ -29,7 +29,7 @@ use yii\base\BaseObject;
 class Subject extends BaseObject implements NbchSubjectInterface
 {
     /**
-     * @var Address
+     * @var Address|null
      */
     private $_actualAddress;
     
@@ -87,6 +87,12 @@ class Subject extends BaseObject implements NbchSubjectInterface
      * @var Business|null
      */
     private $_business;
+    
+    /**
+     * Дата регистрации
+     * @var string
+     */
+    private $_regDate;
     
     /**
      * @inheritDoc
@@ -336,6 +342,24 @@ class Subject extends BaseObject implements NbchSubjectInterface
     public function setBusiness(?Business $business): Subject
     {
         $this->_business = $business;
+        return $this;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getRegDate(): string
+    {
+        return $this->_regDate;
+    }
+    
+    /**
+     * @param string $regDate
+     * @return Subject
+     */
+    public function setRegDate(string $regDate): Subject
+    {
+        $this->_regDate = $regDate;
         return $this;
     }
 }

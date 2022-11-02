@@ -30,4 +30,14 @@ interface NbchSubjectPassportInterface
      * @return string
      */
     public function getIssueAuthority():string;
+    
+    /**
+     * @return string
+     */
+    public function getOksm(): string;
+    
+    /**
+     * @return string
+     */
+    public function getIssueCode(): string;
 }

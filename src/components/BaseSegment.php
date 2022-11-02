@@ -189,4 +189,27 @@ abstract class BaseSegment extends \yii\base\BaseObject
         }
     }
     
+    /**
+     * @param string $uuid
+     * @return string
+     */
+    protected function getUuidControlSum(string $uuid)
+    {
+        $uuid = preg_replace('/[^a-zA-Z\d]/i', '', $uuid);
+        $chars = str_split($uuid);
+        $sum = 0;
+        $i = 1;
+        foreach ($chars as $char) {
+            $number = base_convert($char, 16, 10);
+            $sum += $number * $i;
+            if ($i === 10) {
+                $i = 1;
+            } else {
+                $i++;
+            }
+        }
+        $key = $sum % 16;
+        return base_convert($key, 10, 16);
+    }
+    
 }

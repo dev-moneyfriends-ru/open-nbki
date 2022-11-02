@@ -120,4 +120,10 @@ interface NbchSubjectInterface
      * @return Business|null
      */
     public function getBusiness():?Business;
+    
+    /**
+     * Дата регистрации бизнеса
+     * @return string
+     */
+    public function getRegDate(): string;
 }

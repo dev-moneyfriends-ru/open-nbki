@@ -146,6 +146,18 @@ class Address extends BaseItem
      */
     public $addressString;
     
+    /**
+     * Код страны по ОКСМ
+     * @var string
+     */
+    public $oksm;
+    
+    /**
+     * Код населенного пункта по ОКАТО
+     * @var string
+     */
+    public $okato;
+    
     public function rules()
     {
         return array_merge(
@@ -156,6 +168,7 @@ class Address extends BaseItem
                         'addressType',
                         'city',
                         'street',
+                        'oksm'
                     ]
                     , 'required',
                 ],

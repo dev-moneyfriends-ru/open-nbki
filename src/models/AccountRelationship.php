@@ -9,13 +9,12 @@ use yii\helpers\ArrayHelper;
  */
 class AccountRelationship
 {
-    public const INDIVIDUAL = 1;
-    public const SUPPLEMENTARY_CARD  = 2;
-    public const AUTHORIZED_USER   = 3;
-    public const JOINT   = 4;
-    public const GUARANTOR   = 5;
-    public const PRINCIPAL    = 6;
-    public const BUSINESS    = 9;
+    public const BORROWER = 1;
+    public const GUARANTOR   = 2;
+    public const PRINCIPAL    = 3;
+    public const LEASING    = 4;
+    public const USER   = 5;
+    public const OTHER   = 99;
     
     /**
      * @return string[]
@@ -23,13 +22,12 @@ class AccountRelationship
     public static function list()
     {
         return [
-            self::INDIVIDUAL => 'Физическое лицо (заемщик)',
-            self::SUPPLEMENTARY_CARD => 'Дополнительная карта (только для кредитных карт)',
-            self::AUTHORIZED_USER => 'Авторизованный пользователь (доверенное лицо)',
-            self::JOINT => 'Совместный (основной заемщик, созаемщик)',
+            self::BORROWER => 'Заемщик',
             self::GUARANTOR => 'Поручитель',
-            self::PRINCIPAL => 'Принципал (сторона в договоре банковской гарантии)',
-            self::BUSINESS => 'Юридическое лицо (заемщик)',
+            self::PRINCIPAL => 'Принципал по гарантии',
+            self::LEASING => 'Лизингополучатель',
+            self::USER => 'Лицо, получающее финансирование или предоставляющее обеспечение по договору с элементами займа, поручительства, гарантии или лизинга (смешанный договор)',
+            self::OTHER => 'Иной вид участия',
         ];
     }
     

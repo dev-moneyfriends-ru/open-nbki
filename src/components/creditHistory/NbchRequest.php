@@ -16,7 +16,7 @@ use yii\httpclient\Response;
  */
 class NbchRequest extends \yii\httpclient\Request
 {
-    public const VERSION = '3';
+    public const VERSION = '10';
     /**
      * @var Requestor
      */

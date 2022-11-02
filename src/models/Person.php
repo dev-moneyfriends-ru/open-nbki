@@ -79,6 +79,13 @@ class Person extends BaseItem
     public $numDependants;
     
     public $deathFlag;
+    
+    /**
+     * Код страны по ОКСМ
+     * @var string
+     */
+    public $oksm;
+    
     public static function maritalStatusList()
     {
         return [
@@ -109,6 +116,7 @@ class Person extends BaseItem
                     'nationalityText',
                     'nationality',
                     'numDependants',
+                    'oksm'
                 ], 'string'],
                 ['gender', 'in', 'range' => array_keys(self::genderList())],
                 ['maritalStatus', 'in', 'range' => array_keys(self::maritalStatusList())],

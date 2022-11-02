@@ -26,7 +26,15 @@ class Passport extends BaseObject implements NbchSubjectPassportInterface
      * @var string
      */
     private $issueAuthority;
+    /**
+     * @var string
+     */
+    private $issueCode;
     
+    /**
+     * @var string
+     */
+    private $oksm;
     
     /**
      * @param string $series
@@ -98,5 +106,42 @@ class Passport extends BaseObject implements NbchSubjectPassportInterface
     public function getIssueAuthority(): string
     {
         return $this->issueAuthority;
+    }
+    
+    /**
+     * @param string $oksm
+     * @return Passport
+     */
+    public function setOksm(string $oksm): Passport
+    {
+        $this->oksm = $oksm;
+        return $this;
+    }
+    
+    /**
+     * Код страны по ОКСМ
+     * @return string
+     */
+    public function getOksm(): string
+    {
+        return $this->oksm;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getIssueCode(): string
+    {
+        return $this->issueCode;
+    }
+    
+    /**
+     * @param string $issueCode
+     * @return Passport
+     */
+    public function setIssueCode(string $issueCode): Passport
+    {
+        $this->issueCode = $issueCode;
+        return $this;
     }
 }

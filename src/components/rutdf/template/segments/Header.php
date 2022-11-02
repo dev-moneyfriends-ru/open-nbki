@@ -6,7 +6,7 @@ use mfteam\nbch\components\rutdf\template\RutdfTemplate;
 use mfteam\nbch\Env;
 
 /**
- *
+ * Блок заголовка документа HEADER
  */
 class Header extends \mfteam\nbch\components\BaseSegment
 {
@@ -33,6 +33,7 @@ class Header extends \mfteam\nbch\components\BaseSegment
     public function getFields(): array
     {
         return [
+            $this->getSegmentName(),
             Env::ensure()->module->rutdf->sourceInn,
             Env::ensure()->module->rutdf->sourceOgrn,
             $this->template->getBaseName(),
