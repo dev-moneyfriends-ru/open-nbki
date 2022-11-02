@@ -17,6 +17,10 @@ class C4Id extends \mfteam\nbch\components\BaseSegment
     
     public function init()
     {
+        if($this->template->subject->isLegal()){
+            parent::init();
+            return;
+        }
         $passport = $this->template->subject->getPassport();
         if ($passport === null) {
             $this->errors[] = "Отсутствуют паспортные данные";
