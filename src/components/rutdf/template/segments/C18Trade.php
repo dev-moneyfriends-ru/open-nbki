@@ -35,7 +35,14 @@ class C18Trade extends \mfteam\nbch\components\BaseSegment
             $trade->ownerIndic,
             $trade->openedDt,
             $trade->tradeTypeCode,
-            $trade->loanKindCode
+            $trade->loanKindCode,
+            $trade->acctType,
+            0,
+            0,
+            0,
+            1,
+            0,
+            $trade->closedDt
         ];
     }
     
@@ -44,7 +51,19 @@ class C18Trade extends \mfteam\nbch\components\BaseSegment
      */
     public function getFieldsDescriptions(): array
     {
-        // TODO: Implement getFieldsDescriptions() method.
+        return [
+          'Код вида участия в сделке',
+          'Дата совершения сделки',
+            'Код типа сделки',
+            'Код вида займа (кредита)',
+            'Код цели займа (кредита)',
+            'Признак потребительского кредита (займа)',
+            'Признак использования платежной карты',
+            'Признак возникновения обязательства в результате новации',
+            'Признак денежного обязательства источника',
+            'Признак денежного обязательства субъекта',
+            'Дата прекращения обязательства субъекта по условиям сделки'
+        ];
     }
     
     /**
@@ -52,7 +71,7 @@ class C18Trade extends \mfteam\nbch\components\BaseSegment
      */
     public function getDescription(): string
     {
-        // TODO: Implement getDescription() method.
+        return '';
     }
     
     /**

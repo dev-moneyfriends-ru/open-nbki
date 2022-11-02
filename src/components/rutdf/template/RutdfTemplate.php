@@ -7,6 +7,7 @@ use mfteam\nbch\components\rutdf\template\segments\C10ContactInfo;
 use mfteam\nbch\components\rutdf\template\segments\C11Entrep;
 use mfteam\nbch\components\rutdf\template\segments\C12Capability;
 use mfteam\nbch\components\rutdf\template\segments\C17UID;
+use mfteam\nbch\components\rutdf\template\segments\C18Trade;
 use mfteam\nbch\components\rutdf\template\segments\C1Name;
 use mfteam\nbch\components\rutdf\template\segments\C2PrevName;
 use mfteam\nbch\components\rutdf\template\segments\C3Birth;
@@ -73,7 +74,7 @@ class RutdfTemplate extends BaseRequestTemplate
      */
     public function getTemplatePath(): string
     {
-        // TODO: Implement getTemplatePath() method.
+        return '@vendor/mf-team/yii2-mf-nbch/src/components/rutdf/template/views/rutdf3';
     }
     
     /**
@@ -82,22 +83,27 @@ class RutdfTemplate extends BaseRequestTemplate
     public function getTokenList(): array
     {
         return [
+            'eventId' => $this->eventId,
+            'isLegal' => $this->subject->isLegal(),
             "HEADER" => new Header($this),
-            "0_GROUPHEADER" => new GroupHeader($this),
+            "GROUPHEADER" => new GroupHeader($this),
             "TRAILER" => new Trailer($this),
-            "C1_NAME" => new C1Name($this),
-            "C2_PREVNAME" => new C2PrevName($this),
-            "C3_BIRTH" => new C3Birth($this),
-            "C4_ID" => new C4Id($this),
-            "C5_PREVID" => new C5PrevId($this),
-            "C6_REGNUM" => new C6RegNum($this),
-            "C7_SNILS" => new C7Snils($this),
-            "C8_REGADDR" => new C8RegAddr($this),
-            "C9_ACTUALADDR" => new C9ActualAddr($this),
-            "C10_CONTACTINFO" => new C10ContactInfo($this),
-            "C11_ENTREP" => new C11Entrep($this),
-            "C12_CAPABILITY" => new C12Capability($this),
-            "C17_UID" => new C17UID($this),
+            "segments" => [
+                "C1_NAME" => new C1Name($this),
+                "C2_PREVNAME" => new C2PrevName($this),
+                "C3_BIRTH" => new C3Birth($this),
+                "C4_ID" => new C4Id($this),
+                "C5_PREVID" => new C5PrevId($this),
+                "C6_REGNUM" => new C6RegNum($this),
+                "C7_SNILS" => new C7Snils($this),
+                "C8_REGADDR" => new C8RegAddr($this),
+                "C9_ACTUALADDR" => new C9ActualAddr($this),
+                "C10_CONTACTINFO" => new C10ContactInfo($this),
+                "C11_ENTREP" => new C11Entrep($this),
+                "C12_CAPABILITY" => new C12Capability($this),
+                "C17_UID" => new C17UID($this),
+                "C18_TRADE" => new C18Trade($this),
+            ]
         ];
     }
     

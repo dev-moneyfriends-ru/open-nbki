@@ -38,8 +38,8 @@ class Trade extends BaseItem
     public $acctNum;
     
     /**
-     * Тип счёта @see AccountType
-     * @var int
+     * Код цели займа (кредита)
+     * @var string
      */
     public $acctType;
     
@@ -382,15 +382,15 @@ class Trade extends BaseItem
     
     /**
      * Код вида займа (кредита)
-     * 1	Заем (кредит)
-     * 2	Заем (кредит) с ипотекой
-     * 3	Микрозаем
-     * 4	Кредитная линия с лимитом выдачи
-     * 5	Кредитная линия с лимитом задолженности
-     * 6	Комбинированная кредитная линия с лимитом выдачи и лимитом задолженности
-     * 7	Кредит «овердрафт» (кредитование счета)
-     * 8	Синдицированный заем (кредит)
-     * 99	Иной заем (кредит)
+     * 1    Заем (кредит)
+     * 2    Заем (кредит) с ипотекой
+     * 3    Микрозаем
+     * 4    Кредитная линия с лимитом выдачи
+     * 5    Кредитная линия с лимитом задолженности
+     * 6    Комбинированная кредитная линия с лимитом выдачи и лимитом задолженности
+     * 7    Кредит «овердрафт» (кредитование счета)
+     * 8    Синдицированный заем (кредит)
+     * 99    Иной заем (кредит)
      * @var int
      */
     public $loanKindCode;
@@ -471,7 +471,7 @@ class Trade extends BaseItem
                     'intPastDue',
                     'openedDt',
                     'reportingDt',
-                    'uuid'
+                    'uuid',
                 ],
                 'required',
             ],
@@ -603,7 +603,7 @@ class Trade extends BaseItem
                     'rightOfClaimID',
                     'uuid',
                     'paymentPatternValue',
-                    'paymtPat'
+                    'paymtPat',
                 ],
                 'string',
             ],
@@ -623,7 +623,7 @@ class Trade extends BaseItem
                     'paymentDueDate',
                     'paymtPatStartDt',
                     'reportingDt',
-                    'completePerformDt'
+                    'completePerformDt',
                 ],
                 'date',
                 'format' => 'yyyy-MM-dd',
@@ -654,7 +654,7 @@ class Trade extends BaseItem
      */
     public function isBorrower()
     {
-        return $this->ownerIndic === AccountRelationship::INDIVIDUAL || $this->ownerIndic === AccountRelationship::BUSINESS;
+        return $this->ownerIndic === AccountRelationship::BORROWER;
     }
     
     /**

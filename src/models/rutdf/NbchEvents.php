@@ -166,7 +166,14 @@ class NbchEvents
             10 => "C10_CONTACTINFO",
             11 => "C11_ENTREP",
             12 => "C12_CAPABILITY",
-            17 => "C17_UID"
+            17 => "C17_UID",
+            18 => "C18_TRADE",
+            19 => "C19_ACCOUNTAMT"
         ];
+    }
+    
+    public static function legalBlockCode()
+    {
+        return [];
     }
 }
