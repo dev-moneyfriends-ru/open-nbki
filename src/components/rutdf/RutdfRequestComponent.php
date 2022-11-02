@@ -141,8 +141,8 @@ class RutdfRequestComponent extends \yii\base\Component
         if (!$this->request->canSend()) {
             throw new Exception('Wrong request status');
         }
-        if ($this->request->ru === null) {
-            throw new Exception('TUTDF file not found');
+        if ($this->request->getFile() === null) {
+            throw new Exception('File not found');
         }
         
         $request = $this->request;
