@@ -180,4 +180,14 @@ class RutdfTemplate extends BaseRequestTemplate
         }
         $this->_fileContent = mb_convert_encoding($content, 'UTF-8', 'WINDOWS-1251');
     }
+    
+    /**
+     * @param NbchRutdfRequest|null $request
+     * @return RutdfTemplate
+     */
+    public function setRequest(?NbchRutdfRequest $request): RutdfTemplate
+    {
+        $this->request = $request;
+        return $this;
+    }
 }
