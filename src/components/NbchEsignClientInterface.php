@@ -11,7 +11,7 @@ interface NbchEsignClientInterface
      * @param string $content
      * @return $this
      */
-    public function setSrcContent(string $content): NbchEsignClientInterface;
+    public function setSrcContent(string $content);
     
     /**
      * @return bool
