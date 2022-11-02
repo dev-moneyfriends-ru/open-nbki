@@ -25,9 +25,9 @@ class B14PaymtCondition extends \mfteam\nbch\components\BaseSegment
         return [
             $this->segmentName,
             $this->formatCurrency($trade->principalTermsAmt),
-            $this->formatDate($trade->principalTermsAmtDt),
+            $this->formatNewDate($trade->principalTermsAmtDt),
             $this->formatCurrency($trade->interestTermsAmt),
-            $this->formatDate($trade->interestTermsAmtDt),
+            $this->formatNewDate($trade->interestTermsAmtDt),
             $trade->termsFrequency,
             $this->emptyValue,
             $this->emptyValue,

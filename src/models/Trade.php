@@ -425,6 +425,7 @@ class Trade extends BaseItem
     public $interestTermsAmtDt;
     
     /**
+     * Дата возникновения срочной задолженности
      * @var string
      */
     public $startDt;

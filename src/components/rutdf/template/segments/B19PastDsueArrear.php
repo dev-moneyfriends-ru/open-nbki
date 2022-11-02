@@ -26,25 +26,27 @@ class B19PastDsueArrear extends \mfteam\nbch\components\BaseSegment
             return [
                 $this->segmentName,
                 $this->emptyValue,
+                1,
                 $this->formatCurrency($trade->amtPastDue),
                 $this->formatCurrency($trade->principalPastDue),
                 $this->formatCurrency($trade->intPastDue),
                 $this->formatCurrency($trade->otherAmtPastDue),
-                $this->formatDate($trade->reportingDt),
+                $this->formatNewDate($trade->reportingDt),
                 $this->emptyValue,
                 $this->emptyValue,
             ];
         }
         return [
             $this->segmentName,
-            $this->formatDate($trade->pastDueDt),
+            $this->formatNewDate($trade->pastDueDt),
+            1,
             $this->formatCurrency($trade->amtPastDue),
             $this->formatCurrency($trade->principalPastDue),
             $this->formatCurrency($trade->intPastDue),
             $this->formatCurrency($trade->otherAmtPastDue),
-            $this->formatDate($trade->reportingDt),
-            $this->formatDate($trade->principalMissedDate),
-            $this->formatDate($trade->intMissedDate),
+            $this->formatNewDate($trade->reportingDt),
+            $this->formatNewDate($trade->principalMissedDate),
+            $this->formatNewDate($trade->intMissedDate),
         ];
     }
     

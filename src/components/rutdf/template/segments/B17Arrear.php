@@ -32,7 +32,7 @@ class B17Arrear extends \mfteam\nbch\components\BaseSegment
                 $this->formatCurrency($trade->principalOutstanding),
                 $this->formatCurrency($trade->intOutstanding),
                 $this->formatCurrency($trade->otherAmtOutstanding),
-                $this->formatDate($trade->reportingDt)
+                $this->formatNewDate($trade->reportingDt)
             ];
         }
         return [

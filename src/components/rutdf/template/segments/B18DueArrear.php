@@ -23,13 +23,14 @@ class B18DueArrear extends \mfteam\nbch\components\BaseSegment
     {
         $trade = $this->template->offer->getTrade();
         return [
-            $this->formatDate($trade->startDt),
+            $this->segmentName,
+            $this->formatNewDate($trade->startDt),
             1,
             $this->formatCurrency($trade->currentAmtOutstanding),
             $this->formatCurrency($trade->currentPrincipalOutstanding),
             $this->formatCurrency($trade->currentIntOutstanding),
             $this->formatCurrency($trade->currentOtherAmtOutstanding),
-            $this->formatDate($trade->reportingDt)
+            $this->formatNewDate($trade->reportingDt)
         ];
     }
     
