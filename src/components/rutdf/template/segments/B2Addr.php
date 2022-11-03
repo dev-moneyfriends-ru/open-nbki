@@ -37,7 +37,7 @@ class B2Addr extends \mfteam\nbch\components\BaseSegment
             $this->emptyValue,
             $address->okato,
             $this->emptyValue,
-            $address->street,
+            mb_strtoupper($address->street),
             $address->houseNumber,
             $this->emptyValue,
             $address->block,
