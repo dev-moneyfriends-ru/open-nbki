@@ -46,4 +46,4 @@ foreach ($eventIds as $eventId) {
 }
 
 ?>
-<?= $TRAILER->setCntGroups($cnt)->render() ?>
+<?= $TRAILER->setCntGroups($cnt - 1)->render() ?>
