@@ -8,7 +8,7 @@ use yii\helpers\ArrayHelper;
 
 /**
  * @var $isLegal bool
- * @var $eventId string
+ * @var $eventIds string[]
  * @var $HEADER Header
  * @var $TRAILER Trailer
  * @var $GROUPHEADER GroupHeader
@@ -18,27 +18,32 @@ use yii\helpers\ArrayHelper;
 
 ?>
 <?= $HEADER->render() ?>
-<?= $GROUPHEADER->render() ?>
 <?php
-if ($isLegal) {
-    $tokens = NbchEvents::legalBlockCode();
-    $blocks = NbchEvents::legalBlocks()[$eventId];
-} else {
-    $tokens = NbchEvents::personBlockCode();
-    $blocks = NbchEvents::personBlocks()[$eventId];
-}
-foreach ($blocks as $block) {
-    $segmentCode = ArrayHelper::getValue($tokens, $block);
-    if ($segmentCode) {
-        $segment = ArrayHelper::getValue($segments, $segmentCode);
-        if ($segment instanceof \mfteam\nbch\components\BaseSegment) {
-            echo $segment->render();
-        } elseif (is_array($segment)) {
-            foreach ($segment as $item) {
-                echo $item->render();
+$cnt = 1;
+foreach ($eventIds as $eventId) {
+    echo $GROUPHEADER->setNumber($cnt)->setEvent($eventId)->render();
+    if ($isLegal) {
+        $tokens = NbchEvents::legalBlockCode();
+        $blocks = NbchEvents::legalBlocks()[$eventId];
+    } else {
+        $tokens = NbchEvents::personBlockCode();
+        $blocks = NbchEvents::personBlocks()[$eventId];
+    }
+    foreach ($blocks as $block) {
+        $segmentCode = ArrayHelper::getValue($tokens, $block);
+        if ($segmentCode) {
+            $segment = ArrayHelper::getValue($segments, $segmentCode);
+            if ($segment instanceof \mfteam\nbch\components\BaseSegment) {
+                echo $segment->render();
+            } elseif (is_array($segment)) {
+                foreach ($segment as $item) {
+                    echo $item->render();
+                }
             }
         }
     }
+    $cnt++;
 }
+
 ?>
-<?= $TRAILER->render() ?>
+<?= $TRAILER->setCntGroups($cnt)->render() ?>

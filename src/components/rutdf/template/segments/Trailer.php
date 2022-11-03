@@ -62,16 +62,18 @@ class Trailer extends \mfteam\nbch\components\BaseSegment
     /**
      * @inheritDoc
      */
-    public function getDescription(): string
+    public function getTitle(): string
     {
         return "Блок закрытия документа TRAILER";
     }
     
     /**
-     * @inheritDoc
+     * @param int $cntGroups
+     * @return Trailer
      */
-    public function getTitle(): string
+    public function setCntGroups(int $cntGroups): Trailer
     {
-        return "Блок закрытия документа TRAILER";
+        $this->cntGroups = $cntGroups;
+        return $this;
     }
 }

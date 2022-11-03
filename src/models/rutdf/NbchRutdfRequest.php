@@ -38,6 +38,19 @@ use yii\helpers\ArrayHelper;
  * @property-read string $rutdfDownloadUrl
  * @property-read null|NbchFile $rutdfFile
  * @property-read null|NbchFile $rutdfSigFile
+ * @property-read string $confirmZipP7mDownloadUrl
+ * @property-read string $tmpPath
+ * @property-read string $entity
+ * @property-read string $fileTicketSigType
+ * @property-read string $fileZipType
+ * @property-read null|\mfteam\nbch\components\file\NbchFile|\mfteam\nbch\components\file\NbchFileInterface $file
+ * @property-read string $fileDownloadUrl
+ * @property-read string $fileRejectType
+ * @property-read null|\mfteam\nbch\components\file\NbchFile|\mfteam\nbch\components\file\NbchFileInterface $zipFile
+ * @property array|false|string[] $eventIds
+ * @property-read null|\mfteam\nbch\components\file\NbchFile|\mfteam\nbch\components\file\NbchFileInterface $sigFile
+ * @property-read string $fileTicketType
+ * @property-read string $sigFileType
  * @property int $checkBy [int(11)]
  */
 class NbchRutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterface
@@ -112,8 +125,7 @@ class NbchRutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
             [['errorMessage'], 'string'],
             [['offerUuid', 'event'], 'required'],
             [['offerUuid'], 'string', 'max' => 50],
-            [['event'], 'string', 'max' => 10],
-            [['event'], 'in', 'range' => array_keys(NbchEvents::list())],
+            [['eventIds'], 'safe'],
         ];
     }
     
@@ -434,5 +446,22 @@ class NbchRutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
     public function getFileTicketSigType(): string
     {
         return self::FILE_TICKET_SIG;
+    }
+    
+    /**
+     * @return false|string[]
+     */
+    public function getEventIds()
+    {
+        return explode(',', $this->event);
+    }
+    
+    /**
+     * @param array $events
+     * @return void
+     */
+    public function setEventIds(array $events)
+    {
+        $this->event = implode(',', $events);
     }
 }

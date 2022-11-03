@@ -73,10 +73,10 @@ class RutdfTemplate extends BaseRequestTemplate
     public const ENTITY = "RutdfTemplate";
     
     /**
-     * Код события для формирования отчета
-     * @var string
+     * Массив событий для формирования отчета
+     * @var array
      */
-    protected $eventId;
+    protected $eventIds;
     
     /**
      * @var NbchRutdfRequest|null
@@ -106,7 +106,7 @@ class RutdfTemplate extends BaseRequestTemplate
     public function getTokenList(): array
     {
         return [
-            'eventId' => $this->eventId,
+            'eventIds' => $this->eventIds,
             'isLegal' => $this->subject->isLegal(),
             "HEADER" => new Header($this),
             "GROUPHEADER" => new GroupHeader($this),

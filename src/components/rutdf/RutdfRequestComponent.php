@@ -57,15 +57,15 @@ class RutdfRequestComponent extends \yii\base\Component
     /**
      * Создание нового отчета RUTDF
      * @param string $offerUuid
-     * @param string $event
+     * @param array $events Массив событий
      * @return NbchRutdfRequest
      * @throws CreateNbchRutdfRequestException
      */
-    public function createRequest(string $offerUuid, string $event): NbchRutdfRequest
+    public function createRequest(string $offerUuid, array $events): NbchRutdfRequest
     {
         $model = new NbchRutdfRequest([
             'offerUuid' => $offerUuid,
-            'event' => $event,
+            'eventIds' => $events,
             'state' => NbchRutdfRequest::STATE_NEW,
         ]);
         if (!$model->save()) {

@@ -16,7 +16,9 @@ class GroupHeader extends \mfteam\nbch\components\BaseSegment
      * Порядковый номер группы в документе (файле)
      * @var int
      */
-    public $number = 1;
+    public $number;
+    
+    public $event;
     
     /**
      * @inheritDoc
@@ -42,7 +44,7 @@ class GroupHeader extends \mfteam\nbch\components\BaseSegment
         return [
             $this->getSegmentName(),
             $this->number,
-            $this->template->getEventId(),
+            $this->event,
             $this->getOperationCode(),
             $this->emptyValue,
             $this->formatNewDate($this->template->getOffer()->getTrade()->reportingDt)
@@ -89,5 +91,25 @@ class GroupHeader extends \mfteam\nbch\components\BaseSegment
             return "A";
         }
         return "B";
+    }
+    
+    /**
+     * @param int $number
+     * @return GroupHeader
+     */
+    public function setNumber(int $number): GroupHeader
+    {
+        $this->number = $number;
+        return $this;
+    }
+    
+    /**
+     * @param mixed $event
+     * @return GroupHeader
+     */
+    public function setEvent($event)
+    {
+        $this->event = $event;
+        return $this;
     }
 }
