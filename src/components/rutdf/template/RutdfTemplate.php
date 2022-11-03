@@ -83,12 +83,9 @@ class RutdfTemplate extends BaseRequestTemplate
      */
     protected $request;
     
-    public function __construct(string $eventId, NbchSubjectInterface $subject, NbchOfferInterface $offer, $config = [])
+    public function __construct(array $eventIds, NbchSubjectInterface $subject, NbchOfferInterface $offer, $config = [])
     {
-        if (empty(NbchEvents::list()[$eventId])) {
-            throw new UnknownEventException();
-        }
-        $this->eventId = $eventId;
+        $this->eventIds = $eventIds;
         parent::__construct($subject, $offer, $config);
     }
     
