@@ -1,7 +1,5 @@
 <?php
 
-namespace mfteam\nbch\migrations;
-
 use mfteam\nbch\Env;
 
 class m221103_161238_alter_rutdf extends \yii\db\Migration
