@@ -82,7 +82,7 @@ abstract class BaseSegment extends \yii\base\BaseObject
      */
     public function formatCurrency($value)
     {
-        return round((float)$value, 2);
+        return number_format(round((float)$value, 2), 2, ',', '');
     }
     
     /**

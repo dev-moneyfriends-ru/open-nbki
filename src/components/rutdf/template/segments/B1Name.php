@@ -31,8 +31,8 @@ class B1Name extends \mfteam\nbch\components\BaseSegment
     {
         return [
             $this->segmentName,
-            $this->template->subject->getBusiness()->businessName,
-            $this->template->subject->getBusiness()->abbreviatedBusinessName,
+            mb_strtoupper($this->template->subject->getBusiness()->businessName),
+            mb_strtoupper($this->template->subject->getBusiness()->abbreviatedBusinessName),
             $this->emptyValue,
         ];
     }
