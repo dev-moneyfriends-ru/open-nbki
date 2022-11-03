@@ -107,6 +107,21 @@ interface BaseSendNbchRequestInterface
     public function getFileZipType():string;
     
     /**
+     * @return string
+     */
+    public function getFileRejectType():string;
+    
+    /**
+     * @return string
+     */
+    public function getFileTicketType():string;
+    
+    /**
+     * @return string
+     */
+    public function getFileTicketSigType():string;
+    
+    /**
      * @return void
      */
     public function setStateSigned():void;
@@ -140,4 +155,14 @@ interface BaseSendNbchRequestInterface
      * @return void
      */
     public function setStateSent():void;
+    
+    /**
+     * @return void
+     */
+    public function setStateComplete():void;
+    
+    /**
+     * @return void
+     */
+    public function setStateNbchError():void;
 }

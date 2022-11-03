@@ -4,6 +4,7 @@ namespace mfteam\nbch\components\rutdf;
 
 use mfteam\nbch\components\CreateZipArchiveComponent;
 use mfteam\nbch\components\SendToNbchComponent;
+use mfteam\nbch\components\UnzipConfirmComponent;
 use mfteam\nbch\exceptions\CreateNbchRutdfRequestException;
 use mfteam\nbch\models\NbchControl;
 use mfteam\nbch\models\rutdf\NbchRutdfRequest;
@@ -60,7 +61,7 @@ class RutdfRequestComponent extends \yii\base\Component
      * @return NbchRutdfRequest
      * @throws CreateNbchRutdfRequestException
      */
-    public function createRequest(string $offerUuid, string $event)
+    public function createRequest(string $offerUuid, string $event): NbchRutdfRequest
     {
         $model = new NbchRutdfRequest([
             'offerUuid' => $offerUuid,
@@ -78,7 +79,7 @@ class RutdfRequestComponent extends \yii\base\Component
      * @param NbchRutdfRequest $request
      * @return bool
      */
-    public function send(NbchRutdfRequest $request)
+    public function send(NbchRutdfRequest $request): bool
     {
         $this->request = $request;
         try {
@@ -98,11 +99,22 @@ class RutdfRequestComponent extends \yii\base\Component
     }
     
     /**
+     * Распаковка архива квитанции
+     * @param NbchRutdfRequest $request
+     * @return void
+     * @throws Exception
+     */
+    public function unzipConfirm(NbchRutdfRequest $request): void
+    {
+        $component = new UnzipConfirmComponent($request);
+        $component->execute();
+    }
+    /**
      * Возвращает последний созданный отчет
      * @param $offerUuid
      * @return NbchRutdfRequest|null
      */
-    public function findLastRequest($offerUuid)
+    public function findLastRequest($offerUuid): ?NbchRutdfRequest
     {
         return NbchRutdfRequest::find()->where(['offerUuid' => $offerUuid])->orderBy(['createdAt' => SORT_DESC])->one();
     }
@@ -112,7 +124,7 @@ class RutdfRequestComponent extends \yii\base\Component
      * @param int $id
      * @return NbchRutdfRequest|null
      */
-    public function findById(int $id)
+    public function findById(int $id): ?NbchRutdfRequest
     {
         return NbchRutdfRequest::findOne($id);
     }
@@ -121,7 +133,7 @@ class RutdfRequestComponent extends \yii\base\Component
      * @param \Throwable $e
      * @return void
      */
-    private function saveError(\Throwable $e)
+    private function saveError(\Throwable $e): void
     {
         Yii::error($e);
         
@@ -136,7 +148,7 @@ class RutdfRequestComponent extends \yii\base\Component
      * @throws Exception
      * @throws InvalidConfigException
      */
-    private function beforeSend()
+    private function beforeSend(): void
     {
         if (!$this->request->canSend()) {
             throw new Exception('Wrong request status');

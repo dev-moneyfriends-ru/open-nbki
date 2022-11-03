@@ -394,4 +394,45 @@ class NbchRutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
     {
         return new NbchRutdfRequestQuery(get_called_class());
     }
+    
+    /**
+     * @inheritDoc
+     */
+    public function setStateComplete(): void
+    {
+        $this->state = self::STATE_COMPLETE;
+        $this->acceptAt = time();
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function setStateNbchError(): void
+    {
+        $this->state = self::STATE_NBCH_ERROR;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getFileRejectType(): string
+    {
+        return self::FILE_REJECT;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getFileTicketType(): string
+    {
+        return self::FILE_TICKET;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getFileTicketSigType(): string
+    {
+        return self::FILE_TICKET_SIG;
+    }
 }
