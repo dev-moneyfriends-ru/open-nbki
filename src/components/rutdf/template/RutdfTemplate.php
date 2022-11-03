@@ -174,21 +174,21 @@ class RutdfTemplate extends BaseRequestTemplate
     }
     
     /**
-     * @param string $eventId
+     * @param array $eventId
      * @return RutdfTemplate
      */
-    public function setEventId(string $eventId)
+    public function setEventIds(array $eventIds)
     {
-        $this->eventId = $eventId;
+        $this->eventIds = $eventIds;
         return $this;
     }
     
     /**
-     * @return string
+     * @return array
      */
-    public function getEventId(): string
+    public function getEventIds(): array
     {
-        return $this->eventId;
+        return $this->eventIds;
     }
     
     /**
