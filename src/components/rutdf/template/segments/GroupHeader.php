@@ -86,7 +86,12 @@ class GroupHeader extends \mfteam\nbch\components\BaseSegment
     {
         if (in_array(
             $this->event,
-            [NbchEvents::EVENT_1_1, NbchEvents::EVENT_1_4, NbchEvents::EVENT_1_4_1]
+            [
+                NbchEvents::EVENT_1_1,
+                NbchEvents::EVENT_1_2,
+                NbchEvents::EVENT_1_4,
+                NbchEvents::EVENT_1_4_1
+            ]
         )) {
             return "A";
         }
