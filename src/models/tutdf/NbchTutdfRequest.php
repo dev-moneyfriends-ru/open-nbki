@@ -380,7 +380,7 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
      */
     public function setStateSigned(): void
     {
-        // TODO: Implement setStateSigned() method.
+        $this->state = self::STATE_SIGNED_TUTDF;
     }
     
     /**
@@ -388,7 +388,7 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
      */
     public function setStateExecuteCreateZip(): void
     {
-        // TODO: Implement setStateExecuteCreateZip() method.
+        $this->state = self::STATE_EXECUTE_CREATE_ZIP;
     }
     
     /**
@@ -396,7 +396,7 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
      */
     public function setStateCreatedZip(): void
     {
-        // TODO: Implement setStateCreatedZip() method.
+        $this->state = self::STATE_CREATED_ZIP;
     }
     
     /**
@@ -404,7 +404,7 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
      */
     public function setStateExecuteSignZip(): void
     {
-        // TODO: Implement setStateExecuteSignZip() method.
+        $this->state = self::STATE_EXECUTE_SIGN_ZIP;
     }
     
     /**
@@ -412,7 +412,7 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
      */
     public function setStateSignedZip(): void
     {
-        // TODO: Implement setStateSignedZip() method.
+        $this->state = self::STATE_SIGNED_ZIP;
     }
     
     /**
@@ -420,7 +420,7 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
      */
     public function setStateSending(): void
     {
-        // TODO: Implement setStateSending() method.
+        $this->state = self::STATE_SENDING;
     }
     
     /**
@@ -428,6 +428,48 @@ class NbchTutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
      */
     public function setStateSent(): void
     {
-        // TODO: Implement setStateSent() method.
+        $this->state = self::STATE_SENT;
+        $this->sendAt = time();
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getFileRejectType(): string
+    {
+        return self::FILE_REJECT;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getFileTicketType(): string
+    {
+        return self::FILE_TICKET;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getFileTicketSigType(): string
+    {
+        return self::FILE_TICKET_SIG;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function setStateComplete(): void
+    {
+        $this->state = self::STATE_COMPLETE;
+        $this->acceptAt = time();
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function setStateNbchError(): void
+    {
+        $this->state = self::STATE_ERROR;
     }
 }
