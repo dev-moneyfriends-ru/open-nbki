@@ -32,7 +32,7 @@ class B14PaymtCondition extends \mfteam\nbch\components\BaseSegment
             $this->emptyValue,
             $this->emptyValue,
             $this->emptyValue,
-            $trade->interestPaymentDueDate
+            $this->formatNewDate($trade->interestPaymentDueDate)
         ];
     }
     
