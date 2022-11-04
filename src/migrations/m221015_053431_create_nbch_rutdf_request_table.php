@@ -34,14 +34,7 @@ class m221015_053431_create_nbch_rutdf_request_table extends \yii\db\Migration
         
         $this->createIndex('idx-offerUuid', $env->nbchRutdfRequestTableName, 'offerUuid');
         $this->createIndex('idx-state', $env->nbchRutdfRequestTableName, 'state');
-    
-        $this->addForeignKey(
-            'fk-nbch_control-rutdf-offerUuid',
-            $env->nbchControlTableName,
-            'offerUuid',
-            $env->nbchRutdfRequestTableName,
-            'offerUuid'
-        );
+        
     }
     
     /**
@@ -50,10 +43,7 @@ class m221015_053431_create_nbch_rutdf_request_table extends \yii\db\Migration
     public function safeDown()
     {
         $env = Env::ensure();
-        $this->dropForeignKey(
-            'fk-nbch_control-offerUuid',
-            $env->nbchControlTableName
-        );
+
         $this->dropIndex('idx-offerUuid', $env->nbchRutdfRequestTableName);
         $this->dropIndex('idx-state', $env->nbchRutdfRequestTableName);
         $this->dropTable($env->nbchRutdfRequestTableName);
