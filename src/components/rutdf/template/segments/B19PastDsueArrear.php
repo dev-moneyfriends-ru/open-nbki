@@ -22,7 +22,7 @@ class B19PastDsueArrear extends \mfteam\nbch\components\BaseSegment
     public function getFields(): array
     {
         $trade = $this->template->offer->getTrade();
-        if($trade->amtPastDue){
+        if($trade->amtPastDue < 0.01){
             return [
                 $this->segmentName,
                 $this->emptyValue,
