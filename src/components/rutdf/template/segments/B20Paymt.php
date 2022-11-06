@@ -24,15 +24,16 @@ class B20Paymt extends \mfteam\nbch\components\BaseSegment
         return [
           $this->segmentName,
           $this->emptyValue,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            $this->formatCurrency(0),
+            $this->formatCurrency(0),
+            $this->formatCurrency(0),
+            $this->formatCurrency(0),
+            $this->formatCurrency(0),
+            $this->formatCurrency(0),
+            $this->formatCurrency(0),
+            $this->formatCurrency(0),
             3,
-            2,
+            1,
             0
         ];
     }
