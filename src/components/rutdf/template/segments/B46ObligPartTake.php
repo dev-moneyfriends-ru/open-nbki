@@ -27,7 +27,7 @@ class B46ObligPartTake extends \mfteam\nbch\components\BaseSegment
             1,
             99,
             $trade->uuid . "-" . $this->getUuidControlSum($trade->uuid),
-            $this->formatNewDate($trade->openedDt),
+            $this->formatNewDate($trade->fundDt),
             0,
             0
         ];

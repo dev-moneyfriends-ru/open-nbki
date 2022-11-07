@@ -21,9 +21,26 @@ class B20Paymt extends \mfteam\nbch\components\BaseSegment
      */
     public function getFields(): array
     {
+        if (empty($this->template->offer->getPaymentArray())) {
+            return [
+                $this->segmentName,
+                $this->emptyValue,
+                $this->formatCurrency(0),
+                $this->formatCurrency(0),
+                $this->formatCurrency(0),
+                $this->formatCurrency(0),
+                $this->formatCurrency(0),
+                $this->formatCurrency(0),
+                $this->formatCurrency(0),
+                $this->formatCurrency(0),
+                3,
+                1,
+                0,
+            ];
+        }
         return [
-          $this->segmentName,
-          $this->emptyValue,
+            $this->segmentName,
+            $this->emptyValue,
             $this->formatCurrency(0),
             $this->formatCurrency(0),
             $this->formatCurrency(0),
@@ -34,7 +51,7 @@ class B20Paymt extends \mfteam\nbch\components\BaseSegment
             $this->formatCurrency(0),
             3,
             1,
-            0
+            0,
         ];
     }
     

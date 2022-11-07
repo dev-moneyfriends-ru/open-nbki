@@ -23,7 +23,7 @@ class B16FundDate extends \mfteam\nbch\components\BaseSegment
     {
         return [
           $this->segmentName,
-          $this->formatNewDate($this->template->offer->getTrade()->openedDt),
+          $this->formatNewDate($this->template->offer->getTrade()->fundDt),
         ];
     }
     

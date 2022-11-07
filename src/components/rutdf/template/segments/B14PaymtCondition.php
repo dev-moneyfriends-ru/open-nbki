@@ -22,6 +22,20 @@ class B14PaymtCondition extends \mfteam\nbch\components\BaseSegment
     public function getFields(): array
     {
         $trade = $this->template->offer->getTrade();
+        if ($trade->principalTermsAmt + $trade->interestTermsAmt < 0.001) {
+            return [
+                $this->segmentName,
+                $this->formatCurrency(0),
+                $this->emptyValue,
+                $this->formatCurrency(0),
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
+            ];
+        }
         return [
             $this->segmentName,
             $this->formatCurrency($trade->principalTermsAmt),
@@ -32,7 +46,7 @@ class B14PaymtCondition extends \mfteam\nbch\components\BaseSegment
             $this->emptyValue,
             $this->emptyValue,
             $this->emptyValue,
-            $this->formatNewDate($trade->interestPaymentDueDate)
+            $this->formatNewDate($trade->interestPaymentDueDate),
         ];
     }
     
