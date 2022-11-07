@@ -473,6 +473,12 @@ class Trade extends BaseItem
     public $intMissedDate;
     
     /**
+     * Сумма задолженности на дату передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     * @var float
+     */
+    public $startAmtOutstanding = 0;
+    
+    /**
      * @return array[]
      */
     public function rangeRules()

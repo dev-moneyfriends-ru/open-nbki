@@ -22,14 +22,26 @@ class B18DueArrear extends \mfteam\nbch\components\BaseSegment
     public function getFields(): array
     {
         $trade = $this->template->offer->getTrade();
+        if($trade->amtOutstanding < 0.01){
+            return [
+                $this->segmentName,
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->formatCurrency($trade->amtOutstanding),
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue
+            ];
+        }
         return [
             $this->segmentName,
             $this->formatNewDate($trade->startDt),
             1,
-            $this->formatCurrency($trade->currentAmtOutstanding),
-            $this->formatCurrency($trade->currentPrincipalOutstanding),
-            $this->formatCurrency($trade->currentIntOutstanding),
-            $this->formatCurrency($trade->currentOtherAmtOutstanding),
+            $this->formatCurrency($trade->amtOutstanding),
+            $this->formatCurrency($trade->principalOutstanding),
+            $this->formatCurrency($trade->intOutstanding),
+            $this->formatCurrency($trade->otherAmtOutstanding),
             $this->formatNewDate($trade->reportingDt)
         ];
     }
