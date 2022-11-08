@@ -22,29 +22,29 @@ class B17Arrear extends \mfteam\nbch\components\BaseSegment
     public function getFields(): array
     {
         $trade = $this->template->offer->getTrade();
-        if ($trade->amtOutstanding) {
+        if ($trade->currentAmtOutstanding < 0.001) {
             return [
                 $this->segmentName,
-                1,
-                $this->formatCurrency($trade->startAmtOutstanding),
-                1,
-                $this->formatCurrency($trade->currentAmtOutstanding),
-                $this->formatCurrency($trade->currentPrincipalOutstanding),
-                $this->formatCurrency($trade->currentIntOutstanding),
-                $this->formatCurrency($trade->currentOtherAmtOutstanding),
-                $this->formatNewDate($trade->reportingDt)
+                0,
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
             ];
         }
         return [
             $this->segmentName,
-            0,
-            $this->emptyValue,
-            $this->emptyValue,
-            $this->emptyValue,
-            $this->emptyValue,
-            $this->emptyValue,
-            $this->emptyValue,
-            $this->emptyValue,
+            1,
+            $this->formatCurrency($trade->startAmtOutstanding),
+            1,
+            $this->formatCurrency($trade->currentAmtOutstanding),
+            $this->formatCurrency($trade->currentPrincipalOutstanding),
+            $this->formatCurrency($trade->currentIntOutstanding),
+            $this->formatCurrency($trade->currentOtherAmtOutstanding),
+            $this->formatNewDate($trade->reportingDt)
         ];
     }
     

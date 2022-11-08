@@ -45,7 +45,7 @@ class Trade extends BaseItem
     public $acctType;
     
     /**
-     * Сумма срочной задолженности
+     * Сумма задолженности
      * @var int
      */
     public $amtOutstanding;
@@ -437,25 +437,25 @@ class Trade extends BaseItem
     public $startDt;
     
     /**
-     * Сумма срочной задолженности
+     * Сумма задолженности
      * @var float
      */
     public $currentAmtOutstanding;
     
     /**
-     * Сумма срочной задолженности по основному долгу
+     * Сумма задолженности по основному долгу
      * @var float
      */
     public $currentPrincipalOutstanding;
     
     /**
-     * Сумма срочной задолженности по процентам
+     * Сумма задолженности по процентам
      * @var float
      */
     public $currentIntOutstanding;
     
     /**
-     * Сумма срочной задолженности по иным требованиям
+     * Сумма задолженности по иным требованиям
      * @var float
      */
     public $currentOtherAmtOutstanding;
@@ -849,10 +849,10 @@ class Trade extends BaseItem
             'principalTermsAmtDt' => 'Дата ближайшего следующего платежа по основному долгу',
             'interestTermsAmtDt' => 'Дата ближайшего следующего платежа по процентам',
             'startDt' => 'Дата возникновения срочной задолженности',
-            'currentAmtOutstanding' => 'Сумма срочной задолженности',
-            'currentPrincipalOutstanding' => 'Сумма срочной задолженности по основному долгу',
-            'currentIntOutstanding' => 'Сумма срочной задолженности по процентам',
-            'currentOtherAmtOutstanding' => 'Сумма срочной задолженности по иным требованиям',
+            'currentAmtOutstanding' => 'Сумма задолженности',
+            'currentPrincipalOutstanding' => 'Сумма задолженности по основному долгу',
+            'currentIntOutstanding' => 'Сумма задолженности по процентам',
+            'currentOtherAmtOutstanding' => 'Сумма задолженности по иным требованиям',
             'pastDueDt' => 'Дата возникновения просроченной задолженности',
             'principalMissedDate' => 'Дата последнего пропущенного платежа по основному долгу',
             'intMissedDate' => 'Дата последнего пропущенного платежа по основному долгу',
