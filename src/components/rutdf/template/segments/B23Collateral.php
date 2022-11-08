@@ -51,11 +51,13 @@ class B23Collateral extends \mfteam\nbch\components\BaseSegment
                 $this->emptyValue,
                 $this->emptyValue,
                 $this->emptyValue,
-                $this->emptyValue
+                $this->emptyValue,
+                $this->emptyValue,
             ];
         }
         return [
             $this->segmentName,
+            1,
             $this->collateral->collateralCode,
             str_replace(" ", "", $this->collateral->serialNum),
             $this->formatNewDate($this->template->offer->getTrade()->openedDt),
