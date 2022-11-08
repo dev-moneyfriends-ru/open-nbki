@@ -195,6 +195,9 @@ class NbchEvents
             18 => "B18_DUEARREAR",
             19 => "B19_PASTDUEARREAR",
             20 => "B20_PAYMT",
+            21 => "B21_SOURCENONMONETOBLIG",
+            22 => "B22_SUBJECTNONMONETOBLIG",
+            23 => "B23_COLLATERAL",
             44 => "B44_OBLIGACCOUNT",
             46 => "B46_OBLIGPARTTAKE"
         ];

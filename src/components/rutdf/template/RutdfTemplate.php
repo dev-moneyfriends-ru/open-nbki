@@ -15,6 +15,9 @@ use mfteam\nbch\components\rutdf\template\segments\B18DueArrear;
 use mfteam\nbch\components\rutdf\template\segments\B19PastDsueArrear;
 use mfteam\nbch\components\rutdf\template\segments\B1Name;
 use mfteam\nbch\components\rutdf\template\segments\B20Paymt;
+use mfteam\nbch\components\rutdf\template\segments\B21SourceNonMonetOblig;
+use mfteam\nbch\components\rutdf\template\segments\B22SubjectNonMonetOblig;
+use mfteam\nbch\components\rutdf\template\segments\B23Collateral;
 use mfteam\nbch\components\rutdf\template\segments\B2Addr;
 use mfteam\nbch\components\rutdf\template\segments\B3RegNum;
 use mfteam\nbch\components\rutdf\template\segments\B44ObligacCount;
@@ -45,6 +48,7 @@ use mfteam\nbch\components\rutdf\template\segments\Header;
 use mfteam\nbch\components\rutdf\template\segments\Trailer;
 use mfteam\nbch\Env;
 use mfteam\nbch\exceptions\UnknownEventException;
+use mfteam\nbch\models\Collateral;
 use mfteam\nbch\models\NbchOfferInterface;
 use mfteam\nbch\models\NbchSubjectInterface;
 use mfteam\nbch\models\rutdf\NbchEvents;
@@ -144,9 +148,12 @@ class RutdfTemplate extends BaseRequestTemplate
                 "B18_DUEARREAR" => new B18DueArrear($this),
                 "B19_PASTDUEARREAR" => new B19PastDsueArrear($this),
                 "B20_PAYMT" => new B20Paymt($this),
+                "B21_SOURCENONMONETOBLIG" => new B21SourceNonMonetOblig($this),
+                "B22_SUBJECTNONMONETOBLIG" => new B22SubjectNonMonetOblig($this),
+                "B23_COLLATERAL" => $this->getB23Collateral(),
                 "B44_OBLIGACCOUNT" => new B44ObligacCount($this),
-                "B46_OBLIGPARTTAKE" => new B46ObligPartTake($this)
-             ]
+                "B46_OBLIGPARTTAKE" => new B46ObligPartTake($this),
+            ],
         ];
     }
     
@@ -230,5 +237,20 @@ class RutdfTemplate extends BaseRequestTemplate
     {
         $this->request = $request;
         return $this;
+    }
+    
+    /**
+     * @return array|B23Collateral[]
+     */
+    private function getB23Collateral()
+    {
+        if (empty($this->offer->getCollateralArray())) {
+            return [
+                new B23Collateral(new Collateral(), $this),
+            ];
+        }
+        return array_map(function (Collateral $item) {
+            return new B23Collateral($item, $this);
+        }, $this->offer->getCollateralArray());
     }
 }
