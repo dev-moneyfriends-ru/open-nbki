@@ -11,6 +11,11 @@ use mfteam\nbch\models\Collateral;
 class B23Collateral extends \mfteam\nbch\components\BaseSegment
 {
     /**
+     * @var Collateral
+     */
+    private $collateral;
+    
+    /**
      * @param Collateral $collateral
      * @param BaseRequestTemplate $template
      * @param $config
