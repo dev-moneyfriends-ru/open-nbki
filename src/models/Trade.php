@@ -21,7 +21,7 @@ use yii\helpers\ArrayHelper;
 class Trade extends BaseItem
 {
     /**
-     * Состояние счёта @see AccountRating
+     * Код основания прекращения обязательства @see AccountRating
      * @var int
      */
     public $accountRating;
@@ -820,7 +820,7 @@ class Trade extends BaseItem
     public function attributeLabels()
     {
         return [
-            'accountRating' => 'Состояние счёта',
+            'accountRating' => 'Код основания прекращения обязательства',
             'accountRatingDate' => 'Дата наступления (изменения) состояния счёта.',
             'acctNum' => 'Номер счета',
             'acctType' => 'Код цели займа (кредита)',

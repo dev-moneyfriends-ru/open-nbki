@@ -140,7 +140,7 @@ class NbchEvents
                 1, 2, 3, 4, 5, 10, 23, 24, 25, 26, 27, 28,
             ],
             self::EVENT_2_5_1 => [
-                1, 2, 3, 4, 5, 10, 11, 12, 14, 16, 17, 18, 19, 20, 22, 46,
+                1, 2, 3, 4, 5, 10, 11, 12, 14, 16, 17, 18, 19, 20, 29, 46,
             ],
             self::EVENT_2_5_2 => [
                 1, 2, 3, 4, 5, 10, 11, 22, 29, 46,
@@ -198,6 +198,11 @@ class NbchEvents
             21 => "B21_SOURCENONMONETOBLIG",
             22 => "B22_SUBJECTNONMONETOBLIG",
             23 => "B23_COLLATERAL",
+            24 => "B24_GUARANTOR",
+            25 => "B25_INDEPGUARANTOR",
+            26 => "B26_COLLATINSURED",
+            27 => "B27_COLLATREPAY",
+            28 => "B28_GUARANTEEREPAY",
             44 => "B44_OBLIGACCOUNT",
             46 => "B46_OBLIGPARTTAKE"
         ];

@@ -16,7 +16,7 @@ class Collateral extends BaseItem
     
     /**
      * Код залога
-     * @var int
+     * @var string
      */
     public $collateralCode;
     

@@ -95,7 +95,7 @@ class GroupHeader extends \mfteam\nbch\components\BaseSegment
         )) {
             return "A";
         }
-        return "A";
+        return "B";
     }
     
     /**

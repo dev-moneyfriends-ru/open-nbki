@@ -18,6 +18,11 @@ use mfteam\nbch\components\rutdf\template\segments\B20Paymt;
 use mfteam\nbch\components\rutdf\template\segments\B21SourceNonMonetOblig;
 use mfteam\nbch\components\rutdf\template\segments\B22SubjectNonMonetOblig;
 use mfteam\nbch\components\rutdf\template\segments\B23Collateral;
+use mfteam\nbch\components\rutdf\template\segments\B24Guarantor;
+use mfteam\nbch\components\rutdf\template\segments\B25IndepGuarantor;
+use mfteam\nbch\components\rutdf\template\segments\B26Collatinsured;
+use mfteam\nbch\components\rutdf\template\segments\B27CollatRepay;
+use mfteam\nbch\components\rutdf\template\segments\B28GuaranteeRepay;
 use mfteam\nbch\components\rutdf\template\segments\B2Addr;
 use mfteam\nbch\components\rutdf\template\segments\B3RegNum;
 use mfteam\nbch\components\rutdf\template\segments\B44ObligacCount;
@@ -49,6 +54,7 @@ use mfteam\nbch\components\rutdf\template\segments\Trailer;
 use mfteam\nbch\Env;
 use mfteam\nbch\exceptions\UnknownEventException;
 use mfteam\nbch\models\Collateral;
+use mfteam\nbch\models\Guarantor;
 use mfteam\nbch\models\NbchOfferInterface;
 use mfteam\nbch\models\NbchSubjectInterface;
 use mfteam\nbch\models\rutdf\NbchEvents;
@@ -151,6 +157,11 @@ class RutdfTemplate extends BaseRequestTemplate
                 "B21_SOURCENONMONETOBLIG" => new B21SourceNonMonetOblig($this),
                 "B22_SUBJECTNONMONETOBLIG" => new B22SubjectNonMonetOblig($this),
                 "B23_COLLATERAL" => $this->getB23Collateral(),
+                "B24_GUARANTOR" => $this->getB24Guarantor(),
+                "B25_INDEPGUARANTOR" => new B25IndepGuarantor($this),
+                "B26_COLLATINSURED" => new B26Collatinsured($this),
+                "B27_COLLATREPAY" => new B27CollatRepay($this),
+                "B28_GUARANTEEREPAY" => new B28GuaranteeRepay($this),
                 "B44_OBLIGACCOUNT" => new B44ObligacCount($this),
                 "B46_OBLIGPARTTAKE" => new B46ObligPartTake($this),
             ],
@@ -252,5 +263,20 @@ class RutdfTemplate extends BaseRequestTemplate
         return array_map(function (Collateral $item) {
             return new B23Collateral($item, $this);
         }, $this->offer->getCollateralArray());
+    }
+    
+    /**
+     * @return B24Guarantor[]
+     */
+    private function getB24Guarantor()
+    {
+        if (empty($this->offer->getGuarantorArray())) {
+            return [
+                new B24Guarantor(new Guarantor(), $this),
+            ];
+        }
+        return array_map(function (Guarantor $item) {
+            return new B24Guarantor($item, $this);
+        }, $this->offer->getGuarantorArray());
     }
 }
