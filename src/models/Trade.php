@@ -817,7 +817,7 @@ class Trade extends BaseItem
         return AccountRelationship::getText($this->ownerIndic);
     }
     
-    public function fields()
+    public function attributeLabels()
     {
         return [
             'accountRating' => 'Состояние счёта',
