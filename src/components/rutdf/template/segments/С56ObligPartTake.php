@@ -3,9 +3,9 @@
 namespace mfteam\nbch\components\rutdf\template\segments;
 
 /**
- * Блок 46. Сведения об участии в обязательстве, по которому формируется КИ – B46_OBLIGPARTTAKE
+ * Блок 56. Сведения об участии в обязательстве, по которому формируется КИ - C56_OBLIGPARTTAKE
  */
-class B46ObligPartTake extends \mfteam\nbch\components\BaseSegment
+class С56ObligPartTake extends \mfteam\nbch\components\BaseSegment
 {
     
     /**
@@ -13,7 +13,7 @@ class B46ObligPartTake extends \mfteam\nbch\components\BaseSegment
      */
     public function getSegmentName(): string
     {
-        return "B46_OBLIGPARTTAKE";
+        return 'C56_OBLIGPARTTAKE';
     }
     
     /**
@@ -54,6 +54,6 @@ class B46ObligPartTake extends \mfteam\nbch\components\BaseSegment
      */
     public function getTitle(): string
     {
-        return "Блок 46. Сведения об участии в обязательстве, по которому формируется КИ – B46_OBLIGPARTTAKE";
+        return 'Блок 56. Сведения об участии в обязательстве, по которому формируется КИ - C56_OBLIGPARTTAKE';
     }
 }

@@ -42,7 +42,7 @@ class C3Birth extends \mfteam\nbch\components\BaseSegment
             $this->segmentName,
             $this->formatNewDate($this->template->subject->getPerson()->birthDt),
             $this->template->subject->getPerson()->oksm,
-            $this->template->subject->getPerson()->placeOfBirth,
+            $this->formatString($this->template->subject->getPerson()->placeOfBirth),
         ];
     }
     
@@ -52,10 +52,10 @@ class C3Birth extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
-            'Наименование сегмента',
-            "Дата рождения",
-            "Код страны по ОКСМ",
-            "Место рождения"
+            'Наименование сегмента' => '',
+            "Дата рождения" => '',
+            "Код страны по ОКСМ" => '',
+            "Место рождения" => ''
         ];
     }
     

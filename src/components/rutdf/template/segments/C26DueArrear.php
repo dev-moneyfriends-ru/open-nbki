@@ -5,9 +5,9 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 use mfteam\nbch\components\BaseSegment;
 
 /**
- * Блок 18. Сведения о срочной задолженности – B18_DUEARREAR
+ * Блок 26. Сведения о срочной задолженности – C26_DUEARREAR
  */
-class B18DueArrear extends BaseSegment
+class C26DueArrear extends BaseSegment
 {
     
     /**
@@ -15,7 +15,7 @@ class B18DueArrear extends BaseSegment
      */
     public function getSegmentName(): string
     {
-        return "B18_DUEARREAR";
+        return 'C26_DUEARREAR';
     }
     
     /**
@@ -70,7 +70,7 @@ class B18DueArrear extends BaseSegment
      */
     public function getTitle(): string
     {
-        return "Блок 18. Сведения о срочной задолженности – B18_DUEARREAR";
+        return 'Блок 26. Сведения о срочной задолженности – C26_DUEARREAR';
     }
     
     /**
@@ -78,7 +78,8 @@ class B18DueArrear extends BaseSegment
      */
     public function getDescription(): string
     {
-        return "В блоке указываются сведения обо всех денежных требованиях к субъекту, срок погашения которых не наступил. Сведения указываются согласно условиям сделки.
+        return "В блоке указываются сведения обо всех денежных требованиях к субъекту, срок погашения которых не наступил.
+                Сведения указываются согласно условиям сделки.
                 Для договора лизинга указываются требования по внесению в том числе лизинговых платежей.
                 ";
     }

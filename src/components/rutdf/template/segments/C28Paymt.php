@@ -2,13 +2,12 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments;
 
-use DateTime;
 use mfteam\nbch\components\BaseSegment;
 
 /**
- * Блок 20. Сведения о внесении платежей – B20_PAYMT
+ * Блок 28. Сведения о внесении платежей – C28_PAYMT
  */
-class B20Paymt extends BaseSegment
+class C28Paymt extends BaseSegment
 {
     
     /**
@@ -16,7 +15,7 @@ class B20Paymt extends BaseSegment
      */
     public function getSegmentName(): string
     {
-        return "B20_PAYMT";
+        return 'C28_PAYMT';
     }
     
     /**
@@ -101,7 +100,6 @@ class B20Paymt extends BaseSegment
      */
     public function getTitle(): string
     {
-        return "Блок 20. Сведения о внесении платежей – B20_PAYMT";
+        return 'Блок 28. Сведения о внесении платежей – C28_PAYMT';
     }
-    
 }

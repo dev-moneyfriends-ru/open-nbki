@@ -86,7 +86,7 @@ class C4Id extends \mfteam\nbch\components\BaseSegment
             $this->identification->seriesNumber,
             $this->identification->idNum,
             $this->formatNewDate($this->identification->issueDate),
-            $this->identification->issueAuthority,
+            $this->formatString($this->identification->issueAuthority),
             $this->identification->divCode,
             $this->emptyValue,
         ];
@@ -98,17 +98,17 @@ class C4Id extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
-            'Наименование сегмента',
-            "Код страны гражданства по ОКСМ",
-            "Наименование иной страны",
-            "Код документа",
-            "Наименование иного документа",
-            "Серия документа",
-            "Номер документа",
-            "Дата выдачи документа",
-            "Кем выдан документ",
-            "Код подразделения",
-            "Дата окончания срока действия документа",
+            'Наименование сегмента' => '',
+            "Код страны гражданства по ОКСМ" => '',
+            "Наименование иной страны" => '',
+            "Код документа" => '',
+            "Наименование иного документа" => '',
+            "Серия документа" => '',
+            "Номер документа" => '',
+            "Дата выдачи документа" => '',
+            "Кем выдан документ" => '',
+            "Код подразделения" => '',
+            "Дата окончания срока действия документа" => '',
         ];
     }
     

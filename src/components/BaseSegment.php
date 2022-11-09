@@ -2,6 +2,7 @@
 
 namespace mfteam\nbch\components;
 
+use DateTime;
 use mfteam\nbch\components\tutdf\template\TutdfTemplate;
 use yii\base\InvalidConfigException;
 use yii\base\InvalidValueException;
@@ -86,6 +87,15 @@ abstract class BaseSegment extends \yii\base\BaseObject
     public function formatCurrency($value)
     {
         return number_format(round((float)$value, 2), 2, ',', '');
+    }
+    
+    /**
+     * @param $value
+     * @return string
+     */
+    public function formatString($value)
+    {
+        return mb_strtoupper(trim($value));
     }
     
     /**
@@ -222,6 +232,25 @@ abstract class BaseSegment extends \yii\base\BaseObject
         }
         $key = $sum % 16;
         return base_convert($key, 10, 16);
+    }
+    
+    /**
+     * @return false|int
+     */
+    protected function daysPastDue()
+    {
+        $daysPastDue = 0;
+        if ($this->template->offer->getTrade()->amtPastDue > 0.001) {
+            $currentDate = new DateTime();
+            $overdueDate = (new DateTime())
+                ->setTimestamp(
+                    \Yii::$app->formatter->asTimestamp($this->template->getOffer()->getTrade()->pastDueDt)
+                );
+            
+            $interval = $currentDate->diff($overdueDate);
+            $daysPastDue = $interval->days;
+        }
+        return $daysPastDue;
     }
     
 }

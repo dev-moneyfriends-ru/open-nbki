@@ -7,15 +7,6 @@ namespace mfteam\nbch\components\rutdf\template\segments;
  */
 class C21PaymtCondition extends \mfteam\nbch\components\BaseSegment
 {
-    
-    /**
-     * @inheritDoc
-     */
-    public function validate(): bool
-    {
-        // TODO: Implement validate() method.
-    }
-    
     /**
      * @inheritDoc
      */
@@ -29,9 +20,32 @@ class C21PaymtCondition extends \mfteam\nbch\components\BaseSegment
      */
     public function getFields(): array
     {
+        $trade = $this->template->offer->getTrade();
+        if ($trade->principalTermsAmt + $trade->interestTermsAmt < 0.001) {
+            return [
+                $this->segmentName,
+                $this->formatCurrency(0),
+                $this->emptyValue,
+                $this->formatCurrency(0),
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
+            ];
+        }
         return [
-          $this->segmentName,
-          $this->formatCurrency($this->template->offer->getTrade()->principalPastDue)
+            $this->segmentName,
+            $this->formatCurrency($trade->principalTermsAmt),
+            $this->formatNewDate($trade->principalTermsAmtDt),
+            $this->formatCurrency($trade->interestTermsAmt),
+            $this->formatNewDate($trade->interestTermsAmtDt),
+            $trade->termsFrequency,
+            $this->emptyValue,
+            $this->emptyValue,
+            $this->emptyValue,
+            $this->formatNewDate($trade->interestPaymentDueDate),
         ];
     }
     
@@ -40,15 +54,22 @@ class C21PaymtCondition extends \mfteam\nbch\components\BaseSegment
      */
     public function getFieldsDescriptions(): array
     {
-        // TODO: Implement getFieldsDescriptions() method.
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function getDescription(): string
-    {
-        return '';
+        return [
+            'Наименование сегмента' => '',
+            'Сумма ближайшего следующего платежа по основному долгу' => 'По обязательству поручителя до наступления его ответственности указывается значение «0,00».
+                    Если по этому показателю, а также по показателю 14.3 указано значение «0,00», иные показатели блока 14 не заполняются.
+                    ',
+            'Дата ближайшего следующего платежа по основному долгу' => '',
+            'Сумма ближайшего следующего платежа по процентам' => 'По обязательству поручителя до наступления его ответственности указывается значение «0,00».',
+            'Дата ближайшего следующего платежа по процентам' => '',
+            'Код частоты платежей' => 'Заполняется по справочнику 2.5.
+                    Частота платежей определяется количеством дней, в которые истекает срок для внесения платежа по основному долгу или процентам.
+                    ',
+            'Сумма минимального платежа по кредитной карте' => 'Заполняется, если КИ формируется по кредитной карте с условием о минимальном платеже.',
+            'Дата начала беспроцентного периода' => 'Заполняется при наличии в договоре займа (кредита) с расходным лимитом беспроцентного периода.',
+            'Дата окончания беспроцентного периода' => 'Заполняется при наличии в договоре займа (кредита) с расходным лимитом беспроцентного периода.',
+            'Дата окончания срока уплаты процентов' => 'Определяется датой, в которую субъект должен полностью погасить требования по процентам на срочный долг.',
+        ];
     }
     
     /**

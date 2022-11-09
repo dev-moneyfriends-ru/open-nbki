@@ -485,6 +485,14 @@ class Trade extends BaseItem
     public $startAmtOutstanding = 0;
     
     /**
+     * Признак учета обязательства у источника на балансовых счетах
+     * Код «1» – обязательство учтено у источника на балансовых счетах;
+     *   код «0» – обстоятельство кода «1» отсутствует.
+     * @var int
+     */
+    public $obligAccountCode = 0;
+    
+    /**
      * @return array[]
      */
     public function rangeRules()
@@ -657,6 +665,7 @@ class Trade extends BaseItem
                     'principalPastDue',
                     'serialNum',
                     'termsAmt',
+                    'obligAccountCode'
                 ],
                 'integer',
             ],
@@ -858,6 +867,7 @@ class Trade extends BaseItem
             'intMissedDate' => 'Дата последнего пропущенного платежа по основному долгу',
             'startAmtOutstanding' => 'Сумма задолженности на дату передачи финансирования субъекту или возникновения обеспечения исполнения обязательства',
             'completePerformDt' => 'Дата фактического прекращения обязательства',
+            'obligAccountCode' => 'Дата фактического прекращения обязательства',
         ];
     }
 }

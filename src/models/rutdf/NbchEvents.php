@@ -151,6 +151,9 @@ class NbchEvents
         ];
     }
     
+    /**
+     * @return string[]
+     */
     public static function personBlockCode()
     {
         return [
@@ -169,10 +172,28 @@ class NbchEvents
             17 => "C17_UID",
             18 => "C18_TRADE",
             19 => "C19_ACCOUNTAMT",
-            20 => "C20_COBORROWER"
+            20 => "C20_COBORROWER",
+            21 => "C21_PAYMTCONDITION",
+            23 => "C23_AMENDMENT",
+            24 => "C24_FUNDDATE",
+            25 => "C25_ARREAR",
+            26 => "C26_DUEARREAR",
+            27 => "C27_PASTDUEARREAR",
+            28 => "C28_PAYMT",
+            29 => "C29_MONTHAVERPAYMT",
+            32 => "C32_COLLATERAL",
+            33 => "C33_GUARANTOR",
+            34 => "C34_INDEPGUARANTOR",
+            35 => "C35_COLLATINSURED",
+            36 => "C36_COLLATREPAY",
+            37 => "C37_GUARANTEEREPAY",
+            54 => "C54_OBLIGACCOUNT",
         ];
     }
     
+    /**
+     * @return string[]
+     */
     public static function legalBlockCode()
     {
         return [
@@ -203,6 +224,7 @@ class NbchEvents
             26 => "B26_COLLATINSURED",
             27 => "B27_COLLATREPAY",
             28 => "B28_GUARANTEEREPAY",
+            29 => "B29_OBLIGTERMINATION",
             44 => "B44_OBLIGACCOUNT",
             46 => "B46_OBLIGPARTTAKE"
         ];

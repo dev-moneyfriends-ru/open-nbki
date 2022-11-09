@@ -28,16 +28,13 @@ class Identification extends BaseItem
     public $dataValidity = '';
     
     /**
-     * For consumer credit histories: Contains the number as assigned by the Issuing Authority.
-     * This may also be the document number as described in any Russian official legal document such as a passport.
-     * Not required for ID 97.
-     * For business credit histories: Contains the Taxpayer ID.
+     * Номер документа
      * @var string
      */
     public $idNum;
     
     /**
-     * Тип документа self::typeList()
+     * Код документа self::typeList()
      * @var string
      */
     public $idType;
@@ -67,7 +64,7 @@ class Identification extends BaseItem
     public $issueDate;
     
     /**
-     * Contains the series number as described in the official legal document such as passport. Must be supplied for ID Type 1, 2, 21, and 22.
+     * Серия документа
      * @var string
      */
     public $seriesNumber;

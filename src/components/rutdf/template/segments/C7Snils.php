@@ -13,7 +13,7 @@ class C7Snils extends \mfteam\nbch\components\BaseSegment
      */
     public function validate(): bool
     {
-        if(empty($this->template->subject->getSnils())){
+        if (empty($this->template->subject->getSnils())) {
             $this->errors[] = "Отсутствует СНИЛС";
         }
         return $this->isEmptyErrors;
@@ -34,7 +34,7 @@ class C7Snils extends \mfteam\nbch\components\BaseSegment
     {
         return [
             $this->segmentName,
-            $this->template->subject->getSnils()
+            $this->template->subject->getSnils(),
         ];
     }
     
@@ -44,8 +44,8 @@ class C7Snils extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
-            'Наименование сегмента',
-          "СНИЛС"
+            'Наименование сегмента' => '',
+            "СНИЛС" => '',
         ];
     }
     

@@ -3,9 +3,9 @@
 namespace mfteam\nbch\components\rutdf\template\segments;
 
 /**
- * Блок 44. Сведения об учете обязательства – B44_OBLIGACCOUNT
+ * Блок 54. Сведения об учете обязательства – C54_OBLIGACCOUNT
  */
-class B44ObligacCount extends \mfteam\nbch\components\BaseSegment
+class C54ObligacCount extends \mfteam\nbch\components\BaseSegment
 {
     
     /**
@@ -13,7 +13,7 @@ class B44ObligacCount extends \mfteam\nbch\components\BaseSegment
      */
     public function getSegmentName(): string
     {
-        return "B44_OBLIGACCOUNT";
+        return 'C54_OBLIGACCOUNT';
     }
     
     /**
@@ -43,6 +43,6 @@ class B44ObligacCount extends \mfteam\nbch\components\BaseSegment
      */
     public function getTitle(): string
     {
-        return "Блок 44. Сведения об учете обязательства – B44_OBLIGACCOUNT";
+        return 'Блок 54. Сведения об учете обязательства – C54_OBLIGACCOUNT';
     }
 }

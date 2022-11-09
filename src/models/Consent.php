@@ -15,24 +15,29 @@ use yii\base\Model;
 class Consent extends Model
 {
     /**
-     * Цель согласия. заключение и исполнение договора
+     * Цель согласия. Прием на работу
      */
-    public const PURPOSE_AGREEMENT = 1;
+    public const PURPOSE_JOB_HIRE = 24;
     
     /**
-     * Цель согласия. проверка благонадежности
+     * Цель согласия. Иное
      */
-    public const PURPOSE_SECURITY_CHECK = 2;
+    public const PURPOSE_OTHER = 99;
     
     /**
-     * Цель согласия. прием на работу
+     * Цель согласия. Лизинг
      */
-    public const PURPOSE_JOB_HIRE = 3;
+    public const PURPOSE_LEASING = 16;
     
     /**
-     * Цель согласия. иное
+     * Цель согласия. Контроль данных
      */
-    public const PURPOSE_OTHER = 4;
+    public const PURPOSE_CONTROL = 27;
+    
+    /**
+     * Заем (кредит) на пополнение оборотных средств
+     */
+    public const PURPOSE_LOAN = 11;
     
     /**
      * Флаг наличия согласия на получение данных
@@ -97,10 +102,11 @@ class Consent extends Model
     public static function consentPurposeList()
     {
         return [
-            self::PURPOSE_AGREEMENT => 'Заключение и исполнение договора',
-            self::PURPOSE_SECURITY_CHECK => 'Проверка благонадежности',
+            self::PURPOSE_LOAN => 'Заем (кредит) на пополнение оборотных средств',
+            self::PURPOSE_CONTROL => 'Контроль данных',
             self::PURPOSE_JOB_HIRE => 'Прием на работу',
             self::PURPOSE_OTHER => 'Иное',
+            self::PURPOSE_LEASING => 'Лизинг',
         ];
     }
     

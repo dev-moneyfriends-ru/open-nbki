@@ -5,9 +5,9 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 use mfteam\nbch\components\BaseSegment;
 
 /**
- * Блок 19. Сведения о просроченной задолженности – B19_PASTDUEARREAR
+ * Блок 27. Сведения о просроченной задолженности – C27_PASTDUEARREAR
  */
-class B19PastDsueArrear extends BaseSegment
+class C27PastDsueArrear extends BaseSegment
 {
     
     /**
@@ -15,7 +15,7 @@ class B19PastDsueArrear extends BaseSegment
      */
     public function getSegmentName(): string
     {
-        return "B19_PASTDUEARREAR";
+        return 'C27_PASTDUEARREAR';
     }
     
     /**
@@ -76,6 +76,6 @@ class B19PastDsueArrear extends BaseSegment
      */
     public function getTitle(): string
     {
-        return 'Блок 19. Сведения о просроченной задолженности – B19_PASTDUEARREAR';
+        return 'Блок 27. Сведения о просроченной задолженности – C27_PASTDUEARREAR';
     }
 }

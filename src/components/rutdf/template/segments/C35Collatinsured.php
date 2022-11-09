@@ -3,9 +3,9 @@
 namespace mfteam\nbch\components\rutdf\template\segments;
 
 /**
- * Блок 26. Сведения о страховании предмета залога – B26_COLLATINSURED
+ * Блок 35. Сведения о страховании предмета залога – C35_COLLATINSURED
  */
-class B26Collatinsured extends \mfteam\nbch\components\BaseSegment
+class C35Collatinsured extends \mfteam\nbch\components\BaseSegment
 {
     
     /**
@@ -13,7 +13,7 @@ class B26Collatinsured extends \mfteam\nbch\components\BaseSegment
      */
     public function getSegmentName(): string
     {
-        return 'B26_COLLATINSURED';
+        return 'C35_COLLATINSURED';
     }
     
     /**
@@ -57,7 +57,7 @@ class B26Collatinsured extends \mfteam\nbch\components\BaseSegment
      */
     public function getTitle(): string
     {
-        return 'Блок 26. Сведения о страховании предмета залога – B26_COLLATINSURED';
+        return 'Блок 35. Сведения о страховании предмета залога – C35_COLLATINSURED';
     }
     
     /**

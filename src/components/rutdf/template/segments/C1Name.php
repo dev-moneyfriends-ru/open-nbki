@@ -2,6 +2,8 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments;
 
+use yii\base\Exception;
+
 /**
  * Блок 1. Имя – C1_NAME
  */
@@ -33,14 +35,19 @@ class C1Name extends \mfteam\nbch\components\BaseSegment
     
     /**
      * @inheritDoc
+     * @throws Exception
      */
     public function getFields(): array
     {
+        $person = $this->template->subject->getPerson();
+        if ($person === null) {
+            throw new Exception();
+        }
         return [
             $this->segmentName,
-            $this->template->subject->getPerson()->name1,
-            $this->template->subject->getPerson()->first,
-            $this->template->subject->getPerson()->paternal,
+            $this->formatString($person->name1),
+            $this->formatString($person->first),
+            $this->formatString($person->paternal),
         ];
     }
     
@@ -50,10 +57,10 @@ class C1Name extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
-            'Наименование сегмента',
-            "Фамилия",
-            "Имя",
-            "Отчество",
+            'Наименование сегмента' => '',
+            "Фамилия" => '',
+            "Имя" => '',
+            "Отчество" => '',
         ];
     }
     

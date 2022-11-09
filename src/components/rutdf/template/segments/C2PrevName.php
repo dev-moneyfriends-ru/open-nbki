@@ -2,10 +2,12 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments;
 
+use mfteam\nbch\components\BaseSegment;
+
 /**
  * Блок 2. Предыдущее имя – C2_PREVNAME
  */
-class C2PrevName extends \mfteam\nbch\components\BaseSegment
+class C2PrevName extends BaseSegment
 {
     
     /**
@@ -45,12 +47,12 @@ class C2PrevName extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
-            'Наименование сегмента',
-            'Признак наличия предыдущего имени',
-            'Фамилия предыдущая',
-            'Имя предыдущее',
-            'Отчество предыдущее',
-            'Дата выдачи документа с измененным именем'
+            'Наименование сегмента' => '',
+            'Признак наличия предыдущего имени' => '',
+            'Фамилия предыдущая' => '',
+            'Имя предыдущее' => '',
+            'Отчество предыдущее' => '',
+            'Дата выдачи документа с измененным именем' => ''
         ];
     }
     
