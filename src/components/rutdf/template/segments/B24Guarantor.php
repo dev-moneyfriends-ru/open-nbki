@@ -3,12 +3,14 @@
 namespace mfteam\nbch\components\rutdf\template\segments;
 
 use mfteam\nbch\components\BaseRequestTemplate;
+use mfteam\nbch\components\BaseSegment;
 use mfteam\nbch\models\Guarantor;
+use yii\base\InvalidConfigException;
 
 /**
  * Блок 24. Сведения о поручительстве – B24_GUARANTOR
  */
-class B24Guarantor extends \mfteam\nbch\components\BaseSegment
+class B24Guarantor extends BaseSegment
 {
     /**
      * @var Guarantor
@@ -31,22 +33,23 @@ class B24Guarantor extends \mfteam\nbch\components\BaseSegment
     
     /**
      * @inheritDoc
+     * @throws InvalidConfigException
      */
     public function getFields(): array
     {
-        if(empty($this->guarantor->serialNum)){
+        if (empty($this->guarantor->serialNum)) {
             return [];
         }
         return [
             $this->segmentName,
             1,
-            $this->guarantor->serialNum,
+            $this->guarantor->serialNum . "-" . $this->getUuidControlSum($this->guarantor->serialNum),
             $this->formatCurrency($this->guarantor->guaranteeAmt),
             $this->guarantor->currencyCode,
             $this->formatNewDate($this->template->offer->getTrade()->openedDt),
             $this->formatNewDate($this->template->offer->getTrade()->closedDt),
             $this->formatNewDate($this->template->offer->getTrade()->completePerformDt),
-            empty($this->template->offer->getTrade()->completePerformDt)?$this->emptyValue:1
+            empty($this->template->offer->getTrade()->completePerformDt) ? $this->emptyValue : 1,
         ];
     }
     
