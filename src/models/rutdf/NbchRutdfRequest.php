@@ -51,6 +51,7 @@ use yii\helpers\ArrayHelper;
  * @property-read null|\mfteam\nbch\components\file\NbchFile|\mfteam\nbch\components\file\NbchFileInterface $sigFile
  * @property-read string $fileTicketType
  * @property-read string $sigFileType
+ * @property string $regNum
  * @property int $checkBy [int(11)]
  */
 class NbchRutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterface
@@ -122,7 +123,7 @@ class NbchRutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
                 'state',
                 'checkAt',
                 'checkBy'], 'integer'],
-            [['errorMessage'], 'string'],
+            [['errorMessage', 'regNum'], 'string'],
             [['offerUuid', 'event'], 'required'],
             [['offerUuid'], 'string', 'max' => 50],
             [['eventIds'], 'safe'],
@@ -463,5 +464,19 @@ class NbchRutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
     public function setEventIds(array $events)
     {
         $this->event = implode(',', $events);
+    }
+    
+    /**
+     * @return bool
+     * @throws InvalidConfigException
+     * @throws NotInstantiableException
+     */
+    public function beforeValidate()
+    {
+        $file = $this->getFile();
+        if ($file !== null) {
+            $this->regNum = $file->fileName;
+        }
+        return parent::beforeValidate();
     }
 }
