@@ -48,7 +48,6 @@ class C8RegAddr extends \mfteam\nbch\components\BaseSegment
             $this->formatNewDate($address->addrSinceDt),
             $this->emptyValue,
             $this->emptyValue,
-            $this->emptyValue,
         ];
     }
     
