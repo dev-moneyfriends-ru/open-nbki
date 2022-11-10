@@ -2,10 +2,12 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments;
 
+use mfteam\nbch\models\NbchSubjectInterface;
+
 /**
  * Блок 56. Сведения об участии в обязательстве, по которому формируется КИ - C56_OBLIGPARTTAKE
  */
-class С56ObligPartTake extends \mfteam\nbch\components\BaseSegment
+class C56ObligPartTake extends \mfteam\nbch\components\BaseSegment
 {
     
     /**
@@ -24,8 +26,8 @@ class С56ObligPartTake extends \mfteam\nbch\components\BaseSegment
         $trade = $this->template->offer->getTrade();
         return [
             $this->segmentName,
-            1,
-            99,
+            $this->flagIndicatorCode(),
+            $this->template->offer->getTrade()->loanKindCode,
             $trade->uuid . "-" . $this->getUuidControlSum($trade->uuid),
             $this->formatNewDate($trade->fundDt),
             $this->daysPastDue() > 90?1:0,
@@ -55,5 +57,19 @@ class С56ObligPartTake extends \mfteam\nbch\components\BaseSegment
     public function getTitle(): string
     {
         return 'Блок 56. Сведения об участии в обязательстве, по которому формируется КИ - C56_OBLIGPARTTAKE';
+    }
+    
+    private function flagIndicatorCode()
+    {
+        if($this->template->subject->getOfferRelationType() === NbchSubjectInterface::OFFER_RELATION_TYPE_GUARANTOR){
+            return 2;
+        }
+        if($this->template->subject->getOfferRelationType() === NbchSubjectInterface::OFFER_RELATION_TYPE_BORROWER){
+            if($this->template->offer->getTrade()->tradeTypeCode === 2){
+                return 4;
+            }
+            return 1;
+        }
+        return 99;
     }
 }

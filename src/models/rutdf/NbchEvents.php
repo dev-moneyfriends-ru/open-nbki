@@ -188,6 +188,7 @@ class NbchEvents
             36 => "C36_COLLATREPAY",
             37 => "C37_GUARANTEEREPAY",
             54 => "C54_OBLIGACCOUNT",
+            56 => "C56_OBLIGPARTTAKE",
         ];
     }
     
