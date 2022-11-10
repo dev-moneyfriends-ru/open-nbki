@@ -44,10 +44,6 @@ class C9ActualAddr extends \mfteam\nbch\components\BaseSegment
             $this->emptyValue,
             $this->emptyValue,
             $this->emptyValue,
-            $this->emptyValue,
-            $this->emptyValue,
-            $this->emptyValue,
-            $this->emptyValue,
         ];
     }
     
@@ -58,7 +54,7 @@ class C9ActualAddr extends \mfteam\nbch\components\BaseSegment
     {
         return [
             'Наименование сегмента' => '',
-            'Код адреса регистрации' => '',
+            'Признак отличия фактического места жительства' => '',
             'Почтовый индекс' => '',
             'Код страны по ОКСМ' => '',
             'Наименование иной страны' => '',
@@ -71,9 +67,6 @@ class C9ActualAddr extends \mfteam\nbch\components\BaseSegment
             'Корпус' => '',
             'Строение' => '',
             'Квартира' => '',
-            'Дата регистрации' => '',
-            'Наименование регистрирующего органа' => '',
-            'Код подразделения, осуществившего регистрацию' => '',
         ];
     }
     
