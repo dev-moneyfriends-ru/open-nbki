@@ -31,8 +31,8 @@ class C8RegAddr extends \mfteam\nbch\components\BaseSegment
     {
         $address = $this->template->subject->getLegalAddress();
         return [
-          $this->segmentName,
-          1,
+            $this->segmentName,
+            1,
             $address->postal,
             $address->oksm,
             $this->emptyValue,
@@ -42,7 +42,7 @@ class C8RegAddr extends \mfteam\nbch\components\BaseSegment
             $this->formatString($address->street),
             $this->formatString($address->houseNumber),
             $this->emptyValue,
-            $this->formatString($address->block),
+            str_replace(" ", "", $this->formatString($address->block)),
             $this->formatString($address->building),
             $this->formatString($address->apartment),
             $this->formatNewDate($address->addrSinceDt),

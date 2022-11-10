@@ -40,7 +40,7 @@ class B2Addr extends \mfteam\nbch\components\BaseSegment
             mb_strtoupper($address->street),
             mb_strtoupper($address->houseNumber),
             $this->emptyValue,
-            mb_strtoupper($address->block),
+            str_replace(" ", "", $this->formatString($address->block)),
             mb_strtoupper($address->building),
             mb_strtoupper($address->apartment),
             $this->emptyValue,
