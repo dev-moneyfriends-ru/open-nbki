@@ -47,7 +47,7 @@ class GroupHeader extends \mfteam\nbch\components\BaseSegment
             $this->event,
             $this->getOperationCode(),
             $this->emptyValue,
-            $this->formatNewDate($this->template->getOffer()->getTrade()->reportingDt)
+            $this->formatNewDate($this->template->getOffer()->getTrade()->reportingDt),
         ];
     }
     
@@ -114,6 +114,12 @@ class GroupHeader extends \mfteam\nbch\components\BaseSegment
      */
     public function setEvent($event)
     {
+        if ($event === NbchEvents::EVENT_2_3_1 || $event === NbchEvents::EVENT_2_3_2) {
+            $event = '2.3';
+        }
+        if ($event === NbchEvents::EVENT_2_5_1 || $event === NbchEvents::EVENT_2_5_2) {
+            $event = '2.5';
+        }
         $this->event = $event;
         return $this;
     }
