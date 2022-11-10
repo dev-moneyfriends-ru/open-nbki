@@ -30,11 +30,11 @@ foreach ($blocks as $block) {
     if ($segmentCode) {
         $segment = ArrayHelper::getValue($segments, $segmentCode);
         
-        if ($segment instanceof B23Collateral || $segment instanceof C32Collateral) {
+        if ($segmentCode === 'C32_COLLATERAL' || $segmentCode === 'B23_COLLATERAL') {
             echo $collateralSegment->render();
-        } elseif ($segment instanceof B24Guarantor) {
+        } elseif ($segmentCode === 'B24_GUARANTOR') {
             echo (new B24Guarantor(new Guarantor(), $template))->render();
-        } elseif ($segment instanceof C33Guarantor) {
+        } elseif ($segmentCode === 'C33_GUARANTOR') {
             echo (new C33Guarantor(new Guarantor(), $template))->render();
         } elseif ($segment instanceof BaseSegment) {
             echo $segment->render();
