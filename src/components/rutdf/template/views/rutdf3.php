@@ -33,9 +33,9 @@ foreach ($eventIds as $eventId) {
     }
     if (count($template->offer->getCollateralArray()) > 0) {
         if ($isLegal) {
-            $collateralSegments = ArrayHelper::getValue($segments, "C32_COLLATERAL", []);
-        } else {
             $collateralSegments = ArrayHelper::getValue($segments, "B23_COLLATERAL", []);
+        } else {
+            $collateralSegments = ArrayHelper::getValue($segments, "C32_COLLATERAL", []);
         }
         
         foreach ($collateralSegments as $collateralSegment) {
@@ -52,9 +52,9 @@ foreach ($eventIds as $eventId) {
     }
     if (count($template->offer->getGuarantorArray()) > 0) {
         if ($isLegal) {
-            $guarantorSegments = ArrayHelper::getValue($segments, "C32_COLLATERAL", []);
+            $guarantorSegments = ArrayHelper::getValue($segments, "B24_GUARANTOR", []);
         } else {
-            $guarantorSegments = ArrayHelper::getValue($segments, "B23_COLLATERAL", []);
+            $guarantorSegments = ArrayHelper::getValue($segments, "C33_GUARANTOR", []);
         }
         
         foreach ($guarantorSegments as $guarantorSegment) {
