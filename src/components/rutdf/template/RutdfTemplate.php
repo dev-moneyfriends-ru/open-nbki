@@ -135,6 +135,7 @@ class RutdfTemplate extends BaseRequestTemplate
             "GROUPHEADER" => new GroupHeader($this),
             "TRAILER" => new Trailer($this),
             "segments" => $this->createSegments(),
+            "template" => $this
         ];
     }
     
