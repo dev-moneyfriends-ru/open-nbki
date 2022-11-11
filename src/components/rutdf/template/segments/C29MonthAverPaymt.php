@@ -26,7 +26,7 @@ class C29MonthAverPaymt extends BaseSegment
     {
         return [
             $this->segmentName,
-            $this->averPaymtAmt(),
+            $this->formatCurrency($this->averPaymtAmt()),
             $this->formatNewDate($this->template->offer->getTrade()->reportingDt),
         ];
     }
