@@ -26,7 +26,7 @@ class C29MonthAverPaymt extends BaseSegment
     {
         return [
             $this->segmentName,
-            $this->formatCurrency($this->averPaymtAmt()),
+            $this->averPaymtAmt(),
             $this->formatNewDate($this->template->offer->getTrade()->reportingDt),
         ];
     }
@@ -63,7 +63,7 @@ class C29MonthAverPaymt extends BaseSegment
     }
     
     /**
-     * @return float|int
+     * @return int
      */
     private function averPaymtAmt()
     {
@@ -79,11 +79,11 @@ class C29MonthAverPaymt extends BaseSegment
             $countMonth = 1;
         } else {
             $interval = $currentDate->diff($closeDate);
-            $countMonth = $interval->m;
+            $countMonth = $interval->m + 1;
         }
         
         $sum = $trade->currentAmtOutstanding + $trade->amtOutstanding;
         
-        return $sum / $countMonth + $trade->amtPastDue;
+        return (int) ($sum / $countMonth + $trade->amtPastDue);
     }
 }
