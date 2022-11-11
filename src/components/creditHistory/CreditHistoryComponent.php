@@ -14,6 +14,8 @@ use mfteam\nbch\models\NbchChRequest;
 use mfteam\nbch\models\NbchConsent;
 use mfteam\nbch\models\PersonReq;
 use mfteam\nbch\models\RefReq;
+use mfteam\nbch\models\RegnumReq;
+use mfteam\nbch\models\SNILSReq;
 use yii\base\Component;
 use yii\base\Exception;
 use yii\base\InvalidConfigException;
@@ -50,14 +52,19 @@ class CreditHistoryComponent extends Component
     public $password;
     
     /**
+     * @var bool
+     */
+    public $test = false;
+    
+    /**
      * @var NbchChRequest
      */
-    protected $_model;
+    private $model;
     
     /**
      * @var NbchRequest
      */
-    private $_request;
+    private $request;
     
     /**
      * @param NbchConsent $consent
@@ -72,8 +79,8 @@ class CreditHistoryComponent extends Component
         if (!$model->save()) {
             throw new Exception(VarDumper::dumpAsString($model->errors));
         }
-        $this->_model = $model;
-        return $this->_model;
+        $this->model = $model;
+        return $this->model;
     }
     
     /**
@@ -81,7 +88,7 @@ class CreditHistoryComponent extends Component
      */
     public function getModel(): NbchChRequest
     {
-        return $this->_model;
+        return $this->model;
     }
     
     /**
@@ -90,7 +97,7 @@ class CreditHistoryComponent extends Component
      */
     public function setModel(NbchChRequest $request): CreditHistoryComponent
     {
-        $this->_model = $request;
+        $this->model = $request;
         return $this;
     }
     
@@ -101,17 +108,19 @@ class CreditHistoryComponent extends Component
      */
     public function setAsBusiness(BusinessReq $businessReq): CreditHistoryComponent
     {
-        $this->_request = new NbchRequest();
-        $this->_request->addData(
+        $this->request = new NbchRequest();
+        $this->request->addData(
             [
                 new RefReq(
                     [
                         'product' => RefReq::PRODUCT_BHST,
-                        'userReference' => RefReq::PRODUCT_BHST . time(),
                     ]
                 ),
                 $businessReq,
                 'version' => NbchRequest::VERSION,
+                'IOType' => 'B2B',
+                'OutputFormat' => 'XML',
+                'lang' => 'ru',
             ]
         );
         
@@ -125,17 +134,19 @@ class CreditHistoryComponent extends Component
      */
     public function setAsCustomer(PersonReq $personReq): CreditHistoryComponent
     {
-        $this->_request = new NbchRequest();
-        $this->_request->addData(
+        $this->request = new NbchRequest();
+        $this->request->addData(
             [
                 new RefReq(
                     [
                         'product' => RefReq::PRODUCT_CHST,
-                        'userReference' => RefReq::PRODUCT_CHST . time(),
                     ]
                 ),
                 $personReq,
                 'version' => NbchRequest::VERSION,
+                'IOType' => 'B2B',
+                'OutputFormat' => 'XML',
+                'lang' => 'ru',
             ]
         );
         return $this;
@@ -145,19 +156,9 @@ class CreditHistoryComponent extends Component
      * @param InquiryReq $inquiry
      * @return $this
      */
-    public function setInquiry(InquiryReq $inquiry): CreditHistoryComponent
+    public function addInquiry(InquiryReq $inquiry): CreditHistoryComponent
     {
-        $this->_request->addData([$inquiry]);
-        return $this;
-    }
-    
-    /**
-     * @param AddressReq $address
-     * @return $this
-     */
-    public function addAddress(AddressReq $address): CreditHistoryComponent
-    {
-        $this->_request->addData([$address]);
+        $this->request->addData([$inquiry]);
         return $this;
     }
     
@@ -167,7 +168,27 @@ class CreditHistoryComponent extends Component
      */
     public function addIdentification(IdReq $identification): CreditHistoryComponent
     {
-        $this->_request->addData([$identification]);
+        $this->request->addData([$identification]);
+        return $this;
+    }
+    
+    /**
+     * @param RegnumReq $regnumReq
+     * @return $this
+     */
+    public function addRegnumReq(RegnumReq $regnumReq): CreditHistoryComponent
+    {
+        $this->request->addData([$regnumReq]);
+        return $this;
+    }
+    
+    /**
+     * @param SNILSReq $snilsReq
+     * @return $this
+     */
+    public function addSNILSReq(SNILSReq $snilsReq): CreditHistoryComponent
+    {
+        $this->request->addData([$snilsReq]);
         return $this;
     }
     
@@ -183,24 +204,24 @@ class CreditHistoryComponent extends Component
         try {
             $this->beforeSend();
             
-            $response = $this->_request->send();
+            $response = $this->request->send();
             $this->updateModel($response);
             $this->saveFiles($response);
             
             $parser = new XmlToArrayParser();
             $data = $parser->parseXml($response->content);
             if (ArrayHelper::getValue($data, 'preply.err') !== null) {
-                $this->_model->status = NbchChRequest::STATE_ERROR;
-                $this->_model->errorText = \Yii::t('app', 'Code {0}: {1}', [
+                $this->model->status = NbchChRequest::STATE_ERROR;
+                $this->model->errorText = \Yii::t('app', 'Code {0}: {1}', [
                     ArrayHelper::getValue($data, 'preply.err.ctErr.Code'),
                     ArrayHelper::getValue($data, 'preply.err.ctErr.Text'),
                 ]);
             } else {
-                $this->_model->status = NbchChRequest::STATE_FINISH;
+                $this->model->status = NbchChRequest::STATE_FINISH;
             }
             
-            if (!$this->_model->save()) {
-                throw new Exception(VarDumper::dumpAsString($this->_model->errors));
+            if (!$this->model->save()) {
+                throw new Exception(VarDumper::dumpAsString($this->model->errors));
             }
             
             return $response;
@@ -217,7 +238,7 @@ class CreditHistoryComponent extends Component
     private function validate()
     {
         $errors = [];
-        foreach ($this->_request->data as $item) {
+        foreach ($this->request->data as $item) {
             if ($item instanceof BaseItem && !$item->validate()) {
                 $errors[] = $item->errors;
             }
@@ -233,13 +254,13 @@ class CreditHistoryComponent extends Component
      */
     private function saveError(string $message)
     {
-        if ($this->_model === null) {
+        if ($this->model === null) {
             return;
         }
-        $this->_model->requestData = base64_encode($this->_request->content);
-        $this->_model->status = NbchChRequest::STATE_ERROR;
-        $this->_model->errorText = $message;
-        $this->_model->save(false);
+        $this->model->requestData = base64_encode($this->request->content);
+        $this->model->status = NbchChRequest::STATE_ERROR;
+        $this->model->errorText = $message;
+        $this->model->save(false);
     }
     
     /**
@@ -249,18 +270,18 @@ class CreditHistoryComponent extends Component
      */
     private function updateModel(Response $response)
     {
-        if ($this->_model === null) {
+        if ($this->model === null) {
             return;
         }
         
-        $this->_model->requestData = base64_encode($this->_request->content);
-        $this->_model->responseData = base64_encode($response->content);
-        $this->_model->status = NbchChRequest::STATE_PREPARING;
+        $this->model->requestData = base64_encode($this->request->content);
+        $this->model->responseData = base64_encode($response->content);
+        $this->model->status = NbchChRequest::STATE_PREPARING;
         
-        if (!$this->_model->save()) {
-            throw new Exception(VarDumper::dumpAsString($this->_model->errors));
+        if (!$this->model->save()) {
+            throw new Exception(VarDumper::dumpAsString($this->model->errors));
         }
-        $this->_model->save();
+        $this->model->save();
     }
     
     /**
@@ -269,10 +290,10 @@ class CreditHistoryComponent extends Component
      */
     private function beforeSend()
     {
-        if ($this->_model !== null) {
-            $this->_model->status = NbchChRequest::STATE_EXECUTE;
-            if (!$this->_model->save()) {
-                throw new Exception(VarDumper::dumpAsString($this->_model->errors));
+        if ($this->model !== null) {
+            $this->model->status = NbchChRequest::STATE_EXECUTE;
+            if (!$this->model->save()) {
+                throw new Exception(VarDumper::dumpAsString($this->model->errors));
             }
         }
         $this->validate();
@@ -287,7 +308,7 @@ class CreditHistoryComponent extends Component
      */
     private function saveFiles(Response $response)
     {
-        if ($this->_model === null) {
+        if ($this->model === null) {
             return;
         }
         
@@ -307,10 +328,10 @@ class CreditHistoryComponent extends Component
         file_put_contents($tempPath, $content);
         $file = new NbchFile();
         $file->setStoragePath($tempPath)
-            ->setFileName('nbki_request_' . $this->_model->id . '_' . time().'.xml')
+            ->setFileName('nbki_request_' . $this->model->id . '_' . time() . '.xml')
             ->setContent($content)
-            ->setEntity($this->_model->formName())
-            ->setEntityId($this->_model->id)
+            ->setEntity($this->model->formName())
+            ->setEntityId($this->model->id)
             ->setType(NbchChRequest::FILE_TYPE_XML);
         
         Env::ensure()->module->file->save($file);
@@ -321,6 +342,6 @@ class CreditHistoryComponent extends Component
      */
     public function getRequest(): NbchRequest
     {
-        return $this->_request;
+        return $this->request;
     }
 }

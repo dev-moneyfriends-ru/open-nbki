@@ -11,13 +11,13 @@ class Inquiry extends BaseItem
      * Согласие на получение данных
      * @var Consent|null
      */
-    private $_consent = null;
+    private $consent = null;
     
     /**
-     * Код цели для запроса, вщзможные значения inqPurposeList
+     * Код цели для запроса, возможные значения inqPurposeList
      * @var string
      */
-    public $inqPurpose = '51';
+    public $inqPurpose = 11;
     
     /**
      * Сумма займа
@@ -62,16 +62,16 @@ class Inquiry extends BaseItem
      */
     public function getConsent(): ?Consent
     {
-        return $this->_consent;
+        return $this->consent;
     }
     
     /**
-     * @param Consent $_consent
+     * @param Consent $consent
      * @return Inquiry
      */
-    public function setConsent(Consent $_consent): Inquiry
+    public function setConsent(Consent $consent): Inquiry
     {
-        $this->_consent = $_consent;
+        $this->consent = $consent;
         return $this;
     }
     
@@ -81,20 +81,34 @@ class Inquiry extends BaseItem
     public static function inqPurposeList(): array
     {
         return [
-            '01' => 'Auto Loan',
-            '04' => 'Leasing',
-            '06' => 'Mortgage',
-            '07' => 'Credit Card',
-            '09' => 'Consumer Credit',
-            '10' => 'For development of business',
-            '11' => 'For enlarging circulating assets',
-            '12' => 'For equipment purchase',
-            '13' => 'For building real estate',
-            '14' => 'For securities purchase',
-            '15' => 'Interbank credit',
-            '16' => 'Microcredit',
-            '50' => 'Account Review',
-            '51' => 'Loan granting',
+            1 => 'Потребительский заем (кредит) на приобретение автомобиля',
+            2 => 'Потребительский микрозаем',
+            3 => 'Потребительский заем (кредит) нецелевой',
+            4 => 'Потребительский заем (кредит) с расходным лимитом (кредитная линия, овердрафт)',
+            5 => 'Иной потребительский заем (кредит), в том числе потребительский заем (кредит) на приобретение жилья, обязательства заемщика по которому обеспечены ипотекой',
+            6 => 'Поручительство гражданина-потребителя',
+            7 => 'Ипотека (в смысле залога), предоставленная гражданином-потребителем',
+            8 => 'Иной залог, предоставленный гражданином-потребителем',
+            9 => 'Иной потребительский договор',
+            10 => 'Заем (кредит) на развитие бизнеса',
+            11 => 'Заем (кредит) на пополнение оборотных средств',
+            12 => 'Заем (кредит) на покупку оборудования',
+            13 => 'Заем (кредит) на строительство',
+            14 => 'Заем (кредит) на приобретение ценных бумаг',
+            15 => 'Иной заем (кредит)',
+            16 => 'Лизинг',
+            17 => 'Независимая гарантия',
+            18 => 'Поручительство',
+            19 => 'Страхование',
+            20 => 'Ипотека (в смысле залога)',
+            21 => 'Иной залог',
+            22 => 'Иной договор',
+            23 => 'Кредитный мониторинг в рамках действующего договора',
+            24 => 'Прием на работу',
+            25 => 'Маркетинговые исследования',
+            26 => 'Научные исследования',
+            27 => 'Контроль данных',
+            99 => 'Иное',
         ];
     }
 }

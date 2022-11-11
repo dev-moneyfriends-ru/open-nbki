@@ -50,6 +50,11 @@ class RutdfRequestComponent extends \yii\base\Component
     public $reportEmail = 'RUTDF@nbki.ru';
     
     /**
+     * @var bool
+     */
+    public $test = false;
+    
+    /**
      * @var NbchRutdfRequest
      */
     protected $request;

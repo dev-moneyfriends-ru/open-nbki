@@ -46,6 +46,12 @@ class SendToNbchComponent extends BaseObject
         $this->beforeExecute();
         
         $module = Env::ensure()->module;
+        
+        if ($module->rutdf->test) {
+            $this->afterExecute();
+            return;
+        }
+        
         $mailer = $module->mailer;
         
         $message = $mailer->compose()

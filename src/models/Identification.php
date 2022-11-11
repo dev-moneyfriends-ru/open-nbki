@@ -25,7 +25,7 @@ class Identification extends BaseItem
      * 'I' - данные не проверены
      * @var string
      */
-    public $dataValidity = '';
+    public $dataValidity;
     
     /**
      * Номер документа
@@ -40,7 +40,7 @@ class Identification extends BaseItem
     public $idType;
     
     /**
-     * Название документа
+     * Наименование иного документа
      * @var string
      */
     public $idTypeText;

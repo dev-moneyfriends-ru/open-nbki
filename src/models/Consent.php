@@ -99,6 +99,43 @@ class Consent extends Model
      */
     public $liability = 'Y';
     
+    /**
+     * Дата заключения договора. Обязательный, если consentPeriod=3, формат – ГГГГ-ММ-ДД
+     * @var string
+     */
+    public $agreementDate;
+    
+    /**
+     * Срок действия согласия.
+     * 1 – в течение 6 месяцев со дня оформления;
+     * 2 – в течение 1 года со дня оформления;
+     * 3 – в течение срока действия согласия с субъектом КИ были заключены договор займа (кредита),
+     * договор лизинга, договор залога, договор поручительства, выдана независимая гарантия.
+     * @var int
+     */
+    public $consentPeriod;
+    
+    /**
+     * ОГРН пользователя КИ
+     * @var string
+     */
+    public $reportUserRegNum;
+    
+    /**
+     * ИНН пользователя КИ
+     * @var string
+     */
+    public $reportUserTaxID;
+    
+    /**
+     * Хэш-код для согласия субъекта КИ в форме электронного документа,
+     * полученный пользователем КИ в результате вычисления хэш-функции,
+     * реализованной в соответствии с национальным стандартом РФ ГОСТ Р 34.11-2012
+     * (используется хэш-код длиной 256 бит, который преобразуется в шестнадцатеричную систему счисления).
+     * @var string
+     */
+    public $consentHash;
+    
     public static function consentPurposeList()
     {
         return [
@@ -120,13 +157,16 @@ class Consent extends Model
             ['consentFlag', 'in', 'range' => array_keys(self::consentFlagList())],
             ['liability', 'in', 'range' => array_keys(self::consentFlagList())],
             ['consentPurpose', 'in', 'range' => array_keys(self::consentPurposeList())],
-            [['consentDate', 'consentExpireDate'], 'date', 'format' => 'yyyy-MM-dd'],
+            [['consentDate', 'consentExpireDate', 'agreementDate'], 'date', 'format' => 'yyyy-MM-dd'],
             [[
                 'consentDate',
                 'consentExpireDate',
                 'consentPurpose',
                 'reportUser',
                 'liability',
+                'consentPeriod',
+                'reportUserRegNum',
+                'reportUserTaxID',
             ], 'required', 'when' => static function (Consent $model) {
                 return $model->consentFlag === Consent::FLAG_Y;
             }],
@@ -134,6 +174,9 @@ class Consent extends Model
             [['reportUser'], 'string', 'max' => 1020],
             [['otherConsentPurpose'], 'required', 'when' => static function (Consent $model) {
                 return (int)$model->consentPurpose === Consent::PURPOSE_OTHER;
+            }],
+            [['agreementDate'], 'required', 'when' => static function (Consent $model) {
+                return (int)$model->consentPeriod === 3;
             }],
         ];
     }
@@ -158,6 +201,25 @@ class Consent extends Model
         return [
             self::FLAG_Y => 'Получено согласие',
             self::FLAG_I => 'Согласие отсутсвует',
+        ];
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function fields()
+    {
+        return [
+            'consentDate',
+            'consentPurpose',
+            'otherConsentPurpose',
+            'reportUser',
+            'liability',
+            'agreementDate',
+            'consentPeriod',
+            'reportUserRegNum',
+            'reportUserTaxID',
+            'consentHash',
         ];
     }
 }

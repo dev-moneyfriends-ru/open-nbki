@@ -73,7 +73,7 @@ class Address extends BaseItem
      * Код страны
      * @var string
      */
-    public $countryCode = 'RU';
+    public $countryCode;
     
     /**
      * Страна

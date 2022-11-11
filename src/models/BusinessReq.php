@@ -3,6 +3,9 @@
 namespace mfteam\nbch\models;
 
 
+/**
+ * Данные о субъекте, предоставившем согласие
+ */
 class BusinessReq extends Business
 {
     public function rules()
@@ -11,7 +14,16 @@ class BusinessReq extends Business
             [
                 [
                     'businessName',
+                    'abbreviatedBusinessName'
                 ], 'required',
+            ],
+            [
+                [
+                    'businessName',
+                    'abbreviatedBusinessName'
+                ], 'filter', 'filter' => function ($value) {
+                return mb_strtoupper($value);
+            }
             ],
             [
                 [

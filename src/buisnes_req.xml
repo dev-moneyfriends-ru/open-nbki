@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<product>
+    <prequest>
+        <req>
+            <InquiryReq>
+                <ConsentReq>
+                    <consentDate>2016-01-01</consentDate>
+                    <consentPurpose>10</consentPurpose>
+                    <reportUser>Публичное акционерное общество Банк «Надежный»</reportUser>
+                    <liability>1</liability>
+                    <consentPeriod>1</consentPeriod>
+                    <reportUserRegNum>1234567890123</reportUserRegNum>
+                    <reportUserTaxID>1234567890</reportUserTaxID>
+                    <consentHash>hash</consentHash>
+                    <RegnumReq>
+                        <taxpayerCode>1</taxpayerCode>
+                        <taxpayerNum>1234567890</taxpayerNum>
+                        <regNumCode>1</regNumCode>
+                        <regNum>1234567890123</regNum>
+                    </RegnumReq>
+                    <BusinessReq>
+                        <businessName>Акционерное общество «Ромашка»</businessName>
+                    </BusinessReq>
+                    <AddressReq>
+                        <houseNumber>12</houseNumber>
+                        <street>Ленина</street>
+                        <FIAS>c05db455-8e4b-4ece-a9e8-186f48eedf7d</FIAS>
+                        <OKATO>01000000000</OKATO>
+                        <OKSM>643</OKSM>
+                    </AddressReq>
+                </ConsentReq>
+                <inqPurpose>10</inqPurpose>
+                <inqAmount>10000,00</inqAmount>
+                <currencyCode>RUB</currencyCode>
+            </InquiryReq>
+            <BusinessReq>
+                <businessName>Акционерное общество «Ромашка»</businessName>
+            </BusinessReq>
+            <RequestorReq>
+                <MemberCode>ZZ01TT000000</MemberCode>
+                <UserID>ZZ01TT000002</UserID>
+                <Password>password</Password>
+            </RequestorReq>
+            <RefReq>
+                <product>BHIP</product>
+            </RefReq>
+            <RegnumReq>
+                <taxpayerCode>1</taxpayerCode>
+                <taxpayerNum>1234567890</taxpayerNum>
+                <regNumCode>1</regNumCode>
+                <regNum>1234567890123</regNum>
+            </RegnumReq>
+            <IOType>B2B</IOType>
+            <OutputFormat>XML</OutputFormat>
+            <lang>ru</lang>
+            <version>10</version>
+        </req>
+    </prequest>
+</product>
