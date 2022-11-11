@@ -21,7 +21,7 @@ class C21PaymtCondition extends \mfteam\nbch\components\BaseSegment
     public function getFields(): array
     {
         $trade = $this->template->offer->getTrade();
-        if ($trade->principalTermsAmt + $trade->interestTermsAmt < 0.001) {
+        if ($trade->principalTermsAmt + $trade->interestTermsAmt < 0.001 || !empty($trade->completePerformDt)) {
             return [
                 $this->segmentName,
                 $this->formatCurrency(0),

@@ -24,12 +24,12 @@ class B19PastDsueArrear extends BaseSegment
     public function getFields(): array
     {
         $trade = $this->template->offer->getTrade();
-        if ($trade->amtPastDue < 0.01) {
+        if ($trade->amtPastDue < 0.01 || !empty($trade->completePerformDt)) {
             return [
                 $this->segmentName,
                 $this->emptyValue,
                 $this->emptyValue,
-                $this->formatCurrency($trade->amtPastDue),
+                $this->formatCurrency(0),
                 $this->emptyValue,
                 $this->emptyValue,
                 $this->emptyValue,

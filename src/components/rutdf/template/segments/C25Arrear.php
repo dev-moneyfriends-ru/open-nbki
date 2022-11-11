@@ -22,7 +22,7 @@ class C25Arrear extends \mfteam\nbch\components\BaseSegment
     public function getFields(): array
     {
         $trade = $this->template->offer->getTrade();
-        if ($trade->currentAmtOutstanding < 0.001) {
+        if ($trade->currentAmtOutstanding < 0.001 || !empty($trade->completePerformDt)) {
             return [
                 $this->segmentName,
                 0,
