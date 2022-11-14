@@ -281,7 +281,6 @@ class CreditHistoryComponent extends Component
         if (!$this->model->save()) {
             throw new Exception(VarDumper::dumpAsString($this->model->errors));
         }
-        $this->model->save();
     }
     
     /**
