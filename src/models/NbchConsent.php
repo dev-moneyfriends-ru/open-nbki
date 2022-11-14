@@ -52,6 +52,16 @@ class NbchConsent extends ActiveRecord
      */
     public const TYPE_BUSINESS = 2;
     
+    /**
+     * Согласие на получение отчетов по физ лицу поручителя
+     */
+    public const TYPE_CUSTOMER_GUARANTOR = 3;
+    
+    /**
+     * Согласие на получение отчетов по бизнесу поручителя
+     */
+    public const TYPE_BUSINESS_GUARANTOR = 4;
+    
     public const FILE_ORIGINAL = 'ORIGINAL';
     public const FILE_SIG = 'SIG';
     public const FILE_PROTOCOL = 'PROTOCOL';
@@ -61,6 +71,8 @@ class NbchConsent extends ActiveRecord
         return [
             self::TYPE_CUSTOMER => 'Согласие на получение отчетов по физ лицу',
             self::TYPE_BUSINESS => 'Согласие на получение отчетов по бизнесу',
+            self::TYPE_CUSTOMER_GUARANTOR => 'Согласие на получение отчетов по поручителю ФЛ',
+            self::TYPE_BUSINESS_GUARANTOR => 'Согласие на получение отчетов по поручителю ЮЛ',
         ];
     }
     
