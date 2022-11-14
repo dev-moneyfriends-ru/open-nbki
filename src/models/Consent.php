@@ -42,12 +42,12 @@ class Consent extends Model
     /**
      * Флаг наличия согласия на получение данных
      */
-    public const FLAG_Y = 'Y';
+    public const FLAG_Y = 1;
     
     /**
      * Флаг отсутсвия наличия согласия, только для информационных запросов CIPO
      */
-    public const FLAG_I = 'I';
+    public const FLAG_I = 0;
     
     /**
      * Флаг присутсвия согласия. Допустимые значения Y, I
@@ -97,7 +97,7 @@ class Consent extends Model
      * Кодекса РФ об административных правонарушениях
      * @var string
      */
-    public $liability = 'Y';
+    public $liability = 1;
     
     /**
      * Дата заключения договора. Обязательный, если consentPeriod=3, формат – ГГГГ-ММ-ДД
