@@ -13,6 +13,7 @@ class RefReq extends Model
     public const PRODUCT_CHIP = 'CHIP';
     public const PRODUCT_CIPO = 'CIPO';
     public const PRODUCT_BHST = 'BHST';
+    public const PRODUCT_BHIP = 'BHIP';
     
     /**
      * Код продукта CHST, CHIP, CIPO, BHST.

@@ -113,7 +113,7 @@ class CreditHistoryComponent extends Component
             [
                 new RefReq(
                     [
-                        'product' => RefReq::PRODUCT_BHST,
+                        'product' => RefReq::PRODUCT_BHIP,
                     ]
                 ),
                 $businessReq,
@@ -139,7 +139,7 @@ class CreditHistoryComponent extends Component
             [
                 new RefReq(
                     [
-                        'product' => RefReq::PRODUCT_CHST,
+                        'product' => RefReq::PRODUCT_CHIP,
                     ]
                 ),
                 $personReq,
