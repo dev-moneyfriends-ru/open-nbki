@@ -168,7 +168,8 @@ class Address extends BaseItem
                         'addressType',
                         'city',
                         'street',
-                        'oksm'
+                        'oksm',
+                        'okato'
                     ]
                     , 'required',
                 ],
@@ -186,6 +187,8 @@ class Address extends BaseItem
                         'resStatText',
                         'street',
                         'streetType',
+                        'oksm',
+                        'okato'
                     ],
                     'string',
                 ],
