@@ -1,167 +1,248 @@
-{
-  "event": "1.1.1",
-  "subject": {
-    "actualAddress": {
-      "addressType": 1,
-      "addrSinceDt": "yyyy-MM-dd",
-      "apartment": null,
-      "block": null,
-      "building": null,
-      "city": null,
-      "countryCode": "RU",
-      "countryCodeText": null,
-      "district": null,
-      "houseNumber": null,
-      "postal": null,
-      "prov": null,
-      "provText": null,
-      "street": null,
-      "streetType": null,
-      "streetTypeText": null,
-      "addressString": null
+[
+  {
+    "subject": {
+      "actualAddress": null,
+      "legalAddress": {
+        "addressType": 1,
+        "addrSinceDt": null,
+        "apartment": "19",
+        "block": "",
+        "building": null,
+        "houseNumber": "7",
+        "postal": 344038,
+        "street": "ул. Шолохова",
+        "oksm": "643",
+        "okato": "60202501000"
+      },
+      "workPhone": null,
+      "phones": [],
+      "subjectType": "legal",
+      "offerRelationType": "borrower",
+      "inn": "6102042184",
+      "ogrn": "1136181000625",
+      "snils": "",
+      "passport": null,
+      "person": null,
+      "business": {
+        "abbreviatedBusinessName": "ООО ТД КОРДМАСТЕР",
+        "businessName": "Общество с ограниченной ответственностью ТД КОРДМАСТЕР"
+      },
+      "regDate": "2013-02-07"
     },
-    "legalAddress": {
-      "addressType": 1,
-      "addrSinceDt": "yyyy-MM-dd",
-      "apartment": null,
-      "block": null,
-      "building": null,
-      "city": null,
-      "countryCode": "RU",
-      "countryCodeText": null,
-      "district": null,
-      "houseNumber": null,
-      "postal": null,
-      "prov": null,
-      "provText": null,
-      "street": null,
-      "streetType": null,
-      "streetTypeText": null,
-      "addressString": null
-    },
-    "workPhone": {
-      "number": null,
-      "phoneType": 5
-    },
-    "phones": [
-      {
-        "number": null,
-        "phoneType": 5
+    "offer": {
+      "uuid": "56d9ef0c-64c1-11ed-8258-0242c0a88030",
+      "guarantorArray": [
+        {
+          "guaranteeAmt": "1736108.01",
+          "currencyCode": "RUB",
+          "serialNum": "a70407be-64c2-11ed-9dbb-0242c0a88030"
+        }
+      ],
+      "collateralArray": [],
+      "paymentArray": [],
+      "bankGuaranteeArray": [],
+      "trade": {
+        "accountRating": 2,
+        "accountRatingDate": "2022-10-13",
+        "acctNum": 1725,
+        "acctType": "1",
+        "amtOutstanding": 1433827.5,
+        "amtPastDue": 95903.49,
+        "ownerIndic": 1,
+        "closedDt": "2024-04-15",
+        "creditLimit": 1736108.01,
+        "currencyCode": "RUB",
+        "graceEndDt": null,
+        "interestPaymentDueDate": "2024-04-15",
+        "interestPaymentFrequencyCode": 3,
+        "intOutstanding": 153003.63,
+        "intPastDue": null,
+        "openedDt": "2022-10-13",
+        "fundDt": "2022-10-13",
+        "otherAmtOutstanding": 0,
+        "otherAmtPastDue": null,
+        "paymentDueDate": "2024-04-15",
+        "principalOutstanding": 1280823.87,
+        "principalPastDue": null,
+        "reportingDt": "2022-11-15",
+        "termsAmt": 1500000,
+        "principalTermsAmt": 73825.85,
+        "interestTermsAmt": 20033.68,
+        "termsFrequency": 3,
+        "uuid": "56d9ef0c-64c1-11ed-8258-0242c0a88030",
+        "completePerformDt": null,
+        "loanKindCode": 99,
+        "tradeTypeCode": 1,
+        "principalTermsAmtDt": "2022-12-13",
+        "interestTermsAmtDt": "2022-12-13",
+        "startDt": "2022-10-13",
+        "currentAmtOutstanding": 189763.02,
+        "currentPrincipalOutstanding": 146500.99,
+        "currentIntOutstanding": 43262.03,
+        "currentOtherAmtOutstanding": 0,
+        "pastDueDt": "2022-11-14",
+        "principalMissedDate": "2022-11-14",
+        "intMissedDate": "2022-11-14",
+        "startAmtOutstanding": 95903.48999999999,
+        "obligAccountCode": 0
       }
-    ],
-    "subjectType": "s",
-    "offerRelationType": "string",
-    "inn": null,
-    "ogrn": null,
-    "snils": null,
-    "passport": {
-      "series": null,
-      "number": null,
-      "issueDate": null,
-      "issueAuthority": null
-    },
-    "person": {
-      "birthDt": null,
-      "first": null,
-      "gender": null,
-      "genderText": null,
-      "name1": null,
-      "paternal": null,
-      "placeOfBirth": null,
-      "maritalStatus": null,
-      "maritalStatusText": null
-    },
-    "business": {
-      "abbreviatedBusinessName": null,
-      "businessName": null,
-      "businessNameAlt": null,
-      "businessNameRF": null,
-      "businessStatus": 0
     }
   },
-  "offer": {
-    "uuid": "",
-    "guarantorArray": [
-      {
-        "guaranteeAmt": null,
-        "guaranteeTerm": null,
-        "guaranteeVolumeCode": null,
-        "currencyCode": "RUB",
-        "serialNum": ""
-      }
-    ],
-    "collateralArray": [
-      {
-        "collateralCode": null,
-        "collateralValue": null,
-        "collateralDate": null,
-        "collateralExpirationDate": null,
-        "currencyCode": "RUB",
-        "serialNum": ""
-      }
-    ],
-    "paymentArray": [
-      {
-        "currencyCode": "RUB",
-        "m24Total": null,
-        "paymtAmt": null,
-        "paymtAmtDue": null,
-        "paymtDate": null,
-        "paymtVolume": null
-      }
-    ],
-    "bankGuaranteeArray": [
-      {
+  {
+    "subject": {
+      "actualAddress": {
+        "addressType": 1,
+        "addrSinceDt": null,
+        "apartment": "19",
+        "block": "",
+        "building": null,
+        "houseNumber": "7",
+        "postal": 344038,
+        "street": "ул. Шолохова",
+        "oksm": "643",
+        "okato": "60202501000"
+      },
+      "legalAddress": {
+        "addressType": 1,
+        "addrSinceDt": null,
+        "apartment": "19",
+        "block": "",
+        "building": null,
+        "houseNumber": "7",
+        "postal": 344038,
+        "street": "ул. Шолохова",
+        "oksm": "643",
+        "okato": "60202501000"
+      },
+      "workPhone": null,
+      "phones": [],
+      "subjectType": "ip",
+      "offerRelationType": "borrower",
+      "inn": "501207964423",
+      "ogrn": "313501210800019",
+      "snils": "13185428050",
+      "passport": {
+        "series": "4606",
+        "number": "196959",
+        "issueDate": "2004-06-17",
+        "issueAuthority": "ЖЕЛЕЗНОДОРОЖНЫМ ОВД МОСКОВСКОЙ ОБЛ.",
+        "issueCode": "502-001",
+        "oksm": "643"
+      },
+      "person": {
+        "birthDt": "1983-03-02",
+        "first": "Ирина",
+        "name1": "Березенкова",
+        "paternal": "Юрьевна",
+        "placeOfBirth": "гор. Железнодорожный МО",
+        "oksm": "643"
+      },
+      "business": {
+        "abbreviatedBusinessName": "ИП Березенкова Ирина Юрьевна",
+        "businessName": "Индивидуальный предприниматель Березенкова Ирина Юрьевна"
+      },
+      "regDate": "2013-04-18"
+    },
+    "offer": {
+      "uuid": "2c615226-ddf1-11ec-a073-52540031ada1",
+      "guarantorArray": [
+        {
+          "guaranteeAmt": "2251735.24",
+          "currencyCode": "RUB",
+          "serialNum": "5755f0ac-64c1-11ed-844f-0242c0a88030"
+        }
+      ],
+      "collateralArray": [],
+      "paymentArray": {
+        "2022-06-25": {
+          "currencyCode": "RUB",
+          "paymtAmt": 245564.35,
+          "principalPaymtAmt": 201594.8,
+          "intPaymtAmt": 43969.55,
+          "otherPaymtAmt": 0,
+          "paymtDate": "2022-06-25"
+        },
+        "2022-07-22": {
+          "currencyCode": "RUB",
+          "paymtAmt": 244720.28,
+          "principalPaymtAmt": 206467.12,
+          "intPaymtAmt": 38253.16,
+          "otherPaymtAmt": 0,
+          "paymtDate": "2022-07-22"
+        },
+        "2022-08-26": {
+          "currencyCode": "RUB",
+          "paymtAmt": 248733.48,
+          "principalPaymtAmt": 211456.96,
+          "intPaymtAmt": 37276.52,
+          "otherPaymtAmt": 0,
+          "paymtDate": "2022-08-26"
+        },
+        "2022-09-26": {
+          "currencyCode": "RUB",
+          "paymtAmt": 244927.68,
+          "principalPaymtAmt": 216567.32,
+          "intPaymtAmt": 28360.36,
+          "paymtDate": "2022-09-26"
+        },
+        "2022-10-19": {
+          "currencyCode": "RUB",
+          "paymtAmt": 246533.62,
+          "principalPaymtAmt": 221800.01,
+          "intPaymtAmt": 24733.61,
+          "otherPaymtAmt": 0,
+          "paymtDate": "2022-10-19"
+        }
+      },
+      "bankGuaranteeArray": [],
+      "trade": {
+        "accountRating": 2,
+        "accountRatingDate": "2022-05-27",
+        "acctNum": 1556,
+        "acctType": "1",
+        "amtOutstanding": 745591.94,
+        "amtPastDue": 0,
         "bankGuaranteeAmt": null,
+        "bankGuaranteeIndicatorCode": "N",
+        "ownerIndic": 1,
         "bankGuaranteeTerm": null,
         "bankGuaranteeVolumeCode": null,
-        "bankGuaranteeOtherTermination": null,
+        "closedDt": "2023-02-27",
         "currencyCode": "RUB",
-        "bankGuaranteeIndicatorCode": null
+        "graceEndDt": null,
+        "interestPaymentDueDate": "2023-02-27",
+        "interestPaymentFrequencyCode": 3,
+        "intOutstanding": 30638.59,
+        "intPastDue": 0,
+        "openedDt": "2022-05-27",
+        "fundDt": "2022-05-27",
+        "otherAmtOutstanding": 0,
+        "otherAmtPastDue": 0,
+        "paymentDueDate": "2023-02-27",
+        "principalOutstanding": 714953.35,
+        "principalPastDue": 0,
+        "reportingDt": "2022-11-15",
+        "termsAmt": 2000000,
+        "principalTermsAmt": 227160.44,
+        "interestTermsAmt": 21431.45,
+        "termsFrequency": 3,
+        "uuid": "2c615226-ddf1-11ec-a073-52540031ada1",
+        "completePerformDt": null,
+        "loanKindCode": 99,
+        "tradeTypeCode": 1,
+        "principalTermsAmtDt": "2022-11-28",
+        "interestTermsAmtDt": "2022-11-28",
+        "startDt": "2022-05-27",
+        "currentAmtOutstanding": 248591.89,
+        "currentPrincipalOutstanding": 227160.44,
+        "currentIntOutstanding": 21431.45,
+        "currentOtherAmtOutstanding": 0,
+        "pastDueDt": "",
+        "principalMissedDate": "",
+        "intMissedDate": "",
+        "startAmtOutstanding": 245564.34999999998,
+        "obligAccountCode": 0
       }
-    ],
-    "trade": {
-      "accountRating": null,
-      "accountRatingDate": null,
-      "acctNum": null,
-      "acctType": null,
-      "amtOutstanding": null,
-      "amtPastDue": null,
-      "bankGuaranteeAmt": null,
-      "bankGuaranteeIndicatorCode": "N",
-      "ownerIndic": null,
-      "bankGuaranteeTerm": null,
-      "bankGuaranteeVolumeCode": null,
-      "closedDt": null,
-      "collateralCode": null,
-      "collateralValue": null,
-      "collateralDate": null,
-      "collateralExpirationDate": null,
-      "creditLimit": null,
-      "curBalanceAmt": null,
-      "currencyCode": "RUB",
-      "graceEndDt": null,
-      "guaranteeAmt": null,
-      "guaranteeTerm": null,
-      "guaranteeVolumeCode": null,
-      "guarantorIndicatorCode": "N",
-      "interestPaymentDueDate": null,
-      "interestPaymentFrequencyCode": null,
-      "intOutstanding": 0,
-      "intPastDue": 0,
-      "lastPaymtDt": "1900-01-02",
-      "openedDt": null,
-      "otherAmtOutstanding": null,
-      "otherAmtPastDue": null,
-      "paymentDueDate": null,
-      "paymentPatternValue": null,
-      "principalOutstanding": null,
-      "principalPastDue": null,
-      "reportingDt": null,
-      "termsAmt": null,
-      "termsFrequency": null,
-      "uuid": null,
-      "completePerformDt": null
     }
   }
-}
+]

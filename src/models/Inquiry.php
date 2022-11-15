@@ -23,7 +23,7 @@ class Inquiry extends BaseItem
      * Сумма займа
      * @var int
      */
-    public $inqAmount = 0;
+    public $inqAmount;
     
     /**
      * Код валюты
