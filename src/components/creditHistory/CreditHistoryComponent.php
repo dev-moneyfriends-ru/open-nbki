@@ -13,6 +13,7 @@ use mfteam\nbch\models\InquiryReq;
 use mfteam\nbch\models\NbchChRequest;
 use mfteam\nbch\models\NbchConsent;
 use mfteam\nbch\models\PersonReq;
+use mfteam\nbch\models\PreplyReport;
 use mfteam\nbch\models\RefReq;
 use mfteam\nbch\models\RegnumReq;
 use mfteam\nbch\models\SNILSReq;
@@ -344,5 +345,22 @@ class CreditHistoryComponent extends Component
     public function getRequest(): NbchRequest
     {
         return $this->request;
+    }
+    
+    /**
+     * Возвращает объект с содержимым данных КИ
+     * @param NbchChRequest $request
+     * @return PreplyReport|void
+     */
+    public function createPreplyReport(NbchChRequest $request)
+    {
+        $model = new PreplyReport();
+        if (empty($request->responseData)) {
+            return $model;
+        }
+        $responseData = base64_decode($request->responseData);
+        $parser = new XmlToArrayParser();
+        $data = $parser->parseXml($responseData);
+        $model->report = ArrayHelper::getValue($data, 'preply.report');
     }
 }
