@@ -79,6 +79,8 @@ class NbchRequest extends \yii\httpclient\Request
             $response->setContent(file_get_contents('testData.xml'));
         }
         $esignClient = $env->module->esignClient;
+        $content = $this->getContent();
+        $content = str_replace('<version>10</version>', '<version mappedFormat="2">10</version>', $content);
         $esignClient->setSrcContent($this->getContent());
         
         if ($esignClient->nbchUnzip()) {
