@@ -31,7 +31,7 @@ class RegnumReq extends \yii\base\Model
      * Регистрационный номер
      * @var string
      */
-    public $regnum;
+    public $regNum;
     
     public function rules()
     {
@@ -45,7 +45,7 @@ class RegnumReq extends \yii\base\Model
                 'integer'
             ],
             [
-                ['taxpayerNum', 'regnum'],
+                ['taxpayerNum', 'regNum'],
                 'string'
             ]
         ];
