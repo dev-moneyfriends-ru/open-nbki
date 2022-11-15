@@ -9,8 +9,8 @@ class AddressReq extends Address
         return [
             'houseNumber',
             'street',
-            'okato',
-            'oksm'
+            'OKATO' => 'okato',
+            'OKSM' => 'oksm'
         ];
     }
 }
