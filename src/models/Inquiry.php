@@ -11,7 +11,7 @@ class Inquiry extends BaseItem
      * Согласие на получение данных
      * @var Consent|null
      */
-    private $consent = null;
+    public $consent = null;
     
     /**
      * Код цели для запроса, возможные значения inqPurposeList

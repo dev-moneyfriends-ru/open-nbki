@@ -41,9 +41,7 @@ class InquiryReq extends Inquiry
         return ArrayHelper::merge(
             $fields,
             [
-                'ConsentReq' => static function (Inquiry $model) {
-                    return $model->consent->toArray();
-                },
+                'ConsentReq' => 'consent'
             ]
         );
     }

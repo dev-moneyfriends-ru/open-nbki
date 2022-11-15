@@ -210,7 +210,7 @@ class CreditHistoryComponent extends Component
             
             $parser = new XmlToArrayParser();
             $data = $parser->parseXml($response->content);
-            \Yii::info($data);
+            
             if (ArrayHelper::getValue($data, 'preply.err') !== null) {
                 \Yii::error(ArrayHelper::getValue($data, 'preply.err'));
                 $this->model->status = NbchChRequest::STATE_ERROR;
