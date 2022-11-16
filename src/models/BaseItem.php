@@ -118,6 +118,7 @@ abstract class BaseItem extends \yii\base\Model
             ],
         ];
     }
+    
     public static function disputeReasonsList()
     {
         return [
@@ -151,5 +152,18 @@ abstract class BaseItem extends \yii\base\Model
             'E2' => 'Military duty',
             'E3' => 'Account deferred',
         ];
+    }
+    
+    /**
+     * @param $config
+     */
+    public function __construct($config = [])
+    {
+        foreach ($config as $key => $value) {
+            if (is_array($value) && empty($value)) {
+                unset($config[$key]);
+            }
+        }
+        parent::__construct($config);
     }
 }
