@@ -17,6 +17,7 @@ use yii\helpers\ArrayHelper;
  * @property-read array $accountReply
  * @property-read array $inquiryReply
  * @property-read array $addressReplyRUTDF
+ * @property-read \mfteam\nbch\models\RegnumReply $regnumReply
  * @property-read \mfteam\nbch\models\SubjectReply $subjectReply
  */
 class PreplyReport extends \yii\base\BaseObject
@@ -61,7 +62,7 @@ class PreplyReport extends \yii\base\BaseObject
      * @return array
      * @throws \Exception
      */
-    public function getAccountReply():array
+    public function getAccountReply(): array
     {
         return $this->loadArrayData('AccountReply', AccountReply::class);
     }
@@ -114,6 +115,16 @@ class PreplyReport extends \yii\base\BaseObject
     public function getTaxpayerIdReply()
     {
         return new TaxpayerIdReply(ArrayHelper::getValue($this->report, 'TaxpayerIdReply', []));
+    }
+    
+    /**
+     * Регистрационный номер
+     * @return RegnumReply
+     * @throws \Exception
+     */
+    public function getRegnumReply()
+    {
+        return new RegnumReply(ArrayHelper::getValue($this->report, 'RegnumReply', []));
     }
     
     /**
