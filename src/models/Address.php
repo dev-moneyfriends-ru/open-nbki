@@ -173,6 +173,11 @@ class Address extends BaseItem
      */
     public $email;
     
+    /**
+     * @var string
+     */
+    public $fias;
+    
     public function rules()
     {
         return array_merge(
