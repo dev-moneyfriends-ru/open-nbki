@@ -370,7 +370,7 @@ class CreditHistoryComponent extends Component
      */
     public function getBusinessView()
     {
-        return \Yii::getAlias('@vendor/mfteam/nbch/components/creditHistory/views/business.php');
+        return '@vendor/mf-team/yii2-mf-nbch/src/components/creditHistory/views/business.php';
     }
     
     /**
@@ -378,6 +378,6 @@ class CreditHistoryComponent extends Component
      */
     public function getPersonView()
     {
-        return \Yii::getAlias('@vendor/mfteam/nbch/components/creditHistory/views/person.php');
+        return '@vendor/mf-team/yii2-mf-nbch/src/components/creditHistory/views/person.php';
     }
 }
