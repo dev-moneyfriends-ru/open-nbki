@@ -5,17 +5,17 @@ namespace mfteam\nbch\models;
 /**
  * СНИЛС
  */
-class SNILSReq extends \yii\base\Model
+class SNILSReq extends BaseItem
 {
     /**
      * @var string
      */
-    public $numder;
+    public $number;
     
     public function rules()
     {
         return [
-            ['numder', 'required'],
+            ['number', 'required'],
         ];
     }
     
