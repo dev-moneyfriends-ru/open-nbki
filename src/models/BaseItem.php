@@ -10,7 +10,7 @@ abstract class BaseItem extends \yii\base\Model
     public $fid;
     
     /**
-     * The unique ID of the identification record
+     * Уникальный идентификатор записи в БД НБКИ (обязательный)
      * @var string
      */
     public $serialNum;
@@ -57,6 +57,29 @@ abstract class BaseItem extends \yii\base\Model
      */
     public $lastUpdatedDt;
     
+    /**
+     * Дата формирования кредитной информации (обязательный для единичных дополняемых блоков,
+     * в которых может отсутствовать дата события – блоки payment «Сведения о внесении платежей»
+     * по ФЛ и ЮЛ, не обязательный для остальных блоков)
+     * @var string
+     */
+    public $reportingDt;
+    
+    /**
+     * Условный рейтинг надежности источника (не обязательный)
+     * @var string
+     */
+    public $partnerRating;
+    
+    /**
+     * @var string
+     */
+    public $partnerStartDate;
+    
+    /**
+     * @var string
+     */
+    public $businessCategory;
     
     public function attributeLabels()
     {

@@ -5,7 +5,7 @@ namespace mfteam\nbch\models;
 /**
  * Регистрационный номер, номер налогоплательщика субъекта, предоставившего согласие
  */
-class RegnumReq extends \yii\base\Model
+class RegnumReq extends BaseItem
 {
     /**
      * Код номера налогоплательщика
