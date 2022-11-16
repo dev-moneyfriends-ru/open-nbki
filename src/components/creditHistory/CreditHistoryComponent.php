@@ -364,4 +364,20 @@ class CreditHistoryComponent extends Component
         $model->report = ArrayHelper::getValue($data, 'preply.report');
         return $model;
     }
+    
+    /**
+     * @return false|string
+     */
+    public function getBusinessView()
+    {
+        return \Yii::getAlias('@vendor/mfteam/nbch/components/creditHistory/views/business.php');
+    }
+    
+    /**
+     * @return false|string
+     */
+    public function getPersonView()
+    {
+        return \Yii::getAlias('@vendor/mfteam/nbch/components/creditHistory/views/person.php');
+    }
 }

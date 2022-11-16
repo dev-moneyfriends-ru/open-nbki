@@ -195,9 +195,9 @@ class NbchConsent extends ActiveRecord
      */
     private function getFile(string $type): ?NbchFile
     {
-        try{
+        try {
             return Env::ensure()->module->file->getFile($type, $this->formName(), $this->id);
-        }catch (\Throwable $e){
+        } catch (\Throwable $e) {
             return null;
         }
     }
@@ -279,4 +279,11 @@ class NbchConsent extends ActiveRecord
         return $this->hasMany(NbchChRequest::class, ['consentId' => 'id']);
     }
     
+    /**
+     * @return bool
+     */
+    public function isBusiness()
+    {
+        return $this->type === self::TYPE_BUSINESS || $this->type === self::TYPE_BUSINESS_GUARANTOR;
+    }
 }
