@@ -1,0 +1,106 @@
+mfteam\nbch\generated\models\IndepGuarantorRUTDFType:
+    properties:
+        indepGuaranteeUuid:
+            expose: true
+            access_type: public_method
+            serialized_name: indepGuaranteeUuid
+            accessor:
+                getter: getIndepGuaranteeUuid
+                setter: setIndepGuaranteeUuid
+            type: string
+        indepGuaranteeVolume:
+            expose: true
+            access_type: public_method
+            serialized_name: indepGuaranteeVolume
+            accessor:
+                getter: getIndepGuaranteeVolume
+                setter: setIndepGuaranteeVolume
+            type: string
+        currencyCode:
+            expose: true
+            access_type: public_method
+            serialized_name: currencyCode
+            accessor:
+                getter: getCurrencyCode
+                setter: setCurrencyCode
+            type: string
+        indepGuaranteeDt:
+            expose: true
+            access_type: public_method
+            serialized_name: indepGuaranteeDt
+            accessor:
+                getter: getIndepGuaranteeDt
+                setter: setIndepGuaranteeDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        indepGuaranteeExpirationDate:
+            expose: true
+            access_type: public_method
+            serialized_name: indepGuaranteeExpirationDate
+            accessor:
+                getter: getIndepGuaranteeExpirationDate
+                setter: setIndepGuaranteeExpirationDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        indepGuaranteeFactExpirationDate:
+            expose: true
+            access_type: public_method
+            serialized_name: indepGuaranteeFactExpirationDate
+            accessor:
+                getter: getIndepGuaranteeFactExpirationDate
+                setter: setIndepGuaranteeFactExpirationDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        indepGuaranteeEndReason:
+            expose: true
+            access_type: public_method
+            serialized_name: indepGuaranteeEndReason
+            accessor:
+                getter: getIndepGuaranteeEndReason
+                setter: setIndepGuaranteeEndReason
+            type: string
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        acctSerialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: acctSerialNum
+            accessor:
+                getter: getAcctSerialNum
+                setter: setAcctSerialNum
+            type: string
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        reportingDt:
+            expose: true
+            access_type: public_method
+            serialized_name: reportingDt
+            accessor:
+                getter: getReportingDt
+                setter: setReportingDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date

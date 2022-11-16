@@ -1,0 +1,18 @@
+mfteam\nbch\generated\models\OwnAccountRUTDFType:
+    properties:
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        uuid:
+            expose: true
+            access_type: public_method
+            serialized_name: uuid
+            accessor:
+                getter: getUuid
+                setter: setUuid
+            type: string

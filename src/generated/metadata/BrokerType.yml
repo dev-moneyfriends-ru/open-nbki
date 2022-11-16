@@ -1,0 +1,10 @@
+mfteam\nbch\generated\models\BrokerType:
+    properties:
+        brokerId:
+            expose: true
+            access_type: public_method
+            serialized_name: brokerId
+            accessor:
+                getter: getBrokerId
+                setter: setBrokerId
+            type: string

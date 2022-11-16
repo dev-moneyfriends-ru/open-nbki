@@ -1,0 +1,146 @@
+mfteam\nbch\generated\models\AmendmentType:
+    properties:
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        acctSerialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: acctSerialNum
+            accessor:
+                getter: getAcctSerialNum
+                setter: setAcctSerialNum
+            type: int
+        creditLimit:
+            expose: true
+            access_type: public_method
+            serialized_name: creditLimit
+            accessor:
+                getter: getCreditLimit
+                setter: setCreditLimit
+            type: int
+        termsAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: termsAmt
+            accessor:
+                getter: getTermsAmt
+                setter: setTermsAmt
+            type: int
+        currencyCode:
+            expose: true
+            access_type: public_method
+            serialized_name: currencyCode
+            accessor:
+                getter: getCurrencyCode
+                setter: setCurrencyCode
+            type: string
+        closedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: closedDt
+            accessor:
+                getter: getClosedDt
+                setter: setClosedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        paymentDueDate:
+            expose: true
+            access_type: public_method
+            serialized_name: paymentDueDate
+            accessor:
+                getter: getPaymentDueDate
+                setter: setPaymentDueDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        interestPaymentDueDate:
+            expose: true
+            access_type: public_method
+            serialized_name: interestPaymentDueDate
+            accessor:
+                getter: getInterestPaymentDueDate
+                setter: setInterestPaymentDueDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        creditTotalAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: creditTotalAmt
+            accessor:
+                getter: getCreditTotalAmt
+                setter: setCreditTotalAmt
+            type: string
+        amendType:
+            expose: true
+            access_type: public_method
+            serialized_name: amendType
+            accessor:
+                getter: getAmendType
+                setter: setAmendType
+            type: string
+        graceEndDt:
+            expose: true
+            access_type: public_method
+            serialized_name: graceEndDt
+            accessor:
+                getter: getGraceEndDt
+                setter: setGraceEndDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        reportingDt:
+            expose: true
+            access_type: public_method
+            serialized_name: reportingDt
+            accessor:
+                getter: getReportingDt
+                setter: setReportingDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        gracePeriodReason:
+            expose: true
+            access_type: public_method
+            serialized_name: gracePeriodReason
+            accessor:
+                getter: getGracePeriodReason
+                setter: setGracePeriodReason
+            type: int
+        gracePeriodDeclinedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: gracePeriodDeclinedDt
+            accessor:
+                getter: getGracePeriodDeclinedDt
+                setter: setGracePeriodDeclinedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        graceStartDt:
+            expose: true
+            access_type: public_method
+            serialized_name: graceStartDt
+            accessor:
+                getter: getGraceStartDt
+                setter: setGraceStartDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        creditTotalMonetaryAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: creditTotalMonetaryAmt
+            accessor:
+                getter: getCreditTotalMonetaryAmt
+                setter: setCreditTotalMonetaryAmt
+            type: string

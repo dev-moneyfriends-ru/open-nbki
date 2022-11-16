@@ -1,0 +1,517 @@
+mfteam\nbch\generated\models\CalculationsType:
+    properties:
+        totalAccts:
+            expose: true
+            access_type: public_method
+            serialized_name: totalAccts
+            accessor:
+                getter: getTotalAccts
+                setter: setTotalAccts
+            type: int
+        totalZeroBalanceAccounts:
+            expose: true
+            access_type: public_method
+            serialized_name: totalZeroBalanceAccounts
+            accessor:
+                getter: getTotalZeroBalanceAccounts
+                setter: setTotalZeroBalanceAccounts
+            type: int
+        totalActiveBalanceAccounts:
+            expose: true
+            access_type: public_method
+            serialized_name: totalActiveBalanceAccounts
+            accessor:
+                getter: getTotalActiveBalanceAccounts
+                setter: setTotalActiveBalanceAccounts
+            type: int
+        negativeRating:
+            expose: true
+            access_type: public_method
+            serialized_name: negativeRating
+            accessor:
+                getter: getNegativeRating
+                setter: setNegativeRating
+            type: int
+        paid:
+            expose: true
+            access_type: public_method
+            serialized_name: paid
+            accessor:
+                getter: getPaid
+                setter: setPaid
+            type: int
+        mostRecentAcc:
+            expose: true
+            access_type: public_method
+            serialized_name: mostRecentAcc
+            accessor:
+                getter: getMostRecentAcc
+                setter: setMostRecentAcc
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        oldest:
+            expose: true
+            access_type: public_method
+            serialized_name: oldest
+            accessor:
+                getter: getOldest
+                setter: setOldest
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        totalHighCredit:
+            expose: true
+            access_type: public_method
+            serialized_name: totalHighCredit
+            accessor:
+                getter: getTotalHighCredit
+                setter: setTotalHighCredit
+            xml_list:
+                inline: true
+                entry_name: totalHighCredit
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        totalCurrentBalance:
+            expose: true
+            access_type: public_method
+            serialized_name: totalCurrentBalance
+            accessor:
+                getter: getTotalCurrentBalance
+                setter: setTotalCurrentBalance
+            xml_list:
+                inline: true
+                entry_name: totalCurrentBalance
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        totalPastDueBalance:
+            expose: true
+            access_type: public_method
+            serialized_name: totalPastDueBalance
+            accessor:
+                getter: getTotalPastDueBalance
+                setter: setTotalPastDueBalance
+            xml_list:
+                inline: true
+                entry_name: totalPastDueBalance
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        totalOutstandingBalance:
+            expose: true
+            access_type: public_method
+            serialized_name: totalOutstandingBalance
+            accessor:
+                getter: getTotalOutstandingBalance
+                setter: setTotalOutstandingBalance
+            xml_list:
+                inline: true
+                entry_name: totalOutstandingBalance
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        totalScheduledPaymnts:
+            expose: true
+            access_type: public_method
+            serialized_name: totalScheduledPaymnts
+            accessor:
+                getter: getTotalScheduledPaymnts
+                setter: setTotalScheduledPaymnts
+            xml_list:
+                inline: true
+                entry_name: totalScheduledPaymnts
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        installment:
+            expose: true
+            access_type: public_method
+            serialized_name: installment
+            accessor:
+                getter: getInstallment
+                setter: setInstallment
+            xml_list:
+                inline: true
+                entry_name: installment
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        revolving:
+            expose: true
+            access_type: public_method
+            serialized_name: revolving
+            accessor:
+                getter: getRevolving
+                setter: setRevolving
+            xml_list:
+                inline: true
+                entry_name: revolving
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        open:
+            expose: true
+            access_type: public_method
+            serialized_name: open
+            accessor:
+                getter: getOpen
+                setter: setOpen
+            xml_list:
+                inline: true
+                entry_name: open
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        mortgage:
+            expose: true
+            access_type: public_method
+            serialized_name: mortgage
+            accessor:
+                getter: getMortgage
+                setter: setMortgage
+            xml_list:
+                inline: true
+                entry_name: mortgage
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        totalOfficialInfo:
+            expose: true
+            access_type: public_method
+            serialized_name: totalOfficialInfo
+            accessor:
+                getter: getTotalOfficialInfo
+                setter: setTotalOfficialInfo
+            type: int
+        totalLegalItems:
+            expose: true
+            access_type: public_method
+            serialized_name: totalLegalItems
+            accessor:
+                getter: getTotalLegalItems
+                setter: setTotalLegalItems
+            type: int
+        totalBankruptcies:
+            expose: true
+            access_type: public_method
+            serialized_name: totalBankruptcies
+            accessor:
+                getter: getTotalBankruptcies
+                setter: setTotalBankruptcies
+            type: int
+        totalLiabilityBalance:
+            expose: true
+            access_type: public_method
+            serialized_name: totalLiabilityBalance
+            accessor:
+                getter: getTotalLiabilityBalance
+                setter: setTotalLiabilityBalance
+            xml_list:
+                inline: true
+                entry_name: totalLiabilityBalance
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        totalLegalItemsBalance:
+            expose: true
+            access_type: public_method
+            serialized_name: totalLegalItemsBalance
+            accessor:
+                getter: getTotalLegalItemsBalance
+                setter: setTotalLegalItemsBalance
+            xml_list:
+                inline: true
+                entry_name: totalLegalItemsBalance
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        totalCollections:
+            expose: true
+            access_type: public_method
+            serialized_name: totalCollections
+            accessor:
+                getter: getTotalCollections
+                setter: setTotalCollections
+            type: int
+        totalCollectionsBalance:
+            expose: true
+            access_type: public_method
+            serialized_name: totalCollectionsBalance
+            accessor:
+                getter: getTotalCollectionsBalance
+                setter: setTotalCollectionsBalance
+            xml_list:
+                inline: true
+                entry_name: totalCollectionsBalance
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        totalClosedForCauseBalance:
+            expose: true
+            access_type: public_method
+            serialized_name: totalClosedForCauseBalance
+            accessor:
+                getter: getTotalClosedForCauseBalance
+                setter: setTotalClosedForCauseBalance
+            xml_list:
+                inline: true
+                entry_name: totalClosedForCauseBalance
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        totalReturnedItems:
+            expose: true
+            access_type: public_method
+            serialized_name: totalReturnedItems
+            accessor:
+                getter: getTotalReturnedItems
+                setter: setTotalReturnedItems
+            type: int
+        totalReturnedItemsBalance:
+            expose: true
+            access_type: public_method
+            serialized_name: totalReturnedItemsBalance
+            accessor:
+                getter: getTotalReturnedItemsBalance
+                setter: setTotalReturnedItemsBalance
+            xml_list:
+                inline: true
+                entry_name: totalReturnedItemsBalance
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        totalClosedForCause:
+            expose: true
+            access_type: public_method
+            serialized_name: totalClosedForCause
+            accessor:
+                getter: getTotalClosedForCause
+                setter: setTotalClosedForCause
+            type: int
+        mostRecentOfficialInfo:
+            expose: true
+            access_type: public_method
+            serialized_name: mostRecentOfficialInfo
+            accessor:
+                getter: getMostRecentOfficialInfo
+                setter: setMostRecentOfficialInfo
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        mostRecentLegalItem:
+            expose: true
+            access_type: public_method
+            serialized_name: mostRecentLegalItem
+            accessor:
+                getter: getMostRecentLegalItem
+                setter: setMostRecentLegalItem
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        mostRecentBankruptcy:
+            expose: true
+            access_type: public_method
+            serialized_name: mostRecentBankruptcy
+            accessor:
+                getter: getMostRecentBankruptcy
+                setter: setMostRecentBankruptcy
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        mostRecentCollection:
+            expose: true
+            access_type: public_method
+            serialized_name: mostRecentCollection
+            accessor:
+                getter: getMostRecentCollection
+                setter: setMostRecentCollection
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        mostRecentReturnedItem:
+            expose: true
+            access_type: public_method
+            serialized_name: mostRecentReturnedItem
+            accessor:
+                getter: getMostRecentReturnedItem
+                setter: setMostRecentReturnedItem
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        mostRecentClosedForCause:
+            expose: true
+            access_type: public_method
+            serialized_name: mostRecentClosedForCause
+            accessor:
+                getter: getMostRecentClosedForCause
+                setter: setMostRecentClosedForCause
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        totalInquiries:
+            expose: true
+            access_type: public_method
+            serialized_name: totalInquiries
+            accessor:
+                getter: getTotalInquiries
+                setter: setTotalInquiries
+            type: int
+        recentInquiries:
+            expose: true
+            access_type: public_method
+            serialized_name: recentInquiries
+            accessor:
+                getter: getRecentInquiries
+                setter: setRecentInquiries
+            type: int
+        collectionsInquiries:
+            expose: true
+            access_type: public_method
+            serialized_name: collectionsInquiries
+            accessor:
+                getter: getCollectionsInquiries
+                setter: setCollectionsInquiries
+            type: int
+        mostRecentInq:
+            expose: true
+            access_type: public_method
+            serialized_name: mostRecentInq
+            accessor:
+                getter: getMostRecentInq
+                setter: setMostRecentInq
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        mostRecentInqText:
+            expose: true
+            access_type: public_method
+            serialized_name: mostRecentInqText
+            accessor:
+                getter: getMostRecentInqText
+                setter: setMostRecentInqText
+            type: string
+        creditCard:
+            expose: true
+            access_type: public_method
+            serialized_name: creditCard
+            accessor:
+                getter: getCreditCard
+                setter: setCreditCard
+            xml_list:
+                inline: true
+                entry_name: creditCard
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        dynamicID:
+            expose: true
+            access_type: public_method
+            serialized_name: dynamicID
+            accessor:
+                getter: getDynamicID
+                setter: setDynamicID
+            type: string
+        dynamicIDType:
+            expose: true
+            access_type: public_method
+            serialized_name: dynamicIDType
+            accessor:
+                getter: getDynamicIDType
+                setter: setDynamicIDType
+            type: string
+        dynamicCountryCode:
+            expose: true
+            access_type: public_method
+            serialized_name: dynamicCountryCode
+            accessor:
+                getter: getDynamicCountryCode
+                setter: setDynamicCountryCode
+            type: string
+        dynamicCountryCodeText:
+            expose: true
+            access_type: public_method
+            serialized_name: dynamicCountryCodeText
+            accessor:
+                getter: getDynamicCountryCodeText
+                setter: setDynamicCountryCodeText
+            type: string
+        primaryId:
+            expose: true
+            access_type: public_method
+            serialized_name: primaryId
+            accessor:
+                getter: getPrimaryId
+                setter: setPrimaryId
+            type: mfteam\nbch\generated\models\IdType
+        reportIssueDateTime:
+            expose: true
+            access_type: public_method
+            serialized_name: reportIssueDateTime
+            accessor:
+                getter: getReportIssueDateTime
+                setter: setReportIssueDateTime
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\DateTime
+        totalBankingAccts:
+            expose: true
+            access_type: public_method
+            serialized_name: totalBankingAccts
+            accessor:
+                getter: getTotalBankingAccts
+                setter: setTotalBankingAccts
+            type: int
+        totalBankingBalance:
+            expose: true
+            access_type: public_method
+            serialized_name: totalBankingBalance
+            accessor:
+                getter: getTotalBankingBalance
+                setter: setTotalBankingBalance
+            xml_list:
+                inline: true
+                entry_name: totalBankingBalance
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        totalNegBankingAccts:
+            expose: true
+            access_type: public_method
+            serialized_name: totalNegBankingAccts
+            accessor:
+                getter: getTotalNegBankingAccts
+                setter: setTotalNegBankingAccts
+            type: int
+        mostRecentBanking:
+            expose: true
+            access_type: public_method
+            serialized_name: mostRecentBanking
+            accessor:
+                getter: getMostRecentBanking
+                setter: setMostRecentBanking
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        oldestBanking:
+            expose: true
+            access_type: public_method
+            serialized_name: oldestBanking
+            accessor:
+                getter: getOldestBanking
+                setter: setOldestBanking
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        accountsGroupTotal:
+            expose: true
+            access_type: public_method
+            serialized_name: accountsGroupTotal
+            accessor:
+                getter: getAccountsGroupTotal
+                setter: setAccountsGroupTotal
+            xml_list:
+                inline: true
+                entry_name: accountsGroupTotal
+            type: array<mfteam\nbch\generated\models\AccountsGroupTotalType>
+        totalIPRecords:
+            expose: true
+            access_type: public_method
+            serialized_name: totalIPRecords
+            accessor:
+                getter: getTotalIPRecords
+                setter: setTotalIPRecords
+            type: int
+        mostRecentLoanAppDt:
+            expose: true
+            access_type: public_method
+            serialized_name: mostRecentLoanAppDt
+            accessor:
+                getter: getMostRecentLoanAppDt
+                setter: setMostRecentLoanAppDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        oldestLoanAppDt:
+            expose: true
+            access_type: public_method
+            serialized_name: oldestLoanAppDt
+            accessor:
+                getter: getOldestLoanAppDt
+                setter: setOldestLoanAppDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        totalRejectedIPRecords:
+            expose: true
+            access_type: public_method
+            serialized_name: totalRejectedIPRecords
+            accessor:
+                getter: getTotalRejectedIPRecords
+                setter: setTotalRejectedIPRecords
+            type: int
+        totalApprovedIPRecords:
+            expose: true
+            access_type: public_method
+            serialized_name: totalApprovedIPRecords
+            accessor:
+                getter: getTotalApprovedIPRecords
+                setter: setTotalApprovedIPRecords
+            type: int
+        totalDefaultFlagIPRecords:
+            expose: true
+            access_type: public_method
+            serialized_name: totalDefaultFlagIPRecords
+            accessor:
+                getter: getTotalDefaultFlagIPRecords
+                setter: setTotalDefaultFlagIPRecords
+            type: int
+        totalClosedBankruptcies:
+            expose: true
+            access_type: public_method
+            serialized_name: totalClosedBankruptcies
+            accessor:
+                getter: getTotalClosedBankruptcies
+                setter: setTotalClosedBankruptcies
+            type: int

@@ -1,0 +1,24 @@
+mfteam\nbch\generated\models\AddOnsType:
+    properties:
+        messages:
+            expose: true
+            access_type: public_method
+            serialized_name: messages
+            accessor:
+                getter: getMessages
+                setter: setMessages
+            xml_list:
+                inline: true
+                entry_name: messages
+            type: array<mfteam\nbch\generated\models\AlertMessageType>
+        decisions:
+            expose: true
+            access_type: public_method
+            serialized_name: decisions
+            accessor:
+                getter: getDecisions
+                setter: setDecisions
+            xml_list:
+                inline: true
+                entry_name: decisions
+            type: array<mfteam\nbch\generated\models\DecisionType>

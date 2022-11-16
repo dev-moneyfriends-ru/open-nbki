@@ -1,0 +1,141 @@
+mfteam\nbch\generated\models\TradeRUTDFType:
+    properties:
+        ownerIndic:
+            expose: true
+            access_type: public_method
+            serialized_name: ownerIndic
+            accessor:
+                getter: getOwnerIndic
+                setter: setOwnerIndic
+            type: string
+        openedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: openedDt
+            accessor:
+                getter: getOpenedDt
+                setter: setOpenedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        tradeTypeCode:
+            expose: true
+            access_type: public_method
+            serialized_name: tradeTypeCode
+            accessor:
+                getter: getTradeTypeCode
+                setter: setTradeTypeCode
+            type: string
+        loanKindCode:
+            expose: true
+            access_type: public_method
+            serialized_name: loanKindCode
+            accessor:
+                getter: getLoanKindCode
+                setter: setLoanKindCode
+            type: string
+        acctType:
+            expose: true
+            access_type: public_method
+            serialized_name: acctType
+            accessor:
+                getter: getAcctType
+                setter: setAcctType
+            xml_list:
+                inline: true
+                entry_name: acctType
+            type: array<string>
+        isConsumerLoan:
+            expose: true
+            access_type: public_method
+            serialized_name: isConsumerLoan
+            accessor:
+                getter: getIsConsumerLoan
+                setter: setIsConsumerLoan
+            type: int
+        hasCard:
+            expose: true
+            access_type: public_method
+            serialized_name: hasCard
+            accessor:
+                getter: getHasCard
+                setter: setHasCard
+            type: int
+        isNovation:
+            expose: true
+            access_type: public_method
+            serialized_name: isNovation
+            accessor:
+                getter: getIsNovation
+                setter: setIsNovation
+            type: int
+        isMoneySource:
+            expose: true
+            access_type: public_method
+            serialized_name: isMoneySource
+            accessor:
+                getter: getIsMoneySource
+                setter: setIsMoneySource
+            type: int
+        isMoneyBorrower:
+            expose: true
+            access_type: public_method
+            serialized_name: isMoneyBorrower
+            accessor:
+                getter: getIsMoneyBorrower
+                setter: setIsMoneyBorrower
+            type: int
+        closeDt:
+            expose: true
+            access_type: public_method
+            serialized_name: closeDt
+            accessor:
+                getter: getCloseDt
+                setter: setCloseDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        acctSerialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: acctSerialNum
+            accessor:
+                getter: getAcctSerialNum
+                setter: setAcctSerialNum
+            type: string
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        reportingDt:
+            expose: true
+            access_type: public_method
+            serialized_name: reportingDt
+            accessor:
+                getter: getReportingDt
+                setter: setReportingDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date

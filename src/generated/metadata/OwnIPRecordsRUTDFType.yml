@@ -1,0 +1,13 @@
+mfteam\nbch\generated\models\OwnIPRecordsRUTDFType:
+    properties:
+        iPRecordRUTDF:
+            expose: true
+            access_type: public_method
+            serialized_name: IPRecordRUTDF
+            accessor:
+                getter: getIPRecordRUTDF
+                setter: setIPRecordRUTDF
+            xml_list:
+                inline: true
+                entry_name: IPRecordRUTDF
+            type: array<mfteam\nbch\generated\models\OwnIPRecordRUTDFType>

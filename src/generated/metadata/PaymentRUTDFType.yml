@@ -1,0 +1,146 @@
+mfteam\nbch\generated\models\PaymentRUTDFType:
+    properties:
+        paymtDate:
+            expose: true
+            access_type: public_method
+            serialized_name: paymtDate
+            accessor:
+                getter: getPaymtDate
+                setter: setPaymtDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        paymtAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: paymtAmt
+            accessor:
+                getter: getPaymtAmt
+                setter: setPaymtAmt
+            type: string
+        principalPaymtAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: principalPaymtAmt
+            accessor:
+                getter: getPrincipalPaymtAmt
+                setter: setPrincipalPaymtAmt
+            type: string
+        intPaymtAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: intPaymtAmt
+            accessor:
+                getter: getIntPaymtAmt
+                setter: setIntPaymtAmt
+            type: string
+        otherPaymtAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: otherPaymtAmt
+            accessor:
+                getter: getOtherPaymtAmt
+                setter: setOtherPaymtAmt
+            type: string
+        totalAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: totalAmt
+            accessor:
+                getter: getTotalAmt
+                setter: setTotalAmt
+            type: string
+        principalTotalAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: principalTotalAmt
+            accessor:
+                getter: getPrincipalTotalAmt
+                setter: setPrincipalTotalAmt
+            type: string
+        intTotalAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: intTotalAmt
+            accessor:
+                getter: getIntTotalAmt
+                setter: setIntTotalAmt
+            type: string
+        otherTotalAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: otherTotalAmt
+            accessor:
+                getter: getOtherTotalAmt
+                setter: setOtherTotalAmt
+            type: string
+        amtKeepCode:
+            expose: true
+            access_type: public_method
+            serialized_name: amtKeepCode
+            accessor:
+                getter: getAmtKeepCode
+                setter: setAmtKeepCode
+            type: string
+        termsDueCode:
+            expose: true
+            access_type: public_method
+            serialized_name: termsDueCode
+            accessor:
+                getter: getTermsDueCode
+                setter: setTermsDueCode
+            type: string
+        daysPastDue:
+            expose: true
+            access_type: public_method
+            serialized_name: daysPastDue
+            accessor:
+                getter: getDaysPastDue
+                setter: setDaysPastDue
+            type: int
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        acctSerialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: acctSerialNum
+            accessor:
+                getter: getAcctSerialNum
+                setter: setAcctSerialNum
+            type: string
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        reportingDt:
+            expose: true
+            access_type: public_method
+            serialized_name: reportingDt
+            accessor:
+                getter: getReportingDt
+                setter: setReportingDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date

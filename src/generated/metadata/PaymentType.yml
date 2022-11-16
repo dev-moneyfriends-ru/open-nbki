@@ -1,0 +1,114 @@
+mfteam\nbch\generated\models\PaymentType:
+    properties:
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        acctSerialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: acctSerialNum
+            accessor:
+                getter: getAcctSerialNum
+                setter: setAcctSerialNum
+            type: int
+        paymtAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: paymtAmt
+            accessor:
+                getter: getPaymtAmt
+                setter: setPaymtAmt
+            type: int
+        paymtAmtDue:
+            expose: true
+            access_type: public_method
+            serialized_name: paymtAmtDue
+            accessor:
+                getter: getPaymtAmtDue
+                setter: setPaymtAmtDue
+            type: int
+        currencyCode:
+            expose: true
+            access_type: public_method
+            serialized_name: currencyCode
+            accessor:
+                getter: getCurrencyCode
+                setter: setCurrencyCode
+            type: string
+        paymtDate:
+            expose: true
+            access_type: public_method
+            serialized_name: paymtDate
+            accessor:
+                getter: getPaymtDate
+                setter: setPaymtDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        paymtVolume:
+            expose: true
+            access_type: public_method
+            serialized_name: paymtVolume
+            accessor:
+                getter: getPaymtVolume
+                setter: setPaymtVolume
+            type: string
+        m24Total:
+            expose: true
+            access_type: public_method
+            serialized_name: m24Total
+            accessor:
+                getter: getM24Total
+                setter: setM24Total
+            type: int
+        freezeFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: freezeFlag
+            accessor:
+                getter: getFreezeFlag
+                setter: setFreezeFlag
+            type: int
+        suppressFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressFlag
+            accessor:
+                getter: getSuppressFlag
+                setter: setSuppressFlag
+            type: int
+        suppressStrDt:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressStrDt
+            accessor:
+                getter: getSuppressStrDt
+                setter: setSuppressStrDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        suppressEndDt:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressEndDt
+            accessor:
+                getter: getSuppressEndDt
+                setter: setSuppressEndDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date

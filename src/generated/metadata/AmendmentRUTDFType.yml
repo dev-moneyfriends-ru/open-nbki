@@ -1,0 +1,122 @@
+mfteam\nbch\generated\models\AmendmentRUTDFType:
+    properties:
+        amendDate:
+            expose: true
+            access_type: public_method
+            serialized_name: amendDate
+            accessor:
+                getter: getAmendDate
+                setter: setAmendDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        type:
+            expose: true
+            access_type: public_method
+            serialized_name: type
+            accessor:
+                getter: getType
+                setter: setType
+            type: string
+        specType:
+            expose: true
+            access_type: public_method
+            serialized_name: specType
+            accessor:
+                getter: getSpecType
+                setter: setSpecType
+            type: string
+        otherDesc:
+            expose: true
+            access_type: public_method
+            serialized_name: otherDesc
+            accessor:
+                getter: getOtherDesc
+                setter: setOtherDesc
+            type: string
+        startDt:
+            expose: true
+            access_type: public_method
+            serialized_name: startDt
+            accessor:
+                getter: getStartDt
+                setter: setStartDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        planEndDt:
+            expose: true
+            access_type: public_method
+            serialized_name: planEndDt
+            accessor:
+                getter: getPlanEndDt
+                setter: setPlanEndDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        factEndDt:
+            expose: true
+            access_type: public_method
+            serialized_name: factEndDt
+            accessor:
+                getter: getFactEndDt
+                setter: setFactEndDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        endReason:
+            expose: true
+            access_type: public_method
+            serialized_name: endReason
+            accessor:
+                getter: getEndReason
+                setter: setEndReason
+            type: string
+        curRate:
+            expose: true
+            access_type: public_method
+            serialized_name: curRate
+            accessor:
+                getter: getCurRate
+                setter: setCurRate
+            type: string
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        acctSerialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: acctSerialNum
+            accessor:
+                getter: getAcctSerialNum
+                setter: setAcctSerialNum
+            type: string
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        reportingDt:
+            expose: true
+            access_type: public_method
+            serialized_name: reportingDt
+            accessor:
+                getter: getReportingDt
+                setter: setReportingDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date

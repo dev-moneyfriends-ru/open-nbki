@@ -1,0 +1,349 @@
+mfteam\nbch\generated\models\InformationPartRUTDFType:
+    properties:
+        requestedFlagIndicatorCode:
+            expose: true
+            access_type: public_method
+            serialized_name: requestedFlagIndicatorCode
+            accessor:
+                getter: getRequestedFlagIndicatorCode
+                setter: setRequestedFlagIndicatorCode
+            type: string
+        requestedAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: requestedAmt
+            accessor:
+                getter: getRequestedAmt
+                setter: setRequestedAmt
+            type: string
+        requestedCurrencyCode:
+            expose: true
+            access_type: public_method
+            serialized_name: requestedCurrencyCode
+            accessor:
+                getter: getRequestedCurrencyCode
+                setter: setRequestedCurrencyCode
+            type: string
+        applicationNumber:
+            expose: true
+            access_type: public_method
+            serialized_name: applicationNumber
+            accessor:
+                getter: getApplicationNumber
+                setter: setApplicationNumber
+            type: string
+        oldAppNum:
+            expose: true
+            access_type: public_method
+            serialized_name: oldAppNum
+            accessor:
+                getter: getOldAppNum
+                setter: setOldAppNum
+            type: string
+        applicationDate:
+            expose: true
+            access_type: public_method
+            serialized_name: applicationDate
+            accessor:
+                getter: getApplicationDate
+                setter: setApplicationDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        creditorTypeCode:
+            expose: true
+            access_type: public_method
+            serialized_name: creditorTypeCode
+            accessor:
+                getter: getCreditorTypeCode
+                setter: setCreditorTypeCode
+            type: string
+        applicationShipmentCode:
+            expose: true
+            access_type: public_method
+            serialized_name: applicationShipmentCode
+            accessor:
+                getter: getApplicationShipmentCode
+                setter: setApplicationShipmentCode
+            type: string
+        approvalExpireDate:
+            expose: true
+            access_type: public_method
+            serialized_name: approvalExpireDate
+            accessor:
+                getter: getApprovalExpireDate
+                setter: setApprovalExpireDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        flagIndicatorCode:
+            expose: true
+            access_type: public_method
+            serialized_name: flagIndicatorCode
+            accessor:
+                getter: getFlagIndicatorCode
+                setter: setFlagIndicatorCode
+            type: int
+        approvedLoanTypeCode:
+            expose: true
+            access_type: public_method
+            serialized_name: approvedLoanTypeCode
+            accessor:
+                getter: getApprovedLoanTypeCode
+                setter: setApprovedLoanTypeCode
+            type: int
+        agreementNumber:
+            expose: true
+            access_type: public_method
+            serialized_name: agreementNumber
+            accessor:
+                getter: getAgreementNumber
+                setter: setAgreementNumber
+            type: string
+        fundDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fundDt
+            accessor:
+                getter: getFundDt
+                setter: setFundDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        defaultFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: defaultFlag
+            accessor:
+                getter: getDefaultFlag
+                setter: setDefaultFlag
+            type: int
+        loanIndicator:
+            expose: true
+            access_type: public_method
+            serialized_name: loanIndicator
+            accessor:
+                getter: getLoanIndicator
+                setter: setLoanIndicator
+            type: int
+        rejectedDate:
+            expose: true
+            access_type: public_method
+            serialized_name: rejectedDate
+            accessor:
+                getter: getRejectedDate
+                setter: setRejectedDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        rejectedReasonCode:
+            expose: true
+            access_type: public_method
+            serialized_name: rejectedReasonCode
+            accessor:
+                getter: getRejectedReasonCode
+                setter: setRejectedReasonCode
+            xml_list:
+                inline: true
+                entry_name: rejectedReasonCode
+            type: array<int>
+        cancellationFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: cancellationFlag
+            accessor:
+                getter: getCancellationFlag
+                setter: setCancellationFlag
+            type: string
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        memberCode:
+            expose: true
+            access_type: public_method
+            serialized_name: memberCode
+            accessor:
+                getter: getMemberCode
+                setter: setMemberCode
+            type: string
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        disputedStatus:
+            expose: true
+            access_type: public_method
+            serialized_name: disputedStatus
+            accessor:
+                getter: getDisputedStatus
+                setter: setDisputedStatus
+            type: string
+        disputedStatusText:
+            expose: true
+            access_type: public_method
+            serialized_name: disputedStatusText
+            accessor:
+                getter: getDisputedStatusText
+                setter: setDisputedStatusText
+            type: string
+        reportingDt:
+            expose: true
+            access_type: public_method
+            serialized_name: reportingDt
+            accessor:
+                getter: getReportingDt
+                setter: setReportingDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        businessCategory:
+            expose: true
+            access_type: public_method
+            serialized_name: businessCategory
+            accessor:
+                getter: getBusinessCategory
+                setter: setBusinessCategory
+            type: string
+        partnerRating:
+            expose: true
+            access_type: public_method
+            serialized_name: partnerRating
+            accessor:
+                getter: getPartnerRating
+                setter: setPartnerRating
+            type: string
+        partnerStartDate:
+            expose: true
+            access_type: public_method
+            serialized_name: partnerStartDate
+            accessor:
+                getter: getPartnerStartDate
+                setter: setPartnerStartDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        partnerRegDate:
+            expose: true
+            access_type: public_method
+            serialized_name: partnerRegDate
+            accessor:
+                getter: getPartnerRegDate
+                setter: setPartnerRegDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        memberFullName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberFullName
+            accessor:
+                getter: getMemberFullName
+                setter: setMemberFullName
+            type: string
+        memberShortName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberShortName
+            accessor:
+                getter: getMemberShortName
+                setter: setMemberShortName
+            type: string
+        memberLastName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberLastName
+            accessor:
+                getter: getMemberLastName
+                setter: setMemberLastName
+            type: string
+        memberFirstName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberFirstName
+            accessor:
+                getter: getMemberFirstName
+                setter: setMemberFirstName
+            type: string
+        memberMiddleName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberMiddleName
+            accessor:
+                getter: getMemberMiddleName
+                setter: setMemberMiddleName
+            type: string
+        memberRegNum:
+            expose: true
+            access_type: public_method
+            serialized_name: memberRegNum
+            accessor:
+                getter: getMemberRegNum
+                setter: setMemberRegNum
+            type: string
+        memberType:
+            expose: true
+            access_type: public_method
+            serialized_name: memberType
+            accessor:
+                getter: getMemberType
+                setter: setMemberType
+            type: string
+        memberTaxpayerID:
+            expose: true
+            access_type: public_method
+            serialized_name: memberTaxpayerID
+            accessor:
+                getter: getMemberTaxpayerID
+                setter: setMemberTaxpayerID
+            type: string
+        memberOKPO:
+            expose: true
+            access_type: public_method
+            serialized_name: memberOKPO
+            accessor:
+                getter: getMemberOKPO
+                setter: setMemberOKPO
+            type: string
+        memberIDIssueAuth:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIDIssueAuth
+            accessor:
+                getter: getMemberIDIssueAuth
+                setter: setMemberIDIssueAuth
+            type: string
+        memberIDIssueLoc:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIDIssueLoc
+            accessor:
+                getter: getMemberIDIssueLoc
+                setter: setMemberIDIssueLoc
+            type: string
+        memberIDIssueDate:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIDIssueDate
+            accessor:
+                getter: getMemberIDIssueDate
+                setter: setMemberIDIssueDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        memberBusinessCode:
+            expose: true
+            access_type: public_method
+            serialized_name: memberBusinessCode
+            accessor:
+                getter: getMemberBusinessCode
+                setter: setMemberBusinessCode
+            type: string

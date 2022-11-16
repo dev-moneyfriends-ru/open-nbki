@@ -1,0 +1,130 @@
+mfteam\nbch\generated\models\CollateralRUTDFType:
+    properties:
+        collateralCode:
+            expose: true
+            access_type: public_method
+            serialized_name: collateralCode
+            accessor:
+                getter: getCollateralCode
+                setter: setCollateralCode
+            type: string
+        collateralId:
+            expose: true
+            access_type: public_method
+            serialized_name: collateralId
+            accessor:
+                getter: getCollateralId
+                setter: setCollateralId
+            type: string
+        collateralAgreementDt:
+            expose: true
+            access_type: public_method
+            serialized_name: collateralAgreementDt
+            accessor:
+                getter: getCollateralAgreementDt
+                setter: setCollateralAgreementDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        collateralValue:
+            expose: true
+            access_type: public_method
+            serialized_name: collateralValue
+            accessor:
+                getter: getCollateralValue
+                setter: setCollateralValue
+            type: string
+        currencyCode:
+            expose: true
+            access_type: public_method
+            serialized_name: currencyCode
+            accessor:
+                getter: getCurrencyCode
+                setter: setCurrencyCode
+            type: string
+        collateralDate:
+            expose: true
+            access_type: public_method
+            serialized_name: collateralDate
+            accessor:
+                getter: getCollateralDate
+                setter: setCollateralDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        collateralEncum:
+            expose: true
+            access_type: public_method
+            serialized_name: collateralEncum
+            accessor:
+                getter: getCollateralEncum
+                setter: setCollateralEncum
+            type: int
+        collateralExpirationDate:
+            expose: true
+            access_type: public_method
+            serialized_name: collateralExpirationDate
+            accessor:
+                getter: getCollateralExpirationDate
+                setter: setCollateralExpirationDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        collateralFactExpirationDate:
+            expose: true
+            access_type: public_method
+            serialized_name: collateralFactExpirationDate
+            accessor:
+                getter: getCollateralFactExpirationDate
+                setter: setCollateralFactExpirationDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        collateralEndReason:
+            expose: true
+            access_type: public_method
+            serialized_name: collateralEndReason
+            accessor:
+                getter: getCollateralEndReason
+                setter: setCollateralEndReason
+            type: string
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        acctSerialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: acctSerialNum
+            accessor:
+                getter: getAcctSerialNum
+                setter: setAcctSerialNum
+            type: string
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        reportingDt:
+            expose: true
+            access_type: public_method
+            serialized_name: reportingDt
+            accessor:
+                getter: getReportingDt
+                setter: setReportingDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date

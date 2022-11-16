@@ -1,0 +1,90 @@
+mfteam\nbch\generated\models\ClassificationType:
+    properties:
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        memberCode:
+            expose: true
+            access_type: public_method
+            serialized_name: memberCode
+            accessor:
+                getter: getMemberCode
+                setter: setMemberCode
+            type: string
+        typeCode:
+            expose: true
+            access_type: public_method
+            serialized_name: typeCode
+            accessor:
+                getter: getTypeCode
+                setter: setTypeCode
+            type: string
+        number:
+            expose: true
+            access_type: public_method
+            serialized_name: number
+            accessor:
+                getter: getNumber
+                setter: setNumber
+            type: string
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        freezeFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: freezeFlag
+            accessor:
+                getter: getFreezeFlag
+                setter: setFreezeFlag
+            type: string
+        suppressFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressFlag
+            accessor:
+                getter: getSuppressFlag
+                setter: setSuppressFlag
+            type: string
+        suppressStrDt:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressStrDt
+            accessor:
+                getter: getSuppressStrDt
+                setter: setSuppressStrDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        suppressEndDt:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressEndDt
+            accessor:
+                getter: getSuppressEndDt
+                setter: setSuppressEndDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date

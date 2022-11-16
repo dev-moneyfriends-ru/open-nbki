@@ -25,7 +25,8 @@
     "ext-mbstring": "*"
   },
   "require-dev": {
-    "roave/security-advisories": "dev-latest"
+    "roave/security-advisories": "dev-latest",
+    "goetas-webservices/xsd2php":"^0.3"
   },
   "autoload": {
     "psr-4": {

@@ -1,0 +1,18 @@
+mfteam\nbch\generated\models\ScoreType:
+    properties:
+        score:
+            expose: true
+            access_type: public_method
+            serialized_name: score
+            accessor:
+                getter: getScore
+                setter: setScore
+            type: int
+        scoreDate:
+            expose: true
+            access_type: public_method
+            serialized_name: scoreDate
+            accessor:
+                getter: getScoreDate
+                setter: setScoreDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date

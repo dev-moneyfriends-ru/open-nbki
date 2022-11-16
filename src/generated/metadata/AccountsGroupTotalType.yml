@@ -1,0 +1,110 @@
+mfteam\nbch\generated\models\AccountsGroupTotalType:
+    properties:
+        accountType:
+            expose: true
+            access_type: public_method
+            serialized_name: accountType
+            accessor:
+                getter: getAccountType
+                setter: setAccountType
+            type: string
+        accountTypeText:
+            expose: true
+            access_type: public_method
+            serialized_name: accountTypeText
+            accessor:
+                getter: getAccountTypeText
+                setter: setAccountTypeText
+            type: string
+        totalAccts:
+            expose: true
+            access_type: public_method
+            serialized_name: totalAccts
+            accessor:
+                getter: getTotalAccts
+                setter: setTotalAccts
+            type: int
+        zeroBalance:
+            expose: true
+            access_type: public_method
+            serialized_name: zeroBalance
+            accessor:
+                getter: getZeroBalance
+                setter: setZeroBalance
+            type: int
+        negativeRating:
+            expose: true
+            access_type: public_method
+            serialized_name: negativeRating
+            accessor:
+                getter: getNegativeRating
+                setter: setNegativeRating
+            type: int
+        positiveRating:
+            expose: true
+            access_type: public_method
+            serialized_name: positiveRating
+            accessor:
+                getter: getPositiveRating
+                setter: setPositiveRating
+            type: int
+        highCredit:
+            expose: true
+            access_type: public_method
+            serialized_name: highCredit
+            accessor:
+                getter: getHighCredit
+                setter: setHighCredit
+            xml_list:
+                inline: true
+                entry_name: highCredit
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        installment:
+            expose: true
+            access_type: public_method
+            serialized_name: installment
+            accessor:
+                getter: getInstallment
+                setter: setInstallment
+            xml_list:
+                inline: true
+                entry_name: installment
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        currentBalance:
+            expose: true
+            access_type: public_method
+            serialized_name: currentBalance
+            accessor:
+                getter: getCurrentBalance
+                setter: setCurrentBalance
+            xml_list:
+                inline: true
+                entry_name: currentBalance
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        pastDueBalance:
+            expose: true
+            access_type: public_method
+            serialized_name: pastDueBalance
+            accessor:
+                getter: getPastDueBalance
+                setter: setPastDueBalance
+            xml_list:
+                inline: true
+                entry_name: pastDueBalance
+            type: array<mfteam\nbch\generated\models\CurrencyCodeType>
+        mostRecentAcctDate:
+            expose: true
+            access_type: public_method
+            serialized_name: mostRecentAcctDate
+            accessor:
+                getter: getMostRecentAcctDate
+                setter: setMostRecentAcctDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        oldestAcctDate:
+            expose: true
+            access_type: public_method
+            serialized_name: oldestAcctDate
+            accessor:
+                getter: getOldestAcctDate
+                setter: setOldestAcctDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date

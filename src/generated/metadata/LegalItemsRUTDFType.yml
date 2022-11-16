@@ -1,0 +1,90 @@
+mfteam\nbch\generated\models\LegalItemsRUTDFType:
+    properties:
+        hasCourtAct:
+            expose: true
+            access_type: public_method
+            serialized_name: hasCourtAct
+            accessor:
+                getter: getHasCourtAct
+                setter: setHasCourtAct
+            type: int
+        courtActDt:
+            expose: true
+            access_type: public_method
+            serialized_name: courtActDt
+            accessor:
+                getter: getCourtActDt
+                setter: setCourtActDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        courtActNum:
+            expose: true
+            access_type: public_method
+            serialized_name: courtActNum
+            accessor:
+                getter: getCourtActNum
+                setter: setCourtActNum
+            type: string
+        resolution:
+            expose: true
+            access_type: public_method
+            serialized_name: resolution
+            accessor:
+                getter: getResolution
+                setter: setResolution
+            type: string
+        courtActEffectCode:
+            expose: true
+            access_type: public_method
+            serialized_name: courtActEffectCode
+            accessor:
+                getter: getCourtActEffectCode
+                setter: setCourtActEffectCode
+            type: int
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        acctSerialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: acctSerialNum
+            accessor:
+                getter: getAcctSerialNum
+                setter: setAcctSerialNum
+            type: string
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        reportingDt:
+            expose: true
+            access_type: public_method
+            serialized_name: reportingDt
+            accessor:
+                getter: getReportingDt
+                setter: setReportingDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date

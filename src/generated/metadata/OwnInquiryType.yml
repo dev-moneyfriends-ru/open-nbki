@@ -1,0 +1,10 @@
+mfteam\nbch\generated\models\OwnInquiryType:
+    properties:
+        inqControlNum:
+            expose: true
+            access_type: public_method
+            serialized_name: inqControlNum
+            accessor:
+                getter: getInqControlNum
+                setter: setInqControlNum
+            type: int

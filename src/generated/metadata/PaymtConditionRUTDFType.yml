@@ -1,0 +1,122 @@
+mfteam\nbch\generated\models\PaymtConditionRUTDFType:
+    properties:
+        principalTermsAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: principalTermsAmt
+            accessor:
+                getter: getPrincipalTermsAmt
+                setter: setPrincipalTermsAmt
+            type: string
+        principalTermsAmtDt:
+            expose: true
+            access_type: public_method
+            serialized_name: principalTermsAmtDt
+            accessor:
+                getter: getPrincipalTermsAmtDt
+                setter: setPrincipalTermsAmtDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        interestTermsAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: interestTermsAmt
+            accessor:
+                getter: getInterestTermsAmt
+                setter: setInterestTermsAmt
+            type: string
+        interestTermsAmtDt:
+            expose: true
+            access_type: public_method
+            serialized_name: interestTermsAmtDt
+            accessor:
+                getter: getInterestTermsAmtDt
+                setter: setInterestTermsAmtDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        termsFrequency:
+            expose: true
+            access_type: public_method
+            serialized_name: termsFrequency
+            accessor:
+                getter: getTermsFrequency
+                setter: setTermsFrequency
+            type: string
+        minPaymt:
+            expose: true
+            access_type: public_method
+            serialized_name: minPaymt
+            accessor:
+                getter: getMinPaymt
+                setter: setMinPaymt
+            type: string
+        graceStartDt:
+            expose: true
+            access_type: public_method
+            serialized_name: graceStartDt
+            accessor:
+                getter: getGraceStartDt
+                setter: setGraceStartDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        graceEndDt:
+            expose: true
+            access_type: public_method
+            serialized_name: graceEndDt
+            accessor:
+                getter: getGraceEndDt
+                setter: setGraceEndDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        interestPaymentDueDate:
+            expose: true
+            access_type: public_method
+            serialized_name: interestPaymentDueDate
+            accessor:
+                getter: getInterestPaymentDueDate
+                setter: setInterestPaymentDueDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        acctSerialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: acctSerialNum
+            accessor:
+                getter: getAcctSerialNum
+                setter: setAcctSerialNum
+            type: string
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        reportingDt:
+            expose: true
+            access_type: public_method
+            serialized_name: reportingDt
+            accessor:
+                getter: getReportingDt
+                setter: setReportingDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date

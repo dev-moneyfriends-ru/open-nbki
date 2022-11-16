@@ -1,0 +1,1250 @@
+mfteam\nbch\generated\models\AccountType:
+    properties:
+        historyReply:
+            expose: true
+            access_type: public_method
+            serialized_name: HistoryReply
+            accessor:
+                getter: getHistoryReply
+                setter: setHistoryReply
+            xml_list:
+                inline: true
+                entry_name: HistoryReply
+            type: array<mfteam\nbch\generated\models\HistoryType>
+        paymentPattern:
+            expose: true
+            access_type: public_method
+            serialized_name: PaymentPattern
+            accessor:
+                getter: getPaymentPattern
+                setter: setPaymentPattern
+            xml_list:
+                inline: true
+                entry_name: PaymentPattern
+            type: array<mfteam\nbch\generated\models\PaymentPatternType>
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        memberCode:
+            expose: true
+            access_type: public_method
+            serialized_name: memberCode
+            accessor:
+                getter: getMemberCode
+                setter: setMemberCode
+            type: string
+        memberTypeText:
+            expose: true
+            access_type: public_method
+            serialized_name: memberTypeText
+            accessor:
+                getter: getMemberTypeText
+                setter: setMemberTypeText
+            type: string
+        memberNameText:
+            expose: true
+            access_type: public_method
+            serialized_name: memberNameText
+            accessor:
+                getter: getMemberNameText
+                setter: setMemberNameText
+            type: string
+        memberContactText:
+            expose: true
+            access_type: public_method
+            serialized_name: memberContactText
+            accessor:
+                getter: getMemberContactText
+                setter: setMemberContactText
+            type: string
+        acctNum:
+            expose: true
+            access_type: public_method
+            serialized_name: acctNum
+            accessor:
+                getter: getAcctNum
+                setter: setAcctNum
+            type: string
+        srcCountryCode:
+            expose: true
+            access_type: public_method
+            serialized_name: srcCountryCode
+            accessor:
+                getter: getSrcCountryCode
+                setter: setSrcCountryCode
+            type: string
+        srcCountryCodeText:
+            expose: true
+            access_type: public_method
+            serialized_name: srcCountryCodeText
+            accessor:
+                getter: getSrcCountryCodeText
+                setter: setSrcCountryCodeText
+            type: string
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        acctNumDisplay:
+            expose: true
+            access_type: public_method
+            serialized_name: acctNumDisplay
+            accessor:
+                getter: getAcctNumDisplay
+                setter: setAcctNumDisplay
+            type: int
+        ownerIndic:
+            expose: true
+            access_type: public_method
+            serialized_name: ownerIndic
+            accessor:
+                getter: getOwnerIndic
+                setter: setOwnerIndic
+            type: string
+        ownerIndicText:
+            expose: true
+            access_type: public_method
+            serialized_name: ownerIndicText
+            accessor:
+                getter: getOwnerIndicText
+                setter: setOwnerIndicText
+            type: string
+        consent:
+            expose: true
+            access_type: public_method
+            serialized_name: consent
+            accessor:
+                getter: getConsent
+                setter: setConsent
+            type: string
+        consentText:
+            expose: true
+            access_type: public_method
+            serialized_name: consentText
+            accessor:
+                getter: getConsentText
+                setter: setConsentText
+            type: string
+        openedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: openedDt
+            accessor:
+                getter: getOpenedDt
+                setter: setOpenedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastPaymtDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastPaymtDt
+            accessor:
+                getter: getLastPaymtDt
+                setter: setLastPaymtDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        completePerformDt:
+            expose: true
+            access_type: public_method
+            serialized_name: completePerformDt
+            accessor:
+                getter: getCompletePerformDt
+                setter: setCompletePerformDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        closedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: closedDt
+            accessor:
+                getter: getClosedDt
+                setter: setClosedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        reportingDt:
+            expose: true
+            access_type: public_method
+            serialized_name: reportingDt
+            accessor:
+                getter: getReportingDt
+                setter: setReportingDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        postedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: postedDt
+            accessor:
+                getter: getPostedDt
+                setter: setPostedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        acctType:
+            expose: true
+            access_type: public_method
+            serialized_name: acctType
+            accessor:
+                getter: getAcctType
+                setter: setAcctType
+            type: string
+        acctTypeText:
+            expose: true
+            access_type: public_method
+            serialized_name: acctTypeText
+            accessor:
+                getter: getAcctTypeText
+                setter: setAcctTypeText
+            type: string
+        acctStatus:
+            expose: true
+            access_type: public_method
+            serialized_name: acctStatus
+            accessor:
+                getter: getAcctStatus
+                setter: setAcctStatus
+            type: string
+        acctStatusText:
+            expose: true
+            access_type: public_method
+            serialized_name: acctStatusText
+            accessor:
+                getter: getAcctStatusText
+                setter: setAcctStatusText
+            type: string
+        loanCode:
+            expose: true
+            access_type: public_method
+            serialized_name: loanCode
+            accessor:
+                getter: getLoanCode
+                setter: setLoanCode
+            type: string
+        loanCodeText:
+            expose: true
+            access_type: public_method
+            serialized_name: loanCodeText
+            accessor:
+                getter: getLoanCodeText
+                setter: setLoanCodeText
+            type: string
+        paymtHistory1:
+            expose: true
+            access_type: public_method
+            serialized_name: paymtHistory1
+            accessor:
+                getter: getPaymtHistory1
+                setter: setPaymtHistory1
+            type: string
+        paymtHistory2:
+            expose: true
+            access_type: public_method
+            serialized_name: paymtHistory2
+            accessor:
+                getter: getPaymtHistory2
+                setter: setPaymtHistory2
+            type: string
+        paymtHistoryStartDt:
+            expose: true
+            access_type: public_method
+            serialized_name: paymtHistoryStartDt
+            accessor:
+                getter: getPaymtHistoryStartDt
+                setter: setPaymtHistoryStartDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        paymtHistoryEndDt:
+            expose: true
+            access_type: public_method
+            serialized_name: paymtHistoryEndDt
+            accessor:
+                getter: getPaymtHistoryEndDt
+                setter: setPaymtHistoryEndDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        loanObjectiveText:
+            expose: true
+            access_type: public_method
+            serialized_name: loanObjectiveText
+            accessor:
+                getter: getLoanObjectiveText
+                setter: setLoanObjectiveText
+            type: string
+        collateralCode:
+            expose: true
+            access_type: public_method
+            serialized_name: collateralCode
+            accessor:
+                getter: getCollateralCode
+                setter: setCollateralCode
+            type: string
+        collateralValue:
+            expose: true
+            access_type: public_method
+            serialized_name: collateralValue
+            accessor:
+                getter: getCollateralValue
+                setter: setCollateralValue
+            type: string
+        collateralDate:
+            expose: true
+            access_type: public_method
+            serialized_name: collateralDate
+            accessor:
+                getter: getCollateralDate
+                setter: setCollateralDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        collateralExpirationDate:
+            expose: true
+            access_type: public_method
+            serialized_name: collateralExpirationDate
+            accessor:
+                getter: getCollateralExpirationDate
+                setter: setCollateralExpirationDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        collateral1Text:
+            expose: true
+            access_type: public_method
+            serialized_name: collateral1Text
+            accessor:
+                getter: getCollateral1Text
+                setter: setCollateral1Text
+            type: string
+        collateral2Text:
+            expose: true
+            access_type: public_method
+            serialized_name: collateral2Text
+            accessor:
+                getter: getCollateral2Text
+                setter: setCollateral2Text
+            type: string
+        collateral3Text:
+            expose: true
+            access_type: public_method
+            serialized_name: collateral3Text
+            accessor:
+                getter: getCollateral3Text
+                setter: setCollateral3Text
+            type: string
+        collateral:
+            expose: true
+            access_type: public_method
+            serialized_name: collateral
+            accessor:
+                getter: getCollateral
+                setter: setCollateral
+            xml_list:
+                inline: true
+                entry_name: collateral
+            type: array<mfteam\nbch\generated\models\CollateralType>
+        lastDebtRestructureDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastDebtRestructureDt
+            accessor:
+                getter: getLastDebtRestructureDt
+                setter: setLastDebtRestructureDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        percentPayment:
+            expose: true
+            access_type: public_method
+            serialized_name: percentPayment
+            accessor:
+                getter: getPercentPayment
+                setter: setPercentPayment
+            type: int
+        creditCardTypeCode:
+            expose: true
+            access_type: public_method
+            serialized_name: creditCardTypeCode
+            accessor:
+                getter: getCreditCardTypeCode
+                setter: setCreditCardTypeCode
+            type: string
+        creditCardTypeCodeText:
+            expose: true
+            access_type: public_method
+            serialized_name: creditCardTypeCodeText
+            accessor:
+                getter: getCreditCardTypeCodeText
+                setter: setCreditCardTypeCodeText
+            type: string
+        numCoborrowers:
+            expose: true
+            access_type: public_method
+            serialized_name: numCoborrowers
+            accessor:
+                getter: getNumCoborrowers
+                setter: setNumCoborrowers
+            type: int
+        unitMakeText:
+            expose: true
+            access_type: public_method
+            serialized_name: unitMakeText
+            accessor:
+                getter: getUnitMakeText
+                setter: setUnitMakeText
+            type: string
+        unitModelText:
+            expose: true
+            access_type: public_method
+            serialized_name: unitModelText
+            accessor:
+                getter: getUnitModelText
+                setter: setUnitModelText
+            type: string
+        creditTypeFlagCode:
+            expose: true
+            access_type: public_method
+            serialized_name: creditTypeFlagCode
+            accessor:
+                getter: getCreditTypeFlagCode
+                setter: setCreditTypeFlagCode
+            type: string
+        narrativeCode1:
+            expose: true
+            access_type: public_method
+            serialized_name: narrativeCode1
+            accessor:
+                getter: getNarrativeCode1
+                setter: setNarrativeCode1
+            type: string
+        narrativeCode2:
+            expose: true
+            access_type: public_method
+            serialized_name: narrativeCode2
+            accessor:
+                getter: getNarrativeCode2
+                setter: setNarrativeCode2
+            type: string
+        narrativeCode1Text:
+            expose: true
+            access_type: public_method
+            serialized_name: narrativeCode1Text
+            accessor:
+                getter: getNarrativeCode1Text
+                setter: setNarrativeCode1Text
+            type: string
+        narrativeCode2Text:
+            expose: true
+            access_type: public_method
+            serialized_name: narrativeCode2Text
+            accessor:
+                getter: getNarrativeCode2Text
+                setter: setNarrativeCode2Text
+            type: string
+        currencyCode:
+            expose: true
+            access_type: public_method
+            serialized_name: currencyCode
+            accessor:
+                getter: getCurrencyCode
+                setter: setCurrencyCode
+            type: string
+        highCreditAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: highCreditAmt
+            accessor:
+                getter: getHighCreditAmt
+                setter: setHighCreditAmt
+            type: int
+        creditLimit:
+            expose: true
+            access_type: public_method
+            serialized_name: creditLimit
+            accessor:
+                getter: getCreditLimit
+                setter: setCreditLimit
+            type: int
+        curBalanceAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: curBalanceAmt
+            accessor:
+                getter: getCurBalanceAmt
+                setter: setCurBalanceAmt
+            type: int
+        amtPastDue:
+            expose: true
+            access_type: public_method
+            serialized_name: amtPastDue
+            accessor:
+                getter: getAmtPastDue
+                setter: setAmtPastDue
+            type: int
+        termsNumPaymts:
+            expose: true
+            access_type: public_method
+            serialized_name: termsNumPaymts
+            accessor:
+                getter: getTermsNumPaymts
+                setter: setTermsNumPaymts
+            type: int
+        termsFrequency:
+            expose: true
+            access_type: public_method
+            serialized_name: termsFrequency
+            accessor:
+                getter: getTermsFrequency
+                setter: setTermsFrequency
+            type: string
+        guarantorIndicatorCode:
+            expose: true
+            access_type: public_method
+            serialized_name: guarantorIndicatorCode
+            accessor:
+                getter: getGuarantorIndicatorCode
+                setter: setGuarantorIndicatorCode
+            type: string
+        guarantorIndicatorCodeText:
+            expose: true
+            access_type: public_method
+            serialized_name: guarantorIndicatorCodeText
+            accessor:
+                getter: getGuarantorIndicatorCodeText
+                setter: setGuarantorIndicatorCodeText
+            type: string
+        guaranteeVolumeCode:
+            expose: true
+            access_type: public_method
+            serialized_name: guaranteeVolumeCode
+            accessor:
+                getter: getGuaranteeVolumeCode
+                setter: setGuaranteeVolumeCode
+            type: string
+        guaranteeVolumeCodeText:
+            expose: true
+            access_type: public_method
+            serialized_name: guaranteeVolumeCodeText
+            accessor:
+                getter: getGuaranteeVolumeCodeText
+                setter: setGuaranteeVolumeCodeText
+            type: string
+        guaranteeAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: guaranteeAmt
+            accessor:
+                getter: getGuaranteeAmt
+                setter: setGuaranteeAmt
+            type: int
+        guaranteeTerm:
+            expose: true
+            access_type: public_method
+            serialized_name: guaranteeTerm
+            accessor:
+                getter: getGuaranteeTerm
+                setter: setGuaranteeTerm
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        guarantor:
+            expose: true
+            access_type: public_method
+            serialized_name: guarantor
+            accessor:
+                getter: getGuarantor
+                setter: setGuarantor
+            xml_list:
+                inline: true
+                entry_name: guarantor
+            type: array<mfteam\nbch\generated\models\GuarantorType>
+        bankGuaranteeIndicatorCode:
+            expose: true
+            access_type: public_method
+            serialized_name: bankGuaranteeIndicatorCode
+            accessor:
+                getter: getBankGuaranteeIndicatorCode
+                setter: setBankGuaranteeIndicatorCode
+            type: string
+        bankGuaranteeIndicatorCodeText:
+            expose: true
+            access_type: public_method
+            serialized_name: bankGuaranteeIndicatorCodeText
+            accessor:
+                getter: getBankGuaranteeIndicatorCodeText
+                setter: setBankGuaranteeIndicatorCodeText
+            type: string
+        bankGuaranteeVolumeCode:
+            expose: true
+            access_type: public_method
+            serialized_name: bankGuaranteeVolumeCode
+            accessor:
+                getter: getBankGuaranteeVolumeCode
+                setter: setBankGuaranteeVolumeCode
+            type: string
+        bankGuaranteeVolumeCodeText:
+            expose: true
+            access_type: public_method
+            serialized_name: bankGuaranteeVolumeCodeText
+            accessor:
+                getter: getBankGuaranteeVolumeCodeText
+                setter: setBankGuaranteeVolumeCodeText
+            type: string
+        bankGuaranteeAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: bankGuaranteeAmt
+            accessor:
+                getter: getBankGuaranteeAmt
+                setter: setBankGuaranteeAmt
+            type: int
+        bankGuaranteeTerm:
+            expose: true
+            access_type: public_method
+            serialized_name: bankGuaranteeTerm
+            accessor:
+                getter: getBankGuaranteeTerm
+                setter: setBankGuaranteeTerm
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        bankGuarantee:
+            expose: true
+            access_type: public_method
+            serialized_name: bankGuarantee
+            accessor:
+                getter: getBankGuarantee
+                setter: setBankGuarantee
+            xml_list:
+                inline: true
+                entry_name: bankGuarantee
+            type: array<mfteam\nbch\generated\models\BankGuaranteeType>
+        rightOfClaimName:
+            expose: true
+            access_type: public_method
+            serialized_name: rightOfClaimName
+            accessor:
+                getter: getRightOfClaimName
+                setter: setRightOfClaimName
+            type: string
+        rightOfClaimID:
+            expose: true
+            access_type: public_method
+            serialized_name: rightOfClaimID
+            accessor:
+                getter: getRightOfClaimID
+                setter: setRightOfClaimID
+            type: string
+        rightOfClaimINN:
+            expose: true
+            access_type: public_method
+            serialized_name: rightOfClaimINN
+            accessor:
+                getter: getRightOfClaimINN
+                setter: setRightOfClaimINN
+            type: string
+        rightOfClaimSNILS:
+            expose: true
+            access_type: public_method
+            serialized_name: rightOfClaimSNILS
+            accessor:
+                getter: getRightOfClaimSNILS
+                setter: setRightOfClaimSNILS
+            type: string
+        creditTotalAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: creditTotalAmt
+            accessor:
+                getter: getCreditTotalAmt
+                setter: setCreditTotalAmt
+            type: string
+        termsAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: termsAmt
+            accessor:
+                getter: getTermsAmt
+                setter: setTermsAmt
+            type: int
+        baloonPaymtAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: baloonPaymtAmt
+            accessor:
+                getter: getBaloonPaymtAmt
+                setter: setBaloonPaymtAmt
+            type: int
+        baloonPaymtDt:
+            expose: true
+            access_type: public_method
+            serialized_name: baloonPaymtDt
+            accessor:
+                getter: getBaloonPaymtDt
+                setter: setBaloonPaymtDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastPurchasedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastPurchasedDt
+            accessor:
+                getter: getLastPurchasedDt
+                setter: setLastPurchasedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        amtOutstanding:
+            expose: true
+            access_type: public_method
+            serialized_name: amtOutstanding
+            accessor:
+                getter: getAmtOutstanding
+                setter: setAmtOutstanding
+            type: int
+        firstDelqDt:
+            expose: true
+            access_type: public_method
+            serialized_name: firstDelqDt
+            accessor:
+                getter: getFirstDelqDt
+                setter: setFirstDelqDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        maxDelqDt:
+            expose: true
+            access_type: public_method
+            serialized_name: maxDelqDt
+            accessor:
+                getter: getMaxDelqDt
+                setter: setMaxDelqDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        maxDelq:
+            expose: true
+            access_type: public_method
+            serialized_name: maxDelq
+            accessor:
+                getter: getMaxDelq
+                setter: setMaxDelq
+            type: int
+        maxDelqAmtDt:
+            expose: true
+            access_type: public_method
+            serialized_name: maxDelqAmtDt
+            accessor:
+                getter: getMaxDelqAmtDt
+                setter: setMaxDelqAmtDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        maxDelqAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: maxDelqAmt
+            accessor:
+                getter: getMaxDelqAmt
+                setter: setMaxDelqAmt
+            type: int
+        monthsReviewed:
+            expose: true
+            access_type: public_method
+            serialized_name: monthsReviewed
+            accessor:
+                getter: getMonthsReviewed
+                setter: setMonthsReviewed
+            type: int
+        numDays30:
+            expose: true
+            access_type: public_method
+            serialized_name: numDays30
+            accessor:
+                getter: getNumDays30
+                setter: setNumDays30
+            type: int
+        numDays60:
+            expose: true
+            access_type: public_method
+            serialized_name: numDays60
+            accessor:
+                getter: getNumDays60
+                setter: setNumDays60
+            type: int
+        numDays90:
+            expose: true
+            access_type: public_method
+            serialized_name: numDays90
+            accessor:
+                getter: getNumDays90
+                setter: setNumDays90
+            type: int
+        numDays120:
+            expose: true
+            access_type: public_method
+            serialized_name: numDays120
+            accessor:
+                getter: getNumDays120
+                setter: setNumDays120
+            type: int
+        paymtPat:
+            expose: true
+            access_type: public_method
+            serialized_name: paymtPat
+            accessor:
+                getter: getPaymtPat
+                setter: setPaymtPat
+            type: string
+        mOP:
+            expose: true
+            access_type: public_method
+            serialized_name: MOP
+            accessor:
+                getter: getMOP
+                setter: setMOP
+            type: string
+        mOPText:
+            expose: true
+            access_type: public_method
+            serialized_name: MOPText
+            accessor:
+                getter: getMOPText
+                setter: setMOPText
+            type: string
+        mOPMaxValue:
+            expose: true
+            access_type: public_method
+            serialized_name: MOPMaxValue
+            accessor:
+                getter: getMOPMaxValue
+                setter: setMOPMaxValue
+            type: int
+        mOPMaxValueText:
+            expose: true
+            access_type: public_method
+            serialized_name: MOPMaxValueText
+            accessor:
+                getter: getMOPMaxValueText
+                setter: setMOPMaxValueText
+            type: string
+        paymtPatStartDt:
+            expose: true
+            access_type: public_method
+            serialized_name: paymtPatStartDt
+            accessor:
+                getter: getPaymtPatStartDt
+                setter: setPaymtPatStartDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        freezeFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: freezeFlag
+            accessor:
+                getter: getFreezeFlag
+                setter: setFreezeFlag
+            type: string
+        suppressFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressFlag
+            accessor:
+                getter: getSuppressFlag
+                setter: setSuppressFlag
+            type: string
+        suppressStrDt:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressStrDt
+            accessor:
+                getter: getSuppressStrDt
+                setter: setSuppressStrDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        suppressEndDt:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressEndDt
+            accessor:
+                getter: getSuppressEndDt
+                setter: setSuppressEndDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        paymtFreqText:
+            expose: true
+            access_type: public_method
+            serialized_name: paymtFreqText
+            accessor:
+                getter: getPaymtFreqText
+                setter: setPaymtFreqText
+            type: string
+        creditAgreementNum:
+            expose: true
+            access_type: public_method
+            serialized_name: creditAgreementNum
+            accessor:
+                getter: getCreditAgreementNum
+                setter: setCreditAgreementNum
+            type: string
+        accountRelationship:
+            expose: true
+            access_type: public_method
+            serialized_name: accountRelationship
+            accessor:
+                getter: getAccountRelationship
+                setter: setAccountRelationship
+            type: string
+        accountRelationshipText:
+            expose: true
+            access_type: public_method
+            serialized_name: accountRelationshipText
+            accessor:
+                getter: getAccountRelationshipText
+                setter: setAccountRelationshipText
+            type: string
+        accountRating:
+            expose: true
+            access_type: public_method
+            serialized_name: accountRating
+            accessor:
+                getter: getAccountRating
+                setter: setAccountRating
+            type: string
+        accountRatingText:
+            expose: true
+            access_type: public_method
+            serialized_name: accountRatingText
+            accessor:
+                getter: getAccountRatingText
+                setter: setAccountRatingText
+            type: string
+        accountRatingDate:
+            expose: true
+            access_type: public_method
+            serialized_name: accountRatingDate
+            accessor:
+                getter: getAccountRatingDate
+                setter: setAccountRatingDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        contractTerminationDate:
+            expose: true
+            access_type: public_method
+            serialized_name: contractTerminationDate
+            accessor:
+                getter: getContractTerminationDate
+                setter: setContractTerminationDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        paymentDueDate:
+            expose: true
+            access_type: public_method
+            serialized_name: paymentDueDate
+            accessor:
+                getter: getPaymentDueDate
+                setter: setPaymentDueDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        oldMemeberCode:
+            expose: true
+            access_type: public_method
+            serialized_name: oldMemeberCode
+            accessor:
+                getter: getOldMemeberCode
+                setter: setOldMemeberCode
+            type: string
+        oldCreditAgreementNumber:
+            expose: true
+            access_type: public_method
+            serialized_name: oldCreditAgreementNumber
+            accessor:
+                getter: getOldCreditAgreementNumber
+                setter: setOldCreditAgreementNumber
+            type: string
+        interestPaymentDueDate:
+            expose: true
+            access_type: public_method
+            serialized_name: interestPaymentDueDate
+            accessor:
+                getter: getInterestPaymentDueDate
+                setter: setInterestPaymentDueDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        interestPaymentFrequencyCode:
+            expose: true
+            access_type: public_method
+            serialized_name: interestPaymentFrequencyCode
+            accessor:
+                getter: getInterestPaymentFrequencyCode
+                setter: setInterestPaymentFrequencyCode
+            type: string
+        interestPaymentFrequencyText:
+            expose: true
+            access_type: public_method
+            serialized_name: interestPaymentFrequencyText
+            accessor:
+                getter: getInterestPaymentFrequencyText
+                setter: setInterestPaymentFrequencyText
+            type: string
+        memberFullName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberFullName
+            accessor:
+                getter: getMemberFullName
+                setter: setMemberFullName
+            type: string
+        memberShortName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberShortName
+            accessor:
+                getter: getMemberShortName
+                setter: setMemberShortName
+            type: string
+        memberLastName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberLastName
+            accessor:
+                getter: getMemberLastName
+                setter: setMemberLastName
+            type: string
+        memberFirstName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberFirstName
+            accessor:
+                getter: getMemberFirstName
+                setter: setMemberFirstName
+            type: string
+        memberMiddleName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberMiddleName
+            accessor:
+                getter: getMemberMiddleName
+                setter: setMemberMiddleName
+            type: string
+        memberRegNum:
+            expose: true
+            access_type: public_method
+            serialized_name: memberRegNum
+            accessor:
+                getter: getMemberRegNum
+                setter: setMemberRegNum
+            type: string
+        memberType:
+            expose: true
+            access_type: public_method
+            serialized_name: memberType
+            accessor:
+                getter: getMemberType
+                setter: setMemberType
+            type: string
+        memberTaxpayerID:
+            expose: true
+            access_type: public_method
+            serialized_name: memberTaxpayerID
+            accessor:
+                getter: getMemberTaxpayerID
+                setter: setMemberTaxpayerID
+            type: string
+        memberOKPO:
+            expose: true
+            access_type: public_method
+            serialized_name: memberOKPO
+            accessor:
+                getter: getMemberOKPO
+                setter: setMemberOKPO
+            type: string
+        memberIDIssueAuth:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIDIssueAuth
+            accessor:
+                getter: getMemberIDIssueAuth
+                setter: setMemberIDIssueAuth
+            type: string
+        memberIDIssueLoc:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIDIssueLoc
+            accessor:
+                getter: getMemberIDIssueLoc
+                setter: setMemberIDIssueLoc
+            type: string
+        memberIDIssueDate:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIDIssueDate
+            accessor:
+                getter: getMemberIDIssueDate
+                setter: setMemberIDIssueDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        memberBusinessCode:
+            expose: true
+            access_type: public_method
+            serialized_name: memberBusinessCode
+            accessor:
+                getter: getMemberBusinessCode
+                setter: setMemberBusinessCode
+            type: string
+        businessCategory:
+            expose: true
+            access_type: public_method
+            serialized_name: businessCategory
+            accessor:
+                getter: getBusinessCategory
+                setter: setBusinessCategory
+            type: string
+        partnerRating:
+            expose: true
+            access_type: public_method
+            serialized_name: partnerRating
+            accessor:
+                getter: getPartnerRating
+                setter: setPartnerRating
+            type: string
+        partnerStartDate:
+            expose: true
+            access_type: public_method
+            serialized_name: partnerStartDate
+            accessor:
+                getter: getPartnerStartDate
+                setter: setPartnerStartDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        partnerRegDate:
+            expose: true
+            access_type: public_method
+            serialized_name: partnerRegDate
+            accessor:
+                getter: getPartnerRegDate
+                setter: setPartnerRegDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        disputedStatus:
+            expose: true
+            access_type: public_method
+            serialized_name: disputedStatus
+            accessor:
+                getter: getDisputedStatus
+                setter: setDisputedStatus
+            type: string
+        disputedStatusText:
+            expose: true
+            access_type: public_method
+            serialized_name: disputedStatusText
+            accessor:
+                getter: getDisputedStatusText
+                setter: setDisputedStatusText
+            type: string
+        principalOutstanding:
+            expose: true
+            access_type: public_method
+            serialized_name: principalOutstanding
+            accessor:
+                getter: getPrincipalOutstanding
+                setter: setPrincipalOutstanding
+            type: int
+        intOutstanding:
+            expose: true
+            access_type: public_method
+            serialized_name: intOutstanding
+            accessor:
+                getter: getIntOutstanding
+                setter: setIntOutstanding
+            type: int
+        otherAmtOutstanding:
+            expose: true
+            access_type: public_method
+            serialized_name: otherAmtOutstanding
+            accessor:
+                getter: getOtherAmtOutstanding
+                setter: setOtherAmtOutstanding
+            type: int
+        principalPastDue:
+            expose: true
+            access_type: public_method
+            serialized_name: principalPastDue
+            accessor:
+                getter: getPrincipalPastDue
+                setter: setPrincipalPastDue
+            type: int
+        intPastDue:
+            expose: true
+            access_type: public_method
+            serialized_name: intPastDue
+            accessor:
+                getter: getIntPastDue
+                setter: setIntPastDue
+            type: int
+        otherAmtPastDue:
+            expose: true
+            access_type: public_method
+            serialized_name: otherAmtPastDue
+            accessor:
+                getter: getOtherAmtPastDue
+                setter: setOtherAmtPastDue
+            type: int
+        graceEndDt:
+            expose: true
+            access_type: public_method
+            serialized_name: graceEndDt
+            accessor:
+                getter: getGraceEndDt
+                setter: setGraceEndDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        gracePeriodReason:
+            expose: true
+            access_type: public_method
+            serialized_name: gracePeriodReason
+            accessor:
+                getter: getGracePeriodReason
+                setter: setGracePeriodReason
+            type: int
+        gracePeriodDeclinedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: gracePeriodDeclinedDt
+            accessor:
+                getter: getGracePeriodDeclinedDt
+                setter: setGracePeriodDeclinedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        creditTotalMonetaryAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: creditTotalMonetaryAmt
+            accessor:
+                getter: getCreditTotalMonetaryAmt
+                setter: setCreditTotalMonetaryAmt
+            type: string
+        uuid:
+            expose: true
+            access_type: public_method
+            serialized_name: uuid
+            accessor:
+                getter: getUuid
+                setter: setUuid
+            type: string
+        amendment:
+            expose: true
+            access_type: public_method
+            serialized_name: amendment
+            accessor:
+                getter: getAmendment
+                setter: setAmendment
+            xml_list:
+                inline: true
+                entry_name: amendment
+            type: array<mfteam\nbch\generated\models\AmendmentType>
+        payment:
+            expose: true
+            access_type: public_method
+            serialized_name: payment
+            accessor:
+                getter: getPayment
+                setter: setPayment
+            xml_list:
+                inline: true
+                entry_name: payment
+            type: array<mfteam\nbch\generated\models\PaymentType>
+        historyInternal:
+            expose: true
+            access_type: public_method
+            serialized_name: historyInternal
+            accessor:
+                getter: getHistoryInternal
+                setter: setHistoryInternal
+            xml_list:
+                inline: true
+                entry_name: historyInternal
+            type: array<mfteam\nbch\generated\models\HistoryInternalType>

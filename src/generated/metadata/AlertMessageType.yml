@@ -1,0 +1,50 @@
+mfteam\nbch\generated\models\AlertMessageType:
+    properties:
+        title:
+            expose: true
+            access_type: public_method
+            serialized_name: title
+            accessor:
+                getter: getTitle
+                setter: setTitle
+            type: string
+        message:
+            expose: true
+            access_type: public_method
+            serialized_name: message
+            accessor:
+                getter: getMessage
+                setter: setMessage
+            type: string
+        category:
+            expose: true
+            access_type: public_method
+            serialized_name: category
+            accessor:
+                getter: getCategory
+                setter: setCategory
+            type: int
+        code:
+            expose: true
+            access_type: public_method
+            serialized_name: code
+            accessor:
+                getter: getCode
+                setter: setCode
+            type: int
+        severity:
+            expose: true
+            access_type: public_method
+            serialized_name: severity
+            accessor:
+                getter: getSeverity
+                setter: setSeverity
+            type: int
+        view:
+            expose: true
+            access_type: public_method
+            serialized_name: view
+            accessor:
+                getter: getView
+                setter: setView
+            type: string

@@ -1,0 +1,162 @@
+mfteam\nbch\generated\models\PhoneType:
+    properties:
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        number:
+            expose: true
+            access_type: public_method
+            serialized_name: number
+            accessor:
+                getter: getNumber
+                setter: setNumber
+            type: string
+        srcCountryCode:
+            expose: true
+            access_type: public_method
+            serialized_name: srcCountryCode
+            accessor:
+                getter: getSrcCountryCode
+                setter: setSrcCountryCode
+            type: string
+        srcCountryCodeText:
+            expose: true
+            access_type: public_method
+            serialized_name: srcCountryCodeText
+            accessor:
+                getter: getSrcCountryCodeText
+                setter: setSrcCountryCodeText
+            type: string
+        memberCode:
+            expose: true
+            access_type: public_method
+            serialized_name: memberCode
+            accessor:
+                getter: getMemberCode
+                setter: setMemberCode
+            type: string
+        memberTypeText:
+            expose: true
+            access_type: public_method
+            serialized_name: memberTypeText
+            accessor:
+                getter: getMemberTypeText
+                setter: setMemberTypeText
+            type: string
+        memberNameText:
+            expose: true
+            access_type: public_method
+            serialized_name: memberNameText
+            accessor:
+                getter: getMemberNameText
+                setter: setMemberNameText
+            type: string
+        memberContactText:
+            expose: true
+            access_type: public_method
+            serialized_name: memberContactText
+            accessor:
+                getter: getMemberContactText
+                setter: setMemberContactText
+            type: string
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        phoneType:
+            expose: true
+            access_type: public_method
+            serialized_name: phoneType
+            accessor:
+                getter: getPhoneType
+                setter: setPhoneType
+            type: string
+        phoneTypeText:
+            expose: true
+            access_type: public_method
+            serialized_name: phoneTypeText
+            accessor:
+                getter: getPhoneTypeText
+                setter: setPhoneTypeText
+            type: string
+        phoneExt:
+            expose: true
+            access_type: public_method
+            serialized_name: phoneExt
+            accessor:
+                getter: getPhoneExt
+                setter: setPhoneExt
+            type: string
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        freezeFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: freezeFlag
+            accessor:
+                getter: getFreezeFlag
+                setter: setFreezeFlag
+            type: int
+        suppressFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressFlag
+            accessor:
+                getter: getSuppressFlag
+                setter: setSuppressFlag
+            type: int
+        suppressStrDt:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressStrDt
+            accessor:
+                getter: getSuppressStrDt
+                setter: setSuppressStrDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        suppressEndDt:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressEndDt
+            accessor:
+                getter: getSuppressEndDt
+                setter: setSuppressEndDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        disputedStatus:
+            expose: true
+            access_type: public_method
+            serialized_name: disputedStatus
+            accessor:
+                getter: getDisputedStatus
+                setter: setDisputedStatus
+            type: string
+        disputedStatusText:
+            expose: true
+            access_type: public_method
+            serialized_name: disputedStatusText
+            accessor:
+                getter: getDisputedStatusText
+                setter: setDisputedStatusText
+            type: string

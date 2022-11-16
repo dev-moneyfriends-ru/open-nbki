@@ -1,0 +1,29 @@
+mfteam\nbch\generated\models\ReferenceType:
+    properties:
+        userReference:
+            expose: true
+            access_type: public_method
+            serialized_name: userReference
+            accessor:
+                getter: getUserReference
+                setter: setUserReference
+            type: string
+        product:
+            expose: true
+            access_type: public_method
+            serialized_name: product
+            accessor:
+                getter: getProduct
+                setter: setProduct
+            type: string
+        productAddOn:
+            expose: true
+            access_type: public_method
+            serialized_name: productAddOn
+            accessor:
+                getter: getProductAddOn
+                setter: setProductAddOn
+            xml_list:
+                inline: true
+                entry_name: productAddOn
+            type: array<string>

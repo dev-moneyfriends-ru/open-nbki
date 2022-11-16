@@ -1,0 +1,202 @@
+mfteam\nbch\generated\models\PcrReasonsType:
+    properties:
+        i1:
+            expose: true
+            access_type: public_method
+            serialized_name: I1
+            accessor:
+                getter: getI1
+                setter: setI1
+            type: int
+        i2:
+            expose: true
+            access_type: public_method
+            serialized_name: I2
+            accessor:
+                getter: getI2
+                setter: setI2
+            type: int
+        i3:
+            expose: true
+            access_type: public_method
+            serialized_name: I3
+            accessor:
+                getter: getI3
+                setter: setI3
+            type: int
+        i4:
+            expose: true
+            access_type: public_method
+            serialized_name: I4
+            accessor:
+                getter: getI4
+                setter: setI4
+            type: int
+        a1:
+            expose: true
+            access_type: public_method
+            serialized_name: A1
+            accessor:
+                getter: getA1
+                setter: setA1
+            type: int
+        a2:
+            expose: true
+            access_type: public_method
+            serialized_name: A2
+            accessor:
+                getter: getA2
+                setter: setA2
+            type: int
+        a3:
+            expose: true
+            access_type: public_method
+            serialized_name: A3
+            accessor:
+                getter: getA3
+                setter: setA3
+            type: int
+        a4:
+            expose: true
+            access_type: public_method
+            serialized_name: A4
+            accessor:
+                getter: getA4
+                setter: setA4
+            type: int
+        a5:
+            expose: true
+            access_type: public_method
+            serialized_name: A5
+            accessor:
+                getter: getA5
+                setter: setA5
+            type: int
+        a6:
+            expose: true
+            access_type: public_method
+            serialized_name: A6
+            accessor:
+                getter: getA6
+                setter: setA6
+            type: int
+        a7:
+            expose: true
+            access_type: public_method
+            serialized_name: A7
+            accessor:
+                getter: getA7
+                setter: setA7
+            type: int
+        a8:
+            expose: true
+            access_type: public_method
+            serialized_name: A8
+            accessor:
+                getter: getA8
+                setter: setA8
+            type: int
+        a9:
+            expose: true
+            access_type: public_method
+            serialized_name: A9
+            accessor:
+                getter: getA9
+                setter: setA9
+            type: int
+        a10:
+            expose: true
+            access_type: public_method
+            serialized_name: A10
+            accessor:
+                getter: getA10
+                setter: setA10
+            type: int
+        a11:
+            expose: true
+            access_type: public_method
+            serialized_name: A11
+            accessor:
+                getter: getA11
+                setter: setA11
+            type: int
+        a12:
+            expose: true
+            access_type: public_method
+            serialized_name: A12
+            accessor:
+                getter: getA12
+                setter: setA12
+            type: int
+        a13:
+            expose: true
+            access_type: public_method
+            serialized_name: A13
+            accessor:
+                getter: getA13
+                setter: setA13
+            type: int
+        a14:
+            expose: true
+            access_type: public_method
+            serialized_name: A14
+            accessor:
+                getter: getA14
+                setter: setA14
+            type: int
+        a15:
+            expose: true
+            access_type: public_method
+            serialized_name: A15
+            accessor:
+                getter: getA15
+                setter: setA15
+            type: int
+        a16:
+            expose: true
+            access_type: public_method
+            serialized_name: A16
+            accessor:
+                getter: getA16
+                setter: setA16
+            type: int
+        a17:
+            expose: true
+            access_type: public_method
+            serialized_name: A17
+            accessor:
+                getter: getA17
+                setter: setA17
+            type: int
+        d1:
+            expose: true
+            access_type: public_method
+            serialized_name: D1
+            accessor:
+                getter: getD1
+                setter: setD1
+            type: string
+        d2:
+            expose: true
+            access_type: public_method
+            serialized_name: D2
+            accessor:
+                getter: getD2
+                setter: setD2
+            type: int
+        d3:
+            expose: true
+            access_type: public_method
+            serialized_name: D3
+            accessor:
+                getter: getD3
+                setter: setD3
+            type: string
+        d4:
+            expose: true
+            access_type: public_method
+            serialized_name: D4
+            accessor:
+                getter: getD4
+                setter: setD4
+            type: int

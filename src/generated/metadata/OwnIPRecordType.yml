@@ -1,0 +1,10 @@
+mfteam\nbch\generated\models\OwnIPRecordType:
+    properties:
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int

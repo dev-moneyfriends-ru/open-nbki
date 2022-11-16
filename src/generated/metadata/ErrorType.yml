@@ -1,0 +1,13 @@
+mfteam\nbch\generated\models\ErrorType:
+    properties:
+        ctErr:
+            expose: true
+            access_type: public_method
+            serialized_name: ctErr
+            accessor:
+                getter: getCtErr
+                setter: setCtErr
+            xml_list:
+                inline: true
+                entry_name: ctErr
+            type: array<mfteam\nbch\generated\models\CodeTextType>

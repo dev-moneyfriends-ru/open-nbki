@@ -158,6 +158,21 @@ class Address extends BaseItem
      */
     public $okato;
     
+    /**
+     * @var string
+     */
+    public $phone;
+    
+    /**
+     * @var string
+     */
+    public $phoneComment;
+    
+    /**
+     * @var string
+     */
+    public $email;
+    
     public function rules()
     {
         return array_merge(

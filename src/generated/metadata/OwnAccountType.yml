@@ -1,0 +1,18 @@
+mfteam\nbch\generated\models\OwnAccountType:
+    properties:
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        acctNum:
+            expose: true
+            access_type: public_method
+            serialized_name: acctNum
+            accessor:
+                getter: getAcctNum
+                setter: setAcctNum
+            type: string

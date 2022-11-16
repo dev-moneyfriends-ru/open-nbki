@@ -1,0 +1,234 @@
+mfteam\nbch\generated\models\CollectionType:
+    properties:
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        srcCountryCode:
+            expose: true
+            access_type: public_method
+            serialized_name: srcCountryCode
+            accessor:
+                getter: getSrcCountryCode
+                setter: setSrcCountryCode
+            type: string
+        srcCountryCodeText:
+            expose: true
+            access_type: public_method
+            serialized_name: srcCountryCodeText
+            accessor:
+                getter: getSrcCountryCodeText
+                setter: setSrcCountryCodeText
+            type: string
+        memberCode:
+            expose: true
+            access_type: public_method
+            serialized_name: memberCode
+            accessor:
+                getter: getMemberCode
+                setter: setMemberCode
+            type: string
+        memberTypeText:
+            expose: true
+            access_type: public_method
+            serialized_name: memberTypeText
+            accessor:
+                getter: getMemberTypeText
+                setter: setMemberTypeText
+            type: string
+        memberNameText:
+            expose: true
+            access_type: public_method
+            serialized_name: memberNameText
+            accessor:
+                getter: getMemberNameText
+                setter: setMemberNameText
+            type: string
+        memberContactText:
+            expose: true
+            access_type: public_method
+            serialized_name: memberContactText
+            accessor:
+                getter: getMemberContactText
+                setter: setMemberContactText
+            type: string
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        acctNum:
+            expose: true
+            access_type: public_method
+            serialized_name: acctNum
+            accessor:
+                getter: getAcctNum
+                setter: setAcctNum
+            type: string
+        creditor:
+            expose: true
+            access_type: public_method
+            serialized_name: creditor
+            accessor:
+                getter: getCreditor
+                setter: setCreditor
+            type: string
+        creditorAcct:
+            expose: true
+            access_type: public_method
+            serialized_name: creditorAcct
+            accessor:
+                getter: getCreditorAcct
+                setter: setCreditorAcct
+            type: string
+        status:
+            expose: true
+            access_type: public_method
+            serialized_name: status
+            accessor:
+                getter: getStatus
+                setter: setStatus
+            type: string
+        collectionStatusText:
+            expose: true
+            access_type: public_method
+            serialized_name: collectionStatusText
+            accessor:
+                getter: getCollectionStatusText
+                setter: setCollectionStatusText
+            type: string
+        reportingDt:
+            expose: true
+            access_type: public_method
+            serialized_name: reportingDt
+            accessor:
+                getter: getReportingDt
+                setter: setReportingDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        openedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: openedDt
+            accessor:
+                getter: getOpenedDt
+                setter: setOpenedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        paidDt:
+            expose: true
+            access_type: public_method
+            serialized_name: paidDt
+            accessor:
+                getter: getPaidDt
+                setter: setPaidDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        curBalance:
+            expose: true
+            access_type: public_method
+            serialized_name: curBalance
+            accessor:
+                getter: getCurBalance
+                setter: setCurBalance
+            type: int
+        origBalance:
+            expose: true
+            access_type: public_method
+            serialized_name: origBalance
+            accessor:
+                getter: getOrigBalance
+                setter: setOrigBalance
+            type: int
+        currencyCode:
+            expose: true
+            access_type: public_method
+            serialized_name: currencyCode
+            accessor:
+                getter: getCurrencyCode
+                setter: setCurrencyCode
+            type: string
+        narrativeCode1:
+            expose: true
+            access_type: public_method
+            serialized_name: narrativeCode1
+            accessor:
+                getter: getNarrativeCode1
+                setter: setNarrativeCode1
+            type: string
+        narrativeCode2:
+            expose: true
+            access_type: public_method
+            serialized_name: narrativeCode2
+            accessor:
+                getter: getNarrativeCode2
+                setter: setNarrativeCode2
+            type: string
+        narrativeCode1Text:
+            expose: true
+            access_type: public_method
+            serialized_name: narrativeCode1Text
+            accessor:
+                getter: getNarrativeCode1Text
+                setter: setNarrativeCode1Text
+            type: string
+        narrativeCode2Text:
+            expose: true
+            access_type: public_method
+            serialized_name: narrativeCode2Text
+            accessor:
+                getter: getNarrativeCode2Text
+                setter: setNarrativeCode2Text
+            type: string
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        freezeFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: freezeFlag
+            accessor:
+                getter: getFreezeFlag
+                setter: setFreezeFlag
+            type: int
+        suppressFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressFlag
+            accessor:
+                getter: getSuppressFlag
+                setter: setSuppressFlag
+            type: int
+        suppressStrDt:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressStrDt
+            accessor:
+                getter: getSuppressStrDt
+                setter: setSuppressStrDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        suppressEndDt:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressEndDt
+            accessor:
+                getter: getSuppressEndDt
+                setter: setSuppressEndDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date

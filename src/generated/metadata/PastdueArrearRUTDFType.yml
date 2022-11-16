@@ -1,0 +1,122 @@
+mfteam\nbch\generated\models\PastdueArrearRUTDFType:
+    properties:
+        pastDueDt:
+            expose: true
+            access_type: public_method
+            serialized_name: pastDueDt
+            accessor:
+                getter: getPastDueDt
+                setter: setPastDueDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastPaymentDueCode:
+            expose: true
+            access_type: public_method
+            serialized_name: lastPaymentDueCode
+            accessor:
+                getter: getLastPaymentDueCode
+                setter: setLastPaymentDueCode
+            type: int
+        amtPastDue:
+            expose: true
+            access_type: public_method
+            serialized_name: amtPastDue
+            accessor:
+                getter: getAmtPastDue
+                setter: setAmtPastDue
+            type: string
+        principalAmtPastDue:
+            expose: true
+            access_type: public_method
+            serialized_name: principalAmtPastDue
+            accessor:
+                getter: getPrincipalAmtPastDue
+                setter: setPrincipalAmtPastDue
+            type: string
+        intAmtPastDue:
+            expose: true
+            access_type: public_method
+            serialized_name: intAmtPastDue
+            accessor:
+                getter: getIntAmtPastDue
+                setter: setIntAmtPastDue
+            type: string
+        otherAmtPastDue:
+            expose: true
+            access_type: public_method
+            serialized_name: otherAmtPastDue
+            accessor:
+                getter: getOtherAmtPastDue
+                setter: setOtherAmtPastDue
+            type: string
+        calcDate:
+            expose: true
+            access_type: public_method
+            serialized_name: calcDate
+            accessor:
+                getter: getCalcDate
+                setter: setCalcDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        principalMissedDate:
+            expose: true
+            access_type: public_method
+            serialized_name: principalMissedDate
+            accessor:
+                getter: getPrincipalMissedDate
+                setter: setPrincipalMissedDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        intMissedDate:
+            expose: true
+            access_type: public_method
+            serialized_name: intMissedDate
+            accessor:
+                getter: getIntMissedDate
+                setter: setIntMissedDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        acctSerialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: acctSerialNum
+            accessor:
+                getter: getAcctSerialNum
+                setter: setAcctSerialNum
+            type: string
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        reportingDt:
+            expose: true
+            access_type: public_method
+            serialized_name: reportingDt
+            accessor:
+                getter: getReportingDt
+                setter: setReportingDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date

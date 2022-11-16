@@ -1,0 +1,146 @@
+mfteam\nbch\generated\models\GuarantorType:
+    properties:
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        acctSerialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: acctSerialNum
+            accessor:
+                getter: getAcctSerialNum
+                setter: setAcctSerialNum
+            type: int
+        agreementNumber:
+            expose: true
+            access_type: public_method
+            serialized_name: agreementNumber
+            accessor:
+                getter: getAgreementNumber
+                setter: setAgreementNumber
+            type: string
+        guarantorIndicatorCode:
+            expose: true
+            access_type: public_method
+            serialized_name: guarantorIndicatorCode
+            accessor:
+                getter: getGuarantorIndicatorCode
+                setter: setGuarantorIndicatorCode
+            type: string
+        guarantorIndicatorCodeText:
+            expose: true
+            access_type: public_method
+            serialized_name: guarantorIndicatorCodeText
+            accessor:
+                getter: getGuarantorIndicatorCodeText
+                setter: setGuarantorIndicatorCodeText
+            type: string
+        guaranteeVolumeCode:
+            expose: true
+            access_type: public_method
+            serialized_name: guaranteeVolumeCode
+            accessor:
+                getter: getGuaranteeVolumeCode
+                setter: setGuaranteeVolumeCode
+            type: string
+        guaranteeVolumeCodeText:
+            expose: true
+            access_type: public_method
+            serialized_name: guaranteeVolumeCodeText
+            accessor:
+                getter: getGuaranteeVolumeCodeText
+                setter: setGuaranteeVolumeCodeText
+            type: string
+        guaranteeAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: guaranteeAmt
+            accessor:
+                getter: getGuaranteeAmt
+                setter: setGuaranteeAmt
+            type: int
+        currencyCode:
+            expose: true
+            access_type: public_method
+            serialized_name: currencyCode
+            accessor:
+                getter: getCurrencyCode
+                setter: setCurrencyCode
+            type: string
+        guaranteeTerm:
+            expose: true
+            access_type: public_method
+            serialized_name: guaranteeTerm
+            accessor:
+                getter: getGuaranteeTerm
+                setter: setGuaranteeTerm
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        disputedStatus:
+            expose: true
+            access_type: public_method
+            serialized_name: disputedStatus
+            accessor:
+                getter: getDisputedStatus
+                setter: setDisputedStatus
+            type: string
+        disputedStatusText:
+            expose: true
+            access_type: public_method
+            serialized_name: disputedStatusText
+            accessor:
+                getter: getDisputedStatusText
+                setter: setDisputedStatusText
+            type: string
+        freezeFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: freezeFlag
+            accessor:
+                getter: getFreezeFlag
+                setter: setFreezeFlag
+            type: string
+        suppressFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressFlag
+            accessor:
+                getter: getSuppressFlag
+                setter: setSuppressFlag
+            type: string
+        suppressStrDt:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressStrDt
+            accessor:
+                getter: getSuppressStrDt
+                setter: setSuppressStrDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        suppressEndDt:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressEndDt
+            accessor:
+                getter: getSuppressEndDt
+                setter: setSuppressEndDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date

@@ -1,0 +1,221 @@
+mfteam\nbch\generated\models\CreditReportRequestType:
+    properties:
+        accountReq:
+            expose: true
+            access_type: public_method
+            serialized_name: AccountReq
+            accessor:
+                getter: getAccountReq
+                setter: setAccountReq
+            xml_list:
+                inline: true
+                entry_name: AccountReq
+            type: array<mfteam\nbch\generated\models\AccountType>
+        addressReq:
+            expose: true
+            access_type: public_method
+            serialized_name: AddressReq
+            accessor:
+                getter: getAddressReq
+                setter: setAddressReq
+            xml_list:
+                inline: true
+                entry_name: AddressReq
+            type: array<mfteam\nbch\generated\models\AddressType>
+        employmentReq:
+            expose: true
+            access_type: public_method
+            serialized_name: EmploymentReq
+            accessor:
+                getter: getEmploymentReq
+                setter: setEmploymentReq
+            type: mfteam\nbch\generated\models\EmploymentType
+        idReq:
+            expose: true
+            access_type: public_method
+            serialized_name: IdReq
+            accessor:
+                getter: getIdReq
+                setter: setIdReq
+            xml_list:
+                inline: true
+                entry_name: IdReq
+            type: array<mfteam\nbch\generated\models\IdType>
+        inquiryReq:
+            expose: true
+            access_type: public_method
+            serialized_name: InquiryReq
+            accessor:
+                getter: getInquiryReq
+                setter: setInquiryReq
+            type: mfteam\nbch\generated\models\InquiryType
+        personReq:
+            expose: true
+            access_type: public_method
+            serialized_name: PersonReq
+            accessor:
+                getter: getPersonReq
+                setter: setPersonReq
+            xml_list:
+                inline: true
+                entry_name: PersonReq
+            type: array<mfteam\nbch\generated\models\PersonType>
+        businessReq:
+            expose: true
+            access_type: public_method
+            serialized_name: BusinessReq
+            accessor:
+                getter: getBusinessReq
+                setter: setBusinessReq
+            xml_list:
+                inline: true
+                entry_name: BusinessReq
+            type: array<mfteam\nbch\generated\models\BusinessType>
+        classificationReq:
+            expose: true
+            access_type: public_method
+            serialized_name: ClassificationReq
+            accessor:
+                getter: getClassificationReq
+                setter: setClassificationReq
+            xml_list:
+                inline: true
+                entry_name: ClassificationReq
+            type: array<mfteam\nbch\generated\models\ClassificationType>
+        phoneReq:
+            expose: true
+            access_type: public_method
+            serialized_name: PhoneReq
+            accessor:
+                getter: getPhoneReq
+                setter: setPhoneReq
+            xml_list:
+                inline: true
+                entry_name: PhoneReq
+            type: array<mfteam\nbch\generated\models\PhoneType>
+        alertReq:
+            expose: true
+            access_type: public_method
+            serialized_name: alertReq
+            accessor:
+                getter: getAlertReq
+                setter: setAlertReq
+            xml_list:
+                inline: true
+                entry_name: alertReq
+            type: array<mfteam\nbch\generated\models\AlertMessageType>
+        requestorReq:
+            expose: true
+            access_type: public_method
+            serialized_name: RequestorReq
+            accessor:
+                getter: getRequestorReq
+                setter: setRequestorReq
+            type: mfteam\nbch\generated\models\RequestorType
+        refReq:
+            expose: true
+            access_type: public_method
+            serialized_name: RefReq
+            accessor:
+                getter: getRefReq
+                setter: setRefReq
+            type: mfteam\nbch\generated\models\ReferenceType
+        brokerReq:
+            expose: true
+            access_type: public_method
+            serialized_name: BrokerReq
+            accessor:
+                getter: getBrokerReq
+                setter: setBrokerReq
+            type: mfteam\nbch\generated\models\BrokerType
+        contactReq:
+            expose: true
+            access_type: public_method
+            serialized_name: ContactReq
+            accessor:
+                getter: getContactReq
+                setter: setContactReq
+            type: mfteam\nbch\generated\models\ContactType
+        regnumReq:
+            expose: true
+            access_type: public_method
+            serialized_name: RegnumReq
+            accessor:
+                getter: getRegnumReq
+                setter: setRegnumReq
+            xml_list:
+                inline: true
+                entry_name: RegnumReq
+            type: array<mfteam\nbch\generated\models\RegnumType>
+        sNILSReq:
+            expose: true
+            access_type: public_method
+            serialized_name: SNILSReq
+            accessor:
+                getter: getSNILSReq
+                setter: setSNILSReq
+            type: mfteam\nbch\generated\models\SnilsType
+        requestDateTime:
+            expose: true
+            access_type: public_method
+            serialized_name: requestDateTime
+            accessor:
+                getter: getRequestDateTime
+                setter: setRequestDateTime
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        iOType:
+            expose: true
+            access_type: public_method
+            serialized_name: IOType
+            accessor:
+                getter: getIOType
+                setter: setIOType
+            type: string
+        outputFormat:
+            expose: true
+            access_type: public_method
+            serialized_name: OutputFormat
+            accessor:
+                getter: getOutputFormat
+                setter: setOutputFormat
+            type: string
+        password:
+            expose: true
+            access_type: public_method
+            serialized_name: Password
+            accessor:
+                getter: getPassword
+                setter: setPassword
+            type: string
+        lang:
+            expose: true
+            access_type: public_method
+            serialized_name: lang
+            accessor:
+                getter: getLang
+                setter: setLang
+            type: string
+        version:
+            expose: true
+            access_type: public_method
+            serialized_name: version
+            accessor:
+                getter: getVersion
+                setter: setVersion
+            type: mfteam\nbch\generated\models\CreditReportRequestType\VersionAType
+        outputVersion:
+            expose: true
+            access_type: public_method
+            serialized_name: outputVersion
+            accessor:
+                getter: getOutputVersion
+                setter: setOutputVersion
+            type: string
+        allAddressBlocks:
+            expose: true
+            access_type: public_method
+            serialized_name: allAddressBlocks
+            accessor:
+                getter: getAllAddressBlocks
+                setter: setAllAddressBlocks
+            type: string

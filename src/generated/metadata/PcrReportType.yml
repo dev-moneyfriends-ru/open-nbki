@@ -1,0 +1,29 @@
+mfteam\nbch\generated\models\PcrReportType:
+    properties:
+        score:
+            expose: true
+            access_type: public_method
+            serialized_name: score
+            accessor:
+                getter: getScore
+                setter: setScore
+            xml_list:
+                inline: true
+                entry_name: score
+            type: array<mfteam\nbch\generated\models\PcrReportType\ScoreAType>
+        reasons:
+            expose: true
+            access_type: public_method
+            serialized_name: reasons
+            accessor:
+                getter: getReasons
+                setter: setReasons
+            type: mfteam\nbch\generated\models\PcrReasonsType
+        exclusionCode:
+            expose: true
+            access_type: public_method
+            serialized_name: exclusionCode
+            accessor:
+                getter: getExclusionCode
+                setter: setExclusionCode
+            type: int

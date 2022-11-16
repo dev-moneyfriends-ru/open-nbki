@@ -1,0 +1,410 @@
+mfteam\nbch\generated\models\PersonType:
+    properties:
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        srcCountryCode:
+            expose: true
+            access_type: public_method
+            serialized_name: srcCountryCode
+            accessor:
+                getter: getSrcCountryCode
+                setter: setSrcCountryCode
+            type: string
+        srcCountryCodeText:
+            expose: true
+            access_type: public_method
+            serialized_name: srcCountryCodeText
+            accessor:
+                getter: getSrcCountryCodeText
+                setter: setSrcCountryCodeText
+            type: string
+        customerType:
+            expose: true
+            access_type: public_method
+            serialized_name: customerType
+            accessor:
+                getter: getCustomerType
+                setter: setCustomerType
+            type: string
+        memberCode:
+            expose: true
+            access_type: public_method
+            serialized_name: memberCode
+            accessor:
+                getter: getMemberCode
+                setter: setMemberCode
+            type: string
+        memberTypeText:
+            expose: true
+            access_type: public_method
+            serialized_name: memberTypeText
+            accessor:
+                getter: getMemberTypeText
+                setter: setMemberTypeText
+            type: string
+        memberNameText:
+            expose: true
+            access_type: public_method
+            serialized_name: memberNameText
+            accessor:
+                getter: getMemberNameText
+                setter: setMemberNameText
+            type: string
+        memberContactText:
+            expose: true
+            access_type: public_method
+            serialized_name: memberContactText
+            accessor:
+                getter: getMemberContactText
+                setter: setMemberContactText
+            type: string
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        name1:
+            expose: true
+            access_type: public_method
+            serialized_name: name1
+            accessor:
+                getter: getName1
+                setter: setName1
+            type: string
+        name2:
+            expose: true
+            access_type: public_method
+            serialized_name: name2
+            accessor:
+                getter: getName2
+                setter: setName2
+            type: string
+        name3:
+            expose: true
+            access_type: public_method
+            serialized_name: name3
+            accessor:
+                getter: getName3
+                setter: setName3
+            type: string
+        first:
+            expose: true
+            access_type: public_method
+            serialized_name: first
+            accessor:
+                getter: getFirst
+                setter: setFirst
+            type: string
+        middle:
+            expose: true
+            access_type: public_method
+            serialized_name: middle
+            accessor:
+                getter: getMiddle
+                setter: setMiddle
+            type: string
+        paternal:
+            expose: true
+            access_type: public_method
+            serialized_name: paternal
+            accessor:
+                getter: getPaternal
+                setter: setPaternal
+            type: string
+        oldSurname:
+            expose: true
+            access_type: public_method
+            serialized_name: oldSurname
+            accessor:
+                getter: getOldSurname
+                setter: setOldSurname
+            type: string
+        oldFirstName:
+            expose: true
+            access_type: public_method
+            serialized_name: oldFirstName
+            accessor:
+                getter: getOldFirstName
+                setter: setOldFirstName
+            type: string
+        suffix:
+            expose: true
+            access_type: public_method
+            serialized_name: suffix
+            accessor:
+                getter: getSuffix
+                setter: setSuffix
+            type: string
+        suffixText:
+            expose: true
+            access_type: public_method
+            serialized_name: suffixText
+            accessor:
+                getter: getSuffixText
+                setter: setSuffixText
+            type: string
+        gender:
+            expose: true
+            access_type: public_method
+            serialized_name: gender
+            accessor:
+                getter: getGender
+                setter: setGender
+            type: string
+        genderText:
+            expose: true
+            access_type: public_method
+            serialized_name: genderText
+            accessor:
+                getter: getGenderText
+                setter: setGenderText
+            type: string
+        title:
+            expose: true
+            access_type: public_method
+            serialized_name: title
+            accessor:
+                getter: getTitle
+                setter: setTitle
+            type: string
+        nationality:
+            expose: true
+            access_type: public_method
+            serialized_name: nationality
+            accessor:
+                getter: getNationality
+                setter: setNationality
+            type: string
+        nationalityText:
+            expose: true
+            access_type: public_method
+            serialized_name: nationalityText
+            accessor:
+                getter: getNationalityText
+                setter: setNationalityText
+            type: string
+        spouseName:
+            expose: true
+            access_type: public_method
+            serialized_name: spouseName
+            accessor:
+                getter: getSpouseName
+                setter: setSpouseName
+            type: string
+        occupation:
+            expose: true
+            access_type: public_method
+            serialized_name: occupation
+            accessor:
+                getter: getOccupation
+                setter: setOccupation
+            type: string
+        occupationText:
+            expose: true
+            access_type: public_method
+            serialized_name: occupationText
+            accessor:
+                getter: getOccupationText
+                setter: setOccupationText
+            type: string
+        consentToEnquire:
+            expose: true
+            access_type: public_method
+            serialized_name: consentToEnquire
+            accessor:
+                getter: getConsentToEnquire
+                setter: setConsentToEnquire
+            type: string
+        consentToEnquireText:
+            expose: true
+            access_type: public_method
+            serialized_name: consentToEnquireText
+            accessor:
+                getter: getConsentToEnquireText
+                setter: setConsentToEnquireText
+            type: string
+        birthDt:
+            expose: true
+            access_type: public_method
+            serialized_name: birthDt
+            accessor:
+                getter: getBirthDt
+                setter: setBirthDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        deceasedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: deceasedDt
+            accessor:
+                getter: getDeceasedDt
+                setter: setDeceasedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        maritalStatus:
+            expose: true
+            access_type: public_method
+            serialized_name: maritalStatus
+            accessor:
+                getter: getMaritalStatus
+                setter: setMaritalStatus
+            type: string
+        maritalStatusText:
+            expose: true
+            access_type: public_method
+            serialized_name: maritalStatusText
+            accessor:
+                getter: getMaritalStatusText
+                setter: setMaritalStatusText
+            type: string
+        numDependants:
+            expose: true
+            access_type: public_method
+            serialized_name: numDependants
+            accessor:
+                getter: getNumDependants
+                setter: setNumDependants
+            type: int
+        deathFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: deathFlag
+            accessor:
+                getter: getDeathFlag
+                setter: setDeathFlag
+            type: string
+        countryBirth:
+            expose: true
+            access_type: public_method
+            serialized_name: countryBirth
+            accessor:
+                getter: getCountryBirth
+                setter: setCountryBirth
+            type: string
+        countryBirthText:
+            expose: true
+            access_type: public_method
+            serialized_name: countryBirthText
+            accessor:
+                getter: getCountryBirthText
+                setter: setCountryBirthText
+            type: string
+        placeOfBirth:
+            expose: true
+            access_type: public_method
+            serialized_name: placeOfBirth
+            accessor:
+                getter: getPlaceOfBirth
+                setter: setPlaceOfBirth
+            type: string
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        dataValidity:
+            expose: true
+            access_type: public_method
+            serialized_name: dataValidity
+            accessor:
+                getter: getDataValidity
+                setter: setDataValidity
+            type: string
+        freezeFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: freezeFlag
+            accessor:
+                getter: getFreezeFlag
+                setter: setFreezeFlag
+            type: int
+        suppressFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressFlag
+            accessor:
+                getter: getSuppressFlag
+                setter: setSuppressFlag
+            type: int
+        suppressStrDt:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressStrDt
+            accessor:
+                getter: getSuppressStrDt
+                setter: setSuppressStrDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        suppressEndDt:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressEndDt
+            accessor:
+                getter: getSuppressEndDt
+                setter: setSuppressEndDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        disputedStatus:
+            expose: true
+            access_type: public_method
+            serialized_name: disputedStatus
+            accessor:
+                getter: getDisputedStatus
+                setter: setDisputedStatus
+            type: string
+        disputedStatusText:
+            expose: true
+            access_type: public_method
+            serialized_name: disputedStatusText
+            accessor:
+                getter: getDisputedStatusText
+                setter: setDisputedStatusText
+            type: string
+        isPrevName:
+            expose: true
+            access_type: public_method
+            serialized_name: isPrevName
+            accessor:
+                getter: getIsPrevName
+                setter: setIsPrevName
+            type: int
+        issueDate:
+            expose: true
+            access_type: public_method
+            serialized_name: issueDate
+            accessor:
+                getter: getIssueDate
+                setter: setIssueDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        oKSM:
+            expose: true
+            access_type: public_method
+            serialized_name: OKSM
+            accessor:
+                getter: getOKSM
+                setter: setOKSM
+            type: string
+        reportingDt:
+            expose: true
+            access_type: public_method
+            serialized_name: reportingDt
+            accessor:
+                getter: getReportingDt
+                setter: setReportingDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date

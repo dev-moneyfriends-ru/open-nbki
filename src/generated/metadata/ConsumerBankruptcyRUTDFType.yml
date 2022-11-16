@@ -1,0 +1,242 @@
+mfteam\nbch\generated\models\ConsumerBankruptcyRUTDFType:
+    properties:
+        caseNum:
+            expose: true
+            access_type: public_method
+            serialized_name: caseNum
+            accessor:
+                getter: getCaseNum
+                setter: setCaseNum
+            type: string
+        stageCode:
+            expose: true
+            access_type: public_method
+            serialized_name: stageCode
+            accessor:
+                getter: getStageCode
+                setter: setStageCode
+            type: string
+        procedureInclusionDt:
+            expose: true
+            access_type: public_method
+            serialized_name: procedureInclusionDt
+            accessor:
+                getter: getProcedureInclusionDt
+                setter: setProcedureInclusionDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        procedureLink:
+            expose: true
+            access_type: public_method
+            serialized_name: procedureLink
+            accessor:
+                getter: getProcedureLink
+                setter: setProcedureLink
+            type: string
+        illegActCode:
+            expose: true
+            access_type: public_method
+            serialized_name: illegActCode
+            accessor:
+                getter: getIllegActCode
+                setter: setIllegActCode
+            type: int
+        illegActInfoDt:
+            expose: true
+            access_type: public_method
+            serialized_name: illegActInfoDt
+            accessor:
+                getter: getIllegActInfoDt
+                setter: setIllegActInfoDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        fictitiousActCode:
+            expose: true
+            access_type: public_method
+            serialized_name: fictitiousActCode
+            accessor:
+                getter: getFictitiousActCode
+                setter: setFictitiousActCode
+            type: int
+        fictitiousActDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fictitiousActDt
+            accessor:
+                getter: getFictitiousActDt
+                setter: setFictitiousActDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        additionalInfo:
+            expose: true
+            access_type: public_method
+            serialized_name: additionalInfo
+            accessor:
+                getter: getAdditionalInfo
+                setter: setAdditionalInfo
+            type: string
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        memberCode:
+            expose: true
+            access_type: public_method
+            serialized_name: memberCode
+            accessor:
+                getter: getMemberCode
+                setter: setMemberCode
+            type: string
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        disputedStatus:
+            expose: true
+            access_type: public_method
+            serialized_name: disputedStatus
+            accessor:
+                getter: getDisputedStatus
+                setter: setDisputedStatus
+            type: string
+        disputedStatusText:
+            expose: true
+            access_type: public_method
+            serialized_name: disputedStatusText
+            accessor:
+                getter: getDisputedStatusText
+                setter: setDisputedStatusText
+            type: string
+        reportingDt:
+            expose: true
+            access_type: public_method
+            serialized_name: reportingDt
+            accessor:
+                getter: getReportingDt
+                setter: setReportingDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        memberFullName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberFullName
+            accessor:
+                getter: getMemberFullName
+                setter: setMemberFullName
+            type: string
+        memberShortName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberShortName
+            accessor:
+                getter: getMemberShortName
+                setter: setMemberShortName
+            type: string
+        memberLastName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberLastName
+            accessor:
+                getter: getMemberLastName
+                setter: setMemberLastName
+            type: string
+        memberFirstName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberFirstName
+            accessor:
+                getter: getMemberFirstName
+                setter: setMemberFirstName
+            type: string
+        memberMiddleName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberMiddleName
+            accessor:
+                getter: getMemberMiddleName
+                setter: setMemberMiddleName
+            type: string
+        memberRegNum:
+            expose: true
+            access_type: public_method
+            serialized_name: memberRegNum
+            accessor:
+                getter: getMemberRegNum
+                setter: setMemberRegNum
+            type: string
+        memberType:
+            expose: true
+            access_type: public_method
+            serialized_name: memberType
+            accessor:
+                getter: getMemberType
+                setter: setMemberType
+            type: string
+        memberTaxpayerID:
+            expose: true
+            access_type: public_method
+            serialized_name: memberTaxpayerID
+            accessor:
+                getter: getMemberTaxpayerID
+                setter: setMemberTaxpayerID
+            type: string
+        memberOKPO:
+            expose: true
+            access_type: public_method
+            serialized_name: memberOKPO
+            accessor:
+                getter: getMemberOKPO
+                setter: setMemberOKPO
+            type: string
+        memberIDIssueAuth:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIDIssueAuth
+            accessor:
+                getter: getMemberIDIssueAuth
+                setter: setMemberIDIssueAuth
+            type: string
+        memberIDIssueLoc:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIDIssueLoc
+            accessor:
+                getter: getMemberIDIssueLoc
+                setter: setMemberIDIssueLoc
+            type: string
+        memberIDIssueDate:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIDIssueDate
+            accessor:
+                getter: getMemberIDIssueDate
+                setter: setMemberIDIssueDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        memberBusinessCode:
+            expose: true
+            access_type: public_method
+            serialized_name: memberBusinessCode
+            accessor:
+                getter: getMemberBusinessCode
+                setter: setMemberBusinessCode
+            type: string

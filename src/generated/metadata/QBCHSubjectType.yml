@@ -1,0 +1,10 @@
+mfteam\nbch\generated\models\QBCHSubjectType:
+    properties:
+        averSrcRegnum:
+            expose: true
+            access_type: public_method
+            serialized_name: averSrcRegnum
+            accessor:
+                getter: getAverSrcRegnum
+                setter: setAverSrcRegnum
+            type: string

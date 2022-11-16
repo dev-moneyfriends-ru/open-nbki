@@ -1,0 +1,114 @@
+mfteam\nbch\generated\models\ArrearRUTDFType:
+    properties:
+        startAmtOutstanding:
+            expose: true
+            access_type: public_method
+            serialized_name: startAmtOutstanding
+            accessor:
+                getter: getStartAmtOutstanding
+                setter: setStartAmtOutstanding
+            type: string
+        lastPaymentDueCode:
+            expose: true
+            access_type: public_method
+            serialized_name: lastPaymentDueCode
+            accessor:
+                getter: getLastPaymentDueCode
+                setter: setLastPaymentDueCode
+            type: int
+        amtOutstanding:
+            expose: true
+            access_type: public_method
+            serialized_name: amtOutstanding
+            accessor:
+                getter: getAmtOutstanding
+                setter: setAmtOutstanding
+            type: string
+        principalOutstanding:
+            expose: true
+            access_type: public_method
+            serialized_name: principalOutstanding
+            accessor:
+                getter: getPrincipalOutstanding
+                setter: setPrincipalOutstanding
+            type: string
+        intOutstanding:
+            expose: true
+            access_type: public_method
+            serialized_name: intOutstanding
+            accessor:
+                getter: getIntOutstanding
+                setter: setIntOutstanding
+            type: string
+        otherAmtOutstanding:
+            expose: true
+            access_type: public_method
+            serialized_name: otherAmtOutstanding
+            accessor:
+                getter: getOtherAmtOutstanding
+                setter: setOtherAmtOutstanding
+            type: string
+        calcDate:
+            expose: true
+            access_type: public_method
+            serialized_name: calcDate
+            accessor:
+                getter: getCalcDate
+                setter: setCalcDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        unconfirmGrace:
+            expose: true
+            access_type: public_method
+            serialized_name: unconfirmGrace
+            accessor:
+                getter: getUnconfirmGrace
+                setter: setUnconfirmGrace
+            type: int
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        acctSerialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: acctSerialNum
+            accessor:
+                getter: getAcctSerialNum
+                setter: setAcctSerialNum
+            type: string
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        reportingDt:
+            expose: true
+            access_type: public_method
+            serialized_name: reportingDt
+            accessor:
+                getter: getReportingDt
+                setter: setReportingDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date

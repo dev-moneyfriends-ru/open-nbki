@@ -1,0 +1,712 @@
+mfteam\nbch\generated\models\AccountRUTDFType:
+    properties:
+        uuid:
+            expose: true
+            access_type: public_method
+            serialized_name: uuid
+            accessor:
+                getter: getUuid
+                setter: setUuid
+            type: string
+        acctNum:
+            expose: true
+            access_type: public_method
+            serialized_name: acctNum
+            accessor:
+                getter: getAcctNum
+                setter: setAcctNum
+            type: string
+        trade:
+            expose: true
+            access_type: public_method
+            serialized_name: trade
+            accessor:
+                getter: getTrade
+                setter: setTrade
+            xml_list:
+                inline: true
+                entry_name: trade
+            type: array<mfteam\nbch\generated\models\TradeRUTDFType>
+        accountAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: accountAmt
+            accessor:
+                getter: getAccountAmt
+                setter: setAccountAmt
+            xml_list:
+                inline: true
+                entry_name: accountAmt
+            type: array<mfteam\nbch\generated\models\AccountAmtRUTDFType>
+        coborrower:
+            expose: true
+            access_type: public_method
+            serialized_name: coborrower
+            accessor:
+                getter: getCoborrower
+                setter: setCoborrower
+            xml_list:
+                inline: true
+                entry_name: coborrower
+            type: array<mfteam\nbch\generated\models\CoborrowerRUTDFType>
+        paymtCondition:
+            expose: true
+            access_type: public_method
+            serialized_name: paymtCondition
+            accessor:
+                getter: getPaymtCondition
+                setter: setPaymtCondition
+            xml_list:
+                inline: true
+                entry_name: paymtCondition
+            type: array<mfteam\nbch\generated\models\PaymtConditionRUTDFType>
+        overallVal:
+            expose: true
+            access_type: public_method
+            serialized_name: overallVal
+            accessor:
+                getter: getOverallVal
+                setter: setOverallVal
+            xml_list:
+                inline: true
+                entry_name: overallVal
+            type: array<mfteam\nbch\generated\models\OverallValRUTDFType>
+        amendment:
+            expose: true
+            access_type: public_method
+            serialized_name: amendment
+            accessor:
+                getter: getAmendment
+                setter: setAmendment
+            xml_list:
+                inline: true
+                entry_name: amendment
+            type: array<mfteam\nbch\generated\models\AmendmentRUTDFType>
+        fundDate:
+            expose: true
+            access_type: public_method
+            serialized_name: fundDate
+            accessor:
+                getter: getFundDate
+                setter: setFundDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        arrear:
+            expose: true
+            access_type: public_method
+            serialized_name: arrear
+            accessor:
+                getter: getArrear
+                setter: setArrear
+            xml_list:
+                inline: true
+                entry_name: arrear
+            type: array<mfteam\nbch\generated\models\ArrearRUTDFType>
+        dueArrear:
+            expose: true
+            access_type: public_method
+            serialized_name: dueArrear
+            accessor:
+                getter: getDueArrear
+                setter: setDueArrear
+            xml_list:
+                inline: true
+                entry_name: dueArrear
+            type: array<mfteam\nbch\generated\models\DueArrearRUTDFType>
+        pastdueArrear:
+            expose: true
+            access_type: public_method
+            serialized_name: pastdueArrear
+            accessor:
+                getter: getPastdueArrear
+                setter: setPastdueArrear
+            xml_list:
+                inline: true
+                entry_name: pastdueArrear
+            type: array<mfteam\nbch\generated\models\PastdueArrearRUTDFType>
+        payment:
+            expose: true
+            access_type: public_method
+            serialized_name: payment
+            accessor:
+                getter: getPayment
+                setter: setPayment
+            xml_list:
+                inline: true
+                entry_name: payment
+            type: array<mfteam\nbch\generated\models\PaymentRUTDFType>
+        monthAverPaymt:
+            expose: true
+            access_type: public_method
+            serialized_name: monthAverPaymt
+            accessor:
+                getter: getMonthAverPaymt
+                setter: setMonthAverPaymt
+            xml_list:
+                inline: true
+                entry_name: monthAverPaymt
+            type: array<mfteam\nbch\generated\models\MonthAverPaymtRUTDFType>
+        sourceNonMonetOblig:
+            expose: true
+            access_type: public_method
+            serialized_name: sourceNonMonetOblig
+            accessor:
+                getter: getSourceNonMonetOblig
+                setter: setSourceNonMonetOblig
+            xml_list:
+                inline: true
+                entry_name: sourceNonMonetOblig
+            type: array<mfteam\nbch\generated\models\SourceNonMonetObligRUTDFType>
+        subjectNonMonetOblig:
+            expose: true
+            access_type: public_method
+            serialized_name: subjectNonMonetOblig
+            accessor:
+                getter: getSubjectNonMonetOblig
+                setter: setSubjectNonMonetOblig
+            xml_list:
+                inline: true
+                entry_name: subjectNonMonetOblig
+            type: array<mfteam\nbch\generated\models\SubjectNonMonetObligRUTDFType>
+        collateral:
+            expose: true
+            access_type: public_method
+            serialized_name: collateral
+            accessor:
+                getter: getCollateral
+                setter: setCollateral
+            xml_list:
+                inline: true
+                entry_name: collateral
+            type: array<mfteam\nbch\generated\models\CollateralRUTDFType>
+        guarantor:
+            expose: true
+            access_type: public_method
+            serialized_name: guarantor
+            accessor:
+                getter: getGuarantor
+                setter: setGuarantor
+            xml_list:
+                inline: true
+                entry_name: guarantor
+            type: array<mfteam\nbch\generated\models\GuarantorRUTDFType>
+        indepGuarantor:
+            expose: true
+            access_type: public_method
+            serialized_name: indepGuarantor
+            accessor:
+                getter: getIndepGuarantor
+                setter: setIndepGuarantor
+            xml_list:
+                inline: true
+                entry_name: indepGuarantor
+            type: array<mfteam\nbch\generated\models\IndepGuarantorRUTDFType>
+        collatInsured:
+            expose: true
+            access_type: public_method
+            serialized_name: collatInsured
+            accessor:
+                getter: getCollatInsured
+                setter: setCollatInsured
+            xml_list:
+                inline: true
+                entry_name: collatInsured
+            type: array<mfteam\nbch\generated\models\CollatInsuredRUTDFType>
+        collatRepay:
+            expose: true
+            access_type: public_method
+            serialized_name: collatRepay
+            accessor:
+                getter: getCollatRepay
+                setter: setCollatRepay
+            xml_list:
+                inline: true
+                entry_name: collatRepay
+            type: array<mfteam\nbch\generated\models\CollatRepayRUTDFType>
+        hasGuaranteeRepay:
+            expose: true
+            access_type: public_method
+            serialized_name: hasGuaranteeRepay
+            accessor:
+                getter: getHasGuaranteeRepay
+                setter: setHasGuaranteeRepay
+            type: int
+        guaranteeToRepay:
+            expose: true
+            access_type: public_method
+            serialized_name: guaranteeToRepay
+            accessor:
+                getter: getGuaranteeToRepay
+                setter: setGuaranteeToRepay
+            type: string
+        guaranteeRepayAmt:
+            expose: true
+            access_type: public_method
+            serialized_name: guaranteeRepayAmt
+            accessor:
+                getter: getGuaranteeRepayAmt
+                setter: setGuaranteeRepayAmt
+            type: string
+        guaranteeRepayKeepCode:
+            expose: true
+            access_type: public_method
+            serialized_name: guaranteeRepayKeepCode
+            accessor:
+                getter: getGuaranteeRepayKeepCode
+                setter: setGuaranteeRepayKeepCode
+            type: int
+        loanIndicator:
+            expose: true
+            access_type: public_method
+            serialized_name: loanIndicator
+            accessor:
+                getter: getLoanIndicator
+                setter: setLoanIndicator
+            type: int
+        loanIndicatorDt:
+            expose: true
+            access_type: public_method
+            serialized_name: loanIndicatorDt
+            accessor:
+                getter: getLoanIndicatorDt
+                setter: setLoanIndicatorDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        legalItems:
+            expose: true
+            access_type: public_method
+            serialized_name: legalItems
+            accessor:
+                getter: getLegalItems
+                setter: setLegalItems
+            xml_list:
+                inline: true
+                entry_name: legalItems
+            type: array<mfteam\nbch\generated\models\LegalItemsRUTDFType>
+        sbStartOutstanding:
+            expose: true
+            access_type: public_method
+            serialized_name: sbStartOutstanding
+            accessor:
+                getter: getSbStartOutstanding
+                setter: setSbStartOutstanding
+            type: string
+        sbStartDt:
+            expose: true
+            access_type: public_method
+            serialized_name: sbStartDt
+            accessor:
+                getter: getSbStartDt
+                setter: setSbStartDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        sbEndOutstanding:
+            expose: true
+            access_type: public_method
+            serialized_name: sbEndOutstanding
+            accessor:
+                getter: getSbEndOutstanding
+                setter: setSbEndOutstanding
+            type: string
+        sbEndDt:
+            expose: true
+            access_type: public_method
+            serialized_name: sbEndDt
+            accessor:
+                getter: getSbEndDt
+                setter: setSbEndDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        sbLastPayOutstanding:
+            expose: true
+            access_type: public_method
+            serialized_name: sbLastPayOutstanding
+            accessor:
+                getter: getSbLastPayOutstanding
+                setter: setSbLastPayOutstanding
+            type: string
+        sbLastPaymtDt:
+            expose: true
+            access_type: public_method
+            serialized_name: sbLastPaymtDt
+            accessor:
+                getter: getSbLastPaymtDt
+                setter: setSbLastPaymtDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        sbTransferCode:
+            expose: true
+            access_type: public_method
+            serialized_name: sbTransferCode
+            accessor:
+                getter: getSbTransferCode
+                setter: setSbTransferCode
+            type: int
+        sbLoanIndicator:
+            expose: true
+            access_type: public_method
+            serialized_name: sbLoanIndicator
+            accessor:
+                getter: getSbLoanIndicator
+                setter: setSbLoanIndicator
+            type: int
+        sbLoanIndicatorReason:
+            expose: true
+            access_type: public_method
+            serialized_name: sbLoanIndicatorReason
+            accessor:
+                getter: getSbLoanIndicatorReason
+                setter: setSbLoanIndicatorReason
+            type: string
+        slStartOutstanding:
+            expose: true
+            access_type: public_method
+            serialized_name: slStartOutstanding
+            accessor:
+                getter: getSlStartOutstanding
+                setter: setSlStartOutstanding
+            type: string
+        slStartDt:
+            expose: true
+            access_type: public_method
+            serialized_name: slStartDt
+            accessor:
+                getter: getSlStartDt
+                setter: setSlStartDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        slBalanceOutstanding:
+            expose: true
+            access_type: public_method
+            serialized_name: slBalanceOutstanding
+            accessor:
+                getter: getSlBalanceOutstanding
+                setter: setSlBalanceOutstanding
+            type: string
+        slBalanceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: slBalanceDt
+            accessor:
+                getter: getSlBalanceDt
+                setter: setSlBalanceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        slLastPayOutstanding:
+            expose: true
+            access_type: public_method
+            serialized_name: slLastPayOutstanding
+            accessor:
+                getter: getSlLastPayOutstanding
+                setter: setSlLastPayOutstanding
+            type: string
+        slLastPaymtDt:
+            expose: true
+            access_type: public_method
+            serialized_name: slLastPaymtDt
+            accessor:
+                getter: getSlLastPaymtDt
+                setter: setSlLastPaymtDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        slTransferCode:
+            expose: true
+            access_type: public_method
+            serialized_name: slTransferCode
+            accessor:
+                getter: getSlTransferCode
+                setter: setSlTransferCode
+            type: int
+        slLoanIndicator:
+            expose: true
+            access_type: public_method
+            serialized_name: slLoanIndicator
+            accessor:
+                getter: getSlLoanIndicator
+                setter: setSlLoanIndicator
+            type: int
+        slLoanIndicatorReason:
+            expose: true
+            access_type: public_method
+            serialized_name: slLoanIndicatorReason
+            accessor:
+                getter: getSlLoanIndicatorReason
+                setter: setSlLoanIndicatorReason
+            type: string
+        submitHold:
+            expose: true
+            access_type: public_method
+            serialized_name: submitHold
+            accessor:
+                getter: getSubmitHold
+                setter: setSubmitHold
+            xml_list:
+                inline: true
+                entry_name: submitHold
+            type: array<mfteam\nbch\generated\models\SubmitHoldRUTDFType>
+        sourceLegal:
+            expose: true
+            access_type: public_method
+            serialized_name: sourceLegal
+            accessor:
+                getter: getSourceLegal
+                setter: setSourceLegal
+            xml_list:
+                inline: true
+                entry_name: sourceLegal
+            type: array<mfteam\nbch\generated\models\SourceLegalRUTDFType>
+        sourceIndivid:
+            expose: true
+            access_type: public_method
+            serialized_name: sourceIndivid
+            accessor:
+                getter: getSourceIndivid
+                setter: setSourceIndivid
+            xml_list:
+                inline: true
+                entry_name: sourceIndivid
+            type: array<mfteam\nbch\generated\models\SourceIndividRUTDFType>
+        sourceBComm:
+            expose: true
+            access_type: public_method
+            serialized_name: sourceBComm
+            accessor:
+                getter: getSourceBComm
+                setter: setSourceBComm
+            xml_list:
+                inline: true
+                entry_name: sourceBComm
+            type: array<mfteam\nbch\generated\models\SourceBCommRUTDFType>
+        acquirerLegal:
+            expose: true
+            access_type: public_method
+            serialized_name: acquirerLegal
+            accessor:
+                getter: getAcquirerLegal
+                setter: setAcquirerLegal
+            xml_list:
+                inline: true
+                entry_name: acquirerLegal
+            type: array<mfteam\nbch\generated\models\AcquirerLegalRUTDFType>
+        acquirerIndivid:
+            expose: true
+            access_type: public_method
+            serialized_name: acquirerIndivid
+            accessor:
+                getter: getAcquirerIndivid
+                setter: setAcquirerIndivid
+            xml_list:
+                inline: true
+                entry_name: acquirerIndivid
+            type: array<mfteam\nbch\generated\models\AcquirerIndividRUTDFType>
+        serviceCo:
+            expose: true
+            access_type: public_method
+            serialized_name: serviceCo
+            accessor:
+                getter: getServiceCo
+                setter: setServiceCo
+            xml_list:
+                inline: true
+                entry_name: serviceCo
+            type: array<mfteam\nbch\generated\models\ServiceCoRUTDFType>
+        obligAccountCode:
+            expose: true
+            access_type: public_method
+            serialized_name: obligAccountCode
+            accessor:
+                getter: getObligAccountCode
+                setter: setObligAccountCode
+            type: int
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        memberCode:
+            expose: true
+            access_type: public_method
+            serialized_name: memberCode
+            accessor:
+                getter: getMemberCode
+                setter: setMemberCode
+            type: string
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        disputedStatus:
+            expose: true
+            access_type: public_method
+            serialized_name: disputedStatus
+            accessor:
+                getter: getDisputedStatus
+                setter: setDisputedStatus
+            type: string
+        disputedStatusText:
+            expose: true
+            access_type: public_method
+            serialized_name: disputedStatusText
+            accessor:
+                getter: getDisputedStatusText
+                setter: setDisputedStatusText
+            type: string
+        reportingDt:
+            expose: true
+            access_type: public_method
+            serialized_name: reportingDt
+            accessor:
+                getter: getReportingDt
+                setter: setReportingDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        businessCategory:
+            expose: true
+            access_type: public_method
+            serialized_name: businessCategory
+            accessor:
+                getter: getBusinessCategory
+                setter: setBusinessCategory
+            type: string
+        partnerRating:
+            expose: true
+            access_type: public_method
+            serialized_name: partnerRating
+            accessor:
+                getter: getPartnerRating
+                setter: setPartnerRating
+            type: string
+        partnerStartDate:
+            expose: true
+            access_type: public_method
+            serialized_name: partnerStartDate
+            accessor:
+                getter: getPartnerStartDate
+                setter: setPartnerStartDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        partnerRegDate:
+            expose: true
+            access_type: public_method
+            serialized_name: partnerRegDate
+            accessor:
+                getter: getPartnerRegDate
+                setter: setPartnerRegDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        memberFullName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberFullName
+            accessor:
+                getter: getMemberFullName
+                setter: setMemberFullName
+            type: string
+        memberShortName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberShortName
+            accessor:
+                getter: getMemberShortName
+                setter: setMemberShortName
+            type: string
+        memberLastName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberLastName
+            accessor:
+                getter: getMemberLastName
+                setter: setMemberLastName
+            type: string
+        memberFirstName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberFirstName
+            accessor:
+                getter: getMemberFirstName
+                setter: setMemberFirstName
+            type: string
+        memberMiddleName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberMiddleName
+            accessor:
+                getter: getMemberMiddleName
+                setter: setMemberMiddleName
+            type: string
+        memberRegNum:
+            expose: true
+            access_type: public_method
+            serialized_name: memberRegNum
+            accessor:
+                getter: getMemberRegNum
+                setter: setMemberRegNum
+            type: string
+        memberType:
+            expose: true
+            access_type: public_method
+            serialized_name: memberType
+            accessor:
+                getter: getMemberType
+                setter: setMemberType
+            type: string
+        memberTaxpayerID:
+            expose: true
+            access_type: public_method
+            serialized_name: memberTaxpayerID
+            accessor:
+                getter: getMemberTaxpayerID
+                setter: setMemberTaxpayerID
+            type: string
+        memberOKPO:
+            expose: true
+            access_type: public_method
+            serialized_name: memberOKPO
+            accessor:
+                getter: getMemberOKPO
+                setter: setMemberOKPO
+            type: string
+        memberIDIssueAuth:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIDIssueAuth
+            accessor:
+                getter: getMemberIDIssueAuth
+                setter: setMemberIDIssueAuth
+            type: string
+        memberIDIssueLoc:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIDIssueLoc
+            accessor:
+                getter: getMemberIDIssueLoc
+                setter: setMemberIDIssueLoc
+            type: string
+        memberIDIssueDate:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIDIssueDate
+            accessor:
+                getter: getMemberIDIssueDate
+                setter: setMemberIDIssueDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        memberBusinessCode:
+            expose: true
+            access_type: public_method
+            serialized_name: memberBusinessCode
+            accessor:
+                getter: getMemberBusinessCode
+                setter: setMemberBusinessCode
+            type: string

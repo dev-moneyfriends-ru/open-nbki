@@ -1,0 +1,154 @@
+mfteam\nbch\generated\models\SourceIndividRUTDFType:
+    properties:
+        memberLastName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberLastName
+            accessor:
+                getter: getMemberLastName
+                setter: setMemberLastName
+            type: string
+        memberFirstName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberFirstName
+            accessor:
+                getter: getMemberFirstName
+                setter: setMemberFirstName
+            type: string
+        memberMiddleName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberMiddleName
+            accessor:
+                getter: getMemberMiddleName
+                setter: setMemberMiddleName
+            type: string
+        memberBirthDt:
+            expose: true
+            access_type: public_method
+            serialized_name: memberBirthDt
+            accessor:
+                getter: getMemberBirthDt
+                setter: setMemberBirthDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        memberPlaceOfBirth:
+            expose: true
+            access_type: public_method
+            serialized_name: memberPlaceOfBirth
+            accessor:
+                getter: getMemberPlaceOfBirth
+                setter: setMemberPlaceOfBirth
+            type: string
+        memberIdType:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIdType
+            accessor:
+                getter: getMemberIdType
+                setter: setMemberIdType
+            type: string
+        memberOtherId:
+            expose: true
+            access_type: public_method
+            serialized_name: memberOtherId
+            accessor:
+                getter: getMemberOtherId
+                setter: setMemberOtherId
+            type: string
+        memberIdSeries:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIdSeries
+            accessor:
+                getter: getMemberIdSeries
+                setter: setMemberIdSeries
+            type: string
+        memberIdNum:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIdNum
+            accessor:
+                getter: getMemberIdNum
+                setter: setMemberIdNum
+            type: string
+        memberIdIssueDt:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIdIssueDt
+            accessor:
+                getter: getMemberIdIssueDt
+                setter: setMemberIdIssueDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        memberIdIssueAuthority:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIdIssueAuthority
+            accessor:
+                getter: getMemberIdIssueAuthority
+                setter: setMemberIdIssueAuthority
+            type: string
+        memberIdDivCode:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIdDivCode
+            accessor:
+                getter: getMemberIdDivCode
+                setter: setMemberIdDivCode
+            type: string
+        memberRegNum:
+            expose: true
+            access_type: public_method
+            serialized_name: memberRegNum
+            accessor:
+                getter: getMemberRegNum
+                setter: setMemberRegNum
+            type: string
+        reportingDt:
+            expose: true
+            access_type: public_method
+            serialized_name: reportingDt
+            accessor:
+                getter: getReportingDt
+                setter: setReportingDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        acctSerialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: acctSerialNum
+            accessor:
+                getter: getAcctSerialNum
+                setter: setAcctSerialNum
+            type: string
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date

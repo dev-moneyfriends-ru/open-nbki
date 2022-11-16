@@ -1,0 +1,434 @@
+mfteam\nbch\generated\models\InquiryType:
+    properties:
+        consentReq:
+            expose: true
+            access_type: public_method
+            serialized_name: ConsentReq
+            accessor:
+                getter: getConsentReq
+                setter: setConsentReq
+            type: mfteam\nbch\generated\models\ConsentType
+        fid:
+            expose: true
+            access_type: public_method
+            serialized_name: fid
+            accessor:
+                getter: getFid
+                setter: setFid
+            type: int
+        serialNum:
+            expose: true
+            access_type: public_method
+            serialized_name: serialNum
+            accessor:
+                getter: getSerialNum
+                setter: setSerialNum
+            type: int
+        srcCountryCode:
+            expose: true
+            access_type: public_method
+            serialized_name: srcCountryCode
+            accessor:
+                getter: getSrcCountryCode
+                setter: setSrcCountryCode
+            type: string
+        srcCountryCodeText:
+            expose: true
+            access_type: public_method
+            serialized_name: srcCountryCodeText
+            accessor:
+                getter: getSrcCountryCodeText
+                setter: setSrcCountryCodeText
+            type: string
+        memberCode:
+            expose: true
+            access_type: public_method
+            serialized_name: memberCode
+            accessor:
+                getter: getMemberCode
+                setter: setMemberCode
+            type: string
+        memberTypeText:
+            expose: true
+            access_type: public_method
+            serialized_name: memberTypeText
+            accessor:
+                getter: getMemberTypeText
+                setter: setMemberTypeText
+            type: string
+        memberNameText:
+            expose: true
+            access_type: public_method
+            serialized_name: memberNameText
+            accessor:
+                getter: getMemberNameText
+                setter: setMemberNameText
+            type: string
+        memberContactText:
+            expose: true
+            access_type: public_method
+            serialized_name: memberContactText
+            accessor:
+                getter: getMemberContactText
+                setter: setMemberContactText
+            type: string
+        inqControlNum:
+            expose: true
+            access_type: public_method
+            serialized_name: inqControlNum
+            accessor:
+                getter: getInqControlNum
+                setter: setInqControlNum
+            type: int
+        inquiryDt:
+            expose: true
+            access_type: public_method
+            serialized_name: inquiryDt
+            accessor:
+                getter: getInquiryDt
+                setter: setInquiryDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        inquiryDate:
+            expose: true
+            access_type: public_method
+            serialized_name: inquiryDate
+            accessor:
+                getter: getInquiryDate
+                setter: setInquiryDate
+            type: string
+        inquiryPeriod:
+            expose: true
+            access_type: public_method
+            serialized_name: inquiryPeriod
+            accessor:
+                getter: getInquiryPeriod
+                setter: setInquiryPeriod
+            type: string
+        inquiryTime:
+            expose: true
+            access_type: public_method
+            serialized_name: inquiryTime
+            accessor:
+                getter: getInquiryTime
+                setter: setInquiryTime
+            type: string
+        inqPurpose:
+            expose: true
+            access_type: public_method
+            serialized_name: inqPurpose
+            accessor:
+                getter: getInqPurpose
+                setter: setInqPurpose
+            type: string
+        inqPurposeText:
+            expose: true
+            access_type: public_method
+            serialized_name: inqPurposeText
+            accessor:
+                getter: getInqPurposeText
+                setter: setInqPurposeText
+            type: string
+        inqAmount:
+            expose: true
+            access_type: public_method
+            serialized_name: inqAmount
+            accessor:
+                getter: getInqAmount
+                setter: setInqAmount
+            type: string
+        billingCode:
+            expose: true
+            access_type: public_method
+            serialized_name: billingCode
+            accessor:
+                getter: getBillingCode
+                setter: setBillingCode
+            type: string
+        currencyCode:
+            expose: true
+            access_type: public_method
+            serialized_name: currencyCode
+            accessor:
+                getter: getCurrencyCode
+                setter: setCurrencyCode
+            type: string
+        memberFullName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberFullName
+            accessor:
+                getter: getMemberFullName
+                setter: setMemberFullName
+            type: string
+        memberShortName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberShortName
+            accessor:
+                getter: getMemberShortName
+                setter: setMemberShortName
+            type: string
+        memberLastName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberLastName
+            accessor:
+                getter: getMemberLastName
+                setter: setMemberLastName
+            type: string
+        memberFirstName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberFirstName
+            accessor:
+                getter: getMemberFirstName
+                setter: setMemberFirstName
+            type: string
+        memberMiddleName:
+            expose: true
+            access_type: public_method
+            serialized_name: memberMiddleName
+            accessor:
+                getter: getMemberMiddleName
+                setter: setMemberMiddleName
+            type: string
+        memberRegNum:
+            expose: true
+            access_type: public_method
+            serialized_name: memberRegNum
+            accessor:
+                getter: getMemberRegNum
+                setter: setMemberRegNum
+            type: string
+        memberType:
+            expose: true
+            access_type: public_method
+            serialized_name: memberType
+            accessor:
+                getter: getMemberType
+                setter: setMemberType
+            type: string
+        memberTypeIDText:
+            expose: true
+            access_type: public_method
+            serialized_name: memberTypeIDText
+            accessor:
+                getter: getMemberTypeIDText
+                setter: setMemberTypeIDText
+            type: string
+        memberTaxpayerID:
+            expose: true
+            access_type: public_method
+            serialized_name: memberTaxpayerID
+            accessor:
+                getter: getMemberTaxpayerID
+                setter: setMemberTaxpayerID
+            type: string
+        memberOKPO:
+            expose: true
+            access_type: public_method
+            serialized_name: memberOKPO
+            accessor:
+                getter: getMemberOKPO
+                setter: setMemberOKPO
+            type: string
+        memberIDIssueAuth:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIDIssueAuth
+            accessor:
+                getter: getMemberIDIssueAuth
+                setter: setMemberIDIssueAuth
+            type: string
+        memberIDIssueLoc:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIDIssueLoc
+            accessor:
+                getter: getMemberIDIssueLoc
+                setter: setMemberIDIssueLoc
+            type: string
+        memberIDIssueDate:
+            expose: true
+            access_type: public_method
+            serialized_name: memberIDIssueDate
+            accessor:
+                getter: getMemberIDIssueDate
+                setter: setMemberIDIssueDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        memberBusinessCode:
+            expose: true
+            access_type: public_method
+            serialized_name: memberBusinessCode
+            accessor:
+                getter: getMemberBusinessCode
+                setter: setMemberBusinessCode
+            type: string
+        businessCategory:
+            expose: true
+            access_type: public_method
+            serialized_name: businessCategory
+            accessor:
+                getter: getBusinessCategory
+                setter: setBusinessCategory
+            type: string
+        userReference:
+            expose: true
+            access_type: public_method
+            serialized_name: userReference
+            accessor:
+                getter: getUserReference
+                setter: setUserReference
+            type: string
+        lastUpdatedDt:
+            expose: true
+            access_type: public_method
+            serialized_name: lastUpdatedDt
+            accessor:
+                getter: getLastUpdatedDt
+                setter: setLastUpdatedDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        freezeFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: freezeFlag
+            accessor:
+                getter: getFreezeFlag
+                setter: setFreezeFlag
+            type: int
+        suppressFlag:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressFlag
+            accessor:
+                getter: getSuppressFlag
+                setter: setSuppressFlag
+            type: int
+        suppressStrDt:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressStrDt
+            accessor:
+                getter: getSuppressStrDt
+                setter: setSuppressStrDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        suppressEndDt:
+            expose: true
+            access_type: public_method
+            serialized_name: suppressEndDt
+            accessor:
+                getter: getSuppressEndDt
+                setter: setSuppressEndDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        disputedStatus:
+            expose: true
+            access_type: public_method
+            serialized_name: disputedStatus
+            accessor:
+                getter: getDisputedStatus
+                setter: setDisputedStatus
+            type: string
+        disputedStatusText:
+            expose: true
+            access_type: public_method
+            serialized_name: disputedStatusText
+            accessor:
+                getter: getDisputedStatusText
+                setter: setDisputedStatusText
+            type: string
+        powerStartDt:
+            expose: true
+            access_type: public_method
+            serialized_name: powerStartDt
+            accessor:
+                getter: getPowerStartDt
+                setter: setPowerStartDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        powerEndDt:
+            expose: true
+            access_type: public_method
+            serialized_name: powerEndDt
+            accessor:
+                getter: getPowerEndDt
+                setter: setPowerEndDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        inquiryType:
+            expose: true
+            access_type: public_method
+            serialized_name: inquiryType
+            accessor:
+                getter: getInquiryType
+                setter: setInquiryType
+            type: int
+        inqRespDate:
+            expose: true
+            access_type: public_method
+            serialized_name: inqRespDate
+            accessor:
+                getter: getInqRespDate
+                setter: setInqRespDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        otherInqPurpose:
+            expose: true
+            access_type: public_method
+            serialized_name: otherInqPurpose
+            accessor:
+                getter: getOtherInqPurpose
+                setter: setOtherInqPurpose
+            type: string
+        userLegal:
+            expose: true
+            access_type: public_method
+            serialized_name: userLegal
+            accessor:
+                getter: getUserLegal
+                setter: setUserLegal
+            type: mfteam\nbch\generated\models\UserLegalType
+        userEntrep:
+            expose: true
+            access_type: public_method
+            serialized_name: userEntrep
+            accessor:
+                getter: getUserEntrep
+                setter: setUserEntrep
+            type: mfteam\nbch\generated\models\UserEntrepType
+        fileSinceDt:
+            expose: true
+            access_type: public_method
+            serialized_name: fileSinceDt
+            accessor:
+                getter: getFileSinceDt
+                setter: setFileSinceDt
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\Date
+        fromRutdf:
+            expose: true
+            access_type: public_method
+            serialized_name: fromRutdf
+            accessor:
+                getter: getFromRutdf
+                setter: setFromRutdf
+            type: bool
+        abonentInn:
+            expose: true
+            access_type: public_method
+            serialized_name: abonentInn
+            accessor:
+                getter: getAbonentInn
+                setter: setAbonentInn
+            type: string
+        abonentOgrn:
+            expose: true
+            access_type: public_method
+            serialized_name: abonentOgrn
+            accessor:
+                getter: getAbonentOgrn
+                setter: setAbonentOgrn
+            type: string
+        abonentFullName:
+            expose: true
+            access_type: public_method
+            serialized_name: abonentFullName
+            accessor:
+                getter: getAbonentFullName
+                setter: setAbonentFullName
+            type: string
