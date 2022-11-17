@@ -789,6 +789,6 @@ class Account extends BaseItem
      */
     public function setPayment(array $paymentData): void
     {
-        $this->payment = $this->initPropertyModels($paymentData, 'PaymentRUTDF');
+        $this->payment = $this->initPropertyModels($paymentData, PaymentRUTDF::class);
     }
 }
