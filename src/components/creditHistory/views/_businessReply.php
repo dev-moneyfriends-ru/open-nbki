@@ -34,7 +34,7 @@ $taxpayerId = reset($taxpayerIdReply);
     </tr>
     <tr>
         <td>ИНН</td>
-        <td><?=$taxpayerIdReply->taxpayerNum?></td>
+        <td><?=$taxpayerId->taxpayerNum?></td>
     </tr>
     </tbody>
 </table>
