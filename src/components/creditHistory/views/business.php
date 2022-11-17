@@ -29,6 +29,7 @@ use yii\base\View;
             ])?>
         </div>
     </div>
+    <hr>
     <div class="row">
         <div class="col" style="text-align: center">
             <h1>Изменения по титульной части</h1>
@@ -41,6 +42,7 @@ use yii\base\View;
             ])?>
         </div>
     </div>
+    <hr>
     <div class="row">
         <div class="col" style="text-align: center">
             <h1>Суммарная информация по договорам</h1>

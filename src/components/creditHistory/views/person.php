@@ -15,6 +15,7 @@ use yii\base\View;
             <b>Идентификатор отчёта:</b> <?=$preplyReport->rqUuid?>
         </div>
     </div>
+    <hr>
     <div class="row">
         <div class="col" style="text-align: center">
             <h1>Информация по субъекту кредитной истории</h1>
@@ -31,6 +32,7 @@ use yii\base\View;
             ])?>
         </div>
     </div>
+    <hr>
     <div class="row">
         <div class="col" style="text-align: center">
             <h1>Изменения по титульной части</h1>
@@ -47,6 +49,7 @@ use yii\base\View;
             ])?>
         </div>
     </div>
+    <hr>
     <div class="row">
         <div class="col" style="text-align: center">
             <h1>Суммарная информация по договорам</h1>
