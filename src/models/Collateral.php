@@ -44,6 +44,47 @@ class Collateral extends BaseItem
      */
     public $currencyCode = 'RUB';
     
+    /**
+     * @var string $agreementNumber
+     */
+    public $agreementNumber = null;
+    
+    /**
+     * @var string $collateral1Text
+     */
+    public $collateral1Text = null;
+    
+    /**
+     * Идентификационный код предмета залога
+     * @var string $collateralId
+     */
+    public $collateralId = null;
+    
+    /**
+     * Дата заключения договора залога
+     * @var \DateTime $collateralAgreementDt
+     */
+    public $collateralAgreementDt = null;
+    
+    /**
+     * Признак иного обременения предмета залога
+     * @var int $collateralEncum
+     */
+    public $collateralEncum = null;
+    
+    /**
+     * Дата фактического прекращения залога
+     * @var \DateTime $collateralFactExpirationDate
+     */
+    public $collateralFactExpirationDate = null;
+    
+    /**
+     * Код причины прекращения залога
+     * @var string $collateralEndReason
+     */
+    public $collateralEndReason = null;
+    
+    
     public function rules()
     {
         return array_merge(parent::rules(), [
