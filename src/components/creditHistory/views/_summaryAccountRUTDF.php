@@ -31,7 +31,7 @@ foreach ($model->getPayment() as $item) {
 if ($maxPatDue <= 7 && $maxPatDue > 0) {
     $maxPatDueStyle = 'background-color: #28a745 !important';
 }
-if ($maxPatDue <= 30) {
+if ($maxPatDue <= 30 && $maxPatDue > 7) {
     $maxPatDueStyle = 'background-color: #ffc107 !important';
 }
 if ($maxPatDue > 30) {
