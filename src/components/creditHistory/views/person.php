@@ -63,4 +63,14 @@ use yii\base\View;
             ])?>
         </div>
     </div>
+    <hr>
+    <div class="row">
+        <div class="col" style="text-align: center">
+            <h1>Детальная информация по договорам</h1>
+        </div>
+    </div>
+    <?=$this->render('_accounts', [
+        'accountReply' => $preplyReport->accountReply,
+        'accountReplyRUTDF' => $preplyReport->accountReplyRUTDF,
+    ])?>
 </div>
