@@ -10,10 +10,17 @@ use yii\web\View;
 $creditLimit = 0;
 $amtOutstanding = 0;
 $amtPastDue = 0;
-foreach ($accountReplyRUTDF as $accountRUTDF) {
-    if (!empty($accountRUTDF->getAcquirerIndivid()) || !empty($accountRUTDF->getAcquirerLegal())) {
+foreach ($accountReplyRUTDF as $model) {
+    if (!empty($model->getAcquirerIndivid()) || !empty($model->getAcquirerLegal())) {
+        $accountAmt = $model->getAccountAmt()[count($model->getAccountAmt()) - 1];
+        $dueArrear = $model->getDueArrear()[count($model->getDueArrear()) - 1];
+        $pastdueArrear = $model->getPastdueArrear() ? $model->getPastdueArrear()[count($model->getPastdueArrear()) - 1] : null;
+        $amtPastDueAccount = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
+        $creditLimit += $accountAmt->creditLimit;
+        $amtOutstanding += $dueArrear->amtOutstanding;
+        $amtPastDue += $amtPastDueAccount->amtPastDue;
         echo $this->render('_summaryAccountRUTDF', [
-            'model' => $accountRUTDF,
+            'model' => $model,
         ]);
     }
 }

@@ -54,7 +54,7 @@ if ($idReply):
         foreach ($idReply as $passport):
             ?>
             <tr>
-                <td><?= Yii::$app->formatter->asDate($passport->reportingDt, 'dd.MM.yyyy') ?></td>
+                <td><?= Yii::$app->formatter->asDate($passport->lastUpdatedDt, 'dd.MM.yyyy') ?></td>
                 <td><?= $this->render('_passport', ['model' => $passport]) ?></td>
             </tr>
         <?php
@@ -83,7 +83,7 @@ if ($regnumReply):
             }
             ?>
             <tr>
-                <td><?= Yii::$app->formatter->asDate($regNum->reportingDt, 'dd.MM.yyyy') ?></td>
+                <td><?= Yii::$app->formatter->asDate($regNum->lastUpdatedDt, 'dd.MM.yyyy') ?></td>
                 <td>ИНН: <b><?= $regNum->taxpayerNum ?></b></td>
             </tr>
         <?php
@@ -109,7 +109,7 @@ if ($snilsReply):
         foreach ($snilsReply as $regNum):
             ?>
             <tr>
-                <td><?= Yii::$app->formatter->asDate($regNum->reportingDt, 'dd.MM.yyyy') ?></td>
+                <td><?= Yii::$app->formatter->asDate($regNum->lastUpdatedDt, 'dd.MM.yyyy') ?></td>
                 <td>СНИЛС: <b><?= $regNum->number ?></b></td>
             </tr>
         <?php
@@ -135,7 +135,7 @@ if ($entrepReply):
         foreach ($entrepReply as $entRep):
             ?>
             <tr>
-                <td><?= Yii::$app->formatter->asDate($entRep->reportingDt, 'dd.MM.yyyy') ?></td>
+                <td><?= Yii::$app->formatter->asDate($entRep->lastUpdatedDt, 'dd.MM.yyyy') ?></td>
                 <td><?= implode(' ', [
                         'ОГРНИП:',
                         "<b>" . $entRep->regNum . "</b>",

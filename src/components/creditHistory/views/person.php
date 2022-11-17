@@ -8,7 +8,7 @@ use mfteam\nbch\models\PreplyReport;
 use yii\base\View;
 
 ?>
-<div class="container" style="background-color: #ffffff">
+<div class="container-fluid" style="background-color: #ffffff">
     <div class="row">
         <div class="col" style="text-align: right">
             <b>Дата создания отчёта:</b> <?=Yii::$app->formatter->asDatetime($preplyReport->subjectReply->fileSinceDt, 'dd.MM.yyyy HH:mm:ss')?>

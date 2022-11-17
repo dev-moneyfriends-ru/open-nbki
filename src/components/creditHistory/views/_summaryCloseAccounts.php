@@ -7,10 +7,17 @@
 $creditLimit = 0;
 $amtOutstanding = 0;
 $amtPastDue = 0;
-foreach ($accountReplyRUTDF as $accountRUTDF) {
-    if (!empty($accountRUTDF->loanIndicator)) {
+foreach ($accountReplyRUTDF as $model) {
+    $accountAmt = $model->getAccountAmt()[count($model->getAccountAmt()) - 1];
+    $dueArrear = $model->getDueArrear()[count($model->getDueArrear()) - 1];
+    $pastdueArrear = $model->getPastdueArrear() ? $model->getPastdueArrear()[count($model->getPastdueArrear()) - 1] : null;
+    $amtPastDueAccount = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
+    $creditLimit += $accountAmt->creditLimit;
+    $amtOutstanding += $dueArrear->amtOutstanding;
+    $amtPastDue += $amtPastDueAccount->amtPastDue;
+    if (!empty($model->loanIndicator)) {
         echo $this->render('_summaryAccountRUTDF', [
-            'model' => $accountRUTDF,
+            'model' => $model,
         ]);
     }
 }

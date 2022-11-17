@@ -13,7 +13,7 @@ $maxPatDue = '';
 $maxPatDueStyle = '';
 if (!empty($model->numDays30)) {
     $maxPatDue = 'от 30 до 59 дней';
-    $maxPatDueStyle = 'background-color: #ffc107 !important';
+    $maxPatDueStyle = 'background-color: #dc3545 !important';
 }
 if (!empty($model->numDays60)) {
     $maxPatDue = 'от 60 до 89 дней';
@@ -40,9 +40,9 @@ if (empty($maxPatDue)) {
 }
 ?>
 <tr>
-    <td><?= $model->uuid ?></td>
+    <td><?= $model->uuid??$model->serialNum ?></td>
     <td><?= $model->businessCategory ?></td>
-    <td><?= $model->ownerIndicText ?></td>
+    <td><?= $model->ownerIndicText ?> <?= $model->acctTypeText ?></td>
     <td><?= Yii::$app->formatter->asDecimal((float)$model->creditLimit, 2) ?></td>
     <td><?= $model->currencyCode ?></td>
     <td><?= Yii::$app->formatter->asDate($model->openedDt, 'dd.MM.yyyy') ?></td>
