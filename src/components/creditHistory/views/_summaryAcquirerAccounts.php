@@ -28,9 +28,12 @@ foreach ($accountReply as $account) {
     }
 }
 ?>
-<td colspan="3"><b>Итог:</b></td>
-<td><?=Yii::$app->formatter->asDecimal($creditLimit, 2)?></td>
-<td colspan="3"></td>
-<td><?=Yii::$app->formatter->asDecimal($amtOutstanding, 2)?></td>
-<td class="<?=$amtPastDue?'text-danger':'text-success'?>"><?=Yii::$app->formatter->asDecimal($amtOutstanding, 2)?></td>
-<td colspan="5"></td>
+<tr>
+    <td colspan="3"><b>Итог:</b></td>
+    <td><?=Yii::$app->formatter->asDecimal($creditLimit, 2)?></td>
+    <td colspan="3"></td>
+    <td><?=Yii::$app->formatter->asDecimal($amtOutstanding, 2)?></td>
+    <td class="<?=$amtPastDue?'text-danger':'text-success'?>"><?=Yii::$app->formatter->asDecimal($amtOutstanding, 2)?></td>
+    <td colspan="5"></td>
+</tr>
+

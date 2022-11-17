@@ -61,20 +61,26 @@
     <tbody>
     <tr>
         <td colspan="15" style="text-align: center">Активные договоры</td>
+    </tr>
         <?=$this->render('_summaryActiveAccounts', [
             'accountReply' => $accountReply,
             'accountReplyRUTDF' => $accountReplyRUTDF,
         ])?>
+    <tr>
         <td colspan="15" style="text-align: center">Закрытые договоры</td>
+    </tr>
+       
         <?=$this->render('_summaryCloseAccounts', [
             'accountReply' => $accountReply,
             'accountReplyRUTDF' => $accountReplyRUTDF,
         ])?>
+    <tr>
         <td colspan="15" style="text-align: center">Проданные договоры</td>
+    </tr>
+       
         <?=$this->render('_summaryAcquirerAccounts', [
             'accountReply' => $accountReply,
             'accountReplyRUTDF' => $accountReplyRUTDF,
         ])?>
-    </tr>
     </tbody>
 </table>
