@@ -80,6 +80,26 @@ class Guarantor extends BaseItem
      */
     public $guaranteeEndReason = null;
     
+    /**
+     * @var string $agreementNumber
+     */
+    public $agreementNumber = null;
+    
+    /**
+     * @var string $guarantorIndicatorCode
+     */
+    public $guarantorIndicatorCode = null;
+    
+    /**
+     * @var string $guarantorIndicatorCodeText
+     */
+    public $guarantorIndicatorCodeText = null;
+    
+    /**
+     * @var string $guaranteeVolumeCodeText
+     */
+    public $guaranteeVolumeCodeText = null;
+    
     public function rules()
     {
         return array_merge(parent::rules(), [

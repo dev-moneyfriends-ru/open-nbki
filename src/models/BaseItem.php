@@ -93,6 +93,16 @@ abstract class BaseItem extends \yii\base\Model
      */
     public $acctSerialNum;
     
+    /**
+     * @var string $suppressStrDt
+     */
+    public $suppressStrDt = null;
+    
+    /**
+     * @var string $suppressEndDt
+     */
+    public $suppressEndDt = null;
+    
     public function attributeLabels()
     {
         return [
