@@ -12,9 +12,9 @@ foreach ($accountReplyRUTDF as $model) {
     $dueArrear = $model->getDueArrear()[count($model->getDueArrear()) - 1];
     $pastdueArrear = $model->getPastdueArrear() ? $model->getPastdueArrear()[count($model->getPastdueArrear()) - 1] : null;
     $amtPastDueAccount = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
-    $creditLimit += $accountAmt->creditLimit;
-    $amtOutstanding += $dueArrear->amtOutstanding;
-    $amtPastDue += $amtPastDueAccount->amtPastDue;
+    $creditLimit += (float)$accountAmt->creditLimit;
+    $amtOutstanding += (float)$dueArrear->amtOutstanding;
+    $amtPastDue += (float)$amtPastDueAccount->amtPastDue;
     if (!empty($model->loanIndicator)) {
         echo $this->render('_summaryAccountRUTDF', [
             'model' => $model,
