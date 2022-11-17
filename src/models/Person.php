@@ -156,4 +156,12 @@ class Person extends BaseItem
         ];
         return implode(' ', $array);
     }
+    
+    /**
+     * @param string $oksm
+     */
+    public function setOKSM(string $oksm): void
+    {
+        $this->oksm = $oksm;
+    }
 }

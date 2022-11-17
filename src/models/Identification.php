@@ -155,4 +155,12 @@ class Identification extends BaseItem
     {
         return $this->idType === '32';
     }
+    
+    /**
+     * @param string $oksm
+     */
+    public function setOKSM(string $oksm): void
+    {
+        $this->oksm = $oksm;
+    }
 }
