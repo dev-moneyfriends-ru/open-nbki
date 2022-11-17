@@ -5,6 +5,7 @@
 /* @var $model AccountReplyRUTDF */
 
 use mfteam\nbch\models\AccountReplyRUTDF;
+use mfteam\nbch\models\LoanKind;
 use mfteam\nbch\models\TradeType;
 use yii\web\View;
 
@@ -43,7 +44,7 @@ if ($maxPatDue > 30) {
     <td><?= $model->businessCategory ?></td>
     <td>
         <?= TradeType::getText($trade->tradeTypeCode) ?>
-        <?= TradeType::getText($trade->loanKindCode) ?>
+        <?= LoanKind::getText($trade->loanKindCode) ?>
     </td>
     <td><?= Yii::$app->formatter->asDecimal((float)$accountAmt->creditLimit, 2) ?></td>
     <td><?= $accountAmt->currencyCode ?></td>
