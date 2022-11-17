@@ -83,6 +83,11 @@ abstract class BaseItem extends \yii\base\Model
      */
     public $businessCategory;
     
+    /**
+     * @var string
+     */
+    public $acctSerialNum;
+    
     public function attributeLabels()
     {
         return [
