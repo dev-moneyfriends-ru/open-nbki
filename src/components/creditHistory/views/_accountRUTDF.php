@@ -193,7 +193,7 @@
 </div>
 <div class="row" style="margin-bottom: 10px;border-bottom: 1px solid #000000;border-top: 1px solid #000000;">
     <div class="col-md-4">
-        <div class="row" style="height: 100%">
+        <div class="row">
             <div class="col-md-6 bg-info" >Первоначальный лимит</div>
             <div class="col-md-6" ></div>
         </div>
@@ -203,7 +203,7 @@
         </div>
     </div>
     <div class="col-md-4">
-        <div class="row" style="height: 100%">
+        <div class="row">
             <div class="col-md-8 bg-info" >Текущая просроченная задолженность</div>
             <div class="col-md-4" ></div>
         </div>
@@ -213,13 +213,13 @@
         </div>
     </div>
     <div class="col-md-4">
-        <div class="row" >
+        <div class="row" style="height: 100%">
             <div class="col-md-4 bg-info" >от 30 до 59 дней</div>
             <div class="col-md-4 bg-info" >от 60 до 89 дней</div>
             <div class="col-md-4 bg-info" >более 90 дней</div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4"></div>
+            <div class="col-md-4">1</div>
+            <div class="col-md-4">1</div>
+            <div class="col-md-4">1</div>
         </div>
     </div>
 </div>
