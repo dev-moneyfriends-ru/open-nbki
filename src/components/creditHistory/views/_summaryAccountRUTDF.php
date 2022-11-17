@@ -10,7 +10,7 @@ $payment = $model->getPayment();
 $daysPastDue = reset($payment)->daysPastDue;
 ?>
 <tr>
-    <td></td>
+    <td><?=$model->uuid?></td>
     <td></td>
     <td></td>
     <td></td>

@@ -21,10 +21,10 @@ use yii\helpers\ArrayHelper;
  * @property-read AddressReplyRUTDF[] $addressReplyRUTDF
  * @property-read RegnumReply[] $regnumReply
  * @property-read PersonReply[] $personReply
- * @property-read \mfteam\nbch\models\RegnumReply[] $sNILSReply
  * @property-read IdReply[] $idReply
  * @property-read \mfteam\nbch\models\EntrepReply[] $entrepReply
  * @property-read \mfteam\nbch\models\CapabilityReply[] $capabilityReply
+ * @property-read \mfteam\nbch\models\SNILSReply[] $snilsReply
  * @property-read SubjectReply $subjectReply
  */
 class PreplyReport extends BaseObject
@@ -156,10 +156,10 @@ class PreplyReport extends BaseObject
     
     /**
      * СНИЛС
-     * @return RegnumReply[]
+     * @return SNILSReply[]
      * @throws Exception
      */
-    public function getSNILSReply()
+    public function getSnilsReply()
     {
         return $this->loadArrayData('SNILSReply', SNILSReply::class);
     }
@@ -175,7 +175,7 @@ class PreplyReport extends BaseObject
     }
     
     /**
-     * Гос.регистрация в качестве ИП
+     * Сведения о дееспособности
      * @return CapabilityReply[]
      * @throws Exception
      */

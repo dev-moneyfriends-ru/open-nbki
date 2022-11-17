@@ -6,6 +6,7 @@
 
 use mfteam\nbch\models\PreplyReport;
 use yii\base\View;
+
 ?>
 <div class="container" style="background-color: #ffffff">
     <div class="row">
@@ -21,11 +22,12 @@ use yii\base\View;
     </div>
     <div class="row">
         <div class="col">
-            <?=$this->render('_businessReply', [
-                'businessReply' => $preplyReport->businessReply,
+            <?=$this->render('_personReply', [
+                'personReply' => $preplyReport->personReply,
                 'regnumReply' => $preplyReport->regnumReply,
-                'taxpayerIdReply' => $preplyReport->taxpayerIdReply,
-                'addressReplyRUTDF' => $preplyReport->addressReplyRUTDF,
+                'snilsReply' => $preplyReport->snilsReply,
+                'idReply' => $preplyReport->idReply,
+                'entrepReply' => $preplyReport->entrepReply,
             ])?>
         </div>
     </div>
@@ -36,11 +38,25 @@ use yii\base\View;
     </div>
     <div class="row">
         <div class="col">
-            <?=$this->render('_businessReplyChange', [
-                'businessReply' => $preplyReport->businessReply,
+            <?=$this->render('_personReplyChange', [
+                'personReply' => $preplyReport->personReply,
                 'regnumReply' => $preplyReport->regnumReply,
-                'taxpayerIdReply' => $preplyReport->taxpayerIdReply,
-                'addressReplyRUTDF' => $preplyReport->addressReplyRUTDF,
+                'snilsReply' => $preplyReport->snilsReply,
+                'idReply' => $preplyReport->idReply,
+                'entrepReply' => $preplyReport->entrepReply,
+            ])?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" style="text-align: center">
+            <h1>Суммарная информация по договорам</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <?=$this->render('_summaryAccounts', [
+                'accountReply' => $preplyReport->accountReply,
+                'accountReplyRUTDF' => $preplyReport->accountReplyRUTDF,
             ])?>
         </div>
     </div>
