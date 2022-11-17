@@ -54,6 +54,11 @@ abstract class BaseItem extends \yii\base\Model
     public $freezeFlag;
     
     /**
+     * @var int
+     */
+    public $suppressFlag;
+    
+    /**
      * Дата обновления данных
      * @var string
      */
