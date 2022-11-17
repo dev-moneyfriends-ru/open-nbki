@@ -1,10 +1,9 @@
 <?php
 /**
  * @var $this View
- * @var $businessReply array
- * @var $regnumReply RegnumReply
- * @var $taxpayerIdReply TaxpayerIdReply
- * @var $addressReplyRUTDF array
+ * @var $businessReply BusinessReply[]
+ * @var $regnumReply RegnumReply[]
+ * @var $taxpayerIdReply TaxpayerIdReply[]
  */
 
 
@@ -13,9 +12,9 @@ use mfteam\nbch\models\RegnumReply;
 use mfteam\nbch\models\TaxpayerIdReply;
 use yii\web\View;
 
-
-/** @var BusinessReply $business */
-$business = $businessReply[0];
+$business = reset($businessReply);
+$regnum = reset($regnumReply);
+$taxpayerId = reset($taxpayerIdReply);
 ?>
 <table class="table table-bordered table-striped table-condensed">
     <tbody>
@@ -31,7 +30,7 @@ $business = $businessReply[0];
     </tr>
     <tr>
         <td>ОГРН</td>
-        <td><?=$regnumReply->regNum?></td>
+        <td><?=$regnum->regNum?></td>
     </tr>
     <tr>
         <td>ИНН</td>

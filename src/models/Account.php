@@ -2,6 +2,8 @@
 
 namespace mfteam\nbch\models;
 
+use yii\helpers\ArrayHelper;
+
 class Account extends BaseItem
 {
     /**
@@ -729,7 +731,7 @@ class Account extends BaseItem
     {
         $models = [];
         foreach ($collateralData as $config) {
-            $models = new Collateral($config);
+            $models[] = new Collateral($config);
         }
         $this->collateral = $models;
     }
@@ -749,7 +751,7 @@ class Account extends BaseItem
     {
         $models = [];
         foreach ($guarantorData as $config) {
-            $models = new Guarantor($config);
+            $models[] = new Guarantor($config);
         }
         $this->guarantor = $models;
     }
@@ -769,7 +771,7 @@ class Account extends BaseItem
     {
         $models = [];
         foreach ($amendmentData as $config) {
-            $models = new Amendment($config);
+            $models[] = new Amendment($config);
         }
         $this->amendment = $models;
     }
@@ -788,9 +790,14 @@ class Account extends BaseItem
     public function setPayment(array $paymentData): void
     {
         $models = [];
-        foreach ($paymentData as $config) {
-            $models = new Payment($config);
+        if (ArrayHelper::isIndexed($paymentData)) {
+            foreach ($paymentData as $config) {
+                $models[] = new Payment($config);
+            }
+        } else {
+            $models[] = new Payment($paymentData);
         }
+        
         $this->amendment = $models;
         $this->payment = $models;
     }

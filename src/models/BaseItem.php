@@ -2,6 +2,8 @@
 
 namespace mfteam\nbch\models;
 
+use yii\helpers\ArrayHelper;
+
 abstract class BaseItem extends \yii\base\Model
 {
     /**
@@ -165,5 +167,23 @@ abstract class BaseItem extends \yii\base\Model
             }
         }
         parent::__construct($config);
+    }
+    
+    /**
+     * @param array $data
+     * @param string $class
+     * @return array
+     */
+    public function initPropertyModels(array $data, string $class)
+    {
+        $models = [];
+        if (ArrayHelper::isIndexed($data)) {
+            foreach ($data as $config) {
+                $models[] = new $class($config);
+            }
+        } else {
+            $models[] = new $class($data);
+        }
+        return $models;
     }
 }

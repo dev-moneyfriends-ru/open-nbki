@@ -2,25 +2,32 @@
 
 namespace mfteam\nbch\models;
 
+use Exception;
+use yii\base\BaseObject;
 use yii\helpers\ArrayHelper;
 
 /**
  * Отчет КИ
  *
- * @property-read mixed $reportIssueDateTime
- * @property-read \mfteam\nbch\models\TaxpayerIdReply $taxpayerIdReply
- * @property-read array $businessReply
- * @property-read array $addressReply
- * @property-read array $accountReplyRUTDF
- * @property-read mixed $rqUuid
- * @property-read array $inquiryReplyRUTDF
- * @property-read array $accountReply
- * @property-read array $inquiryReply
- * @property-read array $addressReplyRUTDF
- * @property-read \mfteam\nbch\models\RegnumReply $regnumReply
- * @property-read \mfteam\nbch\models\SubjectReply $subjectReply
+ * @property-read string $reportIssueDateTime
+ * @property-read TaxpayerIdReply $taxpayerIdReply
+ * @property-read BusinessReply[] $businessReply
+ * @property-read AddressReply[] $addressReply
+ * @property-read AccountReplyRUTDF[] $accountReplyRUTDF
+ * @property-read string $rqUuid
+ * @property-read InquiryReplyRUTDF[] $inquiryReplyRUTDF
+ * @property-read AccountReply[] $accountReply
+ * @property-read InquiryReply[] $inquiryReply
+ * @property-read AddressReplyRUTDF[] $addressReplyRUTDF
+ * @property-read RegnumReply[] $regnumReply
+ * @property-read PersonReply[] $personReply
+ * @property-read \mfteam\nbch\models\RegnumReply[] $sNILSReply
+ * @property-read IdReply[] $idReply
+ * @property-read \mfteam\nbch\models\EntrepReply[] $entrepReply
+ * @property-read \mfteam\nbch\models\CapabilityReply[] $capabilityReply
+ * @property-read SubjectReply $subjectReply
  */
-class PreplyReport extends \yii\base\BaseObject
+class PreplyReport extends BaseObject
 {
     /**
      * @var array
@@ -30,7 +37,7 @@ class PreplyReport extends \yii\base\BaseObject
     /**
      * Даты формирования КИ
      * @return SubjectReply
-     * @throws \Exception
+     * @throws Exception
      */
     public function getSubjectReply(): SubjectReply
     {
@@ -40,7 +47,7 @@ class PreplyReport extends \yii\base\BaseObject
     /**
      * Сведения об адресах субъекта, полученные в формате TUTDF
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getAddressReply(): array
     {
@@ -50,7 +57,7 @@ class PreplyReport extends \yii\base\BaseObject
     /**
      * Сведения об адресах (в т.ч. эл.почты), полученные в формате RUTDF, телефоны из обоих форматов
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getAddressReplyRUTDF(): array
     {
@@ -60,7 +67,7 @@ class PreplyReport extends \yii\base\BaseObject
     /**
      * Данные о кредитах, полученные в формате TUTDF
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getAccountReply(): array
     {
@@ -70,7 +77,7 @@ class PreplyReport extends \yii\base\BaseObject
     /**
      * Основные сведения о субъекте
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getBusinessReply()
     {
@@ -80,7 +87,7 @@ class PreplyReport extends \yii\base\BaseObject
     /**
      * Сведения о запросе информации пользователем в формате TUTDF
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getInquiryReply()
     {
@@ -90,7 +97,7 @@ class PreplyReport extends \yii\base\BaseObject
     /**
      * Сведения о запросе информации пользователем в формате RUTDF
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getInquiryReplyRUTDF()
     {
@@ -100,7 +107,7 @@ class PreplyReport extends \yii\base\BaseObject
     /**
      * Данные о кредитах, полученные в формате RUTDF
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getAccountReplyRUTDF()
     {
@@ -108,29 +115,79 @@ class PreplyReport extends \yii\base\BaseObject
     }
     
     /**
+     * Основные сведения о субъекте
+     * @return array
+     * @throws Exception
+     */
+    public function getPersonReply()
+    {
+        return $this->loadArrayData('PersonReply', PersonReply::class);
+    }
+    
+    /**
+     * Документы, удостоверяющие личность
+     * @return array
+     * @throws Exception
+     */
+    public function getIdReply()
+    {
+        return $this->loadArrayData('IdReply', IdReply::class);
+    }
+    
+    /**
      * Номер налогоплательщика
-     * @return TaxpayerIdReply
-     * @throws \Exception
+     * @return TaxpayerIdReply[]
+     * @throws Exception
      */
     public function getTaxpayerIdReply()
     {
-        return new TaxpayerIdReply(ArrayHelper::getValue($this->report, 'TaxpayerIdReply', []));
+        return $this->loadArrayData('TaxpayerIdReply', TaxpayerIdReply::class);
     }
     
     /**
      * Регистрационный номер
-     * @return RegnumReply
-     * @throws \Exception
+     * @return RegnumReply[]
+     * @throws Exception
      */
     public function getRegnumReply()
     {
-        return new RegnumReply(ArrayHelper::getValue($this->report, 'RegnumReply', []));
+        return $this->loadArrayData('RegnumReply', RegnumReply::class);
+    }
+    
+    /**
+     * СНИЛС
+     * @return RegnumReply[]
+     * @throws Exception
+     */
+    public function getSNILSReply()
+    {
+        return $this->loadArrayData('SNILSReply', SNILSReply::class);
+    }
+    
+    /**
+     * Гос.регистрация в качестве ИП
+     * @return EntrepReply[]
+     * @throws Exception
+     */
+    public function getEntrepReply()
+    {
+        return $this->loadArrayData('EntrepReply', EntrepReply::class);
+    }
+    
+    /**
+     * Гос.регистрация в качестве ИП
+     * @return CapabilityReply[]
+     * @throws Exception
+     */
+    public function getCapabilityReply()
+    {
+        return $this->loadArrayData('CapabilityReply', CapabilityReply::class);
     }
     
     /**
      * Уникальный идентификатор кредитного отчета (обязательный);
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function getRqUuid()
     {
@@ -140,7 +197,7 @@ class PreplyReport extends \yii\base\BaseObject
     /**
      * Дата и время формирования кредитного отчета (обязательный);
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function getReportIssueDateTime()
     {
@@ -149,7 +206,7 @@ class PreplyReport extends \yii\base\BaseObject
     
     /**
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function loadArrayData($key, $class): array
     {
