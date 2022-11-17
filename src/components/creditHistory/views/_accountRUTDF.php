@@ -56,7 +56,7 @@ $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
         <div class="row" style="height: 100%">
             <div class="col-md-6 bg-info" >Макс. сумма просроченной
                 задолженности</div>
-            <div class="col-md-6" ><?=Yii::$app->formatter->asDecimal($maxAmtPastDue, 2)?></div>
+            <div class="col-md-6" ><?=Yii::$app->formatter->asDecimal((float)$maxAmtPastDue, 2)?></div>
         </div>
     </div>
 </div>
@@ -111,13 +111,13 @@ $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
     <div class="col-md-4">
         <div class="row" style="height: 100%">
             <div class="col-md-8 bg-info" >Сумма погашенного основного долга</div>
-            <div class="col-md-4" ><?=Yii::$app->formatter->asDecimal($payment->principalTotalAmt, 2)?></div>
+            <div class="col-md-4" ><?=Yii::$app->formatter->asDecimal((float)$payment->principalTotalAmt, 2)?></div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="row" style="height: 100%">
             <div class="col-md-6 bg-info" >Полная стоимость кредита</div>
-            <div class="col-md-6" ><?=$overallVal?Yii::$app->formatter->asDecimal($payment->principalTotalAmt, 2):0?>%</div>
+            <div class="col-md-6" ><?=$overallVal?Yii::$app->formatter->asDecimal((float)$payment->principalTotalAmt, 2):0?>%</div>
         </div>
     </div>
 </div>
@@ -131,7 +131,7 @@ $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
     <div class="col-md-4">
         <div class="row" style="height: 100%">
             <div class="col-md-8 bg-info" >Общая выплаченная сумма</div>
-            <div class="col-md-4" ><?=Yii::$app->formatter->asDecimal($payment->totalAmt, 2)?></div>
+            <div class="col-md-4" ><?=Yii::$app->formatter->asDecimal((float)$payment->totalAmt, 2)?></div>
         </div>
     </div>
     <div class="col-md-4">
@@ -193,7 +193,7 @@ $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
     <div class="col-md-4">
         <div class="row" style="height: 100%">
             <div class="col-md-8 bg-info" >Текущая задолженность</div>
-            <div class="col-md-4" ><?=Yii::$app->formatter->asDecimal($dueArrear->amtOutstanding, 2)?></div>
+            <div class="col-md-4" ><?=Yii::$app->formatter->asDecimal((float)$dueArrear->amtOutstanding, 2)?></div>
         </div>
     </div>
     <div class="col-md-4">
@@ -207,7 +207,7 @@ $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
     <div class="col-md-4">
         <div class="row" style="height: 100%">
             <div class="col-md-6 bg-info" >Сумма обязательств по договору</div>
-            <div class="col-md-6" ><?=Yii::$app->formatter->asDecimal($accountAmt->creditLimit, 2)?></div>
+            <div class="col-md-6" ><?=Yii::$app->formatter->asDecimal((float)$accountAmt->creditLimit, 2)?></div>
         </div>
     </div>
     <div class="col-md-4">
@@ -226,7 +226,7 @@ $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
     <div class="col-md-4">
         <div class="row">
             <div class="col-md-6 bg-info" >Первоначальный лимит</div>
-            <div class="col-md-6" ><?=Yii::$app->formatter->asDecimal($accountAmt->creditLimit, 2)?></div>
+            <div class="col-md-6" ><?=Yii::$app->formatter->asDecimal((float)$accountAmt->creditLimit, 2)?></div>
         </div>
         <div class="row">
             <div class="col-md-6 bg-info" >Статус кредитной линии</div>
@@ -236,7 +236,7 @@ $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
     <div class="col-md-4">
         <div class="row">
             <div class="col-md-8 bg-info" >Текущая просроченная задолженность</div>
-            <div class="col-md-4" ><?=Yii::$app->formatter->asDecimal($amtPastDue, 2)?></div>
+            <div class="col-md-4" ><?=Yii::$app->formatter->asDecimal((float)$amtPastDue, 2)?></div>
         </div>
         <div class="row">
             <div class="col-md-8 bg-info" >Текущая просроченная задолженность, дней</div>
