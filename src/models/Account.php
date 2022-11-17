@@ -712,7 +712,7 @@ class Account extends BaseItem
     private $amendment = [];
     
     /**
-     * @var Payment[] $payment
+     * @var PaymentRUTDF[] $payment
      */
     private $payment = [];
     
@@ -777,7 +777,7 @@ class Account extends BaseItem
     }
     
     /**
-     * @return Payment[]
+     * @return PaymentRUTDF[]
      */
     public function getPayment(): array
     {
@@ -785,20 +785,10 @@ class Account extends BaseItem
     }
     
     /**
-     * @param Payment[] $payment
+     * @param array $payment
      */
     public function setPayment(array $paymentData): void
     {
-        $models = [];
-        if (ArrayHelper::isIndexed($paymentData)) {
-            foreach ($paymentData as $config) {
-                $models[] = new Payment($config);
-            }
-        } else {
-            $models[] = new Payment($paymentData);
-        }
-        
-        $this->amendment = $models;
-        $this->payment = $models;
+        $this->payment = $this->initPropertyModels($paymentData, 'PaymentRUTDF');
     }
 }
