@@ -86,6 +86,66 @@ class Identification extends BaseItem
      */
     public $divCode;
     
+    /**
+     * @var string $srcCountryCode
+     */
+    public $srcCountryCode = null;
+    
+    /**
+     * @var string $srcCountryCodeText
+     */
+    public $srcCountryCodeText = null;
+    
+    /**
+     * @var string $memberCode
+     */
+    public $memberCode = null;
+    
+    /**
+     * @var string $memberTypeText
+     */
+    public $memberTypeText = null;
+    
+    /**
+     * @var string $memberNameText
+     */
+    public $memberNameText = null;
+    
+    /**
+     * @var string $memberContactText
+     */
+    public $memberContactText = null;
+    
+    /**
+     * @var string $documentNumber
+     */
+    public $documentNumber = null;
+    
+    /**
+     * @var string $otherCountry
+     */
+    public $otherCountry = null;
+    
+    /**
+     * @var string $otherId
+     */
+    public $otherId = null;
+    
+    /**
+     * @var \DateTime $validTo
+     */
+    public $validTo = null;
+    
+    /**
+     * @var int $isPrevId
+     */
+    public $isPrevId = null;
+    
+    /**
+     * @var string $idType2
+     */
+    public $idType2 = null;
+    
     public function attributeLabels()
     {
         return array_merge(
