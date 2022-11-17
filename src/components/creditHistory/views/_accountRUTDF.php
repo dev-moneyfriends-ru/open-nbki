@@ -5,9 +5,9 @@
 /* @var $this \yii\web\View */
 /* @var $model \mfteam\nbch\models\AccountReplyRUTDF */
 ?>
-<div class="row">
+<div class="row" style="margin-top: 50px">
     <div class="col">
-        <h2>Информация по договору: <?=$model->uuid??$model->serialNum?></h2>
+        <h2 style="text-align: center">Информация по договору: <?=$model->uuid??$model->serialNum?></h2>
     </div>
 </div>
 <div class="row" style="margin-bottom: 10px;border-bottom: 1px solid #000000;border-top: 1px solid #000000;">
