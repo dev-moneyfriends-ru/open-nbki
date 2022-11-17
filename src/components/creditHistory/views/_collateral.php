@@ -35,7 +35,7 @@
                 </tr>
             <?php
             else:
-                foreach ($model->getGuarantor() as $item):
+                foreach ($model->getCollateral() as $item):
                     ?>
                     <tr>
                         <td><?=$item->agreementNumber?></td>
