@@ -9,7 +9,6 @@ use mfteam\nbch\models\AccountReply;
 use yii\web\View;
 
 $amtPastDue = (int)$model->amtPastDue;
-$daysPastDue = (int)$model
 ?>
 <tr>
     <td><?=$model->uuid?></td>
