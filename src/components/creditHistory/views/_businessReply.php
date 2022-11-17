@@ -12,9 +12,9 @@ use mfteam\nbch\models\RegnumReply;
 use mfteam\nbch\models\TaxpayerIdReply;
 use yii\web\View;
 
-$business = reset($businessReply);
-$regnum = reset($regnumReply);
-$taxpayerId = reset($taxpayerIdReply);
+$business = $businessReply[0];
+$regnum = $regnumReply[0];
+$taxpayerId = $taxpayerIdReply[0];
 ?>
 <table class="table table-bordered table-striped table-condensed">
     <tbody>
