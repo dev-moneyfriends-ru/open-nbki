@@ -8,7 +8,7 @@ namespace mfteam\nbch\models;
 class PastdueArrearRUTDF extends BaseItem
 {
     /**
-     * @var \DateTime $pastDueDt
+     * @var string $pastDueDt
      */
     public $pastDueDt = null;
     
@@ -38,17 +38,17 @@ class PastdueArrearRUTDF extends BaseItem
     public $otherAmtPastDue = null;
     
     /**
-     * @var \DateTime $calcDate
+     * @var string $calcDate
      */
     public $calcDate = null;
     
     /**
-     * @var \DateTime $principalMissedDate
+     * @var string $principalMissedDate
      */
     public $principalMissedDate = null;
     
     /**
-     * @var \DateTime $intMissedDate
+     * @var string $intMissedDate
      */
     public $intMissedDate = null;
     

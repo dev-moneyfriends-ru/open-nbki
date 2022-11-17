@@ -50,6 +50,36 @@ class Guarantor extends BaseItem
      */
     public $currencyCode = 'RUB';
     
+    /**
+     * @var string $guaranteeUuid
+     */
+    public $guaranteeUuid = null;
+    
+    /**
+     * @var string $guaranteeVolume
+     */
+    public $guaranteeVolume = null;
+    
+    /**
+     * @var string $guaranteeAgreementDt
+     */
+    public $guaranteeAgreementDt = null;
+    
+    /**
+     * @var string $guaranteeExpirationDate
+     */
+    public $guaranteeExpirationDate = null;
+    
+    /**
+     * @var string $guaranteeFactExpirationDate
+     */
+    public $guaranteeFactExpirationDate = null;
+    
+    /**
+     * @var string $guaranteeEndReason
+     */
+    public $guaranteeEndReason = null;
+    
     public function rules()
     {
         return array_merge(parent::rules(), [
