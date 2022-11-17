@@ -5,7 +5,7 @@
 /* @var $accountReplyRUTDF \mfteam\nbch\models\AccountReplyRUTDF[] */
 
 ?>
-<table class="table table-bordered table-striped table-condensed">
+<table class="table table-bordered table-striped table-condensed" style="text-align: center">
     <thead>
     <tr>
         <th>UID договора</th>
