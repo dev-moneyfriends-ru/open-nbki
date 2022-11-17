@@ -2,6 +2,7 @@
 
 /* @var $this \yii\web\View */
 /* @var $model \mfteam\nbch\models\AccountReply */
+$payment = $model->getPayment()?$model->getPayment()[count($model->getPayment()) - 1]:null;
 ?>
 <div class="row" style="margin-top: 50px">
     <div class="col">
@@ -122,7 +123,7 @@
     <div class="col-md-4">
         <div class="row" style="height: 100%">
             <div class="col-md-8 bg-info" >Сумма последнего платежа</div>
-            <div class="col-md-4" ><?= Yii::$app->formatter->asDecimal((float)$model->getPayment()[count($model->getPayment()) - 1]->paymtAmt, 2) ?></div>
+            <div class="col-md-4" ><?= Yii::$app->formatter->asDecimal($payment?(float)$payment->paymtAmt:0, 2) ?></div>
         </div>
     </div>
     <div class="col-md-4">
