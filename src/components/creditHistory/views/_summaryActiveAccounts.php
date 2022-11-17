@@ -8,7 +8,7 @@ $creditLimit = 0;
 $amtOutstanding = 0;
 $amtPastDue = 0;
 foreach ($accountReplyRUTDF as $accountRUTDF) {
-    if (!empty($accountRUTDF->asq)) {
+    if (empty($accountRUTDF->loanIndicator)) {
         echo $this->render('_summaryAccountRUTDF', [
             'model' => $accountRUTDF,
         ]);

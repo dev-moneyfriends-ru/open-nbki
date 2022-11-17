@@ -729,11 +729,7 @@ class Account extends BaseItem
      */
     public function setCollateral(array $collateralData): void
     {
-        $models = [];
-        foreach ($collateralData as $config) {
-            $models[] = new Collateral($config);
-        }
-        $this->collateral = $models;
+        $this->collateral = $this->initPropertyModels($collateralData, Collateral::class);
     }
     
     /**
@@ -749,11 +745,7 @@ class Account extends BaseItem
      */
     public function setGuarantor(array $guarantorData): void
     {
-        $models = [];
-        foreach ($guarantorData as $config) {
-            $models[] = new Guarantor($config);
-        }
-        $this->guarantor = $models;
+        $this->guarantor = $this->initPropertyModels($guarantorData, Guarantor::class);
     }
     
     /**
@@ -765,15 +757,11 @@ class Account extends BaseItem
     }
     
     /**
-     * @param Amendment[] $amendment
+     * @param array $amendment
      */
     public function setAmendment(array $amendmentData): void
     {
-        $models = [];
-        foreach ($amendmentData as $config) {
-            $models[] = new Amendment($config);
-        }
-        $this->amendment = $models;
+        $this->amendment = $this->initPropertyModels($amendmentData, Amendment::class);
     }
     
     /**
