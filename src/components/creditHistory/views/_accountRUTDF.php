@@ -8,6 +8,7 @@
 use mfteam\nbch\models\AccountRelationship;
 use mfteam\nbch\models\AccountReplyRUTDF;
 use mfteam\nbch\models\LoanKind;
+use yii\helpers\ArrayHelper;
 use yii\web\View;
 
 $status = 'Активный';
@@ -25,12 +26,12 @@ foreach ($model->getPastdueArrear() as $item) {
     }
 }
 
-$payment = $model->getPayment()[count($model->getPayment()) - 1];
+$payment = $model->getPayment()?$model->getPayment()[count($model->getPayment()) - 1]:null;
 $collatRepay = $model->getCollatRepay() ? $model->getCollatRepay()[count($model->getCollatRepay()) - 1] : null;
 $overallVal = $model->getOverallVal() ? $model->getOverallVal()[count($model->getOverallVal()) - 1] : null;
 $trade = $model->getTrade()[0];
-$dueArrear = $model->getDueArrear()[count($model->getDueArrear()) - 1];
-$accountAmt = $model->getAccountAmt()[count($model->getAccountAmt()) - 1];
+$accountAmt = $model->getAccountAmt()?$model->getAccountAmt()[count($model->getAccountAmt()) - 1]:null;
+$dueArrear = $model->getDueArrear()?$model->getDueArrear()[count($model->getDueArrear()) - 1]:null;
 $pastdueArrear = $model->getPastdueArrear() ? $model->getPastdueArrear()[count($model->getPastdueArrear()) - 1] : null;
 $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
 ?>
@@ -117,14 +118,17 @@ $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
     <div class="col-sm-4 col-xs-4">
         <div class="row" style="height: 100%">
             <div class="col-sm-8 bg-info">Сумма погашенного основного долга</div>
-            <div class="col-sm-4 col-xs-4"><?= Yii::$app->formatter->asDecimal((float)$payment->principalTotalAmt, 2) ?></div>
+            <div class="col-sm-4 col-xs-4"><?= Yii::$app->formatter->asDecimal(
+                    (float)ArrayHelper::getValue($payment, 'principalTotalAmt'),
+                    2
+                ) ?></div>
         </div>
     </div>
     <div class="col-sm-4 col-xs-4">
         <div class="row" style="height: 100%">
             <div class="col-sm-6 bg-info">Полная стоимость кредита</div>
             <div class="col-sm-6"><?= $overallVal ? Yii::$app->formatter->asDecimal(
-                    (float)$payment->principalTotalAmt,
+                    $overallVal->creditTotalAmt,
                     2
                 ) : 0 ?>%
             </div>
@@ -142,7 +146,9 @@ $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
     <div class="col-sm-4 col-xs-4">
         <div class="row" style="height: 100%">
             <div class="col-sm-8 bg-info">Общая выплаченная сумма</div>
-            <div class="col-sm-4 col-xs-4"><?= Yii::$app->formatter->asDecimal((float)$payment->totalAmt, 2) ?></div>
+            <div class="col-sm-4 col-xs-4"><?= Yii::$app->formatter->asDecimal(
+                    (float)ArrayHelper::getValue($payment, 'totalAmt'), 2)
+                ?></div>
         </div>
     </div>
     <div class="col-sm-4 col-xs-4">
@@ -165,10 +171,10 @@ $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
     <div class="col-sm-4 col-xs-4">
         <div class="row" style="height: 100%">
             <div class="col-sm-8 bg-info">Сумма последнего платежа</div>
-            <div class="col-sm-4 col-xs-4"><?= Yii::$app->formatter->asDecimal(
+            <div class="col-sm-4 col-xs-4"><?= $payment?Yii::$app->formatter->asDecimal(
                     (float)$payment->principalPaymtAmt + (float)$payment->intPaymtAmt + (float)$payment->otherPaymtAmt,
                     2
-                ) ?></div>
+                ):0 ?></div>
         </div>
     </div>
     <div class="col-sm-4 col-xs-4">
@@ -189,7 +195,7 @@ $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
     <div class="col-sm-4 col-xs-4">
         <div class="row" style="height: 100%">
             <div class="col-sm-8 bg-info">Дата последнего платежа</div>
-            <div class="col-sm-4 col-xs-4"><?= Yii::$app->formatter->asDate($payment->paymtDate, 'dd.MM.yyyy') ?></div>
+            <div class="col-sm-4 col-xs-4"><?= Yii::$app->formatter->asDate(ArrayHelper::getValue($payment, 'paymtDate'), 'dd.MM.yyyy') ?></div>
         </div>
     </div>
     <div class="col-sm-4 col-xs-4">
@@ -210,7 +216,7 @@ $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
     <div class="col-sm-4 col-xs-4">
         <div class="row" style="height: 100%">
             <div class="col-sm-8 bg-info">Текущая задолженность</div>
-            <div class="col-sm-4 col-xs-4"><?= Yii::$app->formatter->asDecimal((float)$dueArrear->amtOutstanding, 2) ?></div>
+            <div class="col-sm-4 col-xs-4"><?= Yii::$app->formatter->asDecimal((float)ArrayHelper::getValue($dueArrear, 'amtOutstanding'), 2) ?></div>
         </div>
     </div>
     <div class="col-sm-4 col-xs-4">
@@ -225,7 +231,7 @@ $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
     <div class="col-sm-4 col-xs-4">
         <div class="row" style="height: 100%">
             <div class="col-sm-6 bg-info">Сумма обязательств по договору</div>
-            <div class="col-sm-6"><?= Yii::$app->formatter->asDecimal((float)$accountAmt->creditLimit, 2) ?></div>
+            <div class="col-sm-6"><?= Yii::$app->formatter->asDecimal((float)ArrayHelper::getValue($accountAmt, 'creditLimit'), 2) ?></div>
         </div>
     </div>
     <div class="col-sm-4 col-xs-4">
@@ -245,7 +251,7 @@ $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
     <div class="col-sm-4 col-xs-4">
         <div class="row">
             <div class="col-sm-6 bg-info">Первоначальный лимит</div>
-            <div class="col-sm-6"><?= Yii::$app->formatter->asDecimal((float)$accountAmt->creditLimit, 2) ?></div>
+            <div class="col-sm-6"><?= Yii::$app->formatter->asDecimal((float)ArrayHelper::getValue($accountAmt, 'creditLimit'), 2) ?></div>
         </div>
         <div class="row">
             <div class="col-sm-6 bg-info">Статус кредитной линии</div>
@@ -259,7 +265,7 @@ $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
         </div>
         <div class="row">
             <div class="col-sm-8 bg-info">Текущая просроченная задолженность, дней</div>
-            <div class="col-sm-4 col-xs-4"><?= (int)$payment->daysPastDue ?></div>
+            <div class="col-sm-4 col-xs-4"><?= (int)ArrayHelper::getValue($payment, 'daysPastDue') ?></div>
         </div>
     </div>
     <div class="col-sm-4 col-xs-4">
