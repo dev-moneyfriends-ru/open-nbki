@@ -92,7 +92,7 @@ class RutdfTemplate extends BaseRequestTemplate
     /**
      * Версия формата файла
      */
-    public const FORMAT_VERSION = 'RUTDF3.0';
+    public const FORMAT_VERSION = 'RUTDF4.0';
     
     /**
      * Связь файла

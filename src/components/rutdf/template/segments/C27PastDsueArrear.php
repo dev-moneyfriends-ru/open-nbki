@@ -27,13 +27,13 @@ class C27PastDsueArrear extends BaseSegment
         if ($trade->amtPastDue < 0.01) {
             return [
                 $this->segmentName,
+                $this->formatNewDate($trade->pastDueDt),
+                $this->emptyValue,
+                $this->formatCurrency(0),
                 $this->emptyValue,
                 $this->emptyValue,
-                $this->formatCurrency($trade->amtPastDue),
                 $this->emptyValue,
-                $this->emptyValue,
-                $this->emptyValue,
-                $this->emptyValue,
+                $this->formatNewDate($this->template->getOffer()->getTrade()->reportingDt),
                 $this->emptyValue,
                 $this->emptyValue,
             ];

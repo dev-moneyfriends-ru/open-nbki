@@ -11,11 +11,11 @@ use yii\web\View;
 
 $pastdueArrear = $model->getPastdueArrear() ? $model->getPastdueArrear()[count($model->getPastdueArrear()) - 1] : null;
 $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
-$payment = $model->getPayment()[count($model->getPayment()) - 1];
-$daysPastDue = (int)$payment->daysPastDue;
+$payment = $model->getPayment()?$model->getPayment()[count($model->getPayment()) - 1]:null;
+$daysPastDue = $payment?(int)$payment->daysPastDue:0;
 $trade = $model->getTrade()[0];
-$accountAmt = $model->getAccountAmt()[count($model->getAccountAmt()) - 1];
-$dueArrear = $model->getDueArrear()[count($model->getDueArrear()) - 1];
+$accountAmt = $model->getAccountAmt()?$model->getAccountAmt()[count($model->getAccountAmt()) - 1]:null;
+$dueArrear = $model->getDueArrear()?$model->getDueArrear()[count($model->getDueArrear()) - 1]:null;
 $maxAmtPastDue = 0;
 $maxPatDue = 0;
 $maxPatDueStyle = '';
@@ -46,11 +46,11 @@ if ($maxPatDue > 30) {
         <?= TradeType::getText($trade->tradeTypeCode) ?>
         <?= LoanKind::getText($trade->loanKindCode) ?>
     </td>
-    <td><?= Yii::$app->formatter->asDecimal((float)$accountAmt->creditLimit, 2) ?></td>
-    <td><?= $accountAmt->currencyCode ?></td>
+    <td><?= $accountAmt?Yii::$app->formatter->asDecimal((float)$accountAmt->creditLimit, 2):'-' ?></td>
+    <td><?= $accountAmt?$accountAmt->currencyCode:'-'?></td>
     <td><?= Yii::$app->formatter->asDate($trade->openedDt, 'dd.MM.yyyy') ?></td>
     <td><?= Yii::$app->formatter->asDate($trade->closedDt, 'dd.MM.yyyy') ?></td>
-    <td><?= Yii::$app->formatter->asDecimal((float)$dueArrear->amtOutstanding, 2) ?></td>
+    <td><?= $dueArrear?Yii::$app->formatter->asDecimal((float)$dueArrear->amtOutstanding, 2):'-' ?></td>
     <td class="<?= $amtPastDue ? 'text-danger' : 'text-success' ?>"><?= Yii::$app->formatter->asDecimal(
             (float)$model->amtPastDue,
             2
