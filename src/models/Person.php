@@ -86,6 +86,147 @@ class Person extends BaseItem
      */
     public $oksm;
     
+    /**
+     * @var string $srcCountryCode
+     */
+    public $srcCountryCode;
+    
+    /**
+     * @var string $srcCountryCodeText
+     */
+    public $srcCountryCodeText;
+    
+    /**
+     * @var string $customerType
+     */
+    public $customerType;
+    
+    /**
+     * @var string $memberCode
+     */
+    public $memberCode;
+    
+    /**
+     * @var string $memberTypeText
+     */
+    public $memberTypeText;
+    
+    /**
+     * @var string $memberNameText
+     */
+    public $memberNameText;
+    
+    /**
+     * @var string $memberContactText
+     */
+    public $memberContactText;
+    
+    /**
+     * @var \DateTime $fileSinceDt
+     */
+    public $fileSinceDt;
+    
+    /**
+     * @var string $name2
+     */
+    public $name2;
+    
+    /**
+     * @var string $name3
+     */
+    public $name3;
+    
+    /**
+     * @var string $middle
+     */
+    public $middle;
+    
+    /**
+     * @var string $oldSurname
+     */
+    public $oldSurname;
+    
+    /**
+     * @var string $oldFirstName
+     */
+    public $oldFirstName;
+    
+    /**
+     * @var string $suffix
+     */
+    public $suffix;
+    
+    /**
+     * @var string $suffixText
+     */
+    public $suffixText;
+    
+    /**
+     * @var string $title
+     */
+    public $title;
+    
+    /**
+     * @var string $spouseName
+     */
+    public $spouseName;
+    
+    /**
+     * @var string $occupation
+     */
+    public $occupation;
+    
+    /**
+     * @var string $occupationText
+     */
+    public $occupationText;
+    
+    /**
+     * @var string $consentToEnquire
+     */
+    public $consentToEnquire;
+    
+    /**
+     * @var string $consentToEnquireText
+     */
+    public $consentToEnquireText;
+    
+    /**
+     * @var \DateTime $deceasedDt
+     */
+    public $deceasedDt;
+    
+    /**
+     * @var string $countryBirth
+     */
+    public $countryBirth;
+    
+    /**
+     * @var string $countryBirthText
+     */
+    public $countryBirthText;
+    
+    /**
+     * @var \DateTime $lastUpdatedDt
+     */
+    public $lastUpdatedDt;
+    
+    /**
+     * @var string $dataValidity
+     */
+    public $dataValidity;
+    
+    /**
+     * @var int $isPrevName
+     */
+    public $isPrevName;
+    
+    /**
+     * @var \DateTime $issueDate
+     */
+    public $issueDate;
+    
+    
     public static function maritalStatusList()
     {
         return [
