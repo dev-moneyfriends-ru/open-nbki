@@ -128,7 +128,7 @@ $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
         <div class="row" style="height: 100%">
             <div class="col-sm-6 bg-info">Полная стоимость кредита</div>
             <div class="col-sm-6"><?= $overallVal ? Yii::$app->formatter->asDecimal(
-                    $overallVal->creditTotalAmt,
+                    (float)$overallVal->creditTotalAmt,
                     2
                 ) : 0 ?>%
             </div>
