@@ -716,6 +716,7 @@ class Trade extends BaseItem
                     'paymtPatStartDt',
                     'reportingDt',
                     'completePerformDt',
+                    'pastDueDt'
                 ],
                 'date',
                 'format' => 'yyyy-MM-dd',
