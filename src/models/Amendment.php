@@ -81,4 +81,9 @@ class Amendment extends BaseItem
      * @var string $creditTotalMonetaryAmt
      */
     public $creditTotalMonetaryAmt = null;
+    
+    /**
+     * @var string
+     */
+    public $amendDate;
 }
