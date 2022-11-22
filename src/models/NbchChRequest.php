@@ -28,6 +28,7 @@ use yii\helpers\ArrayHelper;
  * @property-read null|NbchFile $responsePdf
  * @property-read null|NbchFile $responseXml
  * @property-read mixed $statusName
+ * @property-read null|NbchFile $responseHtml
  * @property NbchConsent $consent
  */
 class NbchChRequest extends ActiveRecord
