@@ -40,6 +40,7 @@ class NbchChRequest extends ActiveRecord
     
     public const FILE_TYPE_XML = 'XML';
     public const FILE_TYPE_PDF = 'PDF';
+    public const FILE_TYPE_HTML = 'HTML';
     
     /**
      * @return array
@@ -151,5 +152,15 @@ class NbchChRequest extends ActiveRecord
     public function getResponsePdf()
     {
         return Env::ensure()->module->file->getFile(self::FILE_TYPE_PDF, $this->formName(), $this->id);
+    }
+    
+    /**
+     * @return NbchFile|null
+     * @throws InvalidConfigException
+     * @throws NotInstantiableException
+     */
+    public function getResponseHtml()
+    {
+        return Env::ensure()->module->file->getFile(self::FILE_TYPE_HTML, $this->formName(), $this->id);
     }
 }

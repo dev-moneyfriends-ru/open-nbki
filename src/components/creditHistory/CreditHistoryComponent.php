@@ -18,6 +18,7 @@ use mfteam\nbch\models\RefReq;
 use mfteam\nbch\models\RegnumReq;
 use mfteam\nbch\models\SNILSReq;
 use yii\base\Component;
+use yii\base\Controller;
 use yii\base\Exception;
 use yii\base\InvalidConfigException;
 use yii\di\NotInstantiableException;
@@ -313,8 +314,8 @@ class CreditHistoryComponent extends Component
         if ($this->model === null) {
             return;
         }
-        
         $this->saveXmlResult($response->content);
+        $this->saveHtmlResult();
     }
     
     /**
@@ -379,5 +380,45 @@ class CreditHistoryComponent extends Component
     public function getPersonView()
     {
         return '@vendor/mf-team/yii2-mf-nbch/src/components/creditHistory/views/person.php';
+    }
+    
+    /**
+     * @return false|string
+     */
+    public function getLayout()
+    {
+        return '@vendor/mf-team/yii2-mf-nbch/src/components/creditHistory/views/layout.php';
+    }
+    
+    /**
+     * Сохраняем отчет в HTML
+     * @return void
+     * @throws Exception
+     * @throws InvalidConfigException
+     * @throws NotInstantiableException
+     */
+    private function saveHtmlResult()
+    {
+        if (empty($this->model)) {
+            return;
+        }
+        $preplyReport = $this->createPreplyReport($this->model);
+        $view = $this->model->consent->isBusiness() ? $this->getBusinessView() : $this->getPersonView();
+        
+        $controller = \Yii::createObject(Controller::class);
+        $controller->layout = $this->getLayout();
+        $content = $controller->render($view, ['preplyReport' => $preplyReport]);
+        
+        $tempPath = tempnam('/tmp', 'nbki_request');
+        file_put_contents($tempPath, $content);
+        $file = new NbchFile();
+        $file->setStoragePath($tempPath)
+            ->setFileName('nbki_request_' . $this->model->id . '_' . time() . '.html')
+            ->setContent($content)
+            ->setEntity($this->model->formName())
+            ->setEntityId($this->model->id)
+            ->setType(NbchChRequest::FILE_TYPE_HTML);
+        
+        Env::ensure()->module->file->save($file);
     }
 }
