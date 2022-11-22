@@ -208,7 +208,6 @@ class CreditHistoryComponent extends Component
             
             $response = $this->request->send();
             $this->updateModel($response);
-            $this->saveFiles($response);
             
             $parser = new XmlToArrayParser();
             $data = $parser->parseXml($response->content);
@@ -223,6 +222,8 @@ class CreditHistoryComponent extends Component
             } else {
                 $this->model->status = NbchChRequest::STATE_FINISH;
             }
+            
+            $this->saveFiles($response);
             
             if (!$this->model->save()) {
                 throw new Exception(VarDumper::dumpAsString($this->model->errors));
@@ -399,7 +400,7 @@ class CreditHistoryComponent extends Component
      */
     private function saveHtmlResult()
     {
-        if (empty($this->model)) {
+        if (empty($this->model) || $this->model->status !== NbchChRequest::STATE_FINISH) {
             return;
         }
         $preplyReport = $this->createPreplyReport($this->model);
