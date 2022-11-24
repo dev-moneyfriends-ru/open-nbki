@@ -17,7 +17,7 @@ class C4Id extends \mfteam\nbch\components\BaseSegment
     
     public function init()
     {
-        if($this->template->subject->isLegal()){
+        if ($this->template->subject->isLegal()) {
             parent::init();
             return;
         }
