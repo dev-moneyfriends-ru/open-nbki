@@ -34,8 +34,8 @@ class C27PastDsueArrear extends BaseSegment
                 $this->emptyValue,
                 $this->emptyValue,
                 $this->formatNewDate($this->template->getOffer()->getTrade()->reportingDt),
-                $this->emptyValue,
-                $this->emptyValue,
+                $this->formatNewDate($trade->principalMissedDate),
+                $this->formatNewDate($trade->intMissedDate),
             ];
         }
         return [
