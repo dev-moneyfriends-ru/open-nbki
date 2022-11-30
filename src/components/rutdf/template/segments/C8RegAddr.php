@@ -36,7 +36,7 @@ class C8RegAddr extends \mfteam\nbch\components\BaseSegment
             $address->postal,
             $address->oksm,
             $this->emptyValue,
-            $this->emptyValue,
+            $address->fias??$this->emptyValue,
             $address->okato,
             $this->emptyValue,
             $this->formatString($address->street),

@@ -152,7 +152,7 @@ class RutdfTemplate extends BaseRequestTemplate
         while (
         $module->file->fileExist(
             $name . $suffix,
-            NbchTutdfRequest::FILE_TUTDF_TYPE,
+            NbchRutdfRequest::FILE_RUTDF_TYPE,
             self::ENTITY,
             $module->rutdf->userName
         )
