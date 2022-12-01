@@ -56,7 +56,7 @@ class NbchControl extends ActiveRecord
     public static function findByOffer(string $uuid): NbchControl
     {
         $model = self::findOne(['offerUuid' => $uuid]);
-        if($model === null){
+        if ($model === null) {
             $model = new NbchControl(['offerUuid' => $uuid]);
         }
         return $model;
@@ -83,10 +83,24 @@ class NbchControl extends ActiveRecord
     public static function errorCodes($params = [])
     {
         return [
-            '01' => Yii::t('app', 'У одного из отправленных отчетов отсутствует квитанция НБКИ. Необходимо загрузить квитанцию.', $params),
-            '02' => Yii::t('app', 'У одного из отправленных отчетов ошибка в переданных данных. Исправьте данные и отправьте отчет повторно', $params),
-            '03' => Yii::t('app', 'Ошибка генерации данных в одном из отчетов. Исправьте ошибки и перегенерируйте отчет', $params),
+            '01' => Yii::t(
+                'app',
+                'У одного из отправленных отчетов отсутствует квитанция НБКИ. Необходимо загрузить квитанцию.',
+                $params
+            ),
+            '02' => Yii::t(
+                'app',
+                'У одного из отправленных отчетов ошибка в переданных данных. Исправьте данные и отправьте отчет повторно',
+                $params
+            ),
+            '03' => Yii::t(
+                'app',
+                'Ошибка генерации данных в одном из отчетов. Исправьте ошибки и перегенерируйте отчет',
+                $params
+            ),
             '04' => Yii::t('app', 'Нет действующего согласия НБКИ', $params),
+            '05' => Yii::t('app', 'Не отправлялись данные о выдаче займа', $params),
+            '06' => Yii::t('app', 'Не отправлялись данные о закрытие займа', $params),
         ];
     }
     
@@ -100,7 +114,8 @@ class NbchControl extends ActiveRecord
      */
     public function getUncheckedRequests()
     {
-        return $this->hasMany(NbchTutdfRequest::class, ['offerUuid' => 'offerUuid'])->andOnCondition(['checkAt' => null]);
+        return $this->hasMany(NbchTutdfRequest::class, ['offerUuid' => 'offerUuid'])->andOnCondition(['checkAt' => null]
+        );
     }
     
     /**
@@ -173,10 +188,14 @@ class NbchControl extends ActiveRecord
     {
         $this->nextSend = time() + $delay;
         $this->nextCheck = time() + $checkDelay;
-        $this->message = \Yii::t('app', 'Запланирована отправка данных на {0} <br> Следующая автоматическая проверка {1}<br>', [
-            \Yii::$app->formatter->asDatetime($this->nextSend),
-            \Yii::$app->formatter->asDatetime($this->nextCheck),
-        ]);
+        $this->message = \Yii::t(
+            'app',
+            'Запланирована отправка данных на {0} <br> Следующая автоматическая проверка {1}<br>',
+            [
+                \Yii::$app->formatter->asDatetime($this->nextSend),
+                \Yii::$app->formatter->asDatetime($this->nextCheck),
+            ]
+        );
     }
     
     /**
@@ -197,10 +216,11 @@ class NbchControl extends ActiveRecord
             [
                 'class' => TimestampBehavior::class,
                 'createdAtAttribute' => 'createdAt',
-                'updatedAtAttribute' => 'updatedAt'
+                'updatedAtAttribute' => 'updatedAt',
             ],
         ];
     }
+    
     /**
      * {@inheritdoc}
      */
@@ -214,7 +234,7 @@ class NbchControl extends ActiveRecord
             [['errorCode'], 'string', 'max' => 255],
         ];
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -230,7 +250,7 @@ class NbchControl extends ActiveRecord
             'message' => 'Message',
         ];
     }
-
+    
     /**
      * Gets query for [[OfferUu]].
      *
@@ -240,7 +260,7 @@ class NbchControl extends ActiveRecord
     {
         return $this->hasMany(NbchTutdfRequest::className(), ['offerUuid' => 'offerUuid']);
     }
-
+    
     /**
      * {@inheritdoc}
      * @return NbchControlQuery the active query used by this AR class.
