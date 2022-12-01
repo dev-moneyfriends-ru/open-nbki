@@ -78,6 +78,7 @@ use mfteam\nbch\models\rutdf\NbchEvents;
 use mfteam\nbch\models\rutdf\NbchRutdfRequest;
 use mfteam\nbch\models\tutdf\NbchTutdfRequest;
 use Yii;
+use yii\base\Exception;
 use yii\base\InvalidConfigException;
 
 /**
@@ -85,6 +86,11 @@ use yii\base\InvalidConfigException;
  *
  * @property-read array $tokenList
  * @property-read string $baseName
+ * @property-read C33Guarantor[] $c33Guarantor
+ * @property-read string $fileContent
+ * @property-read C32Collateral[] $c32Collateral
+ * @property-read B23Collateral[]|array $b23Collateral
+ * @property-read B24Guarantor[] $b24Guarantor
  * @property-read string $templatePath
  */
 class RutdfTemplate extends BaseRequestTemplate
@@ -196,7 +202,7 @@ class RutdfTemplate extends BaseRequestTemplate
     
     /**
      * Загружает содержимое файла отчета
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     private function loadFileContent(): void
     {
@@ -207,7 +213,7 @@ class RutdfTemplate extends BaseRequestTemplate
         
         $content = $this->request->getFile()->getContent();
         if ($content === false) {
-            throw new \yii\base\Exception('Невозможно получить содержимое файла');
+            throw new Exception('Невозможно получить содержимое файла');
         }
         $this->_fileContent = mb_convert_encoding($content, 'UTF-8', 'WINDOWS-1251');
     }
