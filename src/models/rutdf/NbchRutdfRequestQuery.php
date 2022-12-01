@@ -28,12 +28,12 @@ class NbchRutdfRequestQuery extends ActiveQuery
     }
     
     /**
-     * @param $val
+     * @param string $val
      * @return NbchRutdfRequestQuery
      */
-    public function byOfferId($val)
+    public function byOfferUuid(string $val)
     {
-        return $this->andWhere(['[[offerId]]' => $val]);
+        return $this->andWhere(['[[offerUuid]]' => $val]);
     }
     
     /**
@@ -53,10 +53,10 @@ class NbchRutdfRequestQuery extends ActiveQuery
     }
     
     /**
-     * @param mixed $val
+     * @param int $val
      * @return NbchRutdfRequestQuery
      */
-    public function byState($val)
+    public function byState(int $val)
     {
         return $this->andWhere(['[[state]]' => $val]);
     }
