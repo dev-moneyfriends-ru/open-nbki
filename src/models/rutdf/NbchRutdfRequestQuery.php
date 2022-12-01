@@ -26,4 +26,54 @@ class NbchRutdfRequestQuery extends ActiveQuery
     {
         return parent::one($db);
     }
+    
+    /**
+     * @param $val
+     * @return NbchRutdfRequestQuery
+     */
+    public function byOfferId($val)
+    {
+        return $this->andWhere(['[[offerId]]' => $val]);
+    }
+    
+    /**
+     * @return NbchRutdfRequestQuery
+     */
+    public function stateNew()
+    {
+        return $this->andWhere(['[[state]]' => NbchRutdfRequest::STATE_NEW]);
+    }
+    
+    /**
+     * @return NbchRutdfRequestQuery
+     */
+    public function stateSent()
+    {
+        return $this->andWhere(['[[state]]' => NbchRutdfRequest::STATE_SENT]);
+    }
+    
+    /**
+     * @param mixed $val
+     * @return NbchRutdfRequestQuery
+     */
+    public function byState($val)
+    {
+        return $this->andWhere(['[[state]]' => $val]);
+    }
+    
+    /**
+     * @return NbchRutdfRequestQuery
+     */
+    public function notCkeck()
+    {
+        return $this->andWhere(['[[check_at]]' => null]);
+    }
+    /**
+     * Автоматически созданные
+     * @return NbchRutdfRequestQuery
+     */
+    public function isAuto()
+    {
+        return $this->andWhere(['[[createdBy]]' => null]);
+    }
 }
