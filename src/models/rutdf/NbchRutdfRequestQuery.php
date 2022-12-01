@@ -62,6 +62,15 @@ class NbchRutdfRequestQuery extends ActiveQuery
     }
     
     /**
+     * @param int[] $val
+     * @return NbchRutdfRequestQuery
+     */
+    public function byStates(array $val)
+    {
+        return $this->andWhere(['[[state]]' => $val]);
+    }
+    
+    /**
      * @return NbchRutdfRequestQuery
      */
     public function notCkeck()
