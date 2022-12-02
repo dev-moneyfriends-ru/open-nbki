@@ -75,7 +75,7 @@ class NbchRutdfRequestQuery extends ActiveQuery
      */
     public function notCkeck()
     {
-        return $this->andWhere(['[[check_at]]' => null]);
+        return $this->andWhere(['[[checkAt]]' => null]);
     }
     /**
      * Автоматически созданные
