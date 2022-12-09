@@ -116,6 +116,11 @@ class RutdfTemplate extends BaseRequestTemplate
      */
     protected $request;
     
+    /**
+     * @var string
+     */
+    protected $baseFileName;
+    
     public function __construct(array $eventIds, NbchSubjectInterface $subject, NbchOfferInterface $offer, $config = [])
     {
         $this->eventIds = $eventIds;
@@ -142,7 +147,7 @@ class RutdfTemplate extends BaseRequestTemplate
             "GROUPHEADER" => new GroupHeader($this),
             "TRAILER" => new Trailer($this),
             "segments" => $this->createSegments(),
-            "template" => $this
+            "template" => $this,
         ];
     }
     
@@ -152,6 +157,9 @@ class RutdfTemplate extends BaseRequestTemplate
      */
     public function getBaseName()
     {
+        if (!empty($this->baseFileName)) {
+            return $this->baseFileName;
+        }
         $module = Env::ensure()->module;
         $name = $module->rutdf->userName;
         $suffix = Yii::$app->formatter->asDatetime(time(), '_yyyyMMdd_HHmmss');
@@ -166,7 +174,8 @@ class RutdfTemplate extends BaseRequestTemplate
             sleep(1);
             $suffix = Yii::$app->formatter->asDatetime(time(), '_yyyyMMdd_HHmmss');
         }
-        return $name . $suffix;
+        $this->baseFileName = $name . $suffix;
+        return $this->baseFileName;
     }
     
     /**
