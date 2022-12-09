@@ -111,9 +111,9 @@ class C29MonthAverPaymt extends BaseSegment
                 NbchEvents::EVENT_2_5_1,
                 NbchEvents::EVENT_2_5_2,
             ], true)) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }
