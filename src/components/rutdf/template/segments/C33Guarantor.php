@@ -38,7 +38,17 @@ class C33Guarantor extends \mfteam\nbch\components\BaseSegment
     public function getFields(): array
     {
         if (empty($this->guarantor->serialNum)) {
-            return [];
+            return [
+                $this->segmentName,
+                0,
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
+                $this->emptyValue,
+            ];
         }
         return [
             $this->segmentName,
