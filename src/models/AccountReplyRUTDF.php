@@ -245,9 +245,9 @@ class AccountReplyRUTDF extends Account
     }
     
     /**
-     * @return AccountAmtRUTDF[]
+     * @return AccountAmtRUTDF[]|null
      */
-    public function getAccountAmt(): array
+    public function getAccountAmt(): ?array
     {
         return $this->accountAmt;
     }
