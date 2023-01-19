@@ -12,11 +12,11 @@ class AccountReplyRUTDF extends Account
     /**
      * @var TradeRUTDF[]
      */
-    private $trade;
+    private $trade = [];
     /**
      * @var AccountAmtRUTDF[]
      */
-    private $accountAmt;
+    private $accountAmt = [];
     
     /**
      * @var CoborrowerRUTDF[]
