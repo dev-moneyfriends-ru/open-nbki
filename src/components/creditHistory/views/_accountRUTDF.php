@@ -29,7 +29,7 @@ foreach ($model->getPastdueArrear() as $item) {
 $payment = $model->getPayment()?$model->getPayment()[count($model->getPayment()) - 1]:null;
 $collatRepay = $model->getCollatRepay() ? $model->getCollatRepay()[count($model->getCollatRepay()) - 1] : null;
 $overallVal = $model->getOverallVal() ? $model->getOverallVal()[count($model->getOverallVal()) - 1] : null;
-$trade = $model->getTrade()[0];
+$trade = $model->getTrade()?$model->getTrade()[0]:(new \mfteam\nbch\models\TradeRUTDF());
 $accountAmt = $model->getAccountAmt()?$model->getAccountAmt()[count($model->getAccountAmt()) - 1]:null;
 $dueArrear = $model->getDueArrear()?$model->getDueArrear()[count($model->getDueArrear()) - 1]:null;
 $pastdueArrear = $model->getPastdueArrear() ? $model->getPastdueArrear()[count($model->getPastdueArrear()) - 1] : null;
