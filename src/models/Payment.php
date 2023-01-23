@@ -96,7 +96,7 @@ class Payment extends BaseItem
     /**
      * @var string
      */
-    public $amtKeepCode = self::PAYMENT_VOL_FULL;
+    public $amtKeepCode = self::AMT_KEEP_CODE_FULL;
     
     public function rules()
     {
