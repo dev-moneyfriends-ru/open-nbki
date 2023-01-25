@@ -12,12 +12,11 @@ use yii\helpers\ArrayHelper;
 use yii\web\View;
 
 
-
 /* @var $this View */
 /* @var $isLegal bool */
 /* @var $eventId string */
 /* @var $segments array */
-/* @var $guarantorSegment mixed */
+/* @var $guarantorSegments array */
 /* @var $template RutdfTemplate */
 
 
@@ -34,7 +33,9 @@ foreach ($blocks as $block) {
         $segment = ArrayHelper::getValue($segments, $segmentCode);
         
         if ($segmentCode === 'C33_GUARANTOR' || $segmentCode === 'B24_GUARANTOR') {
-            echo $guarantorSegment->render();
+            foreach ($guarantorSegments as $guarantorSegment) {
+                echo $guarantorSegment->render();
+            }
         } elseif ($segmentCode === 'B23_COLLATERAL') {
             echo (new B23Collateral(new Collateral(), $template))->render();
         } elseif ($segmentCode === 'C32_COLLATERAL') {
