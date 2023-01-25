@@ -105,6 +105,7 @@ class GroupHeader extends \mfteam\nbch\components\BaseSegment
     public function setNumber(int $number): GroupHeader
     {
         $this->number = $number;
+        $this->fieldValues = null;
         return $this;
     }
     
@@ -121,6 +122,7 @@ class GroupHeader extends \mfteam\nbch\components\BaseSegment
             $event = '2.5';
         }
         $this->event = $event;
+        $this->fieldValues = null;
         return $this;
     }
 }
