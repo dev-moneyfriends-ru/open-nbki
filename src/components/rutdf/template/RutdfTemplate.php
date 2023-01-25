@@ -121,6 +121,12 @@ class RutdfTemplate extends BaseRequestTemplate
      */
     protected $baseFileName;
     
+    /**
+     * Текущая строка в файле
+     * @var int
+     */
+    private $currentLine = 0;
+    
     public function __construct(array $eventIds, NbchSubjectInterface $subject, NbchOfferInterface $offer, $config = [])
     {
         $this->eventIds = $eventIds;
@@ -225,6 +231,7 @@ class RutdfTemplate extends BaseRequestTemplate
             throw new Exception('Невозможно получить содержимое файла');
         }
         $this->_fileContent = mb_convert_encoding($content, 'UTF-8', 'WINDOWS-1251');
+        $this->currentLine = 0;
     }
     
     /**
@@ -368,5 +375,23 @@ class RutdfTemplate extends BaseRequestTemplate
         return array_map(function (Guarantor $item) {
             return new C33Guarantor($item, $this);
         }, $this->offer->getGuarantorArray());
+    }
+    
+    /**
+     * Текущий номер строки
+     * @return int
+     */
+    public function getLineNumber(): int
+    {
+        return $this->currentLine;
+    }
+    
+    /**
+     * Следующая строка
+     * @return void
+     */
+    public function nextLine(): void
+    {
+        $this->currentLine++;
     }
 }
