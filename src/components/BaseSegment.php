@@ -18,6 +18,7 @@ use yii\helpers\VarDumper;
  * @property-read array $fields
  * @property-read string $title
  * @property-read array $fieldsDescriptions
+ * @property-read int $fileLine
  * @property-read string $segmentName
  */
 abstract class BaseSegment extends \yii\base\BaseObject
@@ -256,4 +257,11 @@ abstract class BaseSegment extends \yii\base\BaseObject
         return $daysPastDue;
     }
     
+    /**
+     * @return int
+     */
+    public function getFileLine()
+    {
+        return $this->template->lineNumber;
+    }
 }
