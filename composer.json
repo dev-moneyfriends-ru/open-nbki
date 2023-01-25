@@ -2,7 +2,6 @@
   "name": "mf-team/yii2-mf-nbch",
   "description": "Обмен данными с НБКИ",
   "type": "yii2-extension",
-  "version": "dev-#3186",
   "keywords": [
     "yii2",
     "module",
@@ -42,6 +41,11 @@
   "config": {
     "allow-plugins": {
       "yiisoft/yii2-composer": true
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-main": "1.0.x-dev"
     }
   }
 }

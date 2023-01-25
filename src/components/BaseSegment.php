@@ -203,7 +203,10 @@ abstract class BaseSegment extends \yii\base\BaseObject
             return;
         }
         $lines = explode("\n", $this->template->fileContent);
-        foreach ($lines as $str) {
+        foreach ($lines as $key => $str) {
+            if ($key < $this->template->lineNumber) {
+                continue;
+            }
             if (strpos($str, $this->getSegmentName()) === 0) {
                 $this->fieldValues = explode("\t", $str);
                 break;
@@ -217,7 +220,7 @@ abstract class BaseSegment extends \yii\base\BaseObject
      */
     protected function getUuidControlSum(string $uuid)
     {
-        $uuid = preg_replace('/[^a-zA-Z\d]/i', '', $uuid);
+        $uuid = preg_replace('/[^a-z\d]/i', '', $uuid);
         $chars = str_split($uuid);
         $sum = 0;
         $i = 1;
