@@ -12,10 +12,19 @@ use yii\base\BaseObject;
  * Шаблон передачи данных в НБКИ
  *
  * @property-read NbchOfferInterface $offer
+ * @property-read string $templatePath
+ * @property-read array $tokenList
+ * @property-read int $lineNumber
  * @property-read NbchSubjectInterface $subject
  */
 abstract class BaseRequestTemplate extends BaseObject
 {
+    /**
+     * Текущая строка в файле
+     * @var int
+     */
+    private $currentLine = 0;
+    
     /**
      * @var NbchSubjectInterface
      */
@@ -80,7 +89,7 @@ abstract class BaseRequestTemplate extends BaseObject
      */
     private function saveAs(string $path)
     {
-        if(empty($this->_content)){
+        if (empty($this->_content)) {
             $this->loadContent();
         }
         return file_put_contents($path, $this->_content) !== false;
@@ -94,6 +103,29 @@ abstract class BaseRequestTemplate extends BaseObject
         $controller = Yii::$app->controller;
         $this->_content = $controller->renderPartial($this->getTemplatePath(), $this->getTokenList());
         $this->_content = mb_convert_encoding($this->_content, 'cp1251');
+    }
+    
+    /**
+     * Текущий номер строки
+     * @return int
+     */
+    public function getLineNumber(): int
+    {
+        return $this->currentLine;
+    }
+    
+    /**
+     * Следующая строка
+     * @return void
+     */
+    public function nextLine(): void
+    {
+        $this->currentLine++;
+    }
+    
+    public function resetLine(): void
+    {
+        $this->currentLine = 0;
     }
     
     /**
