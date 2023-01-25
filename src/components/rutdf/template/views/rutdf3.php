@@ -56,18 +56,15 @@ foreach ($eventIds as $eventId) {
         } else {
             $guarantorSegments = ArrayHelper::getValue($segments, "C33_GUARANTOR", []);
         }
-        
-        foreach ($guarantorSegments as $guarantorSegment) {
-            echo $GROUPHEADER->setNumber($cnt)->setEvent($eventId)->render();
-            echo $this->render("_guarantor", [
-                'isLegal' => $isLegal,
-                'eventId' => $eventId,
-                'segments' => $segments,
-                'guarantorSegment' => $guarantorSegment,
-                'template' => $template,
-            ]);
-            $cnt++;
-        }
+        echo $GROUPHEADER->setNumber($cnt)->setEvent($eventId)->render();
+        echo $this->render("_guarantor", [
+            'isLegal' => $isLegal,
+            'eventId' => $eventId,
+            'segments' => $segments,
+            'guarantorSegments' => $guarantorSegments,
+            'template' => $template,
+        ]);
+        $cnt++;
     }
 }
 
