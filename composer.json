@@ -2,7 +2,7 @@
   "name": "mf-team/yii2-mf-nbch",
   "description": "Обмен данными с НБКИ",
   "type": "yii2-extension",
-  "version": "dev-main",
+  "version": "dev-#3186",
   "keywords": [
     "yii2",
     "module",
