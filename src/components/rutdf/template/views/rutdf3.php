@@ -64,6 +64,7 @@ foreach ($eventIds as $eventId) {
             'guarantorSegments' => $guarantorSegments,
             'template' => $template,
         ]);
+        $cnt++;
     }
 }
 
