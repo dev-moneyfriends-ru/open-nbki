@@ -38,7 +38,7 @@ $person = $personReply[0];
             }
             ?>
             <br>
-            СНИЛС: <?= $snilsReply[0]->number ?>
+            СНИЛС: <?= $snilsReply[0]->number ?? '' ?>
         </td>
     </tr>
     <tr>
