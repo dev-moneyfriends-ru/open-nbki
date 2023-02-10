@@ -717,6 +717,11 @@ class Account extends BaseItem
     private $payment = [];
     
     /**
+     * @var BankGuarantee[]
+     */
+    private $bankGuarantee = [];
+    
+    /**
      * @return Collateral[]
      */
     public function getCollateral(): array
@@ -778,5 +783,21 @@ class Account extends BaseItem
     public function setPayment(array $paymentData): void
     {
         $this->payment = $this->initPropertyModels($paymentData, PaymentRUTDF::class);
+    }
+    
+    /**
+     * @return BankGuarantee[]
+     */
+    public function getBankGuarantee(): array
+    {
+        return $this->bankGuarantee;
+    }
+    
+    /**
+     * @param BankGuarantee[] $bankGuaranteeData
+     */
+    public function setBankGuarantee(array $bankGuaranteeData): void
+    {
+        $this->bankGuarantee = $this->initPropertyModels($bankGuaranteeData, BankGuarantee::class);
     }
 }
