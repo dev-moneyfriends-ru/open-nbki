@@ -62,6 +62,11 @@ class BankGuarantee extends BaseItem
     public $bankGuaranteeIndicatorCode;
     
     /**
+     * @var string
+     */
+    public $agreementNumber;
+    
+    /**
      * @return array
      */
     public function rules()
@@ -97,7 +102,8 @@ class BankGuarantee extends BaseItem
             [
                 [
                     'currencyCode',
-                    'bankGuaranteeOtherTermination'
+                    'bankGuaranteeOtherTermination',
+                    'agreementNumber'
                 ],
                 'string',
             ],
