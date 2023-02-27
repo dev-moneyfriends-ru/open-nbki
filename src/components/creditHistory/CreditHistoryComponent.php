@@ -352,7 +352,7 @@ class CreditHistoryComponent extends Component
     /**
      * Возвращает объект с содержимым данных КИ
      * @param NbchChRequest $request
-     * @return PreplyReport|void
+     * @return PreplyReport
      */
     public function createPreplyReport(NbchChRequest $request)
     {
