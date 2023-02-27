@@ -86,4 +86,39 @@ class Amendment extends BaseItem
      * @var string
      */
     public $amendDate;
+    
+    /**
+     * @var int
+     */
+    public $type;
+    
+    /**
+     * @var int
+     */
+    public $specType;
+    
+    /**
+     * @var mixed
+     */
+    public $otherDesc;
+    /**
+     * @var string
+     */
+    public $startDt;
+    /**
+     * @var string
+     */
+    public $planEndDt;
+    /**
+     * @var string
+     */
+    public $factEndDt;
+    /**
+     * @var string
+     */
+    public $curRate;
+    /**
+     * @var mixed
+     */
+    public $endReason;
 }

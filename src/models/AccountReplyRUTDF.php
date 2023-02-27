@@ -325,22 +325,6 @@ class AccountReplyRUTDF extends Account
     }
     
     /**
-     * @return Amendment[]
-     */
-    public function getAmendment(): array
-    {
-        return $this->amendment;
-    }
-    
-    /**
-     * @param array $amendment
-     */
-    public function setAmendment(array $amendment): void
-    {
-        $this->amendment = $this->initPropertyModels($amendment, Amendment::class);
-    }
-    
-    /**
      * @return AcquirerIndividRUTDF[]
      */
     public function getAcquirerIndivid(): array

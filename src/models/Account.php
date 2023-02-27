@@ -709,17 +709,17 @@ class Account extends BaseItem
     /**
      * @var Amendment[] $amendment
      */
-    private $amendment = [];
+    protected $amendment = [];
     
     /**
      * @var PaymentRUTDF[] $payment
      */
-    private $payment = [];
+    protected $payment = [];
     
     /**
      * @var BankGuarantee[]
      */
-    private $bankGuarantee = [];
+    protected $bankGuarantee = [];
     
     /**
      * @return Collateral[]
