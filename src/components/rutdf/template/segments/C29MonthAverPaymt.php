@@ -88,7 +88,7 @@ class C29MonthAverPaymt extends BaseSegment
             $countMonth = $interval->m + 1;
         }
         
-        $sum = $trade->currentAmtOutstanding + $trade->amtOutstanding;
+        $sum = $trade->currentAmtOutstanding;
         
         return (int)($sum / $countMonth + $trade->amtPastDue);
     }

@@ -223,4 +223,12 @@ class Identification extends BaseItem
     {
         $this->oksm = $oksm;
     }
+    
+    /**
+     * @return string
+     */
+    public function getOKSM(): string
+    {
+        return $this->oksm;
+    }
 }

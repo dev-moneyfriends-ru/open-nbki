@@ -185,6 +185,15 @@ class PreplyReport extends BaseObject
     }
     
     /**
+     * Сведения о среднемесячных платежах субъекта кредитной истории
+     * @return array
+     * @throws Exception
+     */
+    public function getSubjectAverPaymtReply()
+    {
+        return $this->loadArrayData('SubjectAverPaymtReply', SubjectAverPaymtReply::class);
+    }
+    /**
      * Уникальный идентификатор кредитного отчета (обязательный);
      * @return mixed
      * @throws Exception

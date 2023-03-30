@@ -72,6 +72,12 @@ class Business extends BaseItem
     public $trademark;
     
     /**
+     * Код страны по ОКСМ
+     * @var string
+     */
+    public $oksm;
+    
+    /**
      * @return array
      */
     public function rules()
@@ -97,7 +103,8 @@ class Business extends BaseItem
                     [
                         'businessName',
                         'businessNameAlt',
-                        'businessNameRF'
+                        'businessNameRF',
+                        'oksm'
                     ],
                     'string',
                     'max' => 1020,
