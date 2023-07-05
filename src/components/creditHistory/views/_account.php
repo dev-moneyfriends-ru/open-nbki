@@ -122,9 +122,9 @@ $payment = $model->getPayment() ? $model->getPayment()[count($model->getPayment(
         <td>-</td>
         <td style="font-weight: bold">Текущая просроченная задолженность, дней</td>
         <td>-</td>
-        <td style="font-weight: bold;text-align: center">-</td>
-        <td style="font-weight: bold;text-align: center">-</td>
-        <td style="font-weight: bold;text-align: center">-</td>
+        <td style="font-weight: bold;text-align: center"><?= $model->numDays30 ?></td>
+        <td style="font-weight: bold;text-align: center"><?= $model->numDays60 ?></td>
+        <td style="font-weight: bold;text-align: center"><?= $model->numDays90 ?></td>
     </tr>
     </tbody>
 </table>
