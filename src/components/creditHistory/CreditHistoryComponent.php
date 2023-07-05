@@ -398,7 +398,7 @@ class CreditHistoryComponent extends Component
      * @throws InvalidConfigException
      * @throws NotInstantiableException
      */
-    private function saveHtmlResult()
+    public function saveHtmlResult()
     {
         if (empty($this->model) || $this->model->status !== NbchChRequest::STATE_FINISH) {
             return;
