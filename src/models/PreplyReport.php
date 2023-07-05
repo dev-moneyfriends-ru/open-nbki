@@ -80,7 +80,7 @@ class PreplyReport extends BaseObject
     {
         $uuidExists = [];
         foreach ($this->getAccountReplyRUTDF() as $item){
-            $uuidExists = $item->uuid;
+            $uuidExists[] = $item->uuid;
         }
         return array_filter($this->getAccountReply(), static function (AccountReply $item) use ($uuidExists){
            return !in_array($item->uuid, $uuidExists);
