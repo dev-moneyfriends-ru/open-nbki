@@ -52,7 +52,7 @@ if ($maxPatDue > 30) {
     <td><?= Yii::$app->formatter->asDate($trade->closedDt, 'dd.MM.yyyy') ?></td>
     <td><?= $dueArrear?Yii::$app->formatter->asDecimal((float)$dueArrear->amtOutstanding, 2):'-' ?></td>
     <td class="<?= $amtPastDue ? 'text-danger' : 'text-success' ?>"><?= Yii::$app->formatter->asDecimal(
-            (float)$model->amtPastDue,
+            (float)$amtPastDue,
             2
         ) ?></td>
     <td class="<?= $daysPastDue ? 'text-danger' : 'text-success' ?>"><?= $daysPastDue ?></td>
