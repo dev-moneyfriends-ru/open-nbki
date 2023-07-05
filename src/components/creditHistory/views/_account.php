@@ -16,242 +16,118 @@ $payment = $model->getPayment() ? $model->getPayment()[count($model->getPayment(
         <h2 style="text-align: center">Информация по договору: <?= $model->uuid ?? $model->serialNum ?></h2>
     </div>
 </div>
-<div class="row"
-     style="margin-bottom: 10px;border-bottom: 1px solid #000000;border-top: 1px solid #000000; text-align: center">
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-6 bg-info">Состояние договора</div>
-            <div class="col-sm-6"><?= $model->accountRatingText ?></div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-8 bg-info">Специальный статус договора</div>
-            <div class="col-sm-4 col-xs-4">-</div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-6 bg-info">Макс. сумма просроченной
-                задолженности
-            </div>
-            <div class="col-sm-6">-</div>
-        </div>
-    </div>
-</div>
-<div class="row"
-     style="margin-bottom: 10px;border-bottom: 1px solid #000000;border-top: 1px solid #000000; text-align: center">
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-6 bg-info">Дата перехода в состояние</div>
-            <div class="col-sm-6"><?= Yii::$app->formatter->asDate($model->accountRatingDate, 'dd.MM.yyyy') ?></div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-8 bg-info">Дата актуальности информации</div>
-            <div class="col-sm-4 col-xs-4"><?= Yii::$app->formatter->asDate($model->reportingDt, 'dd.MM.yyyy') ?></div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-6 bg-info">Тип источника информации</div>
-            <div class="col-sm-6"><?= $model->businessCategory ?></div>
-        </div>
-    </div>
-</div>
-<div class="row"
-     style="margin-bottom: 10px;border-bottom: 1px solid #000000;border-top: 1px solid #000000; text-align: center">
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-6 bg-info">Уникальный
-                идентификатор договора
-            </div>
-            <div class="col-sm-6">
-                <?= $model->uuid ?>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-8 bg-info">Вид отображения задолженности</div>
-            <div class="col-sm-4 col-xs-4">С учетом % и пени</div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-6 bg-info">Дата начала выгрузок в БКИ</div>
-            <div class="col-sm-6"><?= Yii::$app->formatter->asDate($model->fileSinceDt, 'dd.MM.yyyy') ?></div>
-        </div>
-    </div>
-</div>
-<div class="row"
-     style="margin-bottom: 10px;border-bottom: 1px solid #000000;border-top: 1px solid #000000; text-align: center">
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-6 bg-info">ID Договора</div>
-            <div class="col-sm-6"><?= $model->serialNum ?></div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-8 bg-info">Сумма погашенного основного долга</div>
-            <div class="col-sm-4 col-xs-4"><?= Yii::$app->formatter->asDecimal(
-                    (float)$model->creditLimit - (float)$model->principalOutstanding,
-                    2
-                ) ?></div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-6 bg-info">Полная стоимость кредита</div>
-            <div class="col-sm-6"><?= Yii::$app->formatter->asDecimal((float)$model->creditTotalAmt, 2) ?>%</div>
-        </div>
-    </div>
-</div>
-<div class="row"
-     style="margin-bottom: 10px;border-bottom: 1px solid #000000;border-top: 1px solid #000000; text-align: center">
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-6 bg-info">Отношение к договору</div>
-            <div class="col-sm-6"><?= $model->ownerIndicText ?></div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-8 bg-info">Общая выплаченная сумма</div>
-            <div class="col-sm-4 col-xs-4"><?= Yii::$app->formatter->asDecimal((float)$model->curBalanceAmt, 2) ?></div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-6 bg-info">Погашение за счет обеспечения</div>
-            <div class="col-sm-6"><?= (int)$model->accountRating === 12 ? 'Погашен' : 'Не было' ?></div>
-        </div>
-    </div>
-</div>
-<div class="row"
-     style="margin-bottom: 10px;border-bottom: 1px solid #000000;border-top: 1px solid #000000; text-align: center">
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-6 bg-info">Тип договора</div>
-            <div class="col-sm-6"><?= $model->acctTypeText ?></div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-8 bg-info">Сумма последнего платежа</div>
-            <div class="col-sm-4 col-xs-4"><?= Yii::$app->formatter->asDecimal(
-                    $payment ? (float)$payment->paymtAmt : 0,
-                    2
-                ) ?></div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-6 bg-info">Аннуитет</div>
-            <div class="col-sm-6">-</div>
-        </div>
-    </div>
-</div>
-<div class="row"
-     style="margin-bottom: 10px;border-bottom: 1px solid #000000;border-top: 1px solid #000000; text-align: center">
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-6 bg-info">Дата начала договора</div>
-            <div class="col-sm-6"><?= Yii::$app->formatter->asDate($model->openedDt, 'dd.MM.yyyy') ?></div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-8 bg-info">Дата последнего платежа</div>
-            <div class="col-sm-4 col-xs-4"><?= Yii::$app->formatter->asDate($model->paymentDueDate, 'dd.MM.yyyy') ?></div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-6 bg-info">Дата уплаты процентов</div>
-            <div class="col-sm-6"><?= Yii::$app->formatter->asDate(
-                    $model->interestPaymentDueDate,
-                    'dd.MM.yyyy'
-                ) ?></div>
-        </div>
-    </div>
-</div>
-<div class="row"
-     style="margin-bottom: 10px;border-bottom: 1px solid #000000;border-top: 1px solid #000000; text-align: center">
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-6 bg-info">Дата окончания договора</div>
-            <div class="col-sm-6"><?= Yii::$app->formatter->asDate($model->closedDt, 'dd.MM.yyyy') ?></div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-8 bg-info">Текущая задолженность</div>
-            <div class="col-sm-4 col-xs-4"><?= Yii::$app->formatter->asDecimal((float)$model->amtOutstanding, 2) ?></div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-6 bg-info">Количество пролонгаций</div>
-            <div class="col-sm-6">0</div>
-        </div>
-    </div>
-</div>
-<div class="row"
-     style="margin-bottom: 10px;border-bottom: 1px solid #000000;border-top: 1px solid #000000; text-align: center">
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-6 bg-info">Сумма обязательств по договору</div>
-            <div class="col-sm-6"><?= Yii::$app->formatter->asDecimal((float)$model->creditLimit, 2) ?></div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-8 bg-info">Текущий неиспользованный лимит</div>
-            <div class="col-sm-4 col-xs-4">-</div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-12 bg-info">Количество просрочек</div>
-        </div>
-    </div>
-</div>
-<div class="row"
-     style="margin-bottom: 10px;border-bottom: 1px solid #000000;border-top: 1px solid #000000; text-align: center">
-    <div class="col-sm-4 col-xs-4">
-        <div class="row">
-            <div class="col-sm-6 bg-info">Первоначальный лимит</div>
-            <div class="col-sm-6"><?= Yii::$app->formatter->asDecimal((float)$model->creditLimit, 2) ?></div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 bg-info">Статус кредитной линии</div>
-            <div class="col-sm-6">-</div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row">
-            <div class="col-sm-8 bg-info">Текущая просроченная задолженность</div>
-            <div class="col-sm-4 col-xs-4"><?= Yii::$app->formatter->asDecimal((float)$model->amtPastDue, 2) ?></div>
-        </div>
-        <div class="row">
-            <div class="col-sm-8 bg-info">Текущая просроченная задолженность, дней</div>
-            <div class="col-sm-4 col-xs-4">-</div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-xs-4">
-        <div class="row" style="height: 100%">
-            <div class="col-sm-4 col-xs-4 bg-info">от 30 до 59 дней</div>
-            <div class="col-sm-4 col-xs-4 bg-info">от 60 до 89 дней</div>
-            <div class="col-sm-4 col-xs-4 bg-info">более 90 дней</div>
-            <div class="col-sm-4 col-xs-4"><?= $model->numDays30 ?></div>
-            <div class="col-sm-4 col-xs-4"><?= $model->numDays60 ?></div>
-            <div class="col-sm-4 col-xs-4"><?= $model->numDays90 ?></div>
-        </div>
-    </div>
-</div>
+<table class="table table-bordered table-condensed">
+    <tbody>
+    <tr>
+        <td style="font-weight: bold">Состояние договора</td>
+        <td style="text-align: center"><?= $model->accountRatingText ?></td>
+        <td style="font-weight: bold">Специальный статус договора</td>
+        <td style="text-align: center"></td>
+        <td style="font-weight: bold">
+            Макс. сумма просроченной задолженности
+        </td>
+        <td style="text-align: center">-</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold">Дата перехода в состояние</td>
+        <td style="text-align: center"><?= Yii::$app->formatter->asDate($model->accountRatingDate, 'dd.MM.yyyy') ?></td>
+        <td style="font-weight: bold">Дата актуальности информации</td>
+        <td style="text-align: center"><?= Yii::$app->formatter->asDate($model->reportingDt, 'dd.MM.yyyy') ?></td>
+        <td style="font-weight: bold">Тип источника информации</td>
+        <td style="text-align: center"><?= $model->businessCategory ?></td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold">
+            Уникальный идентификатор договора
+        </td>
+        <td style="text-align: center"><?= $model->uuid ?></td>
+        <td style="font-weight: bold">Вид отображения задолженности</td>
+        <td style="text-align: center">С учетом % и пени</td>
+        <td style="font-weight: bold">Дата начала выгрузок в БКИ</td>
+        <td style="text-align: center"><?= Yii::$app->formatter->asDate($model->fileSinceDt, 'dd.MM.yyyy') ?></td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold">ID Договора</td>
+        <td style="text-align: center"><?= $model->serialNum ?></td>
+        <td style="font-weight: bold">Сумма погашенного основного долга</td>
+        <td style="text-align: center"><?= Yii::$app->formatter->asDecimal(
+                (float)$model->creditLimit - (float)$model->principalOutstanding,
+                2
+            ) ?></td>
+        <td style="font-weight: bold">Полная стоимость кредита</td>
+        <td style="text-align: center">
+            <?= Yii::$app->formatter->asDecimal((float)$model->creditTotalAmt, 2) ?>%
+        </td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold">Отношение к договору</td>
+        <td style="text-align: center"><?= $model->ownerIndicText ?></td>
+        <td style="font-weight: bold">Общая выплаченная сумма</td>
+        <td style="text-align: center"><?= Yii::$app->formatter->asDecimal((float)$model->curBalanceAmt, 2) ?></td>
+        <td style="font-weight: bold">Погашение за счет обеспечения</td>
+        <td style="text-align: center"><?= (int)$model->accountRating === 12 ? 'Погашен' : 'Не было' ?></td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold">Тип договора</td>
+        <td style="text-align: center"><?= $model->acctTypeText ?></td>
+        <td style="font-weight: bold">Сумма последнего платежа</td>
+        <td style="text-align: center"><?= Yii::$app->formatter->asDecimal(
+                $payment ? (float)$payment->paymtAmt : 0,
+                2
+            ) ?></td>
+        <td style="font-weight: bold">Аннуитет</td>
+        <td style="text-align: center">-</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold">Дата начала договора</td>
+        <td style="text-align: center"><?= Yii::$app->formatter->asDate($model->openedDt, 'dd.MM.yyyy') ?></td>
+        <td style="font-weight: bold">Дата последнего платежа</td>
+        <td style="text-align: center"><?= Yii::$app->formatter->asDate($model->paymentDueDate, 'dd.MM.yyyy') ?></td>
+        <td style="font-weight: bold">Дата уплаты процентов</td>
+        <td style="text-align: center"><?= Yii::$app->formatter->asDate(
+                $model->interestPaymentDueDate,
+                'dd.MM.yyyy'
+            ) ?></td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold">Дата окончания договора</td>
+        <td style="text-align: center"><?= Yii::$app->formatter->asDate($model->closedDt, 'dd.MM.yyyy') ?></td>
+        <td style="font-weight: bold">Текущая задолженность</td>
+        <td style="text-align: center"><?= Yii::$app->formatter->asDecimal((float)$model->amtOutstanding, 2) ?></td>
+        <td style="font-weight: bold">Количество пролонгаций</td>
+        <td style="text-align: center">-</td>
+    </tr>
+    </tbody>
+</table>
+<table class="table table-bordered table-condensed">
+    <tbody>
+    <tr>
+        <td style="font-weight: bold">Сумма обязательств по договору</td>
+        <td style="text-align: center"><?= Yii::$app->formatter->asDecimal((float)$model->creditLimit, 2) ?></td>
+        <td style="font-weight: bold">Текущий неиспользованный лимит</td>
+        <td style="text-align: center">-</td>
+        <td style="font-weight: bold;text-align: center" colspan="3">Количество просрочек</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold">Первоначальный лимит</td>
+        <td><?= Yii::$app->formatter->asDecimal((float)$model->creditLimit, 2) ?></td>
+        <td style="font-weight: bold">Текущая просроченная задолженность</td>
+        <td><?= Yii::$app->formatter->asDecimal((float)$model->amtPastDue, 2) ?></td>
+        <td style="font-weight: bold;text-align: center">от 30 до 59 дней</td>
+        <td style="font-weight: bold;text-align: center">от 60 до 89 дней</td>
+        <td style="font-weight: bold;text-align: center">более 90 дней</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold">Статус кредитной линии</td>
+        <td>-</td>
+        <td style="font-weight: bold">Текущая просроченная задолженность, дней</td>
+        <td>-</td>
+        <td style="font-weight: bold;text-align: center">-</td>
+        <td style="font-weight: bold;text-align: center">-</td>
+        <td style="font-weight: bold;text-align: center">-</td>
+    </tr>
+    </tbody>
+</table>
 
 <?php
 if (
