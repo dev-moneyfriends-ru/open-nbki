@@ -39,7 +39,21 @@ class TradeRUTDF extends Trade
     
     /**
      * Дата прекращения обязательства субъекта по условиям сделки
-     * @var string
+     * @return string
      */
-    public $closeDt;
+    public function getCloseDt()
+    {
+        return $this->closedDt;
+    }
+    
+    /**
+     * Дата прекращения обязательства субъекта по условиям сделки
+     * @param string $date
+     * @return void
+     */
+    public function setCloseDt(string $date)
+    {
+        $this->closedDt = $date;
+    }
+    
 }
