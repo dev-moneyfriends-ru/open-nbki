@@ -25,6 +25,8 @@ use yii\helpers\ArrayHelper;
  * @property-read \mfteam\nbch\models\EntrepReply[] $entrepReply
  * @property-read \mfteam\nbch\models\CapabilityReply[] $capabilityReply
  * @property-read \mfteam\nbch\models\SNILSReply[] $snilsReply
+ * @property-read array $uniqueAccountReply
+ * @property-read array $subjectAverPaymtReply
  * @property-read SubjectReply $subjectReply
  */
 class PreplyReport extends BaseObject
@@ -74,6 +76,16 @@ class PreplyReport extends BaseObject
         return $this->loadArrayData('AccountReply', AccountReply::class);
     }
     
+    public function getUniqueAccountReply(): array
+    {
+        $uuidExists = [];
+        foreach ($this->getAccountReplyRUTDF() as $item){
+            $uuidExists = $item->uuid;
+        }
+        return array_filter($this->getAccountReply(), static function (AccountReply $item) use ($uuidExists){
+           return !in_array($item->uuid, $uuidExists);
+        });
+    }
     /**
      * Основные сведения о субъекте
      * @return array

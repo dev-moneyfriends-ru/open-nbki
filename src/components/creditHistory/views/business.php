@@ -51,7 +51,7 @@ use yii\base\View;
     <div class="row">
         <div class="col">
             <?=$this->render('_summaryAccounts', [
-                'accountReply' => $preplyReport->accountReply,
+                'accountReply' => $preplyReport->uniqueAccountReply,
                 'accountReplyRUTDF' => $preplyReport->accountReplyRUTDF,
             ])?>
         </div>
@@ -63,7 +63,7 @@ use yii\base\View;
         </div>
     </div>
     <?=$this->render('_accounts', [
-        'accountReply' => $preplyReport->accountReply,
+        'accountReply' => $preplyReport->uniqueAccountReply,
         'accountReplyRUTDF' => $preplyReport->accountReplyRUTDF,
     ])?>
 </div>
