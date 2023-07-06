@@ -328,7 +328,7 @@ class CreditHistoryComponent extends Component
      */
     private function saveXmlResult(string $content)
     {
-        $tempPath = tempnam('/tmp', 'nbki_request');
+        $tempPath = tempnam(sys_get_temp_dir(), 'nbki_request');
         file_put_contents($tempPath, $content);
         $file = new NbchFile();
         $file->setStoragePath($tempPath)
@@ -410,7 +410,7 @@ class CreditHistoryComponent extends Component
         $controller->layout = $this->getLayout();
         $content = $controller->render($view, ['preplyReport' => $preplyReport]);
         
-        $tempPath = tempnam('/tmp', 'nbki_request');
+        $tempPath = tempnam(sys_get_temp_dir(), 'nbki_request');
         file_put_contents($tempPath, $content);
         $file = new NbchFile();
         $file->setStoragePath($tempPath)
