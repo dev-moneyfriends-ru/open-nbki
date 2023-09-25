@@ -4,6 +4,7 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 
 /**
  * Блок 5. Документ, ранее удостоверявший личность – C5_PREVID
+ * TODO Реализовать
  */
 class C5PrevId extends \mfteam\nbch\components\BaseSegment
 {

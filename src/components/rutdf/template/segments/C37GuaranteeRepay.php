@@ -4,6 +4,7 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 
 /**
  * Блок 37. Сведения о возмещении принципалом гаранту выплаченной суммы – C37_GUARANTEEREPAY
+ * TODO реализовать
  */
 class C37GuaranteeRepay extends \mfteam\nbch\components\BaseSegment
 {
@@ -27,6 +28,7 @@ class C37GuaranteeRepay extends \mfteam\nbch\components\BaseSegment
             $this->emptyValue,
             $this->emptyValue,
             $this->emptyValue,
+            $this->emptyValue,
         ];
     }
     
@@ -41,6 +43,7 @@ class C37GuaranteeRepay extends \mfteam\nbch\components\BaseSegment
             'Сумма, подлежащая возмещению' => '',
             'Сумма, выплаченная принципалом' => '',
             'Признак соблюдения порядка возмещения' => '',
+            'Дата расчета' => '',
         ];
     }
     

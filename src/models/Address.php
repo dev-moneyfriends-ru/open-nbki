@@ -176,7 +176,7 @@ class Address extends BaseItem
     /**
      * @var string
      */
-    public $fias;
+    public $fias = '';
     
     public function rules()
     {
@@ -208,7 +208,9 @@ class Address extends BaseItem
                         'street',
                         'streetType',
                         'oksm',
-                        'okato'
+                        'okato',
+                        'fias',
+                        'gar'
                     ],
                     'string',
                 ],
@@ -342,5 +344,23 @@ class Address extends BaseItem
     public function getAddressTypeText(): ?string
     {
         return ArrayHelper::getValue(self::typeList(), $this->addressType);
+    }
+    
+    /**
+     * Номер адреса в ГАР
+     * @return string
+     */
+    public function getGar(): string
+    {
+        return $this->fias;
+    }
+    
+    /**
+     * Номер адреса в ГАР
+     * @param string $fias
+     */
+    public function setGar(string $code): void
+    {
+        $this->fias = $code;
     }
 }

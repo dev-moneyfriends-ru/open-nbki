@@ -58,7 +58,7 @@ class C4Id extends \mfteam\nbch\components\BaseSegment
         if (empty($this->identification->divCode)) {
             $this->errors[] = "Отсутствуют Код подразделения";
         }
-        if (empty($this->identification->issueAuthority)) {
+        if (empty($this->identification->issueAuthority) && empty($this->identification->divCode)) {
             $this->errors[] = "Отсутствуют Кем выдан документ";
         }
         return $this->isEmptyErrors;
@@ -86,7 +86,7 @@ class C4Id extends \mfteam\nbch\components\BaseSegment
             $this->identification->seriesNumber,
             $this->identification->idNum,
             $this->formatNewDate($this->identification->issueDate),
-            $this->formatString($this->identification->issueAuthority),
+            $this->identification->issueAuthority?$this->formatString($this->identification->issueAuthority):$this->emptyValue,
             $this->identification->divCode,
             $this->emptyValue,
         ];

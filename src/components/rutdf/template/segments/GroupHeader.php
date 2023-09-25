@@ -84,15 +84,12 @@ class GroupHeader extends \mfteam\nbch\components\BaseSegment
     
     private function getOperationCode()
     {
-        if (in_array(
-            $this->event,
-            [
-                NbchEvents::EVENT_1_1,
-                NbchEvents::EVENT_1_2,
-                NbchEvents::EVENT_1_4,
-                NbchEvents::EVENT_1_4_1,
-            ]
-        )) {
+        if (in_array($this->event, [
+            NbchEvents::EVENT_1_1,
+            NbchEvents::EVENT_1_2,
+            NbchEvents::EVENT_1_4,
+            NbchEvents::EVENT_1_4_1,
+        ], true)) {
             return "A";
         }
         return "B";

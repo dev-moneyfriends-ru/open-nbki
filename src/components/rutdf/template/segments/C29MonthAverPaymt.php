@@ -5,6 +5,7 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 use DateTime;
 use mfteam\nbch\components\BaseSegment;
 use mfteam\nbch\components\rutdf\template\RutdfTemplate;
+use mfteam\nbch\models\AccountRelationship;
 use mfteam\nbch\models\rutdf\NbchEvents;
 
 /**
@@ -98,22 +99,6 @@ class C29MonthAverPaymt extends BaseSegment
      */
     private function isNotAllowed()
     {
-        $trade = $this->template->offer->getTrade();
-        if ((int)$trade->ownerIndic !== 1) {
-            return true;
-        }
-        foreach ($this->template->getEventIds() as $eventId) {
-            if (in_array((string) $eventId, [
-                NbchEvents::EVENT_2_3_1,
-                NbchEvents::EVENT_2_3_2,
-                NbchEvents::EVENT_2_1,
-                NbchEvents::EVENT_2_2,
-                NbchEvents::EVENT_2_5_1,
-                NbchEvents::EVENT_2_5_2,
-            ], true)) {
-                return false;
-            }
-        }
         return true;
     }
 }

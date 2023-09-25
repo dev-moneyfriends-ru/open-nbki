@@ -4,6 +4,7 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 
 /**
  * Блок 35. Сведения о страховании предмета залога – C35_COLLATINSURED
+ * TODO Реализовать
  */
 class C35Collatinsured extends \mfteam\nbch\components\BaseSegment
 {
@@ -31,6 +32,7 @@ class C35Collatinsured extends \mfteam\nbch\components\BaseSegment
             $this->emptyValue,
             $this->emptyValue,
             $this->emptyValue,
+            $this->emptyValue,
         ];
     }
     
@@ -49,6 +51,7 @@ class C35Collatinsured extends \mfteam\nbch\components\BaseSegment
             'Дата окончания действия страхования согласно договору' => '',
             'Дата фактического прекращения страхования' => '',
             'Код причины прекращения страхования' => '',
+            'Идентификационный код предмета залога' => 'Должен совпадать хотя бы с одним значением показателя «Идентификационный код предмета залога» ',
         ];
     }
     

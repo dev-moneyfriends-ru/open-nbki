@@ -13,8 +13,16 @@ use mfteam\nbch\models\TaxpayerIdReply;
 use yii\web\View;
 
 $business = $businessReply[0];
-$regnum = $regnumReply[0];
+$regnum = null;
+if(!empty($regnumReply)){
+    $regnum = $regnumReply[0];
+}
+
 $taxpayerId = $taxpayerIdReply[0];
+
+if(!empty($taxpayerIdReply)){
+    $taxpayerId = $taxpayerIdReply[0];
+}
 ?>
 <table class="table table-bordered table-striped table-condensed">
     <tbody>
@@ -30,11 +38,11 @@ $taxpayerId = $taxpayerIdReply[0];
     </tr>
     <tr>
         <td>ОГРН</td>
-        <td><?=$regnum->regNum?></td>
+        <td><?=$regnum->regNum??'не найден'?></td>
     </tr>
     <tr>
         <td>ИНН</td>
-        <td><?=$taxpayerId->taxpayerNum?></td>
+        <td><?=$taxpayerId->taxpayerNum??'не найден'?></td>
     </tr>
     </tbody>
 </table>

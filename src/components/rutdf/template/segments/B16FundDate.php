@@ -22,8 +22,9 @@ class B16FundDate extends \mfteam\nbch\components\BaseSegment
     public function getFields(): array
     {
         return [
-          $this->segmentName,
-          $this->formatNewDate($this->template->offer->getTrade()->fundDt),
+            $this->segmentName,
+            $this->formatNewDate($this->template->offer->getTrade()->fundDt),
+            $this->emptyValue,
         ];
     }
     
@@ -37,6 +38,7 @@ class B16FundDate extends \mfteam\nbch\components\BaseSegment
             'Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства' => 'В КИ заемщика или лизингополучателя указывается дата передачи ему суммы займа (кредита) или предмета лизинга, в КИ принципала по независимой гарантии или поручителя – соответственно дата выдачи гарантии или дата возникновения поручительства.
                 По обязательству источника выдавать сумму займа (кредита) траншами или в пределах расходного лимита указывается дата передачи первого транша.
                 ',
+            'Порядковый номер транша' => '',
         ];
     }
     
@@ -45,6 +47,6 @@ class B16FundDate extends \mfteam\nbch\components\BaseSegment
      */
     public function getTitle(): string
     {
-        return 'Блок 16. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства – B16_FUNDDATE';
+        return 'Блок 16. Сведения о передаче финансирования субъекту или о возникновении обеспечения исполнения обязательства – B16_FUNDDATE';
     }
 }

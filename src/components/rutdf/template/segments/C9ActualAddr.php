@@ -4,6 +4,7 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 
 /**
  * Блок 9. Фактическое место жительства – C9_ACTUALADDR
+ * TODO Реализовать заполнение
  */
 class C9ActualAddr extends \mfteam\nbch\components\BaseSegment
 {
@@ -58,7 +59,7 @@ class C9ActualAddr extends \mfteam\nbch\components\BaseSegment
             'Почтовый индекс' => '',
             'Код страны по ОКСМ' => '',
             'Наименование иной страны' => '',
-            'Номер адреса в ФИАС' => '',
+            'Номер адреса в ГАР' => '',
             'Код населенного пункта по ОКАТО' => '',
             'Иной населенный пункт' => '',
             'Улица' => '',

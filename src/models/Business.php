@@ -78,6 +78,20 @@ class Business extends BaseItem
     public $oksm;
     
     /**
+     * Сведения о наименовании субъекта до его смены (за исключением случаев смены наименования субъекта при переходе к нему прав и обязанностей в рамках универсального правопреемства).
+     * код «1» – в случае если у субъекта имеется предыдущее наименование;
+     * код «0» – в случае если обстоятельство кода «1» отсутствует.
+     * Если указан код «0», показатель 1.5 «Полное наименование до его смены» не заполняется.
+     * @var int
+     */
+    public $nameChange = 0;
+    
+    /**
+     * @var string
+     */
+    public $businessNamebfrChange = '';
+    
+    /**
      * @return array
      */
     public function rules()
@@ -88,7 +102,8 @@ class Business extends BaseItem
                     [
                         'abbreviatedBusinessName',
                         'businessName',
-                        'businessStatus'
+                        'businessStatus',
+                        'nameChange'
                     ], 'required',
                 ],
                 [
@@ -117,6 +132,13 @@ class Business extends BaseItem
                     }
                 ],
                 [
+                    'businessNamebfrChange',
+                    'required',
+                    'when' => function(Business $model){
+                        return $model->nameChange !== 0;
+                    }
+                ],
+                [
                     [
                         'dateOfStatus',
                         'lastUpdatedDt'
@@ -128,7 +150,8 @@ class Business extends BaseItem
                     [
                         'numberOfDirectors',
                         'businessStatus',
-                        'numberOfEmployees'
+                        'numberOfEmployees',
+                        'nameChange'
                     ],
                     'integer'
                 ],

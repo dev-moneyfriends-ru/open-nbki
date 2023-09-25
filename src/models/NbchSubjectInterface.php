@@ -126,4 +126,10 @@ interface NbchSubjectInterface
      * @return string
      */
     public function getRegDate(): string;
+    
+    /**
+     * Признак специального налогового режима 0 или 1
+     * @return int
+     */
+    public function getSpecialTax(): int;
 }

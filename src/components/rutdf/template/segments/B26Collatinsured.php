@@ -4,6 +4,7 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 
 /**
  * Блок 26. Сведения о страховании предмета залога – B26_COLLATINSURED
+ * TODO Реализовать
  */
 class B26Collatinsured extends \mfteam\nbch\components\BaseSegment
 {
@@ -31,6 +32,7 @@ class B26Collatinsured extends \mfteam\nbch\components\BaseSegment
             $this->emptyValue,
             $this->emptyValue,
             $this->emptyValue,
+            $this->emptyValue,
         ];
     }
     
@@ -49,6 +51,7 @@ class B26Collatinsured extends \mfteam\nbch\components\BaseSegment
             'Дата окончания действия страхования согласно договору' => '',
             'Дата фактического прекращения страхования' => '',
             'Код причины прекращения страхования' => '',
+            'Идентификационный код предмета залога' => 'Должен совпадать хотя бы с одним значением показателя «Идентификационный код предмета залога» ',
         ];
     }
     

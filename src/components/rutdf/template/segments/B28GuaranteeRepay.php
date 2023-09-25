@@ -4,6 +4,7 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 
 /**
  * Блок 28. Сведения о возмещении принципалом гаранту выплаченной суммы – B28_GUARANTEEREPAY
+ * TODO реализовать
  */
 class B28GuaranteeRepay extends \mfteam\nbch\components\BaseSegment
 {
@@ -27,6 +28,7 @@ class B28GuaranteeRepay extends \mfteam\nbch\components\BaseSegment
           $this->emptyValue,
           $this->emptyValue,
           $this->emptyValue,
+          $this->emptyValue,
         ];
     }
     
@@ -41,6 +43,7 @@ class B28GuaranteeRepay extends \mfteam\nbch\components\BaseSegment
             'Сумма, подлежащая возмещению' => '',
             'Сумма, выплаченная принципалом' => '',
             'Признак соблюдения порядка возмещения' => '',
+            'Дата расчета' => '',
         ];
     }
     

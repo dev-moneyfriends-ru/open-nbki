@@ -22,10 +22,14 @@ class B12AccountAmt extends \mfteam\nbch\components\BaseSegment
     public function getFields(): array
     {
         return [
-            $this->segmentName,
-            $this->formatCurrency($this->template->getOffer()->getTrade()->creditLimit),
-            $this->template->getOffer()->getTrade()->currencyCode,
-            $this->emptyValue,
+            0 =>$this->segmentName,
+            1 =>$this->formatCurrency($this->template->getOffer()->getTrade()->creditLimit),
+            2 =>$this->template->getOffer()->getTrade()->currencyCode,
+            3 =>$this->emptyValue,
+            4 =>$this->emptyValue,
+            5 =>$this->emptyValue,
+            6 =>$this->formatNewDate($this->template->offer->getTrade()->reportingDt),
+            7 =>$this->emptyValue,
         ];
     }
     
@@ -44,6 +48,10 @@ class B12AccountAmt extends \mfteam\nbch\components\BaseSegment
                                     ',
             'Валюта обязательства' => '',
             'Сумма обеспечиваемого обязательства' => 'Заполняется, если обязательством субъекта обеспечивается исполнение другого обязательства. По данному показателю отражается размер обязательства, исполнение которого обеспечено обязательством субъекта.',
+            'Валюта обеспечиваемого обязательства' => '',
+            'Код типа обеспечиваемого обязательства' => '',
+            'Дата расчета' => '',
+            'УИд сделки, в результате которой возникло обеспечиваемое обязательство' => '',
         ];
     }
     

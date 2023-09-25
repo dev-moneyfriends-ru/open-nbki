@@ -95,6 +95,12 @@ class Subject extends BaseObject implements NbchSubjectInterface
     private $_regDate;
     
     /**
+     * Признак специального налогового режима
+     * @var int
+     */
+    private $_specialTax = 0;
+    
+    /**
      * @inheritDoc
      */
     public function getActualAddress(): Address
@@ -360,6 +366,25 @@ class Subject extends BaseObject implements NbchSubjectInterface
     public function setRegDate(string $regDate): Subject
     {
         $this->_regDate = $regDate;
+        return $this;
+    }
+    
+    /**
+     * @return int
+     */
+    public function getSpecialTax(): int
+    {
+        return $this->_specialTax;
+    }
+    
+    /**
+     * Признак специального налогового режима 0 или 1
+     * @param int $_specialTax
+     * @return Subject
+     */
+    public function setSpecialTax(int $_specialTax): Subject
+    {
+        $this->_specialTax = $_specialTax;
         return $this;
     }
 }

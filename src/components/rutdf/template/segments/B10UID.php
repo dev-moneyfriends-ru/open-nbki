@@ -23,7 +23,8 @@ class B10UID extends \mfteam\nbch\components\BaseSegment
     {
         return [
           $this->segmentName,
-            $this->template->offer->getTrade()->uuid . "-" . $this->getUuidControlSum($this->template->offer->getTrade()->uuid)
+            $this->template->offer->getTrade()->uuid . "-" . $this->getUuidControlSum($this->template->offer->getTrade()->uuid),
+            $this->template->offer->getTrade()->acctNum??$this->emptyValue
         ];
     }
     
@@ -36,8 +37,11 @@ class B10UID extends \mfteam\nbch\components\BaseSegment
             'Наименование сегмента' => '',
             'УИд сделки' => 'УИд сделки, по обязательствам из которой формируются блоки 11–30 ниже.
                             Если сделка совершена по обращению, УИд сделки должен соответствовать значению показателя 45.4 «УИд обращения» блока 45.
-                            Если по одному обращению совершено несколько сделок, только УИд сделки, совершенной первой по времени, должен соответствовать УИд обращения.
-                            '
+                            Если по одному обращению совершено несколько сделок, только УИд сделки, совершенной первой по времени, должен соответствовать УИд обращения.,
+                            ',
+            'Номер сделки' => 'Номер сделки, присвоенный источником.
+                                Заполняется, если сделке ранее не был присвоен УИд сделки.
+                                ',
         ];
     }
     
@@ -46,6 +50,6 @@ class B10UID extends \mfteam\nbch\components\BaseSegment
      */
     public function getTitle(): string
     {
-        return "Блок 10. Уникальный идентификатор договора (сделки) – B10_UID";
+        return "Блок 10. Идентификатор сделки – B10_UID";
     }
 }

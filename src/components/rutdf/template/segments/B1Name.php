@@ -2,6 +2,8 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments;
 
+use yii\base\InvalidValueException;
+
 /**
  * Блок 1. Наименование юридического лица – B1_NAME
  */
@@ -29,11 +31,17 @@ class B1Name extends \mfteam\nbch\components\BaseSegment
      */
     public function getFields(): array
     {
+        $business = $this->template->subject->getBusiness();
+        if($business === null){
+            throw new InvalidValueException();
+        }
         return [
             $this->segmentName,
-            mb_strtoupper($this->template->subject->getBusiness()->businessName),
-            mb_strtoupper($this->template->subject->getBusiness()->abbreviatedBusinessName),
+            mb_strtoupper($business->businessName),
+            mb_strtoupper($business->abbreviatedBusinessName),
             $this->emptyValue,
+            $business->nameChange,
+            mb_strtoupper($business->businessNamebfrChange)
         ];
     }
     
@@ -47,7 +55,15 @@ class B1Name extends \mfteam\nbch\components\BaseSegment
             'Полное наименование' => 'Полное наименование юридического лица на русском языке.',
             'Сокращенное наименование' => 'Сокращенное наименование юридического лица на русском языке.',
             'Иное наименование' => 'Фирменное наименование юридического лица или его наименование на иностранном языке.
-                                    Заполняется при наличии иного наименования у источника.
+                                    Заполняется при наличии у источника сведений об ином наименовании субъекта.
+                                    ',
+            'Признак смены наименования' => 'Сведения о наименовании субъекта до его смены (за исключением случаев смены наименования субъекта при переходе к нему прав и обязанностей в рамках универсального правопреемства).
+                                    код «1» – в случае если у субъекта имеется предыдущее наименование;
+                                    код «0» – в случае если обстоятельство кода «1» отсутствует.
+                                    Если указан код «0», показатель 1.5 «Полное наименование до его смены» не заполняется.
+                                    ',
+            'Полное наименование до его смены' => 'Сведения о наименовании субъекта до его смены (за исключением случаев смены наименования субъекта при переходе к нему прав и обязанностей в рамках универсального правопреемства).
+                                    Указывается полное наименование субъекта до его смены.
                                     ',
         ];
     }
