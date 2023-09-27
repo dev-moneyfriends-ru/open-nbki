@@ -99,6 +99,13 @@ class C29MonthAverPaymt extends BaseSegment
      */
     private function isNotAllowed()
     {
+        $trade = $this->template->offer->getTrade();
+        if((int) $trade->ownerIndic === 1 && (int) $trade->acctType !== 20){
+            return false;
+        }
+        if(in_array((int) $trade->ownerIndic, [2,5,99])){
+            return false;
+        }
         return true;
     }
 }
