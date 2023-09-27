@@ -24,7 +24,7 @@ class B10UID extends \mfteam\nbch\components\BaseSegment
         return [
           $this->segmentName,
             $this->template->offer->getTrade()->uuid . "-" . $this->getUuidControlSum($this->template->offer->getTrade()->uuid),
-            $this->template->offer->getTrade()->acctNum??$this->emptyValue
+            $this->emptyValue
         ];
     }
     

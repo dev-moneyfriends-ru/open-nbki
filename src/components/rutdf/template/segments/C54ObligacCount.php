@@ -25,7 +25,7 @@ class C54ObligacCount extends \mfteam\nbch\components\BaseSegment
         return [
             $this->segmentName,
             $trade->obligAccountCode,
-            $trade->intRate,
+            $this->formatCurrency($trade->intRate),
             $trade->obligAccountCode?$this->emptyValue:$this->formatCurrency($trade->offbalanceAmt),
             $trade->preferenFinanc,
             $trade->preferenFinancInfo

@@ -23,7 +23,7 @@ class B5Reorg extends \mfteam\nbch\components\BaseSegment
     {
         return [
             $this->segmentName,
-            0,
+            $this->emptyValue,
             0,
             $this->emptyValue,
             $this->emptyValue,
@@ -39,7 +39,7 @@ class B5Reorg extends \mfteam\nbch\components\BaseSegment
     {
         return [
             'Наименование' => '',
-            'Признак смены наименования' => '',
+            'Признак смены наименования' => 'Не заполняется',
             'Признак реорганизации' => '',
             'Полное наименование лица, от которого перешли права и обязанности' => '',
             'Сокращенное наименование лица, от которого перешли права и обязанности' => '',
