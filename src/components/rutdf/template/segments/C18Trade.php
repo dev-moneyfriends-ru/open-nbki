@@ -47,7 +47,7 @@ class C18Trade extends \mfteam\nbch\components\BaseSegment
             13 => $trade->obtainpartCred,
             14 => $trade->creditLine,
             15 => $trade->creditLineCode,
-            16 => 0,
+            16 => $trade->interestrateFloat,
             17 => 0,
             18 => $this->emptyValue,
             19 => $this->formatNewDate($trade->openedDt),

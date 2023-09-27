@@ -536,9 +536,16 @@ class Trade extends BaseItem
     public $creditLine = 0;
     
     /**
+     * Заполняется по справочнику 2.3.1, если по показателю «Признак кредитной линии» указан код «1».
      * @var int|null
      */
     public $creditLineCode;
+    
+    /**
+     * Признак плавающей (переменной) процентной ставки
+     * @var int
+     */
+    public $interestrateFloat = 0;
     /**
      * @return array[]
      */
@@ -734,7 +741,8 @@ class Trade extends BaseItem
                     'termsAmt',
                     'obligAccountCode',
                     'creditLine',
-                    'creditLineCode'
+                    'creditLineCode',
+                    'interestrateFloat',
                 ],
                 'integer',
             ],
