@@ -229,6 +229,11 @@ class AccountReplyRUTDF extends Account
     private $monthAverPaymt = [];
     
     /**
+     * @var null|string
+     */
+    public $headerReportingDt = null;
+    
+    /**
      * @return TradeRUTDF[]
      */
     public function getTrade(): array
