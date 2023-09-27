@@ -526,6 +526,19 @@ class Trade extends BaseItem
      * @var int
      */
     public $obtainpartCred = 0;
+    
+    /**
+     * Признак кредитной линии
+     * код «1» – в случае если заем (кредит) предусматривает наличие кредитной линии;
+     * код «0» – в случае если обстоятельство кода «1» отсутствует.
+     * @var int
+     */
+    public $creditLine = 0;
+    
+    /**
+     * @var int|null
+     */
+    public $creditLineCode;
     /**
      * @return array[]
      */
@@ -719,7 +732,9 @@ class Trade extends BaseItem
                     'principalPastDue',
                     'serialNum',
                     'termsAmt',
-                    'obligAccountCode'
+                    'obligAccountCode',
+                    'creditLine',
+                    'creditLineCode'
                 ],
                 'integer',
             ],
