@@ -40,7 +40,7 @@ class B11Trade extends \mfteam\nbch\components\BaseSegment
             14 => $trade->interestrateFloat,
             15 => $trade->transpartCred,
             16 => $trade->transpartCredUuid,
-            17 => $this->formatNewDate($trade->openedDt),
+            17 => $trade->commitDate?$this->formatNewDate($trade->commitDate):$this->formatNewDate($trade->openedDt),
         ];
     }
     

@@ -50,7 +50,7 @@ class C18Trade extends \mfteam\nbch\components\BaseSegment
             16 => $trade->interestrateFloat,
             17 => $trade->transpartCred,
             18 => $trade->transpartCredUuid,
-            19 => $this->formatNewDate($trade->openedDt),
+            19 => $trade->commitDate?$this->formatNewDate($trade->commitDate):$this->formatNewDate($trade->openedDt),
         ];
     }
     

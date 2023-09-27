@@ -560,6 +560,12 @@ class Trade extends BaseItem
     public $transpartCredUuid;
     
     /**
+     * Указывается дата возникновения у субъекта обязательства в силу закона или по соглашению сторон.
+     * @var string
+     */
+    public $commitDate;
+    
+    /**
      * @return array[]
      */
     public function rangeRules()
@@ -807,7 +813,8 @@ class Trade extends BaseItem
                     'paymtPatStartDt',
                     'reportingDt',
                     'completePerformDt',
-                    'pastDueDt'
+                    'pastDueDt',
+                    'commitDate'
                 ],
                 'date',
                 'format' => 'yyyy-MM-dd',
