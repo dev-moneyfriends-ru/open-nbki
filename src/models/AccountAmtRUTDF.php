@@ -26,4 +26,14 @@ class AccountAmtRUTDF extends BaseItem
      * @var string
      */
     public $acctSerialNum;
+    
+    /**
+     * @var string
+     */
+    public $amtDate;
+    
+    /**
+     * @var string
+     */
+    public $commitUuid;
 }
