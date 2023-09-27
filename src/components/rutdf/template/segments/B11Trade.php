@@ -38,8 +38,8 @@ class B11Trade extends \mfteam\nbch\components\BaseSegment
             12 => $trade->creditLine,
             13 => $trade->creditLineCode,
             14 => $trade->interestrateFloat,
-            15 => 0,
-            16 => $this->emptyValue,
+            15 => $trade->transpartCred,
+            16 => $trade->transpartCredUuid,
             17 => $this->formatNewDate($trade->openedDt),
         ];
     }

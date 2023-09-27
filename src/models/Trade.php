@@ -546,6 +546,19 @@ class Trade extends BaseItem
      * @var int
      */
     public $interestrateFloat = 0;
+    
+    /**
+     * Признак частичной передачи прав кредитора другому лицу
+     * @var int
+     */
+    public $transpartCred = 0;
+    
+    /**
+     * УИд сделки, по которой права кредитора частично переданы другому лицу
+     * @var string|null
+     */
+    public $transpartCredUuid;
+    
     /**
      * @return array[]
      */
@@ -743,6 +756,7 @@ class Trade extends BaseItem
                     'creditLine',
                     'creditLineCode',
                     'interestrateFloat',
+                    'transpartCred',
                 ],
                 'integer',
             ],
