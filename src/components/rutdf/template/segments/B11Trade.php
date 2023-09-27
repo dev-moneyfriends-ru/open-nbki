@@ -34,7 +34,7 @@ class B11Trade extends \mfteam\nbch\components\BaseSegment
             8 => 1,
             9 => 1,
             10 => $this->formatNewDate($trade->closedDt),
-            11 => 0,
+            11 => $trade->obtainpartCred,
             12 => 0,
             13 => $this->emptyValue,
             14 => 0,

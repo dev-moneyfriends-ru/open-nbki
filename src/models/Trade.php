@@ -520,6 +520,12 @@ class Trade extends BaseItem
      * @var string
      */
     public $preferenFinancInfo = '';
+    
+    /**
+     * Признак возникновения обязательства в результате получения части прав кредитора от другого лица
+     * @var int
+     */
+    public $obtainpartCred = 0;
     /**
      * @return array[]
      */
