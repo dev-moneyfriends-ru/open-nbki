@@ -33,6 +33,12 @@ class RegnumReq extends BaseItem
      */
     public $regNum;
     
+    /**
+     * Признак специального налогового режима
+     * @var int
+     */
+    public $spectaxCode = 0;
+    
     public function rules()
     {
         return [
@@ -41,7 +47,7 @@ class RegnumReq extends BaseItem
                 'required'
             ],
             [
-                ['taxpayerCode', 'regNumCode'],
+                ['taxpayerCode', 'regNumCode', 'spectaxCode'],
                 'integer'
             ],
             [

@@ -173,7 +173,7 @@ class NbchRutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
             self::STATE_CREATED_RUTDF => 'Создан RUTDF',
             self::STATE_EXECUTE_SIGN_RUTDF => 'Идет подписание RUTDF',
             self::STATE_SIGNED_RUTDF => 'Подписан RUTDF',
-            self::STATE_EXECUTE_CREATE_ZIP => 'Создаентся архив',
+            self::STATE_EXECUTE_CREATE_ZIP => 'Создаётся архив',
             self::STATE_CREATED_ZIP => 'Архив создан',
             self::STATE_EXECUTE_SIGN_ZIP => 'Идет шифрование архива',
             self::STATE_SIGNED_ZIP => 'Архив готов к отправке',
@@ -183,6 +183,17 @@ class NbchRutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
             self::STATE_ERROR => 'Ошибка',
             self::STATE_NBCH_ERROR => 'Ошибка в данных',
         ];
+    }
+    
+    /**
+     * @return bool
+     */
+    public function isError(): bool
+    {
+        return in_array($this->state, [
+           self::STATE_ERROR,
+           self::STATE_NBCH_ERROR,
+        ]);
     }
     
     /**
