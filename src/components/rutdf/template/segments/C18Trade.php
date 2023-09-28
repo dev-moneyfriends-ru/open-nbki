@@ -43,7 +43,7 @@ class C18Trade extends \mfteam\nbch\components\BaseSegment
             9 => 1,
             10 => 1,
             11 => $this->formatNewDate($trade->closedDt),
-            12 => 6,
+            12 => $trade->lendertypeCode,
             13 => $trade->obtainpartCred,
             14 => $trade->creditLine,
             15 => $trade->creditLineCode,

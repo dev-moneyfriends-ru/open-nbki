@@ -566,6 +566,12 @@ class Trade extends BaseItem
     public $commitDate;
     
     /**
+     * Код вида кредитора – заимодавца. Заполняется по строкам кодов 1–6 справочника 6.1
+     * @var int
+     */
+    public $lendertypeCode = 6;
+    
+    /**
      * @return array[]
      */
     public function rangeRules()
@@ -637,7 +643,8 @@ class Trade extends BaseItem
                     'reportingDt',
                     'uuid',
                     'intRate',
-                    'preferenFinanc'
+                    'preferenFinanc',
+                    'lendertypeCode'
                 ],
                 'required',
             ],
