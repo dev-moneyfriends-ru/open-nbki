@@ -41,4 +41,9 @@ class AccountAmtRUTDF extends BaseItem
      * @var string
      */
     public $commitcurrCode;
+    
+    /**
+     * @var string
+     */
+    public $commitCode;
 }
