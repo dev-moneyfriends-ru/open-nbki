@@ -32,4 +32,10 @@ class SubjectNonMonetObligRUTDF extends BaseItem
      */
     public $acctSerialNum = null;
     
+    /**
+     * Код полученного имущества
+     * @var string|null
+     */
+    public $receivedpropCode = null;
+    
 }
