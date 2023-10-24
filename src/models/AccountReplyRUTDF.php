@@ -234,6 +234,11 @@ class AccountReplyRUTDF extends Account
     public $headerReportingDt = null;
     
     /**
+     * @var null|int
+     */
+    public $trancheNum = null;
+    
+    /**
      * @return TradeRUTDF[]
      */
     public function getTrade(): array
