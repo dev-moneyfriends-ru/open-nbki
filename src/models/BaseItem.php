@@ -202,13 +202,13 @@ abstract class BaseItem extends \yii\base\Model
             foreach ($data as $config) {
                 /** @var Model $model */
                 $model = new $class();
-                $model->setAttributes($config);
+                $model->setAttributes($config, false);
                 $models[] = $model;
             }
         } else {
             /** @var Model $model */
             $model = new $class();
-            $model->setAttributes($data);
+            $model->setAttributes($data, false);
             $models[] = $model;
         }
         return $models;
