@@ -2,6 +2,7 @@
 
 namespace mfteam\nbch\models;
 
+use yii\base\Model;
 use yii\helpers\ArrayHelper;
 
 abstract class BaseItem extends \yii\base\Model
@@ -199,10 +200,16 @@ abstract class BaseItem extends \yii\base\Model
         $models = [];
         if (ArrayHelper::isIndexed($data)) {
             foreach ($data as $config) {
-                $models[] = new $class($config);
+                /** @var Model $model */
+                $model = new $class();
+                $model->setAttributes($config);
+                $models[] = $model;
             }
         } else {
-            $models[] = new $class($data);
+            /** @var Model $model */
+            $model = new $class();
+            $model->setAttributes($data);
+            $models[] = $model;
         }
         return $models;
     }

@@ -28,6 +28,12 @@ class SourceNonMonetObligRUTDF extends BaseItem
     public $srcNonMonetObligDt = null;
     
     /**
+     * Идентификационный код предоставляемого имущества
+     * @var string
+     */
+    public $srcNonMonetObligCodeIdent = null;
+    
+    /**
      * @var string $acctSerialNum
      */
     public $acctSerialNum = null;
