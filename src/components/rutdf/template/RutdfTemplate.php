@@ -56,6 +56,7 @@ use mfteam\nbch\components\rutdf\template\segments\C34IndepGuarantor;
 use mfteam\nbch\components\rutdf\template\segments\C35Collatinsured;
 use mfteam\nbch\components\rutdf\template\segments\C36CollatRepay;
 use mfteam\nbch\components\rutdf\template\segments\C37GuaranteeRepay;
+use mfteam\nbch\components\rutdf\template\segments\C38ObligTermination;
 use mfteam\nbch\components\rutdf\template\segments\C3Birth;
 use mfteam\nbch\components\rutdf\template\segments\C4Id;
 use mfteam\nbch\components\rutdf\template\segments\C54ObligacCount;
@@ -336,6 +337,7 @@ class RutdfTemplate extends BaseRequestTemplate
             "C35_COLLATINSURED" => new C35Collatinsured($this),
             "C36_COLLATREPAY" => new C36CollatRepay($this),
             "C37_GUARANTEEREPAY" => new C37GuaranteeRepay($this),
+            "C38_OBLIGTERMINATION" => new C38ObligTermination($this),
             "C54_OBLIGACCOUNT" => new C54ObligacCount($this),
             "C56_OBLIGPARTTAKE" => new C56ObligPartTake($this),
         ];
