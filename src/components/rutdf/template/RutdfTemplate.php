@@ -156,7 +156,7 @@ class RutdfTemplate extends BaseRequestTemplate
      * @return string
      * @throws InvalidConfigException
      */
-    public function getBaseName()
+    public function getBaseName(): string
     {
         if (!empty($this->baseFileName)) {
             return $this->baseFileName;
@@ -180,10 +180,10 @@ class RutdfTemplate extends BaseRequestTemplate
     }
     
     /**
-     * @param array $eventId
+     * @param array $eventIds
      * @return RutdfTemplate
      */
-    public function setEventIds(array $eventIds)
+    public function setEventIds(array $eventIds): RutdfTemplate
     {
         $this->eventIds = $eventIds;
         return $this;
@@ -242,7 +242,7 @@ class RutdfTemplate extends BaseRequestTemplate
     /**
      * @return array|B23Collateral[]
      */
-    private function getB23Collateral()
+    private function getB23Collateral(): array
     {
         if (empty($this->offer->getCollateralArray())) {
             return [
@@ -257,7 +257,7 @@ class RutdfTemplate extends BaseRequestTemplate
     /**
      * @return B24Guarantor[]
      */
-    private function getB24Guarantor()
+    private function getB24Guarantor(): array
     {
         if (empty($this->offer->getGuarantorArray())) {
             return [
@@ -346,7 +346,7 @@ class RutdfTemplate extends BaseRequestTemplate
     /**
      * @return C32Collateral[]
      */
-    private function getC32Collateral()
+    private function getC32Collateral(): array
     {
         if (empty($this->offer->getCollateralArray())) {
             return [
@@ -361,7 +361,7 @@ class RutdfTemplate extends BaseRequestTemplate
     /**
      * @return C33Guarantor[]
      */
-    private function getC33Guarantor()
+    private function getC33Guarantor(): array
     {
         if (empty($this->offer->getGuarantorArray())) {
             return [

@@ -2,10 +2,12 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments;
 
+use mfteam\nbch\components\BaseSegment;
+
 /**
  * Блок 38. Сведения о прекращении обязательства – C38_OBLIGTERMINATION
  */
-class C38ObligTermination extends \mfteam\nbch\components\BaseSegment
+class C38ObligTermination extends BaseSegment
 {
     
     /**
