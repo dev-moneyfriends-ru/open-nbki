@@ -4,6 +4,7 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 
 /**
  * Блок 8. Сведения об основных частях КИ юридического лица, от которого субъекту перешли права и обязанности – B8_PREVCRED
+ * @deprecated
  */
 class B8PrevCred extends \mfteam\nbch\components\BaseSegment
 {
