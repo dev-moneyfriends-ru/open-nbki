@@ -2,7 +2,9 @@
 
 namespace mfteam\nbch\models;
 
+use yii\base\InvalidCallException;
 use yii\base\Model;
+use yii\base\UnknownPropertyException;
 use yii\helpers\ArrayHelper;
 
 abstract class BaseItem extends \yii\base\Model
@@ -212,5 +214,24 @@ abstract class BaseItem extends \yii\base\Model
             $models[] = $model;
         }
         return $models;
+    }
+    
+    /**
+     * Sets value of an object property.
+     *
+     * Do not call this method directly as it is a PHP magic method that
+     * will be implicitly called when executing `$object->property = $value;`.
+     * @param string $name the property name or the event name
+     * @param mixed $value the property value
+     * @throws UnknownPropertyException if the property is not defined
+     * @throws InvalidCallException if the property is read-only
+     * @see __get()
+     */
+    public function __set($name, $value)
+    {
+        $setter = 'set' . $name;
+        if (method_exists($this, $setter)) {
+            $this->$setter($value);
+        }
     }
 }
