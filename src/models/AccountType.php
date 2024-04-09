@@ -2,6 +2,7 @@
 
 namespace mfteam\nbch\models;
 
+use Exception;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -49,7 +50,7 @@ class AccountType
     /**
      * @param $val
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public static function getText($val)
     {

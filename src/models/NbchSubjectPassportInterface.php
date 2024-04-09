@@ -4,6 +4,7 @@ namespace mfteam\nbch\models;
 
 /**
  * Паспорт субъекта
+ * @deprecated
  */
 interface NbchSubjectPassportInterface
 {

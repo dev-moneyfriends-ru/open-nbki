@@ -6,6 +6,7 @@ use yii\helpers\ArrayHelper;
 
 /**
  * Частота выплат
+ * @deprecated
  */
 class PaymentFrequency
 {

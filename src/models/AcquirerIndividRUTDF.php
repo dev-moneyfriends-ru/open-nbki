@@ -23,7 +23,7 @@ class AcquirerIndividRUTDF extends BaseItem
     public $rightOfClaimMiddleName;
     
     /**
-     * @var \DateTime $rightOfClaimBirthDt
+     * @var string $rightOfClaimBirthDt
      */
     public $rightOfClaimBirthDt;
     
@@ -68,7 +68,7 @@ class AcquirerIndividRUTDF extends BaseItem
     public $rightOfClaimIdNum;
     
     /**
-     * @var \DateTime $rightOfClaimIdIssueDt
+     * @var string $rightOfClaimIdIssueDt
      */
     public $rightOfClaimIdIssueDt;
     
@@ -83,7 +83,7 @@ class AcquirerIndividRUTDF extends BaseItem
     public $rightOfClaimIdDivCode;
     
     /**
-     * @var \DateTime $rightOfClaimDt
+     * @var string $rightOfClaimDt
      */
     public $rightOfClaimDt;
     

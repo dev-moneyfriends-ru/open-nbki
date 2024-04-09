@@ -4,6 +4,9 @@ namespace mfteam\nbch\models;
 
 use yii\helpers\ArrayHelper;
 
+/**
+ * Типы сделки
+ */
 class TradeType
 {
     public const CREDIT = 1;

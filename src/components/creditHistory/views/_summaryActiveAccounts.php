@@ -1,7 +1,6 @@
 <?php
 
 /* @var $this \yii\web\View */
-/* @var $accountReply \mfteam\nbch\models\AccountReply[] */
 /* @var $accountReplyRUTDF \mfteam\nbch\models\AccountReplyRUTDF[] */
 
 $creditLimit = 0;
@@ -10,26 +9,14 @@ $amtPastDue = 0;
 foreach ($accountReplyRUTDF as $model) {
     if (empty($model->loanIndicator)) {
         $accountAmt = $model->getAccountAmt()?$model->getAccountAmt()[count($model->getAccountAmt()) - 1]:null;
-        $dueArrear = $model->getDueArrear()?$model->getDueArrear()[count($model->getDueArrear()) - 1]:null;
-        $pastdueArrear = $model->getPastdueArrear() ? $model->getPastdueArrear()[count(
-            $model->getPastdueArrear()
-        ) - 1] : null;
-        $amtPastDueAccount = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
-        $creditLimit += $accountAmt?(float)$accountAmt->creditLimit:0;
-        $amtOutstanding += $dueArrear?(float)$dueArrear->amtOutstanding:0;
+        $dueArrear = $model->getDueArrear();
+        $pastdueArrear = $model->getPastdueArrear();
+        $amtPastDueAccount = $pastdueArrear->amtPastDue ?? 0;
+        $creditLimit += $accountAmt->creditLimit ?? 0;
+        $amtOutstanding += $dueArrear->amtOutstanding ?? 0;
         $amtPastDue += (float)$amtPastDueAccount;
         echo $this->render('_summaryAccountRUTDF', [
             'model' => $model,
-        ]);
-    }
-}
-foreach ($accountReply as $account) {
-    if ((int)$account->accountRating === 0) {
-        $creditLimit += $account->creditLimit;
-        $amtOutstanding += $account->amtOutstanding;
-        $amtPastDue += $account->amtPastDue;
-        echo $this->render('_summaryAccount', [
-            'model' => $account,
         ]);
     }
 }

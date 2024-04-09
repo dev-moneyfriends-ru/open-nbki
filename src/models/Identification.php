@@ -9,6 +9,8 @@ namespace mfteam\nbch\models;
  * This information maps to the TUTDF Identification (ID) segment.
  * Class Identification
  * @package common\modules\nbki\models
+ * @deprecated
+ * @see IdReply
  */
 class Identification extends BaseItem
 {

@@ -2,6 +2,7 @@
 
 namespace mfteam\nbch\models;
 
+use Exception;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -10,6 +11,8 @@ use yii\helpers\ArrayHelper;
  * @package common\modules\nbki\models
  *
  * @property-read null|string $addressTypeText
+ * @deprecated
+ * @see AddressReplyRUTDF
  */
 class Address extends BaseItem
 {
@@ -340,7 +343,7 @@ class Address extends BaseItem
     
     /**
      * @return string|null
-     * @throws \Exception
+     * @throws Exception
      */
     public function getAddressTypeText(): ?string
     {
@@ -358,7 +361,7 @@ class Address extends BaseItem
     
     /**
      * Номер адреса в ГАР
-     * @param string $fias
+     * @param string $code
      */
     public function setGar(string $code): void
     {

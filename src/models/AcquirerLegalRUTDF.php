@@ -8,57 +8,52 @@ namespace mfteam\nbch\models;
 class AcquirerLegalRUTDF extends BaseItem
 {
     /**
-     * @var string
+     * @var string $rightOfClaimCode
      */
-    public $rightOfClaimCode;
+    public $rightOfClaimCode = '';
     
     /**
-     * @var int
+     * @var int $rightOfClaimRus
      */
-    public $rightOfClaimRus;
+    public $rightOfClaimRus = null;
     
     /**
-     * @var string
+     * @var string $rightOfClaimFullName
      */
-    public $rightOfClaimFullName;
+    public $rightOfClaimFullName = '';
     
     /**
-     * @var string
+     * @var string $rightOfClaimName
      */
-    public $rightOfClaimName;
+    public $rightOfClaimName = '';
     
     /**
-     * @var string
+     * @var string $rightOfClaimOtherName
      */
-    public $rightOfClaimOtherName;
+    public $rightOfClaimOtherName = '';
     
     /**
-     * @var string
+     * @var string $rightOfClaimLEI
      */
-    public $rightOfClaimLEI;
+    public $rightOfClaimLEI = '';
     
     /**
-     * @var string
+     * @var string $rightOfClaimRegNum
      */
-    public $rightOfClaimRegNum;
+    public $rightOfClaimRegNum = '';
     
     /**
-     * @var int
+     * @var int $rightOfClaimTaxCode
      */
-    public $rightOfClaimTaxCode;
+    public $rightOfClaimTaxCode = null;
     
     /**
-     * @var string
+     * @var string $rightOfClaimTaxNum
      */
-    public $rightOfClaimTaxNum;
+    public $rightOfClaimTaxNum = '';
     
     /**
-     * @var string
+     * @var string$rightOfClaimDt
      */
-    public $rightOfClaimDt;
-    
-    /**
-     * @var string
-     */
-    public $acctSerialNum;
+    public $rightOfClaimDt = '';
 }

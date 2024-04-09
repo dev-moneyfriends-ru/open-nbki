@@ -9,7 +9,10 @@ use mfteam\nbch\models\NbchOfferInterface;
 use mfteam\nbch\models\Payment;
 use mfteam\nbch\models\Trade;
 
-class Offer implements \mfteam\nbch\models\NbchOfferInterface
+/**
+ * @deprecated
+ */
+class Offer implements NbchOfferInterface
 {
     /**
      * @var string

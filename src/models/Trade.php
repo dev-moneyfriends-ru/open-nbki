@@ -17,6 +17,7 @@ use yii\helpers\ArrayHelper;
  * @property-read mixed $guaranteeVolumeCodeText
  * @property-read mixed $ownerIndicText
  * @property-read mixed $accountRatingText
+ * @deprecated
  */
 class Trade extends BaseItem
 {

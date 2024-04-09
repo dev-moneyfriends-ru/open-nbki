@@ -6,6 +6,7 @@ namespace mfteam\nbch\components\creditHistory;
 use mfteam\nbch\components\NbchClient;
 use mfteam\nbch\Env;
 use mfteam\nbch\models\Requestor;
+use mfteam\nbch\models\RequestorReq;
 use yii\base\InvalidConfigException;
 use yii\helpers\VarDumper;
 use yii\httpclient\Client;
@@ -38,10 +39,10 @@ class NbchRequest extends \yii\httpclient\Request
         $client->baseUrl = $module->creditHistory->apiUrl;
         $this->client = $client;
         
-        $this->requestor = new Requestor([
-            'MemberCode' => $module->memberCode,
-            'UserID' => $module->creditHistory->userName,
-            'Password' => $module->creditHistory->password,
+        $this->requestor = new RequestorReq([
+            'memberCode' => $module->memberCode,
+            'userID' => $module->creditHistory->userName,
+            'password' => $module->creditHistory->password,
         ]);
         if (!$this->requestor->validate()) {
             \Yii::error($this->requestor->errors);
@@ -57,7 +58,9 @@ class NbchRequest extends \yii\httpclient\Request
     public function getData()
     {
         $data = parent::getData();
-        $data['RequestorReq'] = $this->requestor->attributes;
+        if(empty($data['RequestorReq'])){
+            $data['RequestorReq'] = $this->requestor->attributes;
+        }
         return [
             'prequest' => ['req' => $data],
         ];
@@ -75,22 +78,21 @@ class NbchRequest extends \yii\httpclient\Request
         $response->setFormat(NbchClient::FORMAT_XML);
         $response->client = $this->client;
         $env = Env::ensure();
+        
         if ($env->module->creditHistory->test) {
             $response->setContent(file_get_contents('testData.xml'));
         }
+        
         $esignClient = $env->module->esignClient;
         $esignClient->setSrcContent($this->getContent());
         
         if ($esignClient->nbchUnzip()) {
             $xmlResult = base64_decode($esignClient->getResponseResult());
-            \Yii::info($xmlResult);
             $response->setContent($xmlResult);
             return $response;
         }
-        \Yii::error([
-            'send error',
-            $esignClient->getResponseResult(),
-        ]);
+        
         throw new \yii\base\Exception('Send request error');
     }
+ 
 }

@@ -2,7 +2,9 @@
 
 namespace mfteam\nbch\components\consent;
 
-use mfteam\nbch\models\NbchConsent;
+
+
+use mfteam\nbch\models\creditHistory\NbchConsent;
 
 /**
  *

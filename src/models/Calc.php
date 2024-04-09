@@ -5,6 +5,9 @@ namespace mfteam\nbch\models;
 
 use Yii;
 
+/**
+ * @deprecated
+ */
 class Calc extends \yii\base\Model
 {
     /**

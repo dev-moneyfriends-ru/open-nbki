@@ -2,7 +2,6 @@
 
 namespace mfteam\nbch\models;
 
-use Exception;
 use yii\base\BaseObject;
 use yii\helpers\ArrayHelper;
 
@@ -10,7 +9,7 @@ use yii\helpers\ArrayHelper;
  * Отчет КИ
  *
  * @property-read string $reportIssueDateTime
- * @property-read TaxpayerIdReply $taxpayerIdReply
+ * @property-read TaxpayerIdReply[] $taxpayerIdReply
  * @property-read BusinessReply[] $businessReply
  * @property-read AddressReply[] $addressReply
  * @property-read AccountReplyRUTDF[] $accountReplyRUTDF
@@ -22,226 +21,90 @@ use yii\helpers\ArrayHelper;
  * @property-read RegnumReply[] $regnumReply
  * @property-read PersonReply[] $personReply
  * @property-read IdReply[] $idReply
- * @property-read \mfteam\nbch\models\EntrepReply[] $entrepReply
- * @property-read \mfteam\nbch\models\CapabilityReply[] $capabilityReply
- * @property-read \mfteam\nbch\models\SNILSReply[] $snilsReply
- * @property-read array $uniqueAccountReply
+ * @property-read EntrepReply[] $entrepReply
+ * @property-read CapabilityReply[] $capabilityReply
+ * @property-read SNILSReply[] $snilsReply
  * @property-read array $subjectAverPaymtReply
- * @property-read SubjectReply $subjectReply
+ * @property-read SubjectReply[] $subjectReply
  */
 class PreplyReport extends BaseObject
 {
     /**
+     * Значения отчета в виде массива
      * @var array
      */
     public $report = [];
     
     /**
-     * Даты формирования КИ
-     * @return SubjectReply
-     * @throws Exception
+     * Инициализированные значения отчета
+     * @var array
      */
-    public function getSubjectReply(): SubjectReply
-    {
-        return new SubjectReply(ArrayHelper::getValue($this->report, 'SubjectReply', []));
-    }
+    protected $data = [];
     
     /**
-     * Сведения об адресах субъекта, полученные в формате TUTDF
-     * @return array
-     * @throws Exception
+     * Возвращает значение $name из отчета $report создавая при этом объект, если это возможно
+     * @param $name
+     * @return string
      */
-    public function getAddressReply(): array
+    public function get($name)
     {
-        return $this->loadArrayData('AddressReplyRUTDF', AddressReply::class);
-    }
-    
-    /**
-     * Сведения об адресах (в т.ч. эл.почты), полученные в формате RUTDF, телефоны из обоих форматов
-     * @return array
-     * @throws Exception
-     */
-    public function getAddressReplyRUTDF(): array
-    {
-        return $this->loadArrayData('AddressReplyRUTDF', AddressReplyRUTDF::class);
-    }
-    
-    /**
-     * Данные о кредитах, полученные в формате TUTDF
-     * @return array
-     * @throws Exception
-     */
-    public function getAccountReply(): array
-    {
-        return $this->loadArrayData('AccountReply', AccountReply::class);
-    }
-    
-    public function getUniqueAccountReply(): array
-    {
-        $uuidExists = [];
-        foreach ($this->getAccountReplyRUTDF() as $item){
-            $uuidExists[] = $item->uuid;
+        if(isset($this->data[$name])){
+            return $this->data[$name];
         }
-        return array_filter($this->getAccountReply(), static function (AccountReply $item) use ($uuidExists){
-           return !in_array($item->uuid, $uuidExists);
-        });
-    }
-    /**
-     * Основные сведения о субъекте
-     * @return array
-     * @throws Exception
-     */
-    public function getBusinessReply()
-    {
-        return $this->loadArrayData('BusinessReply', BusinessReply::class);
-    }
-    
-    /**
-     * Сведения о запросе информации пользователем в формате TUTDF
-     * @return array
-     * @throws Exception
-     */
-    public function getInquiryReply()
-    {
-        return $this->loadArrayData('InquiryReply', InquiryReply::class);
-    }
-    
-    /**
-     * Сведения о запросе информации пользователем в формате RUTDF
-     * @return array
-     * @throws Exception
-     */
-    public function getInquiryReplyRUTDF()
-    {
-        return $this->loadArrayData('InquiryReplyRUTDF', InquiryReplyRUTDF::class);
-    }
-    
-    /**
-     * Данные о кредитах, полученные в формате RUTDF
-     * @return array
-     * @throws Exception
-     */
-    public function getAccountReplyRUTDF()
-    {
-        return $this->loadArrayData('AccountReplyRUTDF', AccountReplyRUTDF::class);
-    }
-    
-    /**
-     * Основные сведения о субъекте
-     * @return array
-     * @throws Exception
-     */
-    public function getPersonReply()
-    {
-        return $this->loadArrayData('PersonReply', PersonReply::class);
-    }
-    
-    /**
-     * Документы, удостоверяющие личность
-     * @return array
-     * @throws Exception
-     */
-    public function getIdReply()
-    {
-        return $this->loadArrayData('IdReply', IdReply::class);
-    }
-    
-    /**
-     * Номер налогоплательщика
-     * @return TaxpayerIdReply[]
-     * @throws Exception
-     */
-    public function getTaxpayerIdReply()
-    {
-        return $this->loadArrayData('TaxpayerIdReply', TaxpayerIdReply::class);
-    }
-    
-    /**
-     * Регистрационный номер
-     * @return RegnumReply[]
-     * @throws Exception
-     */
-    public function getRegnumReply()
-    {
-        return $this->loadArrayData('RegnumReply', RegnumReply::class);
-    }
-    
-    /**
-     * СНИЛС
-     * @return SNILSReply[]
-     * @throws Exception
-     */
-    public function getSnilsReply()
-    {
-        return $this->loadArrayData('SNILSReply', SNILSReply::class);
-    }
-    
-    /**
-     * Гос.регистрация в качестве ИП
-     * @return EntrepReply[]
-     * @throws Exception
-     */
-    public function getEntrepReply()
-    {
-        return $this->loadArrayData('EntrepReply', EntrepReply::class);
-    }
-    
-    /**
-     * Сведения о дееспособности
-     * @return CapabilityReply[]
-     * @throws Exception
-     */
-    public function getCapabilityReply()
-    {
-        return $this->loadArrayData('CapabilityReply', CapabilityReply::class);
-    }
-    
-    /**
-     * Сведения о среднемесячных платежах субъекта кредитной истории
-     * @return array
-     * @throws Exception
-     */
-    public function getSubjectAverPaymtReply()
-    {
-        return $this->loadArrayData('SubjectAverPaymtReply', SubjectAverPaymtReply::class);
-    }
-    /**
-     * Уникальный идентификатор кредитного отчета (обязательный);
-     * @return mixed
-     * @throws Exception
-     */
-    public function getRqUuid()
-    {
-        return ArrayHelper::getValue($this->report, 'rqUuid');
-    }
-    
-    /**
-     * Дата и время формирования кредитного отчета (обязательный);
-     * @return mixed
-     * @throws Exception
-     */
-    public function getReportIssueDateTime()
-    {
-        return ArrayHelper::getValue($this->report, 'reportIssueDateTime');
-    }
-    
-    /**
-     * @return array
-     * @throws Exception
-     */
-    public function loadArrayData($key, $class): array
-    {
-        $data = ArrayHelper::getValue($this->report, $key, []);
-        if (empty($data)) {
-            return [];
+        if(!isset($this->report[$name])){
+            return null;
         }
+        $class = 'mfteam\\nbch\\models\\' . $name;
+        if(class_exists($class)){
+            $this->data[$name] = $this->initModels($this->report[$name], $class);
+        }elseif(class_exists($class.'RUTDF')){
+            $this->data[$name] = $this->initModels($this->report[$name], $class.'RUTDF');
+        }else{
+            $this->data[$name] = $this->report[$name];
+        }
+        return $this->data[$name];
+    }
+    
+    /**
+     * @param $name
+     * @return array|string|null
+     */
+    public function __get($name)
+    {
+        if($this->get($name) !== null){
+            return $this->get($name);
+        }
+        $attribute = ucfirst($name);
+        return $this->get($attribute);
+    }
+    
+    
+    /**
+     * @param array|object $values
+     * @param string $class
+     * @return array
+     */
+    public function initModels($values, string $class): array
+    {
         $models = [];
-        if (ArrayHelper::isIndexed($data)) {
-            foreach ($data as $config) {
-                $models[] = new $class($config);
+        if (ArrayHelper::isIndexed($values)) {
+            foreach ($values as $config) {
+                if (is_object($config)) {
+                    $models[] = $config;
+                    continue;
+                }
+                /** @var BaseItem $model */
+                $model = new $class();
+                $model->setAttributes($config, false);
+                $models[] = $model;
             }
+        } elseif (is_object($values)) {
+            $models[] = $values;
         } else {
-            $models[] = new $class($data);
+            /** @var BaseItem $model */
+            $model = new $class();
+            $model->setAttributes($values, false);
+            $models[] = $model;
         }
         return $models;
     }

@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 /**
  * Bank guarantee information is delivered via B2B, Bulk, and Web (Screen/PDF) channels.
  * This information maps to the TUTDF bank Guarantee (BG) segment.
+ * @deprecated
  */
 class BankGuarantee extends BaseItem
 {
@@ -65,6 +66,11 @@ class BankGuarantee extends BaseItem
      * @var string
      */
     public $agreementNumber;
+    
+    /**
+     * @var string
+     */
+    public $guaranteeVolumeCode;
     
     /**
      * @return array

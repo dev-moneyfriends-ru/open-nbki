@@ -3,34 +3,220 @@
 namespace mfteam\nbch\models;
 
 /**
- * Сведения об адресах субъекта, полученные в формате RUTDF
+ * Адрес
  */
-class AddressReplyRUTDF extends Address
+class AddressReplyRUTDF extends BaseAddressReply
 {
     /**
-     * @param $val
-     * @return void
+     * Дом
+     * @var string $houseNumber
      */
-    public function setOKATO($val)
+    public $houseNumber = '';
+    
+    /**
+     * Улица
+     * @var string $street
+     */
+    public $street = '';
+    
+    /**
+     * Корпус
+     * @var string $block
+     */
+    public $block = '';
+    
+    /**
+     * Строение
+     * @var string $building
+     */
+    public $building = '';
+    
+    /**
+     * Квартира
+     * Номер квартиры, помещения или комнаты, в которой зарегистрировано лицо.
+     * @var string $apartment
+     */
+    public $apartment = '';
+    
+    /**
+     * Почтовый индекс
+     * @var string $postal
+     */
+    public $postal = '';
+
+    
+    /**
+     * Вид адреса ФЛ/ИП @see AddressReplyRUTDF::addressTypeList()
+     * Для ЮЛ не заполняется
+     * @var string $addressType
+     */
+    public $addressType = '';
+    
+    /**
+     * Дата регистрации
+     * Дата регистрации субъекта по соответствующему адресу.
+     * @var string $addrSinceDt
+     */
+    public $addrSinceDt;
+    
+    /**
+     * Код адреса регистрации. @see AddressReplyRUTDF::regTypeList()
+     * @var string $regType
+     */
+    public $regType = '-';
+    
+    /**
+     * Наименование иной страны
+     * Заполняется, если по показателю «Код страны по ОКСМ» указано «999»
+     * @var string $otherCountry
+     */
+    public $otherCountry = '';
+    
+    /**
+     * Номер адреса в ГАР.
+     * Уникальный номер адреса объекта адресации в государственном адресном реестре, являющемся государственным информационным ресурсом,
+     * содержащим сведения об адресах, в соответствии с частью 1 статьи 4 Федерального закона от 28 декабря 2013 года №443-ФЗ
+     * «О федеральной информационной адресной системе и о внесении изменений в Федеральный закон «Об общих принципах организации местного самоуправления в Российской Федерации»
+     * (Собрание законодательства Российской Федерации, 2013, №52, ст. 7008; 2019, №30, ст. 4129) (далее – ГАР).
+     * Указываются код населенного пункта, код улицы, код дома (владения), код корпуса и код номера квартиры.
+     * @var string $fias
+     */
+    public $fias = '';
+    
+    /**
+     * Код населенного пункта по ОКАТО.
+     * Указывается согласно Общероссийскому классификатору объектов административно-территориального деления (далее – ОКАТО).
+     * При отсутствии в ОКАТО кода населенного пункта указывается «99 999 999 999».
+     * @var string $okato
+     */
+    public $okato = '';
+    
+    /**
+     * Иной населенный пункт
+     * Заполняется, если по показателю «Код населенного пункта по ОКАТО» указано «99 999 999 999».
+     * При отсутствии сведений о населенном пункте в документе, удостоверяющем личность, населенный пункт указывается на русском или английском языке (по выбору источника).
+     * @var string $otherLocation
+     */
+    public $otherLocation = '';
+    
+    /**
+     * Владение
+     * @var string $estate
+     */
+    public $estate = '';
+    
+    /**
+     * Наименование регистрирующего органа
+     * @var string $regAuthority
+     */
+    public $regAuthority = '';
+    
+    /**
+     * Код подразделения, осуществившего регистрацию.
+     * Заполняется только для паспорта гражданина Российской Федерации.
+     * Сведения указываются согласно отметке о регистрации субъекта.
+     * @var string $divCode
+     */
+    public $divCode = '';
+    
+    /**
+     * Номер телефона
+     * Контактный номер телефона.
+     * Заполняется, если субъект предоставил данные источнику.
+     * @var string $phone
+     */
+    public $phone = '';
+    
+    /**
+     * Комментарий к номеру телефона
+     * Пояснительные сведения о номере телефона
+     * Заполняется, если субъект предоставил данные источнику.
+     * @var string $phoneComment
+     */
+    public $phoneComment = '';
+    
+    /**
+     * Адрес электронной почты
+     * Заполняется, если субъект предоставил данные источнику.
+     * @var string $email
+     */
+    public $email = '';
+    
+    /**
+     * Код страны по ОКСМ
+     * Цифровой код страны согласно Общероссийскому классификатору стран мира
+     * При отсутствии страны в ОКСМ указывается «999».
+     * @var string $oksm
+     */
+    public $oksm = '';
+    
+    /**
+     * Виды адреса регистрации
+     * @return string[]
+     */
+    public static function regTypeList(): array
     {
-        $this->okato = $val;
+        return [
+            '1' => 'В документе указан адрес регистрации по месту жительства',
+            '2' => 'В документе указан адрес регистрации по месту пребывания или адрес регистрации по месту жительства и адрес регистрации по месту пребывания',
+            '3' => 'В документе не указан адрес регистрации',
+            '-' => 'Иное',
+        ];
+    }
+    
+    public static function addressTypeList(): array
+    {
+        return [
+            '1' => 'Регистрация физического лица по месту жительства или пребывания',
+            '2' => 'Фактическое место жительства',
+        ];
     }
     
     /**
-     * @param $val
-     * @return void
+     * @return string
      */
-    public function setFIAS($val)
+    public function getOksm(): string
     {
-        $this->fias = $val;
+        return $this->oksm;
     }
     
     /**
-     * @param $val
-     * @return void
+     * @param string $oksm
      */
-    public function setOKSM($val)
+    public function setOksm(string $oksm): void
     {
-        $this->oksm = $val;
+        $this->oksm = $oksm;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getFias(): string
+    {
+        return $this->fias;
+    }
+    
+    /**
+     * @param string $fias
+     */
+    public function setFias(string $fias): void
+    {
+        $this->fias = $fias;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getOkato(): string
+    {
+        return $this->okato;
+    }
+    
+    /**
+     * @param string $okato
+     */
+    public function setOkato(string $okato): void
+    {
+        $this->okato = $okato;
     }
 }

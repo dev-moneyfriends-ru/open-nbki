@@ -6,6 +6,7 @@ use yii\helpers\ArrayHelper;
 
 /**
  * Виды займа (кредита)
+ * @deprecated
  */
 class LoanKind
 {

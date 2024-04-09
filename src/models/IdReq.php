@@ -2,7 +2,26 @@
 
 namespace mfteam\nbch\models;
 
-class IdReq extends Identification
+/**
+ * Документ, удостоверяющий личность
+ */
+class IdReq extends IdReply
 {
-    
+    /**
+     * Поля для заполнения
+     * @inheritDoc
+     */
+    public function fields()
+    {
+        return [
+            'idNum',
+            'idType',
+            'idTypeText',
+            'seriesNumber',
+            'issueDate',
+            'OKSM',
+            'issueAuthority',
+            'divCode',
+        ];
+    }
 }

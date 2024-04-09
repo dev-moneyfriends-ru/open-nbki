@@ -11,6 +11,8 @@ use yii\base\Model;
  * Согласие пользователя на получение данных
  * Class ConsentReq
  * @package common\modules\nbki\models
+ * @deprecated
+ * @see ConsentReq
  */
 class Consent extends Model
 {

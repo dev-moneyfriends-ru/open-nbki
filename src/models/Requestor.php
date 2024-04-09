@@ -6,6 +6,7 @@ namespace mfteam\nbch\models;
  * Учетные данные НБКИ
  * Class RequestorReq
  * @package common\modules\nbki\models
+ * @deprecated
  */
 class Requestor extends \yii\base\Model
 {

@@ -2,432 +2,618 @@
 
 namespace mfteam\nbch\models;
 
-use yii\helpers\ArrayHelper;
 
 /**
- * Данные о кредитах, полученные в формате RUTDF
+ * Сделка
+ *
+ * @property-read MonthAverPaymtRUTDF|null $monthAverPaymt
+ * @property-read null|SubmitHoldRUTDF $submitHold
+ * @property DueArrearRUTDF[]|null|array|DueArrearRUTDF $dueArrear
+ * @property-read null|SubjectNonMonetObligRUTDF $subjectNonMonetOblig
+ * @property-read null|PastdueArrearRUTDF $pastdueArrear
+ * @property null|array|CoborrowerRUTDF|CoborrowerRUTDF[] $coborrower
+ * @property ArrearRUTDF[]|null|array|ArrearRUTDF $arrear
+ * @property-read SourceNonMonetObligRUTDF|null $sourceNonMonetOblig
+ * @property PaymtConditionRUTDF[]|PaymtConditionRUTDF|null|array $paymtCondition
+ * @property null|array|TradeRUTDF[]|TradeRUTDF $trade
+ * @property null|array|OverallValRUTDF|OverallValRUTDF[] $overallVal
+ * @property-read CollatRepayRUTDF[] $collatRepay
  */
 class AccountReplyRUTDF extends Account
 {
     /**
-     * @var TradeRUTDF[]
+     * УИд сделки.
+     *
+     * @var string $uuid
      */
-    private $trade = [];
-    /**
-     * @var AccountAmtRUTDF[]
-     */
-    private $accountAmt = [];
+    public $uuid = '';
     
     /**
-     * @var CoborrowerRUTDF[]
+     * Номер сделки.
+     * Номер сделки, присвоенный источником.
+     * Заполняется, если сделке ранее не был присвоен УИд сделки.
+     * @var string $acctNum
      */
-    private $coborrower = [];
+    public $acctNum = '';
     
     /**
-     * @var PaymtConditionRUTDF[]
+     * Общие сведения о сделке
+     * при передаче одно значение
+     * @var TradeRUTDF[] $tradeArray
      */
-    private $paymtCondition = [];
+    public $tradeArray = [];
     
     /**
+     * Сумма и валюта обязательства
+     * @var AccountAmtRUTDF[] $accountAmt
+     */
+    public $accountAmt = [];
+    
+    /**
+     * Сведения о солидарных должниках
+     * при передаче одно значение
+     * @var CoborrowerRUTDF[] $coborrower
+     */
+    public $coborrowerArray = [];
+    
+    /**
+     * Сведения об условиях платежей.
+     * Сведения приводятся согласно условиям сделки
+     * при передаче одно значение
+     * @var PaymtConditionRUTDF[] $paymtCondition
+     */
+    public $paymtConditionArray = [];
+    
+    /**
+     * Полная стоимость потребительского кредита (займа)
+     * передается только для потребительского кредита (займа).
+     * При передаче одно значение
      * @var OverallValRUTDF[] $overallVal
      */
-    private $overallVal = [];
+    public $overallValArray = [];
     
     /**
+     * Сведения об изменении договора
+     * @var AmendmentRUTDF[] $amendment
+     */
+    public $amendment = [];
+    
+    /**
+     * Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства.
+     * В КИ заемщика или лизингополучателя указывается дата передачи ему суммы займа (кредита) или каждого предмета лизинга,
+     * в КИ принципала по независимой гарантии или поручителя – соответственно дата выдачи гарантии или дата возникновения поручительства.
+     * По обязательству источника выдавать сумму займа (кредита) траншами или в пределах расходного лимита указывается дата передачи каждого транша,
+     * за исключением выданного с использованием платежной карты, и займа (кредита), предоставленного на условиях овердрафта.
      * @var string $fundDate
      */
-    public $fundDate = null;
+    public $fundDate = '';
     
     /**
+     * Порядковый номер транша.
+     * Заполняется для займа (кредита), который выдается траншами, за исключением выданного с использованием платежной карты, и займа (кредита), предоставленного на условиях овердрафта
+     * @var int $trancheNum
+     */
+    public $trancheNum;
+    
+    /**
+     * Сведения о задолженности.
+     * Указываются сведения обо всех имеющихся (непогашенных) денежных требованиях к субъекту согласно условиям сделки.
+     * Размер требований определяется исходя из того, что вследствие внесения платежа первым погашается требование, которое возникло раньше.
+     * Для договора лизинга в блоке указываются требования по внесению, в том числе лизинговых платежей, пеней и штрафов
+     * при передаче одно значение
      * @var ArrearRUTDF[] $arrear
      */
-    private $arrear = [];
+    public $arrearArray = [];
     
     /**
+     * Сведения о срочной задолженности.
+     * Сведения обо всех денежных требованиях к субъекту, срок погашения которых не наступил. Сведения указываются согласно условиям сделки.
+     * Для договора лизинга указываются требования по внесению, в том числе лизинговых платежей.
+     * при передаче одно значение
      * @var DueArrearRUTDF[] $dueArrear
      */
-    private $dueArrear = [];
+    public $dueArrearArray = [];
     
     /**
+     * Сведения о просроченной задолженности
+     * Сведения обо всех денежных требованиях к субъекту, которые не были погашены в срок. Сведения приводятся согласно условиям сделки.
+     * Для договора лизинга указываются требования по внесению, в том числе лизинговых платежей, пеней и штрафов.
+     * при передаче одно значение
      * @var PastdueArrearRUTDF[] $pastdueArrear
      */
-    private $pastdueArrear = [];
+    public $pastdueArrearArray = [];
     
     /**
+     * Сведения о внесении платежей.
+     * Сведения о действиях субъекта по исполнению своего обязательства или его части.
+     * В случае если по условиям сделки платеж признается внесенным с момента его принятия источником,
+     * отражаются сведения о принятых источником платежах.
+     * Для договора лизинга в блоке 28 Показателей КИ ФЛ отражаются суммы внесенных лизинговых платежей, пеней и штрафов.
+     * Если передаются несколько показателей, то они будут обработаны и отображены в кредитном отчете последовательно.
+     * @var PaymentRUTDF[] $payment
+     */
+    public $payment = [];
+    
+    /**
+     * Величина среднемесячного платежа по договору займа (кредита) и дата ее расчета.
+     * Сведения о величине среднемесячного платежа, рассчитанной в порядке, установленном приложением 1 к Положению Банка России «О порядке формирования кредитной истории».
+     * Если величина среднемесячного платежа не рассчитывается, не формируется и не передается
+     * при передаче одно значение
+     * @var MonthAverPaymtRUTDF[] $monthAverPaymt
+     */
+    public $monthAverPaymtArray = [];
+    
+    /**
+     * Сведения о неденежном обязательстве источника.
+     * Блок формируется, если по показателю 18.9 «Признак денежного обязательства источника» указан код «0». Сведения указываются согласно условиям сделки.
+     * Показатели в блоке не заполняются (обязательные заполняются дефисом) при передаче сведений о поручительстве и независимой гарантии
+     * до наступления ответственности поручителя или обязанности принципала возместить гаранту выплаченную сумму соответственно (18.1 = 2 или 3, 18.3 = 6-8 или 9-13, 25.1=0).
+     * при передаче одно значение
      * @var SourceNonMonetObligRUTDF[] $sourceNonMonetOblig
      */
-    private $sourceNonMonetOblig = [];
+    public $sourceNonMonetObligArray = [];
     
     /**
+     * Сведения о неденежном обязательстве субъекта.
+     * Блок формируется, если по показателю 18.10 «Признак денежного обязательства субъекта» указан код «0». Сведения указываются согласно условиям сделки
+     * при передаче одно значение
      * @var SubjectNonMonetObligRUTDF[] $subjectNonMonetOblig
      */
-    private $subjectNonMonetOblig = [];
+    public $subjectNonMonetObligArray = [];
     
     /**
+     * Сведения о залоге
+     * @var CollateralRUTDF[] $collateral
+     */
+    public $collateral = [];
+    
+    /**
+     * Сведения о поручительстве
+     * @var GuarantorRUTDF[] $guarantor
+     */
+    public $guarantor = [];
+    
+    /**
+     * Сведения о независимой гарантии
      * @var IndepGuarantorRUTDF[] $indepGuarantor
      */
-    private $indepGuarantor = [];
+    public $indepGuarantor = [];
     
     /**
+     * Сведения о страховании предмета залога
      * @var CollatInsuredRUTDF[] $collatInsured
      */
-    private $collatInsured = [];
+    public $collatInsured = [];
     
     /**
+     * Сведения о погашении требований кредитора по обязательству за счет обеспечения
      * @var CollatRepayRUTDF[] $collatRepay
      */
-    private $collatRepay = [];
+    public $collatRepayArray = [];
     
     /**
+     * Признак обязанности возместить выплаченную сумму.
+     * Код «1» – принципал обязан возместить гаранту выплаченную им сумму;
+     * код «0» – обстоятельство кода «1» отсутствует.
      * @var int $hasGuaranteeRepay
      */
-    public $hasGuaranteeRepay = null;
+    public $hasGuaranteeRepay = 0;
     
     /**
+     * Сумма, подлежащая возмещению
+     * заполняется если $hasGuaranteeRepay = 1
      * @var string $guaranteeToRepay
      */
-    public $guaranteeToRepay = null;
+    public $guaranteeToRepay = '';
     
     /**
+     * Сумма, выплаченная принципалом
+     * заполняется если $hasGuaranteeRepay = 1
      * @var string $guaranteeRepayAmt
      */
-    public $guaranteeRepayAmt = null;
+    public $guaranteeRepayAmt = '';
     
     /**
+     * Признак соблюдения порядка возмещения
+     * Код «1» – принципал надлежаще возмещает гаранту выплаченную им сумму;
+     * код «0» – обстоятельство кода «1» отсутствует.
+     * заполняется если $hasGuaranteeRepay = 1
      * @var int $guaranteeRepayKeepCode
      */
     public $guaranteeRepayKeepCode = null;
     
     /**
+     * Дата расчета показателей
+     * $guaranteeToRepay
+     * $guaranteeRepayAmt
+     * $hasGuaranteeRepay
+     * заполняется если $hasGuaranteeRepay = 1
+     * @var string $guaranteeDate
+     */
+    public $guaranteeDate = '';
+    
+    /**
+     * Код основания прекращения обязательства
+     * Заполняется по справочнику 3.8.
      * @var int $loanIndicator
      */
     public $loanIndicator = null;
     
     /**
+     * Дата фактического прекращения обязательства
+     * Дата, в которую прекратились взаимные обязательства субъекта и источника.
      * @var string $loanIndicatorDt
      */
-    public $loanIndicatorDt = null;
+    public $loanIndicatorDt = '';
     
     /**
+     * Сведения о судебном споре или требовании по обязательству
      * @var LegalItemsRUTDF[] $legalItems
      */
-    private $legalItems = [];
+    public $legalItems = [];
     
     /**
-     * @var string $sbStartOutstanding
-     */
-    public $sbStartOutstanding = null;
-    
-    /**
-     * @var string $sbStartDt
-     */
-    public $sbStartDt = null;
-    
-    /**
-     * @var string $sbEndOutstanding
-     */
-    public $sbEndOutstanding = null;
-    
-    /**
-     * @var string $sbEndDt
-     */
-    public $sbEndDt = null;
-    
-    /**
-     * @var string $sbLastPayOutstanding
-     */
-    public $sbLastPayOutstanding = null;
-    
-    /**
-     * @var string $sbLastPaymtDt
-     */
-    public $sbLastPaymtDt = null;
-    
-    /**
-     * @var int $sbTransferCode
-     */
-    public $sbTransferCode = null;
-    
-    /**
-     * @var int $sbLoanIndicator
-     */
-    public $sbLoanIndicator = null;
-    
-    /**
-     * @var string $sbLoanIndicatorReason
-     */
-    public $sbLoanIndicatorReason = null;
-    
-    /**
-     * @var string $slStartOutstanding
-     */
-    public $slStartOutstanding = null;
-    
-    /**
-     * @var string $slStartDt
-     */
-    public $slStartDt = null;
-    
-    /**
-     * @var string $slBalanceOutstanding
-     */
-    public $slBalanceOutstanding = null;
-    
-    /**
-     * @var string $slBalanceDt
-     */
-    public $slBalanceDt = null;
-    
-    /**
-     * @var string $slLastPayOutstanding
-     */
-    public $slLastPayOutstanding = null;
-    
-    /**
-     * @var string $slLastPaymtDt
-     */
-    public $slLastPaymtDt = null;
-    
-    /**
-     * @var int $slTransferCode
-     */
-    public $slTransferCode = null;
-    
-    /**
-     * @var int $slLoanIndicator
-     */
-    public $slLoanIndicator = null;
-    
-    /**
-     * @var string $slLoanIndicatorReason
-     */
-    public $slLoanIndicatorReason = null;
-    
-    /**
-     * @var AcquirerLegalRUTDF[] $acquirerLegal
-     */
-    private $acquirerLegal = [];
-    
-    /**
-     * @var AcquirerIndividRUTDF[] $acquirerIndivid
-     */
-    private $acquirerIndivid = [];
-    
-    /**
+     * Признак учета обязательства.
+     * Код «1» – обязательство учтено у источника на балансовых счетах;
+     * код «0» – обстоятельство кода «1» отсутствует, в том числе в случае если обязательство частично учтено на внебалансовых счетах.
      * @var int $obligAccountCode
      */
     public $obligAccountCode = null;
     
     /**
-     * @var SubmitHoldRUTDF[]
+     * Процентная ставка.
+     * Значение процентной ставки в соответствии с условиями сделки.
+     * @var string $intRate
      */
-    private $submitHold = [];
+    public $intRate = '';
     
     /**
-     * @var MonthAverPaymtRUTDF[]
+     * Сумма обязательства, учтенная на внебалансовых счетах.
+     * Заполняется, в случае если по показателю $obligAccountCode указан код «0».
+     * Сумма обязательства, которая учтена на внебалансовых счетах источника.
+     * @var string $offbalanceAmt
      */
-    private $monthAverPaymt = [];
+    public $offbalanceAmt = '';
     
     /**
-     * @var null|string
+     * Признак льготного финансирования с государственной поддержкой
+     * код «1» – в случае если заем (кредит) или предмет лизинга получен субъектом в рамках программы льготного финансирования с государственной поддержкой;
+     * код «0» – в случае если обстоятельство кода «1» отсутствует.
+     * @var int $preferenFinanc
      */
-    public $headerReportingDt = null;
+    public $preferenFinanc = null;
     
     /**
-     * @var null|int
+     * Информация о программе государственной поддержки
+     * Регистрационный номер, дата и наименование нормативного акта, которым утверждена программа льготного финансирования с государственной поддержкой.
+     * @var string $preferenFinancInfo
      */
-    public $trancheNum = null;
+    public $preferenFinancInfo = '';
+    
+    /**
+     * Сведения о прекращении передачи информации по обязательству
+     * @var SubmitHoldRUTDF[] $submitHold
+     */
+    public $submitHoldArray = [];
     
     /**
      * @return TradeRUTDF[]
      */
-    public function getTrade(): array
+    public function getTradeArray(): array
     {
-        return $this->trade;
+        return $this->tradeArray;
     }
     
     /**
-     * @param array $trade
+     * @param array|TradeRUTDF[] $config
      */
-    public function setTrade(array $tradeData): void
+    public function setTrade(array $config): void
     {
-        $this->trade = $this->initPropertyModels($tradeData, TradeRUTDF::class);
+        $this->tradeArray = $this->initPropertyModels($config, TradeRUTDF::class);
     }
     
     /**
-     * @return AccountAmtRUTDF[]|null
+     * @return TradeRUTDF|null
      */
-    public function getAccountAmt(): ?array
+    public function getTrade(): ?TradeRUTDF
+    {
+        return $this->getLastValue('tradeArray');
+    }
+    
+    /**
+     * @return AccountAmtRUTDF[]
+     */
+    public function getAccountAmt(): array
     {
         return $this->accountAmt;
     }
     
     /**
-     * @param array $accountAmt
+     * @param array|AccountAmtRUTDF[] $config
      */
-    public function setAccountAmt(array $accountAmtData): void
+    public function setAccountAmt(array $config): void
     {
-        $this->accountAmt = $this->initPropertyModels($accountAmtData, AccountAmtRUTDF::class);
+        $this->accountAmt = $this->initPropertyModels($config, AccountAmtRUTDF::class);
     }
     
     /**
      * @return CoborrowerRUTDF[]
      */
-    public function getCoborrower(): array
+    public function getCoborrowerArray(): array
     {
-        return $this->coborrower;
+        return $this->coborrowerArray;
     }
     
     /**
-     * @param array $coborrower
+     * @return CoborrowerRUTDF|null
      */
-    public function setCoborrower(array $coborrowerData): void
+    public function getCoborrower(): ?CoborrowerRUTDF
     {
-        $this->coborrower = $this->initPropertyModels($coborrowerData, CoborrowerRUTDF::class);
+        return $this->getLastValue('coborrowerArray');
+    }
+    
+    /**
+     * @param array|CoborrowerRUTDF[] $config
+     */
+    public function setCoborrower(array $config): void
+    {
+        $this->coborrowerArray = $this->initPropertyModels($config, CoborrowerRUTDF::class);
     }
     
     /**
      * @return PaymtConditionRUTDF[]
      */
-    public function getPaymtCondition(): array
+    public function getPaymtConditionArray(): array
     {
-        return $this->paymtCondition;
+        return $this->paymtConditionArray;
     }
     
     /**
-     * @param array $paymtCondition
+     * @return PaymtConditionRUTDF|null
      */
-    public function setPaymtCondition(array $paymtCondition): void
+    public function getPaymtCondition(): ?PaymtConditionRUTDF
     {
-        $this->paymtCondition = $this->initPropertyModels($paymtCondition, PaymtConditionRUTDF::class);
+        return $this->getLastValue('paymtConditionArray');
+    }
+    
+    /**
+     * @param array|PaymtConditionRUTDF[] $config
+     */
+    public function setPaymtCondition(array $config): void
+    {
+        $this->paymtConditionArray = $this->initPropertyModels($config, PaymtConditionRUTDF::class);
     }
     
     /**
      * @return OverallValRUTDF[]
      */
-    public function getOverallVal(): array
+    public function getOverallValArray(): array
     {
-        return $this->overallVal;
+        return $this->overallValArray;
     }
     
     /**
-     * @param array $overallVal
+     * @return OverallValRUTDF|null
      */
-    public function setOverallVal(array $overallVal): void
+    public function getOverallVal(): ?OverallValRUTDF
     {
-        $this->overallVal = $this->initPropertyModels($overallVal, OverallValRUTDF::class);
+        return $this->getLastValue('overallValArray');
     }
     
     /**
-     * @return AcquirerLegalRUTDF[]
+     * @param OverallValRUTDF[]|array $config
      */
-    public function getAcquirerLegal(): array
+    public function setOverallVal(array $config): void
     {
-        return $this->acquirerLegal;
+        $this->overallValArray = $this->initPropertyModels($config, OverallValRUTDF::class);
     }
     
     /**
-     * @param array $acquirerLegal
+     * @return AmendmentRUTDF[]
      */
-    public function setAcquirerLegal(array $acquirerLegal): void
+    public function getAmendment(): array
     {
-        $this->acquirerLegal = $this->initPropertyModels($acquirerLegal, AcquirerLegalRUTDF::class);
+        return $this->amendment;
     }
     
     /**
-     * @return AcquirerIndividRUTDF[]
+     * @param AmendmentRUTDF[]|array $config
      */
-    public function getAcquirerIndivid(): array
+    public function setAmendment(array $config): void
     {
-        return $this->acquirerIndivid;
+        $this->amendment = $this->initPropertyModels($config, AmendmentRUTDF::class);
     }
     
     /**
-     * @param array $acquirerIndivid
+     * @return array|ArrearRUTDF[]
      */
-    public function setAcquirerIndivid(array $acquirerIndivid): void
+    public function getArrearArray(): array
     {
-        $this->acquirerIndivid = $this->initPropertyModels($acquirerIndivid, AcquirerIndividRUTDF::class);
+        return $this->arrearArray;
     }
     
     /**
-     * @return ArrearRUTDF[]
+     * @return ArrearRUTDF|null
      */
-    public function getArrear(): array
+    public function getArrear(): ?ArrearRUTDF
     {
-        return $this->arrear;
+        return $this->getLastValue('arrearArray');
     }
     
     /**
-     * @param array $arrear
+     * @param array|ArrearRUTDF[] $config
      */
-    public function setArrear(array $arrear): void
+    public function setArrear(array $config): void
     {
-        $this->arrear = $this->initPropertyModels($arrear, ArrearRUTDF::class);
+        $this->arrearArray = $this->initPropertyModels($config, ArrearRUTDF::class);
     }
     
     /**
      * @return DueArrearRUTDF[]
      */
-    public function getDueArrear(): array
+    public function getDueArrearArray(): array
     {
-        return $this->dueArrear;
+        return $this->dueArrearArray;
     }
     
     /**
-     * @param array $dueArrear
+     * @return DueArrearRUTDF|null
      */
-    public function setDueArrear(array $dueArrear): void
+    public function getDueArrear(): ?DueArrearRUTDF
     {
-        $this->dueArrear = $this->initPropertyModels($dueArrear, DueArrearRUTDF::class);
+        return $this->getLastValue('dueArrearArray');
+    }
+    
+    /**
+     * @param DueArrearRUTDF[]|array $config
+     */
+    public function setDueArrear(array $config): void
+    {
+        $this->dueArrearArray = $this->initPropertyModels($config, DueArrearRUTDF::class);
     }
     
     /**
      * @return PastdueArrearRUTDF[]
      */
-    public function getPastdueArrear(): array
+    public function getPastdueArrearArray(): array
     {
-        return $this->pastdueArrear;
+        return $this->pastdueArrearArray;
     }
     
     /**
-     * @param array $pastdueArrear
+     * @return PastdueArrearRUTDF|null
      */
-    public function setPastdueArrear(array $pastdueArrear): void
+    public function getPastdueArrear(): ?PastdueArrearRUTDF
     {
-        $this->pastdueArrear = $this->initPropertyModels($pastdueArrear, PastdueArrearRUTDF::class);
+        return $this->getLastValue('pastdueArrearArray');
+    }
+    
+    /**
+     * @param PastdueArrearRUTDF[]|array $config
+     */
+    public function setPastdueArrearArray(array $config): void
+    {
+        $this->pastdueArrearArray = $this->initPropertyModels($config, PastdueArrearRUTDF::class);
+    }
+    
+    /**
+     * @return PaymentRUTDF[]
+     */
+    public function getPayment(): array
+    {
+        return $this->payment;
+    }
+    
+    /**
+     * @param array $payments
+     */
+    public function setPayment(array $payments): void
+    {
+        $this->payment = $this->initPropertyModels($payments, PaymentRUTDF::class);
+    }
+    
+    /**
+     * @return MonthAverPaymtRUTDF[]
+     */
+    public function getMonthAverPaymtArray(): array
+    {
+        return $this->monthAverPaymtArray;
+    }
+    
+    /**
+     * @return MonthAverPaymtRUTDF|null
+     */
+    public function getMonthAverPaymt(): ?MonthAverPaymtRUTDF
+    {
+        return $this->getLastValue('monthAverPaymtArray');
+    }
+    
+    /**
+     * @param MonthAverPaymtRUTDF[]|array $config
+     */
+    public function setMonthAverPaymtArray(array $config): void
+    {
+        $this->monthAverPaymtArray = $this->initPropertyModels($config, MonthAverPaymtRUTDF::class);
     }
     
     /**
      * @return SourceNonMonetObligRUTDF[]
      */
-    public function getSourceNonMonetOblig(): array
+    public function getSourceNonMonetObligArray(): array
     {
-        return $this->sourceNonMonetOblig;
+        return $this->sourceNonMonetObligArray;
     }
     
     /**
-     * @param array $sourceNonMonetOblig
+     * @return SourceNonMonetObligRUTDF
      */
-    public function setSourceNonMonetOblig(array $sourceNonMonetOblig): void
+    public function getSourceNonMonetOblig(): ?SourceNonMonetObligRUTDF
     {
-        $this->sourceNonMonetOblig = $this->initPropertyModels($sourceNonMonetOblig, SourceNonMonetObligRUTDF::class);
+        return $this->getLastValue('sourceNonMonetObligArray');
+    }
+    
+    /**
+     * @param array $config
+     */
+    public function setSourceNonMonetObligArray(array $config): void
+    {
+        $this->sourceNonMonetObligArray = $this->initPropertyModels($config, SourceNonMonetObligRUTDF::class);
     }
     
     /**
      * @return SubjectNonMonetObligRUTDF[]
      */
-    public function getSubjectNonMonetOblig(): array
+    public function getSubjectNonMonetObligArray(): array
     {
-        return $this->subjectNonMonetOblig;
+        return $this->subjectNonMonetObligArray;
     }
     
     /**
-     * @param array $subjectNonMonetOblig
+     * @return SubjectNonMonetObligRUTDF|null
      */
-    public function setSubjectNonMonetOblig(array $subjectNonMonetOblig): void
+    public function getSubjectNonMonetOblig(): ?SubjectNonMonetObligRUTDF
     {
-        $this->subjectNonMonetOblig = $this->initPropertyModels($subjectNonMonetOblig, SubjectNonMonetObligRUTDF::class);
+        return $this->getLastValue('subjectNonMonetObligArray');
+    }
+    
+    /**
+     * @param SubjectNonMonetObligRUTDF[]|array $config
+     */
+    public function setSubjectNonMonetObligArray(array $config): void
+    {
+        $this->subjectNonMonetObligArray = $this->initPropertyModels($config, SubjectNonMonetObligRUTDF::class);
+    }
+    
+    /**
+     * @return CollateralRUTDF[]
+     */
+    public function getCollateral(): array
+    {
+        return $this->collateral;
+    }
+    
+    /**
+     * @param CollateralRUTDF[]|array $config
+     */
+    public function setCollateral(array $config): void
+    {
+        $this->collateral = $this->initPropertyModels($config, CollateralRUTDF::class);
+    }
+    
+    /**
+     * @return GuarantorRUTDF[]
+     */
+    public function getGuarantor(): array
+    {
+        return $this->guarantor;
+    }
+    
+    /**
+     * @param GuarantorRUTDF[]|array $config
+     */
+    public function setGuarantor(array $config): void
+    {
+        $this->guarantor = $this->initPropertyModels($config, GuarantorRUTDF::class);
     }
     
     /**
@@ -439,11 +625,11 @@ class AccountReplyRUTDF extends Account
     }
     
     /**
-     * @param array $indepGuarantor
+     * @param IndepGuarantorRUTDF[]|array $config
      */
-    public function setIndepGuarantor(array $indepGuarantor): void
+    public function setIndepGuarantor(array $config): void
     {
-        $this->indepGuarantor = $this->initPropertyModels($indepGuarantor, IndepGuarantorRUTDF::class);
+        $this->indepGuarantor = $this->initPropertyModels($config, IndepGuarantorRUTDF::class);
     }
     
     /**
@@ -455,11 +641,11 @@ class AccountReplyRUTDF extends Account
     }
     
     /**
-     * @param array $collatInsured
+     * @param CollatInsuredRUTDF[]|array $config
      */
-    public function setCollatInsured(array $collatInsured): void
+    public function setCollatInsured(array $config): void
     {
-        $this->collatInsured = $this->initPropertyModels($collatInsured, CollatInsuredRUTDF::class);
+        $this->collatInsured = $this->initPropertyModels($config, IndepGuarantorRUTDF::class);
     }
     
     /**
@@ -467,15 +653,15 @@ class AccountReplyRUTDF extends Account
      */
     public function getCollatRepay(): array
     {
-        return $this->collatRepay;
+        return $this->collatRepayArray;
     }
     
     /**
-     * @param array $collatRepay
+     * @param CollatRepayRUTDF[]|array $config
      */
-    public function setCollatRepay(array $collatRepay): void
+    public function setCollatRepayArray(array $config): void
     {
-        $this->collatRepay = $this->initPropertyModels($collatRepay, CollatRepayRUTDF::class);
+        $this->collatRepayArray = $this->initPropertyModels($config, CollatRepayRUTDF::class);
     }
     
     /**
@@ -487,42 +673,34 @@ class AccountReplyRUTDF extends Account
     }
     
     /**
-     * @param array $legalItems
+     * @param LegalItemsRUTDF[]|array $config
      */
-    public function setLegalItems(array $legalItems): void
+    public function setLegalItems(array $config): void
     {
-        $this->legalItems = $this->initPropertyModels($legalItems, LegalItemsRUTDF::class);
+        $this->legalItems = $this->initPropertyModels($config, LegalItemsRUTDF::class);
     }
     
     /**
      * @return SubmitHoldRUTDF[]
      */
-    public function getSubmitHold(): array
+    public function getSubmitHoldArray(): array
     {
-        return $this->submitHold;
+        return $this->submitHoldArray;
     }
     
     /**
-     * @param array $submitHold
+     * @return SubmitHoldRUTDF|null
      */
-    public function setSubmitHold(array $submitHold): void
+    public function getSubmitHold(): ?SubmitHoldRUTDF
     {
-        $this->submitHold = $this->initPropertyModels($submitHold, SubmitHoldRUTDF::class);
+        return $this->getLastValue('submitHoldArray');
     }
     
     /**
-     * @return MonthAverPaymtRUTDF[]
+     * @param SubmitHoldRUTDF[]|array $config
      */
-    public function getMonthAverPaymt(): array
+    public function setSubmitHoldArray(array $config): void
     {
-        return $this->monthAverPaymt;
-    }
-    
-    /**
-     * @param array $monthAverPaymt
-     */
-    public function setMonthAverPaymt(array $monthAverPaymt): void
-    {
-        $this->monthAverPaymt = $this->initPropertyModels($monthAverPaymt, MonthAverPaymtRUTDF::class);
+        $this->submitHoldArray = $this->initPropertyModels($config, SubmitHoldRUTDF::class);
     }
 }

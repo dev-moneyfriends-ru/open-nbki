@@ -8,32 +8,38 @@ namespace mfteam\nbch\models;
 class LegalItemsRUTDF extends BaseItem
 {
     /**
-     * @var int $hasCourtAct
+     * Признак наличия судебного акта
+     * Код «1» – суд принял акт, которым заканчивается рассмотрение дела по существу (в частности, судебное решение или судебный приказ);
+     * код «0» – обстоятельство кода «1» отсутствует.
+     * Если указан код «0», показатели 39.3–39.6 не заполняются.
+     * @var int|null $hasCourtAct
      */
     public $hasCourtAct = null;
     
     /**
-     * @var \DateTime $courtActDt
+     * Дата принятия судебного акта
+     * @var string $courtActDt
      */
-    public $courtActDt = null;
+    public $courtActDt = '';
     
     /**
+     * Номер судебного акта
      * @var string $courtActNum
      */
-    public $courtActNum = null;
+    public $courtActNum = '';
     
     /**
+     * Резолютивная часть судебного акта.
+     * Цитируется резолютивная часть судебного акта. Из цитируемого текста исключаются номера счетов и не принадлежащие субъекту персональные данные.
      * @var string $resolution
      */
-    public $resolution = null;
+    public $resolution = '';
     
     /**
+     * Признак вступления акта в законную силу
+     * Код «1» – судебный акт вступил в законную силу;
+     * код «0» – обстоятельство кода «1» отсутствует.
      * @var int $courtActEffectCode
      */
     public $courtActEffectCode = null;
-    
-    /**
-     * @var string $acctSerialNum
-     */
-    public $acctSerialNum = null;
 }

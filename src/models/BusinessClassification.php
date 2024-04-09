@@ -5,6 +5,7 @@ namespace mfteam\nbch\models;
 /**
  * Business classification information is delivered via B2B, Bulk, and Web (Screen/PDF) channels.
  * This information maps to the TUTDF Business (BU) segment.
+ * @deprecated
  */
 class BusinessClassification extends BaseItem
 {

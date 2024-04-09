@@ -5,7 +5,7 @@ namespace mfteam\nbch\models\rutdf;
 use yii\db\ActiveQuery;
 
 /**
- *
+ * @see NbchRutdfRequest
  */
 class NbchRutdfRequestQuery extends ActiveQuery
 {

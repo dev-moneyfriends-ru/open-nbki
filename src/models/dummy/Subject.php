@@ -14,17 +14,18 @@ use yii\base\BaseObject;
  * Субъект договора займа
  *
  * @property null|string $ogrn
- * @property \mfteam\nbch\models\Address $actualAddress
- * @property \mfteam\nbch\models\Business|null $business
- * @property null|\mfteam\nbch\models\NbchSubjectPassportInterface $passport
- * @property null|\mfteam\nbch\models\Person $person
+ * @property Address $actualAddress
+ * @property Business|null $business
+ * @property null|NbchSubjectPassportInterface $passport
+ * @property null|Person $person
  * @property null|string $inn
- * @property array|\mfteam\nbch\models\Phone[] $phones
- * @property \mfteam\nbch\models\Phone|null $workPhone
+ * @property array|Phone[] $phones
+ * @property Phone|null $workPhone
  * @property null|string $snils
  * @property string $subjectType
- * @property \mfteam\nbch\models\Address $legalAddress
+ * @property Address $legalAddress
  * @property string $offerRelationType
+ * @deprecated
  */
 class Subject extends BaseObject implements NbchSubjectInterface
 {

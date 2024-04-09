@@ -9,6 +9,8 @@ use yii\helpers\ArrayHelper;
  * This information maps to the TUTDF Guarantor (GR) segment.
  *
  * @property-read mixed $guaranteeVolumeCodeText
+ * @deprecated
+ * @see GuarantorRUTDF
  */
 class Guarantor extends BaseItem
 {

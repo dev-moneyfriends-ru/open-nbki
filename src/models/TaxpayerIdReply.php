@@ -2,7 +2,10 @@
 
 namespace mfteam\nbch\models;
 
-class TaxpayerIdReply extends RegnumReq
+/**
+ * Номер налогоплательщика
+ */
+class TaxpayerIdReply extends RegnumReply
 {
     
 }

@@ -9,6 +9,7 @@ use yii\helpers\ArrayHelper;
  * This information maps to the TUTDF Phone (PN) segment.
  *
  * @property-read null|string $phoneTypeText
+ * @deprecated
  */
 class Phone extends BaseItem
 {

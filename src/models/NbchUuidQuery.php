@@ -6,6 +6,7 @@ namespace mfteam\nbch\models;
  * This is the ActiveQuery class for [[NbchUuid]].
  *
  * @see NbchUuid
+ * @deprecated
  */
 class NbchUuidQuery extends \yii\db\ActiveQuery
 {

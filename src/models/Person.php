@@ -7,6 +7,7 @@ namespace mfteam\nbch\models;
  * Name information is delivered via B2B, Bulk, and Web (Screen/PDF) channels.
  * This information maps to the TUTDF Name (NA) segment.
  * @property mixed $fullName
+ * @deprecated
  */
 class Person extends BaseItem
 {

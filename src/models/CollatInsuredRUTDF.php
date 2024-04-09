@@ -8,43 +8,61 @@ namespace mfteam\nbch\models;
 class CollatInsuredRUTDF extends BaseItem
 {
     /**
-     * @var int $insurLimit
+     * Лимит страховых выплат.
+     * Указывается предельный размер обязательств страховщика согласно договору. При отсутствии лимита страховых выплат по указанному показателю приводится страховая сумма.
+     * @var float $insurLimit
      */
-    public $insurLimit = null;
+    public $insurLimit;
     
     /**
+     * Валюта страховых выплат
      * @var string $currencyCode
      */
-    public $currencyCode = null;
+    public $currencyCode = 'RUB';
     
     /**
+     * Признак наличия франшизы.
+     * Код «1» – в договоре страхования имеется условие об условной или безусловной франшизе;
+     * код «0» – обстоятельство кода «1» отсутствует.
      * @var int $hasFranchise
      */
-    public $hasFranchise = null;
+    public $hasFranchise;
     
     /**
+     * Дата начала действия страхования.
+     * Дата начала действия страхования, обусловленного договором страхования.
      * @var string $insurStartDt
      */
-    public $insurStartDt = null;
+    public $insurStartDt;
     
     /**
+     * Дата окончания действия страхования согласно договору.
+     * Дата планового окончания действия страхования, обусловленного договором страхования.
      * @var string $insurEndDt
      */
-    public $insurEndDt = null;
+    public $insurEndDt;
     
     /**
+     * Дата фактического прекращения страхования.
+     * Дата фактического окончания действия страхования, обусловленного договором страхования.
      * @var string $insurFactEndDt
      */
-    public $insurFactEndDt = null;
+    public $insurFactEndDt;
     
     /**
+     * Код причины прекращения страхования
+     * 1    Обеспечивающее обязательство прекращено в связи с надлежащим исполнением основного обязательства
+     * 2    Обеспечивающее обязательство прекращено в счет погашения требований кредитора по основному обязательству
+     * 3    Залог прекращен в связи с гибелью или утратой заложенного имущества
+     * 99    Обеспечивающее обязательство прекращено на ином основании
      * @var string $insurEndReason
      */
-    public $insurEndReason = null;
+    public $insurEndReason;
     
     /**
-     * @var string $acctSerialNum
+     * Идентификационный код предмета залога
+     * @var string $collateralId
      */
-    public $acctSerialNum = null;
+    public $collateralId;
     
 }

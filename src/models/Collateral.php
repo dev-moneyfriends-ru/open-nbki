@@ -5,6 +5,8 @@ namespace mfteam\nbch\models;
 /**
  * Collateral information is delivered via B2B, Bulk, and Web (Screen/PDF) channels.
  * This information maps to the TUTDF Collateral (CL) segment.
+ * @deprecated
+ * @see CollateralRUTDF
  */
 class Collateral extends BaseItem
 {

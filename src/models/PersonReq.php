@@ -2,12 +2,22 @@
 
 namespace mfteam\nbch\models;
 
-class PersonReq extends Person
+/**
+ * Данные о субъекте, предоставившем согласие
+ */
+class PersonReq extends PersonReply
 {
-    public function rules()
+    /**
+     * @inheritDoc
+     */
+    public function fields()
     {
-        return array_merge(parent::rules(),[
-            [['first','name1', 'paternal'], 'required']
-        ]);
+        return [
+            'name1',
+            'first',
+            'paternal',
+            'birthDt',
+            'placeOfBirth',
+        ];
     }
 }

@@ -8,22 +8,30 @@ namespace mfteam\nbch\models;
 class CollatRepayRUTDF extends BaseItem
 {
     /**
+     * Код использованного обеспечения
+     * 1    Залог
+     * 2    Поручительство
+     * 3    Независимая гарантия
+     * 4    Иная гарантия
+     * 5    Гарантийный депозит
+     * 6    Страхование
+     * 99    Иное обеспечение
      * @var string $collatRepayCode
      */
-    public $collatRepayCode = null;
+    public $collatRepayCode = '';
     
     /**
-     * @var \DateTime $collatRepayDt
+     * Дата погашения требований за счет обеспечения
+     * @var string $collatRepayDt
      */
-    public $collatRepayDt = null;
+    public $collatRepayDt = '';
     
     /**
+     * Сумма требований, погашенных за счет обеспечения.
+     * По обязательству поручителя указывается общая сумма внесенных им платежей;
+     * по обязательству из независимой гарантии указывается выплаченная по гарантии сумма;
+     * по договору страхования предмета залога, который заключен в пользу источника или субъекта, указывается размер страховой выплаты.
      * @var string $collatRepayAmt
      */
-    public $collatRepayAmt = null;
-    
-    /**
-     * @var string $acctSerialNum
-     */
-    public $acctSerialNum = null;
+    public $collatRepayAmt = '';
 }

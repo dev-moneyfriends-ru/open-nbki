@@ -6,32 +6,17 @@ namespace mfteam\nbch\models;
 /**
  * Данные о субъекте, предоставившем согласие
  */
-class BusinessReq extends Business
+class BusinessReq extends BusinessReply
 {
-    public function rules()
+    /**
+     * @inheritDoc
+     */
+    public function fields()
     {
         return [
-            [
-                [
-                    'businessName',
-                    'abbreviatedBusinessName'
-                ], 'required',
-            ],
-            [
-                [
-                    'businessName',
-                    'abbreviatedBusinessName'
-                ], 'filter', 'filter' => function ($value) {
-                return mb_strtoupper($value);
-            }
-            ],
-            [
-                [
-                    'businessName',
-                ],
-                'string',
-                'max' => 1020,
-            ],
+            'businessName',
+            'abbreviatedBusinessName',
+            'businessNameAlt',
         ];
     }
 }

@@ -3,23 +3,20 @@
 namespace mfteam\nbch\models;
 
 /**
- * Сведения о среднемесячных платежах по данному обязательству
+ * Величина среднемесячного платежа по договору займа (кредита) и дата ее расчета
  */
 class MonthAverPaymtRUTDF extends BaseItem
 {
     /**
-     * @var int $averPaymtAmt
+     * Величина среднемесячного платежа
+     * @var float $averPaymtAmt
      */
-    public $averPaymtAmt = null;
+    public $averPaymtAmt;
     
     /**
-     * @var \DateTime $calcDate
+     * Дата расчета величины среднемесячного платежа.
+     * Дата, по состоянию на которую источник выполнил расчет.
+     * @var string $calcDate
      */
-    public $calcDate = null;
-    
-    /**
-     * @var string $acctSerialNum
-     */
-    public $acctSerialNum = null;
-    
+    public $calcDate = '';
 }

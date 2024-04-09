@@ -4,6 +4,7 @@ namespace mfteam\nbch\models;
 
 /**
  * Субъект по которому составляется отчет
+ * @deprecated
  */
 interface NbchSubjectInterface
 {

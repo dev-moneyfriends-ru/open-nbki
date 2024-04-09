@@ -7,6 +7,9 @@ use mfteam\nbch\components\file\NbchFileInterface;
 use yii\base\InvalidConfigException;
 use yii\di\NotInstantiableException;
 
+/**
+ * @deprecated
+ */
 interface BaseSendNbchRequestInterface
 {
     /**

@@ -2,10 +2,12 @@
 
 namespace mfteam\nbch\models;
 
+use Exception;
 use yii\helpers\ArrayHelper;
 
 /**
  * Состояние счёта
+ * @deprecated
  */
 class AccountRating
 {
@@ -46,7 +48,7 @@ class AccountRating
     /**
      * @param $val
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public static function getText($val)
     {

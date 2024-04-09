@@ -7,23 +7,23 @@ namespace mfteam\nbch\models;
  */
 class OverallValRUTDF extends BaseItem
 {
+    
     /**
-     * @var string $creditTotalAmt
+     * Полная стоимость кредита (займа) в процентах годовых
+     * @var float $creditTotalAmt
      */
     public $creditTotalAmt;
     
     /**
-     * @var string $creditTotalMonetaryAmt
+     * Полная стоимость кредита (займа) в денежном выражении
+     * @var float $creditTotalMonetaryAmt
      */
     public $creditTotalMonetaryAmt;
     
     /**
-     * @var \DateTime $creditTotalAmtDate
+     * Дата расчета полной стоимости кредита (займа).
+     * Если даты расчета полной стоимости потребительского кредита (займа) в процентах годовых и в денежном выражении не совпадают, то указывается наиболее поздняя из них.
+     * @var string $creditTotalAmtDate
      */
     public $creditTotalAmtDate;
-    
-    /**
-     * @var string $acctSerialNum
-     */
-    public $acctSerialNum;
 }

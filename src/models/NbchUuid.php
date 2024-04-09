@@ -2,14 +2,13 @@
 
 namespace mfteam\nbch\models;
 
-use Yii;
-
 /**
  * This is the model class for table "nbch_uuid".
  *
  * @property int $id
  * @property string $offerUuid
  * @property string $uuid
+ * @deprecated
  */
 class NbchUuid extends \yii\db\ActiveRecord
 {
@@ -51,6 +50,6 @@ class NbchUuid extends \yii\db\ActiveRecord
      */
     public static function find()
     {
-        return new NbchUuidQuery(get_called_class());
+        return new NbchUuidQuery(static::class);
     }
 }

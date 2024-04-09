@@ -8,6 +8,7 @@ use yii\helpers\ArrayHelper;
 
 /**
  * @property-read string $formatValue
+ * @deprecated
  */
 class BalanceValue extends BaseObject
 {

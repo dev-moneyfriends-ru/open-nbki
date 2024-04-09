@@ -2,14 +2,30 @@
 
 namespace mfteam\nbch\models;
 
-class SNILSReply extends SNILSReq
+/**
+ * СНИЛС
+ */
+class SNILSReply extends BaseItem
 {
     /**
-     * @param $val
-     * @return void
+     * СНИЛС
+     * @var string $snils
      */
-    public function setSNILS($val)
+    public $snils = '';
+    
+    /**
+     * @return string
+     */
+    public function getSnils(): string
     {
-        $this->number = $val;
+        return $this->snils;
+    }
+    
+    /**
+     * @param string $snils
+     */
+    public function setSnils(string $snils): void
+    {
+        $this->snils = $snils;
     }
 }

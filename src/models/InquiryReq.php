@@ -2,47 +2,87 @@
 
 namespace mfteam\nbch\models;
 
-use yii\helpers\ArrayHelper;
 
 /**
- *
+ * Данные запроса КИ
  */
-class InquiryReq extends Inquiry
+class InquiryReq extends BaseItem
 {
     /**
-     * @param Consent $consent
-     * @param $config
+     * Данные о согласии субъекта.
+     * Состав блока «Данные о согласии субъекта» определен Указанием Банка России «О требованиях к составу и формату запроса о предоставлении кредитного отчета,
+     * правилах поиска бюро кредитных историй информации о субъекте кредитной истории и форме подтверждения наличия согласия субъекта кредитной истории» № 5791-У от 11.05.2021.
+     * В соответствии с ч. 9.1 ст.6 218-ФЗ информационная часть КИ предоставляется в целях выдачи займа (кредита) без согласия субъекта.
+     * Таким образом, все подблоки и элементы, перечисленные в разделе «Данные о согласии субъекта», не обязательны к передаче, если при этом параметр inqPurpose («Цель запроса»)
+     * содержит любой из кодов 1-5, 10-15 справочника 5.3, а параметр RefReq::product («Код запрошенных сведений») = «CIPO»
+     * (в соответствии с письмом Банка России №46-7-1/881 от 06.05.2022 «О предоставлении информационной части кредитной истории»).
+     * @var ConsentReq|null
      */
-    public function __construct(Consent $consent, $config = [])
+    public $consentReq = null;
+    
+    /**
+     * Код цели запроса.
+     * Заполняется по справочнику 5.3.
+     * @var string
+     */
+    public $inqPurpose = '';
+    
+    /**
+     * Иная цель запроса
+     * Обязательно если по показателю «Код цели запроса» в блоке показателей, содержащем настоящий показатель, указано «99»
+     * Длина: до 2000 символов.
+     * Формат: произвольный текст.
+     * Допустимые символы: не ограничиваются.
+     * Допустимые значения: не ограничиваются.
+     * Правила преобразования: двойные пробелы, знаки препинания, разделители, кавычки заменяются на одинарные символы, начальный и конечный пробелы удаляются
+     * @var string|null
+     */
+    public $otherInqPurpose = null;
+    
+    /**
+     * Сумма обязательства, в связи с которым сделан запрос.
+     * Длина: до 15 символов.
+     * Формат: до 12 цифр в целой части, десятичная запятая, 2 цифры в дробной части.
+     * Допустимые символы: цифры от 0 до 9; десятичный разделитель «,» (запятая).
+     * Допустимые значения: больше либо равно 0.
+     * Правила преобразования: пробелы и символы, кроме допустимых, удаляются
+     * @var string
+     */
+    public $inqAmount = '';
+    
+    /**
+     * Валюта обязательства, в связи с которым сделан запрос
+     * @var string
+     */
+    public $currencyCode = 'RUB';
+    
+    /**
+     * @return ConsentReq|null
+     */
+    public function getConsentReq(): ?ConsentReq
     {
-        $this->consent = $consent;
-        parent::__construct($config);
+        return $this->consentReq?? null;
     }
     
     /**
-     * @return array
+     * @param ConsentReq|null $consentReq
      */
-    public function rules()
+    public function setConsentReq(?ConsentReq $consentReq): void
     {
-        return array_merge(
-            parent::rules(),
-            [
-                [['consent', 'inqPurpose', 'inqAmount'], 'required'],
-            ]
-        );
+        $this->consentReq = $consentReq;
     }
     
     /**
-     * @return array
+     * @inheritDoc
      */
     public function fields()
     {
-        $fields = parent::fields();
-        return ArrayHelper::merge(
-            $fields,
-            [
-                'ConsentReq' => 'consent'
-            ]
-        );
+        return [
+            'ConsentReq',
+            'inqPurpose',
+            'otherInqPurpose',
+            'inqAmount',
+            'currencyCode',
+        ];
     }
 }

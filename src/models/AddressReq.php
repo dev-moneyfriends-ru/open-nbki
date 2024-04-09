@@ -2,15 +2,27 @@
 
 namespace mfteam\nbch\models;
 
-class AddressReq extends Address
+class AddressReq extends AddressReplyRUTDF
 {
+    /**
+     * @inheritDoc
+     */
     public function fields()
     {
         return [
-            'houseNumber',
             'street',
-            'OKATO' => 'okato',
-            'OKSM' => 'oksm'
+            'houseNumber',
+            'block',
+            'building',
+            'apartment',
+            'otherCountry',
+            'FIAS',
+            'OKATO',
+            'otherLocation',
+            'estate',
+            'phone',
+            'email',
+            'OKSM',
         ];
     }
 }

@@ -1,7 +1,6 @@
 <?php
 
 /* @var $this \yii\web\View */
-/* @var $accountReply \mfteam\nbch\models\AccountReply[] */
 /* @var $accountReplyRUTDF \mfteam\nbch\models\AccountReplyRUTDF[] */
 
 ?>
@@ -63,7 +62,6 @@
         <td colspan="15" style="text-align: center">Активные договоры</td>
     </tr>
         <?=$this->render('_summaryActiveAccounts', [
-            'accountReply' => $accountReply,
             'accountReplyRUTDF' => $accountReplyRUTDF,
         ])?>
     <tr>
@@ -71,7 +69,6 @@
     </tr>
        
         <?=$this->render('_summaryCloseAccounts', [
-            'accountReply' => $accountReply,
             'accountReplyRUTDF' => $accountReplyRUTDF,
         ])?>
     <tr>
@@ -79,7 +76,6 @@
     </tr>
        
         <?=$this->render('_summaryAcquirerAccounts', [
-            'accountReply' => $accountReply,
             'accountReplyRUTDF' => $accountReplyRUTDF,
         ])?>
     </tbody>

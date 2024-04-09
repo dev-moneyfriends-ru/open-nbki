@@ -4,6 +4,7 @@ namespace mfteam\nbch\models;
 
 /**
  * Договор займа\лизинга
+ * @deprecated
  */
 interface NbchOfferInterface
 {

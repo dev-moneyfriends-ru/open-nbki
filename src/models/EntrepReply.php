@@ -7,9 +7,5 @@ namespace mfteam\nbch\models;
  */
 class EntrepReply extends RegnumReply
 {
-    /**
-     * Дата регистрации
-     * @var string
-     */
-    public $regDate;
+
 }

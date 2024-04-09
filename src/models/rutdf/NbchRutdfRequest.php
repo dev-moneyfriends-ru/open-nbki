@@ -6,7 +6,6 @@ use Exception;
 use mfteam\nbch\components\file\NbchFile;
 use mfteam\nbch\components\file\NbchFileInterface;
 use mfteam\nbch\Env;
-use mfteam\nbch\models\BaseSendNbchRequestInterface;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\behaviors\BlameableBehavior;
@@ -300,6 +299,8 @@ class NbchRutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
     
     /**
      * @return string
+     * @throws InvalidConfigException
+     * @throws NotInstantiableException
      */
     public function getFileDownloadUrl(): string
     {
@@ -416,7 +417,7 @@ class NbchRutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
      */
     public static function find()
     {
-        return new NbchRutdfRequestQuery(get_called_class());
+        return new NbchRutdfRequestQuery(static::class);
     }
     
     /**

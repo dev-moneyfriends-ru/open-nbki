@@ -5,20 +5,8 @@ namespace mfteam\nbch\models;
 /**
  * СНИЛС
  */
-class SNILSReq extends BaseItem
+class SNILSReq extends SNILSReply
 {
-    /**
-     * @var string
-     */
-    public $number;
-    
-    public function rules()
-    {
-        return [
-            ['number', 'required'],
-        ];
-    }
-    
     /**
      * @return string[]
      */

@@ -4,6 +4,8 @@ namespace mfteam\nbch\models;
 
 /**
  * Дополнительные параметры запроса в НБКИ
+ * @deprecated
+ * @see InquiryReq
  */
 class Inquiry extends BaseItem
 {

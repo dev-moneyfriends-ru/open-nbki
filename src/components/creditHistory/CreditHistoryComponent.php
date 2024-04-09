@@ -4,16 +4,17 @@ namespace mfteam\nbch\components\creditHistory;
 
 use mfteam\nbch\components\file\NbchFile;
 use mfteam\nbch\Env;
+use mfteam\nbch\exceptions\CreateXmlException;
 use mfteam\nbch\helpers\XmlToArrayParser;
-use mfteam\nbch\models\AddressReq;
 use mfteam\nbch\models\BaseItem;
 use mfteam\nbch\models\BusinessReq;
+use mfteam\nbch\models\creditHistory\NbchChRequest;
+use mfteam\nbch\models\creditHistory\NbchConsent;
 use mfteam\nbch\models\IdReq;
 use mfteam\nbch\models\InquiryReq;
-use mfteam\nbch\models\NbchChRequest;
-use mfteam\nbch\models\NbchConsent;
 use mfteam\nbch\models\PersonReq;
 use mfteam\nbch\models\PreplyReport;
+use mfteam\nbch\models\PrequestReq;
 use mfteam\nbch\models\RefReq;
 use mfteam\nbch\models\RegnumReq;
 use mfteam\nbch\models\SNILSReq;
@@ -27,6 +28,7 @@ use yii\helpers\VarDumper;
 use yii\httpclient\Response;
 
 /**
+ * Компонент получение КИ пользователя.
  * @property-write BusinessReq $asBusiness
  * @property-write InquiryReq $inquiry
  * @property NbchChRequest $model
@@ -54,16 +56,19 @@ class CreditHistoryComponent extends Component
     public $password;
     
     /**
+     * При true данные формируются, но не отправляются.
      * @var bool
      */
     public $test = false;
     
     /**
+     * Запись запроса в БД
      * @var NbchChRequest
      */
     private $model;
     
     /**
+     * Данные запроса
      * @var NbchRequest
      */
     private $request;
@@ -104,9 +109,26 @@ class CreditHistoryComponent extends Component
     }
     
     /**
+     * @param PrequestReq $prequest
+     * @return Response
+     * @throws Exception
+     * @throws InvalidConfigException
+     * @throws NotInstantiableException
+     * @throws \yii\httpclient\Exception
+     */
+    public function execute(PrequestReq $prequest): Response
+    {
+        $this->request = new NbchRequest();
+        $this->request->addData($prequest->toArray([], [], false));
+        return $this->send();
+    }
+    
+    /**
      * Создать запрос по ЮЛ
      * @param BusinessReq $businessReq
      * @return CreditHistoryComponent
+     * @deprecated
+     * @use \mfteam\nbch\components\creditHistory\CreditHistoryComponent::execute
      */
     public function setAsBusiness(BusinessReq $businessReq): CreditHistoryComponent
     {
@@ -115,7 +137,7 @@ class CreditHistoryComponent extends Component
             [
                 new RefReq(
                     [
-                        'product' => RefReq::PRODUCT_BHIP,
+                        'product' => RefReq::CODE_BHIP,
                     ]
                 ),
                 $businessReq,
@@ -133,6 +155,8 @@ class CreditHistoryComponent extends Component
      * Создать запрос по ФЛ
      * @param PersonReq $personReq
      * @return CreditHistoryComponent
+     * @deprecated
+     * @use \mfteam\nbch\components\creditHistory\CreditHistoryComponent::execute
      */
     public function setAsCustomer(PersonReq $personReq): CreditHistoryComponent
     {
@@ -141,7 +165,7 @@ class CreditHistoryComponent extends Component
             [
                 new RefReq(
                     [
-                        'product' => RefReq::PRODUCT_CHIP,
+                        'product' => RefReq::CODE_CHIP,
                     ]
                 ),
                 $personReq,
@@ -157,6 +181,7 @@ class CreditHistoryComponent extends Component
     /**
      * @param InquiryReq $inquiry
      * @return $this
+     * @deprecated
      */
     public function addInquiry(InquiryReq $inquiry): CreditHistoryComponent
     {
@@ -167,6 +192,7 @@ class CreditHistoryComponent extends Component
     /**
      * @param IdReq $identification
      * @return $this
+     * @deprecated
      */
     public function addIdentification(IdReq $identification): CreditHistoryComponent
     {
@@ -177,6 +203,7 @@ class CreditHistoryComponent extends Component
     /**
      * @param RegnumReq $regnumReq
      * @return $this
+     * @deprecated
      */
     public function addRegnumReq(RegnumReq $regnumReq): CreditHistoryComponent
     {
@@ -187,6 +214,7 @@ class CreditHistoryComponent extends Component
     /**
      * @param SNILSReq $snilsReq
      * @return $this
+     * @deprecated
      */
     public function addSNILSReq(SNILSReq $snilsReq): CreditHistoryComponent
     {

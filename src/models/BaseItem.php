@@ -12,60 +12,60 @@ abstract class BaseItem extends \yii\base\Model
     /**
      * @var int
      */
-    public $fid;
+    public $fid = null;
     
     /**
      * Уникальный идентификатор записи в БД НБКИ (обязательный)
      * @var string
      */
-    public $serialNum;
+    public $serialNum = '';
     
     /**
      * Дата спора
      * @var string
      */
-    public $disputedDate;
+    public $disputedDate = '';
     
     /**
      * User comments for dispute
      * @var string
      */
-    public $disputedRemarks;
+    public $disputedRemarks = '';
     
     /**
      * Identifies whether segment is under dispute.
      * @var string
      */
-    public $disputedStatus;
+    public $disputedStatus = '';
     
     /**
      * Reason of dispute. Only appears if there is a dispute
      * @var string
      */
-    public $disputedStatusText;
+    public $disputedStatusText = '';
     
     /**
      * The date the record was first inserted into the iCRS database. Valid format: YYYY-MM-DD.
      * @var string
      */
-    public $fileSinceDt;
+    public $fileSinceDt = '';
     
     /**
      * Possible values 0 or 1. 1 indicates true, which means the segment is frozen and no updates can be made to this segment.
      * @var int
      */
-    public $freezeFlag;
+    public $freezeFlag = null;
     
     /**
      * @var int
      */
-    public $suppressFlag;
+    public $suppressFlag = null;
     
     /**
      * Дата обновления данных
      * @var string
      */
-    public $lastUpdatedDt;
+    public $lastUpdatedDt = '';
     
     /**
      * Дата формирования кредитной информации (обязательный для единичных дополняемых блоков,
@@ -73,38 +73,113 @@ abstract class BaseItem extends \yii\base\Model
      * по ФЛ и ЮЛ, не обязательный для остальных блоков)
      * @var string
      */
-    public $reportingDt;
+    public $reportingDt = '';
     
     /**
      * Условный рейтинг надежности источника (не обязательный)
      * @var string
      */
-    public $partnerRating;
+    public $partnerRating = '';
     
     /**
      * @var string
      */
-    public $partnerStartDate;
+    public $partnerStartDate = '';
     
     /**
      * @var string
      */
-    public $businessCategory;
+    public $businessCategory = '';
     
     /**
      * @var string
      */
-    public $acctSerialNum;
+    public $acctSerialNum = '';
     
     /**
      * @var string $suppressStrDt
      */
-    public $suppressStrDt = null;
+    public $suppressStrDt = '';
     
     /**
      * @var string $suppressEndDt
      */
-    public $suppressEndDt = null;
+    public $suppressEndDt = '';
+    
+    /**
+     * @var string $headerReportingDt
+     */
+    public $headerReportingDt = '';
+    
+    /**
+     * @var string $memberCode
+     */
+    public $memberCode = '';
+    
+    /**
+     * @var string $memberFullName
+     */
+    public $memberFullName = '';
+    
+    /**
+     * @var string $memberShortName
+     */
+    public $memberShortName = '';
+    
+    /**
+     * @var string $memberLastName
+     */
+    public $memberLastName = '';
+    
+    /**
+     * @var string $memberFirstName
+     */
+    public $memberFirstName = '';
+    
+    /**
+     * @var string $memberMiddleName
+     */
+    public $memberMiddleName = '';
+    
+    /**
+     * @var string $memberRegNum
+     */
+    public $memberRegNum = '';
+    
+    /**
+     * @var string $memberType
+     */
+    public $memberType = '';
+    
+    /**
+     * @var string $memberTaxpayerID
+     */
+    public $memberTaxpayerID = '';
+    
+    /**
+     * @var string $memberOKPO
+     */
+    public $memberOKPO = '';
+    
+    /**
+     * @var string $memberIDIssueAuth
+     */
+    public $memberIDIssueAuth = '';
+    
+    /**
+     * @var string $memberIDIssueLoc
+     */
+    public $memberIDIssueLoc = '';
+    
+    /**
+     * @var string $memberIDIssueDate
+     */
+    public $memberIDIssueDate = '';
+    
+    /**
+     * @var string $memberBusinessCode
+     */
+    public $memberBusinessCode = '';
     
     public function attributeLabels()
     {
@@ -122,63 +197,6 @@ abstract class BaseItem extends \yii\base\Model
     }
     
     
-    public function rules()
-    {
-        return [
-            [[
-                'fid',
-            ], 'integer'],
-            [[
-                'serialNum',
-                'disputedDate',
-                'disputedRemarks',
-                'disputedStatus',
-                'disputedStatusText',
-                'fileSinceDt',
-                'lastUpdatedDt',
-                'serialNum',
-            ], 'string'],
-            [
-                ['freezeFlag'], 'in', 'range' => [0, 1],
-            ],
-        ];
-    }
-    
-    public static function disputeReasonsList()
-    {
-        return [
-            'A2' => 'Ownership dispute',
-            'A3' => 'Incorrect/Similar Applicant',
-            'A4' => 'Not liable for account',
-            'A5' => 'Unknown collection',
-            'A6' => 'Balance dispute',
-            'A7' => 'Settlement made',
-            'A9' => 'Account related issues',
-            'B2' => 'Insurance claim delayed',
-            'B3' => 'Late due to change of address',
-            'B4' => 'Account included in bankruptcy',
-            'B5' => 'Account excluded from bankruptcy',
-            'B6' => 'Bankruptcy of another person',
-            'B7' => 'Other',
-            'B8' => 'Account Date issues (Account age issue)',
-            'B9' => 'Account closed',
-            'C1' => 'Natural disaster victim',
-            'C2' => 'Account closed by consumer',
-            'C3' => 'Terms or type dispute',
-            'C4' => 'Incorrect Line of Credit/High Credit',
-            'C5' => 'Account cancelled by consumer',
-            'C6' => 'Account in legal proceedings',
-            'C7' => 'Updated information being processed',
-            'C8' => 'Account expected to be deleted',
-            'C9' => 'Inaccurate information',
-            'D2' => 'Fraud: identity theft',
-            'D3' => 'Fraud: account takeover',
-            'E1' => 'Collections dispute',
-            'E2' => 'Military duty',
-            'E3' => 'Account deferred',
-        ];
-    }
-    
     /**
      * @param $config
      */
@@ -193,7 +211,7 @@ abstract class BaseItem extends \yii\base\Model
     }
     
     /**
-     * @param array $data
+     * @param array|BaseItem $data
      * @param string $class
      * @return array
      */
@@ -202,18 +220,46 @@ abstract class BaseItem extends \yii\base\Model
         $models = [];
         if (ArrayHelper::isIndexed($data)) {
             foreach ($data as $config) {
-                /** @var Model $model */
+                if (is_object($config)) {
+                    $models[] = $config;
+                    continue;
+                }
+                /** @var BaseItem $model */
                 $model = new $class();
-                $model->setAttributes($config, false);
+                $model->setAttributes($config);
                 $models[] = $model;
             }
+        } elseif (is_object($data)) {
+            $models[] = $data;
         } else {
-            /** @var Model $model */
+            /** @var BaseItem $model */
             $model = new $class();
-            $model->setAttributes($data, false);
+            $model->setAttributes($data);
             $models[] = $model;
         }
         return $models;
+    }
+    
+    /**
+     * @param string $attribute
+     * @return mixed
+     */
+    protected function getLastValue(string $attribute)
+    {
+        $model = null;
+        if(empty($this->$attribute)){
+            return null;
+        }
+        foreach ($this->$attribute as $item) {
+            if ($model === null) {
+                $model = $item;
+                continue;
+            }
+            if (strtotime($item->reportingDt) > strtotime($model->reportingDt)) {
+                $model = $item;
+            }
+        }
+        return $model;
     }
     
     /**

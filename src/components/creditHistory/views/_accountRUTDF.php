@@ -7,7 +7,7 @@
 
 use mfteam\nbch\models\AccountRelationship;
 use mfteam\nbch\models\AccountReplyRUTDF;
-use mfteam\nbch\models\LoanKind;
+use mfteam\nbch\models\TradeRUTDF;
 use yii\helpers\ArrayHelper;
 use yii\web\View;
 
@@ -28,12 +28,12 @@ foreach ($model->getPastdueArrear() as $item) {
 
 $payment = $model->getPayment()?$model->getPayment()[count($model->getPayment()) - 1]:null;
 $collatRepay = $model->getCollatRepay() ? $model->getCollatRepay()[count($model->getCollatRepay()) - 1] : null;
-$overallVal = $model->getOverallVal() ? $model->getOverallVal()[count($model->getOverallVal()) - 1] : null;
-$trade = $model->getTrade()?$model->getTrade()[0]:(new \mfteam\nbch\models\TradeRUTDF());
-$accountAmt = $model->getAccountAmt()?$model->getAccountAmt()[count($model->getAccountAmt()) - 1]:null;
-$dueArrear = $model->getDueArrear()?$model->getDueArrear()[count($model->getDueArrear()) - 1]:null;
-$pastdueArrear = $model->getPastdueArrear() ? $model->getPastdueArrear()[count($model->getPastdueArrear()) - 1] : null;
-$amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
+$overallVal = $model->getOverallVal();
+$trade = $model->getTrade()??(new TradeRUTDF());
+$accountAmt = $model->getAccountAmt();
+$dueArrear = $model->getDueArrear();
+$pastdueArrear = $model->getPastdueArrear();
+$amtPastDue = $pastdueArrear->amtPastDue ?? 0;
 ?>
 <div class="row" style="margin-top: 50px">
     <div class="col">
@@ -98,7 +98,7 @@ $amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
     </tr>
     <tr>
         <td style="font-weight: bold">Тип договора</td>
-        <td style="text-align: center"><?= LoanKind::getText($trade->loanKindCode) ?></td>
+        <td style="text-align: center"><?= $trade->loanKindCode ?></td>
         <td style="font-weight: bold">Сумма последнего платежа</td>
         <td style="text-align: center"><?= $payment?Yii::$app->formatter->asDecimal(
                 (float)$payment->principalPaymtAmt + (float)$payment->intPaymtAmt + (float)$payment->otherPaymtAmt,

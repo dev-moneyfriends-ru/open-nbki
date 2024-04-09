@@ -11,7 +11,7 @@ use yii\base\View;
 <div class="container-fluid" style="background-color: #ffffff">
     <div class="row">
         <div class="col" style="text-align: right">
-            <b>Дата создания отчёта:</b> <?=Yii::$app->formatter->asDatetime($preplyReport->subjectReply->fileSinceDt, 'dd.MM.yyyy HH:mm:ss')?>
+            <b>Дата создания отчёта:</b> <?=Yii::$app->formatter->asDatetime($preplyReport->subjectReply[0]->fileSinceDt, 'dd.MM.yyyy HH:mm:ss')?>
             <b>Идентификатор отчёта:</b> <?=$preplyReport->rqUuid?>
         </div>
     </div>
@@ -51,7 +51,6 @@ use yii\base\View;
     <div class="row">
         <div class="col">
             <?=$this->render('_summaryAccounts', [
-                'accountReply' => $preplyReport->uniqueAccountReply,
                 'accountReplyRUTDF' => $preplyReport->accountReplyRUTDF,
             ])?>
         </div>
@@ -63,7 +62,6 @@ use yii\base\View;
         </div>
     </div>
     <?=$this->render('_accounts', [
-        'accountReply' => $preplyReport->uniqueAccountReply,
         'accountReplyRUTDF' => $preplyReport->accountReplyRUTDF,
     ])?>
 </div>

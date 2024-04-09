@@ -5,57 +5,58 @@ namespace mfteam\nbch\models;
 use yii\base\Model;
 
 /**
- * Информация о типе запроса в НБКИ
+ * Запрашиваемый тип кредитного отчета
  */
 class RefReq extends Model
 {
-    public const PRODUCT_CHST = 'CHST';
-    public const PRODUCT_CHIP = 'CHIP';
-    public const PRODUCT_CIPO = 'CIPO';
-    public const PRODUCT_BHST = 'BHST';
-    public const PRODUCT_BHIP = 'BHIP';
+    /**
+     * Расширенный кредитный отчет
+     */
+    public const CODE_CHIP = 'CHIP';
     
     /**
-     * Код продукта CHST, CHIP, CIPO, BHST.
+     * Усеченный кредитный отчет (только информационная часть КИ)
+     */
+    public const CODE_CIPO = 'CIPO';
+    
+    /**
+     * Расширенный кредитный отчет и сведения о среднемесячных платежах (только из БД НБКИ)
+     */
+    public const CODE_CHSP = 'CHSP';
+    
+    /**
+     * Кредитный отчет с сокращенной информационной частью (информационная часть содержит только показатели: в RUTDF 55.2, 56.5, 57.2 и в TUTDF 7, 14, 17)
+     */
+    public const CODE_CSIP = 'CSIP';
+    
+    /**
+     * Кредитный отчет с  сокращенной информационной частью (информационная часть содержит только показатели: в RUTDF 45.2, 46.5, 47.2) ЮЛ
+     */
+    public const CODE_BSIP = 'BSIP';
+    
+    /**
+     * Усеченный кредитный отчет (только информационная часть КИ) ЮЛ
+     */
+    public const CODE_BIPO = 'BIPO';
+    
+    /**
+     * Расширенный кредитный отчет ЮЛ
+     */
+    public const CODE_BHIP = 'BHIP';
+    
+    /**
+     * Код запрошенных сведений
      * @var string
      */
     public $product;
     
     /**
-     * Уникальный номер отслеживания запроса
-     * @var string
+     * @inheritDoc
      */
-    public $userReference;
-    
-    /**
-     * @var string
-     */
-    public $productAddOn;
-    
-    public function rules()
+    public function fields()
     {
         return [
-            ['product', 'required'],
-            ['product', 'in', 'range' => array_keys(self::productList())],
-            ['userReference', 'string', 'max' => 25],
-            ['productAddOn', 'string'],
-        ];
-    }
-    
-    public function attributeLabels()
-    {
-        return [
-            'product' => 'Код продукта'
-        ];
-    }
-    
-    public static function productList()
-    {
-        return [
-            self::PRODUCT_BHST => 'Кридитная история для бизнеса',
-            self::PRODUCT_CHIP => 'История потребительских кредитов с информационной частью',
-            self::PRODUCT_CHST => 'История потребительских кредитов без информационной части',
-            self::PRODUCT_CIPO => 'Только информационная часть о потребителе',
+            'product'
         ];
     }
 }

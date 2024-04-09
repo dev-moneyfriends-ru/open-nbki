@@ -6,24 +6,9 @@ namespace mfteam\nbch\models;
  * This is the ActiveQuery class for [[NbchRequest]].
  *
  * @see NbchChRequest
+ * @deprecated
  */
-class NbchChRequestQuery extends \yii\db\ActiveQuery
+class NbchChRequestQuery extends \mfteam\nbch\models\creditHistory\NbchChRequestQuery
 {
-    /**
-     * {@inheritdoc}
-     * @return NbchChRequest[]|array
-     */
-    public function all($db = null)
-    {
-        return parent::all($db);
-    }
 
-    /**
-     * {@inheritdoc}
-     * @return NbchChRequest|array|null
-     */
-    public function one($db = null)
-    {
-        return parent::one($db);
-    }
 }

@@ -6,25 +6,29 @@
 
 use mfteam\nbch\models\AccountReplyRUTDF;
 use mfteam\nbch\models\LoanKind;
+use mfteam\nbch\models\TradeRUTDF;
 use mfteam\nbch\models\TradeType;
 use yii\web\View;
 
-$pastdueArrear = $model->getPastdueArrear() ? $model->getPastdueArrear()[count($model->getPastdueArrear()) - 1] : null;
-$amtPastDue = $pastdueArrear ? $pastdueArrear->amtPastDue : 0;
+$pastdueArrear = $model->getPastdueArrear();
+$amtPastDue = $pastdueArrear->amtPastDue ?? 0;
 $payment = $model->getPayment()?$model->getPayment()[count($model->getPayment()) - 1]:null;
-$daysPastDue = $payment?(int)$payment->daysPastDue:0;
-$trade = $model->getTrade()?$model->getTrade()[0]:(new \mfteam\nbch\models\TradeRUTDF());
-$accountAmt = $model->getAccountAmt()?$model->getAccountAmt()[count($model->getAccountAmt()) - 1]:null;
-$dueArrear = $model->getDueArrear()?$model->getDueArrear()[count($model->getDueArrear()) - 1]:null;
+$daysPastDue = $payment->daysPastDue ?? 0;
+$trade = $model->getTrade()??(new TradeRUTDF());
+$accountAmt = $model->getAccountAmt();
+$dueArrear = $model->getDueArrear();
 $maxAmtPastDue = 0;
 $maxPatDue = 0;
 $maxPatDueStyle = '';
-foreach ($model->getPastdueArrear() as $item) {
+foreach ($model->getPastdueArrearArray() as $item) {
     if ($maxAmtPastDue < (float)$item->amtPastDue) {
         $maxAmtPastDue = (float)$item->amtPastDue;
     }
 }
 foreach ($model->getPayment() as $item) {
+    if(empty($item->daysPastDue)){
+        continue;
+    }
     if ($maxPatDue < (int)$item->daysPastDue) {
         $maxPatDue = (int)$item->daysPastDue;
     }
@@ -44,7 +48,7 @@ if ($maxPatDue > 30) {
     <td><?= $model->businessCategory ?></td>
     <td>
         <?= TradeType::getText($trade->tradeTypeCode) ?>
-        <?= LoanKind::getText($trade->loanKindCode) ?>
+        <?= $trade->loanKindCode ?>
     </td>
     <td><?= $accountAmt?Yii::$app->formatter->asDecimal((float)$accountAmt->creditLimit, 2):'-' ?></td>
     <td><?= $accountAmt?$accountAmt->currencyCode:'-'?></td>

@@ -2,7 +2,7 @@
 
 namespace mfteam\nbch\models;
 
-class InquiryReplyRUTDF extends Inquiry
+class InquiryReplyRUTDF extends InquiryReq
 {
     
 }

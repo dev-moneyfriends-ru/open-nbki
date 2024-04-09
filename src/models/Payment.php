@@ -5,6 +5,7 @@ namespace mfteam\nbch\models;
 /**
  * Payment information is delivered via B2B, Bulk, and Web (Screen/PDF) channels.
  * This information maps to the TUTDF Payments (PA) segment.
+ * @deprecated
  */
 class Payment extends BaseItem
 {

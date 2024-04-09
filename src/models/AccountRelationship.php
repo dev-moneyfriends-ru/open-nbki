@@ -2,6 +2,7 @@
 
 namespace mfteam\nbch\models;
 
+use Exception;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -34,7 +35,7 @@ class AccountRelationship
     /**
      * @param $val
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public static function getText($val)
     {

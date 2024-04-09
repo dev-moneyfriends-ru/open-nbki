@@ -4,6 +4,8 @@ namespace mfteam\nbch\models;
 
 /**
  * Сведения об изменении договора
+ * @deprecated
+ * @see AmendmentRUTDF
  */
 class Amendment extends BaseItem
 {

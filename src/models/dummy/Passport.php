@@ -7,6 +7,7 @@ use yii\base\BaseObject;
 
 /**
  * Паспорт субъекта
+ * @deprecated
  */
 class Passport extends BaseObject implements NbchSubjectPassportInterface
 {

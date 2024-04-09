@@ -4,800 +4,305 @@ namespace mfteam\nbch\models;
 
 use yii\helpers\ArrayHelper;
 
-class Account extends BaseItem
+abstract class Account extends BaseItem
 {
-    /**
-     * @var string $memberCode
-     */
-    public $memberCode = null;
-    
-    /**
-     * @var string $memberTypeText
-     */
-    public $memberTypeText = null;
-    
-    /**
-     * @var string $memberNameText
-     */
-    public $memberNameText = null;
-    
-    /**
-     * @var string $memberContactText
-     */
-    public $memberContactText = null;
-    
-    /**
-     * @var string $acctNum
-     */
-    public $acctNum = null;
-    
-    /**
-     * @var string $srcCountryCode
-     */
-    public $srcCountryCode = null;
-    
-    /**
-     * @var string $srcCountryCodeText
-     */
-    public $srcCountryCodeText = null;
-    
-    /**
-     * @var int $acctNumDisplay
-     */
-    public $acctNumDisplay = null;
-    
-    /**
-     * @var string $ownerIndic
-     */
-    public $ownerIndic = null;
-    
-    /**
-     * @var string $ownerIndicText
-     */
-    public $ownerIndicText = null;
-    
-    /**
-     * @var string $consent
-     */
-    public $consent = null;
-    
-    /**
-     * @var string $consentText
-     */
-    public $consentText = null;
-    
-    /**
-     * @var \DateTime $openedDt
-     */
-    public $openedDt = null;
-    
-    /**
-     * @var string $lastPaymtDt
-     */
-    public $lastPaymtDt = null;
-    
-    /**
-     * @var string $completePerformDt
-     */
-    public $completePerformDt = null;
-    
-    /**
-     * @var string $closedDt
-     */
-    public $closedDt = null;
-    
-    /**
-     * @var string $reportingDt
-     */
-    public $reportingDt = null;
-    
-    /**
-     * @var string $postedDt
-     */
-    public $postedDt = null;
-    
-    /**
-     * @var string $acctType
-     */
-    public $acctType = null;
-    
-    /**
-     * @var string $acctTypeText
-     */
-    public $acctTypeText = null;
-    
-    /**
-     * @var string $acctStatus
-     */
-    public $acctStatus = null;
-    
-    /**
-     * @var string $acctStatusText
-     */
-    public $acctStatusText = null;
-    
-    /**
-     * @var string $loanCode
-     */
-    public $loanCode = null;
-    
-    /**
-     * @var string $loanCodeText
-     */
-    public $loanCodeText = null;
-    
-    /**
-     * @var string $paymtHistory1
-     */
-    public $paymtHistory1 = null;
-    
-    /**
-     * @var string $paymtHistory2
-     */
-    public $paymtHistory2 = null;
-    
-    /**
-     * @var string $paymtHistoryStartDt
-     */
-    public $paymtHistoryStartDt = null;
-    
-    /**
-     * @var string $paymtHistoryEndDt
-     */
-    public $paymtHistoryEndDt = null;
-    
-    /**
-     * @var string $loanObjectiveText
-     */
-    public $loanObjectiveText = null;
-    
-    /**
-     * @var string $collateralCode
-     */
-    public $collateralCode = null;
-    
-    /**
-     * @var string $collateralValue
-     */
-    public $collateralValue = null;
-    
-    /**
-     * @var string $collateralDate
-     */
-    public $collateralDate = null;
-    
-    /**
-     * @var string $collateralExpirationDate
-     */
-    public $collateralExpirationDate = null;
-    
-    /**
-     * @var string $collateral1Text
-     */
-    public $collateral1Text = null;
-    
-    /**
-     * @var string $collateral2Text
-     */
-    public $collateral2Text = null;
-    
-    /**
-     * @var string $collateral3Text
-     */
-    public $collateral3Text = null;
-    
-    /**
-     * @var Collateral[] $collateral
-     */
-    private $collateral = [];
-    
-    /**
-     * @var string $lastDebtRestructureDt
-     */
-    public $lastDebtRestructureDt = null;
-    
-    /**
-     * @var int $percentPayment
-     */
-    public $percentPayment = null;
-    
-    /**
-     * @var string $creditCardTypeCode
-     */
-    public $creditCardTypeCode = null;
-    
-    /**
-     * @var string $creditCardTypeCodeText
-     */
-    public $creditCardTypeCodeText = null;
-    
-    /**
-     * @var int $numCoborrowers
-     */
-    public $numCoborrowers = null;
-    
-    /**
-     * @var string $unitMakeText
-     */
-    public $unitMakeText = null;
-    
-    /**
-     * @var string $unitModelText
-     */
-    public $unitModelText = null;
-    
-    /**
-     * @var string $creditTypeFlagCode
-     */
-    public $creditTypeFlagCode = null;
-    
-    /**
-     * @var string $narrativeCode1
-     */
-    public $narrativeCode1 = null;
-    
-    /**
-     * @var string $narrativeCode2
-     */
-    public $narrativeCode2 = null;
-    
-    /**
-     * @var string $narrativeCode1Text
-     */
-    public $narrativeCode1Text = null;
-    
-    /**
-     * @var string $narrativeCode2Text
-     */
-    public $narrativeCode2Text = null;
-    
-    /**
-     * @var string $currencyCode
-     */
-    public $currencyCode = null;
-    
-    /**
-     * @var int $highCreditAmt
-     */
-    public $highCreditAmt = null;
-    
-    /**
-     * @var int $creditLimit
-     */
-    public $creditLimit = null;
-    
-    /**
-     * @var int $curBalanceAmt
-     */
-    public $curBalanceAmt = null;
-    
-    /**
-     * @var int $amtPastDue
-     */
-    public $amtPastDue = null;
-    
-    /**
-     * @var int $termsNumPaymts
-     */
-    public $termsNumPaymts = null;
-    
-    /**
-     * @var string $termsFrequency
-     */
-    public $termsFrequency = null;
-    
-    /**
-     * @var string $guarantorIndicatorCode
-     */
-    public $guarantorIndicatorCode = null;
-    
-    /**
-     * @var string $guarantorIndicatorCodeText
-     */
-    public $guarantorIndicatorCodeText = null;
-    
-    /**
-     * @var string $guaranteeVolumeCode
-     */
-    public $guaranteeVolumeCode = null;
-    
-    /**
-     * @var string $guaranteeVolumeCodeText
-     */
-    public $guaranteeVolumeCodeText = null;
-    
-    /**
-     * @var int $guaranteeAmt
-     */
-    public $guaranteeAmt = null;
-    
-    /**
-     * @var string $guaranteeTerm
-     */
-    public $guaranteeTerm = null;
-    
-    /**
-     * @var Guarantor[] $guarantor
-     */
-    private $guarantor = [];
-    
-    /**
-     * @var string $bankGuaranteeIndicatorCode
-     */
-    public $bankGuaranteeIndicatorCode = null;
-    
-    /**
-     * @var string $bankGuaranteeIndicatorCodeText
-     */
-    public $bankGuaranteeIndicatorCodeText = null;
-    
-    /**
-     * @var string $bankGuaranteeVolumeCode
-     */
-    public $bankGuaranteeVolumeCode = null;
-    
-    /**
-     * @var string $bankGuaranteeVolumeCodeText
-     */
-    public $bankGuaranteeVolumeCodeText = null;
-    
-    /**
-     * @var int $bankGuaranteeAmt
-     */
-    public $bankGuaranteeAmt = null;
-    
-    /**
-     * @var string $bankGuaranteeTerm
-     */
-    public $bankGuaranteeTerm = null;
-    
-    /**
-     * @var string $rightOfClaimName
-     */
-    public $rightOfClaimName = null;
-    
-    /**
-     * @var string $rightOfClaimID
-     */
-    public $rightOfClaimID = null;
-    
-    /**
-     * @var string $rightOfClaimINN
-     */
-    public $rightOfClaimINN = null;
-    
-    /**
-     * @var string $rightOfClaimSNILS
-     */
-    public $rightOfClaimSNILS = null;
-    
-    /**
-     * @var string $creditTotalAmt
-     */
-    public $creditTotalAmt = null;
-    
-    /**
-     * @var int $termsAmt
-     */
-    public $termsAmt = null;
-    
-    /**
-     * @var int $baloonPaymtAmt
-     */
-    public $baloonPaymtAmt = null;
-    
-    /**
-     * @var string $baloonPaymtDt
-     */
-    public $baloonPaymtDt = null;
-    
-    /**
-     * @var string $lastPurchasedDt
-     */
-    public $lastPurchasedDt = null;
-    
-    /**
-     * @var int $amtOutstanding
-     */
-    public $amtOutstanding = null;
-    
-    /**
-     * @var string $firstDelqDt
-     */
-    public $firstDelqDt = null;
-    
-    /**
-     * @var string $maxDelqDt
-     */
-    public $maxDelqDt = null;
-    
-    /**
-     * @var int $maxDelq
-     */
-    public $maxDelq = null;
-    
-    /**
-     * @var string $maxDelqAmtDt
-     */
-    public $maxDelqAmtDt = null;
-    
-    /**
-     * @var int $maxDelqAmt
-     */
-    public $maxDelqAmt = null;
-    
-    /**
-     * @var int $monthsReviewed
-     */
-    public $monthsReviewed = null;
-    
-    /**
-     * @var int $numDays30
-     */
-    public $numDays30 = null;
-    
-    /**
-     * @var int $numDays60
-     */
-    public $numDays60 = null;
-    
-    /**
-     * @var int $numDays90
-     */
-    public $numDays90 = null;
-    
-    /**
-     * @var int $numDays120
-     */
-    public $numDays120 = null;
-    
-    /**
-     * @var string $paymtPat
-     */
-    public $paymtPat = null;
-    
-    /**
-     * @var string $mOP
-     */
-    public $mOP = null;
-    
-    /**
-     * @var string $mOPText
-     */
-    public $mOPText = null;
-    
-    /**
-     * @var int $mOPMaxValue
-     */
-    public $mOPMaxValue = null;
-    
-    /**
-     * @var string $mOPMaxValueText
-     */
-    public $mOPMaxValueText = null;
-    
-    /**
-     * @var string $paymtPatStartDt
-     */
-    public $paymtPatStartDt = null;
-    
-    /**
-     * @var string $suppressFlag
-     */
-    public $suppressFlag = null;
-    
-    /**
-     * @var string $suppressStrDt
-     */
-    public $suppressStrDt = null;
-    
-    /**
-     * @var string $suppressEndDt
-     */
-    public $suppressEndDt = null;
-    
-    /**
-     * @var string $paymtFreqText
-     */
-    public $paymtFreqText = null;
-    
-    /**
-     * @var string $creditAgreementNum
-     */
-    public $creditAgreementNum = null;
-    
-    /**
-     * @var string $accountRelationship
-     */
-    public $accountRelationship = null;
-    
-    /**
-     * @var string $accountRelationshipText
-     */
-    public $accountRelationshipText = null;
-    
-    /**
-     * @var string $accountRating
-     */
-    public $accountRating = null;
-    
-    /**
-     * @var string $accountRatingText
-     */
-    public $accountRatingText = null;
     
     /**
-     * @var string $accountRatingDate
+     * Дата формирования кредитной информации. Дата составления документа, содержащего кредитную информацию, из блока HEADER.
+     * @var string
      */
-    public $accountRatingDate = null;
+    public $headerReportingDt = '';
     
     /**
-     * @var string $contractTerminationDate
+     * @var string $sbStartOutstanding
      */
-    public $contractTerminationDate = null;
+    public $sbStartOutstanding = '';
     
     /**
-     * @var string $paymentDueDate
+     * @var string $sbStartDt
      */
-    public $paymentDueDate = null;
+    public $sbStartDt = '';
     
     /**
-     * @var string $oldMemeberCode
+     * @var string $sbEndOutstanding
      */
-    public $oldMemeberCode = null;
+    public $sbEndOutstanding = '';
     
     /**
-     * @var string $oldCreditAgreementNumber
+     * @var string $sbEndDt
      */
-    public $oldCreditAgreementNumber = null;
+    public $sbEndDt = '';
     
     /**
-     * @var string $interestPaymentDueDate
+     * @var string $sbLastPayOutstanding
      */
-    public $interestPaymentDueDate = null;
+    public $sbLastPayOutstanding = '';
     
     /**
-     * @var string $interestPaymentFrequencyCode
+     * @var string $sbLastPaymtDt
      */
-    public $interestPaymentFrequencyCode = null;
+    public $sbLastPaymtDt = '';
     
     /**
-     * @var string $interestPaymentFrequencyText
+     * @var int $sbTransferCode
      */
-    public $interestPaymentFrequencyText = null;
+    public $sbTransferCode = null;
     
     /**
-     * @var string $memberFullName
+     * @var int $sbLoanIndicator
      */
-    public $memberFullName = null;
+    public $sbLoanIndicator = null;
     
     /**
-     * @var string $memberShortName
+     * @var string $sbLoanIndicatorReason
      */
-    public $memberShortName = null;
+    public $sbLoanIndicatorReason = '';
     
     /**
-     * @var string $memberLastName
+     * @var string $sbArrCurrency
      */
-    public $memberLastName = null;
+    public $sbArrCurrency = '';
     
     /**
-     * @var string $memberFirstName
+     * @var string $slStartOutstanding
      */
-    public $memberFirstName = null;
+    public $slStartOutstanding = '';
     
     /**
-     * @var string $memberMiddleName
+     * @var string $slStartDt
      */
-    public $memberMiddleName = null;
+    public $slStartDt = '';
     
     /**
-     * @var string $memberRegNum
+     * @var string $slBalanceOutstanding
      */
-    public $memberRegNum = null;
+    public $slBalanceOutstanding = '';
     
     /**
-     * @var string $memberType
+     * @var string $slBalanceDt
      */
-    public $memberType = null;
+    public $slBalanceDt = '';
     
     /**
-     * @var string $memberTaxpayerID
+     * @var string $slLastPayOutstanding
      */
-    public $memberTaxpayerID = null;
+    public $slLastPayOutstanding = '';
     
     /**
-     * @var string $memberOKPO
+     * @var string $slLastPaymtDt
      */
-    public $memberOKPO = null;
+    public $slLastPaymtDt = '';
     
     /**
-     * @var string $memberIDIssueAuth
+     * @var int $slTransferCode
      */
-    public $memberIDIssueAuth = null;
+    public $slTransferCode = null;
     
     /**
-     * @var string $memberIDIssueLoc
+     * @var int $slLoanIndicator
      */
-    public $memberIDIssueLoc = null;
+    public $slLoanIndicator = null;
     
     /**
-     * @var string $memberIDIssueDate
+     * @var string $slLoanIndicatorReason
      */
-    public $memberIDIssueDate = null;
+    public $slLoanIndicatorReason = '';
     
     /**
-     * @var string $memberBusinessCode
+     * @var string $slArrCurrency
      */
-    public $memberBusinessCode = null;
+    public $slArrCurrency = '';
     
     /**
-     * @var string $businessCategory
+     * @var AcquirerLegalRUTDF[] $acquirerLegal
      */
-    public $businessCategory = null;
+    public $acquirerLegal = [];
     
     /**
-     * @var string $partnerRating
+     * @var AcquirerIndividRUTDF[] $acquirerIndivid
      */
-    public $partnerRating = null;
+    public $acquirerIndivid = [];
     
     /**
-     * @var string $partnerStartDate
+     * @var ServiceCoRUTDF[] $serviceCo
      */
-    public $partnerStartDate = null;
+    public $serviceCo = [];
     
     /**
      * @var string $partnerRegDate
      */
-    public $partnerRegDate = null;
+    public $partnerRegDate = '';
     
     /**
-     * @var int $principalOutstanding
+     * @var int $memberTypeCode
      */
-    public $principalOutstanding = null;
+    public $memberTypeCode = null;
     
     /**
-     * @var int $intOutstanding
+     * @var int $memberRus
      */
-    public $intOutstanding = null;
+    public $memberRus = null;
     
     /**
-     * @var int $otherAmtOutstanding
+     * @var string $memberFullName
      */
-    public $otherAmtOutstanding = null;
+    public $memberFullName = '';
     
     /**
-     * @var int $principalPastDue
+     * @var string $memberShortName
      */
-    public $principalPastDue = null;
+    public $memberShortName = '';
     
     /**
-     * @var int $intPastDue
+     * @var string $memberOtherName
      */
-    public $intPastDue = null;
+    public $memberOtherName = '';
     
     /**
-     * @var int $otherAmtPastDue
+     * @var string $memberLEI
      */
-    public $otherAmtPastDue = null;
+    public $memberLEI = '';
     
     /**
-     * @var string $graceEndDt
+     * @var string $memberStartDt
      */
-    public $graceEndDt = null;
+    public $memberStartDt = '';
     
     /**
-     * @var int $gracePeriodReason
+     * @var string $memberLastName
      */
-    public $gracePeriodReason = null;
+    public $memberLastName = '';
     
     /**
-     * @var string $gracePeriodDeclinedDt
+     * @var string $memberFirstName
      */
-    public $gracePeriodDeclinedDt = null;
+    public $memberFirstName = '';
     
     /**
-     * @var string $creditTotalMonetaryAmt
+     * @var string $memberMiddleName
      */
-    public $creditTotalMonetaryAmt = null;
+    public $memberMiddleName = '';
     
     /**
-     * @var string $uuid
+     * @var string $memberRegNum
      */
-    public $uuid = null;
+    public $memberRegNum = '';
     
     /**
-     * @var Amendment[] $amendment
+     * @var string $memberType
      */
-    protected $amendment = [];
+    public $memberType = '';
     
     /**
-     * @var PaymentRUTDF[] $payment
+     * @var int $memberTaxpayerIDCode
      */
-    protected $payment = [];
+    public $memberTaxpayerIDCode = null;
     
     /**
-     * @var BankGuarantee[]
+     * @var string $memberTaxpayerID
      */
-    protected $bankGuarantee = [];
+    public $memberTaxpayerID = '';
     
     /**
-     * @return Collateral[]
+     * @var string $memberOKPO
      */
-    public function getCollateral(): array
+    public $memberOKPO = '';
+    
+    /**
+     * @var string $memberIDIssueAuth
+     */
+    public $memberIDIssueAuth = '';
+    
+    /**
+     * @var string $memberIDIssueLoc
+     */
+    public $memberIDIssueLoc = '';
+    
+    /**
+     * @var string $memberIDIssueDate
+     */
+    public $memberIDIssueDate = '';
+    
+    /**
+     * @var string $memberBusinessCode
+     */
+    public $memberBusinessCode = '';
+    
+    /**
+     * @var string $memberBankruptDt
+     */
+    public $memberBankruptDt = '';
+    
+    /**
+     * @var string $memberComp
+     */
+    public $memberComp = '';
+    
+    /**
+     * @var string $memberLiquidStartDt
+     */
+    public $memberLiquidStartDt = '';
+    
+    /**
+     * @var string $memberLiquidEndDt
+     */
+    public $memberLiquidEndDt = '';
+    
+    /**
+     * @var string $memberBCStart
+     */
+    public $memberBCStart = '';
+    
+    /**
+     * @var string $memberBCEnd
+     */
+    public $memberBCEnd = '';
+    
+    /**
+     * @return AcquirerLegalRUTDF[]
+     */
+    public function getAcquirerLegal(): array
     {
-        return $this->collateral;
+        return $this->acquirerLegal;
     }
     
     /**
-     * @param array[] $collateral
+     * @param AcquirerLegalRUTDF[]|array $config
      */
-    public function setCollateral(array $collateralData): void
+    public function setAcquirerLegal(array $config): void
     {
-        $this->collateral = $this->initPropertyModels($collateralData, Collateral::class);
+        $this->acquirerLegal = $this->initPropertyModels($config, AcquirerLegalRUTDF::class);
     }
     
     /**
-     * @return Guarantor[]
+     * @return AcquirerIndividRUTDF[]
      */
-    public function getGuarantor(): array
+    public function getAcquirerIndivid(): array
     {
-        return $this->guarantor;
+        return $this->acquirerIndivid;
     }
     
     /**
-     * @param array[] $guarantor
+     * @param AcquirerIndividRUTDF[]|array $config
      */
-    public function setGuarantor(array $guarantorData): void
+    public function setAcquirerIndivid(array $config): void
     {
-        $this->guarantor = $this->initPropertyModels($guarantorData, Guarantor::class);
+        $this->acquirerIndivid = $this->initPropertyModels($config, AcquirerIndividRUTDF::class);
     }
     
     /**
-     * @return Amendment[]
+     * @return ServiceCoRUTDF[]
      */
-    public function getAmendment(): array
+    public function getServiceCo(): array
     {
-        return $this->amendment;
+        return $this->serviceCo;
     }
     
     /**
-     * @param array $amendment
+     * @param ServiceCoRUTDF[]|array $config
      */
-    public function setAmendment(array $amendmentData): void
+    public function setServiceCo(array $config): void
     {
-        $this->amendment = $this->initPropertyModels($amendmentData, Amendment::class);
-    }
-    
-    /**
-     * @return PaymentRUTDF[]
-     */
-    public function getPayment(): array
-    {
-        return $this->payment;
-    }
-    
-    /**
-     * @param array $payment
-     */
-    public function setPayment(array $paymentData): void
-    {
-        $this->payment = $this->initPropertyModels($paymentData, PaymentRUTDF::class);
-    }
-    
-    /**
-     * @return BankGuarantee[]
-     */
-    public function getBankGuarantee(): array
-    {
-        return $this->bankGuarantee;
-    }
-    
-    /**
-     * @param BankGuarantee[] $bankGuaranteeData
-     */
-    public function setBankGuarantee(array $bankGuaranteeData): void
-    {
-        $this->bankGuarantee = $this->initPropertyModels($bankGuaranteeData, BankGuarantee::class);
+        $this->serviceCo = $this->initPropertyModels($config, ServiceCoRUTDF::class);
     }
 }
