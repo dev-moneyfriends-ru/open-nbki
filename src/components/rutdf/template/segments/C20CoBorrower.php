@@ -5,7 +5,7 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 /**
  * Блок 20. Сведения о солидарных должниках – C20_COBORROWER
  */
-class C20CoBorrower extends \mfteam\nbch\components\BaseSegment
+class C20CoBorrower extends BaseSegment
 {
     
     /**
@@ -30,9 +30,9 @@ class C20CoBorrower extends \mfteam\nbch\components\BaseSegment
     public function getFields(): array
     {
         return [
-            $this->segmentName,
-            0,
-            $this->emptyValue,
+            $this->getSegmentName(),
+            $this->template->sendData->getAccountReplyRUTDF()->getCoborrower()->hasSolidary,
+            $this->template->sendData->getAccountReplyRUTDF()->getCoborrower()->solidaryNum??self::EMPTY_VALUE,
         ];
     }
     
@@ -42,10 +42,8 @@ class C20CoBorrower extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
-            'Название' => '',
-            'Признак наличия солидарных должников' => 'Код «1» – в обязательстве участвуют солидарные должники;
-            код «0» – обстоятельство кода «1» отсутствует.
-            ',
+            'Наименование сегмента' => '',
+            'Признак наличия солидарных должников' => 'Код «1» – в обязательстве участвуют солидарные должники; код «0» – обстоятельство кода «1» отсутствует.',
             'Число солидарных должников' => 'Не заполняется, если по показателю 20.1 «Признак наличия солидарных должников» указан код «0».',
         ];
     }
@@ -55,7 +53,7 @@ class C20CoBorrower extends \mfteam\nbch\components\BaseSegment
      */
     public function getDescription(): string
     {
-        return '';
+        return '(допустим 1 на группу блоков)';
     }
     
     /**

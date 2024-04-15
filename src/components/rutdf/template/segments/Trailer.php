@@ -5,16 +5,16 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 /**
  * Блок закрытия документа TRAILER
  */
-class Trailer extends \mfteam\nbch\components\BaseSegment
+class Trailer extends BaseSegment
 {
     /**
-     * Количество субъектов в файле.
+     * Количество групп блоков в файле.
      * @var int
      */
     public $cntGroups = 1;
     
     /**
-     * Количество групп блоков в файле.
+     * Количество субъектов в файле.
      * @var int
      */
     public $cntSubjects = 1;
@@ -75,5 +75,10 @@ class Trailer extends \mfteam\nbch\components\BaseSegment
     {
         $this->cntGroups = $cntGroups;
         return $this;
+    }
+    
+    public function getDescription(): string
+    {
+        return '';
     }
 }

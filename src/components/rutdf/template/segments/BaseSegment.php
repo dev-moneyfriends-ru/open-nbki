@@ -1,13 +1,14 @@
 <?php
 
-namespace mfteam\nbch\components;
+namespace mfteam\nbch\components\rutdf\template\segments;
 
 use DateTime;
-use mfteam\nbch\components\tutdf\template\TutdfTemplate;
+use mfteam\nbch\components\rutdf\template\RutdfTemplate;
 use yii\base\InvalidConfigException;
 use yii\base\InvalidValueException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\VarDumper;
+
 
 /**
  * Сегмент данных файла НБКИ
@@ -24,7 +25,12 @@ use yii\helpers\VarDumper;
 abstract class BaseSegment extends \yii\base\BaseObject
 {
     /**
-     * @var BaseRequestTemplate
+     * Значение пустого поля
+     */
+    public const EMPTY_VALUE = '';
+    
+    /**
+     * @var RutdfTemplate
      */
     protected $template;
     
@@ -46,10 +52,10 @@ abstract class BaseSegment extends \yii\base\BaseObject
     
     /**
      * BaseSegment constructor.
-     * @param TUTDFTemplate $template
+     * @param RutdfTemplate $template
      * @param array $config
      */
-    public function __construct(BaseRequestTemplate $template, $config = [])
+    public function __construct(RutdfTemplate $template, $config = [])
     {
         $this->template = $template;
         parent::__construct($config);
@@ -63,20 +69,7 @@ abstract class BaseSegment extends \yii\base\BaseObject
     public function formatDate($date): string
     {
         if (empty($date)) {
-            return '';
-        }
-        return \Yii::$app->formatter->asDate($date, 'yyyyMMdd');
-    }
-    
-    /**
-     * @param $date
-     * @return string
-     * @throws InvalidConfigException
-     */
-    public function formatNewDate($date): string
-    {
-        if (empty($date)) {
-            return $this->emptyValue;
+            return self::EMPTY_VALUE;
         }
         return \Yii::$app->formatter->asDate($date, 'dd.MM.yyyy');
     }
@@ -87,6 +80,10 @@ abstract class BaseSegment extends \yii\base\BaseObject
      */
     public function formatCurrency($value)
     {
+        if($value === null){
+            return self::EMPTY_VALUE;
+        }
+        
         return number_format(round((float)$value, 2), 2, ',', '');
     }
     
@@ -96,7 +93,11 @@ abstract class BaseSegment extends \yii\base\BaseObject
      */
     public function formatString($value)
     {
-        return mb_strtoupper(trim($value));
+        $value = mb_strtoupper(trim($value));
+        if(empty($value)){
+            return self::EMPTY_VALUE;
+        }
+        return $value;
     }
     
     /**
@@ -106,7 +107,6 @@ abstract class BaseSegment extends \yii\base\BaseObject
     public function render(): string
     {
         if (!$this->validate() || count($this->errors) > 0) {
-            \Yii::error($this->errors);
             $this->throwError();
         }
         return implode("\t", $this->getFields()) . PHP_EOL;
@@ -130,7 +130,7 @@ abstract class BaseSegment extends \yii\base\BaseObject
     }
     
     /**
-     * Возвращает название сегмента. Например 'TUTDF' или 'ID01'
+     * Возвращает название сегмента. Например 'B1_NAME'
      * @return string
      */
     abstract public function getSegmentName(): string;
@@ -205,7 +205,7 @@ abstract class BaseSegment extends \yii\base\BaseObject
         }
         $lines = explode("\n", $this->template->fileContent);
         foreach ($lines as $key => $str) {
-            if ($key < $this->template->lineNumber) {
+            if ($key < $this->template->getLineNumber()) {
                 continue;
             }
             if (strpos($str, $this->getSegmentName()) === 0) {
@@ -218,6 +218,7 @@ abstract class BaseSegment extends \yii\base\BaseObject
     /**
      * @param string $uuid
      * @return string
+     * @deprecated
      */
     protected function getUuidControlSum(string $uuid)
     {
@@ -238,30 +239,13 @@ abstract class BaseSegment extends \yii\base\BaseObject
         return base_convert($key, 10, 16);
     }
     
-    /**
-     * @return false|int
-     */
-    protected function daysPastDue()
-    {
-        $daysPastDue = 0;
-        if ($this->template->offer->getTrade()->amtPastDue > 0.001) {
-            $currentDate = new DateTime();
-            $overdueDate = (new DateTime())
-                ->setTimestamp(
-                    \Yii::$app->formatter->asTimestamp($this->template->getOffer()->getTrade()->pastDueDt)
-                );
-            
-            $interval = $currentDate->diff($overdueDate);
-            $daysPastDue = $interval->days;
-        }
-        return $daysPastDue;
-    }
     
     /**
      * @return int
+     * @deprecated
      */
     public function getFileLine()
     {
-        return $this->template->lineNumber;
+        return $this->template->getLineNumber();
     }
 }

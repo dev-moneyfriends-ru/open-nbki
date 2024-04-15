@@ -67,12 +67,6 @@ modules =>[
                 'file' => [
                     'class' => \mfteam\nbch\components\file\FileManagerInterface::class,
                 ],
-                'tutdf' => [
-                    'class' => \mfteam\nbch\components\tutdf\TutdfRequestComponent::class,
-                    'userName' => '2I01RR000005',
-                    'password' => '2I01rr00',
-                    'reportEmail' => 'CreditHistory@nbki.ru'
-                ],
                 'rutdf' => [
                     'class' => \mfteam\nbch\components\rutdf\RutdfRequestComponent::class,
                     'userName' => '2I01RR000005',
@@ -105,5 +99,14 @@ modules =>[
 
 Передача сведений:
 -
+Для передачи сведений в НБКИ необходимо реализовать класс `\mfteam\nbch\models\rutdf\NbchDataInterface`,
+который будет возвращать данные по субъекту. 
+Пример 1. Передача сведений по событию 2.1а Изменились сведения об условиях обязательства субъекта для денежного обязательства
+```php
+/**
+ * @var \mfteam\nbch\models\rutdf\NbchDataInterface $nbchData
+ */
+
+```
 Получение КИ:
 -

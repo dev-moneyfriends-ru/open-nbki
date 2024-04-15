@@ -5,7 +5,7 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 /**
  * Блок 7. Сведения о завершении расчетов с кредиторами и освобождении субъекта от исполнения обязательств в связи с банкротством – B7_SETTLED
  */
-class B7Setled extends \mfteam\nbch\components\BaseSegment
+class B7Setled extends BaseSegment
 {
     
     /**
@@ -22,9 +22,9 @@ class B7Setled extends \mfteam\nbch\components\BaseSegment
     public function getFields(): array
     {
         return [
-            $this->segmentName,
+            $this->getSegmentName(),
             0,
-            $this->emptyValue,
+            self::EMPTY_VALUE,
         ];
     }
     
@@ -46,5 +46,15 @@ class B7Setled extends \mfteam\nbch\components\BaseSegment
     public function getTitle(): string
     {
         return "Блок 7. Сведения о завершении расчетов с кредиторами и освобождении субъекта от исполнения обязательств в связи с банкротством – B7_SETTLED";
+    }
+    
+    public function validate(): bool
+    {
+        return true;
+    }
+    
+    public function getDescription(): string
+    {
+        return 'Блок передается только арбитражным управляющим';
     }
 }

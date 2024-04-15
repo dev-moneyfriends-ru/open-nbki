@@ -2,15 +2,28 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments;
 
-use DateTime;
-use mfteam\nbch\components\BaseSegment;
+use mfteam\nbch\components\rutdf\template\RutdfTemplate;
+use mfteam\nbch\models\PaymentRUTDF;
 
 /**
  * Блок 20. Сведения о внесении платежей – B20_PAYMT
  */
 class B20Paymt extends BaseSegment
 {
+    /**
+     * @var PaymentRUTDF
+     */
+    private $model;
     
+    /**
+     * @param RutdfTemplate $template
+     * @param PaymentRUTDF $model
+     */
+    public function __construct(RutdfTemplate $template, PaymentRUTDF $model)
+    {
+        $this->model = $model;
+        parent::__construct($template);
+    }
     /**
      * @inheritDoc
      */
@@ -24,53 +37,20 @@ class B20Paymt extends BaseSegment
      */
     public function getFields(): array
     {
-        if (empty($this->template->offer->getPaymentArray())) {
-            return [
-                $this->segmentName,
-                $this->emptyValue,
-                $this->formatCurrency(0),
-                $this->emptyValue,
-                $this->emptyValue,
-                $this->emptyValue,
-                $this->emptyValue,
-                $this->emptyValue,
-                $this->emptyValue,
-                $this->emptyValue,
-                3,
-                1,
-                0,
-            ];
-        }
-        $payments = $this->template->offer->getPaymentArray();
-        $lastPayment = end($payments);
-        $paymtAmt = 0;
-        $principalPaymtAmt = 0;
-        $intPaymtAmt = 0;
-        $otherPaymtAmt = 0;
-        $termsDueCode = 2;
-        if ($this->template->offer->getTrade()->amtPastDue > 0.001) {
-            $termsDueCode = 3;
-        }
-        foreach ($payments as $payment) {
-            $paymtAmt += $payment->paymtAmt;
-            $principalPaymtAmt += $payment->principalPaymtAmt;
-            $intPaymtAmt += $payment->intPaymtAmt;
-            $otherPaymtAmt += $payment->otherPaymtAmt;
-        }
         return [
-            $this->segmentName,
-            $this->formatNewDate($lastPayment->paymtDate),
-            $this->formatCurrency($lastPayment->paymtAmt),
-            $this->formatCurrency($lastPayment->principalPaymtAmt),
-            $this->formatCurrency($lastPayment->intPaymtAmt),
-            $this->formatCurrency($lastPayment->otherPaymtAmt),
-            $this->formatCurrency($paymtAmt),
-            $this->formatCurrency($principalPaymtAmt),
-            $this->formatCurrency($intPaymtAmt),
-            $this->formatCurrency($otherPaymtAmt),
-            $lastPayment->amtKeepCode,
-            $termsDueCode,
-            $this->daysPastDue(),
+            0 => $this->getSegmentName(),
+            1 => $this->formatDate($this->model->paymtDate),
+            2 => $this->formatCurrency($this->model->paymtAmt),
+            3 => $this->formatCurrency($this->model->principalPaymtAmt),
+            4 => $this->formatCurrency($this->model->intPaymtAmt),
+            5 => $this->formatCurrency($this->model->otherPaymtAmt),
+            6 => $this->formatCurrency($this->model->totalAmt),
+            7 => $this->formatCurrency($this->model->principalTotalAmt),
+            8 => $this->formatCurrency($this->model->intTotalAmt),
+            9 => $this->formatCurrency($this->model->otherTotalAmt),
+            10 => $this->model->amtKeepCode,
+            11 => $this->model->termsDueCode,
+            12 => $this->model->daysPastDue,
         ];
     }
     
@@ -82,17 +62,17 @@ class B20Paymt extends BaseSegment
         return [
             'Наименование сегмента' => '',
             'Дата последнего внесенного платежа' => '',
-            'Сумма последнего внесенного платежа' => '',
-            'Сумма последнего внесенного платежа по основному долгу' => '',
-            'Сумма последнего внесенного платежа по процентам' => '',
-            'Сумма последнего внесенного платежа по иным требованиям' => '',
-            'Сумма всех внесенных платежей по обязательству' => '',
-            'Сумма внесенных платежей по основному долгу' => '',
-            'Сумма внесенных платежей по процентам' => '',
-            'Сумма внесенных платежей по иным требованиям' => '',
-            'Код соблюдения размера платежей' => '',
-            'Код соблюдения срока внесения платежей' => '',
-            'Продолжительность просрочки' => '',
+            'Сумма последнего внесенного платежа' => 'Если указано значение «0,00», то заполняются только показатели 28.10-28.12, иные показатели блока 28 не заполняются . Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма последнего внесенного платежа по основному долгу' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма последнего внесенного платежа по процентам' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма последнего внесенного платежа по иным требованиям' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма всех внесенных платежей по обязательству' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма внесенных платежей по основному долгу' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма внесенных платежей по процентам' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма внесенных платежей по иным требованиям' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Код соблюдения размера платежей' => 'Заполняется по состоянию на дату формирования блока 28. Заполняется по справочнику 3.6.',
+            'Код соблюдения срока внесения платежей' => 'Заполняется по состоянию на дату формирования блока 28. Заполняется по справочнику 3.7.',
+            'Продолжительность просрочки' => 'Количество календарных дней, в течение которых субъект нарушает обязанность вносить платежи. Значение указанного показателя определяется методом ФИФО.',
         ];
     }
     
@@ -104,4 +84,19 @@ class B20Paymt extends BaseSegment
         return "Блок 20. Сведения о внесении платежей – B20_PAYMT";
     }
     
+    /**
+     * @inheritDoc
+     */
+    public function validate(): bool
+    {
+        return true;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getDescription(): string
+    {
+        return 'Cведения о действиях субъекта по исполнению своего обязательства или его части. Для договора лизинга указываются суммы внесенных лизинговых платежей, пеней и штрафов. В случае если по условиям сделки платеж признается внесенным с момента его принятия источником, в блоке 20 показателей КИ ЮЛ отражаются сведения о принятых источником платежах. Если в одной группе блоков идут несколько блоков 20, то они будут обработаны и отображены в кредитном отчете последовательно. Таким образом, если последнее событие на дату – это полное погашение просрочки, то в последнем блоке 20 одной группы блоков по показателю ЮЛ_20.12 ';
+    }
 }

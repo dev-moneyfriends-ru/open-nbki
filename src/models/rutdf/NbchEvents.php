@@ -508,4 +508,35 @@ class NbchEvents
             47 => "B47_APPLREJECT",
         ];
     }
+    
+    /**
+     * @param string $eventId
+     * @param bool $isLegal
+     * @return string[]
+     */
+    public static function getEventBlocks(string $eventId, bool $isLegal): array
+    {
+        $blocks = [];
+        if ($isLegal) {
+            if (empty(self::legalBlocks()[$eventId])) {
+                throw new \LogicException('Unknown Event ID');
+            }
+            foreach (self::legalBlocks()[$eventId] as $num){
+                if(isset(self::legalBlockCode()[$num])){
+                    $blocks[] = self::legalBlockCode()[$num];
+                }
+            }
+        }else{
+            if (empty(self::personBlocks()[$eventId])) {
+                throw new \LogicException('Unknown Event ID');
+            }
+            foreach (self::personBlocks()[$eventId] as $num){
+                if(isset(self::personBlockCode()[$num])){
+                    $blocks[] = self::legalBlockCode()[$num];
+                }
+            }
+        }
+        
+        return $blocks;
+    }
 }

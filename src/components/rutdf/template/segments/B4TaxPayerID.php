@@ -5,7 +5,7 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 /**
  *Блок 4. Номер налогоплательщика – B4_TAXPAYERID
  */
-class B4TaxPayerID extends \mfteam\nbch\components\BaseSegment
+class B4TaxPayerID extends BaseSegment
 {
     
     /**
@@ -30,9 +30,9 @@ class B4TaxPayerID extends \mfteam\nbch\components\BaseSegment
     public function getFields(): array
     {
         return [
-            $this->segmentName,
-            1,
-            $this->template->subject->getInn(),
+            $this->getSegmentName(),
+            $this->template->sendData->getRegnumReply()->taxpayerCode,
+            $this->template->sendData->getRegnumReply()->taxpayerNum,
         ];
     }
     

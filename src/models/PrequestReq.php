@@ -116,7 +116,7 @@ class PrequestReq extends BaseItem
      * Целое число. По умолчанию=3, может быть изменено без предупреждения
      * @var int
      */
-    public $allAddressBlocks = 3;
+    public $addrLimit = 3;
     
     /**
      * @return IdReq|null

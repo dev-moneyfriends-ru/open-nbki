@@ -52,9 +52,9 @@ class Env extends BaseObject
     }
     
     /**
-     * @return Module|null
+     * @return Module
      */
-    public function getModule(): ?Module
+    public function getModule(): Module
     {
         return Module::getInstance();
     }

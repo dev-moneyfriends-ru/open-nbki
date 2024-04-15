@@ -2,13 +2,28 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments;
 
+use mfteam\nbch\components\rutdf\template\RutdfTemplate;
+use mfteam\nbch\models\CollatInsuredRUTDF;
+
 /**
  * Блок 35. Сведения о страховании предмета залога – C35_COLLATINSURED
- * TODO Реализовать
  */
-class C35Collatinsured extends \mfteam\nbch\components\BaseSegment
+class C35Collatinsured extends BaseSegment
 {
+    /**
+     * @var CollatInsuredRUTDF
+     */
+    private $model;
     
+    /**
+     * @param RutdfTemplate $template
+     * @param CollatInsuredRUTDF $model
+     */
+    public function __construct(RutdfTemplate $template, CollatInsuredRUTDF $model)
+    {
+        $this->model = $model;
+        parent::__construct($template);
+    }
     /**
      * @inheritDoc
      */
@@ -22,17 +37,32 @@ class C35Collatinsured extends \mfteam\nbch\components\BaseSegment
      */
     public function getFields(): array
     {
+        $model = $this->model;
+        if(empty($model->insurLimit)){
+            return [
+                $this->getSegmentName(),
+                0,
+                self::EMPTY_VALUE,
+                self::EMPTY_VALUE,
+                self::EMPTY_VALUE,
+                self::EMPTY_VALUE,
+                self::EMPTY_VALUE,
+                self::EMPTY_VALUE,
+                self::EMPTY_VALUE,
+                self::EMPTY_VALUE,
+            ];
+        }
         return [
-            $this->segmentName,
-            0,
-            $this->emptyValue,
-            $this->emptyValue,
-            $this->emptyValue,
-            $this->emptyValue,
-            $this->emptyValue,
-            $this->emptyValue,
-            $this->emptyValue,
-            $this->emptyValue,
+            $this->getSegmentName(),
+            1,
+            $this->formatCurrency($model->insurLimit),
+            $model->currencyCode,
+            $model->hasFranchise,
+            $this->formatDate($model->insurStartDt),
+            $this->formatDate($model->insurEndDt),
+            $this->formatDate($model->insurFactEndDt),
+            $model->insurEndReason,
+            $model->collateralId,
         ];
     }
     
@@ -43,15 +73,15 @@ class C35Collatinsured extends \mfteam\nbch\components\BaseSegment
     {
         return [
             'Наименование сегмента' => '',
-            'Признак наличия страхования' => '',
-            'Лимит страховых выплат' => '',
+            'Признак наличия страхования' => 'Код «1» – риск утраты стоимости предмета залога застрахован в пользу источника или субъекта; код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока 35 не заполняются.',
+            'Лимит страховых выплат' => 'Указывается предельный размер обязательств страховщика согласно договору. При отсутствии лимита страховых выплат по указанному показателю приводится страховая сумма.',
             'Валюта страховых выплат' => '',
-            'Признак наличия франшизы' => '',
-            'Дата начала действия страхования' => '',
-            'Дата окончания действия страхования согласно договору' => '',
-            'Дата фактического прекращения страхования' => '',
-            'Код причины прекращения страхования' => '',
-            'Идентификационный код предмета залога' => 'Должен совпадать хотя бы с одним значением показателя «Идентификационный код предмета залога» ',
+            'Признак наличия франшизы' => 'Код «1» – в договоре страхования имеется условие об условной или безусловной франшизе; код «0» – обстоятельство кода «1» отсутствует.',
+            'Дата начала действия страхования' => 'Дата начала действия страхования, обусловленного договором страхования.',
+            'Дата окончания действия страхования согласно договору' => 'Дата планового окончания действия страхования, обусловленного договором страхования.',
+            'Дата фактического прекращения страхования' => 'Дата фактического окончания действия страхования, обусловленного договором страхования.',
+            'Код причины прекращения страхования' => 'Заполняется по справочнику 4.2.',
+            'Идентификационный код предмета залога' => 'Должен совпадать хотя бы с одним значением показателя 32.3 «Идентификационный код предмета залога» в блоке 32 для одной записи кредитной истории.',
         ];
     }
     
@@ -68,6 +98,14 @@ class C35Collatinsured extends \mfteam\nbch\components\BaseSegment
      */
     public function getDescription(): string
     {
-        return 'В случае наличия нескольких страхований предметов залога с одинаковой датой начала страхования (показатель 26.5) укажите сводную информацию, - сложите суммы, приведя к одной валюте, укажите минимальную из дат прекращения/окончания страхования, первую причину прекращения страхования.';
+        return '';
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function validate(): bool
+    {
+        return true;
     }
 }

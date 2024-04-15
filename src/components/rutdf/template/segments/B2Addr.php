@@ -5,7 +5,7 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 /**
  * Блок 2. Адрес юридического лица в пределах его места нахождения и контактная информация – B2_ADDR
  */
-class B2Addr extends \mfteam\nbch\components\BaseSegment
+class B2Addr extends BaseSegment
 {
     
     /**
@@ -29,23 +29,23 @@ class B2Addr extends \mfteam\nbch\components\BaseSegment
      */
     public function getFields(): array
     {
-        $address = $this->template->subject->getLegalAddress();
+        $address = $this->template->sendData->getRegAddress();
         return [
-          $this->segmentName,
+            $this->getSegmentName(),
             $address->oksm,
-            $this->emptyValue,
-            $address->getGar(),
-            str_replace(["\t", " "], '', $this->formatString($address->okato)),
-            $this->emptyValue,
+            $address->otherCountry?$this->formatString($address->otherCountry):self::EMPTY_VALUE,
+            $address->fias??self::EMPTY_VALUE,
+            $address->okato,
+            $address->otherLocation?$this->formatString($address->otherLocation):self::EMPTY_VALUE,
             $this->formatString($address->street),
-            mb_strtoupper($address->houseNumber),
-            $this->emptyValue,
-            str_replace(" ", ".", $this->formatString($address->block)),
-            mb_strtoupper($address->building),
-            str_replace(" ", ".", $this->formatString($address->apartment)),
-            $this->emptyValue,
-            $this->emptyValue,
-            $this->emptyValue,
+            $this->formatString($address->houseNumber),
+            $this->formatString($address->estate),
+            str_replace(" ", "", $this->formatString($address->block)),
+            $this->formatString($address->building),
+            $this->formatString($address->apartment),
+            $address->phone??self::EMPTY_VALUE,
+            $address->phoneComment?$this->formatString($address->phoneComment):self::EMPTY_VALUE,
+            $address->email??self::EMPTY_VALUE,
         ];
     }
     
@@ -55,8 +55,8 @@ class B2Addr extends \mfteam\nbch\components\BaseSegment
     public function getFieldsDescriptions(): array
     {
         return [
-          'Название' => '',
-          'Код страны по ОКСМ' => 'Цифровой код страны согласно Общероссийскому классификатору стран мира (далее – ОКСМ, см. справочник A1).
+            'Название' => '',
+            'Код страны по ОКСМ' => 'Цифровой код страны согласно Общероссийскому классификатору стран мира (далее – ОКСМ, см. справочник A1).
                                 При отсутствии страны в ОКСМ указывается «999».
                                 ',
             'Наименование иной страны' => '',

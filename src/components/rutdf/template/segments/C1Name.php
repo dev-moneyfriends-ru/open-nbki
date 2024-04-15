@@ -2,12 +2,13 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments;
 
-use yii\base\Exception;
+
+use LogicException;
 
 /**
  * Блок 1. Имя – C1_NAME
  */
-class C1Name extends \mfteam\nbch\components\BaseSegment
+class C1Name extends BaseSegment
 {
     
     /**
@@ -15,14 +16,18 @@ class C1Name extends \mfteam\nbch\components\BaseSegment
      */
     public function validate(): bool
     {
-        if (empty($this->template->subject->getPerson()->name1)) {
-            $this->errors[] = 'Отсутствует Фамилия';
-        }
-        if (empty($this->template->subject->getPerson()->first)) {
-            $this->errors[] = 'Отсутствует Имя';
+        if(empty($this->template->sendData->getPersonReply())){
+            $this->errors[] = 'Отсутствует данные по ФЛ';
+        }else{
+            if (empty($this->template->sendData->getPersonReply()->name1)) {
+                $this->errors[] = 'Отсутствует Фамилия';
+            }
+            if (empty($this->template->sendData->getPersonReply()->first)) {
+                $this->errors[] = 'Отсутствует Имя';
+            }
         }
         
-        return $this->isEmptyErrors;
+        return $this->isEmptyErrors();
     }
     
     /**
@@ -35,16 +40,16 @@ class C1Name extends \mfteam\nbch\components\BaseSegment
     
     /**
      * @inheritDoc
-     * @throws Exception
+     * @throws LogicException
      */
     public function getFields(): array
     {
-        $person = $this->template->subject->getPerson();
+        $person = $this->template->sendData->getPersonReply();
         if ($person === null) {
-            throw new Exception();
+            throw new LogicException();
         }
         return [
-            $this->segmentName,
+            $this->getSegmentName(),
             $this->formatString($person->name1),
             $this->formatString($person->first),
             $this->formatString($person->paternal),
@@ -60,7 +65,7 @@ class C1Name extends \mfteam\nbch\components\BaseSegment
             'Наименование сегмента' => '',
             "Фамилия" => '',
             "Имя" => '',
-            "Отчество" => '',
+            "Отчество" => 'Указывается при наличии',
         ];
     }
     

@@ -5,7 +5,7 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 /**
  * Блок 17. Уникальный идентификатор договора (сделки) – C17_UID
  */
-class C17UID extends \mfteam\nbch\components\BaseSegment
+class C17UID extends BaseSegment
 {
     
     /**
@@ -13,7 +13,11 @@ class C17UID extends \mfteam\nbch\components\BaseSegment
      */
     public function validate(): bool
     {
-        return true;
+        $model = $this->template->sendData->getAccountReplyRUTDF();
+        if(empty($model->uuid)){
+            $this->errors[] = 'Отсутствует УИД';
+        }
+        return $this->isEmptyErrors();
     }
     
     /**
@@ -29,11 +33,11 @@ class C17UID extends \mfteam\nbch\components\BaseSegment
      */
     public function getFields(): array
     {
+        $model = $this->template->sendData->getAccountReplyRUTDF();
         return [
-            $this->segmentName,
-            $this->template->offer->getTrade()->uuid . "-" . $this->getUuidControlSum($this->template->offer->getTrade()->uuid),
-            $this->emptyValue
-            
+            $this->getSegmentName(),
+            $model->uuid . "-" . $model->getUuidControlSum($model->uuid),
+            self::EMPTY_VALUE
         ];
     }
     
@@ -44,13 +48,8 @@ class C17UID extends \mfteam\nbch\components\BaseSegment
     {
         return [
             'Наименование сегмента' => '',
-            'УИд сделки' => 'УИд сделки, по обязательствам из которой формируются блоки 17–39.
-                            Если сделка совершена по обращению, УИд сделки должен соответствовать значению показателя 55.4 «УИд обращения» блока 55.
-                            Если по одному обращению совершено несколько сделок, только УИд сделки, совершенной первой по времени, должен соответствовать УИд обращения.
-                            ',
-            'Номер сделки' => 'Номер сделки, присвоенный источником.
-                                Заполняется, если сделке ранее не был присвоен УИд сделки.
-                                ',
+            'УИд сделки' => 'УИд сделки, по обязательствам из которой формируются блоки 17–39. Если сделка совершена по обращению, УИд сделки должен соответствовать значению показателя 55.4 «УИд обращения» блока 55. Если по одному обращению совершено несколько сделок, только УИд сделки, совершенной первой по времени, должен соответствовать УИд обращения.',
+            'Номер сделки' => 'Номер сделки, присвоенный источником. Заполняется, если сделке ранее не был присвоен УИд сделки.',
         ];
     }
     

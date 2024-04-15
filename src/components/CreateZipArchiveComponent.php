@@ -5,7 +5,7 @@ namespace mfteam\nbch\components;
 use mfteam\nbch\components\file\NbchFile;
 use mfteam\nbch\components\file\NbchFileInterface;
 use mfteam\nbch\Env;
-use mfteam\nbch\models\BaseSendNbchRequestInterface;
+use mfteam\nbch\models\rutdf\BaseSendNbchRequestInterface;
 use yii\base\BaseObject;
 use yii\base\ErrorException;
 use yii\base\Exception;

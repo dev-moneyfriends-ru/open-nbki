@@ -3,17 +3,25 @@
 namespace mfteam\nbch\components\rutdf\template\segments;
 
 /**
- * Блок 22. Сведения о неденежном обязательстве субъекта – B22_SUBJECTNONMONETOBLIG
+ * Блок 31. Сведения о неденежном обязательстве субъекта - C31_SUBJECTNONMONETOBLIG
  */
-class B22SubjectNonMonetOblig extends BaseSegment
+class C31SubjectNonMonetOblig extends BaseSegment
 {
+    
+    /**
+     * @inheritDoc
+     */
+    public function validate(): bool
+    {
+        return true;
+    }
     
     /**
      * @inheritDoc
      */
     public function getSegmentName(): string
     {
-        return 'B22_SUBJECTNONMONETOBLIG';
+        return 'C31_SUBJECTNONMONETOBLIG';
     }
     
     /**
@@ -53,24 +61,16 @@ class B22SubjectNonMonetOblig extends BaseSegment
     /**
      * @inheritDoc
      */
-    public function getTitle(): string
-    {
-        return 'Блок 22. Сведения о неденежном обязательстве субъекта – B22_SUBJECTNONMONETOBLIG';
-    }
-    
-    /**
-     * @inheritDoc
-     */
     public function getDescription(): string
     {
-        return 'Блок формируется, если по показателю 11.9 «Признак денежного обязательства субъекта» блока 11 указан код «0». Сведения указываются согласно условиям сделки.';
+        return 'Блок формируется, если по показателю 18.10 «Признак денежного обязательства субъекта» указан код «0». Сведения указываются согласно условиям сделки.';
     }
     
     /**
      * @inheritDoc
      */
-    public function validate(): bool
+    public function getTitle(): string
     {
-        return true;
+        return 'Блок 31. Сведения о неденежном обязательстве субъекта - C31_SUBJECTNONMONETOBLIG';
     }
 }

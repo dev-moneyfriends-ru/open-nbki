@@ -2,8 +2,6 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments;
 
-use mfteam\nbch\components\BaseSegment;
-
 /**
  * Блок 38. Сведения о прекращении обязательства – C38_OBLIGTERMINATION
  */
@@ -23,10 +21,11 @@ class C38ObligTermination extends BaseSegment
      */
     public function getFields(): array
     {
+        $model = $this->template->sendData->getAccountReplyRUTDF();
         return [
-            $this->segmentName,
-            $this->template->offer->getTrade()->accountRating,
-            $this->formatNewDate($this->template->offer->getTrade()->completePerformDt),
+            $this->getSegmentName(),
+            $model->loanIndicator,
+            $this->formatDate($model->loanIndicatorDt),
         ];
     }
     
@@ -48,5 +47,21 @@ class C38ObligTermination extends BaseSegment
     public function getTitle(): string
     {
         return 'Блок 38. Сведения о прекращении обязательства – C38_OBLIGTERMINATION';
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function validate(): bool
+    {
+        return true;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getDescription(): string
+    {
+        return 'допустим 1 на группу блоков';
     }
 }

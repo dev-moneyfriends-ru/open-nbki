@@ -5,7 +5,7 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 /**
  * Блок 11. Государственная регистрация в качестве индивидуального предпринимателя – C11_ENTREP
  */
-class C11Entrep extends \mfteam\nbch\components\BaseSegment
+class C11Entrep extends BaseSegment
 {
     
     /**
@@ -29,19 +29,20 @@ class C11Entrep extends \mfteam\nbch\components\BaseSegment
      */
     public function getFields(): array
     {
-        if (!$this->template->subject->isIp()) {
+        $regNum = $this->template->sendData->getRegnumReply();
+        if (empty($regNum->regNum)) {
             return [
-                $this->segmentName,
+                $this->getSegmentName(),
                 0,
-                $this->emptyValue,
-                $this->emptyValue,
+                self::EMPTY_VALUE,
+                self::EMPTY_VALUE,
             ];
         }
         return [
-            $this->segmentName,
+            $this->getSegmentName(),
             1,
-            $this->template->subject->getOgrn(),
-            $this->formatNewDate($this->template->subject->getRegDate()),
+            $regNum->regNum,
+            $this->formatDate($regNum->regDate),
         ];
     }
     
@@ -52,7 +53,7 @@ class C11Entrep extends \mfteam\nbch\components\BaseSegment
     {
         return [
             'Наименование сегмента' => '',
-            'Признак индивидуального предпринимателя' => '',
+            'Признак индивидуального предпринимателя' => 'Код «1» – субъект зарегистрирован в Российской Федерации в качестве индивидуального предпринимателя; код «0» – обстоятельство кода «1» отсутствует. Если по показателю 11.1 «Признак индивидуального предпринимателя» указан код «0», иные показатели блока 11 не заполняются',
             'Регистрационный номер' => '',
             'Дата регистрации индивидуального предпринимателя' => '',
         ];

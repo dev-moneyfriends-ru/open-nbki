@@ -5,7 +5,7 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 /**
  * Блок 3. Дата и место рождения – C3_BIRTH
  */
-class C3Birth extends \mfteam\nbch\components\BaseSegment
+class C3Birth extends BaseSegment
 {
     
     /**
@@ -13,16 +13,16 @@ class C3Birth extends \mfteam\nbch\components\BaseSegment
      */
     public function validate(): bool
     {
-        if (empty($this->template->subject->getPerson()->oksm)) {
+        if (empty($this->template->sendData->getPersonReply()->oksm)) {
             $this->errors[] = 'Отсутствует Код страны по ОКСМ';
         }
-        if (empty($this->template->subject->getPerson()->birthDt)) {
+        if (empty($this->template->sendData->getPersonReply()->birthDt)) {
             $this->errors[] = 'Отсутствует Дата рождения';
         }
-        if (empty($this->template->subject->getPerson()->placeOfBirth)) {
+        if (empty($this->template->sendData->getPersonReply()->placeOfBirth)) {
             $this->errors[] = 'Отсутствует Место рождения';
         }
-        return $this->isEmptyErrors;
+        return $this->isEmptyErrors();
     }
     
     /**
@@ -39,10 +39,10 @@ class C3Birth extends \mfteam\nbch\components\BaseSegment
     public function getFields(): array
     {
         return [
-            $this->segmentName,
-            $this->formatNewDate($this->template->subject->getPerson()->birthDt),
-            $this->template->subject->getPerson()->oksm,
-            $this->formatString($this->template->subject->getPerson()->placeOfBirth),
+            $this->getSegmentName(),
+            $this->formatDate($this->template->sendData->getPersonReply()->birthDt),
+            $this->template->sendData->getPersonReply()->oksm,
+            $this->formatString($this->template->sendData->getPersonReply()->placeOfBirth),
         ];
     }
     
@@ -54,8 +54,8 @@ class C3Birth extends \mfteam\nbch\components\BaseSegment
         return [
             'Наименование сегмента' => '',
             "Дата рождения" => '',
-            "Код страны по ОКСМ" => '',
-            "Место рождения" => ''
+            "Код страны по ОКСМ" => 'Цифровой код страны согласно Общероссийскому классификатору стран мира. При отсутствии страны в ОКСМ указывается «999».',
+            "Место рождения" => 'Заполняется согласно документу, удостоверяющему личность.'
         ];
     }
     

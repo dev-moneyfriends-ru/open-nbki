@@ -2,12 +2,10 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments;
 
-use yii\base\InvalidValueException;
-
 /**
  * Блок 1. Наименование юридического лица – B1_NAME
  */
-class B1Name extends \mfteam\nbch\components\BaseSegment
+class B1Name extends BaseSegment
 {
     
     /**
@@ -31,17 +29,17 @@ class B1Name extends \mfteam\nbch\components\BaseSegment
      */
     public function getFields(): array
     {
-        $business = $this->template->subject->getBusiness();
+        $business = $this->template->sendData->getBusinessReply();
         if($business === null){
-            throw new InvalidValueException();
+            throw new \LogicException();
         }
         return [
-            $this->segmentName,
-            mb_strtoupper($business->businessName),
-            mb_strtoupper($business->abbreviatedBusinessName),
-            $this->emptyValue,
+            $this->getSegmentName(),
+            $this->formatString($business->businessName),
+            $this->formatString($business->abbreviatedBusinessName),
+            $this->formatString($business->businessNameAlt),
             $business->nameChange,
-            mb_strtoupper($business->businessNamebfrChange)
+            $this->formatString($business->businessNamebfrChange)
         ];
     }
     

@@ -2,7 +2,7 @@
 
 namespace mfteam\nbch\components\rutdf\template;
 
-use mfteam\nbch\components\BaseRequestTemplate;
+use LogicException;
 use mfteam\nbch\components\rutdf\template\segments\B10UID;
 use mfteam\nbch\components\rutdf\template\segments\B11Trade;
 use mfteam\nbch\components\rutdf\template\segments\B12AccountAmt;
@@ -25,14 +25,18 @@ use mfteam\nbch\components\rutdf\template\segments\B27CollatRepay;
 use mfteam\nbch\components\rutdf\template\segments\B28GuaranteeRepay;
 use mfteam\nbch\components\rutdf\template\segments\B29ObligTermination;
 use mfteam\nbch\components\rutdf\template\segments\B2Addr;
+use mfteam\nbch\components\rutdf\template\segments\B30LegalRecord;
+use mfteam\nbch\components\rutdf\template\segments\B35SubmitHold;
 use mfteam\nbch\components\rutdf\template\segments\B3RegNum;
 use mfteam\nbch\components\rutdf\template\segments\B44ObligacCount;
+use mfteam\nbch\components\rutdf\template\segments\B45Application;
 use mfteam\nbch\components\rutdf\template\segments\B46ObligPartTake;
+use mfteam\nbch\components\rutdf\template\segments\B47ApplReject;
 use mfteam\nbch\components\rutdf\template\segments\B4TaxPayerID;
 use mfteam\nbch\components\rutdf\template\segments\B5Reorg;
 use mfteam\nbch\components\rutdf\template\segments\B6Bankruptcy;
 use mfteam\nbch\components\rutdf\template\segments\B7Setled;
-use mfteam\nbch\components\rutdf\template\segments\B8PrevCred;
+use mfteam\nbch\components\rutdf\template\segments\BaseSegment;
 use mfteam\nbch\components\rutdf\template\segments\C10ContactInfo;
 use mfteam\nbch\components\rutdf\template\segments\C11Entrep;
 use mfteam\nbch\components\rutdf\template\segments\C12Capability;
@@ -42,6 +46,7 @@ use mfteam\nbch\components\rutdf\template\segments\C19AccountAmt;
 use mfteam\nbch\components\rutdf\template\segments\C1Name;
 use mfteam\nbch\components\rutdf\template\segments\C20CoBorrower;
 use mfteam\nbch\components\rutdf\template\segments\C21PaymtCondition;
+use mfteam\nbch\components\rutdf\template\segments\C22OverallVal;
 use mfteam\nbch\components\rutdf\template\segments\C23Amendment;
 use mfteam\nbch\components\rutdf\template\segments\C24FundDate;
 use mfteam\nbch\components\rutdf\template\segments\C25Arrear;
@@ -50,6 +55,8 @@ use mfteam\nbch\components\rutdf\template\segments\C27PastDsueArrear;
 use mfteam\nbch\components\rutdf\template\segments\C28Paymt;
 use mfteam\nbch\components\rutdf\template\segments\C29MonthAverPaymt;
 use mfteam\nbch\components\rutdf\template\segments\C2PrevName;
+use mfteam\nbch\components\rutdf\template\segments\C30SourceNonMonetOblig;
+use mfteam\nbch\components\rutdf\template\segments\C31SubjectNonMonetOblig;
 use mfteam\nbch\components\rutdf\template\segments\C32Collateral;
 use mfteam\nbch\components\rutdf\template\segments\C33Guarantor;
 use mfteam\nbch\components\rutdf\template\segments\C34IndepGuarantor;
@@ -57,10 +64,14 @@ use mfteam\nbch\components\rutdf\template\segments\C35Collatinsured;
 use mfteam\nbch\components\rutdf\template\segments\C36CollatRepay;
 use mfteam\nbch\components\rutdf\template\segments\C37GuaranteeRepay;
 use mfteam\nbch\components\rutdf\template\segments\C38ObligTermination;
+use mfteam\nbch\components\rutdf\template\segments\C39LegalRecord;
 use mfteam\nbch\components\rutdf\template\segments\C3Birth;
+use mfteam\nbch\components\rutdf\template\segments\C45SubmitHold;
 use mfteam\nbch\components\rutdf\template\segments\C4Id;
 use mfteam\nbch\components\rutdf\template\segments\C54ObligacCount;
+use mfteam\nbch\components\rutdf\template\segments\C55Application;
 use mfteam\nbch\components\rutdf\template\segments\C56ObligPartTake;
+use mfteam\nbch\components\rutdf\template\segments\C57ApplReject;
 use mfteam\nbch\components\rutdf\template\segments\C5PrevId;
 use mfteam\nbch\components\rutdf\template\segments\C6RegNum;
 use mfteam\nbch\components\rutdf\template\segments\C7Snils;
@@ -70,17 +81,18 @@ use mfteam\nbch\components\rutdf\template\segments\GroupHeader;
 use mfteam\nbch\components\rutdf\template\segments\Header;
 use mfteam\nbch\components\rutdf\template\segments\Trailer;
 use mfteam\nbch\Env;
-use mfteam\nbch\exceptions\UnknownEventException;
-use mfteam\nbch\models\Collateral;
-use mfteam\nbch\models\Guarantor;
-use mfteam\nbch\models\NbchOfferInterface;
-use mfteam\nbch\models\NbchSubjectInterface;
+use mfteam\nbch\models\AmendmentRUTDF;
+use mfteam\nbch\models\BaseItem;
+use mfteam\nbch\models\CollateralRUTDF;
+use mfteam\nbch\models\CollatInsuredRUTDF;
+use mfteam\nbch\models\CollatRepayRUTDF;
+use mfteam\nbch\models\GuarantorRUTDF;
+use mfteam\nbch\models\IndepGuarantorRUTDF;
+use mfteam\nbch\models\LegalItemsRUTDF;
+use mfteam\nbch\models\rutdf\NbchDataInterface;
 use mfteam\nbch\models\rutdf\NbchEvents;
 use mfteam\nbch\models\rutdf\NbchRutdfRequest;
-use mfteam\nbch\models\tutdf\NbchTutdfRequest;
 use Yii;
-use yii\base\Exception;
-use yii\base\InvalidConfigException;
 
 /**
  * Шаблон RUTDF
@@ -94,7 +106,7 @@ use yii\base\InvalidConfigException;
  * @property-read B24Guarantor[] $b24Guarantor
  * @property-read string $templatePath
  */
-class RutdfTemplate extends BaseRequestTemplate
+class RutdfTemplate
 {
     /**
      * Версия формата файла
@@ -113,50 +125,217 @@ class RutdfTemplate extends BaseRequestTemplate
     protected $eventIds;
     
     /**
+     * Содержимое существующего файла отчета
+     * @var string
+     */
+    protected $fileContent;
+    
+    /**
+     * Сгенерированное содержимое файла отчета
+     * @var string
+     */
+    protected $content;
+    
+    /**
+     * Текущая строка в файле
+     * @var int
+     */
+    private $currentLine = 0;
+    
+    /**
      * @var NbchRutdfRequest|null
      */
     protected $request;
     
     /**
+     * Название файла
      * @var string
      */
     protected $baseFileName;
     
-    public function __construct(array $eventIds, NbchSubjectInterface $subject, NbchOfferInterface $offer, $config = [])
+    /**
+     * Время генерации
+     * @var int
+     */
+    public $generateTime;
+    
+    /**
+     * Данные для отправки
+     * @var NbchDataInterface
+     */
+    public $sendData;
+    
+    /**
+     * @var BaseSegment[]
+     */
+    protected $segments = [];
+    
+    /**
+     * Ошибки генерации
+     * @var array
+     */
+    protected $errors = [];
+    
+    /**
+     * @var string[]
+     */
+    protected $singleSegments = [
+        'B1_NAME' => B1Name::class,
+        'B2_ADDR' => B2Addr::class,
+        'B3_REGNUM' => B3RegNum::class,
+        'B4_TAXPAYERID' => B4TaxPayerID::class,
+        'B5_REORG' => B5Reorg::class,
+        'B6_BANKRUPTCY' => B6Bankruptcy::class,
+        'B7_SETTLED' => B7Setled::class,
+        'B10_UID' => B10UID::class,
+        'B11_TRADE' => B11Trade::class,
+        'B13_COBORROWER' => B13CoBorrower::class,
+        'B14_PAYMTCONDITION' => B14PaymtCondition::class,
+        'B16_FUNDDATE' => B16FundDate::class,
+        'B17_ARREAR' => B17Arrear::class,
+        'B18_DUEARREAR' => B18DueArrear::class,
+        'B19_PASTDUEARREAR' => B19PastDsueArrear::class,
+        'B21_SOURCENONMONETOBLIG' => B21SourceNonMonetOblig::class,
+        'B22_SUBJECTNONMONETOBLIG' => B22SubjectNonMonetOblig::class,
+        'B28_GUARANTEEREPAY' => B28GuaranteeRepay::class,
+        'B29_OBLIGTERMINATION' => B29ObligTermination::class,
+        'B35_SUBMITHOLD' => B35SubmitHold::class,
+        'B44_OBLIGACCOUNT' => B44ObligacCount::class,
+        'B45_APPLICATION' => B45Application::class,
+        'B46_OBLIGPARTTAKE' => B46ObligPartTake::class,
+        'B47_APPLREJECT' => B47ApplReject::class,
+        'C1_NAME' => C1Name::class,
+        'C2_PREVNAME' => C2PrevName::class,
+        'C3_BIRTH' => C3Birth::class,
+        'C4_ID' => C4Id::class,
+        'C5_PREVID' => C5PrevId::class,
+        'C6_REGNUM' => C6RegNum::class,
+        'C7_SNILS' => C7Snils::class,
+        'C8_REGADDR' => C8RegAddr::class,
+        'C9_ACTUALADDR' => C9ActualAddr::class,
+        'C10_CONTACTINFO' => C10ContactInfo::class,
+        'C11_ENTREP' => C11Entrep::class,
+        'C12_CAPABILITY' => C12Capability::class,
+        'C17_UID' => C17UID::class,
+        'C18_TRADE' => C18Trade::class,
+        'C20_COBORROWER' => C20CoBorrower::class,
+        'C21_PAYMTCONDITION' => C21PaymtCondition::class,
+        'C22_OVERALLVAL' => C22OverallVal::class,
+        'C24_FUNDDATE' => C24FundDate::class,
+        'C25_ARREAR' => C25Arrear::class,
+        'C26_DUEARREAR' => C26DueArrear::class,
+        'C27_PASTDUEARREAR' => C27PastDsueArrear::class,
+        'C29_MONTHAVERPAYMT' => C29MonthAverPaymt::class,
+        'C30_SOURCENONMONETOBLIG' => C30SourceNonMonetOblig::class,
+        'C31_SUBJECTNONMONETOBLIG' => C31SubjectNonMonetOblig::class,
+        'C37_GUARANTEEREPAY' => C37GuaranteeRepay::class,
+        'C38_OBLIGTERMINATION' => C38ObligTermination::class,
+        'C45_SUBMITHOLD' => C45SubmitHold::class,
+        'C54_OBLIGACCOUNT' => C54ObligacCount::class,
+        'C55_APPLICATION' => C55Application::class,
+        'C56_OBLIGPARTTAKE' => C56ObligPartTake::class,
+        'C57_APPLREJECT' => C57ApplReject::class,
+    ];
+    
+    /**
+     * @var string[]
+     */
+    protected $multiSegments = [
+        'B12_ACCOUNTAMT' => B12AccountAmt::class,
+        'B15_AMENDMENT' => B15Amendment::class,
+        'B20_PAYMT' => B20Paymt::class,
+        'B23_COLLATERAL' => B23Collateral::class,
+        'B24_GUARANTOR' => B24Guarantor::class,
+        'B25_INDEPGUARANTOR' => B25IndepGuarantor::class,
+        'B26_COLLATINSURED' => B26Collatinsured::class,
+        'B27_COLLATREPAY' => B27CollatRepay::class,
+        'B30_LEGALRECORD' => B30LegalRecord::class,
+        'C19_ACCOUNTAMT' => C19AccountAmt::class,
+        'C23_AMENDMENT' => C23Amendment::class,
+        'C28_PAYMT' => C28Paymt::class,
+        'C32_COLLATERAL' => C32Collateral::class,
+        'C33_GUARANTOR' => C33Guarantor::class,
+        'C34_INDEPGUARANTOR' => C34IndepGuarantor::class,
+        'C35_COLLATINSURED' => C35Collatinsured::class,
+        'C36_COLLATREPAY' => C36CollatRepay::class,
+        'C39_LEGALRECORD' => C39LegalRecord::class,
+    ];
+    
+    /**
+     * @param array $eventIds
+     * @param NbchDataInterface $sendData
+     */
+    public function __construct(array $eventIds, NbchDataInterface $sendData)
     {
         $this->eventIds = $eventIds;
-        parent::__construct($subject, $offer, $config);
+        $this->sendData = $sendData;
     }
     
     /**
-     * @inheritDoc
+     * @return false|string|null
      */
-    public function getTemplatePath(): string
+    public function saveAsTemp()
     {
-        return '@vendor/mf-team/yii2-mf-nbch/src/components/rutdf/template/views/rutdf3';
+        $path = tempnam(sys_get_temp_dir(), '');
+        return $this->saveAs($path) === true ? $path : null;
     }
     
     /**
-     * @inheritDoc
+     * @param string $path
+     * @return bool
      */
-    public function getTokenList(): array
+    private function saveAs(string $path)
     {
-        return [
-            'eventIds' => $this->eventIds,
-            'isLegal' => $this->subject->isLegal(),
-            "HEADER" => new Header($this),
-            "GROUPHEADER" => new GroupHeader($this),
-            "TRAILER" => new Trailer($this),
-            "segments" => $this->createSegments(),
-            "template" => $this,
-        ];
+        if (empty($this->content)) {
+            $this->loadContent();
+        }
+        return file_put_contents($path, $this->content) !== false;
+    }
+    
+    /**
+     * @return void
+     */
+    public function loadContent()
+    {
+        $content = [];
+        $segments = $this->getSegments();
+        foreach ($segments as $segment) {
+            $content[] = $segment->render();
+        }
+        $content = implode(PHP_EOL, $content);
+        $this->content = mb_convert_encoding($content, 'cp1251');
+    }
+    
+    /**
+     * Текущий номер строки
+     * @return int
+     */
+    public function getLineNumber(): int
+    {
+        return $this->currentLine;
+    }
+    
+    /**
+     * Следующая строка
+     * @return void
+     */
+    public function nextLine(): void
+    {
+        $this->currentLine++;
+    }
+    
+    /**
+     * @return void
+     */
+    public function resetLine(): void
+    {
+        $this->currentLine = 0;
     }
     
     /**
      * @return string
-     * @throws InvalidConfigException
      */
-    public function getBaseName(): string
+    public function getBaseName()
     {
         if (!empty($this->baseFileName)) {
             return $this->baseFileName;
@@ -180,197 +359,242 @@ class RutdfTemplate extends BaseRequestTemplate
     }
     
     /**
-     * @param array $eventIds
-     * @return RutdfTemplate
-     */
-    public function setEventIds(array $eventIds): RutdfTemplate
-    {
-        $this->eventIds = $eventIds;
-        return $this;
-    }
-    
-    /**
-     * @return array
-     */
-    public function getEventIds(): array
-    {
-        return $this->eventIds;
-    }
-    
-    /**
-     * Содержимое файла отчета
      * @return string
-     * @throws \Exception
      */
     public function getFileContent(): string
     {
-        if ($this->_fileContent === null) {
-            $this->loadFileContent();
-        }
-        return $this->_fileContent;
+        return $this->fileContent;
     }
     
     /**
-     * Загружает содержимое файла отчета
-     * @throws Exception
+     * @return void
      */
-    private function loadFileContent(): void
+    protected function createSegments(): void
     {
-        if ($this->request === null || $this->request->getFile() === null) {
-            $this->_fileContent = '';
-            return;
+        $segments = [];
+        $segments[] = new Header($this);
+        $cnt = 1;
+        $operationCode = $this->getOperationaCode();
+        foreach ($this->eventIds as $eventId) {
+            $segments[] = (new GroupHeader($this))->setEvent($eventId)->setNumber($cnt)->setCode($operationCode)->setComment($this->sendData->getGroupHeaderComment());
+            $blocks = NbchEvents::getEventBlocks($eventId, $this->sendData->isLegal());
+            foreach ($blocks as $block) {
+                $items = $this->createSegment($block);
+                if (empty($items)) {
+                    continue;
+                }
+                foreach ($items as $item) {
+                    if (!$item->validate()) {
+                        $this->errors[] = [
+                            $item->getSegmentName() => $item->getErrors(),
+                        ];
+                    }
+                    $segments[] = $item;
+                }
+            }
+            $cnt++;
         }
-        
-        $content = $this->request->getFile()->getContent();
-        if ($content === false) {
-            throw new Exception('Невозможно получить содержимое файла');
-        }
-        $this->_fileContent = mb_convert_encoding($content, 'UTF-8', 'WINDOWS-1251');
-        $this->resetLine();
+        $segments[] = (new Trailer($this))->setCntGroups($cnt - 1);
+        $this->segments = $segments;
+    }
+    
+    /**
+     * @return NbchRutdfRequest|null
+     */
+    public function getRequest(): ?NbchRutdfRequest
+    {
+        return $this->request;
     }
     
     /**
      * @param NbchRutdfRequest|null $request
-     * @return RutdfTemplate
      */
-    public function setRequest(?NbchRutdfRequest $request): RutdfTemplate
+    public function setRequest(?NbchRutdfRequest $request): void
     {
         $this->request = $request;
-        return $this;
     }
     
     /**
-     * @return array|B23Collateral[]
+     * @param string $block
+     * @return BaseSegment[]
      */
-    private function getB23Collateral(): array
+    private function createSegment(string $block): array
     {
-        if (empty($this->offer->getCollateralArray())) {
-            return [
-                new B23Collateral(new Collateral(), $this),
-            ];
+        if (isset($this->singleSegments[$block])) {
+            return $this->createSingleSegment($this->singleSegments[$block]);
         }
-        return array_map(function (Collateral $item) {
-            return new B23Collateral($item, $this);
-        }, $this->offer->getCollateralArray());
+        if (isset($this->multiSegments[$block])) {
+            return $this->createMultiSegment($this->multiSegments[$block]);
+        }
+        throw new LogicException('Unknown segment');
     }
     
     /**
-     * @return B24Guarantor[]
+     * @param string $segmentClass
+     * @return BaseSegment[]
      */
-    private function getB24Guarantor(): array
+    private function createSingleSegment(string $segmentClass): array
     {
-        if (empty($this->offer->getGuarantorArray())) {
-            return [
-                new B24Guarantor(new Guarantor(), $this),
-            ];
+        return [new $segmentClass($this)];
+    }
+    
+    /**
+     * @return BaseSegment[]
+     */
+    public function getSegments()
+    {
+        if (empty($this->segments)) {
+            $this->createSegments();
         }
-        return array_map(function (Guarantor $item) {
-            return new B24Guarantor($item, $this);
-        }, $this->offer->getGuarantorArray());
+        return $this->segments;
     }
     
     /**
      * @return array
      */
-    public function createSegments(): array
+    public function getErrors(): array
     {
-        if ($this->subject->isLegal()) {
-            return [
-                "B1_NAME" => new B1Name($this),
-                "B2_ADDR" => new B2Addr($this),
-                "B3_REGNUM" => new B3RegNum($this),
-                "B4_TAXPAYERID" => new B4TaxPayerID($this),
-                "B5_REORG" => new B5Reorg($this),
-                "B6_BANKRUPTCY" => new B6Bankruptcy($this),
-                "B7_SETTLED" => new B7Setled($this),
-                "B8_PREVCRED" => new B8PrevCred($this),
-                "B10_UID" => new B10UID($this),
-                "B11_TRADE" => new B11Trade($this),
-                "B12_ACCOUNTAMT" => new B12AccountAmt($this),
-                "B13_COBORROWER" => new B13CoBorrower($this),
-                "B14_PAYMTCONDITION" => new B14PaymtCondition($this),
-                "B15_AMENDMENT" => new B15Amendment($this),
-                "B16_FUNDDATE" => new B16FundDate($this),
-                "B17_ARREAR" => new B17Arrear($this),
-                "B18_DUEARREAR" => new B18DueArrear($this),
-                "B19_PASTDUEARREAR" => new B19PastDsueArrear($this),
-                "B20_PAYMT" => new B20Paymt($this),
-                "B23_COLLATERAL" => $this->getB23Collateral(),
-                "B24_GUARANTOR" => $this->getB24Guarantor(),
-                "B25_INDEPGUARANTOR" => new B25IndepGuarantor($this),
-                "B26_COLLATINSURED" => new B26Collatinsured($this),
-                "B27_COLLATREPAY" => new B27CollatRepay($this),
-                "B28_GUARANTEEREPAY" => new B28GuaranteeRepay($this),
-                "B29_OBLIGTERMINATION" => new B29ObligTermination($this),
-                "B44_OBLIGACCOUNT" => new B44ObligacCount($this),
-                "B46_OBLIGPARTTAKE" => new B46ObligPartTake($this),
-            ];
-        }
-        return [
-            "C1_NAME" => new C1Name($this),
-            "C2_PREVNAME" => new C2PrevName($this),
-            "C3_BIRTH" => new C3Birth($this),
-            "C4_ID" => new C4Id($this),
-            "C5_PREVID" => new C5PrevId($this),
-            "C6_REGNUM" => new C6RegNum($this),
-            "C7_SNILS" => new C7Snils($this),
-            "C8_REGADDR" => new C8RegAddr($this),
-            "C9_ACTUALADDR" => new C9ActualAddr($this),
-            "C10_CONTACTINFO" => new C10ContactInfo($this),
-            "C11_ENTREP" => new C11Entrep($this),
-            "C12_CAPABILITY" => new C12Capability($this),
-            "C17_UID" => new C17UID($this),
-            "C18_TRADE" => new C18Trade($this),
-            "C19_ACCOUNTAMT" => new C19AccountAmt($this),
-            "C20_COBORROWER" => new C20CoBorrower($this),
-            "C21_PAYMTCONDITION" => new C21PaymtCondition($this),
-            "C23_AMENDMENT" => new C23Amendment($this),
-            "C24_FUNDDATE" => new C24FundDate($this),
-            "C25_ARREAR" => new C25Arrear($this),
-            "C26_DUEARREAR" => new C26DueArrear($this),
-            "C27_PASTDUEARREAR" => new C27PastDsueArrear($this),
-            "C28_PAYMT" => new C28Paymt($this),
-            "C29_MONTHAVERPAYMT" => new C29MonthAverPaymt($this),
-            "C32_COLLATERAL" => $this->getC32Collateral(),
-            "C33_GUARANTOR" => $this->getC33Guarantor(),
-            "C34_INDEPGUARANTOR" => new C34IndepGuarantor($this),
-            "C35_COLLATINSURED" => new C35Collatinsured($this),
-            "C36_COLLATREPAY" => new C36CollatRepay($this),
-            "C37_GUARANTEEREPAY" => new C37GuaranteeRepay($this),
-            "C38_OBLIGTERMINATION" => new C38ObligTermination($this),
-            "C54_OBLIGACCOUNT" => new C54ObligacCount($this),
-            "C56_OBLIGPARTTAKE" => new C56ObligPartTake($this),
-        ];
+        return $this->errors;
     }
     
     /**
-     * @return C32Collateral[]
+     * @param string $segmentClass
+     * @return BaseSegment[]
      */
-    private function getC32Collateral(): array
+    private function createMultiSegment(string $segmentClass): array
     {
-        if (empty($this->offer->getCollateralArray())) {
-            return [
-                new C32Collateral(new Collateral(), $this),
-            ];
+        $segments = [];
+        switch ($segmentClass) {
+            case B12AccountAmt::class:
+            case C19AccountAmt::class:
+                {
+                    $segments = $this->configureSegments(
+                        $segmentClass,
+                        $this->sendData->getAccountReplyRUTDF()->getAccountAmt()
+                    );
+                }
+                break;
+            case B15Amendment::class:
+            case C23Amendment::class:
+                {
+                    $segments = $this->configureSegments(
+                        $segmentClass,
+                        $this->sendData->getAccountReplyRUTDF()->getAmendment(),
+                        new AmendmentRUTDF()
+                    );
+                }
+                break;
+            case B20Paymt::class:
+            case C28Paymt::class:
+                {
+                    $segments = $this->configureSegments(
+                        $segmentClass,
+                        $this->sendData->getAccountReplyRUTDF()->getPayment()
+                    );
+                }
+                break;
+            case B23Collateral::class:
+            case C32Collateral::class:
+                {
+                    $segments = $this->configureSegments(
+                        $segmentClass,
+                        $this->sendData->getAccountReplyRUTDF()->getCollateral(),
+                        new CollateralRUTDF()
+                    );
+                }
+                break;
+            case B24Guarantor::class:
+            case C33Guarantor::class:
+                {
+                    $segments = $this->configureSegments(
+                        $segmentClass,
+                        $this->sendData->getAccountReplyRUTDF()->getGuarantor(),
+                        new GuarantorRUTDF()
+                    );
+                }
+                break;
+            case B25IndepGuarantor::class:
+            case C34IndepGuarantor::class:
+                {
+                    $segments = $this->configureSegments(
+                        $segmentClass,
+                        $this->sendData->getAccountReplyRUTDF()->getIndepGuarantor(),
+                        new IndepGuarantorRUTDF()
+                    );
+                }
+                break;
+            case B26Collatinsured::class:
+            case C35Collatinsured::class:
+                {
+                    $segments = $this->configureSegments(
+                        $segmentClass,
+                        $this->sendData->getAccountReplyRUTDF()->getCollatInsured(),
+                        new CollatInsuredRUTDF()
+                    );
+                }
+                break;
+            case B27CollatRepay::class:
+            case C36CollatRepay::class:
+                {
+                    $segments = $this->configureSegments(
+                        $segmentClass,
+                        $this->sendData->getAccountReplyRUTDF()->getCollatRepay(),
+                        new CollatRepayRUTDF()
+                    );
+                }
+                break;
+            case B30LegalRecord::class:
+            case C39LegalRecord::class:
+                {
+                    $segments = $this->configureSegments(
+                        $segmentClass,
+                        $this->sendData->getAccountReplyRUTDF()->getLegalItems(),
+                        new LegalItemsRUTDF()
+                    );
+                }
+                break;
+            default:
+            {
+                throw new LogicException();
+            }
         }
-        return array_map(function (Collateral $item) {
-            return new C32Collateral($item, $this);
-        }, $this->offer->getCollateralArray());
+        return $segments;
     }
     
     /**
-     * @return C33Guarantor[]
+     * @param string $segmentClass
+     * @param BaseItem[] $items
+     * @param BaseItem|null $default
+     * @return array
      */
-    private function getC33Guarantor(): array
+    private function configureSegments(string $segmentClass, array $items, BaseItem $default = null): array
     {
-        if (empty($this->offer->getGuarantorArray())) {
-            return [
-                new C33Guarantor(new Guarantor(), $this),
-            ];
+        $segments = [];
+        if (empty($items) && $default !== null) {
+            $segments[] = new $segmentClass($this, $default);
         }
-        return array_map(function (Guarantor $item) {
-            return new C33Guarantor($item, $this);
-        }, $this->offer->getGuarantorArray());
+        foreach ($items as $item) {
+            $segments[] = new $segmentClass($this, $item);
+        }
+        return $segments;
     }
     
+    /**
+     * @return string
+     */
+    public function getContent(): string
+    {
+        return $this->content;
+    }
+    
+    /**
+     * @return string
+     */
+    private function getOperationaCode(): string
+    {
+        if($this->sendData->isFirst()){
+            return GroupHeader::CODE_A;
+        }
+        return GroupHeader::CODE_B;
+    }
 }

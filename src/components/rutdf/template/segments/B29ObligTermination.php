@@ -5,7 +5,7 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 /**
  * Блок 29. Сведения о прекращении обязательства – B29_OBLIGTERMINATION
  */
-class B29ObligTermination extends \mfteam\nbch\components\BaseSegment
+class B29ObligTermination extends BaseSegment
 {
     
     /**
@@ -21,10 +21,11 @@ class B29ObligTermination extends \mfteam\nbch\components\BaseSegment
      */
     public function getFields(): array
     {
+        $model = $this->template->sendData->getAccountReplyRUTDF();
         return [
-            $this->segmentName,
-            $this->template->offer->getTrade()->accountRating,
-            $this->formatNewDate($this->template->offer->getTrade()->completePerformDt),
+            $this->getSegmentName(),
+            $model->loanIndicator,
+            $this->formatDate($model->loanIndicatorDt),
         ];
     }
     
@@ -46,5 +47,21 @@ class B29ObligTermination extends \mfteam\nbch\components\BaseSegment
     public function getTitle(): string
     {
         return 'Блок 29. Сведения о прекращении обязательства – B29_OBLIGTERMINATION';
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function validate(): bool
+    {
+        return true;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getDescription(): string
+    {
+        return 'допустим 1 на группу блоков';
     }
 }

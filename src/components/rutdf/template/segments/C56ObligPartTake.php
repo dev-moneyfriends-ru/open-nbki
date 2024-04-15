@@ -2,12 +2,10 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments;
 
-use mfteam\nbch\models\NbchSubjectInterface;
-
 /**
  * Блок 56. Сведения об участии в обязательстве, по которому формируется КИ - C56_OBLIGPARTTAKE
  */
-class C56ObligPartTake extends \mfteam\nbch\components\BaseSegment
+class C56ObligPartTake extends BaseSegment
 {
     
     /**
@@ -23,15 +21,15 @@ class C56ObligPartTake extends \mfteam\nbch\components\BaseSegment
      */
     public function getFields(): array
     {
-        $trade = $this->template->offer->getTrade();
+        $model = $this->template->sendData->getInformationPartRUTDF();
         return [
-            $this->segmentName,
-            $this->flagIndicatorCode(),
-            $this->template->offer->getTrade()->loanKindCode,
-            $trade->uuid . "-" . $this->getUuidControlSum($trade->uuid),
-            $this->formatNewDate($trade->fundDt),
-            $this->daysPastDue() > 90?1:0,
-            empty($trade->completePerformDt)?0:1
+            $this->getSegmentName(),
+            $model->flagIndicatorCode,
+            $model->approvedLoanTypeCode,
+            $model->applicationNumber . "-" . $model->getUuidControlSum($model->applicationNumber),
+            $this->formatDate($model->fundDt),
+            $model->defaultFlag,
+            $model->loanIndicator
         ];
     }
     
@@ -42,12 +40,12 @@ class C56ObligPartTake extends \mfteam\nbch\components\BaseSegment
     {
         return [
             'Наименование сегмента' => '',
-            'Код вида участия в сделке' => '',
-            'Код вида займа (кредита)' => '',
-            'УИд сделки' => '',
-            'Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства' => '',
-            'Признак просрочки должника более 90 дней' => '',
-            'Признак прекращения обязательства' => '',
+            'Код вида участия в сделке' => 'Заполняется по справочнику 2.1.',
+            'Код вида займа (кредита)' => 'Заполняется по справочнику 2.3.',
+            'УИд сделки' => 'Значение должно соответствовать одному из значений показателя 17.1 «УИд сделки».',
+            'Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства' => 'Должно совпадать со значением показателя 24.1.',
+            'Признак просрочки должника более 90 дней' => 'Код «1» – должник нарушил срок платежа по займу или лизингу более чем на 90 календарных дней; код «0» – обстоятельство кода «1» отсутствует Продолжительность просрочки определяется методом ФИФО. Значение данного показателя должно соответствовать продолжительности просрочки, которая указана по показателю 28.12 «Продолжительность просрочки».',
+            'Признак прекращения обязательства' => 'Код «1» – взаимные обязательства субъекта и источника прекращены (независимо от основания); код «0» – обстоятельство кода «1» отсутствует.',
         ];
     }
     
@@ -59,17 +57,19 @@ class C56ObligPartTake extends \mfteam\nbch\components\BaseSegment
         return 'Блок 56. Сведения об участии в обязательстве, по которому формируется КИ - C56_OBLIGPARTTAKE';
     }
     
-    private function flagIndicatorCode()
+    /**
+     * @inheritDoc
+     */
+    public function validate(): bool
     {
-        if($this->template->subject->getOfferRelationType() === NbchSubjectInterface::OFFER_RELATION_TYPE_GUARANTOR){
-            return 2;
-        }
-        if($this->template->subject->getOfferRelationType() === NbchSubjectInterface::OFFER_RELATION_TYPE_BORROWER){
-            if($this->template->offer->getTrade()->tradeTypeCode === 2){
-                return 4;
-            }
-            return 1;
-        }
-        return 99;
+        return true;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getDescription(): string
+    {
+        return 'Блок формируется, если на основании сделки субъекту переданы сумма займа (кредита) или предмет лизинга либо возникло обеспечение. Для требований о взыскании долга по алиментам, платы за жилое помещение, коммунальные услуги или услуги связи в блоке 56 заполняются только показатели 56.1, 56.5 и 56.6. Если показатель 56.3 не заполнен, то в качестве ключа используется показатель 56.4. Если и он не заполнен, укажите произвольный уникальный идентификатор сведений об участии в обязательстве в показателе 0.4 блока 0_GROUPHEADER как значение ключа obligpt_num. Идентификатор будет использован как ключевое поле.';
     }
 }

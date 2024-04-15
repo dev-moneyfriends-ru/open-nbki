@@ -5,7 +5,7 @@ namespace mfteam\nbch\components\rutdf\template\segments;
 /**
  * Блок 7. СНИЛС – C7_SNILS
  */
-class C7Snils extends \mfteam\nbch\components\BaseSegment
+class C7Snils extends BaseSegment
 {
     
     /**
@@ -13,10 +13,7 @@ class C7Snils extends \mfteam\nbch\components\BaseSegment
      */
     public function validate(): bool
     {
-        if (empty($this->template->subject->getSnils())) {
-            $this->errors[] = "Отсутствует СНИЛС";
-        }
-        return $this->isEmptyErrors;
+        return true;
     }
     
     /**
@@ -32,9 +29,15 @@ class C7Snils extends \mfteam\nbch\components\BaseSegment
      */
     public function getFields(): array
     {
+        if($this->template->sendData->getSNILSReply()){
+            return [
+                $this->getSegmentName(),
+                $this->template->sendData->getSNILSReply()->snils??self::EMPTY_VALUE,
+            ];
+        }
         return [
-            $this->segmentName,
-            $this->template->subject->getSnils(),
+            $this->getSegmentName(),
+            self::EMPTY_VALUE,
         ];
     }
     
@@ -45,7 +48,7 @@ class C7Snils extends \mfteam\nbch\components\BaseSegment
     {
         return [
             'Наименование сегмента' => '',
-            "СНИЛС" => '',
+            "СНИЛС" => 'Страховой номер индивидуального лицевого счета (далее – СНИЛС) физического лица. Номер указывается согласно документу, подтверждающему регистрацию физического лица в системе индивидуального (персонифицированного) учета. Заполняется, если субъект предоставил СНИЛС источнику.',
         ];
     }
     

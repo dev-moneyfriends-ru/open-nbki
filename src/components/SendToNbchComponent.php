@@ -4,9 +4,8 @@ namespace mfteam\nbch\components;
 
 use mfteam\nbch\components\file\NbchFile;
 use mfteam\nbch\Env;
-use mfteam\nbch\models\BaseSendNbchRequestInterface;
+use mfteam\nbch\models\rutdf\BaseSendNbchRequestInterface;
 use mfteam\nbch\models\rutdf\NbchRutdfRequest;
-use mfteam\nbch\models\tutdf\NbchTutdfRequest;
 use yii\base\BaseObject;
 use yii\base\Exception;
 
@@ -82,9 +81,6 @@ class SendToNbchComponent extends BaseObject
         $this->request->save();
         
         $module = Env::ensure()->module;
-        if ($this->request instanceof NbchTutdfRequest) {
-            $this->reportEmail = $module->tutdf->reportEmail;
-        }
         if ($this->request instanceof NbchRutdfRequest) {
             $this->reportEmail = $module->rutdf->reportEmail;
         }

@@ -87,6 +87,7 @@ mfteam\nbch\models\creditHistory\NbchConsentRelationsQuery;<br>
 \mfteam\nbch\components\creditHistory\CreditHistoryComponent::addRegnumReq
 \mfteam\nbch\components\creditHistory\CreditHistoryComponent::addSNILSReq
 и будут удалены в октябре, вместо них используется один метод \mfteam\nbch\components\creditHistory\CreditHistoryComponent::execute
+- Добавлены сегменты шаблона для новых событий. Все сегменты обновлены под новый шаблон. 
 
 1.3.0
 -----

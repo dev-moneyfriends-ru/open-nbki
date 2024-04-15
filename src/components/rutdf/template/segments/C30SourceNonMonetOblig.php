@@ -3,17 +3,25 @@
 namespace mfteam\nbch\components\rutdf\template\segments;
 
 /**
- * Блок 21. Сведения о неденежном обязательстве источника - B21_SOURCENONMONETOBLIG
+ * Блок 30. Сведения о неденежном обязательстве источника – C30_SOURCENONMONETOBLIG
  */
-class B21SourceNonMonetOblig extends BaseSegment
+class C30SourceNonMonetOblig extends BaseSegment
 {
+    
+    /**
+     * @inheritDoc
+     */
+    public function validate(): bool
+    {
+        return true;
+    }
     
     /**
      * @inheritDoc
      */
     public function getSegmentName(): string
     {
-        return "B21_SOURCENONMONETOBLIG";
+        return 'C30_SOURCENONMONETOBLIG';
     }
     
     /**
@@ -53,24 +61,16 @@ class B21SourceNonMonetOblig extends BaseSegment
     /**
      * @inheritDoc
      */
-    public function getTitle(): string
-    {
-        return 'Блок 21. Сведения о неденежном обязательстве источника - B21_SOURCENONMONETOBLIG';
-    }
-    
-    /**
-     * @inheritDoc
-     */
     public function getDescription(): string
     {
-        return 'Блок формируется, если по показателю 11.8 «Признак денежного обязательства источника» блока 11 указан код «0». Сведения указываются согласно условиям сделки. Показатели в блоке не заполняются (обязательные заполняются дефисом) при передаче сведений о поручительстве и независимой гарантии до наступления ответственности поручителя или обязанности принципала возместить гаранту выплаченную сумму соответственно (11.1 = 2 или 3, 11.3 = 6-8 или 9-13, 17.1=0).';
+        return 'Блок формируется, если по показателю 18.9 «Признак денежного обязательства источника» указан код «0». Сведения указываются согласно условиям сделки. Показатели в блоке не заполняются (обязательные заполняются дефисом) при передаче сведений о поручительстве и независимой гарантии до наступления ответственности поручителя или обязанности принципала возместить гаранту выплаченную сумму соответственно (18.1 = 2 или 3, 18.3 = 6-8 или 9-13, 25.1=0). ';
     }
     
     /**
      * @inheritDoc
      */
-    public function validate(): bool
+    public function getTitle(): string
     {
-        return true;
+        return 'Блок 30. Сведения о неденежном обязательстве источника – C30_SOURCENONMONETOBLIG';
     }
 }
