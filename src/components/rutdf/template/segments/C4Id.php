@@ -46,7 +46,7 @@ class C4Id extends BaseSegment
            
         }
         
-        return $this->isEmptyErrors();
+        return $this->getIsEmptyErrors();
     }
     
     /**

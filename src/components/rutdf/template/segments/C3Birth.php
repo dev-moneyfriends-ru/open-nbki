@@ -22,7 +22,7 @@ class C3Birth extends BaseSegment
         if (empty($this->template->sendData->getPersonReply()->placeOfBirth)) {
             $this->errors[] = 'Отсутствует Место рождения';
         }
-        return $this->isEmptyErrors();
+        return $this->getIsEmptyErrors();
     }
     
     /**

@@ -42,7 +42,7 @@ class C5PrevId extends BaseSegment
                 }
             }
         }
-        return $this->isEmptyErrors();
+        return $this->getIsEmptyErrors();
     }
     
     /**

@@ -24,7 +24,7 @@ class C2PrevName extends BaseSegment
                 $this->errors[] = 'Отсутствует Дата выдачи документа с измененным именем';
             }
         }
-        return $this->isEmptyErrors();
+        return $this->getIsEmptyErrors();
     }
     
     /**

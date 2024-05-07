@@ -27,7 +27,7 @@ class C1Name extends BaseSegment
             }
         }
         
-        return $this->isEmptyErrors();
+        return $this->getIsEmptyErrors();
     }
     
     /**

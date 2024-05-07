@@ -94,7 +94,7 @@ class B11Trade extends BaseSegment
                 }
             }
         }
-        return $this->isEmptyErrors();
+        return $this->getIsEmptyErrors();
     }
     
     public function getDescription(): string

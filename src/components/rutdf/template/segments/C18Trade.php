@@ -23,7 +23,7 @@ class C18Trade extends BaseSegment
                 }
             }
         }
-        return $this->isEmptyErrors();
+        return $this->getIsEmptyErrors();
     }
     
     /**

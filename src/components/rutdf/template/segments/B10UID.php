@@ -57,7 +57,7 @@ class B10UID extends BaseSegment
         if(empty($model->uuid)){
             $this->errors[] = 'Отсутствует УИД';
         }
-        return $this->isEmptyErrors();
+        return $this->getIsEmptyErrors();
     }
     /**
      * @inheritDoc
