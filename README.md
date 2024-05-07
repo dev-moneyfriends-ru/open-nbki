@@ -64,9 +64,11 @@ modules =>[
             'memberCode' => '2I01RR000000',
             'partnerName' => 'ООО «МАНИ ФРЕНДС»',
             'components' => [
+                //Компонент для работы с файлами
                 'file' => [
                     'class' => \mfteam\nbch\components\file\FileManagerInterface::class,
                 ],
+                //Настройки передачи данных в НБКИ
                 'rutdf' => [
                     'class' => \mfteam\nbch\components\rutdf\RutdfRequestComponent::class,
                     'userName' => '2I01RR000005',
@@ -75,15 +77,18 @@ modules =>[
                     'sourceInn' => '6163209391',
                     'sourceOgrn' => '1186196015510'
                 ],
+                //Настройки получения кредитных отчетов
                 'creditHistory' => [
                     'class' => \mfteam\nbch\components\creditHistory\CreditHistoryComponent::class,
                     'userName' => '2I01RR000005',
                     'password' => '2I01rr00',
                     'apiUrl' => 'https://reports.demo.nbki.ru/products/B2BRequestServlet',
                 ],
+                //Компонент для работы с сервером подписей
                 'esignClient' => [
                     'class' =>\mfteam\nbch\components\NbchEsignClientInterface::class,
                 ],
+                //Настройки почтового сервера для отправки данных и получения квитанций
                 'mailer' => [
                     'class' => Mailer::class,
                     'useFileTransport' => false,
@@ -104,9 +109,78 @@ modules =>[
 Пример 1. Передача сведений по событию 2.1а Изменились сведения об условиях обязательства субъекта для денежного обязательства
 ```php
 /**
- * @var \mfteam\nbch\models\rutdf\NbchDataInterface $nbchData
+ * @var \mfteam\nbch\models\rutdf\NbchDataInterface $sendData Данные для отправки в НБКИ
+ * @var string $offerUuid Уникальный идентификатор договора
  */
+
+$events = [
+    NbchEvents::EVENT_2_1A,
+];
+
+//Генерация файла для отправки
+
+$template = new \mfteam\nbch\components\rutdf\template\RutdfTemplate($events, $sendData);
+$template->loadContent();
+
+/**
+ * Если необходимо можно получить содержимое файла
+ * @var string $content
+ */
+$content = $template->getContent();
+
+/**
+ * Или массив блоков
+ * @var \lender21\nbki\components\rutdf\template\segments\BaseSegment[] $segments
+ */
+$segments = $template->getSegments();
+
+/**
+ * Ошибки при генерации
+ * @var array $errors
+ */
+$errors = $template->getErrors();
+
+
+$component = \mfteam\nbch\Env::ensure()->module->rutdf;
+
+//Создание записи о запросе
+$rutdfRequest = $component->createRequest($offerUuid, $events);
+
+//Создание файла для запроса
+
+$component->createFile($template, $request);
+
+//Отправка 
+
+$component->send($request);
 
 ```
 Получение КИ:
 -
+```php
+/**
+ * @var \mfteam\nbch\models\creditHistory\NbchConsent $consent Согласие на получение данных КИ пользователя
+ */
+$component = \mfteam\nbch\Env::ensure()->module->creditHistory;
+$nbchChRequest = $component->createRequest($consent);
+
+$prequestReq = new \mfteam\nbch\models\PrequestReq()
+
+// Далее заполняем данными модель запроса $prequestReq
+$prequestReq->idReq = new \mfteam\nbch\models\IdReq([
+...
+])
+...
+//После заполнения получаем данные
+$component->execute($prequestReq);
+if($nbchChRequest->status === \mfteam\nbch\models\creditHistory\NbchChRequest::STATE_FINISH){
+    /**
+    * @var \mfteam\nbch\components\file\NbchFile $fileXml  
+    */
+    $fileXml = $nbchChRequest->responseXml;
+    /**
+    * @var \mfteam\nbch\components\file\NbchFile $fileXml  
+    */
+    $fileHTML = $nbchChRequest->responseHtml;
+}
+```

@@ -3,10 +3,13 @@
 namespace mfteam\nbch\components\rutdf;
 
 use mfteam\nbch\components\CreateZipArchiveComponent;
+use mfteam\nbch\components\file\NbchFile;
+use mfteam\nbch\components\rutdf\template\RutdfTemplate;
 use mfteam\nbch\components\SendToNbchComponent;
 use mfteam\nbch\components\UnzipConfirmComponent;
 use mfteam\nbch\exceptions\CreateNbchRutdfRequestException;
 use mfteam\nbch\models\control\NbchControl;
+use mfteam\nbch\models\rutdf\NbchDataInterface;
 use mfteam\nbch\models\rutdf\NbchRutdfRequest;
 use Yii;
 use yii\base\Exception;
@@ -78,6 +81,26 @@ class RutdfRequestComponent extends \yii\base\Component
         return $model;
     }
     
+    /**
+     * Создает и сохраняет файл RUTDF из данных в шаблоне.
+     * @param RutdfTemplate $template
+     * @param NbchRutdfRequest $request
+     * @return bool
+     * @throws \Throwable
+     */
+    public function createFile(RutdfTemplate $template, NbchRutdfRequest $request): bool
+    {
+        try{
+            $tmpPath = $template->saveAsTemp();
+            $file = new NbchFile();
+            $file->setFileName($template->getBaseName())
+                ->setStoragePath($tmpPath);
+            return $request->saveFile($file);
+        } catch (\Throwable $e){
+            $request->setAsError($e);
+            throw $e;
+        }
+    }
     /**
      * Отправка отчета RUTDF
      * @param NbchRutdfRequest $request
