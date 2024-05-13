@@ -87,12 +87,6 @@ class B11Trade extends BaseSegment
         $trade = $this->template->sendData->getAccountReplyRUTDF()->getTrade();
         if ($trade === null) {
             $this->errors[] = 'Отсутствует сделка';
-        } else {
-            foreach ($trade as $attribute => $value) {
-                if ($value === null) {
-                    $this->errors[] = "Не задано значение сделки $attribute";
-                }
-            }
         }
         return $this->getIsEmptyErrors();
     }

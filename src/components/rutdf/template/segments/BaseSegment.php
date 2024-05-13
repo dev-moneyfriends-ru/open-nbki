@@ -216,6 +216,14 @@ abstract class BaseSegment extends \yii\base\BaseObject
     }
     
     /**
+     * @return array
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
+    
+    /**
      * @param string $uuid
      * @return string
      * @deprecated
