@@ -342,7 +342,8 @@ class RutdfTemplate
         }
         $module = Env::ensure()->module;
         $name = $module->rutdf->userName;
-        $suffix = Yii::$app->formatter->asDatetime(time(), '_yyyyMMdd_HHmmss');
+        $this->generateTime = time();
+        $suffix = Yii::$app->formatter->asDatetime($this->generateTime, '_yyyyMMdd_HHmmss');
         while (
         $module->file->fileExist(
             $name . $suffix,
@@ -352,7 +353,8 @@ class RutdfTemplate
         )
         ) {
             sleep(1);
-            $suffix = Yii::$app->formatter->asDatetime(time(), '_yyyyMMdd_HHmmss');
+            $this->generateTime = time();
+            $suffix = Yii::$app->formatter->asDatetime($this->generateTime, '_yyyyMMdd_HHmmss');
         }
         $this->baseFileName = $name . $suffix;
         return $this->baseFileName;

@@ -109,7 +109,7 @@ abstract class BaseSegment extends \yii\base\BaseObject
         if (!$this->validate() || count($this->errors) > 0) {
             $this->throwError();
         }
-        return implode("\t", $this->getFields()) . PHP_EOL;
+        return empty($this->getFields())?'':implode("\t", $this->getFields());
     }
     
     /**
