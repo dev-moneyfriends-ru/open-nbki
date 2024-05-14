@@ -30,6 +30,10 @@ class C30SourceNonMonetOblig extends BaseSegment
     public function getFields(): array
     {
         $model = $this->template->sendData->getAccountReplyRUTDF()->getSourceNonMonetOblig();
+        $trade = $this->template->sendData->getAccountReplyRUTDF()->getTrade();
+        if($trade === null || $trade->isMoneySource){
+            return [];
+        }
         if ($model === null) {
             throw new \LogicException();
         }

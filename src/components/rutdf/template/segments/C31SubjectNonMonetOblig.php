@@ -30,6 +30,10 @@ class C31SubjectNonMonetOblig extends BaseSegment
     public function getFields(): array
     {
         $model = $this->template->sendData->getAccountReplyRUTDF()->getSubjectNonMonetOblig();
+        $trade = $this->template->sendData->getAccountReplyRUTDF()->getTrade();
+        if($trade === null || $trade->isMoneyBorrower){
+            return [];
+        }
         if ($model === null) {
             throw new \LogicException();
         }
