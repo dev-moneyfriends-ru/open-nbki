@@ -31,6 +31,8 @@ class NbchEvents
     public const EVENT_2_11_1A = "2.11.1A";
     public const EVENT_2_11_1B = "2.11.1B";
     public const EVENT_2_12 = "2.12";
+    public const EVENT_3_3 = "3.3";
+    public const EVENT_4_2 = "4.2";
     
     public static function list()
     {
@@ -62,6 +64,8 @@ class NbchEvents
             self::EVENT_2_11_1A => '2.11.1а Права кредитора по обязательству частично перешли к другому лицу для денежного обязательства',
             self::EVENT_2_11_1B => '2.11.1б Права кредитора по обязательству частично перешли к другому лицу для неденежного обязательства',
             self::EVENT_2_12 => '2.12 Изменились сведения об обслуживающей организации (в частности, заключен, изменен или расторгнут договор обслуживания)',
+            self::EVENT_3_3 => '3.3 Требуется исключение записи кредитной истории, сведения о которой отсутствуют у источника формирования кредитной истории',
+            self::EVENT_4_2 => '4.2 Требуется аннулирование записи кредитной истории',
         ];
     }
     
@@ -237,6 +241,16 @@ class NbchEvents
                 1, 2, 3, 4, 5, 6, 7,
                 17,
                 53, 54,
+            ],
+            self::EVENT_3_3 => [
+                1, 2, 3, 4, 5, 6, 7,
+                0,
+                17, 18, 19,
+            ],
+            self::EVENT_4_2 => [
+                1, 2, 3, 4, 5, 6, 7,
+                0,
+                17, 18, 19,
             ],
         ];
     }
@@ -414,6 +428,16 @@ class NbchEvents
                 10,
                 43, 44,
             ],
+            self::EVENT_3_3 => [
+                1, 2, 3, 4, 5,
+                0,
+                10, 11, 12,
+            ],
+            self::EVENT_4_2 => [
+                1, 2, 3, 4, 5,
+                0,
+                10, 11, 12,
+            ],
         ];
     }
     
@@ -423,6 +447,7 @@ class NbchEvents
     public static function personBlockCode()
     {
         return [
+            0 => 'DELETE',
             1 => "C1_NAME",
             2 => "C2_PREVNAME",
             3 => "C3_BIRTH",
@@ -472,6 +497,7 @@ class NbchEvents
     public static function legalBlockCode()
     {
         return [
+            0 => 'DELETE',
             1 => "B1_NAME",
             2 => "B2_ADDR",
             3 => "B3_REGNUM",

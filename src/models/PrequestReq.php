@@ -116,7 +116,7 @@ class PrequestReq extends BaseItem
      * Целое число. По умолчанию=3, может быть изменено без предупреждения
      * @var int
      */
-    public $addrLimit = 3;
+    public $allAddressBlocks = 3;
     
     /**
      * @return IdReq|null
@@ -174,7 +174,7 @@ class PrequestReq extends BaseItem
             'IOType',
             'OutputFormat',
             'lang',
-            'addrLimit',
+            'allAddressBlocks',
             'version',
         ];
     }

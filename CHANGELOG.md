@@ -1,3 +1,12 @@
+2.1
+----
+- Добавлена обработка событий EVENT_3_3, EVENT_4_2
+- Добавлена поддержка RUTDF62
+- В шаблоне формирования файла для передачи данных RutdfTemplate, теперь можно задать код события
+- Метод \mfteam\nbch\models\AccountReplyRUTDF::setPastdueArrearArray переименован в setPastdueArrear
+- Блок C29MonthAverPaymt теперь обязателен для передачи, но может не заполнятся. Однака в случае закрытия договора по ФЛ\ИП
+Необходимо передавать показатель \mfteam\nbch\models\MonthAverPaymtRUTDF::$averPaymtAmt = 0
+
 2.0
 ----
 

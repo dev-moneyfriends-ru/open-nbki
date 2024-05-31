@@ -8,7 +8,8 @@ namespace mfteam\nbch\models;
 class MonthAverPaymtRUTDF extends BaseItem
 {
     /**
-     * Величина среднемесячного платежа
+     * Величина среднемесячного платежа.
+     * При прекращении обязательства (независимо от основания), указывается значение 0
      * @var float $averPaymtAmt
      */
     public $averPaymtAmt;

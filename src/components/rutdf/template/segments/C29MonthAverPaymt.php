@@ -23,7 +23,11 @@ class C29MonthAverPaymt extends BaseSegment
     {
         $model = $this->template->sendData->getAccountReplyRUTDF()->getMonthAverPaymt();
         if($model === null){
-            throw new \LogicException();
+            return [
+                $this->getSegmentName(),
+                self::EMPTY_VALUE,
+                self::EMPTY_VALUE,
+            ];
         }
         return [
             $this->getSegmentName(),
@@ -39,7 +43,7 @@ class C29MonthAverPaymt extends BaseSegment
     {
         return [
             'Наименование сегмента' => '',
-            'Величина среднемесячного платежа' => '',
+            'Величина среднемесячного платежа' => 'При прекращении обязательства (независимо от основания), указывается значение 0',
             'Дата расчета величины среднемесячного платежа' => 'Дата, по состоянию на которую источник выполнил расчет.',
         ];
     }
@@ -57,7 +61,7 @@ class C29MonthAverPaymt extends BaseSegment
      */
     public function getDescription(): string
     {
-        return 'Сведения о величине среднемесячного платежа, рассчитанной в порядке, установленном приложением 1 к Положению Банка России «О порядке формирования кредитной истории». Если величина среднемесячного платежа не рассчитывается, блок не формируется и не передается';
+        return 'Сведения о величине среднемесячного платежа, рассчитанной в порядке, установленном приложением 1 к Положению Банка России «О порядке формирования кредитной истории».';
     }
     
     public function validate(): bool

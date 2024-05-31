@@ -191,7 +191,7 @@ class GroupHeader extends BaseSegment
     public function setComment(GroupHeaderComment $comment): GroupHeader
     {
         $this->comment = $comment;
-        $this->fieldValues = null;
+        $this->fieldValues = [];
         return $this;
     }
     
@@ -202,7 +202,7 @@ class GroupHeader extends BaseSegment
     public function setNumber(int $number): GroupHeader
     {
         $this->number = $number;
-        $this->fieldValues = null;
+        $this->fieldValues = [];
         return $this;
     }
     
@@ -262,7 +262,7 @@ class GroupHeader extends BaseSegment
             }
         }
         
-        $this->fieldValues = null;
+        $this->fieldValues = [];
         return $this;
     }
     
@@ -273,7 +273,7 @@ class GroupHeader extends BaseSegment
     public function setCode(string $code): GroupHeader
     {
         $this->code = $code;
-        $this->fieldValues = null;
+        $this->fieldValues = [];
         return $this;
     }
 }

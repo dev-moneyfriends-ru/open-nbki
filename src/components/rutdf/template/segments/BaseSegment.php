@@ -188,7 +188,7 @@ abstract class BaseSegment extends \yii\base\BaseObject
      */
     public function getFieldFromFile(int $index)
     {
-        if ($this->fieldValues === null) {
+        if (empty($this->fieldValues)) {
             $this->loadFieldValues();
         }
         return ArrayHelper::getValue($this->fieldValues, $index);

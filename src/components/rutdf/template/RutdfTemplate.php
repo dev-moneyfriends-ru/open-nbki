@@ -77,6 +77,7 @@ use mfteam\nbch\components\rutdf\template\segments\C6RegNum;
 use mfteam\nbch\components\rutdf\template\segments\C7Snils;
 use mfteam\nbch\components\rutdf\template\segments\C8RegAddr;
 use mfteam\nbch\components\rutdf\template\segments\C9ActualAddr;
+use mfteam\nbch\components\rutdf\template\segments\Delete;
 use mfteam\nbch\components\rutdf\template\segments\GroupHeader;
 use mfteam\nbch\components\rutdf\template\segments\Header;
 use mfteam\nbch\components\rutdf\template\segments\Trailer;
@@ -235,6 +236,7 @@ class RutdfTemplate
         'C55_APPLICATION' => C55Application::class,
         'C56_OBLIGPARTTAKE' => C56ObligPartTake::class,
         'C57_APPLREJECT' => C57ApplReject::class,
+        'DELETE' => Delete::class,
     ];
     
     /**
@@ -262,13 +264,19 @@ class RutdfTemplate
     ];
     
     /**
+     * @var null|string
+     */
+    protected $gHeaderCode = null;
+    
+    /**
      * @param array $eventIds
      * @param NbchDataInterface $sendData
      */
-    public function __construct(array $eventIds, NbchDataInterface $sendData)
+    public function __construct(array $eventIds, NbchDataInterface $sendData, string $gHeaderCode = null)
     {
         $this->eventIds = $eventIds;
         $this->sendData = $sendData;
+        $this->gHeaderCode = $gHeaderCode;
     }
     
     /**
@@ -472,7 +480,7 @@ class RutdfTemplate
                 {
                     $segments = $this->configureSegments(
                         $segmentClass,
-                        $this->sendData->getAccountReplyRUTDF()->getAccountAmt()
+                        $this->sendData->getAccountReplyRUTDF()->getAccountAmtArray()
                     );
                 }
                 break;
@@ -594,6 +602,12 @@ class RutdfTemplate
      */
     private function getOperationaCode(): string
     {
+        if($this->gHeaderCode !== null){
+            return $this->gHeaderCode;
+        }
+        if(in_array(NbchEvents::EVENT_3_3, $this->eventIds, true)){
+            return GroupHeader::CODE_C2;
+        }
         if($this->sendData->isFirst()){
             return GroupHeader::CODE_A;
         }

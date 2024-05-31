@@ -45,9 +45,9 @@ class AccountReplyRUTDF extends Account
     
     /**
      * Сумма и валюта обязательства
-     * @var AccountAmtRUTDF[] $accountAmt
+     * @var AccountAmtRUTDF[] $accountAmtArray
      */
-    public $accountAmt = [];
+    public $accountAmtArray = [];
     
     /**
      * Сведения о солидарных должниках
@@ -323,9 +323,17 @@ class AccountReplyRUTDF extends Account
     /**
      * @return AccountAmtRUTDF[]
      */
-    public function getAccountAmt(): array
+    public function getAccountAmtArray(): array
     {
-        return $this->accountAmt;
+        return $this->accountAmtArray;
+    }
+    
+    /**
+     * @return AccountAmtRUTDF
+     */
+    public function getAccountAmt(): ?AccountAmtRUTDF
+    {
+        return $this->getLastValue('accountAmtArray');
     }
     
     /**
@@ -491,7 +499,7 @@ class AccountReplyRUTDF extends Account
     /**
      * @param PastdueArrearRUTDF[]|array $config
      */
-    public function setPastdueArrearArray(array $config): void
+    public function setPastdueArrear(array $config): void
     {
         $this->pastdueArrearArray = $this->initPropertyModels($config, PastdueArrearRUTDF::class);
     }
