@@ -8,7 +8,7 @@ $amtOutstanding = 0;
 $amtPastDue = 0;
 foreach ($accountReplyRUTDF as $model) {
     if (!empty($model->getAcquirerIndivid()) || !empty($model->getAcquirerLegal())) {
-        $accountAmt = $model->getAccountAmt()?$model->getAccountAmt()[count($model->getAccountAmt()) - 1]:null;
+        $accountAmt = $model->getAccountAmt();
         $dueArrear = $model->getDueArrear();
         $pastdueArrear = $model->getPastdueArrear();
         $amtPastDueAccount = $pastdueArrear->amtPastDue ?? 0;
