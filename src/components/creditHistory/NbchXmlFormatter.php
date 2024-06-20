@@ -24,10 +24,12 @@ class NbchXmlFormatter extends \yii\httpclient\XmlFormatter
                 }
                 if (is_int($name) && is_object($value)) {
                     $this->buildXml($element, $value);
-                } elseif (is_array($value) || is_object($value)) {
+                } elseif (is_array($value)) {
                     $child = new DOMElement(is_int($name) ? $this->itemTag : $name);
                     $element->appendChild($child);
                     $this->buildXml($child, $value);
+                } elseif (is_object($value)) {
+                    $this->buildXml($element, $value);
                 } else {
                     $child = new DOMElement(is_int($name) ? $this->itemTag : $name);
                     $element->appendChild($child);
