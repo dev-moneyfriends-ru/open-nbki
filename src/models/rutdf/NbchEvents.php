@@ -558,7 +558,7 @@ class NbchEvents
             }
             foreach (self::personBlocks()[$eventId] as $num){
                 if(isset(self::personBlockCode()[$num])){
-                    $blocks[] = self::legalBlockCode()[$num];
+                    $blocks[] = self::personBlockCode()[$num];
                 }
             }
         }
