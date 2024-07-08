@@ -30,8 +30,11 @@ class C22OverallVal extends BaseSegment
     public function getFields(): array
     {
         $model = $this->template->sendData->getAccountReplyRUTDF()->getOverallVal();
-        if($model === null){
+        if($model === null && $this->template->sendData->getAccountReplyRUTDF()->getTrade()->isConsumerLoan){
             throw new \LogicException();
+        }
+        if($model === null){
+            return [];
         }
         return [
           $this->getSegmentName(),
