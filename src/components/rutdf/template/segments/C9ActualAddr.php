@@ -50,7 +50,7 @@ class C9ActualAddr extends BaseSegment
         }
        return [
            $this->getSegmentName(),
-           0,
+           1,
            $address->postal,
            $address->oksm,
            $address->otherCountry?$this->formatString($address->otherCountry):self::EMPTY_VALUE,
