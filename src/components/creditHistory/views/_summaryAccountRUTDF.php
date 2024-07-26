@@ -53,7 +53,7 @@ if ($maxPatDue > 30) {
     <td><?= $accountAmt?Yii::$app->formatter->asDecimal((float)$accountAmt->creditLimit, 2):'-' ?></td>
     <td><?= $accountAmt?$accountAmt->currencyCode:'-'?></td>
     <td><?= Yii::$app->formatter->asDate($trade->openedDt, 'dd.MM.yyyy') ?></td>
-    <td><?= Yii::$app->formatter->asDate($trade->closedDt, 'dd.MM.yyyy') ?></td>
+    <td><?= Yii::$app->formatter->asDate($trade->closeDt, 'dd.MM.yyyy') ?></td>
     <td><?= $dueArrear?Yii::$app->formatter->asDecimal((float)$dueArrear->amtOutstanding, 2):'-' ?></td>
     <td class="<?= $amtPastDue ? 'text-danger' : 'text-success' ?>"><?= Yii::$app->formatter->asDecimal(
             (float)$amtPastDue,
