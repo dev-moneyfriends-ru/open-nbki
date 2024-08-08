@@ -104,6 +104,7 @@ class PreplyReport extends BaseObject
                         $model->setAttributes([$key => $value], false);
                     }
                 }
+                $models[] = $model;
             }
         } elseif (is_object($values)) {
             $models[] = $values;
