@@ -34,7 +34,7 @@
                     <td><?=$item->currencyCode?></td>
                     <td><?= Yii::$app->formatter->asDate($item->guaranteeAgreementDt, 'dd.MM.yyyy') ?></td>
                     <td><?= Yii::$app->formatter->asDate($item->guaranteeExpirationDate, 'dd.MM.yyyy') ?></td>
-                    <td><?= Yii::$app->formatter->asDate($item->guaranteeFactExpirationDate, 'dd.MM.yyyy') ?></td>
+                    <td><?= $item->guaranteeFactExpirationDate ? Yii::$app->formatter->asDate($item->guaranteeFactExpirationDate, 'dd.MM.yyyy') : '-'; ?></td>
                     <td><?=$item->guaranteeEndReason?></td>
                 </tr>
             <?php

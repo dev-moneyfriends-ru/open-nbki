@@ -38,7 +38,7 @@
                     <td><?= Yii::$app->formatter->asDate($item->collateralDate, 'dd.MM.yyyy') ?></td>
                     <td><?=$item->collateralEncum?></td>
                     <td><?= Yii::$app->formatter->asDate($item->collateralExpirationDate, 'dd.MM.yyyy') ?></td>
-                    <td><?= Yii::$app->formatter->asDate($item->collateralFactExpirationDate, 'dd.MM.yyyy') ?></td>
+                    <td><?= $item->collateralFactExpirationDate ? Yii::$app->formatter->asDate($item->collateralFactExpirationDate, 'dd.MM.yyyy') : '-'; ?></td>
                     <td><?=$item->collateralEndReason?></td>
                 </tr>
             <?php

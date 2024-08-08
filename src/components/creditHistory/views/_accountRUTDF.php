@@ -20,7 +20,7 @@ if (!empty($model->getAcquirerIndivid()) || !empty($model->getAcquirerLegal())) 
 }
 
 $maxAmtPastDue = 0;
-foreach ($model->getPastdueArrear() as $item) {
+foreach ($model->getPastdueArrearArray() as $item) {
     if ($maxAmtPastDue < (float)$item->amtPastDue) {
         $maxAmtPastDue = (float)$item->amtPastDue;
     }
@@ -109,15 +109,22 @@ $amtPastDue = $pastdueArrear->amtPastDue ?? 0;
     </tr>
     <tr>
         <td style="font-weight: bold">Дата начала договора</td>
-        <td style="text-align: center"><?= Yii::$app->formatter->asDate($trade->openedDt, 'dd.MM.yyyy') ?></td>
+        <td style="text-align: center"><?= $trade->openedDt ? Yii::$app->formatter->asDate($trade->openedDt, 'dd.MM.yyyy') : '-'; ?></td>
         <td style="font-weight: bold">Дата последнего платежа</td>
-        <td style="text-align: center"><?= Yii::$app->formatter->asDate(ArrayHelper::getValue($payment, 'paymtDate'), 'dd.MM.yyyy') ?></td>
+        <td style="text-align: center">
+            <?php $lastPaymtDate = ArrayHelper::getValue($payment, 'paymtDate'); ?>
+            <?php if ($lastPaymtDate) : ?>
+                <?= Yii::$app->formatter->asDate(ArrayHelper::getValue($payment, 'paymtDate'), 'dd.MM.yyyy') ?>
+            <?php else: ?>
+                -
+            <?php endif; ?>
+        </td>
         <td style="font-weight: bold">Дата уплаты процентов</td>
-        <td style="text-align: center"><?= Yii::$app->formatter->asDate($trade->closedDt, 'dd.MM.yyyy') ?></td>
+        <td style="text-align: center"><?= $trade->closeDt ? Yii::$app->formatter->asDate($trade->closeDt, 'dd.MM.yyyy') : '-'; ?></td>
     </tr>
     <tr>
         <td style="font-weight: bold">Дата окончания договора</td>
-        <td style="text-align: center"><?= Yii::$app->formatter->asDate($trade->closedDt, 'dd.MM.yyyy') ?></td>
+        <td style="text-align: center"><?= $trade->closeDt ? Yii::$app->formatter->asDate($trade->closeDt, 'dd.MM.yyyy') : '-'; ?></td>
         <td style="font-weight: bold">Текущая задолженность</td>
         <td style="text-align: center"><?= Yii::$app->formatter->asDecimal((float)ArrayHelper::getValue($dueArrear, 'amtOutstanding'), 2) ?></td>
         <td style="font-weight: bold">Количество пролонгаций</td>
