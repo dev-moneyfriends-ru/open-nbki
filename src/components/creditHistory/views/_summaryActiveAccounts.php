@@ -12,8 +12,8 @@ foreach ($accountReplyRUTDF as $model) {
         $dueArrear = $model->getDueArrear();
         $pastdueArrear = $model->getPastdueArrear();
         $amtPastDueAccount = $pastdueArrear->amtPastDue ?? 0;
-        $creditLimit += $accountAmt->creditLimit ?? 0;
-        $amtOutstanding += $dueArrear->amtOutstanding ?? 0;
+        $creditLimit += isset($accountAmt->creditLimit) ? floatval($accountAmt->creditLimit) :  0;
+        $amtOutstanding += isset($dueArrear->amtOutstanding)  ? floatval($dueArrear->amtOutstanding) :  0;
         $amtPastDue += (float)$amtPastDueAccount;
         echo $this->render('_summaryAccountRUTDF', [
             'model' => $model,

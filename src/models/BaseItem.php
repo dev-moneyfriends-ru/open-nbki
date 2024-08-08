@@ -13,60 +13,60 @@ abstract class BaseItem extends \yii\base\Model
      * @var int
      */
     public $fid = null;
-    
+
     /**
      * Уникальный идентификатор записи в БД НБКИ (обязательный)
      * @var string
      */
     public $serialNum = '';
-    
+
     /**
      * Дата спора
      * @var string
      */
     public $disputedDate = '';
-    
+
     /**
      * User comments for dispute
      * @var string
      */
     public $disputedRemarks = '';
-    
+
     /**
      * Identifies whether segment is under dispute.
      * @var string
      */
     public $disputedStatus = '';
-    
+
     /**
      * Reason of dispute. Only appears if there is a dispute
      * @var string
      */
     public $disputedStatusText = '';
-    
+
     /**
      * The date the record was first inserted into the iCRS database. Valid format: YYYY-MM-DD.
      * @var string
      */
     public $fileSinceDt = '';
-    
+
     /**
      * Possible values 0 or 1. 1 indicates true, which means the segment is frozen and no updates can be made to this segment.
      * @var int
      */
     public $freezeFlag = null;
-    
+
     /**
      * @var int
      */
     public $suppressFlag = null;
-    
+
     /**
      * Дата обновления данных
      * @var string
      */
     public $lastUpdatedDt = '';
-    
+
     /**
      * Дата формирования кредитной информации (обязательный для единичных дополняемых блоков,
      * в которых может отсутствовать дата события – блоки payment «Сведения о внесении платежей»
@@ -74,113 +74,113 @@ abstract class BaseItem extends \yii\base\Model
      * @var string
      */
     public $reportingDt = '';
-    
+
     /**
      * Условный рейтинг надежности источника (не обязательный)
      * @var string
      */
     public $partnerRating = '';
-    
+
     /**
      * @var string
      */
     public $partnerStartDate = '';
-    
+
     /**
      * @var string
      */
     public $businessCategory = '';
-    
+
     /**
      * @var string
      */
     public $acctSerialNum = '';
-    
+
     /**
      * @var string $suppressStrDt
      */
     public $suppressStrDt = '';
-    
+
     /**
      * @var string $suppressEndDt
      */
     public $suppressEndDt = '';
-    
+
     /**
      * @var string $headerReportingDt
      */
     public $headerReportingDt = '';
-    
+
     /**
      * @var string $memberCode
      */
     public $memberCode = '';
-    
+
     /**
      * @var string $memberFullName
      */
     public $memberFullName = '';
-    
+
     /**
      * @var string $memberShortName
      */
     public $memberShortName = '';
-    
+
     /**
      * @var string $memberLastName
      */
     public $memberLastName = '';
-    
+
     /**
      * @var string $memberFirstName
      */
     public $memberFirstName = '';
-    
+
     /**
      * @var string $memberMiddleName
      */
     public $memberMiddleName = '';
-    
+
     /**
      * @var string $memberRegNum
      */
     public $memberRegNum = '';
-    
+
     /**
      * @var string $memberType
      */
     public $memberType = '';
-    
+
     /**
      * @var string $memberTaxpayerID
      */
     public $memberTaxpayerID = '';
-    
+
     /**
      * @var string $memberOKPO
      */
     public $memberOKPO = '';
-    
+
     /**
      * @var string $memberIDIssueAuth
      */
     public $memberIDIssueAuth = '';
-    
+
     /**
      * @var string $memberIDIssueLoc
      */
     public $memberIDIssueLoc = '';
-    
+
     /**
      * @var string $memberIDIssueDate
      */
     public $memberIDIssueDate = '';
-    
+
     /**
      * @var string $memberBusinessCode
      */
     public $memberBusinessCode = '';
-    
+
     public function attributeLabels()
     {
         return [
@@ -195,8 +195,8 @@ abstract class BaseItem extends \yii\base\Model
             'lastUpdatedDt' => 'Дата обновления',
         ];
     }
-    
-    
+
+
     /**
      * @param $config
      */
@@ -209,7 +209,7 @@ abstract class BaseItem extends \yii\base\Model
         }
         parent::__construct($config);
     }
-    
+
     /**
      * @param array|BaseItem $data
      * @param string $class
@@ -226,7 +226,7 @@ abstract class BaseItem extends \yii\base\Model
                 }
                 /** @var BaseItem $model */
                 $model = new $class();
-                $model->setAttributes($config);
+                $model->setAttributes($config, false);
                 $models[] = $model;
             }
         } elseif (is_object($data)) {
@@ -239,7 +239,7 @@ abstract class BaseItem extends \yii\base\Model
         }
         return $models;
     }
-    
+
     /**
      * @param string $attribute
      * @return mixed
@@ -261,7 +261,7 @@ abstract class BaseItem extends \yii\base\Model
         }
         return $model;
     }
-    
+
     /**
      * @param string $uuid
      * @return string
@@ -284,7 +284,7 @@ abstract class BaseItem extends \yii\base\Model
         $key = $sum % 16;
         return base_convert($key, 10, 16);
     }
-    
+
     /**
      * Sets value of an object property.
      *
