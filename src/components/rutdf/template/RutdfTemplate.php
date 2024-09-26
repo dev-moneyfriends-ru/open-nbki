@@ -112,7 +112,7 @@ class RutdfTemplate
     /**
      * Версия формата файла
      */
-    public const FORMAT_VERSION = 'RUTDF6.0';
+    public const FORMAT_VERSION = 'RUTDF6.03';
     
     /**
      * Связь файла

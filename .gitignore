@@ -2,3 +2,5 @@ composer.lock
 vendor
 .git
 .idea
+/test/
+/data/

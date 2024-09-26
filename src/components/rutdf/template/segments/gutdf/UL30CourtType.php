@@ -1,0 +1,409 @@
+<?php
+
+namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
+
+/**
+ * Class representing UL30CourtType
+ *
+ * Блок 30. Сведения о судебном споре или требовании по обязательству
+ * XSD Type: UL_30_Court_Type
+ */
+class UL30CourtType
+{
+    /**
+     * 30.1. Признак судебного спора или требования = 0
+     *
+     * @var string $exist0
+     */
+    private $exist0 = null;
+
+    /**
+     * 30.1. Признак судебного спора или требования = 1
+     *
+     * @var string $exist1
+     */
+    private $exist1 = null;
+
+    /**
+     * 30.2. Признак наличия судебного акта = 0
+     *
+     * @var string $actExist0
+     */
+    private $actExist0 = null;
+
+    /**
+     * 30.2. Признак наличия судебного акта = 1
+     *
+     * @var string $actExist1
+     */
+    private $actExist1 = null;
+
+    /**
+     * 30.3. Дата принятия судебного акта
+     *
+     * @var \DateTime $date
+     */
+    private $date = null;
+
+    /**
+     * 30.4. Номер судебного акта
+     *
+     * @var string $num
+     */
+    private $num = null;
+
+    /**
+     * 30.5. Резолютивная часть судебного акта
+     *
+     * @var string $actResolution
+     */
+    private $actResolution = null;
+
+    /**
+     * 30.6. Признак вступления акта в законную силу = 0
+     *
+     * @var string $actStartExist0
+     */
+    private $actStartExist0 = null;
+
+    /**
+     * 30.6. Признак вступления акта в законную силу = 1
+     *
+     * @var string $actStartExist1
+     */
+    private $actStartExist1 = null;
+
+    /**
+     * 30.7. Код иска или требования
+     *
+     * @var int $lawsuitCode
+     */
+    private $lawsuitCode = null;
+
+    /**
+     * 30.8. Сумма требований, подлежащих удовлетворению
+     *
+     * @var string $sumTotal
+     */
+    private $sumTotal = null;
+
+    /**
+     * 30.9. Дополнительные сведения по судебному акту
+     *
+     * @var string $info
+     */
+    private $info = null;
+
+    /**
+     * Gets as exist0
+     *
+     * 30.1. Признак судебного спора или требования = 0
+     *
+     * @return string
+     */
+    public function getExist0()
+    {
+        return $this->exist0;
+    }
+
+    /**
+     * Sets a new exist0
+     *
+     * 30.1. Признак судебного спора или требования = 0
+     *
+     * @param string $exist0
+     * @return self
+     */
+    public function setExist0($exist0)
+    {
+        $this->exist0 = $exist0;
+        return $this;
+    }
+
+    /**
+     * Gets as exist1
+     *
+     * 30.1. Признак судебного спора или требования = 1
+     *
+     * @return string
+     */
+    public function getExist1()
+    {
+        return $this->exist1;
+    }
+
+    /**
+     * Sets a new exist1
+     *
+     * 30.1. Признак судебного спора или требования = 1
+     *
+     * @param string $exist1
+     * @return self
+     */
+    public function setExist1($exist1)
+    {
+        $this->exist1 = $exist1;
+        return $this;
+    }
+
+    /**
+     * Gets as actExist0
+     *
+     * 30.2. Признак наличия судебного акта = 0
+     *
+     * @return string
+     */
+    public function getActExist0()
+    {
+        return $this->actExist0;
+    }
+
+    /**
+     * Sets a new actExist0
+     *
+     * 30.2. Признак наличия судебного акта = 0
+     *
+     * @param string $actExist0
+     * @return self
+     */
+    public function setActExist0($actExist0)
+    {
+        $this->actExist0 = $actExist0;
+        return $this;
+    }
+
+    /**
+     * Gets as actExist1
+     *
+     * 30.2. Признак наличия судебного акта = 1
+     *
+     * @return string
+     */
+    public function getActExist1()
+    {
+        return $this->actExist1;
+    }
+
+    /**
+     * Sets a new actExist1
+     *
+     * 30.2. Признак наличия судебного акта = 1
+     *
+     * @param string $actExist1
+     * @return self
+     */
+    public function setActExist1($actExist1)
+    {
+        $this->actExist1 = $actExist1;
+        return $this;
+    }
+
+    /**
+     * Gets as date
+     *
+     * 30.3. Дата принятия судебного акта
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Sets a new date
+     *
+     * 30.3. Дата принятия судебного акта
+     *
+     * @param \DateTime $date
+     * @return self
+     */
+    public function setDate(?\DateTime $date = null)
+    {
+        $this->date = $date;
+        return $this;
+    }
+
+    /**
+     * Gets as num
+     *
+     * 30.4. Номер судебного акта
+     *
+     * @return string
+     */
+    public function getNum()
+    {
+        return $this->num;
+    }
+
+    /**
+     * Sets a new num
+     *
+     * 30.4. Номер судебного акта
+     *
+     * @param string $num
+     * @return self
+     */
+    public function setNum($num)
+    {
+        $this->num = $num;
+        return $this;
+    }
+
+    /**
+     * Gets as actResolution
+     *
+     * 30.5. Резолютивная часть судебного акта
+     *
+     * @return string
+     */
+    public function getActResolution()
+    {
+        return $this->actResolution;
+    }
+
+    /**
+     * Sets a new actResolution
+     *
+     * 30.5. Резолютивная часть судебного акта
+     *
+     * @param string $actResolution
+     * @return self
+     */
+    public function setActResolution($actResolution)
+    {
+        $this->actResolution = $actResolution;
+        return $this;
+    }
+
+    /**
+     * Gets as actStartExist0
+     *
+     * 30.6. Признак вступления акта в законную силу = 0
+     *
+     * @return string
+     */
+    public function getActStartExist0()
+    {
+        return $this->actStartExist0;
+    }
+
+    /**
+     * Sets a new actStartExist0
+     *
+     * 30.6. Признак вступления акта в законную силу = 0
+     *
+     * @param string $actStartExist0
+     * @return self
+     */
+    public function setActStartExist0($actStartExist0)
+    {
+        $this->actStartExist0 = $actStartExist0;
+        return $this;
+    }
+
+    /**
+     * Gets as actStartExist1
+     *
+     * 30.6. Признак вступления акта в законную силу = 1
+     *
+     * @return string
+     */
+    public function getActStartExist1()
+    {
+        return $this->actStartExist1;
+    }
+
+    /**
+     * Sets a new actStartExist1
+     *
+     * 30.6. Признак вступления акта в законную силу = 1
+     *
+     * @param string $actStartExist1
+     * @return self
+     */
+    public function setActStartExist1($actStartExist1)
+    {
+        $this->actStartExist1 = $actStartExist1;
+        return $this;
+    }
+
+    /**
+     * Gets as lawsuitCode
+     *
+     * 30.7. Код иска или требования
+     *
+     * @return int
+     */
+    public function getLawsuitCode()
+    {
+        return $this->lawsuitCode;
+    }
+
+    /**
+     * Sets a new lawsuitCode
+     *
+     * 30.7. Код иска или требования
+     *
+     * @param int $lawsuitCode
+     * @return self
+     */
+    public function setLawsuitCode($lawsuitCode)
+    {
+        $this->lawsuitCode = $lawsuitCode;
+        return $this;
+    }
+
+    /**
+     * Gets as sumTotal
+     *
+     * 30.8. Сумма требований, подлежащих удовлетворению
+     *
+     * @return string
+     */
+    public function getSumTotal()
+    {
+        return $this->sumTotal;
+    }
+
+    /**
+     * Sets a new sumTotal
+     *
+     * 30.8. Сумма требований, подлежащих удовлетворению
+     *
+     * @param string $sumTotal
+     * @return self
+     */
+    public function setSumTotal($sumTotal)
+    {
+        $this->sumTotal = $sumTotal;
+        return $this;
+    }
+
+    /**
+     * Gets as info
+     *
+     * 30.9. Дополнительные сведения по судебному акту
+     *
+     * @return string
+     */
+    public function getInfo()
+    {
+        return $this->info;
+    }
+
+    /**
+     * Sets a new info
+     *
+     * 30.9. Дополнительные сведения по судебному акту
+     *
+     * @param string $info
+     * @return self
+     */
+    public function setInfo($info)
+    {
+        $this->info = $info;
+        return $this;
+    }
+}
+
