@@ -14,7 +14,8 @@ class BusinessReq extends Business
             [
                 [
                     'businessName',
-                    'abbreviatedBusinessName'
+                    'abbreviatedBusinessName',
+                    'oksm'
                 ], 'required',
             ],
             [
@@ -32,6 +33,15 @@ class BusinessReq extends Business
                 'string',
                 'max' => 1020,
             ],
+        ];
+    }
+
+    public function fields()
+    {
+        return [
+            'businessName',
+            'abbreviatedBusinessName',
+            'OKSM' => 'oksm'
         ];
     }
 }
