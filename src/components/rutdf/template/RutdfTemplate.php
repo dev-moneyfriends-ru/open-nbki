@@ -81,7 +81,6 @@ use mfteam\nbch\components\rutdf\template\segments\Delete;
 use mfteam\nbch\components\rutdf\template\segments\GroupHeader;
 use mfteam\nbch\components\rutdf\template\segments\Header;
 use mfteam\nbch\components\rutdf\template\segments\Trailer;
-use mfteam\nbch\Env;
 use mfteam\nbch\models\AmendmentRUTDF;
 use mfteam\nbch\models\BaseItem;
 use mfteam\nbch\models\CollateralRUTDF;
@@ -90,7 +89,6 @@ use mfteam\nbch\models\CollatRepayRUTDF;
 use mfteam\nbch\models\GuarantorRUTDF;
 use mfteam\nbch\models\IndepGuarantorRUTDF;
 use mfteam\nbch\models\LegalItemsRUTDF;
-use mfteam\nbch\models\rutdf\NbchDataInterface;
 use mfteam\nbch\models\rutdf\NbchEvents;
 use mfteam\nbch\models\rutdf\NbchRutdfRequest;
 use Yii;
@@ -107,75 +105,13 @@ use Yii;
  * @property-read B24Guarantor[] $b24Guarantor
  * @property-read string $templatePath
  */
-class RutdfTemplate
+class RutdfTemplate extends BaseTemplate
 {
-    /**
-     * Версия формата файла
-     */
-    public const FORMAT_VERSION = 'RUTDF6.03';
-    
-    /**
-     * Связь файла
-     */
-    public const ENTITY = "RutdfTemplate";
-    
-    /**
-     * Массив событий для формирования отчета
-     * @var array
-     */
-    protected $eventIds;
-    
-    /**
-     * Содержимое существующего файла отчета
-     * @var string
-     */
-    protected $fileContent;
-    
-    /**
-     * Сгенерированное содержимое файла отчета
-     * @var string
-     */
-    protected $content;
-    
     /**
      * Текущая строка в файле
      * @var int
      */
     private $currentLine = 0;
-    
-    /**
-     * @var NbchRutdfRequest|null
-     */
-    protected $request;
-    
-    /**
-     * Название файла
-     * @var string
-     */
-    protected $baseFileName;
-    
-    /**
-     * Время генерации
-     * @var int
-     */
-    public $generateTime;
-    
-    /**
-     * Данные для отправки
-     * @var NbchDataInterface
-     */
-    public $sendData;
-    
-    /**
-     * @var BaseSegment[]
-     */
-    protected $segments = [];
-    
-    /**
-     * Ошибки генерации
-     * @var array
-     */
-    protected $errors = [];
     
     /**
      * @var string[]
@@ -269,38 +205,6 @@ class RutdfTemplate
     protected $gHeaderCode = null;
     
     /**
-     * @param array $eventIds
-     * @param NbchDataInterface $sendData
-     */
-    public function __construct(array $eventIds, NbchDataInterface $sendData, string $gHeaderCode = null)
-    {
-        $this->eventIds = $eventIds;
-        $this->sendData = $sendData;
-        $this->gHeaderCode = $gHeaderCode;
-    }
-    
-    /**
-     * @return false|string|null
-     */
-    public function saveAsTemp()
-    {
-        $path = tempnam(sys_get_temp_dir(), '');
-        return $this->saveAs($path) === true ? $path : null;
-    }
-    
-    /**
-     * @param string $path
-     * @return bool
-     */
-    private function saveAs(string $path)
-    {
-        if (empty($this->content)) {
-            $this->loadContent();
-        }
-        return file_put_contents($path, $this->content) !== false;
-    }
-    
-    /**
      * @return void
      */
     public function loadContent()
@@ -341,45 +245,9 @@ class RutdfTemplate
     }
     
     /**
-     * @return string
-     */
-    public function getBaseName()
-    {
-        if (!empty($this->baseFileName)) {
-            return $this->baseFileName;
-        }
-        $module = Env::ensure()->module;
-        $name = $module->rutdf->userName;
-        $this->generateTime = time();
-        $suffix = Yii::$app->formatter->asDatetime($this->generateTime, '_yyyyMMdd_HHmmss');
-        while (
-        $module->file->fileExist(
-            $name . $suffix,
-            NbchRutdfRequest::FILE_RUTDF_TYPE,
-            self::ENTITY,
-            $module->rutdf->userName
-        )
-        ) {
-            sleep(1);
-            $this->generateTime = time();
-            $suffix = Yii::$app->formatter->asDatetime($this->generateTime, '_yyyyMMdd_HHmmss');
-        }
-        $this->baseFileName = $name . $suffix;
-        return $this->baseFileName;
-    }
-    
-    /**
-     * @return string
-     */
-    public function getFileContent(): string
-    {
-        return $this->fileContent;
-    }
-    
-    /**
      * @return void
      */
-    protected function createSegments(): void
+    public function createSegments(): void
     {
         $segments = [];
         $segments[] = new Header($this);
@@ -409,26 +277,10 @@ class RutdfTemplate
     }
     
     /**
-     * @return NbchRutdfRequest|null
-     */
-    public function getRequest(): ?NbchRutdfRequest
-    {
-        return $this->request;
-    }
-    
-    /**
-     * @param NbchRutdfRequest|null $request
-     */
-    public function setRequest(?NbchRutdfRequest $request): void
-    {
-        $this->request = $request;
-    }
-    
-    /**
      * @param string $block
      * @return BaseSegment[]
      */
-    private function createSegment(string $block): array
+    public function createSegment(string $block): array
     {
         if (isset($this->singleSegments[$block])) {
             return $this->createSingleSegment($this->singleSegments[$block]);
@@ -443,7 +295,7 @@ class RutdfTemplate
      * @param string $segmentClass
      * @return BaseSegment[]
      */
-    private function createSingleSegment(string $segmentClass): array
+    public function createSingleSegment(string $segmentClass): array
     {
         return [new $segmentClass($this)];
     }
@@ -471,7 +323,7 @@ class RutdfTemplate
      * @param string $segmentClass
      * @return BaseSegment[]
      */
-    private function createMultiSegment(string $segmentClass): array
+    public function createMultiSegment(string $segmentClass): array
     {
         $segments = [];
         switch ($segmentClass) {
@@ -577,7 +429,7 @@ class RutdfTemplate
      * @param BaseItem|null $default
      * @return array
      */
-    private function configureSegments(string $segmentClass, array $items, BaseItem $default = null): array
+    public function configureSegments(string $segmentClass, array $items, BaseItem $default = null): array
     {
         $segments = [];
         if (empty($items) && $default !== null) {
@@ -587,30 +439,5 @@ class RutdfTemplate
             $segments[] = new $segmentClass($this, $item);
         }
         return $segments;
-    }
-    
-    /**
-     * @return string
-     */
-    public function getContent(): string
-    {
-        return $this->content;
-    }
-    
-    /**
-     * @return string
-     */
-    private function getOperationaCode(): string
-    {
-        if($this->gHeaderCode !== null){
-            return $this->gHeaderCode;
-        }
-        if(in_array(NbchEvents::EVENT_3_3, $this->eventIds, true)){
-            return GroupHeader::CODE_C2;
-        }
-        if($this->sendData->isFirst()){
-            return GroupHeader::CODE_A;
-        }
-        return GroupHeader::CODE_B;
     }
 }
