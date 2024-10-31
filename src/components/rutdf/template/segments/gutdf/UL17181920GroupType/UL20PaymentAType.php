@@ -2,10 +2,14 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf\UL17181920GroupType;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
+use mfteam\nbch\models\references\AmtKeepCode;
+use mfteam\nbch\models\references\TermsDueCode;
+
 /**
  * Class representing UL20PaymentAType
  */
-class UL20PaymentAType
+class UL20PaymentAType extends GutdfSegment
 {
     /**
      * 20.2. Сумма последнего внесенного платежа
@@ -368,6 +372,99 @@ class UL20PaymentAType
     {
         $this->scheduleCode = $scheduleCode;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_20_Payment';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Дата последнего внесенного платежа' => '',
+            'Сумма последнего внесенного платежа' => 'Если указано значение «0,00», то заполняются только показатели 28.10-28.12, иные показатели блока 28 не заполняются . Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма последнего внесенного платежа по основному долгу' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма последнего внесенного платежа по процентам' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма последнего внесенного платежа по иным требованиям' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма всех внесенных платежей по обязательству' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма внесенных платежей по основному долгу' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма внесенных платежей по процентам' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма внесенных платежей по иным требованиям' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Код соблюдения размера платежей' => 'Заполняется по состоянию на дату формирования блока 28. Заполняется по справочнику 3.6.',
+            'Код соблюдения срока внесения платежей' => 'Заполняется по состоянию на дату формирования блока 28. Заполняется по справочнику 3.7.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 20. Сведения о внесении платежей';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $payments = $this->template->sendData->getAccountReplyRUTDF()->getPayment();
+        if(empty($payments) || empty($payments[0]->paymtAmt)){
+            $this->paymentSum = $this->formatCurrency(0);
+            $this->sizeCode = AmtKeepCode::T3;
+            $this->scheduleCode = TermsDueCode::T1;
+            return;
+        }
+
+        $payment = $payments[0];
+
+        $this->date = $this->formatDate($payment->paymtDate);
+        $this->sizeCode = $payment->amtKeepCode;
+        $this->scheduleCode = $payment->termsDueCode;
+
+        $this->paymentSum = $this->formatCurrency($payment->paymtAmt);
+        $this->paymentMainSum = $this->formatCurrency($payment->principalPaymtAmt);
+        $this->paymentPercentSum = $this->formatCurrency($payment->intPaymtAmt);
+        $this->paymentOtherSum = $this->formatCurrency($payment->otherPaymtAmt);
+        $this->totalSum = $this->formatCurrency($payment->totalAmt);
+        $this->totalMainSum = $this->formatCurrency($payment->principalTotalAmt);
+        $this->totalPercentSum = $this->formatCurrency($payment->intTotalAmt);
+        $this->totalOtherSum = $this->formatCurrency($payment->otherTotalAmt);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'date',
+            'paymentSum',
+            'paymentMainSum',
+            'paymentPercentSum',
+            'paymentOtherSum',
+            'totalSum',
+            'totalMainSum',
+            'totalPercentSum',
+            'totalOtherSum',
+            'sizeCode',
+            'scheduleCode',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getDescription(): string
+    {
+        return 'Cведения о действиях субъекта по исполнению своего обязательства или его части. Для договора лизинга указываются суммы внесенных лизинговых платежей, пеней и штрафов В случае если по условиям сделки платеж признается внесенным с момента его принятия источником, в блоке 20 показателей КИ ЮЛ отражаются сведения о принятых источником платежах.';
     }
 }
 

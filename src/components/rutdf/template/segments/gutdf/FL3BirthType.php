@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 3. Дата и место рождения
  * XSD Type: FL_3_Birth_Type
  */
-class FL3BirthType
+class FL3BirthType extends GutdfSegment
 {
     /**
      * 3.1. Дата рождения
@@ -107,6 +107,60 @@ class FL3BirthType
     {
         $this->birthPlace = $birthPlace;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_3_Birth';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            "Дата рождения" => '',
+            "Код страны по ОКСМ" => 'Цифровой код страны согласно Общероссийскому классификатору стран мира. При отсутствии страны в ОКСМ указывается «999».',
+            "Место рождения" => 'Заполняется согласно документу, удостоверяющему личность.'
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 3. Дата и место рождения';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $person = $this->template->sendData->getPersonReply();
+        if($person === null){
+            return;
+        }
+        $this->birthDate = $this->formatDate($person->birthDt);
+        $this->countryCode = $person->oksm;
+        $this->birthPlace = $person->placeOfBirth;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'birthDate',
+            'countryCode',
+            'birthPlace',
+        ];
     }
 }
 

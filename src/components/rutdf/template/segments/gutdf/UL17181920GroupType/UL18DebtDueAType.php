@@ -2,10 +2,12 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf\UL17181920GroupType;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
+
 /**
  * Class representing UL18DebtDueAType
  */
-class UL18DebtDueAType
+class UL18DebtDueAType extends GutdfSegment
 {
     /**
      * 18.3. Сумма срочной задолженности
@@ -170,6 +172,67 @@ class UL18DebtDueAType
     {
         $this->debtDueStartDate = $debtDueStartDate;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_18_DebtDue';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Дата возникновения срочной задолженности' => 'Указывается дата возникновения срочной задолженности. По обязательству источника выдавать сумму займа (кредита) траншами или в пределах расходного лимита указывается дата возникновения срочной задолженности при передаче первого транша и каждый раз при выдаче транша после полного погашения задолженности по предыдущему (предыдущим) траншам.',
+            'Сумма срочной задолженности' => 'Сумма определяется на момент наступления каждого события, которое указано по показателю 18.2 «Признак расчета по последнему платежу». Если указано значение «0.00», иные показатели блока 18 не заполняются. Если показатель 18.2 «Признак расчета по последнему платежу» не заполнен, то сумма указывается на дату их изменения вследствие иных событий согласно Приложению 2. В валюте, которая указана по показателю 12.2 «Валюта обязательства».',
+            'Сумма срочной задолженности по основному долгу' => 'Сумма определяется на момент наступления каждого события, которое указано по показателю 18.2 «Признак расчета по последнему платежу». Если показатель 18.2 «Признак расчета по последнему платежу» не заполнен, то сумма указывается на дату их изменения вследствие иных событий согласно Приложению 2. В валюте, которая указана по показателю 12.2 «Валюта обязательства».',
+            'Сумма срочной задолженности по процентам' => 'Сумма определяется на момент наступления каждого события, которое указано по показателю 18.2 «Признак расчета по последнему платежу». Если показатель 18.2 «Признак расчета по последнему платежу» не заполнен, то сумма указывается на дату их изменения вследствие иных событий согласно Приложению 2. В валюте, которая указана по показателю 12.2 «Валюта обязательства».',
+            'Сумма срочной задолженности по иным требованиям' => 'Сумма определяется на момент наступления каждого события, которое указано по показателю 18.2 «Признак расчета по последнему платежу». Если показатель 18.2 «Признак расчета по последнему платежу» не заполнен, то сумма указывается на дату их изменения вследствие иных событий согласно Приложению 2. В валюте, которая указана по показателю 12.2 «Валюта обязательства».',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 18. Сведения о срочной задолженности';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $debt = $this->template->sendData->getAccountReplyRUTDF()->getDueArrear();
+        if($debt === null || empty($this->debtDueSum)){
+            $this->debtDueSum = $this->formatCurrency(0);
+            return;
+        }
+        $this->debtDueStartDate = $this->formatDate($debt->startDt);
+        $this->debtDueSum = $this->formatCurrency($debt->amtOutstanding);
+        $this->debtDueMainSum = $this->formatCurrency($debt->principalOutstanding);
+        $this->debtDuePercentSum = $this->formatCurrency($debt->intOutstanding);
+        $this->debtDueOtherSum = $this->formatCurrency($debt->otherAmtOutstanding);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'debtDueStartDate',
+            'debtDueSum',
+            'debtDueMainSum',
+            'debtDuePercentSum',
+            'debtDueOtherSum',
+        ];
     }
 }
 

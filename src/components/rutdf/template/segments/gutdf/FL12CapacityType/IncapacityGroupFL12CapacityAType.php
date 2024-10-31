@@ -2,10 +2,12 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf\FL12CapacityType;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
+
 /**
  * Class representing IncapacityGroupFL12CapacityAType
  */
-class IncapacityGroupFL12CapacityAType
+class IncapacityGroupFL12CapacityAType extends GutdfSegment
 {
     /**
      * 12.2. Дата вступления в силу решения суда о признании недееспособным или об ограничении дееспособности
@@ -104,6 +106,57 @@ class IncapacityGroupFL12CapacityAType
     {
         $this->incapacityCourtName = $incapacityCourtName;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'Incapacity_group_FL_12_Capacity';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Дата вступления в силу решения суда о признании недееспособным или об ограничении дееспособности' => '',
+            'Номер решения суда' => 'Сведения о решении суда, который признал гражданина недееспособным или ограничил его дееспособность.',
+            'Наименование суда' => 'Для иностранного суда заполняются на языке страны места нахождения данного суда. В скобках указывается перевод наименования суда на русский язык (при наличии перевода).Сведения о решении суда, который признал гражданина недееспособным или ограничил его дееспособность.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return '12.2–12.4';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $model = $this->template->sendData->getCapabilityReply();
+        $this->incapacityDate = $this->formatDate($model->incapDecisionDt);
+        $this->incapacityDecisionNum = $model->incapDecisionNum;
+        $this->incapacityCourtName = $model->incapCourtName;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'incapacityDate',
+            'incapacityDecisionNum',
+            'incapacityCourtName',
+        ];
     }
 }
 

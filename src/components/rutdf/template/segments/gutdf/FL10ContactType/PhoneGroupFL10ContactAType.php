@@ -2,10 +2,12 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf\FL10ContactType;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
+
 /**
  * Class representing PhoneGroupFL10ContactAType
  */
-class PhoneGroupFL10ContactAType
+class PhoneGroupFL10ContactAType extends GutdfSegment
 {
     /**
      * 10.1. Номер телефона
@@ -71,6 +73,54 @@ class PhoneGroupFL10ContactAType
     {
         $this->phoneComment = $phoneComment;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'Phone_group_FL_10_Contact';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Номер телефона' => 'Контактный номер телефона.',
+            'Комментарий к номеру телефона' => 'Пояснительные сведения о номере телефона.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Номер телефона';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $address = $this->template->sendData->getRegAddress();
+        $this->phone = $address->phone;
+        $this->phoneComment = $address->phoneComment;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'phone',
+            'phoneComment',
+        ];
     }
 }
 

@@ -68,9 +68,9 @@ class AddressReplyRUTDF extends BaseAddressReply
     /**
      * Наименование иной страны
      * Заполняется, если по показателю «Код страны по ОКСМ» указано «999»
-     * @var string $otherCountry
+     * @var string|null $otherCountry
      */
-    public $otherCountry = '';
+    public $otherCountry = null;
     
     /**
      * Номер адреса в ГАР.
@@ -81,7 +81,7 @@ class AddressReplyRUTDF extends BaseAddressReply
      * Указываются код населенного пункта, код улицы, код дома (владения), код корпуса и код номера квартиры.
      * @var string $fias
      */
-    public $fias = '';
+    public $fias = null;
     
     /**
      * Код населенного пункта по ОКАТО.
@@ -125,7 +125,7 @@ class AddressReplyRUTDF extends BaseAddressReply
      * Заполняется, если субъект предоставил данные источнику.
      * @var string $phone
      */
-    public $phone = '';
+    public $phone = null;
     
     /**
      * Комментарий к номеру телефона
@@ -133,14 +133,14 @@ class AddressReplyRUTDF extends BaseAddressReply
      * Заполняется, если субъект предоставил данные источнику.
      * @var string $phoneComment
      */
-    public $phoneComment = '';
+    public $phoneComment = null;
     
     /**
      * Адрес электронной почты
      * Заполняется, если субъект предоставил данные источнику.
      * @var string $email
      */
-    public $email = '';
+    public $email = null;
     
     /**
      * Код страны по ОКСМ
@@ -149,6 +149,16 @@ class AddressReplyRUTDF extends BaseAddressReply
      * @var string $oksm
      */
     public $oksm = '';
+
+    /**
+     * Признак иностранного юридического лица
+     * код «1» – в случае если субъект является юридическим лицом, зарегистрированным в
+     * соответствии с законодательством иностранного государства;
+     * код «0» – в случае если обстоятельство кода «1» отсутствует.
+     * @see IndicatorType
+     * @var int|null
+     */
+    public ?int $foreignerFact = null;
     
     /**
      * Виды адреса регистрации

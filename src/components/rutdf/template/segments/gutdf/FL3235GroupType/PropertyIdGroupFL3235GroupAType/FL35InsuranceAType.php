@@ -2,10 +2,12 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf\FL3235GroupType\PropertyIdGroupFL3235GroupAType;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
+
 /**
  * Class representing FL35InsuranceAType
  */
-class FL35InsuranceAType
+class FL35InsuranceAType extends GutdfSegment
 {
     /**
      * 35.1. Признак наличия страхования = 0
@@ -269,6 +271,86 @@ class FL35InsuranceAType
     {
         $this->endCode = $endCode;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_35_Insurance';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Признак наличия страхования 0' => 'Код «1» – риск утраты стоимости предмета залога застрахован в пользу источника или субъекта; код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока не заполняются.',
+            'Признак наличия страхования 1' => 'Код «1» – риск утраты стоимости предмета залога застрахован в пользу источника или субъекта; код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока не заполняются.',
+            'Признак наличия франшизы 0' => 'Код «1» – в договоре страхования имеется условие об условной или безусловной франшизе; код «0» – обстоятельство кода «1» отсутствует.',
+            'Признак наличия франшизы 1' => 'Код «1» – в договоре страхования имеется условие об условной или безусловной франшизе; код «0» – обстоятельство кода «1» отсутствует.',
+            'Дата начала действия страхования' => 'Дата начала действия страхования, обусловленного договором страхования.',
+            'Дата окончания действия страхования согласно договору' => 'Дата планового окончания действия страхования, обусловленного договором страхования.',
+            'Дата фактического прекращения страхования' => 'Дата фактического окончания действия страхования, обусловленного договором страхования.',
+            'Код причины прекращения страхования' => 'Заполняется по справочнику 4.2.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 35. Сведения о страховании предмета залога';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        if($this->idx === null){
+            $this->exist0 = '';
+            $this->exist1 = null;
+            return;
+        }
+
+        $collatInsured = $this->template->sendData->getAccountReplyRUTDF()->getCollatInsured()[$this->idx];
+
+        $this->exist0 = null;
+        $this->exist1 = '';
+
+        if($collatInsured->hasFranchise){
+            $this->franchiseExist1 = '';
+            $this->franchiseExist0 = null;
+        }else{
+            $this->franchiseExist0 = '';
+            $this->franchiseExist1 = null;
+        }
+
+        $this->startDate = $this->formatDate($collatInsured->insurStartDt);
+        $this->insuranceEndDate = $this->formatDate($collatInsured->insurEndDt);
+        $this->insuranceFactEndDate = $this->formatDate($collatInsured->insurFactEndDt);
+        $this->endCode = $collatInsured->insurEndReason;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'exist_0' => 'exist0',
+            'exist_1' => 'exist1',
+            'franchiseExist_0' => 'franchiseExist0',
+            'franchiseExist_1' => 'franchiseExist1',
+            'startDate',
+            'insuranceEndDate',
+            'insuranceFactEndDate',
+            'endCode',
+        ];
     }
 }
 

@@ -2,13 +2,16 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FL34GuaranteeType\UidGroupFL34GuaranteeAType;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\UL25GuaranteeType\UidGroupUL25GuaranteeAType;
+
 /**
  * Class representing FL34GuaranteeType
  *
  * Блок 34. Сведения о независимой гарантии
  * XSD Type: FL_34_Guarantee_Type
  */
-class FL34GuaranteeType
+class FL34GuaranteeType extends GutdfSegment
 {
     /**
      * 34.1. Признак наличия независимой гарантии = 0
@@ -25,7 +28,7 @@ class FL34GuaranteeType
     private $exist1 = null;
 
     /**
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL34GuaranteeType\UidGroupFL34GuaranteeAType[] $uidGroupFL34Guarantee
+     * @var UidGroupFL34GuaranteeAType[] $uidGroupFL34Guarantee
      */
     private $uidGroupFL34Guarantee = [
         
@@ -86,10 +89,10 @@ class FL34GuaranteeType
     /**
      * Adds as uidGroupFL34Guarantee
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL34GuaranteeType\UidGroupFL34GuaranteeAType $uidGroupFL34Guarantee
+     * @param UidGroupFL34GuaranteeAType $uidGroupFL34Guarantee
      *@return self
      */
-    public function addToUidGroupFL34Guarantee(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL34GuaranteeType\UidGroupFL34GuaranteeAType $uidGroupFL34Guarantee)
+    public function addToUidGroupFL34Guarantee(UidGroupFL34GuaranteeAType $uidGroupFL34Guarantee)
     {
         $this->uidGroupFL34Guarantee[] = $uidGroupFL34Guarantee;
         return $this;
@@ -120,7 +123,7 @@ class FL34GuaranteeType
     /**
      * Gets as uidGroupFL34Guarantee
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL34GuaranteeType\UidGroupFL34GuaranteeAType[]
+     * @return UidGroupFL34GuaranteeAType[]
      */
     public function getUidGroupFL34Guarantee()
     {
@@ -130,13 +133,79 @@ class FL34GuaranteeType
     /**
      * Sets a new uidGroupFL34Guarantee
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL34GuaranteeType\UidGroupFL34GuaranteeAType[] $uidGroupFL34Guarantee
+     * @param UidGroupFL34GuaranteeAType[] $uidGroupFL34Guarantee
      * @return self
      */
     public function setUidGroupFL34Guarantee(array $uidGroupFL34Guarantee = null)
     {
         $this->uidGroupFL34Guarantee = $uidGroupFL34Guarantee;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_34_Guarantee';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Признак наличия независимой гарантии 0' => 'Код «1» – исполнение обязательства обеспечено независимой гарантией; код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока не передаются в соответствии со схемой Blocks.xsd.',
+            'Признак наличия независимой гарантии 1' => 'Код «1» – исполнение обязательства обеспечено независимой гарантией; код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока не передаются в соответствии со схемой Blocks.xsd.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 34. Сведения о независимой гарантии';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $guaranties = $this->template->sendData->getAccountReplyRUTDF()->getIndepGuarantor();
+        if(empty($guaranties)){
+            $this->exist0 = '';
+            $this->exist1 = null;
+            return;
+        }
+        $this->exist1 = '';
+        $this->exist0 = null;
+
+        foreach ($guaranties as $key => $guaranty){
+            $this->addToUidGroupFL34Guarantee(new UidGroupFL34GuaranteeAType($this->template, $key));
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'exist_0' => 'exist0',
+            'exist_1' => 'exist1',
+            'uidGroupFL34Guarantee',
+        ];
+    }
+
+    public function getFields(): array
+    {
+        return [
+            'exist_0' => $this->exist0,
+            'exist_1' => $this->exist1,
+        ];
     }
 }
 

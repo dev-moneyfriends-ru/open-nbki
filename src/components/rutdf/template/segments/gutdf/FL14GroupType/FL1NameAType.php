@@ -2,10 +2,12 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf\FL14GroupType;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
+
 /**
  * Class representing FL1NameAType
  */
-class FL1NameAType
+class FL1NameAType extends GutdfSegment
 {
     /**
      * 1.1. Фамилия
@@ -104,6 +106,60 @@ class FL1NameAType
     {
         $this->middleName = $middleName;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_1_Name';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            "Фамилия" => '',
+            "Имя" => '',
+            "Отчество" => 'Указывается при наличии',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 1. Имя';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $person = $this->template->sendData->getPersonReply();
+        if($person === null){
+            return;
+        }
+        $this->lastName = $person->name1;
+        $this->firstName = $person->first;
+        $this->middleName = $person->paternal;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'lastName',
+            'firstName',
+            'middleName',
+        ];
     }
 }
 

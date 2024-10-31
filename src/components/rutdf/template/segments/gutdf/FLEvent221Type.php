@@ -202,8 +202,8 @@ class FLEvent221Type extends EventDataType
      *
      * Блок 19(1). Сведения об обеспечиваемом обязательстве
      *
+     * @return self
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL191AmountInfoType $fL191AmountInfo
-     *@return self
      */
     public function addToFL191AmountInfo(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL191AmountInfoType $fL191AmountInfo)
     {
@@ -320,8 +320,8 @@ class FLEvent221Type extends EventDataType
      *
      * Блок 31. Сведения о неденежном обязательстве субъекта
      *
+     * @return self
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL31NonMonetarySubjectType $fL31NonMonetarySubject
-     *@return self
      */
     public function addToFL31NonMonetarySubject(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL31NonMonetarySubjectType $fL31NonMonetarySubject)
     {
@@ -386,8 +386,8 @@ class FLEvent221Type extends EventDataType
      *
      * Блок 30. Сведения о неденежном обязательстве источника
      *
+     * @return self
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL30NonMonetarySourceType $fL30NonMonetarySource
-     *@return self
      */
     public function addToFL30NonMonetarySource(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL30NonMonetarySourceType $fL30NonMonetarySource)
     {

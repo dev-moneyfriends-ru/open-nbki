@@ -2,13 +2,15 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\UL2326GroupType\PropertyIdGroupUL2326GroupAType;
+
 /**
  * Class representing UL2326GroupType
  *
  * Блок 23,26
  * XSD Type: UL_23_26_Group_Type
  */
-class UL2326GroupType
+class UL2326GroupType extends GutdfSegment
 {
     /**
      * 23.1. Признак наличия залога = 0
@@ -25,7 +27,7 @@ class UL2326GroupType
     private $assetKind1 = null;
 
     /**
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL2326GroupType\PropertyIdGroupUL2326GroupAType[] $propertyIdGroupUL2326Group
+     * @var PropertyIdGroupUL2326GroupAType[] $propertyIdGroupUL2326Group
      */
     private $propertyIdGroupUL2326Group = [
         
@@ -86,10 +88,10 @@ class UL2326GroupType
     /**
      * Adds as propertyIdGroupUL2326Group
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL2326GroupType\PropertyIdGroupUL2326GroupAType $propertyIdGroupUL2326Group
-     *@return self
+     * @return self
+     * @param PropertyIdGroupUL2326GroupAType $propertyIdGroupUL2326Group
      */
-    public function addToPropertyIdGroupUL2326Group(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL2326GroupType\PropertyIdGroupUL2326GroupAType $propertyIdGroupUL2326Group)
+    public function addToPropertyIdGroupUL2326Group(PropertyIdGroupUL2326GroupAType $propertyIdGroupUL2326Group)
     {
         $this->propertyIdGroupUL2326Group[] = $propertyIdGroupUL2326Group;
         return $this;
@@ -120,7 +122,7 @@ class UL2326GroupType
     /**
      * Gets as propertyIdGroupUL2326Group
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL2326GroupType\PropertyIdGroupUL2326GroupAType[]
+     * @return PropertyIdGroupUL2326GroupAType[]
      */
     public function getPropertyIdGroupUL2326Group()
     {
@@ -130,13 +132,80 @@ class UL2326GroupType
     /**
      * Sets a new propertyIdGroupUL2326Group
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL2326GroupType\PropertyIdGroupUL2326GroupAType[] $propertyIdGroupUL2326Group
+     * @param PropertyIdGroupUL2326GroupAType[] $propertyIdGroupUL2326Group
      * @return self
      */
     public function setPropertyIdGroupUL2326Group(array $propertyIdGroupUL2326Group = null)
     {
         $this->propertyIdGroupUL2326Group = $propertyIdGroupUL2326Group;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_23_26_Group';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Признак наличия залога 0' => 'код «0» – обстоятельство кода «1» отсутствует.',
+            'Признак наличия залога 1' => 'Код «1» – исполнение обязательства обеспечено залогом;',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блоки 23,26';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $collaterals = $this->template->sendData->getAccountReplyRUTDF()->getCollateral();
+        if(empty($collaterals)){
+            $this->assetKind0 = '';
+            $this->assetKind1 = null;
+            return;
+        }
+
+        foreach ($collaterals as $key => $collateral) {
+            $this->addToPropertyIdGroupUL2326Group(new PropertyIdGroupUL2326GroupAType($this->template, $key));
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'assetKind_0' => 'assetKind0',
+            'assetKind_1' => 'assetKind1',
+            'propertyIdGroupUL2326Group',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFields(): array
+    {
+        return [
+            'assetKind_0' => $this->assetKind0,
+            'assetKind_1' => $this->assetKind1,
+        ];
     }
 }
 

@@ -2,55 +2,29 @@
 
 namespace mfteam\nbch\components\rutdf\template;
 
-use mfteam\nbch\components\rutdf\template\BaseTemplate;
-use mfteam\nbch\models\BaseItem;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\Document;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
 
 /**
  * Шаблон GUTDF
  */
 class GutdfTemplate extends BaseTemplate
 {
-    /**
-     * Версия формата файла
-     */
-    public const FORMAT_VERSION = 'RUTDF6.03';
-
-    /**
-     * Связь файла
-     */
     public const ENTITY = "GutdfTemplate";
 
-    public const BASE_NAME_FILE_EXTENSION = '.xml';
+    public const FILE_EXTENSION = '';
+    /**
+     * @var Document
+     */
+    private $document;
+
     /**
      * @inheritDoc
      */
     public function loadContent()
     {
-        // TODO: Implement loadContent() method.
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getLineNumber(): int
-    {
-        // TODO: Implement getLineNumber() method.
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function nextLine(): void
-    {
-        // TODO: Implement nextLine() method.
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function resetLine(): void
-    {
-        // TODO: Implement resetLine() method.
+        $this->document = new Document($this);
+        $this->content = (new GenerateGutdfXml())->execute($this->document);
     }
 
     /**
@@ -58,54 +32,17 @@ class GutdfTemplate extends BaseTemplate
      */
     public function createSegments(): void
     {
-        // TODO: Implement createSegments() method.
+        $this->segments[] = $this->document;
+        $this->exctractSegments($this->document);
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function createSegment(string $block): array
+    private function exctractSegments(GutdfSegment $parentSegment)
     {
-        // TODO: Implement createSegment() method.
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function createSingleSegment(string $segmentClass): array
-    {
-        // TODO: Implement createSingleSegment() method.
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getSegments()
-    {
-        // TODO: Implement getSegments() method.
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getErrors(): array
-    {
-        // TODO: Implement getErrors() method.
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function createMultiSegment(string $segmentClass): array
-    {
-        // TODO: Implement createMultiSegment() method.
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function configureSegments(string $segmentClass, array $items, BaseItem $default = null): array
-    {
-        // TODO: Implement configureSegments() method.
+        foreach ($parentSegment->getXmlAttributes() as $attribute){
+            if($parentSegment->$attribute instanceof GutdfSegment){
+                $this->segments[] = $parentSegment->$attribute;
+                $this->exctractSegments($parentSegment->$attribute);
+            }
+        }
     }
 }

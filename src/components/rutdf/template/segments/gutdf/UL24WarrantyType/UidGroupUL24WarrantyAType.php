@@ -2,10 +2,13 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf\UL24WarrantyType;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
+use mfteam\nbch\helpers\UuidHelper;
+
 /**
  * Class representing UidGroupUL24WarrantyAType
  */
-class UidGroupUL24WarrantyAType
+class UidGroupUL24WarrantyAType extends GutdfSegment
 {
     /**
      * 24.2. УИд договора поручительства
@@ -236,6 +239,70 @@ class UidGroupUL24WarrantyAType
     {
         $this->endCode = $endCode;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'Uid_group_UL_24_Warranty';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'УИд договора поручительства' => 'Заполняется, если по обязательству поручителя формируется КИ. Значение показателя должно соответствовать значению показателя 17.1 «УИд сделки» блока 17 в КИ поручителя – физического лица или показателя 10.1 «УИд сделки» блока 10 в КИ поручителя – юридического лица.',
+            'Размер поручительства' => '',
+            'Валюта поручительства' => '',
+            'Дата заключения договора поручительства' => '',
+            'Дата прекращения поручительства согласно договору' => '',
+            'Дата фактического прекращения поручительства' => '',
+            'Код причины прекращения поручительства' => 'Заполняется по справочнику 4.2.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Договор поручительства';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $warranty = $this->template->sendData->getAccountReplyRUTDF()->getGuarantor()[$this->idx];
+
+        $this->uid = UuidHelper::getUuidWithControl($warranty->guaranteeUuid);
+        $this->sum = $this->formatCurrency($warranty->guaranteeVolume);
+        $this->currency = $warranty->currencyCode;
+        $this->openDate = $this->formatDate($warranty->guaranteeAgreementDt);
+        $this->endDate = $this->formatDate($warranty->guaranteeExpirationDate);
+        $this->factEndDate = $this->formatDate($warranty->guaranteeFactExpirationDate);
+        $this->endCode = $warranty->guaranteeFactExpirationDate;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'uid',
+            'sum',
+            'currency',
+            'openDate',
+            'endDate',
+            'factEndDate',
+            'endCode',
+        ];
     }
 }
 

@@ -2,8 +2,10 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments;
 
-use DateTime;
+
+use mfteam\nbch\components\rutdf\template\BaseTemplate;
 use mfteam\nbch\components\rutdf\template\RutdfTemplate;
+use mfteam\nbch\models\rutdf\NbchDataInterface;
 use yii\base\InvalidConfigException;
 use yii\base\InvalidValueException;
 use yii\helpers\ArrayHelper;
@@ -28,7 +30,8 @@ abstract class BaseSegment extends \yii\base\BaseObject
      * Значение пустого поля
      */
     public const EMPTY_VALUE = '';
-    
+
+    public const DATE_FORMAT = 'd.m.Y';
     /**
      * @var RutdfTemplate
      */
@@ -49,15 +52,21 @@ abstract class BaseSegment extends \yii\base\BaseObject
      * @var array
      */
     protected $fieldValues;
+
+    /**
+     * @var NbchDataInterface
+     */
+    protected $sendData;
     
     /**
      * BaseSegment constructor.
      * @param RutdfTemplate $template
      * @param array $config
      */
-    public function __construct(RutdfTemplate $template, $config = [])
+    public function __construct(BaseTemplate $template, $config = [])
     {
         $this->template = $template;
+        $this->sendData = $template->sendData;
         parent::__construct($config);
     }
     
@@ -71,7 +80,7 @@ abstract class BaseSegment extends \yii\base\BaseObject
         if (empty($date)) {
             return self::EMPTY_VALUE;
         }
-        return \Yii::$app->formatter->asDate($date, 'dd.MM.yyyy');
+        return \Yii::$app->formatter->asDate($date, static::DATE_FORMAT);
     }
     
     /**

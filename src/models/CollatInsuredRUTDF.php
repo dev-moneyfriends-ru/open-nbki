@@ -11,12 +11,14 @@ class CollatInsuredRUTDF extends BaseItem
      * Лимит страховых выплат.
      * Указывается предельный размер обязательств страховщика согласно договору. При отсутствии лимита страховых выплат по указанному показателю приводится страховая сумма.
      * @var float $insurLimit
+     * @deprecated
      */
     public $insurLimit;
     
     /**
      * Валюта страховых выплат
      * @var string $currencyCode
+     * @deprecated
      */
     public $currencyCode = 'RUB';
     

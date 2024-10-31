@@ -2,13 +2,15 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
+use mfteam\nbch\helpers\UuidHelper;
+
 /**
  * Class representing FL56ParticipationType
  *
  * Блок 56. Сведения об участии в обязательстве, по которому формируется кредитная история
  * XSD Type: FL_56_Participation_Type
  */
-class FL56ParticipationType
+class FL56ParticipationType extends GutdfSegment
 {
     /**
      * 56.1. Код вида участия в сделке
@@ -272,6 +274,84 @@ class FL56ParticipationType
     {
         $this->stopExist1 = $stopExist1;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_56_Participation';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Код вида участия в сделке' => 'Заполняется по справочнику 2.1.',
+            'Код вида займа (кредита)' => 'Заполняется по справочнику 2.3.',
+            'УИд сделки' => 'Значение должно соответствовать одному из значений показателя 17.1 «УИд сделки».',
+            'Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства' => 'Должно совпадать со значением показателя 24.1.',
+            'Признак просрочки должника более 90 дней 0' => 'Код «1» – должник нарушил срок платежа по займу или лизингу более чем на 90 календарных дней; код «0» – обстоятельство кода «1» отсутствует Продолжительность просрочки определяется методом ФИФО. Значение данного показателя должно соответствовать продолжительности просрочки, которая указана по показателю 28.12 «Продолжительность просрочки».',
+            'Признак просрочки должника более 90 дней 1' => 'Код «1» – должник нарушил срок платежа по займу или лизингу более чем на 90 календарных дней; код «0» – обстоятельство кода «1» отсутствует Продолжительность просрочки определяется методом ФИФО. Значение данного показателя должно соответствовать продолжительности просрочки, которая указана по показателю 28.12 «Продолжительность просрочки».',
+            'Признак прекращения обязательства 0' => 'Код «1» – взаимные обязательства субъекта и источника прекращены (независимо от основания); код «0» – обстоятельство кода «1» отсутствует.',
+            'Признак прекращения обязательства 1' => 'Код «1» – взаимные обязательства субъекта и источника прекращены (независимо от основания); код «0» – обстоятельство кода «1» отсутствует.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 56. Сведения об участии в обязательстве, по которому формируется кредитная история';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $informPart = $this->template->sendData->getInformationPartRUTDF();
+        $this->role = $informPart->flagIndicatorCode;
+        $this->kindCode = $informPart->approvedLoanTypeCode;
+        $this->uid = UuidHelper::getUuidWithControl($informPart->agreementNumber);
+        $this->fundDate = $this->formatDate($informPart->fundDt);
+
+        if($informPart->defaultFlag){
+            $this->overdueExist0 = null;
+            $this->overdueExist1 = '';
+        }else{
+            $this->overdueExist0 = '';
+            $this->overdueExist1 = null;
+        }
+
+        if($informPart->loanIndicator){
+            $this->stopExist0 = null;
+            $this->stopExist1 = '';
+        }else{
+            $this->stopExist0 = '';
+            $this->stopExist1 = null;
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'role',
+            'kindCode',
+            'uid',
+            'fundDate',
+            'overdueExist_0' => 'overdueExist0',
+            'overdueExist_1' => 'overdueExist1',
+            'stopExist_0' => 'stopExist0',
+            'stopExist_1' => 'stopExist1',
+        ];
     }
 }
 

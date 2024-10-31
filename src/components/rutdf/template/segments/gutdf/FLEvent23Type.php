@@ -244,8 +244,8 @@ class FLEvent23Type extends EventDataType
      *
      * Блок 19(1). Сведения об обеспечиваемом обязательстве
      *
+     * @return self
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL191AmountInfoType $fL191AmountInfo
-     *@return self
      */
     public function addToFL191AmountInfo(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL191AmountInfoType $fL191AmountInfo)
     {
@@ -440,8 +440,8 @@ class FLEvent23Type extends EventDataType
      *
      * Блок 31. Сведения о неденежном обязательстве субъекта
      *
+     * @return self
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL31NonMonetarySubjectType $fL31NonMonetarySubject
-     *@return self
      */
     public function addToFL31NonMonetarySubject(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL31NonMonetarySubjectType $fL31NonMonetarySubject)
     {
@@ -532,8 +532,8 @@ class FLEvent23Type extends EventDataType
      *
      * Блок 30. Сведения о неденежном обязательстве источника
      *
+     * @return self
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL30NonMonetarySourceType $fL30NonMonetarySource
-     *@return self
      */
     public function addToFL30NonMonetarySource(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL30NonMonetarySourceType $fL30NonMonetarySource)
     {
@@ -695,6 +695,78 @@ class FLEvent23Type extends EventDataType
     {
         $this->fL56Participation = $fL56Participation;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_Event_2_3';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Изменение задолженности, в том числе ввиду исполнения обязательства, наступила ответственность поручителя или обязательство принципала возместить выплаченную сумму';
+    }
+
+    protected function initAttributes()
+    {
+        $this->addToFL8AddrReg(new FL8AddrRegType($this->template));
+        $this->fL9AddrFact = new FL9AddrFactType($this->template);
+        $this->fL10Contact = new FL10ContactType($this->template);
+        $this->fL11IndividualEntrepreneur = new FL11IndividualEntrepreneurType($this->template);
+        $this->fL12Capacity = new FL12CapacityType($this->template);
+        $this->fL17DealUid = new FL17DealUidType($this->template);
+        $this->fL18Deal = new FL18DealType($this->template);
+        $this->fL19Amount = new FL19AmountType($this->template);
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+            $this->addToFL191AmountInfo(new FL191AmountInfoType($this->template, $key));
+        }
+        $this->fL20JointDebtors = new FL20JointDebtorsType($this->template);
+        $this->fL21PaymentTerms = new FL21PaymentTermsType($this->template);
+        $this->setFL25262728Group(new FL25262728GroupType($this->template));
+        $this->fL29MonthlyPayment = new FL29MonthlyPaymentType($this->template);
+        $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+            $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
+        }
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+            $this->addToFL31NonMonetarySubject(new FL31NonMonetarySubjectType($this->template, $key));
+        }
+
+        $this->fL37WarrantyReturn = new FL37WarrantyReturnType($this->template);
+        $this->fL54Accounting = new FL54AccountingType($this->template);
+        $this->fL55Application = new FL55ApplicationType($this->template);
+        $this->fL56Participation = new FL56ParticipationType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'fL17DealUid',
+            'fL18Deal',
+            'fL19Amount',
+            'fL191AmountInfo',
+            'fL20JointDebtors',
+            'fL21PaymentTerms',
+            'fL22TotalCost',
+            'fL25262728Group',
+            'fL29MonthlyPayment',
+            'fL291DebtBurdenInfo',
+            'fL30NonMonetarySource',
+            'fL31NonMonetarySubject',
+            'fL37WarrantyReturn',
+            'fL54Accounting',
+            'fL55Application',
+            'fL56Participation',
+        ];
     }
 }
 

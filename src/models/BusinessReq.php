@@ -14,9 +14,10 @@ class BusinessReq extends BusinessReply
     public function fields()
     {
         return [
-            'businessName',
-            'abbreviatedBusinessName',
-            'businessNameAlt',
+          'businessName',
+          'abbreviatedBusinessName',
+          'businessNameAlt',
+          'OKSM',
         ];
     }
 }

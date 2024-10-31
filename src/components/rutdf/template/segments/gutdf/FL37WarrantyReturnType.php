@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 37. Сведения о возмещении принципалом гаранту выплаченной суммы
  * XSD Type: FL_37_WarrantyReturn_Type
  */
-class FL37WarrantyReturnType
+class FL37WarrantyReturnType extends GutdfSegment
 {
     /**
      * 37.1. Признак обязанности возместить выплаченную сумму = 0
@@ -239,6 +239,83 @@ class FL37WarrantyReturnType
     {
         $this->calcDate = $calcDate;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_37_WarrantyReturn';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Признак обязанности возместить выплаченную сумму 0' => 'Код «1» – принципал обязан возместить гаранту выплаченную им сумму; код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока 37 не заполняются.',
+            'Признак обязанности возместить выплаченную сумму 1' => 'Код «1» – принципал обязан возместить гаранту выплаченную им сумму; код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока 37 не заполняются.',
+            'Сумма, подлежащая возмещению' => '',
+            'Сумма, выплаченная принципалом' => '',
+            'Признак соблюдения порядка возмещения 0' => 'Код «1» – принципал надлежаще возмещает гаранту выплаченную им сумму; код «0» – обстоятельство кода «1» отсутствует.',
+            'Признак соблюдения порядка возмещения 1' => 'Код «1» – принципал надлежаще возмещает гаранту выплаченную им сумму; код «0» – обстоятельство кода «1» отсутствует.',
+            'Дата расчета' => 'Дата, по состоянию на которую рассчитаны значения показателей блока 37',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 37. Сведения о возмещении принципалом гаранту выплаченной суммы';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $account = $this->template->sendData->getAccountReplyRUTDF();
+
+        if(!$account->hasGuaranteeRepay){
+            $this->exist0 = '';
+            $this->exist1 = null;
+            return;
+        }
+
+        $this->exist0 = null;
+        $this->exist1 = '';
+        $this->sum = $this->formatCurrency($account->guaranteeToRepay);
+        $this->paidSum = $this->formatCurrency($account->guaranteeRepayAmt);
+
+        if($account->guaranteeRepayKeepCode){
+            $this->compliance0 = null;
+            $this->compliance1 = '';
+        }else{
+            $this->compliance0 = '';
+            $this->compliance1 = null;
+        }
+
+        $this->calcDate = $this->formatDate($account->guaranteeDate);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'exist_0' => 'exist0',
+            'exist_1' => 'exist1',
+            'sum',
+            'paidSum',
+            'compliance_0' => 'compliance0',
+            'compliance_1' => 'compliance1',
+            'calcDate',
+        ];
     }
 }
 

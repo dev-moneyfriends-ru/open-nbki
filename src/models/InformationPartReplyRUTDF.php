@@ -190,5 +190,11 @@ class InformationPartReplyRUTDF extends BaseInformationPartReplyRUTDF
      * @var int[] $rejectedReasonCode
      */
     public $rejectedReasonCode = [];
+
+    /**
+     * Сумма одобренного источником займа (кредита), лизинга или обеспечения по результатам рассмотрения источником обращения субъекта.
+     * @var string $loanSum
+     */
+    public $loanSum = null;
     
 }

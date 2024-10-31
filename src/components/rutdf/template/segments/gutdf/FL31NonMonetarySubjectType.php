@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 31. Сведения о неденежном обязательстве субъекта
  * XSD Type: FL_31_NonMonetarySubject_Type
  */
-class FL31NonMonetarySubjectType
+class FL31NonMonetarySubjectType extends GutdfSegment
 {
     /**
      * 31.1. Предмет обязательства
@@ -173,6 +173,68 @@ class FL31NonMonetarySubjectType
     {
         $this->code = $code;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_31_NonMonetarySubject';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Предмет обязательства' => 'Предмет обязательства субъекта согласно условиям договора.',
+            'Порядок исполнения обязательства' => 'Заполняется согласно условиям договора.',
+            'Признак ненадлежащего исполнения обязательства 0' => 'код «0» – субъект надлежаще исполняет свое обязательство.',
+            'Признак ненадлежащего исполнения обязательства 1' => 'Код «1» – субъект не исполнил свое обязательство или его часть;',
+            'Код полученного имущества' => 'Заполняется по справочнику 4.1.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 31. Сведения о неденежном обязательстве субъекта';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $model = $this->template->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray()[$this->idx];
+        $this->item = $model->subjNonMonetOblig;
+        $this->fulfillment = $model->subjNonMonetObligRegul;
+        if($model->subjNonMonetObligAdverseCode){
+            $this->fulfillmentFailExist0 = null;
+            $this->fulfillmentFailExist1 = '';
+        }else{
+            $this->fulfillmentFailExist0 = '';
+            $this->fulfillmentFailExist1 = null;
+        }
+        $this->code = $model->receivedpropCode;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'item',
+            'fulfillment',
+            'fulfillmentFailExist_0' => 'fulfillmentFailExist0',
+            'fulfillmentFailExist_1' => 'fulfillmentFailExist1',
+            'сode'
+        ];
     }
 }
 

@@ -2,25 +2,28 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FL14GroupType\FL1NameAType;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FL14GroupType\FL4DocAType;
+
 /**
  * Class representing FL14GroupType
  *
  * Блок 1,4
  * XSD Type: FL_1_4_Group_Type
  */
-class FL14GroupType
+class FL14GroupType extends GutdfSegment
 {
     /**
      * Блок 1. Имя
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL14GroupType\FL1NameAType $fL1Name
+     * @var FL1NameAType $fL1Name
      */
     private $fL1Name = null;
 
     /**
      * Блок 4. Документ, удостоверяющий личность
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL14GroupType\FL4DocAType[] $fL4Doc
+     * @var FL4DocAType[] $fL4Doc
      */
     private $fL4Doc = [
         
@@ -31,7 +34,7 @@ class FL14GroupType
      *
      * Блок 1. Имя
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL14GroupType\FL1NameAType
+     * @return FL1NameAType
      */
     public function getFL1Name()
     {
@@ -43,10 +46,10 @@ class FL14GroupType
      *
      * Блок 1. Имя
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL14GroupType\FL1NameAType $fL1Name
+     * @param FL1NameAType $fL1Name
      * @return self
      */
-    public function setFL1Name(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL14GroupType\FL1NameAType $fL1Name)
+    public function setFL1Name(FL1NameAType $fL1Name)
     {
         $this->fL1Name = $fL1Name;
         return $this;
@@ -57,10 +60,10 @@ class FL14GroupType
      *
      * Блок 4. Документ, удостоверяющий личность
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL14GroupType\FL4DocAType $fL4Doc
-     *@return self
+     * @return self
+     * @param FL4DocAType $fL4Doc
      */
-    public function addToFL4Doc(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL14GroupType\FL4DocAType $fL4Doc)
+    public function addToFL4Doc(FL4DocAType $fL4Doc)
     {
         $this->fL4Doc[] = $fL4Doc;
         return $this;
@@ -97,7 +100,7 @@ class FL14GroupType
      *
      * Блок 4. Документ, удостоверяющий личность
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL14GroupType\FL4DocAType[]
+     * @return FL4DocAType[]
      */
     public function getFL4Doc()
     {
@@ -109,13 +112,62 @@ class FL14GroupType
      *
      * Блок 4. Документ, удостоверяющий личность
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL14GroupType\FL4DocAType[] $fL4Doc
+     * @param FL4DocAType[] $fL4Doc
      * @return self
      */
     public function setFL4Doc(array $fL4Doc)
     {
         $this->fL4Doc = $fL4Doc;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_1_4_Group';
+    }
+
+    public function getFields(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'ФЛ';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $this->fL1Name = new FL1NameAType($this->template);
+        $this->addToFL4Doc(new FL4DocAType($this->template));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'fL1Name',
+            'fL4Doc',
+        ];
     }
 }
 

@@ -2,13 +2,16 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FL36ProvisionPaymentType\CodeGroupFL36ProvisionPaymentAType;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\UL27ProvisionPaymentType\CodeGroupUL27ProvisionPaymentAType;
+
 /**
  * Class representing FL36ProvisionPaymentType
  *
  * Блок 36. Сведения о погашении требований кредитора по обязательству за счет обеспечения
  * XSD Type: FL_36_ProvisionPayment_Type
  */
-class FL36ProvisionPaymentType
+class FL36ProvisionPaymentType extends GutdfSegment
 {
     /**
      * 36.1. Признак погашения требований за счет обеспечения = 0
@@ -25,7 +28,7 @@ class FL36ProvisionPaymentType
     private $exist1 = null;
 
     /**
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL36ProvisionPaymentType\CodeGroupFL36ProvisionPaymentAType[] $codeGroupFL36ProvisionPayment
+     * @var CodeGroupFL36ProvisionPaymentAType[] $codeGroupFL36ProvisionPayment
      */
     private $codeGroupFL36ProvisionPayment = [
         
@@ -86,10 +89,10 @@ class FL36ProvisionPaymentType
     /**
      * Adds as codeGroupFL36ProvisionPayment
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL36ProvisionPaymentType\CodeGroupFL36ProvisionPaymentAType $codeGroupFL36ProvisionPayment
-     *@return self
+     * @return self
+     * @param CodeGroupFL36ProvisionPaymentAType $codeGroupFL36ProvisionPayment
      */
-    public function addToCodeGroupFL36ProvisionPayment(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL36ProvisionPaymentType\CodeGroupFL36ProvisionPaymentAType $codeGroupFL36ProvisionPayment)
+    public function addToCodeGroupFL36ProvisionPayment(CodeGroupFL36ProvisionPaymentAType $codeGroupFL36ProvisionPayment)
     {
         $this->codeGroupFL36ProvisionPayment[] = $codeGroupFL36ProvisionPayment;
         return $this;
@@ -120,7 +123,7 @@ class FL36ProvisionPaymentType
     /**
      * Gets as codeGroupFL36ProvisionPayment
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL36ProvisionPaymentType\CodeGroupFL36ProvisionPaymentAType[]
+     * @return CodeGroupFL36ProvisionPaymentAType[]
      */
     public function getCodeGroupFL36ProvisionPayment()
     {
@@ -130,13 +133,78 @@ class FL36ProvisionPaymentType
     /**
      * Sets a new codeGroupFL36ProvisionPayment
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL36ProvisionPaymentType\CodeGroupFL36ProvisionPaymentAType[] $codeGroupFL36ProvisionPayment
+     * @param CodeGroupFL36ProvisionPaymentAType[] $codeGroupFL36ProvisionPayment
      * @return self
      */
     public function setCodeGroupFL36ProvisionPayment(array $codeGroupFL36ProvisionPayment = null)
     {
         $this->codeGroupFL36ProvisionPayment = $codeGroupFL36ProvisionPayment;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_36_ProvisionPayment';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Признак погашения требований за счет обеспечения 0' => 'Код «1» – в случае если требования источника к субъекту были полностью или частично погашены за счет обеспечения; код «0» – в случае если обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока не передаются в соответствии со схемой Blocks.xsd.',
+            'Признак погашения требований за счет обеспечения 1' => 'Код «1» – в случае если требования источника к субъекту были полностью или частично погашены за счет обеспечения; код «0» – в случае если обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока не передаются в соответствии со схемой Blocks.xsd.',
+        ];
+    }
+    public function getFields():array
+    {
+        return [
+            'exist_0' => $this->exist0,
+            'exist_1' => $this->exist1,
+        ];
+    }
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 36. Сведения о погашении требований кредитора по обязательству за счет обеспечения';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $provisions = $this->template->sendData->getAccountReplyRUTDF()->getCollatRepay();
+        if(empty($provisions)){
+            $this->exist0 = '';
+            $this->exist1 = null;
+            return;
+        }
+
+        $this->exist0 = '';
+        $this->exist1 = null;
+
+        foreach ($provisions as $key => $provision){
+            $this->addToCodeGroupFL36ProvisionPayment(new CodeGroupFL36ProvisionPaymentAType($this->template, $key));
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'exist_0' => 'exist0',
+            'exist_1' => 'exist1',
+            'codeGroupFL36ProvisionPayment',
+        ];
     }
 }
 

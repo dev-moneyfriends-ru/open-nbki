@@ -2,13 +2,15 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\UL27ProvisionPaymentType\CodeGroupUL27ProvisionPaymentAType;
+
 /**
  * Class representing UL27ProvisionPaymentType
  *
  * Блок 27. Сведения о погашении требований кредитора по обязательству за счет обеспечения
  * XSD Type: UL_27_ProvisionPayment_Type
  */
-class UL27ProvisionPaymentType
+class UL27ProvisionPaymentType extends GutdfSegment
 {
     /**
      * 27.1. Признак погашения требований за счет обеспечения = 0
@@ -25,7 +27,7 @@ class UL27ProvisionPaymentType
     private $exist1 = null;
 
     /**
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL27ProvisionPaymentType\CodeGroupUL27ProvisionPaymentAType[] $codeGroupUL27ProvisionPayment
+     * @var CodeGroupUL27ProvisionPaymentAType[] $codeGroupUL27ProvisionPayment
      */
     private $codeGroupUL27ProvisionPayment = [
         
@@ -86,10 +88,10 @@ class UL27ProvisionPaymentType
     /**
      * Adds as codeGroupUL27ProvisionPayment
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL27ProvisionPaymentType\CodeGroupUL27ProvisionPaymentAType $codeGroupUL27ProvisionPayment
+     * @param CodeGroupUL27ProvisionPaymentAType $codeGroupUL27ProvisionPayment
      *@return self
      */
-    public function addToCodeGroupUL27ProvisionPayment(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL27ProvisionPaymentType\CodeGroupUL27ProvisionPaymentAType $codeGroupUL27ProvisionPayment)
+    public function addToCodeGroupUL27ProvisionPayment(CodeGroupUL27ProvisionPaymentAType $codeGroupUL27ProvisionPayment)
     {
         $this->codeGroupUL27ProvisionPayment[] = $codeGroupUL27ProvisionPayment;
         return $this;
@@ -120,7 +122,7 @@ class UL27ProvisionPaymentType
     /**
      * Gets as codeGroupUL27ProvisionPayment
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL27ProvisionPaymentType\CodeGroupUL27ProvisionPaymentAType[]
+     * @return CodeGroupUL27ProvisionPaymentAType[]
      */
     public function getCodeGroupUL27ProvisionPayment()
     {
@@ -130,13 +132,80 @@ class UL27ProvisionPaymentType
     /**
      * Sets a new codeGroupUL27ProvisionPayment
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL27ProvisionPaymentType\CodeGroupUL27ProvisionPaymentAType[] $codeGroupUL27ProvisionPayment
+     * @param CodeGroupUL27ProvisionPaymentAType[] $codeGroupUL27ProvisionPayment
      * @return self
      */
     public function setCodeGroupUL27ProvisionPayment(array $codeGroupUL27ProvisionPayment = null)
     {
         $this->codeGroupUL27ProvisionPayment = $codeGroupUL27ProvisionPayment;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_27_ProvisionPayment';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+          'Признак погашения требований за счет обеспечения 0' => 'Код «1» – в случае если требования источника к субъекту были полностью или частично погашены за счет обеспечения; код «0» – в случае если обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока не передаются в соответствии со схемой Blocks.xsd.',
+          'Признак погашения требований за счет обеспечения 1' => 'Код «1» – в случае если требования источника к субъекту были полностью или частично погашены за счет обеспечения; код «0» – в случае если обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока не передаются в соответствии со схемой Blocks.xsd.',
+        ];
+    }
+
+    public function getFields():array
+    {
+        return [
+            'exist_0' => $this->exist0,
+            'exist_1' => $this->exist1,
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 27. Сведения о погашении требований кредитора по обязательству за счет обеспечения';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $provisions = $this->template->sendData->getAccountReplyRUTDF()->getCollatRepay();
+        if(empty($provisions)){
+            $this->exist0 = '';
+            $this->exist1 = null;
+            return;
+        }
+
+        $this->exist0 = '';
+        $this->exist1 = null;
+
+        foreach ($provisions as $key => $provision){
+            $this->addToCodeGroupUL27ProvisionPayment(new CodeGroupUL27ProvisionPaymentAType($this->template, $key));
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'exist_0' => 'exist0',
+            'exist_1' => 'exist1',
+            'codeGroupUL27ProvisionPayment',
+        ];
     }
 }
 

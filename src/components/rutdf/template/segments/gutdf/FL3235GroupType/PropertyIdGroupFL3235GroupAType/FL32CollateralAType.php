@@ -2,10 +2,15 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf\FL3235GroupType\PropertyIdGroupFL3235GroupAType;
 
+use DateTime;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FL3235GroupType\PropertyIdGroupFL3235GroupAType\FL32CollateralAType\SumGroupFL3235GroupAType;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\UL2326GroupType\PropertyIdGroupUL2326GroupAType\UL23CollateralAType\SumGroupUL2326GroupAType;
+
 /**
  * Class representing FL32CollateralAType
  */
-class FL32CollateralAType
+class FL32CollateralAType extends GutdfSegment
 {
     /**
      * 32.2. Код предмета залога
@@ -22,7 +27,7 @@ class FL32CollateralAType
     private $date = null;
 
     /**
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL3235GroupType\PropertyIdGroupFL3235GroupAType\FL32CollateralAType\SumGroupFL3235GroupAType[] $sumGroupFL3235Group
+     * @var SumGroupFL3235GroupAType[] $sumGroupFL3235Group
      */
     private $sumGroupFL3235Group = [
         
@@ -31,14 +36,14 @@ class FL32CollateralAType
     /**
      * 32.9, Дата прекращения залога согласно договору
      *
-     * @var \DateTime $collateralEndDate
+     * @var DateTime $collateralEndDate
      */
     private $collateralEndDate = null;
 
     /**
      * 32.10. Дата фактического прекращения залога
      *
-     * @var \DateTime $collateralFactEndDate
+     * @var DateTime $collateralFactEndDate
      */
     private $collateralFactEndDate = null;
 
@@ -80,7 +85,7 @@ class FL32CollateralAType
     /**
      * 32.17. Дата расчета актуальной стоимости предмета залога
      *
-     * @var \DateTime $calcDate
+     * @var DateTime $calcDate
      */
     private $calcDate = null;
 
@@ -139,10 +144,10 @@ class FL32CollateralAType
     /**
      * Adds as sumGroupFL3235Group
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL3235GroupType\PropertyIdGroupFL3235GroupAType\FL32CollateralAType\SumGroupFL3235GroupAType $sumGroupFL3235Group
-     *@return self
+     * @return self
+     * @param SumGroupFL3235GroupAType $sumGroupFL3235Group
      */
-    public function addToSumGroupFL3235Group(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL3235GroupType\PropertyIdGroupFL3235GroupAType\FL32CollateralAType\SumGroupFL3235GroupAType $sumGroupFL3235Group)
+    public function addToSumGroupFL3235Group(SumGroupFL3235GroupAType $sumGroupFL3235Group)
     {
         $this->sumGroupFL3235Group[] = $sumGroupFL3235Group;
         return $this;
@@ -173,7 +178,7 @@ class FL32CollateralAType
     /**
      * Gets as sumGroupFL3235Group
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL3235GroupType\PropertyIdGroupFL3235GroupAType\FL32CollateralAType\SumGroupFL3235GroupAType[]
+     * @return SumGroupFL3235GroupAType[]
      */
     public function getSumGroupFL3235Group()
     {
@@ -183,7 +188,7 @@ class FL32CollateralAType
     /**
      * Sets a new sumGroupFL3235Group
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL3235GroupType\PropertyIdGroupFL3235GroupAType\FL32CollateralAType\SumGroupFL3235GroupAType[] $sumGroupFL3235Group
+     * @param SumGroupFL3235GroupAType[] $sumGroupFL3235Group
      * @return self
      */
     public function setSumGroupFL3235Group(array $sumGroupFL3235Group = null)
@@ -197,7 +202,7 @@ class FL32CollateralAType
      *
      * 32.9, Дата прекращения залога согласно договору
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getCollateralEndDate()
     {
@@ -209,10 +214,10 @@ class FL32CollateralAType
      *
      * 32.9, Дата прекращения залога согласно договору
      *
-     * @param \DateTime $collateralEndDate
+     * @param DateTime $collateralEndDate
      * @return self
      */
-    public function setCollateralEndDate(?\DateTime $collateralEndDate = null)
+    public function setCollateralEndDate(?DateTime $collateralEndDate = null)
     {
         $this->collateralEndDate = $collateralEndDate;
         return $this;
@@ -223,7 +228,7 @@ class FL32CollateralAType
      *
      * 32.10. Дата фактического прекращения залога
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getCollateralFactEndDate()
     {
@@ -235,10 +240,10 @@ class FL32CollateralAType
      *
      * 32.10. Дата фактического прекращения залога
      *
-     * @param \DateTime $collateralFactEndDate
+     * @param DateTime $collateralFactEndDate
      * @return self
      */
-    public function setCollateralFactEndDate(?\DateTime $collateralFactEndDate = null)
+    public function setCollateralFactEndDate(?DateTime $collateralFactEndDate = null)
     {
         $this->collateralFactEndDate = $collateralFactEndDate;
         return $this;
@@ -379,7 +384,7 @@ class FL32CollateralAType
      *
      * 32.17. Дата расчета актуальной стоимости предмета залога
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getCalcDate()
     {
@@ -391,13 +396,92 @@ class FL32CollateralAType
      *
      * 32.17. Дата расчета актуальной стоимости предмета залога
      *
-     * @param \DateTime $calcDate
+     * @param DateTime $calcDate
      * @return self
      */
-    public function setCalcDate(?\DateTime $calcDate = null)
+    public function setCalcDate(?DateTime $calcDate = null)
     {
         $this->calcDate = $calcDate;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_32_Collateral';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Код предмета залога' => 'Заполняется по справочнику 4.1.',
+            'Дата заключения договора залога' => '',
+            'Дата прекращения залога согласно договору' => '',
+            'Дата фактического прекращения залога' => '',
+            'Код причины прекращения залога' => 'Заполняется по справочнику 4.2.',
+            'Вид стоимости предмета залога' => 'Заполняется по справочнику 4.1.1 Вид стоимости предмета залога, указанной по показателю 23.5 «Стоимость предмета залога».',
+            'Сумма обязательств по всем договорам, исполнение которых обеспечено предметом залога' => 'Общая сумма обязательств по всем договорам, исполнение которых обеспечивается одним и тем же предметом залога. Указывается в валюте, которая указана по показателю «Валюта стоимости предмета залога».',
+            'Количество договоров, исполнение обязательств по которым обеспечено предметом залога' => 'Количество договоров, обязательства из которых обеспечиваются одним и тем же предметом залога.',
+            'Код места нахождения залога по ОКАТО' => 'Код субъекта Российской Федерации, на территории которого находится предмет залога, согласно ОКАТО. При отсутствии в ОКАТО кода населенного пункта по показателю «Код места нахождения залога по ОКАТО» указывается «99 999 999 999»',
+            'Актуальная стоимость предмета залога' => 'Последняя рассчитанная стоимость предмета залога.',
+            'Дата расчета актуальной стоимости предмета залога' => 'Последняя дата, по состоянию на которую рассчитана стоимость предмета залога.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 32. Сведения о залоге';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $collateral = $this->template->sendData->getAccountReplyRUTDF()->getCollateral()[$this->idx];
+
+        $this->code = $collateral->collateralCode;
+
+        $this->date = $this->formatDate($collateral->collateralAgreementDt);
+        $this->collateralEndDate = $this->formatDate($collateral->collateralExpirationDate);
+        $this->collateralFactEndDate = $this->formatDate($collateral->collateralFactExpirationDate);
+        $this->calcDate = $this->formatDate($collateral->collateralFactExpirationDate);
+
+        $this->addToSumGroupFL3235Group(new SumGroupFL3235GroupAType($this->template, $this->idx));
+
+        $this->endReason = $collateral->collateralEndReason;
+        $this->contractTotalSum = $this->formatCurrency($collateral->collateralcommAmt);
+        $this->actualCost = $this->formatCurrency($collateral->actualCost);
+        $this->contractCount = $collateral->collateralcontCnt;
+        $this->location = $collateral->location;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'code',
+            'date',
+            'sumGroupFL3235Group',
+            'collateralEndDate',
+            'collateralFactEndDate',
+            'endReason',
+            'contractTotalSum',
+            'contractCount',
+            'location',
+            'actualCost',
+            'calcDate',
+        ];
     }
 }
 

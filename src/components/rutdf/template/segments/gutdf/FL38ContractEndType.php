@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 38. Сведения о прекращении обязательства
  * XSD Type: FL_38_ContractEnd_Type
  */
-class FL38ContractEndType
+class FL38ContractEndType extends GutdfSegment
 {
     /**
      * 38.2. Дата фактического прекращения обязательства
@@ -74,6 +74,54 @@ class FL38ContractEndType
     {
         $this->code = $code;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_38_ContractEnd';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Код основания прекращения обязательства' => 'Заполняется по справочнику 3.8.',
+            'Дата фактического прекращения обязательства' => 'Дата, в которую прекратились взаимные обязательства субъекта и источника.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 38. Сведения о прекращении обязательства';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $account = $this->template->sendData->getAccountReplyRUTDF();
+        $this->code = $account->loanIndicator;
+        $this->date = $this->formatDate($account->loanIndicatorDt);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'code',
+            'date',
+        ];
     }
 }
 

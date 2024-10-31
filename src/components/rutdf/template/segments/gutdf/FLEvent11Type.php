@@ -15,12 +15,12 @@ class FLEvent11Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_A;
 
     /**
      * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType $fL55Application
+     * @var FL55ApplicationType $fL55Application
      */
     private $fL55Application = null;
 
@@ -55,7 +55,7 @@ class FLEvent11Type extends EventDataType
      *
      * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType
+     * @return FL55ApplicationType
      */
     public function getFL55Application()
     {
@@ -67,13 +67,44 @@ class FLEvent11Type extends EventDataType
      *
      * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType $fL55Application
+     * @param FL55ApplicationType $fL55Application
      * @return self
      */
-    public function setFL55Application(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType $fL55Application)
+    public function setFL55Application(FL55ApplicationType $fL55Application)
     {
         $this->fL55Application = $fL55Application;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_Event_1_1';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Субъект обратился к источнику с предложением совершить сделку';
+    }
+
+    protected function initAttributes()
+    {
+        $this->fL55Application = new FL55ApplicationType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'fL55Application'
+        ];
     }
 }
 

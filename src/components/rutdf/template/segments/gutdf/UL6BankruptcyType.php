@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 6. Сведения по делу о несостоятельности (банкротстве)
  * XSD Type: UL_6_Bankruptcy_Type
  */
-class UL6BankruptcyType
+class UL6BankruptcyType extends GutdfSegment
 {
     /**
      * 6.1. Признак дела о банкротстве = 0
@@ -139,8 +139,8 @@ class UL6BankruptcyType
     /**
      * Adds as dateGroupUL6Bankruptcy
      *
+     * @return self
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL6BankruptcyType\DateGroupUL6BankruptcyAType $dateGroupUL6Bankruptcy
-     *@return self
      */
     public function addToDateGroupUL6Bankruptcy(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL6BankruptcyType\DateGroupUL6BankruptcyAType $dateGroupUL6Bankruptcy)
     {
@@ -452,6 +452,46 @@ class UL6BankruptcyType
     {
         $this->info = $info;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_6_Bankruptcy';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        // TODO: Implement getFieldsDescriptions() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 6. Сведения по делу о несостоятельности (банкротстве)';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        // TODO: Implement init() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        // TODO: Implement getXmlAttributes() method.
     }
 }
 

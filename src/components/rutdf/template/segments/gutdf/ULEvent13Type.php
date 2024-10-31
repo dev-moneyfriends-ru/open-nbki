@@ -15,19 +15,19 @@ class ULEvent13Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
      * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL45ApplicationType $uL45Application
+     * @var UL45ApplicationType $uL45Application
      */
     private $uL45Application = null;
 
     /**
      * Блок 47. Сведения об отказе источника от предложения совершить сделку
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL47RejectType $uL47Reject
+     * @var UL47RejectType $uL47Reject
      */
     private $uL47Reject = null;
 
@@ -62,7 +62,7 @@ class ULEvent13Type extends EventDataType
      *
      * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL45ApplicationType
+     * @return UL45ApplicationType
      */
     public function getUL45Application()
     {
@@ -74,10 +74,10 @@ class ULEvent13Type extends EventDataType
      *
      * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL45ApplicationType $uL45Application
+     * @param UL45ApplicationType $uL45Application
      * @return self
      */
-    public function setUL45Application(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL45ApplicationType $uL45Application)
+    public function setUL45Application(UL45ApplicationType $uL45Application)
     {
         $this->uL45Application = $uL45Application;
         return $this;
@@ -88,7 +88,7 @@ class ULEvent13Type extends EventDataType
      *
      * Блок 47. Сведения об отказе источника от предложения совершить сделку
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL47RejectType
+     * @return UL47RejectType
      */
     public function getUL47Reject()
     {
@@ -100,13 +100,46 @@ class ULEvent13Type extends EventDataType
      *
      * Блок 47. Сведения об отказе источника от предложения совершить сделку
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL47RejectType $uL47Reject
+     * @param UL47RejectType $uL47Reject
      * @return self
      */
-    public function setUL47Reject(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL47RejectType $uL47Reject)
+    public function setUL47Reject(UL47RejectType $uL47Reject)
     {
         $this->uL47Reject = $uL47Reject;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_Event_1_3';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Источник отказался от совершения сделки по обращению';
+    }
+
+    protected function initAttributes()
+    {
+        $this->uL45Application = new UL45ApplicationType($this->template);
+        $this->uL47Reject = new UL47RejectType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'uL45Application',
+            'uL47Reject'
+        ];
     }
 }
 

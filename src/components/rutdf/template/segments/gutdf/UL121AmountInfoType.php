@@ -2,13 +2,15 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
+use mfteam\nbch\helpers\UuidHelper;
+
 /**
  * Class representing UL121AmountInfoType
  *
  * Блок 12(1). Сведения об обеспечиваемом обязательстве
  * XSD Type: UL_12_1_AmountInfo_Type
  */
-class UL121AmountInfoType
+class UL121AmountInfoType extends GutdfSegment
 {
     /**
      * 12(1).1. Признак обеспечивающего обязательства = 0
@@ -272,6 +274,94 @@ class UL121AmountInfoType
     {
         $this->liabilityLimit = $liabilityLimit;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_12_1_AmountInfo';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFields(): array
+    {
+        return [
+            'securityFact_0' => $this->securityFact0,
+            'securityFact_1' => $this->securityFact1,
+            'securitySum' => $this->securitySum,
+            'securityCurrency' => $this->securityCurrency,
+            'securityTypeCode' => $this->securityTypeCode,
+            'calcDate' => $this->calcDate,
+            'securityUid' => $this->securityUid,
+            'liabilityLimit' => $this->liabilityLimit,
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Признак обеспечиваемого обязательства 0' => 'Код «1» - в случае если обязательство обеспечивает одно или несколько обязательств; код «0» - в случае если обстоятельство кода «1» отсутствует. В случае если по показателю 12.1.1 «Признак обеспечиваемого обязательства» указан код  «0», иные показатели блока 12.1 Показателей КИ ФЛ не передаются в соответствии со схемой Blocks.xsd.',
+            'Признак обеспечиваемого обязательства 1' => 'Код «1» - в случае если обязательство обеспечивает одно или несколько обязательств; код «0» - в случае если обстоятельство кода «1» отсутствует. В случае если по показателю 12.1.1 «Признак обеспечиваемого обязательства» указан код  «0», иные показатели блока 12.1 Показателей КИ ФЛ не передаются в соответствии со схемой Blocks.xsd.',
+            'Сумма обеспечиваемого обязательства' => 'Заполняется, если обязательством субъекта обеспечивается исполнение другого обязательства. Отражается сумма задолженности всех видов по обязательству, исполнение которого обеспечено обязательством субъекта, на дату формирования задолженности, изменения суммы задолженности.',
+            'Валюта обеспечиваемого обязательства' => 'Заполняется согласно условиям сделки.',
+            'Код типа обеспечиваемого обязательства' => 'Заполняется по справочнику 2.2',
+            'Дата расчета' => 'Определяется датой, по состоянию на которую сформирован блок 19 Показателей КИ ФЛ.',
+            'УИд сделки, в результате которой возникло обеспечиваемое обязательство' => 'Указывается УИд сделки, обязательства из которой обеспечены обязательством субъекта.',
+            'Лимит ответственности по обеспечиваемому обязательству' => 'Указывается лимит ответственности субъекта по обеспечению исполнения другого обязательства согласно условиям сделки'
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 12(1). Сведения об обеспечиваемом обязательстве';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $amountInfo = $this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray()[$this->idx];
+        if (empty($amountInfo->ensuredAmt)) {
+            $this->securityFact0 = '';
+            $this->securityFact1 = null;
+            return;
+        }
+        $this->securityFact0 = null;
+        $this->securityFact1 = '';
+        $this->securitySum = $this->formatCurrency($amountInfo->ensuredAmt);
+        $this->securityCurrency = $amountInfo->commitcurrCode;
+        $this->securityTypeCode = $amountInfo->commitcurrCode;
+        $this->calcDate = $this->formatDate($amountInfo->amtDate);
+        $this->securityUid = UuidHelper::getUuidWithControl($amountInfo->commitUuid);
+        $this->liabilityLimit = $this->formatCurrency($amountInfo->liabilityLimit);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'securityFact_0' => 'securityFact0',
+            'securityFact_1' => 'securityFact1',
+            'securitySum',
+            'securityCurrency',
+            'securityTypeCode',
+            'calcDate',
+            'securityUid',
+            'liabilityLimit',
+        ];
     }
 }
 

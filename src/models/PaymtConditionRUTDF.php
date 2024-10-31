@@ -11,9 +11,9 @@ class PaymtConditionRUTDF extends BaseItem
      * Сумма ближайшего следующего платежа по основному долгу.
      * По обязательству поручителя до наступления его ответственности указывается значение «0,00»
      * Если по этому показателю, а также по показателю interestTermsAmt указано значение «0,00», иные показатели не заполняются.
-     * @var float $principalTermsAmt
+     * @var float|null $principalTermsAmt
      */
-    public $principalTermsAmt = 0;
+    public $principalTermsAmt;
     
     /**
      * Дата ближайшего следующего платежа по основному долгу
@@ -24,9 +24,9 @@ class PaymtConditionRUTDF extends BaseItem
     /**
      * Сумма ближайшего следующего платежа по процентам.
      * По обязательству поручителя до наступления его ответственности указывается значение «0,00».
-     * @var float $interestTermsAmt
+     * @var float|null $interestTermsAmt
      */
-    public $interestTermsAmt = 0;
+    public $interestTermsAmt;
     
     /**
      * Дата ближайшего следующего платежа по процентам

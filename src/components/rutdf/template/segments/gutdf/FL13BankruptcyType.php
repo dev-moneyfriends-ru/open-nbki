@@ -2,13 +2,15 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FL13BankruptcyType\DateGroupFL13BankruptcyAType;
+
 /**
  * Class representing FL13BankruptcyType
  *
  * Блок 13. Сведения по делу о несостоятельности (банкротстве)
  * XSD Type: FL_13_Bankruptcy_Type
  */
-class FL13BankruptcyType
+class FL13BankruptcyType extends GutdfSegment
 {
     /**
      * 13.1. Признак дела о банкротстве = 0
@@ -25,7 +27,7 @@ class FL13BankruptcyType
     private $bankruptcyFact1 = null;
 
     /**
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL13BankruptcyType\DateGroupFL13BankruptcyAType[] $dateGroupFL13Bankruptcy
+     * @var DateGroupFL13BankruptcyAType[] $dateGroupFL13Bankruptcy
      */
     private $dateGroupFL13Bankruptcy = [
         
@@ -139,10 +141,10 @@ class FL13BankruptcyType
     /**
      * Adds as dateGroupFL13Bankruptcy
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL13BankruptcyType\DateGroupFL13BankruptcyAType $dateGroupFL13Bankruptcy
-     *@return self
+     * @return self
+     * @param DateGroupFL13BankruptcyAType $dateGroupFL13Bankruptcy
      */
-    public function addToDateGroupFL13Bankruptcy(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL13BankruptcyType\DateGroupFL13BankruptcyAType $dateGroupFL13Bankruptcy)
+    public function addToDateGroupFL13Bankruptcy(DateGroupFL13BankruptcyAType $dateGroupFL13Bankruptcy)
     {
         $this->dateGroupFL13Bankruptcy[] = $dateGroupFL13Bankruptcy;
         return $this;
@@ -173,7 +175,7 @@ class FL13BankruptcyType
     /**
      * Gets as dateGroupFL13Bankruptcy
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL13BankruptcyType\DateGroupFL13BankruptcyAType[]
+     * @return DateGroupFL13BankruptcyAType[]
      */
     public function getDateGroupFL13Bankruptcy()
     {
@@ -183,7 +185,7 @@ class FL13BankruptcyType
     /**
      * Sets a new dateGroupFL13Bankruptcy
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL13BankruptcyType\DateGroupFL13BankruptcyAType[] $dateGroupFL13Bankruptcy
+     * @param DateGroupFL13BankruptcyAType[] $dateGroupFL13Bankruptcy
      * @return self
      */
     public function setDateGroupFL13Bankruptcy(array $dateGroupFL13Bankruptcy = null)
@@ -452,6 +454,46 @@ class FL13BankruptcyType
     {
         $this->info = $info;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_13_Bankruptcy';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        // TODO: Implement getFieldsDescriptions() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 13. Сведения по делу о несостоятельности (банкротстве)';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        // TODO: Implement init() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        // TODO: Implement getXmlAttributes() method.
     }
 }
 

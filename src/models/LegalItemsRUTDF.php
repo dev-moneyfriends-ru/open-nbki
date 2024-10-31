@@ -42,4 +42,23 @@ class LegalItemsRUTDF extends BaseItem
      * @var int $courtActEffectCode
      */
     public $courtActEffectCode = null;
+
+    /**
+     * Код иска или требования.
+     * Заполняется по справочнику 5.6
+     * @var string $lawsuitCode
+     */
+    public $lawsuitCode = '';
+
+    /**
+     * Сумма требований, подлежащих удовлетворению на основании решения суда.
+     * @var float|null $sumTotal
+     */
+    public $sumTotal = null;
+
+    /**
+     * Дополнительные сведения по судебному акту, заполняется по решению Источника.
+     * @var string $info
+     */
+    public $info = '';
 }

@@ -61,13 +61,13 @@ class IdReply extends BaseIdReply
      * При отсутствии у субъекта гражданства указывается «гражданство отсутствует».
      * @var string $otherCountry
      */
-    public $otherCountry = '';
+    public $otherCountry;
     
     /**
      * Наименование иного документа. Заполняется, если по показателю «Код документа» указано «999».
      * @var string $otherId
      */
-    public $otherId = '';
+    public $otherId;
     
     /**
      * Код подразделения.
@@ -89,6 +89,13 @@ class IdReply extends BaseIdReply
      * @var int $isPrevId
      */
     public $isPrevId = 0;
+
+    /**
+     * Признак иностранного гражданина
+     * Заполняется по справочнику 1.8
+     * @var string|null
+     */
+    public $foreignerCode = null;
     
     /**
      * @return string

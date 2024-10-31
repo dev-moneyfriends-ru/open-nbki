@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Технические атрибуты титульной части сведений о субъекте
  * XSD Type: SubjectTitleData
  */
-class SubjectTitleDataType
+abstract class SubjectTitleDataType extends GutdfSegment
 {
     /**
      * Код субъекта кредитной истории

@@ -2,10 +2,14 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
+use mfteam\nbch\models\references\AmtKeepCode;
+use mfteam\nbch\models\references\TermsDueCode;
+
 /**
  * Class representing FL28PaymentAType
  */
-class FL28PaymentAType
+class FL28PaymentAType extends GutdfSegment
 {
     /**
      * 28.2. Сумма последнего внесенного платежа
@@ -434,6 +438,101 @@ class FL28PaymentAType
     {
         $this->paySum24 = $paySum24;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_28_Payment';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Дата последнего внесенного платежа' => '',
+            'Сумма последнего внесенного платежа' => 'Если указано значение «0,00», то заполняются только показатели 28.10-28.12, иные показатели блока 28 не заполняются . Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма последнего внесенного платежа по основному долгу' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма последнего внесенного платежа по процентам' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма последнего внесенного платежа по иным требованиям' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма всех внесенных платежей по обязательству' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма внесенных платежей по основному долгу' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма внесенных платежей по процентам' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Сумма внесенных платежей по иным требованиям' => 'Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».',
+            'Код соблюдения размера платежей' => 'Заполняется по состоянию на дату формирования блока 28. Заполняется по справочнику 3.6.',
+            'Код соблюдения срока внесения платежей' => 'Заполняется по состоянию на дату формирования блока 28. Заполняется по справочнику 3.7.',
+            'Сумма последнего внесенного платежа (части платежа) с просрочкой более 30 календарных дней' => 'Сумма платежа, указанного по показателю 28.2, или части такого платежа, если они внесены субъектом с просрочкой более 30 календарных дней. Рассчитывается на дату последнего внесенного платежа, указанную по показателю 28.1.',
+            'Сумма внесенных платежей за 24 календарных месяца, за исключением платежей с просрочкой более 30 календарных дней' => 'Сумма внесенных платежей за 24 календарных месяца, предшествующих месяцу, указанному в показателе 28.13 «Дата расчета», за исключением платежей по займам (кредитам), внесенных с нарушением сроков согласно графику платежей по договорам займа (кредита) более чем на 30 календарных дней.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 28. Сведения о внесении платежей';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $payments = $this->template->sendData->getAccountReplyRUTDF()->getPayment();
+        if(empty($payments)){
+            return;
+        }
+        $payment = array_shift($payments);
+        if(empty($payment->paymtAmt)){
+            $this->paymentSum = $this->formatCurrency($payment->paymtAmt);
+            $this->sizeCode = AmtKeepCode::T3;
+            $this->scheduleCode = TermsDueCode::T1;
+            $this->lastMissPaySum = $this->formatCurrency(0);
+            $this->paySum24 = $this->formatCurrency($payment->paySum24);
+            return;
+        }
+
+        $this->date = $this->formatDate($payment->paymtDate);
+        $this->sizeCode = $payment->amtKeepCode;
+        $this->scheduleCode = $payment->termsDueCode;
+
+        $this->paymentSum = $this->formatCurrency($payment->paymtAmt);
+        $this->paymentMainSum = $this->formatCurrency($payment->principalPaymtAmt);
+        $this->paymentPercentSum = $this->formatCurrency($payment->intPaymtAmt);
+        $this->paymentOtherSum = $this->formatCurrency($payment->otherPaymtAmt);
+        $this->totalSum = $this->formatCurrency($payment->totalAmt);
+        $this->totalMainSum = $this->formatCurrency($payment->principalTotalAmt);
+        $this->totalPercentSum = $this->formatCurrency($payment->intTotalAmt);
+        $this->totalOtherSum = $this->formatCurrency($payment->otherTotalAmt);
+        $this->lastMissPaySum = $this->formatCurrency($payment->lastMissPaySum);
+        $this->paySum24 = $this->formatCurrency($payment->paySum24);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'date',
+            'paymentSum',
+            'paymentMainSum',
+            'paymentPercentSum',
+            'paymentOtherSum',
+            'totalSum',
+            'totalMainSum',
+            'totalPercentSum',
+            'totalOtherSum',
+            'sizeCode',
+            'scheduleCode',
+            'lastMissPaySum',
+            'paySum24',
+        ];
     }
 }
 

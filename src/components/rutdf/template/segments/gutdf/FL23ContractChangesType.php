@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 23. Сведения об изменении договора
  * XSD Type: FL_23_ContractChanges_Type
  */
-class FL23ContractChangesType
+class FL23ContractChangesType extends GutdfSegment
 {
     /**
      * 23.1. Признак изменения договора = 0
@@ -371,6 +371,89 @@ class FL23ContractChangesType
     {
         $this->currencyRate = $currencyRate;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_23_ContractChanges';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Признак изменения договора 0' => 'Код «1» – договор изменен (в том числе дополнен) в части условия, сведения о котором указываются в ином блоке в КИ данного субъекта; код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока 23 не заполняются. ',
+            'Признак изменения договора 1' => 'Код «1» – договор изменен (в том числе дополнен) в части условия, сведения о котором указываются в ином блоке в КИ данного субъекта; код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока 23 не заполняются. ',
+            'Дата изменения договора' => '',
+            'Код вида изменения договора' => 'Заполняется по справочнику 3.1.',
+            'Код специального изменения договора' => 'Заполняется: по справочнику 3.2 – если по показателю 15.3 «Код вида изменения договора» указан код «1»; по справочнику 3.3 – если по показателю 15.3 «Код вида изменения договора» указан код «2»; по справочнику 3.4 – если по показателю 15.3 «Код вида изменения договора» указан код «3».',
+            'Описание иного изменения договора' => 'Заполняется, если по показателю 15.4 «Код специального изменения договора» указан код «99». вносится комментарий с описанием изменения договора. ',
+            'Дата вступления изменения договора в силу' => '',
+            'Дата планового прекращения действия изменения договора' => '',
+            'Дата фактического прекращения действия изменения договора' => '',
+            'Код причины прекращения действия изменения договора' => 'Заполняется по справочнику 3.5.',
+            'Курс конверсии валюты долга' => 'Заполняется, если валюта обязательства субъекта была изменена. По указанному показателю отражается обменный курс валюты согласно условиям сделки.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 23. Сведения об изменении договора';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $changes = $this->template->sendData->getAccountReplyRUTDF()->getAmendment();
+        if(empty($changes)){
+            $this->exist0 = '';
+            $this->exist1 = null;
+            return;
+        }
+        $this->exist0 = null;
+        $this->exist1 = '1';
+
+        $change = $changes[$this->idx];
+
+        $this->changeDate = $this->formatDate($change->amendDate);
+        $this->startDate = $this->formatDate($change->startDt);
+        $this->endDate = $this->formatDate($change->planEndDt);
+        $this->actualEndDate = $this->formatDate($change->factEndDt);
+
+        $this->code = $change->type;
+        $this->specialCode = $change->specType;
+        $this->otherDesc = $change->otherDesc;
+        $this->endCode = $change->endReason;
+        $this->currencyRate = $change->curRate;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'exist_0' => 'exist0',
+            'exist_1' => 'exist1',
+            'changeDate',
+            'code',
+            'specialCode',
+            'otherDesc',
+            'startDate',
+            'endDate',
+            'actualEndDate',
+            'currencyRate',
+        ];
     }
 }
 

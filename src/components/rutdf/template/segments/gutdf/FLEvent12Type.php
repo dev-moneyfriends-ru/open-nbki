@@ -15,19 +15,19 @@ class FLEvent12Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
      * Блок 29(1). Сведения о долговой нагрузке заемщика
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL291DebtBurdenInfoType $fL291DebtBurdenInfo
+     * @var FL291DebtBurdenInfoType $fL291DebtBurdenInfo
      */
     private $fL291DebtBurdenInfo = null;
 
     /**
      * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType $fL55Application
+     * @var FL55ApplicationType $fL55Application
      */
     private $fL55Application = null;
 
@@ -62,7 +62,7 @@ class FLEvent12Type extends EventDataType
      *
      * Блок 29(1). Сведения о долговой нагрузке заемщика
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL291DebtBurdenInfoType
+     * @return FL291DebtBurdenInfoType
      */
     public function getFL291DebtBurdenInfo()
     {
@@ -74,10 +74,10 @@ class FLEvent12Type extends EventDataType
      *
      * Блок 29(1). Сведения о долговой нагрузке заемщика
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL291DebtBurdenInfoType $fL291DebtBurdenInfo
+     * @param FL291DebtBurdenInfoType $fL291DebtBurdenInfo
      * @return self
      */
-    public function setFL291DebtBurdenInfo(?\mfteam\nbch\components\rutdf\template\segments\gutdf\FL291DebtBurdenInfoType $fL291DebtBurdenInfo = null)
+    public function setFL291DebtBurdenInfo(?FL291DebtBurdenInfoType $fL291DebtBurdenInfo = null)
     {
         $this->fL291DebtBurdenInfo = $fL291DebtBurdenInfo;
         return $this;
@@ -88,7 +88,7 @@ class FLEvent12Type extends EventDataType
      *
      * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType
+     * @return FL55ApplicationType
      */
     public function getFL55Application()
     {
@@ -100,13 +100,46 @@ class FLEvent12Type extends EventDataType
      *
      * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType $fL55Application
+     * @param FL55ApplicationType $fL55Application
      * @return self
      */
-    public function setFL55Application(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType $fL55Application)
+    public function setFL55Application(FL55ApplicationType $fL55Application)
     {
         $this->fL55Application = $fL55Application;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_Event_1_2';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Источник одобрил обращение субъекта (направил ему оферту) или изменились сведения об обращении';
+    }
+
+    protected function initAttributes()
+    {
+        $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
+        $this->fL55Application = new FL55ApplicationType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'fL291DebtBurdenInfo',
+            'fL55Application',
+        ];
     }
 }
 

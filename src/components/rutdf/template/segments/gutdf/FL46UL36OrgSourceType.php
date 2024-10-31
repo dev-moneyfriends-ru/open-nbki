@@ -2,13 +2,16 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
+use DateTime;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FL46UL36OrgSourceType\TaxNumGroupFL46UL36OrgSourceAType;
+
 /**
  * Class representing FL46UL36OrgSourceType
  *
  * Блок 46. Сведения об источнике – юридическом лице
  * XSD Type: FL_46_UL_36_OrgSource_Type
  */
-class FL46UL36OrgSourceType
+class FL46UL36OrgSourceType extends GutdfSegment
 {
     /**
      * 46.1., 36.1. Код источника
@@ -29,7 +32,7 @@ class FL46UL36OrgSourceType
      *
      * @var string $sourceRegistrationFact1
      */
-    private $sourceRegistrationFact1 = null;
+    private $sourceRegistrationFact1 = '';
 
     /**
      * 46.3., 36.3. Полное наименование
@@ -62,7 +65,7 @@ class FL46UL36OrgSourceType
     /**
      * 46.7., 36.7. Дата создания источника
      *
-     * @var \DateTime $sourceDateStart
+     * @var string $sourceDateStart
      */
     private $sourceDateStart = null;
 
@@ -76,44 +79,44 @@ class FL46UL36OrgSourceType
     /**
      * Номер налогоплательщика
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL46UL36OrgSourceType\TaxNumGroupFL46UL36OrgSourceAType[] $taxNumGroupFL46UL36OrgSource
+     * @var TaxNumGroupFL46UL36OrgSourceAType[] $taxNumGroupFL46UL36OrgSource
      */
     private $taxNumGroupFL46UL36OrgSource = [
-        
+
     ];
 
     /**
      * 46.11., 36.11. Дата признания источника банкротом
      *
-     * @var \DateTime $beginDateSourceBankruptcy
+     * @var string $beginDateSourceBankruptcy
      */
     private $beginDateSourceBankruptcy = null;
 
     /**
      * 46.12., 36.12. Дата окончания конкурсного производства
      *
-     * @var \DateTime $endDateSourceBankruptcy
+     * @var string $endDateSourceBankruptcy
      */
     private $endDateSourceBankruptcy = null;
 
     /**
      * 46.13., 36.13. Дата начала ликвидации источника
      *
-     * @var \DateTime $beginDateSourceLiquidation
+     * @var string $beginDateSourceLiquidation
      */
     private $beginDateSourceLiquidation = null;
 
     /**
      * 46.14., 36.14. Дата окончания ликвидации источника
      *
-     * @var \DateTime $endDateSourceLiquidation
+     * @var string $endDateSourceLiquidation
      */
     private $endDateSourceLiquidation = null;
 
     /**
      * 46.15., 36.15.Дата формирования кредитной информации
      *
-     * @var \DateTime $sourceCreditInfoDate
+     * @var string $sourceCreditInfoDate
      */
     private $sourceCreditInfoDate = null;
 
@@ -304,7 +307,7 @@ class FL46UL36OrgSourceType
      *
      * 46.7., 36.7. Дата создания источника
      *
-     * @return \DateTime
+     * @return string
      */
     public function getSourceDateStart()
     {
@@ -316,10 +319,10 @@ class FL46UL36OrgSourceType
      *
      * 46.7., 36.7. Дата создания источника
      *
-     * @param \DateTime $sourceDateStart
+     * @param DateTime $sourceDateStart
      * @return self
      */
-    public function setSourceDateStart(?\DateTime $sourceDateStart = null)
+    public function setSourceDateStart(?DateTime $sourceDateStart = null)
     {
         $this->sourceDateStart = $sourceDateStart;
         return $this;
@@ -356,10 +359,10 @@ class FL46UL36OrgSourceType
      *
      * Номер налогоплательщика
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL46UL36OrgSourceType\TaxNumGroupFL46UL36OrgSourceAType $taxNumGroupFL46UL36OrgSource
-     *@return self
+     * @param TaxNumGroupFL46UL36OrgSourceAType $taxNumGroupFL46UL36OrgSource
+     * @return self
      */
-    public function addToTaxNumGroupFL46UL36OrgSource(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL46UL36OrgSourceType\TaxNumGroupFL46UL36OrgSourceAType $taxNumGroupFL46UL36OrgSource)
+    public function addToTaxNumGroupFL46UL36OrgSource(TaxNumGroupFL46UL36OrgSourceAType $taxNumGroupFL46UL36OrgSource)
     {
         $this->taxNumGroupFL46UL36OrgSource[] = $taxNumGroupFL46UL36OrgSource;
         return $this;
@@ -396,7 +399,7 @@ class FL46UL36OrgSourceType
      *
      * Номер налогоплательщика
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL46UL36OrgSourceType\TaxNumGroupFL46UL36OrgSourceAType[]
+     * @return TaxNumGroupFL46UL36OrgSourceAType[]
      */
     public function getTaxNumGroupFL46UL36OrgSource()
     {
@@ -408,7 +411,7 @@ class FL46UL36OrgSourceType
      *
      * Номер налогоплательщика
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL46UL36OrgSourceType\TaxNumGroupFL46UL36OrgSourceAType[] $taxNumGroupFL46UL36OrgSource
+     * @param TaxNumGroupFL46UL36OrgSourceAType[] $taxNumGroupFL46UL36OrgSource
      * @return self
      */
     public function setTaxNumGroupFL46UL36OrgSource(array $taxNumGroupFL46UL36OrgSource = null)
@@ -422,7 +425,7 @@ class FL46UL36OrgSourceType
      *
      * 46.11., 36.11. Дата признания источника банкротом
      *
-     * @return \DateTime
+     * @return string
      */
     public function getBeginDateSourceBankruptcy()
     {
@@ -434,10 +437,10 @@ class FL46UL36OrgSourceType
      *
      * 46.11., 36.11. Дата признания источника банкротом
      *
-     * @param \DateTime $beginDateSourceBankruptcy
+     * @param DateTime $beginDateSourceBankruptcy
      * @return self
      */
-    public function setBeginDateSourceBankruptcy(?\DateTime $beginDateSourceBankruptcy = null)
+    public function setBeginDateSourceBankruptcy(?DateTime $beginDateSourceBankruptcy = null)
     {
         $this->beginDateSourceBankruptcy = $beginDateSourceBankruptcy;
         return $this;
@@ -448,7 +451,7 @@ class FL46UL36OrgSourceType
      *
      * 46.12., 36.12. Дата окончания конкурсного производства
      *
-     * @return \DateTime
+     * @return string
      */
     public function getEndDateSourceBankruptcy()
     {
@@ -460,10 +463,10 @@ class FL46UL36OrgSourceType
      *
      * 46.12., 36.12. Дата окончания конкурсного производства
      *
-     * @param \DateTime $endDateSourceBankruptcy
+     * @param DateTime $endDateSourceBankruptcy
      * @return self
      */
-    public function setEndDateSourceBankruptcy(?\DateTime $endDateSourceBankruptcy = null)
+    public function setEndDateSourceBankruptcy(?DateTime $endDateSourceBankruptcy = null)
     {
         $this->endDateSourceBankruptcy = $endDateSourceBankruptcy;
         return $this;
@@ -474,7 +477,7 @@ class FL46UL36OrgSourceType
      *
      * 46.13., 36.13. Дата начала ликвидации источника
      *
-     * @return \DateTime
+     * @return string
      */
     public function getBeginDateSourceLiquidation()
     {
@@ -486,10 +489,10 @@ class FL46UL36OrgSourceType
      *
      * 46.13., 36.13. Дата начала ликвидации источника
      *
-     * @param \DateTime $beginDateSourceLiquidation
+     * @param DateTime $beginDateSourceLiquidation
      * @return self
      */
-    public function setBeginDateSourceLiquidation(?\DateTime $beginDateSourceLiquidation = null)
+    public function setBeginDateSourceLiquidation(?DateTime $beginDateSourceLiquidation = null)
     {
         $this->beginDateSourceLiquidation = $beginDateSourceLiquidation;
         return $this;
@@ -500,7 +503,7 @@ class FL46UL36OrgSourceType
      *
      * 46.14., 36.14. Дата окончания ликвидации источника
      *
-     * @return \DateTime
+     * @return string
      */
     public function getEndDateSourceLiquidation()
     {
@@ -512,10 +515,10 @@ class FL46UL36OrgSourceType
      *
      * 46.14., 36.14. Дата окончания ликвидации источника
      *
-     * @param \DateTime $endDateSourceLiquidation
+     * @param DateTime $endDateSourceLiquidation
      * @return self
      */
-    public function setEndDateSourceLiquidation(?\DateTime $endDateSourceLiquidation = null)
+    public function setEndDateSourceLiquidation(?DateTime $endDateSourceLiquidation = null)
     {
         $this->endDateSourceLiquidation = $endDateSourceLiquidation;
         return $this;
@@ -526,7 +529,7 @@ class FL46UL36OrgSourceType
      *
      * 46.15., 36.15.Дата формирования кредитной информации
      *
-     * @return \DateTime
+     * @return string
      */
     public function getSourceCreditInfoDate()
     {
@@ -538,13 +541,78 @@ class FL46UL36OrgSourceType
      *
      * 46.15., 36.15.Дата формирования кредитной информации
      *
-     * @param \DateTime $sourceCreditInfoDate
+     * @param DateTime $sourceCreditInfoDate
      * @return self
      */
-    public function setSourceCreditInfoDate(\DateTime $sourceCreditInfoDate)
+    public function setSourceCreditInfoDate(DateTime $sourceCreditInfoDate)
     {
         $this->sourceCreditInfoDate = $sourceCreditInfoDate;
         return $this;
+    }
+
+    public function getSegmentName(): string
+    {
+        return 'FL_46_UL_36_OrgSource';
+    }
+
+    public function getFields(): array
+    {
+        return [
+            'sourceCode' => $this->sourceCode,
+            'fullName' => $this->fullName,
+            'regNum' => $this->regNum,
+            'sourceCreditInfoDate' => $this->sourceCreditInfoDate,
+        ];
+    }
+
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Код источника' => 'Заполняется по справочнику 6.1.',
+            'Полное наименование' => '',
+            'Регистрационный номер' => '',
+            'Дата формирования кредитной информации' => '',
+        ];
+    }
+
+    public function getDescription(): string
+    {
+        return 'Блок содержит сведения об Источнике, предоставленные им в НБКИ при заключении Договора или при обновлении этих сведений.
+Указанные данные входят в дополнительную (закрытую) часть КИ и предоставляются только лицам, имеющим такое право в соответствии со ст.6 218-ФЗ «О кредитных историях».
+Если обслуживание денежных требований по договору займа (кредита) осуществляет обслуживающая организация (в случаях, предусмотренных договором между специализированным финансовым обществом (ипотечным агентом) и обслуживающей организацией) в соответствии с частью 54 статьи 5 Федерального закона от 30 декабря 2004 года №218-ФЗ «О кредитных историях» (Собрание законодательства, 2005, №1, ст. 44; 2014, №26, ст. 3395; 2020, №31, ст. 5061), в этом блоке указываются сведения об источнике – специализированном финансовом обществе или ипотечном агенте.
+';
+    }
+
+    public function getTitle(): string
+    {
+        return 'Блок 46/36. Сведения об источнике – юридическом лице';
+    }
+
+    public function getProperties(): array
+    {
+        return [];
+    }
+
+    public function init(): void
+    {
+        $this->sourceCode = $this->template->sendData->getAccountReplyRUTDF()->memberCode;
+        $this->fullName = $this->template->sendData->getAccountReplyRUTDF()->memberFullName;
+        $this->regNum = $this->template->config->sourceOgrn;
+        $this->addToTaxNumGroupFL46UL36OrgSource((new TaxNumGroupFL46UL36OrgSourceAType($this->template)));
+        $this->sourceCreditInfoDate = $this->formatDate($this->template->generateTime);
+    }
+
+    public function getXmlAttributes(): array
+    {
+        return [
+            'sourceCode',
+            'sourceRegistrationFact_0' => 'sourceRegistrationFact0',
+            'sourceRegistrationFact_1' => 'sourceRegistrationFact1',
+            'fullName',
+            'regNum',
+            'taxNumGroupFL46UL36OrgSource',
+            'sourceCreditInfoDate',
+        ];
     }
 }
 

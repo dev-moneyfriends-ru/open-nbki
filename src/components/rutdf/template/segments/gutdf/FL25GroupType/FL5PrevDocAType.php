@@ -2,10 +2,12 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf\FL25GroupType;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
+
 /**
  * Class representing FL5PrevDocAType
  */
-class FL5PrevDocAType
+class FL5PrevDocAType extends GutdfSegment
 {
     /**
      * 5.1. Признак наличия документа = 0
@@ -401,6 +403,89 @@ class FL5PrevDocAType
     {
         $this->endDate = $endDate;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_5_PrevDoc';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Признак наличия документа 0' => 'Код «1» – у субъекта имеется документ, удостоверявший личность ранее; код «0» – обстоятельство кода «1» отсутствует. Если по показателю 5.1 «Признак наличия документа» указан код «0», иные показатели блока 5 Показателей КИ ФЛ не заполняются.',
+            'Признак наличия документа 1' => 'Код «1» – у субъекта имеется документ, удостоверявший личность ранее; код «0» – обстоятельство кода «1» отсутствует. Если по показателю 5.1 «Признак наличия документа» указан код «0», иные показатели блока 5 Показателей КИ ФЛ не заполняются.',
+            "Код страны гражданства по ОКСМ" => 'Цифровой код страны согласно Общероссийскому классификатору стран мира (далее – ОКСМ, см. справочник A1). При отсутствии страны в ОКСМ указывается «999». При отсутствии у субъекта гражданства указывается «999».',
+            "Наименование иной страны" => 'Заполняется, если по показателю «Код страны по ОКСМ» указано «999». При отсутствии у субъекта гражданства указывается «ГРАЖДАНСТВО ОТСУТСТВУЕТ».',
+            "Код документа" => 'Заполняется по справочнику 1.1',
+            "Наименование иного документа" => 'Заполняется, если по показателю «Код документа» указано «999».',
+            "Серия документа" => '',
+            "Номер документа" => '',
+            "Дата выдачи документа" => '',
+            "Кем выдан документ" => 'Наименование органа, который выдал документ, удостоверяющий личность. Может не заполняться, если заполнен показатель «Код подразделения» в блоке показателей, содержащем этот показатель.',
+            "Код подразделения" => 'Заполняется только для паспорта гражданина Российской Федерации.',
+            "Дата окончания срока действия документа" => 'Заполняется при наличии такого срока в документе.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 5. Документ, ранее удостоверявший личность';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $idReply = $this->template->sendData->getPrevIdReply();
+        if(empty($idReply) || empty($idReply->isPrevId)){
+            $this->prevDocFact0 = '';
+            $this->prevDocFact1 = null;
+            return;
+        }
+        $this->prevDocFact1 = '';
+        $this->prevDocFact0 = null;
+        $this->countryCode = $idReply->oksm;
+        $this->countryOther = $idReply->otherCountry;
+        $this->docCode = $idReply->idType;
+        $this->docOtherName = $idReply->otherId;
+        $this->docSeries = $idReply->seriesNumber;
+        $this->docNum = $idReply->idNum;
+        $this->issueDate = $this->formatDate($idReply->issueDate);
+        $this->docIssuer = $idReply->issueAuthority;
+        $this->deptCode = $idReply->divCode;
+        $this->endDate = $this->formatDate($idReply->validTo);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'prevDocFact_0' => 'prevDocFact0',
+            'prevDocFact_1' => 'prevDocFact1',
+            'countryCode',
+            'countryOther',
+            'docCode',
+            'docOtherName',
+            'docSeries',
+            'docNum',
+            'issueDate',
+            'docIssuer',
+            'deptCode',
+            'endDate',
+        ];
     }
 }
 

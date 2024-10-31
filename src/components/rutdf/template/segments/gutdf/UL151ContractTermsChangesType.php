@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 15(1). Сведения об изменении условий обязательства в результате наступления указанного в сделке события
  * XSD Type: UL_15_1_ContractTermsChanges_Type
  */
-class UL151ContractTermsChangesType
+class UL151ContractTermsChangesType extends GutdfSegment
 {
     /**
      * 15(1).1. Признак изменения условий обязательства = 0
@@ -173,6 +173,71 @@ class UL151ContractTermsChangesType
     {
         $this->changingDate = $changingDate;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_15_1_ContractTermsChanges';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Признак изменения условий обязательства 0' => 'Код «1» – в случае изменения условий обязательства, обусловленного наступлением указанных в сделке событий;',
+            'Признак изменения условий обязательства 1' => 'код «0» – в случае если обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока 15.1 не передаются в соответствии со схемой Blocks.xsd.',
+            'Код вида изменения условий обязательства' => 'Заполняется по справочнику 3.4',
+            'Описание иного изменения условий обязательства' => 'Вносится комментарий с описанием изменения условий обязательства',
+            'Дата начала действия изменения условий обязательства' => 'Дата, с которой начинает действовать изменение условий обязательства',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 15(1). Сведения об изменении условий обязательства в результате наступления указанного в сделке события';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $changes = $this->template->sendData->getAccountReplyRUTDF()->getContractTermsChanges();
+        if(empty($changes)){
+            $this->changeFact0 = '';
+            $this->changeFact1 = null;
+            return;
+        }
+        $this->changeFact0 = null;
+        $this->changeFact1 = '';
+
+        $change = $changes[$this->idx];
+
+        $this->termsChangeCode = $change->termsChangeCode;
+        $this->termsChangeDesc = $change->termsChangeDesc;
+        $this->changingDate = $this->formatDate('changingDate');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'changeFact_0' => 'changeFact0',
+            'changeFact_1' => 'changeFact1',
+            'termsChangeCode',
+            'termsChangeDesc',
+            'changingDate',
+        ];
     }
 }
 

@@ -2,18 +2,20 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FL6TaxType\TaxNumGroupFL6TaxAType;
+
 /**
  * Class representing FL6TaxType
  *
  * Блок 6. Номер налогоплательщика и регистрационный номер
  * XSD Type: FL_6_Tax_Type
  */
-class FL6TaxType
+class FL6TaxType extends GutdfSegment
 {
     /**
      * Номер налогоплательщика
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL6TaxType\TaxNumGroupFL6TaxAType[] $taxNumGroupFL6Tax
+     * @var TaxNumGroupFL6TaxAType[] $taxNumGroupFL6Tax
      */
     private $taxNumGroupFL6Tax = [
         
@@ -45,10 +47,10 @@ class FL6TaxType
      *
      * Номер налогоплательщика
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL6TaxType\TaxNumGroupFL6TaxAType $taxNumGroupFL6Tax
-     *@return self
+     * @return self
+     * @param TaxNumGroupFL6TaxAType $taxNumGroupFL6Tax
      */
-    public function addToTaxNumGroupFL6Tax(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL6TaxType\TaxNumGroupFL6TaxAType $taxNumGroupFL6Tax)
+    public function addToTaxNumGroupFL6Tax(TaxNumGroupFL6TaxAType $taxNumGroupFL6Tax)
     {
         $this->taxNumGroupFL6Tax[] = $taxNumGroupFL6Tax;
         return $this;
@@ -85,7 +87,7 @@ class FL6TaxType
      *
      * Номер налогоплательщика
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL6TaxType\TaxNumGroupFL6TaxAType[]
+     * @return TaxNumGroupFL6TaxAType[]
      */
     public function getTaxNumGroupFL6Tax()
     {
@@ -97,7 +99,7 @@ class FL6TaxType
      *
      * Номер налогоплательщика
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL6TaxType\TaxNumGroupFL6TaxAType[] $taxNumGroupFL6Tax
+     * @param TaxNumGroupFL6TaxAType[] $taxNumGroupFL6Tax
      * @return self
      */
     public function setTaxNumGroupFL6Tax(array $taxNumGroupFL6Tax = null)
@@ -182,6 +184,75 @@ class FL6TaxType
     {
         $this->specialMode1 = $specialMode1;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+       return 'FL_6_Tax';
+    }
+
+    public function getFields(): array
+    {
+        return[
+            'regNum' => $this->regNum,
+            'specialMode_0' => $this->specialMode0,
+            'specialMode_1' => $this->specialMode1,
+        ];
+    }
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Регистрационный номер' => 'Заполняется, если субъект является индивидуальным предпринимателем. Указывается основной государственный регистрационный номер индивидуального предпринимателя (далее – ОГРНИП). Указывается в соответствии с пунктом 2 статьи 4 Федерального закона от 8 августа 2001 года № 129-ФЗ «О государственной регистрации юридических лиц и индивидуальных предпринимателей» (Собрание законодательства Российской Федерации, 2001, № 33, ст. 3431; 2011, № 27, ст. 3880). Для иностранного индивидуального предпринимателя указывается регистрационный номер в стране регистрации (инкорпорации) или его аналог.',
+            'Признак специального налогового режима 0' => 'код «1» – в случае если субъект применяет специальный налоговый режим «Налог на профессиональный доход» в соответствии с Федеральным законом от 27 ноября 2018 года № 422-ФЗ «О проведении эксперимента по установлению специального налогового режима «Налог на профессиональный доход» (Собрание законодательства Российской Федерации, 2018, № 49, ст. 7494; 2022, № 27, ст. 4607); код «0» – в случае если обстоятельство кода «1» отсутствует.',
+            'Признак специального налогового режима 1' => 'код «1» – в случае если субъект применяет специальный налоговый режим «Налог на профессиональный доход» в соответствии с Федеральным законом от 27 ноября 2018 года № 422-ФЗ «О проведении эксперимента по установлению специального налогового режима «Налог на профессиональный доход» (Собрание законодательства Российской Федерации, 2018, № 49, ст. 7494; 2022, № 27, ст. 4607); код «0» – в случае если обстоятельство кода «1» отсутствует.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 6. Номер налогоплательщика, регистрационный номер и признак специального налогового режима';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $tax = $this->template->sendData->getRegnumReply();
+        if($tax === null){
+            return;
+        }
+        $this->addToTaxNumGroupFL6Tax(new TaxNumGroupFL6TaxAType($this->template));
+        $this->regNum = $tax->regNum;
+        if($tax->spectaxCode){
+            $this->specialMode0 = null;
+            $this->specialMode1 = '';
+        }else{
+            $this->specialMode1 = null;
+            $this->specialMode0 = '';
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'taxNumGroupFL6Tax',
+            'regNum',
+            'specialMode_0' => 'specialMode0',
+            'specialMode_1' => 'specialMode1',
+        ];
     }
 }
 

@@ -15,26 +15,26 @@ class FLEvent13Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
      * Блок 29(1). Сведения о долговой нагрузке заемщика
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL291DebtBurdenInfoType $fL291DebtBurdenInfo
+     * @var FL291DebtBurdenInfoType $fL291DebtBurdenInfo
      */
     private $fL291DebtBurdenInfo = null;
 
     /**
      * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType $fL55Application
+     * @var FL55ApplicationType $fL55Application
      */
     private $fL55Application = null;
 
     /**
      * Блок 57. Сведения об отказе источника от предложения совершить сделку
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL57RejectType $fL57Reject
+     * @var FL57RejectType $fL57Reject
      */
     private $fL57Reject = null;
 
@@ -69,7 +69,7 @@ class FLEvent13Type extends EventDataType
      *
      * Блок 29(1). Сведения о долговой нагрузке заемщика
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL291DebtBurdenInfoType
+     * @return FL291DebtBurdenInfoType
      */
     public function getFL291DebtBurdenInfo()
     {
@@ -81,10 +81,10 @@ class FLEvent13Type extends EventDataType
      *
      * Блок 29(1). Сведения о долговой нагрузке заемщика
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL291DebtBurdenInfoType $fL291DebtBurdenInfo
+     * @param FL291DebtBurdenInfoType $fL291DebtBurdenInfo
      * @return self
      */
-    public function setFL291DebtBurdenInfo(?\mfteam\nbch\components\rutdf\template\segments\gutdf\FL291DebtBurdenInfoType $fL291DebtBurdenInfo = null)
+    public function setFL291DebtBurdenInfo(?FL291DebtBurdenInfoType $fL291DebtBurdenInfo = null)
     {
         $this->fL291DebtBurdenInfo = $fL291DebtBurdenInfo;
         return $this;
@@ -95,7 +95,7 @@ class FLEvent13Type extends EventDataType
      *
      * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType
+     * @return FL55ApplicationType
      */
     public function getFL55Application()
     {
@@ -107,10 +107,10 @@ class FLEvent13Type extends EventDataType
      *
      * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType $fL55Application
+     * @param FL55ApplicationType $fL55Application
      * @return self
      */
-    public function setFL55Application(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType $fL55Application)
+    public function setFL55Application(FL55ApplicationType $fL55Application)
     {
         $this->fL55Application = $fL55Application;
         return $this;
@@ -121,7 +121,7 @@ class FLEvent13Type extends EventDataType
      *
      * Блок 57. Сведения об отказе источника от предложения совершить сделку
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL57RejectType
+     * @return FL57RejectType
      */
     public function getFL57Reject()
     {
@@ -133,13 +133,48 @@ class FLEvent13Type extends EventDataType
      *
      * Блок 57. Сведения об отказе источника от предложения совершить сделку
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL57RejectType $fL57Reject
+     * @param FL57RejectType $fL57Reject
      * @return self
      */
-    public function setFL57Reject(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL57RejectType $fL57Reject)
+    public function setFL57Reject(FL57RejectType $fL57Reject)
     {
         $this->fL57Reject = $fL57Reject;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_Event_1_3';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Источник отказался от совершения сделки по обращению субъекта';
+    }
+
+    protected function initAttributes()
+    {
+        $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
+        $this->fL55Application = new FL55ApplicationType($this->template);
+        $this->fL57Reject = new FL57RejectType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'fL291DebtBurdenInfo',
+            'fL55Application',
+            'fL57Reject',
+        ];
     }
 }
 

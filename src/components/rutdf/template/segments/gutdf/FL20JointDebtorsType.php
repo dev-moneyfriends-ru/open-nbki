@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 20. Сведения о солидарных должниках
  * XSD Type: FL_20_JointDebtors_Type
  */
-class FL20JointDebtorsType
+class FL20JointDebtorsType extends GutdfSegment
 {
     /**
      * 20.1. Признак наличия солидарных должников = 0
@@ -107,6 +107,62 @@ class FL20JointDebtorsType
     {
         $this->num = $num;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_20_JointDebtors';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Признак наличия солидарных должников 0' => 'код «0» – обстоятельство кода «1» отсутствует.',
+            'Признак наличия солидарных должников 1' => 'Код «1» – в обязательстве участвуют солидарные должники;',
+            'Число солидарных должников' => '',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 20. Сведения о солидарных должниках';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $coBorrower = $this->template->sendData->getAccountReplyRUTDF()->getCoborrower();
+        if($coBorrower === null || empty($coBorrower->solidaryNum)){
+            $this->exist0 = '';
+            $this->exist1 = null;
+            return;
+        }
+        $this->exist0 = null;
+        $this->exist1 = '';
+        $this->num = $coBorrower->solidaryNum;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'exist_0' => 'exist0',
+            'exist_1' => 'exist1',
+            'num',
+        ];
     }
 }
 

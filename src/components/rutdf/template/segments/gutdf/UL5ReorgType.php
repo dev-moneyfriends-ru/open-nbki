@@ -8,14 +8,14 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 5. Сведения о смене наименования либо правопреемстве при реорганизации
  * XSD Type: UL_5_Reorg_Type
  */
-class UL5ReorgType
+class UL5ReorgType extends GutdfSegment
 {
     /**
      * 5.2. Признак реорганизации = 0
      *
      * @var string $exist0
      */
-    private $exist0 = null;
+    private $exist0 = '';
 
     /**
      * 5.2. Признак реорганизации = 1
@@ -290,6 +290,87 @@ class UL5ReorgType
     {
         $this->date = $date;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_5_Reorg';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Признак реорганизации 0' => 'Код «1» – субъект создан в результате реорганизации; код «0» – обстоятельство кода «1» отсутствует. В случае если по данному показателю указан код «0», иные показатели блока 5 Показателей КИ ЮЛ не заполняются.',
+            'Признак реорганизации 1' => 'Код «1» – субъект создан в результате реорганизации; код «0» – обстоятельство кода «1» отсутствует. В случае если по данному показателю указан код «0», иные показатели блока 5 Показателей КИ ЮЛ не заполняются.',
+            'Полное наименование лица, от которого перешли права и обязанности' => '',
+            'Сокращенное наименование лица, от которого перешли права и обязанности' => '',
+            'Регистрационный номер лица, от которого перешли права и обязанности' => '',
+            'Дата правопреемства (окончания реорганизации)' => '',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getDescription(): string
+    {
+        return 'Указываются сведения о наименовании субъекта до перехода к нему прав и обязанностей в рамках универсального правопреемства.';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 5. Сведения о смене наименования либо правопреемстве при реорганизации';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getProperties(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $reorg = $this->template->sendData->getReorgReply();
+        if($reorg === null || empty($reorg->isReorg)){
+            $this->exist0 = '';
+            $this->exist1 = null;
+            return;
+        }
+        $this->exist0 = null;
+        $this->exist1 = '';
+        $this->fullName = $reorg->prevName;
+        $this->shortName = $reorg->prevAbbrName;
+        $this->regNum = $reorg->prevRegNum;
+        $this->date = $this->formatDate($reorg->reorgDt);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'exist_0' => 'exist0',
+            'exist_1' => 'exist1',
+            'fullName',
+            'shortName',
+            'regNum',
+            'date',
+        ];
     }
 }
 

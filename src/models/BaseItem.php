@@ -2,6 +2,7 @@
 
 namespace mfteam\nbch\models;
 
+use mfteam\nbch\helpers\UuidHelper;
 use yii\base\InvalidCallException;
 use yii\base\Model;
 use yii\base\UnknownPropertyException;
@@ -268,22 +269,9 @@ abstract class BaseItem extends \yii\base\Model
      */
     public function getUuidControlSum(string $uuid): string
     {
-        $uuid = preg_replace('/[^a-z\d]/i', '', $uuid);
-        $chars = str_split($uuid);
-        $sum = 0;
-        $i = 1;
-        foreach ($chars as $char) {
-            $number = base_convert($char, 16, 10);
-            $sum += $number * $i;
-            if ($i === 10) {
-                $i = 1;
-            } else {
-                $i++;
-            }
-        }
-        $key = $sum % 16;
-        return base_convert($key, 10, 16);
+        return UuidHelper::getUuidControlSum($uuid);
     }
+
 
     /**
      * Sets value of an object property.

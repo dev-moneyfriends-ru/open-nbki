@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 1. Наименование юридического лица
  * XSD Type: UL_1_Name_Type
  */
-class UL1NameType
+class UL1NameType extends GutdfSegment
 {
     /**
      * 1.1. Полное наименование
@@ -30,7 +30,7 @@ class UL1NameType
      * @var string[] $otherName
      */
     private $otherName = [
-        
+
     ];
 
     /**
@@ -38,7 +38,7 @@ class UL1NameType
      *
      * @var string $change0
      */
-    private $change0 = null;
+    private $change0 = '';
 
     /**
      * 1.4. Признак смены наименования = 1
@@ -53,7 +53,7 @@ class UL1NameType
      * @var string[] $prevFull
      */
     private $prevFull = [
-        
+
     ];
 
     /**
@@ -113,8 +113,8 @@ class UL1NameType
      *
      * 1.3. Иное наименование
      *
-     * @return self
      * @param string $otherName
+     * @return self
      */
     public function addToOtherName($otherName)
     {
@@ -231,8 +231,8 @@ class UL1NameType
      *
      * 1.5. Полное наименование до его смены
      *
-     * @return self
      * @param string $prevFull
+     * @return self
      */
     public function addToPrevFull($prevFull)
     {
@@ -290,6 +290,64 @@ class UL1NameType
     {
         $this->prevFull = $prevFull;
         return $this;
+    }
+
+    public function getSegmentName(): string
+    {
+        return 'UL_1_Name';
+    }
+
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Полное наименование' => 'Полное наименование юридического лица на русском языке. Недопустимо указание символа дефиса вместо значения.',
+            'Сокращенное наименование' => 'Сокращенное наименование юридического лица на русском языке.',
+            'Иное наименование' => 'Фирменное наименование юридического лица или его наименование на иностранном языке.
+Заполняется при наличии у источника сведений об ином наименовании субъекта.
+',
+            'Наименование не менялось' => '',
+            'Признак смены наименования' => '',
+            'Полное наименование до его смены' => '',
+        ];
+    }
+
+    public function getDescription(): string
+    {
+        return '';
+    }
+
+    public function getTitle(): string
+    {
+        return 'Блок 1. Наименование юридического лица';
+    }
+
+    public function getProperties(): array
+    {
+        return [];
+    }
+
+    public function init(): void
+    {
+        $this->setFullName($this->sendData->getBusinessReply()->businessName);
+        $this->setShortName($this->sendData->getBusinessReply()->abbreviatedBusinessName);
+        $this->addToOtherName($this->sendData->getBusinessReply()->businessNameAlt);
+        if (!empty($this->sendData->getBusinessReply()->businessNamebfrChange)) {
+            $this->setChange0(null);
+            $this->setChange1('');
+            $this->addToPrevFull($this->sendData->getBusinessReply()->businessNameBfrChange);
+        }
+    }
+
+    public function getXmlAttributes(): array
+    {
+        return [
+            'fullName',
+            'shortName',
+            'otherName',
+            'change_0' => 'change0',
+            'change_1' => 'change1',
+            'prevFull',
+        ];
     }
 }
 

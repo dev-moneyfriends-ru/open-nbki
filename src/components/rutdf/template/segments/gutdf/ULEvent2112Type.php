@@ -209,8 +209,8 @@ class ULEvent2112Type extends EventDataType
      *
      * Блок 12(1). Сведения об обеспечиваемом обязательстве
      *
+     * @return self
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL121AmountInfoType $uL121AmountInfo
-     *@return self
      */
     public function addToUL121AmountInfo(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL121AmountInfoType $uL121AmountInfo)
     {
@@ -353,8 +353,8 @@ class ULEvent2112Type extends EventDataType
      *
      * Блок 22. Сведения о неденежном обязательстве субъекта
      *
+     * @return self
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL22NonMonetarySubjectType $uL22NonMonetarySubject
-     *@return self
      */
     public function addToUL22NonMonetarySubject(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL22NonMonetarySubjectType $uL22NonMonetarySubject)
     {
@@ -445,8 +445,8 @@ class ULEvent2112Type extends EventDataType
      *
      * Блок 21. Сведения о неденежном обязательстве источника
      *
+     * @return self
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL21NonMonetarySourceType $uL21NonMonetarySource
-     *@return self
      */
     public function addToUL21NonMonetarySource(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL21NonMonetarySourceType $uL21NonMonetarySource)
     {

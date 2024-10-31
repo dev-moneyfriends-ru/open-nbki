@@ -44,7 +44,7 @@ class FLEvent22Type extends EventDataType
      * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL191AmountInfoType[] $fL191AmountInfo
      */
     private $fL191AmountInfo = [
-        
+
     ];
 
     /**
@@ -95,7 +95,7 @@ class FLEvent22Type extends EventDataType
      * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL31NonMonetarySubjectType[] $fL31NonMonetarySubject
      */
     private $fL31NonMonetarySubject = [
-        
+
     ];
 
     /**
@@ -111,7 +111,7 @@ class FLEvent22Type extends EventDataType
      * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL30NonMonetarySourceType[] $fL30NonMonetarySource
      */
     private $fL30NonMonetarySource = [
-        
+
     ];
 
     /**
@@ -245,7 +245,7 @@ class FLEvent22Type extends EventDataType
      * Блок 19(1). Сведения об обеспечиваемом обязательстве
      *
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL191AmountInfoType $fL191AmountInfo
-     *@return self
+     * @return self
      */
     public function addToFL191AmountInfo(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL191AmountInfoType $fL191AmountInfo)
     {
@@ -467,7 +467,7 @@ class FLEvent22Type extends EventDataType
      * Блок 31. Сведения о неденежном обязательстве субъекта
      *
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL31NonMonetarySubjectType $fL31NonMonetarySubject
-     *@return self
+     * @return self
      */
     public function addToFL31NonMonetarySubject(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL31NonMonetarySubjectType $fL31NonMonetarySubject)
     {
@@ -559,7 +559,7 @@ class FLEvent22Type extends EventDataType
      * Блок 30. Сведения о неденежном обязательстве источника
      *
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL30NonMonetarySourceType $fL30NonMonetarySource
-     *@return self
+     * @return self
      */
     public function addToFL30NonMonetarySource(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL30NonMonetarySourceType $fL30NonMonetarySource)
     {
@@ -695,6 +695,75 @@ class FLEvent22Type extends EventDataType
     {
         $this->fL56Participation = $fL56Participation;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_Event_2_2';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Субъекту передана сумма займа (кредита), предмет лизинга передан лизингополучателю';
+    }
+
+    protected function initAttributes()
+    {
+        $this->fL17DealUid = new FL17DealUidType($this->template);
+        $this->fL18Deal = new FL18DealType($this->template);
+        $this->fL19Amount = new FL19AmountType($this->template);
+
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+            $this->addToFL191AmountInfo(new FL191AmountInfoType($this->template, $key));
+        }
+        $this->fL20JointDebtors = new FL20JointDebtorsType($this->template);
+        $this->fL21PaymentTerms = new FL21PaymentTermsType($this->template);
+        $this->fL24Fund = new FL24FundType($this->template);
+        $this->setFL25262728Group(new FL25262728GroupType($this->template));
+        $this->fL29MonthlyPayment = new FL29MonthlyPaymentType($this->template);
+        $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+            $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
+        }
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+            $this->addToFL31NonMonetarySubject(new FL31NonMonetarySubjectType($this->template, $key));
+        }
+        $this->fL54Accounting = new FL54AccountingType($this->template);
+        $this->fL55Application = new FL55ApplicationType($this->template);
+        $this->fL56Participation = new FL56ParticipationType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'fL17DealUid',
+            'fL18Deal',
+            'fL19Amount',
+            'fL191AmountInfo',
+            'fL20JointDebtors',
+            'fL21PaymentTerms',
+            'fL22TotalCost',
+            'fL23ContractChanges',
+            'fL231ContractTermsChanges',
+            'fL24Fund',
+            'fL25262728Group',
+            'fL29MonthlyPayment',
+            'fL291DebtBurdenInfo',
+            'fL30NonMonetarySource',
+            'fL31NonMonetarySubject',
+            'fL54Accounting',
+            'fL55Application',
+            'fL56Participation',
+        ];
     }
 }
 

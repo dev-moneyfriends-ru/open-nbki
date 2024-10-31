@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 22. Полная стоимость потребительского кредита (займа)
  * XSD Type: FL_22_TotalCost_Type
  */
-class FL22TotalCostType
+class FL22TotalCostType extends GutdfSegment
 {
     /**
      * 22.1. Минимальная полная стоимость кредита (займа) в процентах годовых
@@ -239,6 +239,46 @@ class FL22TotalCostType
     {
         $this->maxPercentCashless = $maxPercentCashless;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        // TODO: Implement getSegmentName() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        // TODO: Implement getFieldsDescriptions() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        // TODO: Implement getTitle() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        // TODO: Implement init() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        // TODO: Implement getXmlAttributes() method.
     }
 }
 

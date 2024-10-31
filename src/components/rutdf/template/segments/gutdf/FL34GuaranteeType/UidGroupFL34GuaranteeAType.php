@@ -2,10 +2,13 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf\FL34GuaranteeType;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
+use mfteam\nbch\helpers\UuidHelper;
+
 /**
  * Class representing UidGroupFL34GuaranteeAType
  */
-class UidGroupFL34GuaranteeAType
+class UidGroupFL34GuaranteeAType extends GutdfSegment
 {
     /**
      * 34.2. УИд независимой гарантии
@@ -236,6 +239,70 @@ class UidGroupFL34GuaranteeAType
     {
         $this->endCode = $endCode;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'Uid_group_FL_34_Guarantee';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'УИд независимой гарантии' => 'Заполняется, если по обязательству принципала формируется КИ. Значение указанного показателя должно соответствовать значению показателя 17.1 «УИд сделки» блока 17 в КИ принципала – физического лица или показателя 10.1 «УИд сделки» блока 10 в КИ принципала – юридического лица.',
+            'Сумма независимой гарантии' => '',
+            'Валюта независимой гарантии' => '',
+            'Дата выдачи независимой гарантии' => '',
+            'Дата окончания независимой гарантии согласно ее условиям' => '',
+            'Дата фактического прекращения независимой гарантии' => '',
+            'Код причины прекращения независимой гарантии' => 'Заполняется по справочнику 4.2.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Независимая гарантия';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $guaranty = $this->template->sendData->getAccountReplyRUTDF()->getIndepGuarantor()[$this->idx];
+
+        $this->uid = UuidHelper::getUuidWithControl($guaranty->indepGuaranteeUuid);
+        $this->sum = $this->formatCurrency($guaranty->indepGuaranteeVolume);
+        $this->currency = $guaranty->currencyCode;
+        $this->openDate = $this->formatDate($guaranty->indepGuaranteeDt);
+        $this->endDate = $this->formatDate($guaranty->indepGuaranteeExpirationDate);
+        $this->factEndDate = $this->formatDate($guaranty->indepGuaranteeFactExpirationDate);
+        $this->endCode = $guaranty->indepGuaranteeEndReason;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'uid',
+            'sum',
+            'currency',
+            'openDate',
+            'endDate',
+            'factEndDate',
+            'endCode',
+        ];
     }
 }
 

@@ -2,6 +2,43 @@
 
 namespace mfteam\nbch\models\rutdf;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent110Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent112Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent11Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent12Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent13Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent141Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent14Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent17Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent19Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent210Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent2111Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent2112Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent21Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent221Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent22Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent23Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent24Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent25Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent26Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent112Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent11Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent12Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent13Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent141Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent14Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent17Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent210Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent2111Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent211Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent21Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent221Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent22Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent23Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent24Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent25Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent26Type;
+
 class NbchEvents
 {
     public const EVENT_1_1 = "1.1";
@@ -14,6 +51,7 @@ class NbchEvents
     public const EVENT_1_7 = "1.7";
     public const EVENT_1_9 = "1.9";
     public const EVENT_1_10 = "1.10";
+    public const EVENT_1_12 = "1.12";
     public const EVENT_2_1A = "2.1A";
     public const EVENT_2_1B = "2.1B";
     public const EVENT_2_2A = "2.2A";
@@ -33,6 +71,63 @@ class NbchEvents
     public const EVENT_2_12 = "2.12";
     public const EVENT_3_3 = "3.3";
     public const EVENT_4_2 = "4.2";
+
+    protected static array $personEvents = [
+        self::EVENT_1_1 => FLEvent11Type::class,
+        self::EVENT_1_2 => FLEvent12Type::class,
+        self::EVENT_1_3 => FLEvent13Type::class,
+        self::EVENT_1_4A => FLEvent14Type::class,
+        self::EVENT_1_4C => FLEvent14Type::class,
+        self::EVENT_1_4_1 => FLEvent141Type::class,
+        self::EVENT_1_7 => FLEvent17Type::class,
+        self::EVENT_1_9 => FLEvent19Type::class,
+        self::EVENT_1_10 => FLEvent110Type::class,
+        self::EVENT_1_12 => FLEvent112Type::class,
+        self::EVENT_2_1A => FLEvent21Type::class,
+        self::EVENT_2_1B => FLEvent21Type::class,
+        self::EVENT_2_2A => FLEvent22Type::class,
+        self::EVENT_2_2B => FLEvent22Type::class,
+        self::EVENT_2_2_1A => FLEvent221Type::class,
+        self::EVENT_2_2_1B => FLEvent221Type::class,
+        self::EVENT_2_3A => FLEvent23Type::class,
+        self::EVENT_2_3B => FLEvent23Type::class,
+        self::EVENT_2_4 => FLEvent24Type::class,
+        self::EVENT_2_5A => FLEvent25Type::class,
+        self::EVENT_2_5B => FLEvent25Type::class,
+        self::EVENT_2_6 => FLEvent26Type::class,
+        self::EVENT_2_10 => FLEvent210Type::class,
+        self::EVENT_2_11 => FLEvent211Type::class,
+        self::EVENT_2_11_1A => FLEvent2111Type::class,
+        self::EVENT_2_11_1B => FLEvent2111Type::class,
+        self::EVENT_2_12 => FLEvent2112Type::class,
+    ];
+
+    protected static array $ulEvents = [
+        self::EVENT_1_1 => ULEvent11Type::class,
+        self::EVENT_1_2 => ULEvent12Type::class,
+        self::EVENT_1_3 => ULEvent13Type::class,
+        self::EVENT_1_4A => ULEvent14Type::class,
+        self::EVENT_1_4C => ULEvent14Type::class,
+        self::EVENT_1_4_1 => ULEvent141Type::class,
+        self::EVENT_1_7 => ULEvent17Type::class,
+        self::EVENT_1_12 => ULEvent112Type::class,
+        self::EVENT_2_1A => ULEvent21Type::class,
+        self::EVENT_2_1B => ULEvent21Type::class,
+        self::EVENT_2_2A => ULEvent22Type::class,
+        self::EVENT_2_2B => ULEvent22Type::class,
+        self::EVENT_2_2_1A => ULEvent221Type::class,
+        self::EVENT_2_2_1B => ULEvent221Type::class,
+        self::EVENT_2_3A => ULEvent23Type::class,
+        self::EVENT_2_3B => ULEvent23Type::class,
+        self::EVENT_2_4 => ULEvent24Type::class,
+        self::EVENT_2_5A => ULEvent25Type::class,
+        self::EVENT_2_5B => ULEvent25Type::class,
+        self::EVENT_2_6 => ULEvent26Type::class,
+        self::EVENT_2_10 => ULEvent210Type::class,
+        self::EVENT_2_11 => ULEvent211Type::class,
+        self::EVENT_2_11_1A => ULEvent2111Type::class,
+        self::EVENT_2_11_1B => ULEvent2111Type::class,
+    ];
     
     public static function list()
     {
@@ -41,7 +136,7 @@ class NbchEvents
             self::EVENT_1_2 => '1.2 Источник одобрил обращение (направил ему [субъекту] оферту) или изменились сведения об обращении',
             self::EVENT_1_3 => '1.3 Источник отказался от совершения сделки по обращению',
             self::EVENT_1_4A => '1.4.а Субъект и источник совершили сделку, кроме договора лизинга и поручительства по лизингу для денежного обязательства субъекта',
-            self::EVENT_1_4B => '1.4.б Субъект и источник совершили сделку, кроме договора лизинга и поручительства по лизингу для неденежного обязательства источника',
+            self::EVENT_1_4B => '1.4.б (не доступно) Субъект и источник совершили сделку, кроме договора лизинга и поручительства по лизингу для неденежного обязательства источника',
             self::EVENT_1_4C => '1.4.в Субъект и источник совершили сделку, кроме договора лизинга и поручительства по лизингу для неденежного обязательства субъекта',
             self::EVENT_1_4_1 => '1.4.1 Субъект и источник заключили договор лизинга либо поручительства по лизингу и предмет лизинга передан лизингополучателю',
             self::EVENT_1_7 => '1.7 Изменились сведения титульной части КИ субъекта',
@@ -63,7 +158,6 @@ class NbchEvents
             self::EVENT_2_11 => '2.11 Права кредитора по обязательству полностью перешли к другому лицу',
             self::EVENT_2_11_1A => '2.11.1а Права кредитора по обязательству частично перешли к другому лицу для денежного обязательства',
             self::EVENT_2_11_1B => '2.11.1б Права кредитора по обязательству частично перешли к другому лицу для неденежного обязательства',
-            self::EVENT_2_12 => '2.12 Изменились сведения об обслуживающей организации (в частности, заключен, изменен или расторгнут договор обслуживания)',
             self::EVENT_3_3 => '3.3 Требуется исключение записи кредитной истории, сведения о которой отсутствуют у источника формирования кредитной истории',
             self::EVENT_4_2 => '4.2 Требуется аннулирование записи кредитной истории',
         ];

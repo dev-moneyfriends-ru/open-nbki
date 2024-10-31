@@ -2,10 +2,12 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf\FL12CapacityType;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
+
 /**
  * Class representing LegalCapacityGroupFL12CapacityAType
  */
-class LegalCapacityGroupFL12CapacityAType
+class LegalCapacityGroupFL12CapacityAType extends GutdfSegment
 {
     /**
      * 12.5. Дата вступления в силу решения суда о признании дееспособным или об отмене ограничения дееспособности
@@ -104,6 +106,57 @@ class LegalCapacityGroupFL12CapacityAType
     {
         $this->legalCapacityCourtName = $legalCapacityCourtName;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'LegalCapacity_group_FL_12_Capacity';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Дата вступления в силу решения суда о признании недееспособным или об ограничении дееспособности' => '',
+            'Номер решения суда' => 'Сведения о решении суда, который признал гражданина недееспособным или ограничил его дееспособность.',
+            'Наименование суда' => 'Для иностранного суда заполняются на языке страны места нахождения данного суда. В скобках указывается перевод наименования суда на русский язык (при наличии перевода).Сведения о решении суда, который признал гражданина недееспособным или ограничил его дееспособность.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return '12.5–12.7';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $model = $this->template->sendData->getCapabilityReply();
+        $this->legalCapacityDate = $this->formatDate($model->capDecisionDt);
+        $this->legalCapacityDecisionNum = $model->capDecisionNum;
+        $this->legalCapacityCourtName = $model->capCourtName;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'legalCapacityDate',
+            'legalCapacityDecisionNum',
+            'legalCapacityCourtName',
+        ];
     }
 }
 

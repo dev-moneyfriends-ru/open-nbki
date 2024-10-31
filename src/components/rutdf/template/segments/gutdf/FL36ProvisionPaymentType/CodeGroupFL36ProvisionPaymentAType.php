@@ -2,10 +2,12 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf\FL36ProvisionPaymentType;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
+
 /**
  * Class representing CodeGroupFL36ProvisionPaymentAType
  */
-class CodeGroupFL36ProvisionPaymentAType
+class CodeGroupFL36ProvisionPaymentAType extends GutdfSegment
 {
     /**
      * 36.2. Код использованного обеспечения
@@ -104,6 +106,57 @@ class CodeGroupFL36ProvisionPaymentAType
     {
         $this->sum = $sum;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'Code_group_FL_36_ProvisionPayment';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Код использованного обеспечения' => 'Заполняется по справочнику 4.3.',
+            'Дата погашения требований за счет обеспечения' => '',
+            'Сумма требований, погашенных за счет обеспечения' => 'По обязательству поручителя указывается общая сумма внесенных им платежей; по обязательству из независимой гарантии указывается выплаченная по гарантии сумма; по договору страхования предмета залога, который заключен в пользу источника или субъекта, указывается размер страховой выплаты.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Сведения о погашении требований кредитора по обязательству за счет обеспечения';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $provision = $this->template->sendData->getAccountReplyRUTDF()->getCollatRepay()[$this->idx];
+        $this->code = $provision->collatRepayCode;
+        $this->date = $this->formatDate($provision->collatRepayDt);
+        $this->sum = $this->formatCurrency($provision->collatRepayAmt);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'code',
+            'date',
+            'sum',
+        ];
     }
 }
 

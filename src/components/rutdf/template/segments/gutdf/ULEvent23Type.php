@@ -15,33 +15,33 @@ class ULEvent23Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
      * Блок 10. Идентификатор сделки
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL10DealUidType $uL10DealUid
+     * @var UL10DealUidType $uL10DealUid
      */
     private $uL10DealUid = null;
 
     /**
      * Блок 11. Общие сведения о сделке
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL11DealType $uL11Deal
+     * @var UL11DealType $uL11Deal
      */
     private $uL11Deal = null;
 
     /**
      * Блок 12. Сумма и валюта обязательства
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL12AmountType $uL12Amount
+     * @var UL12AmountType $uL12Amount
      */
     private $uL12Amount = null;
 
     /**
      * Блок 12(1). Сведения об обеспечиваемом обязательстве
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL121AmountInfoType[] $uL121AmountInfo
+     * @var UL121AmountInfoType[] $uL121AmountInfo
      */
     private $uL121AmountInfo = [
         
@@ -50,21 +50,21 @@ class ULEvent23Type extends EventDataType
     /**
      * Блок 14. Сведения об условиях платежей
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL14PaymentTermsType $uL14PaymentTerms
+     * @var UL14PaymentTermsType $uL14PaymentTerms
      */
     private $uL14PaymentTerms = null;
 
     /**
      * Блок 17-20
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL17181920GroupType $uL17181920Group
+     * @var UL17181920GroupType $uL17181920Group
      */
     private $uL17181920Group = null;
 
     /**
      * Блок 22. Сведения о неденежном обязательстве субъекта
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL22NonMonetarySubjectType[] $uL22NonMonetarySubject
+     * @var UL22NonMonetarySubjectType[] $uL22NonMonetarySubject
      */
     private $uL22NonMonetarySubject = [
         
@@ -73,14 +73,14 @@ class ULEvent23Type extends EventDataType
     /**
      * Блок 13. Сведения о солидарных должниках
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL13JointDebtorsType $uL13JointDebtors
+     * @var UL13JointDebtorsType $uL13JointDebtors
      */
     private $uL13JointDebtors = null;
 
     /**
      * Блок 21. Сведения о неденежном обязательстве источника
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL21NonMonetarySourceType[] $uL21NonMonetarySource
+     * @var UL21NonMonetarySourceType[] $uL21NonMonetarySource
      */
     private $uL21NonMonetarySource = [
         
@@ -89,28 +89,28 @@ class ULEvent23Type extends EventDataType
     /**
      * Блок 28. Сведения о возмещении принципалом гаранту выплаченной суммы
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL28WarrantyReturnType $uL28WarrantyReturn
+     * @var UL28WarrantyReturnType $uL28WarrantyReturn
      */
     private $uL28WarrantyReturn = null;
 
     /**
      * Блок 44. Сведения об учете обязательства
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL44AccountingType $uL44Accounting
+     * @var UL44AccountingType $uL44Accounting
      */
     private $uL44Accounting = null;
 
     /**
      * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL45ApplicationType $uL45Application
+     * @var UL45ApplicationType $uL45Application
      */
     private $uL45Application = null;
 
     /**
      * Блок 46. Сведения об участии в обязательстве, по которому формируется кредитная история
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL46ParticipationType $uL46Participation
+     * @var UL46ParticipationType $uL46Participation
      */
     private $uL46Participation = null;
 
@@ -145,7 +145,7 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 10. Идентификатор сделки
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL10DealUidType
+     * @return UL10DealUidType
      */
     public function getUL10DealUid()
     {
@@ -157,10 +157,10 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 10. Идентификатор сделки
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL10DealUidType $uL10DealUid
+     * @param UL10DealUidType $uL10DealUid
      * @return self
      */
-    public function setUL10DealUid(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL10DealUidType $uL10DealUid)
+    public function setUL10DealUid(UL10DealUidType $uL10DealUid)
     {
         $this->uL10DealUid = $uL10DealUid;
         return $this;
@@ -171,7 +171,7 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 11. Общие сведения о сделке
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL11DealType
+     * @return UL11DealType
      */
     public function getUL11Deal()
     {
@@ -183,10 +183,10 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 11. Общие сведения о сделке
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL11DealType $uL11Deal
+     * @param UL11DealType $uL11Deal
      * @return self
      */
-    public function setUL11Deal(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL11DealType $uL11Deal)
+    public function setUL11Deal(UL11DealType $uL11Deal)
     {
         $this->uL11Deal = $uL11Deal;
         return $this;
@@ -197,7 +197,7 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 12. Сумма и валюта обязательства
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL12AmountType
+     * @return UL12AmountType
      */
     public function getUL12Amount()
     {
@@ -209,10 +209,10 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 12. Сумма и валюта обязательства
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL12AmountType $uL12Amount
+     * @param UL12AmountType $uL12Amount
      * @return self
      */
-    public function setUL12Amount(?\mfteam\nbch\components\rutdf\template\segments\gutdf\UL12AmountType $uL12Amount = null)
+    public function setUL12Amount(?UL12AmountType $uL12Amount = null)
     {
         $this->uL12Amount = $uL12Amount;
         return $this;
@@ -223,10 +223,10 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 12(1). Сведения об обеспечиваемом обязательстве
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL121AmountInfoType $uL121AmountInfo
+     * @param UL121AmountInfoType $uL121AmountInfo
      *@return self
      */
-    public function addToUL121AmountInfo(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL121AmountInfoType $uL121AmountInfo)
+    public function addToUL121AmountInfo(UL121AmountInfoType $uL121AmountInfo)
     {
         $this->uL121AmountInfo[] = $uL121AmountInfo;
         return $this;
@@ -263,7 +263,7 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 12(1). Сведения об обеспечиваемом обязательстве
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL121AmountInfoType[]
+     * @return UL121AmountInfoType[]
      */
     public function getUL121AmountInfo()
     {
@@ -275,7 +275,7 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 12(1). Сведения об обеспечиваемом обязательстве
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL121AmountInfoType[] $uL121AmountInfo
+     * @param UL121AmountInfoType[] $uL121AmountInfo
      * @return self
      */
     public function setUL121AmountInfo(array $uL121AmountInfo = null)
@@ -289,7 +289,7 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 14. Сведения об условиях платежей
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL14PaymentTermsType
+     * @return UL14PaymentTermsType
      */
     public function getUL14PaymentTerms()
     {
@@ -301,10 +301,10 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 14. Сведения об условиях платежей
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL14PaymentTermsType $uL14PaymentTerms
+     * @param UL14PaymentTermsType $uL14PaymentTerms
      * @return self
      */
-    public function setUL14PaymentTerms(?\mfteam\nbch\components\rutdf\template\segments\gutdf\UL14PaymentTermsType $uL14PaymentTerms = null)
+    public function setUL14PaymentTerms(?UL14PaymentTermsType $uL14PaymentTerms = null)
     {
         $this->uL14PaymentTerms = $uL14PaymentTerms;
         return $this;
@@ -315,7 +315,7 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 17-20
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL17181920GroupType
+     * @return UL17181920GroupType
      */
     public function getUL17181920Group()
     {
@@ -327,10 +327,10 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 17-20
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL17181920GroupType $uL17181920Group
+     * @param UL17181920GroupType $uL17181920Group
      * @return self
      */
-    public function setUL17181920Group(?\mfteam\nbch\components\rutdf\template\segments\gutdf\UL17181920GroupType $uL17181920Group = null)
+    public function setUL17181920Group(?UL17181920GroupType $uL17181920Group = null)
     {
         $this->uL17181920Group = $uL17181920Group;
         return $this;
@@ -341,10 +341,10 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 22. Сведения о неденежном обязательстве субъекта
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL22NonMonetarySubjectType $uL22NonMonetarySubject
+     * @param UL22NonMonetarySubjectType $uL22NonMonetarySubject
      *@return self
      */
-    public function addToUL22NonMonetarySubject(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL22NonMonetarySubjectType $uL22NonMonetarySubject)
+    public function addToUL22NonMonetarySubject(UL22NonMonetarySubjectType $uL22NonMonetarySubject)
     {
         $this->uL22NonMonetarySubject[] = $uL22NonMonetarySubject;
         return $this;
@@ -381,7 +381,7 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 22. Сведения о неденежном обязательстве субъекта
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL22NonMonetarySubjectType[]
+     * @return UL22NonMonetarySubjectType[]
      */
     public function getUL22NonMonetarySubject()
     {
@@ -393,7 +393,7 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 22. Сведения о неденежном обязательстве субъекта
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL22NonMonetarySubjectType[] $uL22NonMonetarySubject
+     * @param UL22NonMonetarySubjectType[] $uL22NonMonetarySubject
      * @return self
      */
     public function setUL22NonMonetarySubject(array $uL22NonMonetarySubject = null)
@@ -407,7 +407,7 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 13. Сведения о солидарных должниках
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL13JointDebtorsType
+     * @return UL13JointDebtorsType
      */
     public function getUL13JointDebtors()
     {
@@ -419,10 +419,10 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 13. Сведения о солидарных должниках
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL13JointDebtorsType $uL13JointDebtors
+     * @param UL13JointDebtorsType $uL13JointDebtors
      * @return self
      */
-    public function setUL13JointDebtors(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL13JointDebtorsType $uL13JointDebtors)
+    public function setUL13JointDebtors(UL13JointDebtorsType $uL13JointDebtors)
     {
         $this->uL13JointDebtors = $uL13JointDebtors;
         return $this;
@@ -433,10 +433,10 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 21. Сведения о неденежном обязательстве источника
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL21NonMonetarySourceType $uL21NonMonetarySource
+     * @param UL21NonMonetarySourceType $uL21NonMonetarySource
      *@return self
      */
-    public function addToUL21NonMonetarySource(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL21NonMonetarySourceType $uL21NonMonetarySource)
+    public function addToUL21NonMonetarySource(UL21NonMonetarySourceType $uL21NonMonetarySource)
     {
         $this->uL21NonMonetarySource[] = $uL21NonMonetarySource;
         return $this;
@@ -473,7 +473,7 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 21. Сведения о неденежном обязательстве источника
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL21NonMonetarySourceType[]
+     * @return UL21NonMonetarySourceType[]
      */
     public function getUL21NonMonetarySource()
     {
@@ -485,7 +485,7 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 21. Сведения о неденежном обязательстве источника
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL21NonMonetarySourceType[] $uL21NonMonetarySource
+     * @param UL21NonMonetarySourceType[] $uL21NonMonetarySource
      * @return self
      */
     public function setUL21NonMonetarySource(array $uL21NonMonetarySource = null)
@@ -499,7 +499,7 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 28. Сведения о возмещении принципалом гаранту выплаченной суммы
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL28WarrantyReturnType
+     * @return UL28WarrantyReturnType
      */
     public function getUL28WarrantyReturn()
     {
@@ -511,10 +511,10 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 28. Сведения о возмещении принципалом гаранту выплаченной суммы
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL28WarrantyReturnType $uL28WarrantyReturn
+     * @param UL28WarrantyReturnType $uL28WarrantyReturn
      * @return self
      */
-    public function setUL28WarrantyReturn(?\mfteam\nbch\components\rutdf\template\segments\gutdf\UL28WarrantyReturnType $uL28WarrantyReturn = null)
+    public function setUL28WarrantyReturn(?UL28WarrantyReturnType $uL28WarrantyReturn = null)
     {
         $this->uL28WarrantyReturn = $uL28WarrantyReturn;
         return $this;
@@ -525,7 +525,7 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 44. Сведения об учете обязательства
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL44AccountingType
+     * @return UL44AccountingType
      */
     public function getUL44Accounting()
     {
@@ -537,10 +537,10 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 44. Сведения об учете обязательства
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL44AccountingType $uL44Accounting
+     * @param UL44AccountingType $uL44Accounting
      * @return self
      */
-    public function setUL44Accounting(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL44AccountingType $uL44Accounting)
+    public function setUL44Accounting(UL44AccountingType $uL44Accounting)
     {
         $this->uL44Accounting = $uL44Accounting;
         return $this;
@@ -551,7 +551,7 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL45ApplicationType
+     * @return UL45ApplicationType
      */
     public function getUL45Application()
     {
@@ -563,10 +563,10 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL45ApplicationType $uL45Application
+     * @param UL45ApplicationType $uL45Application
      * @return self
      */
-    public function setUL45Application(?\mfteam\nbch\components\rutdf\template\segments\gutdf\UL45ApplicationType $uL45Application = null)
+    public function setUL45Application(?UL45ApplicationType $uL45Application = null)
     {
         $this->uL45Application = $uL45Application;
         return $this;
@@ -577,7 +577,7 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 46. Сведения об участии в обязательстве, по которому формируется кредитная история
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL46ParticipationType
+     * @return UL46ParticipationType
      */
     public function getUL46Participation()
     {
@@ -589,13 +589,80 @@ class ULEvent23Type extends EventDataType
      *
      * Блок 46. Сведения об участии в обязательстве, по которому формируется кредитная история
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL46ParticipationType $uL46Participation
+     * @param UL46ParticipationType $uL46Participation
      * @return self
      */
-    public function setUL46Participation(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL46ParticipationType $uL46Participation)
+    public function setUL46Participation(UL46ParticipationType $uL46Participation)
     {
         $this->uL46Participation = $uL46Participation;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_Event_2_3';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Изменение задолженности, в том числе ввиду исполнения обязательства, наступила ответственность поручителя или обязательство принципала возместить выплаченную сумму';
+    }
+
+    protected function initAttributes()
+    {
+        $this->uL10DealUid = new UL10DealUidType($this->template);
+        $this->uL11Deal = new UL11DealType($this->template);
+        $this->uL12Amount= new UL12AmountType($this->template);
+
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+            $this->addToUL121AmountInfo(new UL121AmountInfoType($this->template, $key));
+        }
+
+        $this->uL13JointDebtors = new UL13JointDebtorsType($this->template);
+        $this->uL14PaymentTerms = new UL14PaymentTermsType($this->template);
+
+        $this->setUL17181920Group(new UL17181920GroupType($this->template));
+
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
+            $this->addToUL21NonMonetarySource(new UL21NonMonetarySourceType($this->template, $key));
+        }
+
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray() as $key => $value) {
+            $this->addToUL22NonMonetarySubject(new UL22NonMonetarySubjectType($this->template, $key));
+        }
+
+        $this->uL28WarrantyReturn = new UL28WarrantyReturnType($this->template);
+        $this->uL44Accounting = new UL44AccountingType($this->template);
+        $this->uL45Application = new UL45ApplicationType($this->template);
+        $this->uL46Participation = new UL46ParticipationType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'uL10DealUid',
+            'uL11Deal',
+            'uL12Amount',
+            'uL121AmountInfo',
+            'uL13JointDebtors',
+            'uL14PaymentTerms',
+            'uL17181920Group',
+            'uL21NonMonetarySource',
+            'uL22NonMonetarySubject',
+            'uL28WarrantyReturn',
+            'uL44Accounting',
+            'uL45Application',
+            'uL46Participation',
+        ];
     }
 }
 

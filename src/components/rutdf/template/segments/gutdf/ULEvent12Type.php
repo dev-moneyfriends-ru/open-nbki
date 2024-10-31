@@ -15,7 +15,7 @@ class ULEvent12Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
      * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
@@ -74,6 +74,37 @@ class ULEvent12Type extends EventDataType
     {
         $this->uL45Application = $uL45Application;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_Event_1_2';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Источник одобрил обращение (направил ему оферту) или изменились сведения об обращении';
+    }
+
+    protected function initAttributes()
+    {
+        $this->uL45Application = new UL45ApplicationType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'uL45Application'
+        ];
     }
 }
 

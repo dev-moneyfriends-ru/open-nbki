@@ -15,19 +15,19 @@ class ULEvent112Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
      * Блок 6. Сведения по делу о несостоятельности (банкротстве)
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL6BankruptcyType $uL6Bankruptcy
+     * @var UL6BankruptcyType $uL6Bankruptcy
      */
     private $uL6Bankruptcy = null;
 
     /**
      * Блок 7. Сведения о завершении расчетов с кредиторами и освобождении субъекта от исполнения обязательств в связи с банкротством
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL7BankruptcyEndType $uL7BankruptcyEnd
+     * @var UL7BankruptcyEndType $uL7BankruptcyEnd
      */
     private $uL7BankruptcyEnd = null;
 
@@ -62,7 +62,7 @@ class ULEvent112Type extends EventDataType
      *
      * Блок 6. Сведения по делу о несостоятельности (банкротстве)
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL6BankruptcyType
+     * @return UL6BankruptcyType
      */
     public function getUL6Bankruptcy()
     {
@@ -74,10 +74,10 @@ class ULEvent112Type extends EventDataType
      *
      * Блок 6. Сведения по делу о несостоятельности (банкротстве)
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL6BankruptcyType $uL6Bankruptcy
+     * @param UL6BankruptcyType $uL6Bankruptcy
      * @return self
      */
-    public function setUL6Bankruptcy(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL6BankruptcyType $uL6Bankruptcy)
+    public function setUL6Bankruptcy(UL6BankruptcyType $uL6Bankruptcy)
     {
         $this->uL6Bankruptcy = $uL6Bankruptcy;
         return $this;
@@ -88,7 +88,7 @@ class ULEvent112Type extends EventDataType
      *
      * Блок 7. Сведения о завершении расчетов с кредиторами и освобождении субъекта от исполнения обязательств в связи с банкротством
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL7BankruptcyEndType
+     * @return UL7BankruptcyEndType
      */
     public function getUL7BankruptcyEnd()
     {
@@ -100,13 +100,46 @@ class ULEvent112Type extends EventDataType
      *
      * Блок 7. Сведения о завершении расчетов с кредиторами и освобождении субъекта от исполнения обязательств в связи с банкротством
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL7BankruptcyEndType $uL7BankruptcyEnd
+     * @param UL7BankruptcyEndType $uL7BankruptcyEnd
      * @return self
      */
-    public function setUL7BankruptcyEnd(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL7BankruptcyEndType $uL7BankruptcyEnd)
+    public function setUL7BankruptcyEnd(UL7BankruptcyEndType $uL7BankruptcyEnd)
     {
         $this->uL7BankruptcyEnd = $uL7BankruptcyEnd;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_Event_1_12';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Изменились сведения по делу о банкротстве субъекта';
+    }
+
+    protected function initAttributes()
+    {
+        $this->uL6Bankruptcy = new UL6BankruptcyType($this->template);
+        $this->uL7BankruptcyEnd = new UL7BankruptcyEndType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'uL6Bankruptcy',
+            'uL7BankruptcyEnd',
+        ];
     }
 }
 

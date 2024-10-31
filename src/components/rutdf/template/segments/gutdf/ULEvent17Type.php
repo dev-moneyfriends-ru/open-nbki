@@ -15,7 +15,7 @@ class ULEvent17Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
      * Gets as operationCode
@@ -41,6 +41,35 @@ class ULEvent17Type extends EventDataType
     {
         $this->operationCode = $operationCode;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_Event_1_7';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Изменились сведения титульной части кредитной истории субъекта';
+    }
+
+    protected function initAttributes()
+    {
+        //not attributes
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [];
     }
 }
 

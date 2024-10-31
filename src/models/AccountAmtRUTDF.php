@@ -31,12 +31,14 @@ class AccountAmtRUTDF extends BaseItem
      * Заполняется, если обязательством субъекта обеспечивается исполнение другого обязательства. Отражается сумма задолженности всех видов по обязательству,
      * исполнение которого обеспечено обязательством субъекта, на дату формирования задолженности, изменения суммы задолженности.
      * @var float|null $ensuredAmt
+     * @deprecated
      */
     public $ensuredAmt;
     
     /**
      * Валюта обеспечиваемого обязательства
      * @var string $commitcurrCode
+     * @deprecated
      */
     public $commitcurrCode = '';
     
@@ -44,6 +46,7 @@ class AccountAmtRUTDF extends BaseItem
      * Код типа обеспечиваемого обязательства
      * Заполняется по справочнику 2.2
      * @var string $commitCode
+     * @deprecated
      */
     public $commitCode = '';
     
@@ -58,6 +61,7 @@ class AccountAmtRUTDF extends BaseItem
      * УИд сделки, в результате которой возникло обеспечиваемое обязательство
      * Указывается УИд сделки, обязательства из которой обеспечены обязательством субъекта.
      * @var string $commitUuid
+     * @deprecated
      */
     public $commitUuid = '';
 }

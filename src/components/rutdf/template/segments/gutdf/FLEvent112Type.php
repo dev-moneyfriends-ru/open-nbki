@@ -20,14 +20,14 @@ class FLEvent112Type extends EventDataType
     /**
      * Блок 13. Сведения по делу о несостоятельности (банкротстве)
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL13BankruptcyType $fL13Bankruptcy
+     * @var FL13BankruptcyType $fL13Bankruptcy
      */
     private $fL13Bankruptcy = null;
 
     /**
      * Блок 14. Сведения о завершении расчетов с кредиторами и освобождении субъекта от исполнения обязательств в связи с банкротством
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL14BankruptcyEndType $fL14BankruptcyEnd
+     * @var FL14BankruptcyEndType $fL14BankruptcyEnd
      */
     private $fL14BankruptcyEnd = null;
 
@@ -62,7 +62,7 @@ class FLEvent112Type extends EventDataType
      *
      * Блок 13. Сведения по делу о несостоятельности (банкротстве)
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL13BankruptcyType
+     * @return FL13BankruptcyType
      */
     public function getFL13Bankruptcy()
     {
@@ -74,10 +74,10 @@ class FLEvent112Type extends EventDataType
      *
      * Блок 13. Сведения по делу о несостоятельности (банкротстве)
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL13BankruptcyType $fL13Bankruptcy
+     * @param FL13BankruptcyType $fL13Bankruptcy
      * @return self
      */
-    public function setFL13Bankruptcy(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL13BankruptcyType $fL13Bankruptcy)
+    public function setFL13Bankruptcy(FL13BankruptcyType $fL13Bankruptcy)
     {
         $this->fL13Bankruptcy = $fL13Bankruptcy;
         return $this;
@@ -88,7 +88,7 @@ class FLEvent112Type extends EventDataType
      *
      * Блок 14. Сведения о завершении расчетов с кредиторами и освобождении субъекта от исполнения обязательств в связи с банкротством
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL14BankruptcyEndType
+     * @return FL14BankruptcyEndType
      */
     public function getFL14BankruptcyEnd()
     {
@@ -100,13 +100,46 @@ class FLEvent112Type extends EventDataType
      *
      * Блок 14. Сведения о завершении расчетов с кредиторами и освобождении субъекта от исполнения обязательств в связи с банкротством
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL14BankruptcyEndType $fL14BankruptcyEnd
+     * @param FL14BankruptcyEndType $fL14BankruptcyEnd
      * @return self
      */
-    public function setFL14BankruptcyEnd(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL14BankruptcyEndType $fL14BankruptcyEnd)
+    public function setFL14BankruptcyEnd(FL14BankruptcyEndType $fL14BankruptcyEnd)
     {
         $this->fL14BankruptcyEnd = $fL14BankruptcyEnd;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_Event_1_12';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Изменились сведения по делу о банкротстве субъекта';
+    }
+
+    protected function initAttributes()
+    {
+        $this->fL13BankruptcyEnd = new FL13BankruptcyType($this->template);
+        $this->fL14BankruptcyEnd = new FL14BankruptcyEndType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'fL13Bankruptcy',
+            'fL14BankruptcyEnd',
+        ];
     }
 }
 

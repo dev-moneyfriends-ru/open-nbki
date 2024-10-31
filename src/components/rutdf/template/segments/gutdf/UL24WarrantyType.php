@@ -2,13 +2,15 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\UL24WarrantyType\UidGroupUL24WarrantyAType;
+
 /**
  * Class representing UL24WarrantyType
  *
  * Блок 24. Сведения о поручительстве
  * XSD Type: UL_24_Warranty_Type
  */
-class UL24WarrantyType
+class UL24WarrantyType extends GutdfSegment
 {
     /**
      * 24.1. Признак наличия поручительства = 0
@@ -25,7 +27,7 @@ class UL24WarrantyType
     private $warrantyFact1 = null;
 
     /**
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL24WarrantyType\UidGroupUL24WarrantyAType[] $uidGroupUL24Warranty
+     * @var UidGroupUL24WarrantyAType[] $uidGroupUL24Warranty
      */
     private $uidGroupUL24Warranty = [
         
@@ -86,10 +88,10 @@ class UL24WarrantyType
     /**
      * Adds as uidGroupUL24Warranty
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL24WarrantyType\UidGroupUL24WarrantyAType $uidGroupUL24Warranty
-     *@return self
+     * @return self
+     * @param UidGroupUL24WarrantyAType $uidGroupUL24Warranty
      */
-    public function addToUidGroupUL24Warranty(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL24WarrantyType\UidGroupUL24WarrantyAType $uidGroupUL24Warranty)
+    public function addToUidGroupUL24Warranty(UidGroupUL24WarrantyAType $uidGroupUL24Warranty)
     {
         $this->uidGroupUL24Warranty[] = $uidGroupUL24Warranty;
         return $this;
@@ -120,7 +122,7 @@ class UL24WarrantyType
     /**
      * Gets as uidGroupUL24Warranty
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL24WarrantyType\UidGroupUL24WarrantyAType[]
+     * @return UidGroupUL24WarrantyAType[]
      */
     public function getUidGroupUL24Warranty()
     {
@@ -130,13 +132,78 @@ class UL24WarrantyType
     /**
      * Sets a new uidGroupUL24Warranty
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL24WarrantyType\UidGroupUL24WarrantyAType[] $uidGroupUL24Warranty
+     * @param UidGroupUL24WarrantyAType[] $uidGroupUL24Warranty
      * @return self
      */
     public function setUidGroupUL24Warranty(array $uidGroupUL24Warranty = null)
     {
         $this->uidGroupUL24Warranty = $uidGroupUL24Warranty;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_24_Warranty';
+    }
+
+    public function getFields(): array
+    {
+        return [
+            'warrantyFact_0' => $this->warrantyFact0,
+            'warrantyFact_1' => $this->warrantyFact1,
+        ];
+    }
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+          'Признак наличия поручительства 0' => 'Код «1» – обязательство субъекта обеспечено поручительством; код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока 24 не передаются в соответствии со схемой Blocks.xsd.',
+          'Признак наличия поручительства 1' => 'Код «1» – обязательство субъекта обеспечено поручительством; код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока 24 не передаются в соответствии со схемой Blocks.xsd.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 24. Сведения о поручительстве';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $warranties = $this->template->sendData->getAccountReplyRUTDF()->getGuarantor();
+        if(empty($warranties)){
+            $this->warrantyFact0 = '';
+            $this->warrantyFact1 = null;
+            return;
+        }
+        $this->warrantyFact1 = '';
+        $this->warrantyFact0 = null;
+
+        foreach($warranties as $key => $warranty){
+            $this->addToUidGroupUL24Warranty(new UidGroupUL24WarrantyAType($this->template, $key));
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+          'warrantyFact_0' => 'warrantyFact0',
+          'warrantyFact_1' => 'warrantyFact1',
+          'uidGroupUL24Warranty',
+        ];
     }
 }
 

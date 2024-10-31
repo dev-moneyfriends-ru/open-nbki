@@ -2,10 +2,12 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf\FL3235GroupType\PropertyIdGroupFL3235GroupAType\FL32CollateralAType;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
+
 /**
  * Class representing SumGroupFL3235GroupAType
  */
-class SumGroupFL3235GroupAType
+class SumGroupFL3235GroupAType extends GutdfSegment
 {
     /**
      * 32.5. Стоимость предмета залога
@@ -137,6 +139,61 @@ class SumGroupFL3235GroupAType
     {
         $this->priceCode = $priceCode;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'Sum_group_FL_32_35_Group';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Стоимость предмета залога' => 'Заполняется согласно заключению об оценке стоимости предмета залога. если оценка стоимости предмета залога не проводилась, указывается цена приобретения предмета залога либо его стоимость по договору залога (по выбору источника).',
+            'Валюта стоимости предмета залога' => '',
+            'Дата проведения оценки предмета залога' => 'Заполняется, если стоимость предмета залога оценивалась.',
+            'Вид стоимости предмета залога' => 'Заполняется по справочнику 4.1.1 Указывается вид стоимости предмета залога, указанной по показателю 23.5 «Стоимость предмета залога».',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Стоимость предмета залога';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $collateral = $this->template->sendData->getAccountReplyRUTDF()->getCollateral()[$this->idx];
+
+        $this->sum = $this->formatCurrency($collateral->collateralValue);
+        $this->currency = $collateral->currencyCode;
+        $this->assessDate = $this->formatDate($collateral->collateralDate);
+        $this->priceCode = $collateral->collateralValueType;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'sum',
+            'currency',
+            'assessDate',
+            'priceCode',
+        ];
     }
 }
 

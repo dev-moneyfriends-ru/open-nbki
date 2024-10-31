@@ -90,8 +90,8 @@ class FLEvent26Type extends EventDataType
      *
      * Блок 39. Сведения о судебном споре или требовании по обязательству
      *
+     * @return self
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL39CourtType $fL39Court
-     *@return self
      */
     public function addToFL39Court(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL39CourtType $fL39Court)
     {
@@ -149,6 +149,44 @@ class FLEvent26Type extends EventDataType
     {
         $this->fL39Court = $fL39Court;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_Event_2_6';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Изменились сведения о судебном споре или требовании по обязательству';
+    }
+
+    protected function initAttributes()
+    {
+        $this->fL17DealUid = new FL17DealUidType($this->template);
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getLegalItems() as $key => $item) {
+            $this->addToFL39Court(new FL39CourtType($this->template, $key));
+        }
+        if(empty($this->uL30Court)){
+            $this->addToFL39Court(new FL39CourtType($this->template));
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'fL17DealUid',
+            'fL39Court',
+        ];
     }
 }
 

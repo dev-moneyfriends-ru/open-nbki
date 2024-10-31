@@ -2,13 +2,15 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\UL25GuaranteeType\UidGroupUL25GuaranteeAType;
+
 /**
  * Class representing UL25GuaranteeType
  *
  * Блок 25. Сведения о независимой гарантии
  * XSD Type: UL_25_Guarantee_Type
  */
-class UL25GuaranteeType
+class UL25GuaranteeType extends GutdfSegment
 {
     /**
      * 25.1. Признак наличия независимой гарантии = 0
@@ -25,7 +27,7 @@ class UL25GuaranteeType
     private $exist1 = null;
 
     /**
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL25GuaranteeType\UidGroupUL25GuaranteeAType[] $uidGroupUL25Guarantee
+     * @var UidGroupUL25GuaranteeAType[] $uidGroupUL25Guarantee
      */
     private $uidGroupUL25Guarantee = [
         
@@ -86,10 +88,10 @@ class UL25GuaranteeType
     /**
      * Adds as uidGroupUL25Guarantee
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL25GuaranteeType\UidGroupUL25GuaranteeAType $uidGroupUL25Guarantee
-     *@return self
+     * @return self
+     * @param UidGroupUL25GuaranteeAType $uidGroupUL25Guarantee
      */
-    public function addToUidGroupUL25Guarantee(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL25GuaranteeType\UidGroupUL25GuaranteeAType $uidGroupUL25Guarantee)
+    public function addToUidGroupUL25Guarantee(UidGroupUL25GuaranteeAType $uidGroupUL25Guarantee)
     {
         $this->uidGroupUL25Guarantee[] = $uidGroupUL25Guarantee;
         return $this;
@@ -120,7 +122,7 @@ class UL25GuaranteeType
     /**
      * Gets as uidGroupUL25Guarantee
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL25GuaranteeType\UidGroupUL25GuaranteeAType[]
+     * @return UidGroupUL25GuaranteeAType[]
      */
     public function getUidGroupUL25Guarantee()
     {
@@ -130,13 +132,79 @@ class UL25GuaranteeType
     /**
      * Sets a new uidGroupUL25Guarantee
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL25GuaranteeType\UidGroupUL25GuaranteeAType[] $uidGroupUL25Guarantee
+     * @param UidGroupUL25GuaranteeAType[] $uidGroupUL25Guarantee
      * @return self
      */
     public function setUidGroupUL25Guarantee(array $uidGroupUL25Guarantee = null)
     {
         $this->uidGroupUL25Guarantee = $uidGroupUL25Guarantee;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_25_Guarantee_Type';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+          'Признак наличия независимой гарантии 0' => 'Код «1» – исполнение обязательства обеспечено независимой гарантией; код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока не передаются в соответствии со схемой Blocks.xsd.',
+          'Признак наличия независимой гарантии 1' => 'Код «1» – исполнение обязательства обеспечено независимой гарантией; код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока не передаются в соответствии со схемой Blocks.xsd.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 25. Сведения о независимой гарантии';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $guaranties = $this->template->sendData->getAccountReplyRUTDF()->getIndepGuarantor();
+        if(empty($guaranties)){
+            $this->exist0 = '';
+            $this->exist1 = null;
+            return;
+        }
+        $this->exist1 = '';
+        $this->exist0 = null;
+
+        foreach ($guaranties as $key => $guaranty){
+            $this->addToUidGroupUL25Guarantee(new UidGroupUL25GuaranteeAType($this->template, $key));
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+          'exist_0' => 'exist0',
+          'exist_1' => 'exist1',
+          'uidGroupUL25Guarantee',
+        ];
+    }
+
+    public function getFields(): array
+    {
+        return [
+            'exist_0' => $this->exist0,
+            'exist_1' => $this->exist1,
+        ];
     }
 }
 

@@ -8,12 +8,12 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 57. Сведения об отказе источника от предложения совершить сделку
  * XSD Type: FL_57_Reject_Type
  */
-class FL57RejectType
+class FL57RejectType extends GutdfSegment
 {
     /**
      * 57.1. Дата отказа
      *
-     * @var \DateTime $rejectDate
+     * @var string $rejectDate
      */
     private $rejectDate = null;
 
@@ -31,7 +31,7 @@ class FL57RejectType
      *
      * 57.1. Дата отказа
      *
-     * @return \DateTime
+     * @return string
      */
     public function getRejectDate()
     {
@@ -116,6 +116,55 @@ class FL57RejectType
     {
         $this->rejectCode = $rejectCode;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_57_Reject';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Дата отказа' => '',
+            'Код причины отказа' => 'Заполняется по справочнику 6.5. При наличии нескольких причин значения указываются через запятую.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 57. Сведения об отказе источника от предложения совершить сделку';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $infoPart = $this->template->sendData->getInformationPartRUTDF();
+
+        $this->rejectDate = $infoPart->rejectedDate;
+        $this->rejectCode = implode(',', $infoPart->rejectedReasonCode);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'rejectDate',
+            'rejectCode'
+        ];
     }
 }
 

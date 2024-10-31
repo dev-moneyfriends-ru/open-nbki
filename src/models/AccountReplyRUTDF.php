@@ -3,6 +3,12 @@
 namespace mfteam\nbch\models;
 
 
+use DateTime;
+use mfteam\nbch\models\AmountInfoRUTDF;
+use mfteam\nbch\models\ContractTermsChangesRUTDF;
+use mfteam\nbch\models\DebtBurdenInfoRUTDF;
+use mfteam\nbch\models\FundDateRUTDF;
+
 /**
  * Сделка
  *
@@ -32,9 +38,9 @@ class AccountReplyRUTDF extends Account
      * Номер сделки.
      * Номер сделки, присвоенный источником.
      * Заполняется, если сделке ранее не был присвоен УИд сделки.
-     * @var string $acctNum
+     * @var string|null $acctNum
      */
-    public $acctNum = '';
+    public $acctNum = null;
     
     /**
      * Общие сведения о сделке
@@ -85,13 +91,34 @@ class AccountReplyRUTDF extends Account
      * По обязательству источника выдавать сумму займа (кредита) траншами или в пределах расходного лимита указывается дата передачи каждого транша,
      * за исключением выданного с использованием платежной карты, и займа (кредита), предоставленного на условиях овердрафта.
      * @var string $fundDate
+     * @deprecated
      */
     public $fundDate = '';
+
+    /**
+     * Сведения о передаче финансирования субъекту или о возникновении обеспечения исполнения обязательства.
+     * @var array|FundDateRUTDF[] $fundDateArray
+     */
+    private array $fundDateRUTDF = [];
+
+    /**
+     * Код источника.
+     * Заполняется по справочнику 6.1.
+     * @see SourceType
+     * @var string
+     */
+    public string $memberTypeCode;
+
+    /**
+     * Полное наименование источника.
+     * @var string $memberFullName
+     */
+    public string $memberFullName;
     
     /**
      * Порядковый номер транша.
      * Заполняется для займа (кредита), который выдается траншами, за исключением выданного с использованием платежной карты, и займа (кредита), предоставленного на условиях овердрафта
-     * @var int $trancheNum
+     * @var int|null $trancheNum
      */
     public $trancheNum;
     
@@ -189,8 +216,14 @@ class AccountReplyRUTDF extends Account
      * Сведения о погашении требований кредитора по обязательству за счет обеспечения
      * @var CollatRepayRUTDF[] $collatRepay
      */
-    public $collatRepayArray = [];
-    
+    private $collatRepayArray = [];
+
+    /**
+     * Сведения об изменении условий обязательства, обусловленном наступлением указанных в сделке событий.
+     * @var ContractTermsChangesRUTDF[] $contractTermsChanges
+     */
+    private $contractTermsChanges = [];
+
     /**
      * Признак обязанности возместить выплаченную сумму.
      * Код «1» – принципал обязан возместить гаранту выплаченную им сумму;
@@ -294,7 +327,31 @@ class AccountReplyRUTDF extends Account
      * Сведения о прекращении передачи информации по обязательству
      * @var SubmitHoldRUTDF[] $submitHold
      */
-    public $submitHoldArray = [];
+    private $submitHoldArray = [];
+
+    /**
+     * УИд сделки, задолженность по которой была рефинансирована (если по такой сделке формируется кредитная история) за счет сделки, по которой формируется кредитная история
+     * @var string|null
+     */
+    public $refUid = null;
+
+    /**
+     * Дата, по состоянию на которую сформированы (рассчитаны) показатели
+     * @var string $calcDate
+     */
+    public $calcDate = '';
+
+    /**
+     * @var array|AmountInfoRUTDF[]
+     */
+    private $amountInfoArray = [];
+
+    /**
+     * Сведения о долговой нагрузке заемщика
+     * @var array|DebtBurdenInfoRUTDF
+     */
+    private $debtBurdenInfo = [];
+
     
     /**
      * @return TradeRUTDF[]
@@ -341,7 +398,31 @@ class AccountReplyRUTDF extends Account
      */
     public function setAccountAmt(array $config): void
     {
-        $this->accountAmt = $this->initPropertyModels($config, AccountAmtRUTDF::class);
+        $this->accountAmtArray = $this->initPropertyModels($config, AccountAmtRUTDF::class);
+    }
+
+    /**
+     * @return AmountInfoRUTDF[]
+     */
+    public function getAmountInfoArray(): array
+    {
+        return $this->amountInfoArray;
+    }
+
+    /**
+     * @return AmountInfoRUTDF
+     */
+    public function getAmountInfo(): ?AmountInfoRUTDF
+    {
+        return $this->getLastValue('amountInfoArray');
+    }
+
+    /**
+     * @param array|AmountInfoRUTDF[] $config
+     */
+    public function setAmountInfo(array $config): void
+    {
+        $this->amountInfoArray = $this->initPropertyModels($config, AmountInfoRUTDF::class);
     }
     
     /**
@@ -513,7 +594,7 @@ class AccountReplyRUTDF extends Account
     }
     
     /**
-     * @param array $payments
+     * @param PaymentRUTDF[] $payment
      */
     public function setPayment(array $payments): void
     {
@@ -539,9 +620,17 @@ class AccountReplyRUTDF extends Account
     /**
      * @param MonthAverPaymtRUTDF[]|array $config
      */
-    public function setMonthAverPaymtArray(array $config): void
+    public function setMonthAverPaymt(array $config): void
     {
         $this->monthAverPaymtArray = $this->initPropertyModels($config, MonthAverPaymtRUTDF::class);
+    }
+
+    /**
+     * @param MonthAverPaymtRUTDF[]|array $config
+     */
+    public function setMonthAverPaymtArray(array $config): void
+    {
+        $this->setMonthAverPaymt($config);
     }
     
     /**
@@ -563,11 +652,20 @@ class AccountReplyRUTDF extends Account
     /**
      * @param array $config
      */
-    public function setSourceNonMonetObligArray(array $config): void
+    public function setSourceNonMonetOblig(array $config): void
     {
         $this->sourceNonMonetObligArray = $this->initPropertyModels($config, SourceNonMonetObligRUTDF::class);
     }
-    
+
+    /**
+     * @param SourceNonMonetObligRUTDF[]|array $sourceNonMonetObligArray
+     * @deprecated
+     */
+    public function setSourceNonMonetObligArray(array $config): void
+    {
+        $this->setSourceNonMonetOblig($config);
+    }
+
     /**
      * @return SubjectNonMonetObligRUTDF[]
      */
@@ -587,11 +685,20 @@ class AccountReplyRUTDF extends Account
     /**
      * @param SubjectNonMonetObligRUTDF[]|array $config
      */
-    public function setSubjectNonMonetObligArray(array $config): void
+    public function setSubjectNonMonetOblig(array $config): void
     {
         $this->subjectNonMonetObligArray = $this->initPropertyModels($config, SubjectNonMonetObligRUTDF::class);
     }
-    
+
+    /**
+     * @param SubjectNonMonetObligRUTDF[]|array $config
+     * @deprecated
+     */
+    public function setSubjectNonMonetObligArray(array $config): void
+    {
+        $this->setSubjectNonMonetOblig($config);
+    }
+
     /**
      * @return CollateralRUTDF[]
      */
@@ -667,11 +774,20 @@ class AccountReplyRUTDF extends Account
     /**
      * @param CollatRepayRUTDF[]|array $config
      */
-    public function setCollatRepayArray(array $config): void
+    public function setCollatRepay(array $config): void
     {
         $this->collatRepayArray = $this->initPropertyModels($config, CollatRepayRUTDF::class);
     }
-    
+
+    /**
+     * @param CollatRepayRUTDF[]|array $config
+     * @deprecated
+     */
+    public function setCollatRepayArray(array $config): void
+    {
+        $this->setCollatRepay($config);
+    }
+
     /**
      * @return LegalItemsRUTDF[]
      */
@@ -710,5 +826,118 @@ class AccountReplyRUTDF extends Account
     public function setSubmitHoldArray(array $config): void
     {
         $this->submitHoldArray = $this->initPropertyModels($config, SubmitHoldRUTDF::class);
+    }
+
+    /**
+     * @param int $minDays
+     * @param int|null $maxDays
+     * @param int|null $maxMonth
+     * @return int
+     */
+    public function getHisoricalPastDueDays(int $minDays = 0, int $maxDays = null, int $maxMonth = null)
+    {
+        if(empty($this->pastdueArrearArray)){
+            return 0;
+        }
+        $maxValue = 0;
+        foreach ($this->pastdueArrearArray as $model)
+        {
+            $daysPastDue = $model->getDaysPastDue();
+            if($daysPastDue === 0 || $daysPastDue < $minDays){
+                continue;
+            }
+            if($maxMonth !== null){
+                $currentDate = new DateTime('now');
+                $date = new DateTime($model->calcDate);
+                $diff = $currentDate->diff($date);
+                $diffMonth = $diff->y * 12 + $diff->m;
+                if($diffMonth > $maxMonth){
+                    continue;
+                }
+            }
+
+            if($maxDays !== null && $daysPastDue > $maxDays){
+                $maxValue = $maxDays;
+                break;
+            }
+
+            if($maxDays === null && $daysPastDue < $minDays){
+                continue;
+            }
+
+            if($daysPastDue > $maxValue){
+                $maxValue = $daysPastDue;
+            }
+
+        }
+        return $maxValue;
+    }
+
+    /**
+     * Действующий договор
+     * @return bool
+     */
+    public function isActive(): bool
+    {
+        return empty($this->loanIndicator);
+    }
+    /**
+     * Проданный договор
+     * @return bool
+     */
+    public function isAcquirer(): bool
+    {
+        return !empty($this->getAcquirerIndivid()) || !empty($this->getAcquirerLegal());
+    }
+
+    /**
+     * @return ContractTermsChangesRUTDF[]
+     */
+    public function getContractTermsChanges(): array
+    {
+        return $this->contractTermsChanges;
+    }
+
+    /**
+     * @param array|ContractTermsChangesRUTDF[] $config
+     * @return void
+     */
+    public function setContractTermsChanges(array $config): void
+    {
+        $this->contractTermsChanges = $this->initPropertyModels($config, ContractTermsChangesRUTDF::class);
+    }
+
+    /**
+     * @return array|FundDateRUTDF[]
+     */
+    public function getFundDateRUTDF(): array
+    {
+        return $this->fundDateRUTDF;
+    }
+
+    /**
+     * @param array|FundDateRUTDF[] $config
+     * @return void
+     */
+    public function setFundDateRUTDF(array $config): void
+    {
+        $this->fundDateRUTDF = $this->initPropertyModels($config, FundDateRUTDF::class);
+    }
+
+    /**
+     * @return DebtBurdenInfoRUTDF[]
+     */
+    public function getDebtBurdenInfo(): array
+    {
+        return $this->debtBurdenInfo;
+    }
+
+    /**
+     * @param array|DebtBurdenInfoRUTDF[] $config
+     * @return void
+     */
+    public function setDebtBurdenInfo(array $config): void
+    {
+        $this->debtBurdenInfo = $this->initPropertyModels($config, DebtBurdenInfoRUTDF::class);
     }
 }

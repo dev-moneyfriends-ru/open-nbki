@@ -19,6 +19,7 @@ class SubjectNonMonetObligRUTDF extends BaseItem
      * Не заполняется, начиная с версии 5.0 настоящего формата (на основании Указания Банка России 6300-У).
      * В предыдущих версиях в этом показателе указывалось имущество, которое субъект должен передать источнику.
      * @var string $subjNonMonetObligObject
+     * @deprecated
      */
     public $subjNonMonetObligObject = '';
     

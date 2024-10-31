@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 21. Сведения о неденежном обязательстве источника
  * XSD Type: UL_21_NonMonetarySource_Type
  */
-class UL21NonMonetarySourceType
+class UL21NonMonetarySourceType extends GutdfSegment
 {
     /**
      * 21.1. Предмет обязательства
@@ -140,6 +140,60 @@ class UL21NonMonetarySourceType
     {
         $this->propertyId = $propertyId;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_21_NonMonetarySource';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Предмет обязательства' => 'Предмет обязательства источника согласно условиям договора.',
+            'Код предоставляемого имущества' => 'Заполняется по справочнику 4.1.',
+            'Дата передачи имущества субъекту' => 'Дата передачи имущества субъекту или возникновения неденежного поручительства.',
+            'Идентификационный код предоставляемого имущества' => 'Указывается: кадастровый номер – для имеющей такой номер недвижимости; идентификационный номер транспортного средства (VIN) – для имеющего такой номер транспортного средства; код по Общероссийскому классификатору основных фондов (далее – ОКОФ) или заводской номер – для промышленных машин и оборудования; штриховой код – для имеющего такой код товара;  уникальный идентификатор финансового инструмента в торговой системе (тикер) – для имеющих такой идентификатор ценной бумаги или иного финансового инструмента. Для предметов залога, не поименованных выше, указывается предусмотренное договором обозначение.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 21. Сведения о неденежном обязательстве источника';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $model = $this->template->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray()[$this->idx];
+        $this->item = $model->srcNonMonetOblig;
+        $this->code = $model->srcNonMonetObligCode;
+        $this->propertyId = $model->srcNonMonetObligCodeIdent;
+        $this->date = $this->formatDate($model->srcNonMonetObligDt);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'item',
+            'code',
+            'date',
+            'propertyId',
+        ];
     }
 }
 

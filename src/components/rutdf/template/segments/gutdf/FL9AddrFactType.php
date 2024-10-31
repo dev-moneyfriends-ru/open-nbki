@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 9. Фактическое место жительства
  * XSD Type: FL_9_AddrFact_Type
  */
-class FL9AddrFactType
+class FL9AddrFactType extends GutdfSegment
 {
     /**
      * 9.1. Признак отличия фактического места жительства = 0
@@ -470,6 +470,104 @@ class FL9AddrFactType
     {
         $this->apart = $apart;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_9_AddrFact';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 9. Фактическое место жительства';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $address = $this->template->sendData->getActualAddress();
+        if($address === null){
+            $this->exist0 = '';
+            $this->exist1 = null;
+            return;
+        }
+        $this->exist1 = '';
+        $this->exist0 = null;
+        $this->postCode = $address->postal;
+        $this->countryCode = $address->oksm;
+        $this->countryOther = $address->otherCountry;
+        $this->regStateNum = $address->fias;
+        $this->locationCode = $address->okato;
+        $this->street = $this->formatString($address->street);
+        $this->house = $this->formatString($address->houseNumber);
+        $this->estate = $this->formatString($address->estate);
+        $this->block = str_replace(" ", "", $this->formatString($address->block));
+        $this->build = $this->formatString($address->building);
+        $this->apart = $this->formatString($address->apartment);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'exist_0' => 'exist0',
+            'exist_1' => 'exist1',
+            'postCode',
+            'countryCode',
+            'countryOther',
+            'regStateNum',
+            'locationCode',
+            'locationOther',
+            'street',
+            'house',
+            'estate',
+            'block',
+            'build',
+            'apart',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Признак отличия фактического места жительства' => 'Код «1» – субъект проживает не по адресу, указанному в блоке 8;
+                                код «0» – обстоятельство кода «1» отсутствует.
+                                Если по показателю 9.1 указан код «0», иные показатели блока 9 Показателей КИ ФЛ не передаются в соответствии со схемой Blocks.xsd.
+                                ',
+            'Почтовый индекс' => '',
+            'Код страны по ОКСМ' => 'Цифровой код страны согласно Общероссийскому классификатору стран мира (далее – ОКСМ, см. справочник A1).
+                                При отсутствии страны в ОКСМ указывается «999».
+                                ',
+            'Наименование иной страны' => '',
+            'Номер адреса в ГАР' => 'Уникальный номер адреса объекта адресации в государственном адресном реестре (далее – ГАР).
+                                Указываются код населенного пункта, код улицы, код дома (владения), код корпуса и код номера квартиры
+                                ',
+            'Код населенного пункта по ОКАТО' => 'Указывается согласно Общероссийскому классификатору объектов административно-территориального деления (далее – ОКАТО).
+                                При отсутствии в ОКАТО кода населенного пункта указывается «99 999 999 999».
+                                ',
+            'Иной населенный пункт' => 'Заполняется, если по показателю «Код населенного пункта по ОКАТО» указано «99 999 999 999».
+                                При отсутствии сведений о населенном пункте в государственном реестре (ЕГРЮЛ или иной реестр) населенный пункт указывается на русском или английском языке (по выбору источника).
+                                ',
+            'Улица' => '',
+            'Дом' => '',
+            'Владение' => '',
+            'Корпус' => '',
+            'Строение' => '',
+            'Квартира' => 'Номер квартиры, помещения или комнаты, в которой зарегистрировано лицо.',
+        ];
     }
 }
 

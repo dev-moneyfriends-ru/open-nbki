@@ -2,10 +2,12 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf\UL2AddressType;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
+
 /**
  * Class representing PhoneGroupUL2AddressAType
  */
-class PhoneGroupUL2AddressAType
+class PhoneGroupUL2AddressAType extends GutdfSegment
 {
     /**
      * 2.12. Номер телефона
@@ -71,6 +73,61 @@ class PhoneGroupUL2AddressAType
     {
         $this->phoneComment = $phoneComment;
         return $this;
+    }
+
+    public function getSegmentName(): string
+    {
+        return 'Phone_group_UL_2_Address';
+    }
+
+    public function getFields(): array
+    {
+        return [
+            'phone' => $this->getPhone(),
+            'phoneComment' => $this->getPhoneComment()
+        ];
+    }
+
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Номер телефона' => 'Контактный номер телефона.
+                                Заполняется, если субъект предоставил данные источнику.
+                                ',
+            'Комментарий к номеру телефона' => 'Пояснительные сведения о номере телефона
+                                Заполняется, если субъект предоставил данные источнику.
+                                ',
+        ];
+    }
+
+    public function getDescription(): string
+    {
+        return '';
+    }
+
+    public function getTitle(): string
+    {
+        return 'Телефон';
+    }
+
+    public function getProperties(): array
+    {
+       return [];
+    }
+
+    public function init(): void
+    {
+        $address = $this->template->sendData->getRegAddress();
+        $this->phone = $address->phone;
+        $this->phoneComment = $address->phoneComment?$this->formatString($address->phoneComment):self::EMPTY_VALUE;
+    }
+
+    public function getXmlAttributes(): array
+    {
+        return [
+            'phone',
+            'phoneComment'
+        ];
     }
 }
 

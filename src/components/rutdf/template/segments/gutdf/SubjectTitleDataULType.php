@@ -2,6 +2,8 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\UL4TaxType\TaxNumGroupUL4TaxAType;
+
 /**
  * Class representing SubjectTitleDataULType
  *
@@ -13,35 +15,35 @@ class SubjectTitleDataULType extends SubjectTitleDataType
     /**
      * Блок 1. Наименование юридического лица
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL1NameType $uL1Name
+     * @var UL1NameType $uL1Name
      */
     private $uL1Name = null;
 
     /**
      * Блок 2. Адрес юридического лица в пределах его места нахождения и контактная информация
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL2AddressType $uL2Address
+     * @var UL2AddressType $uL2Address
      */
     private $uL2Address = null;
 
     /**
      * Блок 3. Регистрационный номер
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL3RegType $uL3Reg
+     * @var UL3RegType $uL3Reg
      */
     private $uL3Reg = null;
 
     /**
      * Блок 4. Номер налогоплательщика
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL4TaxType\TaxNumGroupUL4TaxAType[] $uL4Tax
+     * @var TaxNumGroupUL4TaxAType[] $uL4Tax
      */
     private $uL4Tax = null;
 
     /**
      * Блок 5. Сведения о смене наименования либо правопреемстве при реорганизации
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL5ReorgType[] $uL5Reorg
+     * @var UL5ReorgType[] $uL5Reorg
      */
     private $uL5Reorg = [
         
@@ -52,7 +54,7 @@ class SubjectTitleDataULType extends SubjectTitleDataType
      *
      * Блок 1. Наименование юридического лица
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL1NameType
+     * @return UL1NameType
      */
     public function getUL1Name()
     {
@@ -64,10 +66,10 @@ class SubjectTitleDataULType extends SubjectTitleDataType
      *
      * Блок 1. Наименование юридического лица
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL1NameType $uL1Name
+     * @param UL1NameType $uL1Name
      * @return self
      */
-    public function setUL1Name(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL1NameType $uL1Name)
+    public function setUL1Name(UL1NameType $uL1Name)
     {
         $this->uL1Name = $uL1Name;
         return $this;
@@ -78,7 +80,7 @@ class SubjectTitleDataULType extends SubjectTitleDataType
      *
      * Блок 2. Адрес юридического лица в пределах его места нахождения и контактная информация
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL2AddressType
+     * @return UL2AddressType
      */
     public function getUL2Address()
     {
@@ -90,10 +92,10 @@ class SubjectTitleDataULType extends SubjectTitleDataType
      *
      * Блок 2. Адрес юридического лица в пределах его места нахождения и контактная информация
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL2AddressType $uL2Address
+     * @param UL2AddressType $uL2Address
      * @return self
      */
-    public function setUL2Address(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL2AddressType $uL2Address)
+    public function setUL2Address(UL2AddressType $uL2Address)
     {
         $this->uL2Address = $uL2Address;
         return $this;
@@ -104,7 +106,7 @@ class SubjectTitleDataULType extends SubjectTitleDataType
      *
      * Блок 3. Регистрационный номер
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL3RegType
+     * @return UL3RegType
      */
     public function getUL3Reg()
     {
@@ -116,10 +118,10 @@ class SubjectTitleDataULType extends SubjectTitleDataType
      *
      * Блок 3. Регистрационный номер
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL3RegType $uL3Reg
+     * @param UL3RegType $uL3Reg
      * @return self
      */
-    public function setUL3Reg(?\mfteam\nbch\components\rutdf\template\segments\gutdf\UL3RegType $uL3Reg = null)
+    public function setUL3Reg(?UL3RegType $uL3Reg = null)
     {
         $this->uL3Reg = $uL3Reg;
         return $this;
@@ -130,10 +132,10 @@ class SubjectTitleDataULType extends SubjectTitleDataType
      *
      * Блок 4. Номер налогоплательщика
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL4TaxType\TaxNumGroupUL4TaxAType $taxNumGroupUL4Tax
-     *@return self
+     * @return self
+     * @param TaxNumGroupUL4TaxAType $taxNumGroupUL4Tax
      */
-    public function addToUL4Tax(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL4TaxType\TaxNumGroupUL4TaxAType $taxNumGroupUL4Tax)
+    public function addToUL4Tax(TaxNumGroupUL4TaxAType $taxNumGroupUL4Tax)
     {
         $this->uL4Tax[] = $taxNumGroupUL4Tax;
         return $this;
@@ -170,7 +172,7 @@ class SubjectTitleDataULType extends SubjectTitleDataType
      *
      * Блок 4. Номер налогоплательщика
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL4TaxType\TaxNumGroupUL4TaxAType[]
+     * @return TaxNumGroupUL4TaxAType[]
      */
     public function getUL4Tax()
     {
@@ -182,7 +184,7 @@ class SubjectTitleDataULType extends SubjectTitleDataType
      *
      * Блок 4. Номер налогоплательщика
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL4TaxType\TaxNumGroupUL4TaxAType[] $uL4Tax
+     * @param TaxNumGroupUL4TaxAType[] $uL4Tax
      * @return self
      */
     public function setUL4Tax(array $uL4Tax = null)
@@ -196,10 +198,10 @@ class SubjectTitleDataULType extends SubjectTitleDataType
      *
      * Блок 5. Сведения о смене наименования либо правопреемстве при реорганизации
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL5ReorgType $uL5Reorg
-     *@return self
+     * @param UL5ReorgType $uL5Reorg
+     * @return self
      */
-    public function addToUL5Reorg(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL5ReorgType $uL5Reorg)
+    public function addToUL5Reorg(UL5ReorgType $uL5Reorg)
     {
         $this->uL5Reorg[] = $uL5Reorg;
         return $this;
@@ -236,7 +238,7 @@ class SubjectTitleDataULType extends SubjectTitleDataType
      *
      * Блок 5. Сведения о смене наименования либо правопреемстве при реорганизации
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL5ReorgType[]
+     * @return UL5ReorgType[]
      */
     public function getUL5Reorg()
     {
@@ -248,13 +250,63 @@ class SubjectTitleDataULType extends SubjectTitleDataType
      *
      * Блок 5. Сведения о смене наименования либо правопреемстве при реорганизации
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL5ReorgType[] $uL5Reorg
+     * @param UL5ReorgType[] $uL5Reorg
      * @return self
      */
     public function setUL5Reorg(array $uL5Reorg = null)
     {
         $this->uL5Reorg = $uL5Reorg;
         return $this;
+    }
+
+    public function getSegmentName(): string
+    {
+        return 'Title';
+    }
+
+    public function getFields(): array
+    {
+        return [];
+    }
+
+    public function getFieldsDescriptions(): array
+    {
+        return [];
+    }
+
+    public function getDescription(): string
+    {
+        return '';
+    }
+
+    public function getTitle(): string
+    {
+        return 'Титульная часть ЮЛ';
+    }
+
+    public function getProperties(): array
+    {
+        return [];
+    }
+
+    public function init(): void
+    {
+        $this->setUL1Name(new UL1NameType($this->template));
+        $this->setUL2Address(new UL2AddressType($this->template));
+        $this->setUL3Reg(new UL3RegType($this->template));
+        $this->addToUL4Tax(new TaxNumGroupUL4TaxAType($this->template));
+        $this->addToUL5Reorg(new UL5ReorgType($this->template));
+    }
+
+    public function getXmlAttributes(): array
+    {
+        return [
+            'uL1Name',
+            'uL2Address',
+            'uL3Reg',
+            'UL_4_Tax' => 'uL4Tax',
+            'uL5Reorg',
+        ];
     }
 }
 

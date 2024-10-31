@@ -20,7 +20,7 @@ class FLEvent110Type extends EventDataType
     /**
      * Блок 12. Сведения о дееспособности
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL12CapacityType $fL12Capacity
+     * @var FL12CapacityType $fL12Capacity
      */
     private $fL12Capacity = null;
 
@@ -55,7 +55,7 @@ class FLEvent110Type extends EventDataType
      *
      * Блок 12. Сведения о дееспособности
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL12CapacityType
+     * @return FL12CapacityType
      */
     public function getFL12Capacity()
     {
@@ -67,13 +67,44 @@ class FLEvent110Type extends EventDataType
      *
      * Блок 12. Сведения о дееспособности
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL12CapacityType $fL12Capacity
+     * @param FL12CapacityType $fL12Capacity
      * @return self
      */
-    public function setFL12Capacity(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL12CapacityType $fL12Capacity)
+    public function setFL12Capacity(FL12CapacityType $fL12Capacity)
     {
         $this->fL12Capacity = $fL12Capacity;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_Event_1_10';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Изменились сведения о дееспособности субъекта';
+    }
+
+    protected function initAttributes()
+    {
+        $this->fL12Capacity = new FL12CapacityType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'fL12Capacity'
+        ];
     }
 }
 

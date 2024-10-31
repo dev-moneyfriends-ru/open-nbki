@@ -15,33 +15,33 @@ class ULEvent21Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
      * Блок 10. Идентификатор сделки
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL10DealUidType $uL10DealUid
+     * @var UL10DealUidType $uL10DealUid
      */
     private $uL10DealUid = null;
 
     /**
      * Блок 11. Общие сведения о сделке
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL11DealType $uL11Deal
+     * @var UL11DealType $uL11Deal
      */
     private $uL11Deal = null;
 
     /**
      * Блок 12. Сумма и валюта обязательства
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL12AmountType $uL12Amount
+     * @var UL12AmountType $uL12Amount
      */
     private $uL12Amount = null;
 
     /**
      * Блок 12(1). Сведения об обеспечиваемом обязательстве
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL121AmountInfoType[] $uL121AmountInfo
+     * @var UL121AmountInfoType[] $uL121AmountInfo
      */
     private $uL121AmountInfo = [
         
@@ -50,21 +50,21 @@ class ULEvent21Type extends EventDataType
     /**
      * Блок 14. Сведения об условиях платежей
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL14PaymentTermsType $uL14PaymentTerms
+     * @var UL14PaymentTermsType $uL14PaymentTerms
      */
     private $uL14PaymentTerms = null;
 
     /**
      * Блок 17-20
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL17181920GroupType $uL17181920Group
+     * @var UL17181920GroupType $uL17181920Group
      */
     private $uL17181920Group = null;
 
     /**
      * Блок 22. Сведения о неденежном обязательстве субъекта
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL22NonMonetarySubjectType[] $uL22NonMonetarySubject
+     * @var UL22NonMonetarySubjectType[] $uL22NonMonetarySubject
      */
     private $uL22NonMonetarySubject = [
         
@@ -73,14 +73,14 @@ class ULEvent21Type extends EventDataType
     /**
      * Блок 13. Сведения о солидарных должниках
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL13JointDebtorsType $uL13JointDebtors
+     * @var UL13JointDebtorsType $uL13JointDebtors
      */
     private $uL13JointDebtors = null;
 
     /**
      * Блок 15. Сведения об изменении договора
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL15ContractChangesType[] $uL15ContractChanges
+     * @var UL15ContractChangesType[] $uL15ContractChanges
      */
     private $uL15ContractChanges = [
         
@@ -89,7 +89,7 @@ class ULEvent21Type extends EventDataType
     /**
      * Блок 15(1). Сведения об изменении условий обязательства в результате наступления указанного в сделке события
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL151ContractTermsChangesType[] $uL151ContractTermsChanges
+     * @var UL151ContractTermsChangesType[] $uL151ContractTermsChanges
      */
     private $uL151ContractTermsChanges = [
         
@@ -98,7 +98,7 @@ class ULEvent21Type extends EventDataType
     /**
      * Блок 21. Сведения о неденежном обязательстве источника
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL21NonMonetarySourceType[] $uL21NonMonetarySource
+     * @var UL21NonMonetarySourceType[] $uL21NonMonetarySource
      */
     private $uL21NonMonetarySource = [
         
@@ -107,7 +107,7 @@ class ULEvent21Type extends EventDataType
     /**
      * Блок 44. Сведения об учете обязательства
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL44AccountingType $uL44Accounting
+     * @var UL44AccountingType $uL44Accounting
      */
     private $uL44Accounting = null;
 
@@ -142,7 +142,7 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 10. Идентификатор сделки
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL10DealUidType
+     * @return UL10DealUidType
      */
     public function getUL10DealUid()
     {
@@ -154,10 +154,10 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 10. Идентификатор сделки
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL10DealUidType $uL10DealUid
+     * @param UL10DealUidType $uL10DealUid
      * @return self
      */
-    public function setUL10DealUid(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL10DealUidType $uL10DealUid)
+    public function setUL10DealUid(UL10DealUidType $uL10DealUid)
     {
         $this->uL10DealUid = $uL10DealUid;
         return $this;
@@ -168,7 +168,7 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 11. Общие сведения о сделке
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL11DealType
+     * @return UL11DealType
      */
     public function getUL11Deal()
     {
@@ -180,10 +180,10 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 11. Общие сведения о сделке
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL11DealType $uL11Deal
+     * @param UL11DealType $uL11Deal
      * @return self
      */
-    public function setUL11Deal(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL11DealType $uL11Deal)
+    public function setUL11Deal(UL11DealType $uL11Deal)
     {
         $this->uL11Deal = $uL11Deal;
         return $this;
@@ -194,7 +194,7 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 12. Сумма и валюта обязательства
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL12AmountType
+     * @return UL12AmountType
      */
     public function getUL12Amount()
     {
@@ -206,10 +206,10 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 12. Сумма и валюта обязательства
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL12AmountType $uL12Amount
+     * @param UL12AmountType $uL12Amount
      * @return self
      */
-    public function setUL12Amount(?\mfteam\nbch\components\rutdf\template\segments\gutdf\UL12AmountType $uL12Amount = null)
+    public function setUL12Amount(?UL12AmountType $uL12Amount = null)
     {
         $this->uL12Amount = $uL12Amount;
         return $this;
@@ -220,10 +220,10 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 12(1). Сведения об обеспечиваемом обязательстве
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL121AmountInfoType $uL121AmountInfo
+     * @param UL121AmountInfoType $uL121AmountInfo
      *@return self
      */
-    public function addToUL121AmountInfo(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL121AmountInfoType $uL121AmountInfo)
+    public function addToUL121AmountInfo(UL121AmountInfoType $uL121AmountInfo)
     {
         $this->uL121AmountInfo[] = $uL121AmountInfo;
         return $this;
@@ -260,7 +260,7 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 12(1). Сведения об обеспечиваемом обязательстве
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL121AmountInfoType[]
+     * @return UL121AmountInfoType[]
      */
     public function getUL121AmountInfo()
     {
@@ -272,7 +272,7 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 12(1). Сведения об обеспечиваемом обязательстве
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL121AmountInfoType[] $uL121AmountInfo
+     * @param UL121AmountInfoType[] $uL121AmountInfo
      * @return self
      */
     public function setUL121AmountInfo(array $uL121AmountInfo = null)
@@ -286,7 +286,7 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 14. Сведения об условиях платежей
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL14PaymentTermsType
+     * @return UL14PaymentTermsType
      */
     public function getUL14PaymentTerms()
     {
@@ -298,10 +298,10 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 14. Сведения об условиях платежей
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL14PaymentTermsType $uL14PaymentTerms
+     * @param UL14PaymentTermsType $uL14PaymentTerms
      * @return self
      */
-    public function setUL14PaymentTerms(?\mfteam\nbch\components\rutdf\template\segments\gutdf\UL14PaymentTermsType $uL14PaymentTerms = null)
+    public function setUL14PaymentTerms(?UL14PaymentTermsType $uL14PaymentTerms = null)
     {
         $this->uL14PaymentTerms = $uL14PaymentTerms;
         return $this;
@@ -312,7 +312,7 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 17-20
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL17181920GroupType
+     * @return UL17181920GroupType
      */
     public function getUL17181920Group()
     {
@@ -324,10 +324,10 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 17-20
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL17181920GroupType $uL17181920Group
+     * @param UL17181920GroupType $uL17181920Group
      * @return self
      */
-    public function setUL17181920Group(?\mfteam\nbch\components\rutdf\template\segments\gutdf\UL17181920GroupType $uL17181920Group = null)
+    public function setUL17181920Group(?UL17181920GroupType $uL17181920Group = null)
     {
         $this->uL17181920Group = $uL17181920Group;
         return $this;
@@ -338,10 +338,10 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 22. Сведения о неденежном обязательстве субъекта
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL22NonMonetarySubjectType $uL22NonMonetarySubject
+     * @param UL22NonMonetarySubjectType $uL22NonMonetarySubject
      *@return self
      */
-    public function addToUL22NonMonetarySubject(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL22NonMonetarySubjectType $uL22NonMonetarySubject)
+    public function addToUL22NonMonetarySubject(UL22NonMonetarySubjectType $uL22NonMonetarySubject)
     {
         $this->uL22NonMonetarySubject[] = $uL22NonMonetarySubject;
         return $this;
@@ -378,7 +378,7 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 22. Сведения о неденежном обязательстве субъекта
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL22NonMonetarySubjectType[]
+     * @return UL22NonMonetarySubjectType[]
      */
     public function getUL22NonMonetarySubject()
     {
@@ -390,7 +390,7 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 22. Сведения о неденежном обязательстве субъекта
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL22NonMonetarySubjectType[] $uL22NonMonetarySubject
+     * @param UL22NonMonetarySubjectType[] $uL22NonMonetarySubject
      * @return self
      */
     public function setUL22NonMonetarySubject(array $uL22NonMonetarySubject = null)
@@ -404,7 +404,7 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 13. Сведения о солидарных должниках
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL13JointDebtorsType
+     * @return UL13JointDebtorsType
      */
     public function getUL13JointDebtors()
     {
@@ -416,10 +416,10 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 13. Сведения о солидарных должниках
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL13JointDebtorsType $uL13JointDebtors
+     * @param UL13JointDebtorsType $uL13JointDebtors
      * @return self
      */
-    public function setUL13JointDebtors(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL13JointDebtorsType $uL13JointDebtors)
+    public function setUL13JointDebtors(UL13JointDebtorsType $uL13JointDebtors)
     {
         $this->uL13JointDebtors = $uL13JointDebtors;
         return $this;
@@ -430,10 +430,10 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 15. Сведения об изменении договора
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL15ContractChangesType $uL15ContractChanges
+     * @param UL15ContractChangesType $uL15ContractChanges
      *@return self
      */
-    public function addToUL15ContractChanges(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL15ContractChangesType $uL15ContractChanges)
+    public function addToUL15ContractChanges(UL15ContractChangesType $uL15ContractChanges)
     {
         $this->uL15ContractChanges[] = $uL15ContractChanges;
         return $this;
@@ -470,7 +470,7 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 15. Сведения об изменении договора
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL15ContractChangesType[]
+     * @return UL15ContractChangesType[]
      */
     public function getUL15ContractChanges()
     {
@@ -482,7 +482,7 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 15. Сведения об изменении договора
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL15ContractChangesType[] $uL15ContractChanges
+     * @param UL15ContractChangesType[] $uL15ContractChanges
      * @return self
      */
     public function setUL15ContractChanges(array $uL15ContractChanges)
@@ -496,10 +496,10 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 15(1). Сведения об изменении условий обязательства в результате наступления указанного в сделке события
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL151ContractTermsChangesType $uL151ContractTermsChanges
+     * @param UL151ContractTermsChangesType $uL151ContractTermsChanges
      *@return self
      */
-    public function addToUL151ContractTermsChanges(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL151ContractTermsChangesType $uL151ContractTermsChanges)
+    public function addToUL151ContractTermsChanges(UL151ContractTermsChangesType $uL151ContractTermsChanges)
     {
         $this->uL151ContractTermsChanges[] = $uL151ContractTermsChanges;
         return $this;
@@ -536,7 +536,7 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 15(1). Сведения об изменении условий обязательства в результате наступления указанного в сделке события
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL151ContractTermsChangesType[]
+     * @return UL151ContractTermsChangesType[]
      */
     public function getUL151ContractTermsChanges()
     {
@@ -548,7 +548,7 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 15(1). Сведения об изменении условий обязательства в результате наступления указанного в сделке события
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL151ContractTermsChangesType[] $uL151ContractTermsChanges
+     * @param UL151ContractTermsChangesType[] $uL151ContractTermsChanges
      * @return self
      */
     public function setUL151ContractTermsChanges(array $uL151ContractTermsChanges)
@@ -562,10 +562,10 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 21. Сведения о неденежном обязательстве источника
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL21NonMonetarySourceType $uL21NonMonetarySource
+     * @param UL21NonMonetarySourceType $uL21NonMonetarySource
      *@return self
      */
-    public function addToUL21NonMonetarySource(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL21NonMonetarySourceType $uL21NonMonetarySource)
+    public function addToUL21NonMonetarySource(UL21NonMonetarySourceType $uL21NonMonetarySource)
     {
         $this->uL21NonMonetarySource[] = $uL21NonMonetarySource;
         return $this;
@@ -602,7 +602,7 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 21. Сведения о неденежном обязательстве источника
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL21NonMonetarySourceType[]
+     * @return UL21NonMonetarySourceType[]
      */
     public function getUL21NonMonetarySource()
     {
@@ -614,7 +614,7 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 21. Сведения о неденежном обязательстве источника
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL21NonMonetarySourceType[] $uL21NonMonetarySource
+     * @param UL21NonMonetarySourceType[] $uL21NonMonetarySource
      * @return self
      */
     public function setUL21NonMonetarySource(array $uL21NonMonetarySource = null)
@@ -628,7 +628,7 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 44. Сведения об учете обязательства
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL44AccountingType
+     * @return UL44AccountingType
      */
     public function getUL44Accounting()
     {
@@ -640,13 +640,84 @@ class ULEvent21Type extends EventDataType
      *
      * Блок 44. Сведения об учете обязательства
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL44AccountingType $uL44Accounting
+     * @param UL44AccountingType $uL44Accounting
      * @return self
      */
-    public function setUL44Accounting(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL44AccountingType $uL44Accounting)
+    public function setUL44Accounting(UL44AccountingType $uL44Accounting)
     {
         $this->uL44Accounting = $uL44Accounting;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_Event_2_1';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Изменились сведения об условиях обязательства субъекта';
+    }
+
+    protected function initAttributes()
+    {
+        $this->uL10DealUid = new UL10DealUidType($this->template);
+        $this->uL11Deal = new UL11DealType($this->template);
+        $this->uL12Amount= new UL12AmountType($this->template);
+
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+            $this->addToUL121AmountInfo(new UL121AmountInfoType($this->template, $key));
+        }
+
+        $this->uL13JointDebtors = new UL13JointDebtorsType($this->template);
+        $this->uL14PaymentTerms = new UL14PaymentTermsType($this->template);
+
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getContractTermsChanges() as $key => $value) {
+            $this->addToUL151ContractTermsChanges(new UL151ContractTermsChangesType($this->template, $key));
+        }
+
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmendment() as $key => $value) {
+            $this->addToUL15ContractChanges(new UL15ContractChangesType($this->template, $key));
+        }
+
+        $this->setUL17181920Group(new UL17181920GroupType($this->template));
+
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
+            $this->addToUL21NonMonetarySource(new UL21NonMonetarySourceType($this->template, $key));
+        }
+
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray() as $key => $value) {
+            $this->addToUL22NonMonetarySubject(new UL22NonMonetarySubjectType($this->template, $key));
+        }
+
+        $this->uL44Accounting = new UL44AccountingType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'uL10DealUid',
+            'uL11Deal',
+            'uL121AmountInfo',
+            'uL12Amount',
+            'uL13JointDebtors',
+            'uL14PaymentsTerms',
+            'uL151ContactTermsChanges',
+            'uL15ContactChanges',
+            'uL17181920Group',
+            'uL21NonMonetarySource',
+            'uL22NonMonetarySubject',
+            'uL44Accounting',
+        ];
     }
 }
 

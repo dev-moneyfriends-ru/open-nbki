@@ -21,7 +21,8 @@
     "ext-dom": "*",
     "ext-libxml": "*",
     "ext-zip": "*",
-    "ext-mbstring": "*"
+    "ext-mbstring": "*",
+    "ext-json": "*"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",

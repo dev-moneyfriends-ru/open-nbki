@@ -2,13 +2,19 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
+use DateTime;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL25DebtAType;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL26DebtDueAType;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL27DebtOverdueAType;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL28PaymentAType;
+
 /**
  * Class representing FL25262728GroupType
  *
  * Блок 25-28
  * XSD Type: FL_25_26_27_28_Group_Type
  */
-class FL25262728GroupType
+class FL25262728GroupType extends GutdfSegment
 {
     /**
      * 25.3., 26.2., 27.2. Признак расчета по последнему платежу = 0
@@ -27,35 +33,35 @@ class FL25262728GroupType
     /**
      * 25.8., 26.7., 27.7., 28.13. Дата расчета
      *
-     * @var \DateTime $calcDate
+     * @var DateTime $calcDate
      */
     private $calcDate = null;
 
     /**
      * Блок 25. Сведения о задолженности
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL25DebtAType $fL25Debt
+     * @var FL25DebtAType $fL25Debt
      */
     private $fL25Debt = null;
 
     /**
      * Блок 26. Сведения о срочной задолженности
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL26DebtDueAType $fL26DebtDue
+     * @var FL26DebtDueAType $fL26DebtDue
      */
     private $fL26DebtDue = null;
 
     /**
      * Блок 27. Сведения о просроченной задолженности
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL27DebtOverdueAType $fL27DebtOverdue
+     * @var FL27DebtOverdueAType $fL27DebtOverdue
      */
     private $fL27DebtOverdue = null;
 
     /**
      * Блок 28. Сведения о внесении платежей
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL28PaymentAType $fL28Payment
+     * @var FL28PaymentAType $fL28Payment
      */
     private $fL28Payment = null;
 
@@ -116,7 +122,7 @@ class FL25262728GroupType
      *
      * 25.8., 26.7., 27.7., 28.13. Дата расчета
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getCalcDate()
     {
@@ -128,10 +134,10 @@ class FL25262728GroupType
      *
      * 25.8., 26.7., 27.7., 28.13. Дата расчета
      *
-     * @param \DateTime $calcDate
+     * @param DateTime $calcDate
      * @return self
      */
-    public function setCalcDate(\DateTime $calcDate)
+    public function setCalcDate(DateTime $calcDate)
     {
         $this->calcDate = $calcDate;
         return $this;
@@ -142,7 +148,7 @@ class FL25262728GroupType
      *
      * Блок 25. Сведения о задолженности
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL25DebtAType
+     * @return FL25DebtAType
      */
     public function getFL25Debt()
     {
@@ -154,10 +160,10 @@ class FL25262728GroupType
      *
      * Блок 25. Сведения о задолженности
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL25DebtAType $fL25Debt
+     * @param FL25DebtAType $fL25Debt
      * @return self
      */
-    public function setFL25Debt(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL25DebtAType $fL25Debt)
+    public function setFL25Debt(FL25DebtAType $fL25Debt)
     {
         $this->fL25Debt = $fL25Debt;
         return $this;
@@ -168,7 +174,7 @@ class FL25262728GroupType
      *
      * Блок 26. Сведения о срочной задолженности
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL26DebtDueAType
+     * @return FL26DebtDueAType
      */
     public function getFL26DebtDue()
     {
@@ -180,10 +186,10 @@ class FL25262728GroupType
      *
      * Блок 26. Сведения о срочной задолженности
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL26DebtDueAType $fL26DebtDue
+     * @param FL26DebtDueAType $fL26DebtDue
      * @return self
      */
-    public function setFL26DebtDue(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL26DebtDueAType $fL26DebtDue)
+    public function setFL26DebtDue(FL26DebtDueAType $fL26DebtDue)
     {
         $this->fL26DebtDue = $fL26DebtDue;
         return $this;
@@ -194,7 +200,7 @@ class FL25262728GroupType
      *
      * Блок 27. Сведения о просроченной задолженности
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL27DebtOverdueAType
+     * @return FL27DebtOverdueAType
      */
     public function getFL27DebtOverdue()
     {
@@ -206,10 +212,10 @@ class FL25262728GroupType
      *
      * Блок 27. Сведения о просроченной задолженности
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL27DebtOverdueAType $fL27DebtOverdue
+     * @param FL27DebtOverdueAType $fL27DebtOverdue
      * @return self
      */
-    public function setFL27DebtOverdue(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL27DebtOverdueAType $fL27DebtOverdue)
+    public function setFL27DebtOverdue(FL27DebtOverdueAType $fL27DebtOverdue)
     {
         $this->fL27DebtOverdue = $fL27DebtOverdue;
         return $this;
@@ -220,7 +226,7 @@ class FL25262728GroupType
      *
      * Блок 28. Сведения о внесении платежей
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL28PaymentAType
+     * @return FL28PaymentAType
      */
     public function getFL28Payment()
     {
@@ -232,13 +238,93 @@ class FL25262728GroupType
      *
      * Блок 28. Сведения о внесении платежей
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL28PaymentAType $fL28Payment
+     * @param FL28PaymentAType $fL28Payment
      * @return self
      */
-    public function setFL28Payment(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType\FL28PaymentAType $fL28Payment)
+    public function setFL28Payment(FL28PaymentAType $fL28Payment)
     {
         $this->fL28Payment = $fL28Payment;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_25_26_27_28_Group';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Признак расчета по последнему платежу 0' => '25.3., 26.2., 27.2. Признак расчета по последнему платежу = 0',
+            'Признак расчета по последнему платежу 1' => '25.3., 26.2., 27.2. Признак расчета по последнему платежу = 1',
+            'Дата расчета' => 'Дата, по состоянию на которую сформированы (рассчитаны) значения показателей блока',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 25-28';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $account = $this->template->sendData->getAccountReplyRUTDF();
+        $debt = $account->getArrear();
+        if($debt && $debt->lastPaymentDueCode){
+            $this->lastPayExist1 = '';
+            $this->lastPayExist0 = null;
+        }elseif($debt && !$debt->lastPaymentDueCode){
+            $this->lastPayExist1 = null;
+            $this->lastPayExist0 = '';
+        }else{
+            $this->lastPayExist1 = null;
+            $this->lastPayExist0 = null;
+        }
+        $this->calcDate = $this->formatDate($account->calcDate);
+        $this->fL25Debt = new FL25DebtAType($this->template);
+        $this->fL26DebtDue = new FL26DebtDueAType($this->template);
+        $this->fL27DebtOverdue = new FL27DebtOverdueAType($this->template);
+        $this->fL28Payment = new FL28PaymentAType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'lastPayExist_0' => 'lastPayExist0',
+            'lastPayExist_1' => 'lastPayExist1',
+            'calcDate',
+            'fL25Debt',
+            'fL26DebtDue',
+            'fL27DebtOverdue',
+            'fL28Payment',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFields(): array
+    {
+        return [
+            'lastPayExist_0' => $this->lastPayExist0,
+            'lastPayExist_1' => $this->lastPayExist1,
+            'calcDate' => $this->calcDate,
+        ];
     }
 }
 

@@ -102,8 +102,8 @@ class FL15IndividualBorrowerRatingType
     /**
      * Adds as factorCodeGroupFL15IndividualBorrowerRating
      *
+     * @return self
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL15IndividualBorrowerRatingType\FactorCodeGroupFL15IndividualBorrowerRatingAType $factorCodeGroupFL15IndividualBorrowerRating
-     *@return self
      */
     public function addToFactorCodeGroupFL15IndividualBorrowerRating(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL15IndividualBorrowerRatingType\FactorCodeGroupFL15IndividualBorrowerRatingAType $factorCodeGroupFL15IndividualBorrowerRating)
     {

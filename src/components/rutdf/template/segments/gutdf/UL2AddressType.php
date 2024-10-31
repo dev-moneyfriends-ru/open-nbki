@@ -2,13 +2,15 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\UL2AddressType\PhoneGroupUL2AddressAType;
+
 /**
  * Class representing UL2AddressType
  *
  * Блок 2. Адрес юридического лица в пределах его места нахождения и контактная информация
  * XSD Type: UL_2_Address_Type
  */
-class UL2AddressType
+class UL2AddressType extends GutdfSegment
 {
     /**
      * 2.1. Код страны по ОКСМ
@@ -88,10 +90,10 @@ class UL2AddressType
     private $apart = null;
 
     /**
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL2AddressType\PhoneGroupUL2AddressAType[] $phoneGroupUL2Address
+     * @var PhoneGroupUL2AddressAType[] $phoneGroupUL2Address
      */
     private $phoneGroupUL2Address = [
-        
+
     ];
 
     /**
@@ -100,7 +102,7 @@ class UL2AddressType
      * @var string[] $email
      */
     private $email = [
-        
+
     ];
 
     /**
@@ -108,7 +110,7 @@ class UL2AddressType
      *
      * @var string $foreignerFact0
      */
-    private $foreignerFact0 = null;
+    private $foreignerFact0 = '';
 
     /**
      * 2.15. Признак иностранного юридического лица = 1
@@ -406,10 +408,10 @@ class UL2AddressType
     /**
      * Adds as phoneGroupUL2Address
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL2AddressType\PhoneGroupUL2AddressAType $phoneGroupUL2Address
-     *@return self
+     * @param PhoneGroupUL2AddressAType $phoneGroupUL2Address
+     * @return self
      */
-    public function addToPhoneGroupUL2Address(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL2AddressType\PhoneGroupUL2AddressAType $phoneGroupUL2Address)
+    public function addToPhoneGroupUL2Address(PhoneGroupUL2AddressAType $phoneGroupUL2Address)
     {
         $this->phoneGroupUL2Address[] = $phoneGroupUL2Address;
         return $this;
@@ -440,7 +442,7 @@ class UL2AddressType
     /**
      * Gets as phoneGroupUL2Address
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL2AddressType\PhoneGroupUL2AddressAType[]
+     * @return PhoneGroupUL2AddressAType[]
      */
     public function getPhoneGroupUL2Address()
     {
@@ -450,7 +452,7 @@ class UL2AddressType
     /**
      * Sets a new phoneGroupUL2Address
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL2AddressType\PhoneGroupUL2AddressAType[] $phoneGroupUL2Address
+     * @param PhoneGroupUL2AddressAType[] $phoneGroupUL2Address
      * @return self
      */
     public function setPhoneGroupUL2Address(array $phoneGroupUL2Address = null)
@@ -464,8 +466,8 @@ class UL2AddressType
      *
      * 2.14. Адрес электронной почты
      *
-     * @return self
      * @param string $email
+     * @return self
      */
     public function addToEmail($email)
     {
@@ -575,6 +577,123 @@ class UL2AddressType
     {
         $this->foreignerFact1 = $foreignerFact1;
         return $this;
+    }
+
+    public function getSegmentName(): string
+    {
+        return 'UL_2_Address';
+    }
+
+    public function getFields(): array
+    {
+        return [
+            'countryCode' => $this->countryCode,
+            'countryOther' => $this->countryOther,
+            'regStateNum' => $this->regStateNum,
+            'locationCode' => $this->locationCode,
+            'locationOther' => $this->locationOther,
+            'street' => $this->street,
+            'house' => $this->house,
+            'estate' => $this->estate,
+            'block' => $this->block,
+            'build' => $this->build,
+            'apart' => $this->apart,
+            'email' => implode(',', $this->email),
+            'foreignerFact_1' => $this->foreignerFact1,
+            'foreignerFact_0' => $this->foreignerFact0,
+        ];
+    }
+
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Код страны по ОКСМ' => 'Цифровой код страны согласно Общероссийскому классификатору стран мира (далее – ОКСМ, см. справочник A1).
+                                При отсутствии страны в ОКСМ указывается «999».
+                                ',
+            'Наименование иной страны' => '',
+            'Номер адреса в ГАР' => 'Уникальный номер адреса объекта адресации в государственном адресном реестре (далее – ГАР).
+                                Указываются код населенного пункта, код улицы, код дома (владения), код корпуса и код номера квартиры
+                                ',
+            'Код населенного пункта по ОКАТО' => 'Указывается согласно Общероссийскому классификатору объектов административно-территориального деления (далее – ОКАТО).
+                                При отсутствии в ОКАТО кода населенного пункта указывается «99 999 999 999».
+                                ',
+            'Иной населенный пункт' => 'Заполняется, если по показателю «Код населенного пункта по ОКАТО» указано «99 999 999 999».
+                                При отсутствии сведений о населенном пункте в государственном реестре (ЕГРЮЛ или иной реестр) населенный пункт указывается на русском или английском языке (по выбору источника).
+                                ',
+            'Улица' => '',
+            'Дом' => '',
+            'Владение' => '',
+            'Корпус' => '',
+            'Строение' => '',
+            'Помещение (офис)' => 'Номер офиса, помещения или комнаты, в которой зарегистрировано лицо.',
+            'Адрес электронной почты' => 'Заполняется, если субъект предоставил данные источнику.',
+            'Признак иностранного юридического лица 1' => '',
+            'Признак иностранного юридического лица 0' => '',
+        ];
+    }
+
+    public function getDescription(): string
+    {
+        return '';
+    }
+
+    public function getTitle(): string
+    {
+        return 'Блок 2. Адрес юридического лица в пределах его места нахождения и контактная информация';
+    }
+
+    public function getProperties(): array
+    {
+        return [];
+    }
+
+    public function init(): void
+    {
+        $address = $this->template->sendData->getRegAddress();
+        $this->countryCode = $address->oksm;
+        $this->countryOther = $address->otherCountry;
+        $this->regStateNum = $address->fias;
+        $this->locationCode = $address->okato;
+        $this->street = $this->formatString($address->street);
+        $this->house = $this->formatString($address->houseNumber);
+        $this->estate = $this->formatString($address->estate);
+        $this->block = str_replace(" ", "", $this->formatString($address->block));
+        $this->build = $this->formatString($address->building);
+        $this->apart = $this->formatString($address->apartment);
+        if ($address->phone) {
+            $this->addToPhoneGroupUL2Address(new PhoneGroupUL2AddressAType($this->template));
+        }
+        if ($address->email) {
+            $this->addToEmail($address->email);
+        }
+        if($address->foreignerFact){
+            $this->foreignerFact0 = null;
+            $this->foreignerFact1 = '';
+        }else{
+            $this->foreignerFact0 = '';
+            $this->foreignerFact1 = null;
+        }
+    }
+
+    public function getXmlAttributes(): array
+    {
+        return [
+            'countryCode',
+            'countryOther',
+            'regStateNum',
+            'locationCode',
+            'locationOther',
+            'street',
+            'house',
+            'estate',
+            'block',
+            'build',
+            'apart',
+            'phoneGroupUL2Address',
+            'email',
+            'foreignerFact_1' => 'foreignerFact1',
+            'foreignerFact_0' => 'foreignerFact0',
+        ];
     }
 }
 

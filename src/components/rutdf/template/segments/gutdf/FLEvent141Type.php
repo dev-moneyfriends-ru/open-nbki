@@ -5,7 +5,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 /**
  * Class representing FLEvent141Type
  *
- * Субъект и источник заключили договор лизинга либо поручительства по лизингу и предмет лизинга передан лизингополучателю
+ * Субъект и источник заключили договор лизинга либо поручительства по лизингу и предмет лизинга передан лизингополучателю
  * XSD Type: FL_Event_1_4_1_Type
  */
 class FLEvent141Type extends EventDataType
@@ -20,7 +20,7 @@ class FLEvent141Type extends EventDataType
     /**
      * Блок 8. Регистрация физического лица по месту жительства или пребывания
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL8AddrRegType[] $fL8AddrReg
+     * @var FL8AddrRegType[] $fL8AddrReg
      */
     private $fL8AddrReg = [
         
@@ -29,56 +29,56 @@ class FLEvent141Type extends EventDataType
     /**
      * Блок 9. Фактическое место жительства
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL9AddrFactType $fL9AddrFact
+     * @var FL9AddrFactType $fL9AddrFact
      */
     private $fL9AddrFact = null;
 
     /**
      * Блок 10. Контактные данные
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL10ContactType $fL10Contact
+     * @var FL10ContactType $fL10Contact
      */
     private $fL10Contact = null;
 
     /**
      * Блок 11. Государственная регистрация в качестве индивидуального предпринимателя
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL11IndividualEntrepreneurType $fL11IndividualEntrepreneur
+     * @var FL11IndividualEntrepreneurType $fL11IndividualEntrepreneur
      */
     private $fL11IndividualEntrepreneur = null;
 
     /**
      * Блок 12. Сведения о дееспособности
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL12CapacityType $fL12Capacity
+     * @var FL12CapacityType $fL12Capacity
      */
     private $fL12Capacity = null;
 
     /**
      * Блок 17. Идентификатор сделки
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL17DealUidType $fL17DealUid
+     * @var FL17DealUidType $fL17DealUid
      */
     private $fL17DealUid = null;
 
     /**
      * Блок 18. Общие сведения о сделке
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL18DealType $fL18Deal
+     * @var FL18DealType $fL18Deal
      */
     private $fL18Deal = null;
 
     /**
      * Блок 19. Сумма и валюта обязательства
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL19AmountType $fL19Amount
+     * @var FL19AmountType $fL19Amount
      */
     private $fL19Amount = null;
 
     /**
      * Блок 19(1). Сведения об обеспечиваемом обязательстве
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL191AmountInfoType[] $fL191AmountInfo
+     * @var FL191AmountInfoType[] $fL191AmountInfo
      */
     private $fL191AmountInfo = [
         
@@ -87,21 +87,21 @@ class FLEvent141Type extends EventDataType
     /**
      * Блок 20. Сведения о солидарных должниках
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL20JointDebtorsType $fL20JointDebtors
+     * @var FL20JointDebtorsType $fL20JointDebtors
      */
     private $fL20JointDebtors = null;
 
     /**
      * Блок 21. Сведения об условиях платежей
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL21PaymentTermsType $fL21PaymentTerms
+     * @var FL21PaymentTermsType $fL21PaymentTerms
      */
     private $fL21PaymentTerms = null;
 
     /**
      * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL24FundType[] $fL24Fund
+     * @var FL24FundType[] $fL24Fund
      */
     private $fL24Fund = [
         
@@ -110,7 +110,7 @@ class FLEvent141Type extends EventDataType
     /**
      * Блок 25-28
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType[] $fL25262728Group
+     * @var FL25262728GroupType[] $fL25262728Group
      */
     private $fL25262728Group = [
         
@@ -119,7 +119,7 @@ class FLEvent141Type extends EventDataType
     /**
      * Блок 30. Сведения о неденежном обязательстве источника
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL30NonMonetarySourceType[] $fL30NonMonetarySource
+     * @var FL30NonMonetarySourceType[] $fL30NonMonetarySource
      */
     private $fL30NonMonetarySource = [
         
@@ -128,7 +128,7 @@ class FLEvent141Type extends EventDataType
     /**
      * Блок 31. Сведения о неденежном обязательстве субъекта
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL31NonMonetarySubjectType[] $fL31NonMonetarySubject
+     * @var FL31NonMonetarySubjectType[] $fL31NonMonetarySubject
      */
     private $fL31NonMonetarySubject = [
         
@@ -137,21 +137,21 @@ class FLEvent141Type extends EventDataType
     /**
      * Блок 54. Сведения об учете обязательства
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL54AccountingType $fL54Accounting
+     * @var FL54AccountingType $fL54Accounting
      */
     private $fL54Accounting = null;
 
     /**
      * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType $fL55Application
+     * @var FL55ApplicationType $fL55Application
      */
     private $fL55Application = null;
 
     /**
      * Блок 56. Сведения об участии в обязательстве, по которому формируется кредитная история
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL56ParticipationType $fL56Participation
+     * @var FL56ParticipationType $fL56Participation
      */
     private $fL56Participation = null;
 
@@ -186,10 +186,10 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 8. Регистрация физического лица по месту жительства или пребывания
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL8AddrRegType $fL8AddrReg
-     *@return self
+     * @param FL8AddrRegType $fL8AddrReg
+     * @return self
      */
-    public function addToFL8AddrReg(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL8AddrRegType $fL8AddrReg)
+    public function addToFL8AddrReg(FL8AddrRegType $fL8AddrReg)
     {
         $this->fL8AddrReg[] = $fL8AddrReg;
         return $this;
@@ -226,7 +226,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 8. Регистрация физического лица по месту жительства или пребывания
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL8AddrRegType[]
+     * @return FL8AddrRegType[]
      */
     public function getFL8AddrReg()
     {
@@ -238,7 +238,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 8. Регистрация физического лица по месту жительства или пребывания
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL8AddrRegType[] $fL8AddrReg
+     * @param FL8AddrRegType[] $fL8AddrReg
      * @return self
      */
     public function setFL8AddrReg(array $fL8AddrReg)
@@ -252,7 +252,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 9. Фактическое место жительства
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL9AddrFactType
+     * @return FL9AddrFactType
      */
     public function getFL9AddrFact()
     {
@@ -264,10 +264,10 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 9. Фактическое место жительства
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL9AddrFactType $fL9AddrFact
+     * @param FL9AddrFactType $fL9AddrFact
      * @return self
      */
-    public function setFL9AddrFact(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL9AddrFactType $fL9AddrFact)
+    public function setFL9AddrFact(FL9AddrFactType $fL9AddrFact)
     {
         $this->fL9AddrFact = $fL9AddrFact;
         return $this;
@@ -278,7 +278,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 10. Контактные данные
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL10ContactType
+     * @return FL10ContactType
      */
     public function getFL10Contact()
     {
@@ -290,10 +290,10 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 10. Контактные данные
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL10ContactType $fL10Contact
+     * @param FL10ContactType $fL10Contact
      * @return self
      */
-    public function setFL10Contact(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL10ContactType $fL10Contact)
+    public function setFL10Contact(FL10ContactType $fL10Contact)
     {
         $this->fL10Contact = $fL10Contact;
         return $this;
@@ -304,7 +304,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 11. Государственная регистрация в качестве индивидуального предпринимателя
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL11IndividualEntrepreneurType
+     * @return FL11IndividualEntrepreneurType
      */
     public function getFL11IndividualEntrepreneur()
     {
@@ -316,10 +316,10 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 11. Государственная регистрация в качестве индивидуального предпринимателя
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL11IndividualEntrepreneurType $fL11IndividualEntrepreneur
+     * @param FL11IndividualEntrepreneurType $fL11IndividualEntrepreneur
      * @return self
      */
-    public function setFL11IndividualEntrepreneur(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL11IndividualEntrepreneurType $fL11IndividualEntrepreneur)
+    public function setFL11IndividualEntrepreneur(FL11IndividualEntrepreneurType $fL11IndividualEntrepreneur)
     {
         $this->fL11IndividualEntrepreneur = $fL11IndividualEntrepreneur;
         return $this;
@@ -330,7 +330,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 12. Сведения о дееспособности
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL12CapacityType
+     * @return FL12CapacityType
      */
     public function getFL12Capacity()
     {
@@ -342,10 +342,10 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 12. Сведения о дееспособности
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL12CapacityType $fL12Capacity
+     * @param FL12CapacityType $fL12Capacity
      * @return self
      */
-    public function setFL12Capacity(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL12CapacityType $fL12Capacity)
+    public function setFL12Capacity(FL12CapacityType $fL12Capacity)
     {
         $this->fL12Capacity = $fL12Capacity;
         return $this;
@@ -356,7 +356,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 17. Идентификатор сделки
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL17DealUidType
+     * @return FL17DealUidType
      */
     public function getFL17DealUid()
     {
@@ -368,10 +368,10 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 17. Идентификатор сделки
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL17DealUidType $fL17DealUid
+     * @param FL17DealUidType $fL17DealUid
      * @return self
      */
-    public function setFL17DealUid(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL17DealUidType $fL17DealUid)
+    public function setFL17DealUid(FL17DealUidType $fL17DealUid)
     {
         $this->fL17DealUid = $fL17DealUid;
         return $this;
@@ -382,7 +382,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 18. Общие сведения о сделке
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL18DealType
+     * @return FL18DealType
      */
     public function getFL18Deal()
     {
@@ -394,10 +394,10 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 18. Общие сведения о сделке
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL18DealType $fL18Deal
+     * @param FL18DealType $fL18Deal
      * @return self
      */
-    public function setFL18Deal(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL18DealType $fL18Deal)
+    public function setFL18Deal(FL18DealType $fL18Deal)
     {
         $this->fL18Deal = $fL18Deal;
         return $this;
@@ -408,7 +408,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 19. Сумма и валюта обязательства
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL19AmountType
+     * @return FL19AmountType
      */
     public function getFL19Amount()
     {
@@ -420,10 +420,10 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 19. Сумма и валюта обязательства
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL19AmountType $fL19Amount
+     * @param FL19AmountType $fL19Amount
      * @return self
      */
-    public function setFL19Amount(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL19AmountType $fL19Amount)
+    public function setFL19Amount(FL19AmountType $fL19Amount)
     {
         $this->fL19Amount = $fL19Amount;
         return $this;
@@ -434,10 +434,10 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 19(1). Сведения об обеспечиваемом обязательстве
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL191AmountInfoType $fL191AmountInfo
+     * @param FL191AmountInfoType $fL191AmountInfo
      *@return self
      */
-    public function addToFL191AmountInfo(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL191AmountInfoType $fL191AmountInfo)
+    public function addToFL191AmountInfo(FL191AmountInfoType $fL191AmountInfo)
     {
         $this->fL191AmountInfo[] = $fL191AmountInfo;
         return $this;
@@ -474,7 +474,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 19(1). Сведения об обеспечиваемом обязательстве
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL191AmountInfoType[]
+     * @return FL191AmountInfoType[]
      */
     public function getFL191AmountInfo()
     {
@@ -486,7 +486,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 19(1). Сведения об обеспечиваемом обязательстве
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL191AmountInfoType[] $fL191AmountInfo
+     * @param FL191AmountInfoType[] $fL191AmountInfo
      * @return self
      */
     public function setFL191AmountInfo(array $fL191AmountInfo)
@@ -500,7 +500,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 20. Сведения о солидарных должниках
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL20JointDebtorsType
+     * @return FL20JointDebtorsType
      */
     public function getFL20JointDebtors()
     {
@@ -512,10 +512,10 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 20. Сведения о солидарных должниках
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL20JointDebtorsType $fL20JointDebtors
+     * @param FL20JointDebtorsType $fL20JointDebtors
      * @return self
      */
-    public function setFL20JointDebtors(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL20JointDebtorsType $fL20JointDebtors)
+    public function setFL20JointDebtors(FL20JointDebtorsType $fL20JointDebtors)
     {
         $this->fL20JointDebtors = $fL20JointDebtors;
         return $this;
@@ -526,7 +526,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 21. Сведения об условиях платежей
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL21PaymentTermsType
+     * @return FL21PaymentTermsType
      */
     public function getFL21PaymentTerms()
     {
@@ -538,10 +538,10 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 21. Сведения об условиях платежей
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL21PaymentTermsType $fL21PaymentTerms
+     * @param FL21PaymentTermsType $fL21PaymentTerms
      * @return self
      */
-    public function setFL21PaymentTerms(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL21PaymentTermsType $fL21PaymentTerms)
+    public function setFL21PaymentTerms(FL21PaymentTermsType $fL21PaymentTerms)
     {
         $this->fL21PaymentTerms = $fL21PaymentTerms;
         return $this;
@@ -552,10 +552,10 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL24FundType $fL24Fund
-     *@return self
+     * @param FL24FundType $fL24Fund
+     * @return self
      */
-    public function addToFL24Fund(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL24FundType $fL24Fund)
+    public function addToFL24Fund(FL24FundType $fL24Fund)
     {
         $this->fL24Fund[] = $fL24Fund;
         return $this;
@@ -592,7 +592,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL24FundType[]
+     * @return FL24FundType[]
      */
     public function getFL24Fund()
     {
@@ -604,7 +604,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL24FundType[] $fL24Fund
+     * @param FL24FundType[] $fL24Fund
      * @return self
      */
     public function setFL24Fund(array $fL24Fund)
@@ -618,10 +618,10 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 25-28
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType $fL25262728Group
+     * @param FL25262728GroupType $fL25262728Group
      *@return self
      */
-    public function addToFL25262728Group(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType $fL25262728Group)
+    public function addToFL25262728Group(FL25262728GroupType $fL25262728Group)
     {
         $this->fL25262728Group[] = $fL25262728Group;
         return $this;
@@ -658,7 +658,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 25-28
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType[]
+     * @return FL25262728GroupType[]
      */
     public function getFL25262728Group()
     {
@@ -670,7 +670,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 25-28
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25262728GroupType[] $fL25262728Group
+     * @param FL25262728GroupType[] $fL25262728Group
      * @return self
      */
     public function setFL25262728Group(array $fL25262728Group)
@@ -684,10 +684,10 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 30. Сведения о неденежном обязательстве источника
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL30NonMonetarySourceType $fL30NonMonetarySource
+     * @param FL30NonMonetarySourceType $fL30NonMonetarySource
      *@return self
      */
-    public function addToFL30NonMonetarySource(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL30NonMonetarySourceType $fL30NonMonetarySource)
+    public function addToFL30NonMonetarySource(FL30NonMonetarySourceType $fL30NonMonetarySource)
     {
         $this->fL30NonMonetarySource[] = $fL30NonMonetarySource;
         return $this;
@@ -724,7 +724,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 30. Сведения о неденежном обязательстве источника
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL30NonMonetarySourceType[]
+     * @return FL30NonMonetarySourceType[]
      */
     public function getFL30NonMonetarySource()
     {
@@ -736,7 +736,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 30. Сведения о неденежном обязательстве источника
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL30NonMonetarySourceType[] $fL30NonMonetarySource
+     * @param FL30NonMonetarySourceType[] $fL30NonMonetarySource
      * @return self
      */
     public function setFL30NonMonetarySource(array $fL30NonMonetarySource = null)
@@ -750,10 +750,10 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 31. Сведения о неденежном обязательстве субъекта
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL31NonMonetarySubjectType $fL31NonMonetarySubject
+     * @param FL31NonMonetarySubjectType $fL31NonMonetarySubject
      *@return self
      */
-    public function addToFL31NonMonetarySubject(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL31NonMonetarySubjectType $fL31NonMonetarySubject)
+    public function addToFL31NonMonetarySubject(FL31NonMonetarySubjectType $fL31NonMonetarySubject)
     {
         $this->fL31NonMonetarySubject[] = $fL31NonMonetarySubject;
         return $this;
@@ -790,7 +790,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 31. Сведения о неденежном обязательстве субъекта
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL31NonMonetarySubjectType[]
+     * @return FL31NonMonetarySubjectType[]
      */
     public function getFL31NonMonetarySubject()
     {
@@ -802,7 +802,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 31. Сведения о неденежном обязательстве субъекта
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL31NonMonetarySubjectType[] $fL31NonMonetarySubject
+     * @param FL31NonMonetarySubjectType[] $fL31NonMonetarySubject
      * @return self
      */
     public function setFL31NonMonetarySubject(array $fL31NonMonetarySubject = null)
@@ -816,7 +816,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 54. Сведения об учете обязательства
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL54AccountingType
+     * @return FL54AccountingType
      */
     public function getFL54Accounting()
     {
@@ -828,10 +828,10 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 54. Сведения об учете обязательства
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL54AccountingType $fL54Accounting
+     * @param FL54AccountingType $fL54Accounting
      * @return self
      */
-    public function setFL54Accounting(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL54AccountingType $fL54Accounting)
+    public function setFL54Accounting(FL54AccountingType $fL54Accounting)
     {
         $this->fL54Accounting = $fL54Accounting;
         return $this;
@@ -842,7 +842,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType
+     * @return FL55ApplicationType
      */
     public function getFL55Application()
     {
@@ -854,10 +854,10 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType $fL55Application
+     * @param FL55ApplicationType $fL55Application
      * @return self
      */
-    public function setFL55Application(?\mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType $fL55Application = null)
+    public function setFL55Application(?FL55ApplicationType $fL55Application = null)
     {
         $this->fL55Application = $fL55Application;
         return $this;
@@ -868,7 +868,7 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 56. Сведения об участии в обязательстве, по которому формируется кредитная история
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL56ParticipationType
+     * @return FL56ParticipationType
      */
     public function getFL56Participation()
     {
@@ -880,13 +880,84 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 56. Сведения об участии в обязательстве, по которому формируется кредитная история
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL56ParticipationType $fL56Participation
+     * @param FL56ParticipationType $fL56Participation
      * @return self
      */
-    public function setFL56Participation(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL56ParticipationType $fL56Participation)
+    public function setFL56Participation(FL56ParticipationType $fL56Participation)
     {
         $this->fL56Participation = $fL56Participation;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_Event_1_4_1';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Субъект и источник заключили договор лизинга либо поручительства по лизингу и предмет лизинга передан лизингополучателю';
+    }
+
+    protected function initAttributes()
+    {
+        $this->addToFL8AddrReg(new FL8AddrRegType($this->template));
+        $this->fL9AddrFact = new FL9AddrFactType($this->template);
+        $this->fL10Contact = new FL10ContactType($this->template);
+        $this->fL11IndividualEntrepreneur = new FL11IndividualEntrepreneurType($this->template);
+        $this->fL12Capacity = new FL12CapacityType($this->template);
+        $this->fL17DealUid = new FL17DealUidType($this->template);
+        $this->fL18Deal = new FL18DealType($this->template);
+        $this->fL19Amount = new FL19AmountType($this->template);
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+            $this->addToFL191AmountInfo(new FL191AmountInfoType($this->template, $key));
+        }
+        $this->fL20JointDebtors = new FL20JointDebtorsType($this->template);
+        $this->fL21PaymentTerms = new FL21PaymentTermsType($this->template);
+        $this->fL24Fund = new FL24FundType($this->template);
+        $this->addToFL25262728Group(new FL25262728GroupType($this->template));
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+            $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
+        }
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+            $this->addToFL31NonMonetarySubject(new FL31NonMonetarySubjectType($this->template, $key));
+        }
+        $this->fL54Accounting = new FL54AccountingType($this->template);
+        $this->fL55Application = new FL55ApplicationType($this->template);
+        $this->fL56Participation = new FL56ParticipationType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'fL8AddrReg',
+            'fL9AddrFact',
+            'fL10Contact',
+            'fL11IndividualEntrepreneur',
+            'fL12Capacity',
+            'fL17DealUid',
+            'fL18Deal',
+            'fL19Amount',
+            'fL191AmountInfo',
+            'fL20JointDebtors',
+            'fL21PaymentTerms',
+            'fL24Fund',
+            'fL25262728Group',
+            'fL30NonMonetarySource',
+            'fL31NonMonetarySubject',
+            'fL54Accounting',
+            'fL55Application',
+            'fL56Participation',
+        ];
     }
 }
 

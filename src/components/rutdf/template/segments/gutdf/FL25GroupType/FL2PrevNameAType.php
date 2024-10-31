@@ -2,10 +2,12 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf\FL25GroupType;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
+
 /**
  * Class representing FL2PrevNameAType
  */
-class FL2PrevNameAType
+class FL2PrevNameAType extends GutdfSegment
 {
     /**
      * 2.1. Признак наличия предыдущего имени = 0
@@ -203,6 +205,71 @@ class FL2PrevNameAType
     {
         $this->date = $date;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_2_PrevName';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Признак наличия предыдущего имени 0' => 'Код «1» – у субъекта имеется предыдущее имя;  код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока 2 не заполняются.',
+            'Признак наличия предыдущего имени 1' => 'Код «1» – у субъекта имеется предыдущее имя;  код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока 2 не заполняются.',
+            'Фамилия предыдущая' => '',
+            'Имя предыдущее' => '',
+            'Отчество предыдущее' => 'Указывается при наличии.',
+            'Дата выдачи документа с измененным именем' => 'Дата, в которую субъекту выдан документ, удостоверяющий личность, с именем, которое отличается от указанного в блоке 2. Если источнику известно несколько таких дат, указывается наиболее ранняя из них.'
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 2. Предыдущее имя';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $person = $this->template->sendData->getPrevPersonReply();
+        if($person === null || empty($person->isPrevName)){
+            $this->prevNameFlag0 = '';
+            $this->prevNameFlag1 = null;
+            return;
+        }
+        $this->prevNameFlag1 = '';
+        $this->prevNameFlag0 = null;
+        $this->lastName = $person->name1;
+        $this->firstName = $person->first;
+        $this->middleName = $person->paternal;
+
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'prevNameFlag_0' => 'prevNameFlag0',
+            'prevNameFlag_1' => 'prevNameFlag1',
+            'lastName',
+            'firstName',
+            'middleName',
+            'date',
+        ];
     }
 }
 

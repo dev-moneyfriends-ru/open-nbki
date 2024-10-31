@@ -2,16 +2,18 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FL10ContactType\PhoneGroupFL10ContactAType;
+
 /**
  * Class representing FL10ContactType
  *
  * Блок 10. Контактные данные
  * XSD Type: FL_10_Contact_Type
  */
-class FL10ContactType
+class FL10ContactType extends GutdfSegment
 {
     /**
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL10ContactType\PhoneGroupFL10ContactAType[] $phoneGroupFL10Contact
+     * @var PhoneGroupFL10ContactAType[] $phoneGroupFL10Contact
      */
     private $phoneGroupFL10Contact = [
         
@@ -29,10 +31,10 @@ class FL10ContactType
     /**
      * Adds as phoneGroupFL10Contact
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL10ContactType\PhoneGroupFL10ContactAType $phoneGroupFL10Contact
-     *@return self
+     * @return self
+     * @param PhoneGroupFL10ContactAType $phoneGroupFL10Contact
      */
-    public function addToPhoneGroupFL10Contact(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL10ContactType\PhoneGroupFL10ContactAType $phoneGroupFL10Contact)
+    public function addToPhoneGroupFL10Contact(PhoneGroupFL10ContactAType $phoneGroupFL10Contact)
     {
         $this->phoneGroupFL10Contact[] = $phoneGroupFL10Contact;
         return $this;
@@ -63,7 +65,7 @@ class FL10ContactType
     /**
      * Gets as phoneGroupFL10Contact
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL10ContactType\PhoneGroupFL10ContactAType[]
+     * @return PhoneGroupFL10ContactAType[]
      */
     public function getPhoneGroupFL10Contact()
     {
@@ -73,7 +75,7 @@ class FL10ContactType
     /**
      * Sets a new phoneGroupFL10Contact
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL10ContactType\PhoneGroupFL10ContactAType[] $phoneGroupFL10Contact
+     * @param PhoneGroupFL10ContactAType[] $phoneGroupFL10Contact
      * @return self
      */
     public function setPhoneGroupFL10Contact(array $phoneGroupFL10Contact = null)
@@ -146,6 +148,62 @@ class FL10ContactType
     {
         $this->email = $email;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_10_Contact';
+    }
+
+    public function getFields(): array
+    {
+        return [
+            'email' => $this->email
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Адрес электронной почты' => ''
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 10. Контактные данные';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $address = $this->template->sendData->getRegAddress();
+        if(!empty($address->phone)){
+            $this->addToPhoneGroupFL10Contact(new PhoneGroupFL10ContactAType($this->template));
+        }
+        $this->addToEmail($address->email);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'phoneGroupFL10Contact',
+            'email'
+        ];
     }
 }
 

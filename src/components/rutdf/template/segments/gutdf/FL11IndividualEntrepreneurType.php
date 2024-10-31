@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 11. Государственная регистрация в качестве индивидуального предпринимателя
  * XSD Type: FL_11_IndividualEntrepreneur_Type
  */
-class FL11IndividualEntrepreneurType
+class FL11IndividualEntrepreneurType extends GutdfSegment
 {
     /**
      * 11.1. Признак индивидуального предпринимателя = 0
@@ -140,6 +140,65 @@ class FL11IndividualEntrepreneurType
     {
         $this->date = $date;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_11_IndividualEntrepreneur';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Признак индивидуального предпринимателя 0' => 'Код «1» – субъект зарегистрирован в Российской Федерации в качестве индивидуального предпринимателя; код «0» – обстоятельство кода «1» отсутствует. Если по показателю 11.1 «Признак индивидуального предпринимателя» указан код «0», иные показатели блока 11 не заполняются',
+            'Признак индивидуального предпринимателя 1' => 'Код «1» – субъект зарегистрирован в Российской Федерации в качестве индивидуального предпринимателя; код «0» – обстоятельство кода «1» отсутствует. Если по показателю 11.1 «Признак индивидуального предпринимателя» указан код «0», иные показатели блока 11 не заполняются',
+            'Регистрационный номер' => '',
+            'Дата регистрации индивидуального предпринимателя' => '',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 11. Государственная регистрация в качестве индивидуального предпринимателя';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $regNum = $this->template->sendData->getRegnumReply();
+        if(empty($regNum->regNum)){
+            $this->regFact0 = '1';
+            $this->regFact1 = null;
+            return;
+        }
+        $this->regFact1 = '1';
+        $this->regFact0 = null;
+        $this->regNum = $regNum->regNum;
+        $this->date = $this->formatDate($regNum->regDate);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'regFact_0' => 'regFact0',
+            'regFact_1' => 'regFact1',
+            'regNum',
+            'date',
+        ];
     }
 }
 

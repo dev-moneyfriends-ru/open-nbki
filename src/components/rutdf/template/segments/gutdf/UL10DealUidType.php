@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 10. Идентификатор сделки
  * XSD Type: UL_10_DealUid_Type
  */
-class UL10DealUidType
+class UL10DealUidType extends GutdfSegment
 {
     /**
      * 10.1. УИд сделки
@@ -182,6 +182,73 @@ class UL10DealUidType
     {
         $this->openDate = $openDate;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_10_DealUid';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFields(): array
+    {
+        return [
+            'uid' => $this->getUid(),
+            'num' => $this->getNum(),
+            'refUid' => implode(',', $this->refUid),
+            'openDate' => $this->getOpenDate(),
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'УИд сделки' => 'УИд сделки, по обязательствам из которой формируются блоки 17–39. Если сделка совершена по обращению, УИд сделки должен соответствовать значению показателя 55.4 «УИд обращения» блока 55. Если по одному обращению совершено несколько сделок, только УИд сделки, совершенной первой по времени, должен соответствовать УИд обращения.',
+            'Номер сделки' => 'Номер сделки, присвоенный источником. Заполняется, если сделке ранее не был присвоен УИд сделки.',
+            'УИд сделки, по которой задолженность была полностью или частично рефинансирована' => 'УИд сделки, задолженность по которой была рефинансирована (если по такой сделке формируется кредитная история) за счет сделки, по которой формируется кредитная история',
+            'Дата совершения сделки' => 'Дата совершения сделки, по обязательствам из которой формируется кредитная история',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 10. Идентификатор сделки';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $account = $this->template->sendData->getAccountReplyRUTDF();
+        $this->uid = $account->uuid;
+        $this->num = $account->acctNum??self::EMPTY_VALUE;
+        $this->addToRefUid($account->refUid);
+        $this->openDate = $account->getTrade()->openedDt;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'uid',
+            'num',
+            'refUid',
+            'openDate',
+        ];
     }
 }
 

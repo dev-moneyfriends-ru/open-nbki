@@ -15,7 +15,7 @@ class FLEvent19Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
      * Блок 8. Регистрация физического лица по месту жительства или пребывания
@@ -78,8 +78,8 @@ class FLEvent19Type extends EventDataType
      *
      * Блок 8. Регистрация физического лица по месту жительства или пребывания
      *
+     * @return self
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL8AddrRegType $fL8AddrReg
-     *@return self
      */
     public function addToFL8AddrReg(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL8AddrRegType $fL8AddrReg)
     {
@@ -215,6 +215,43 @@ class FLEvent19Type extends EventDataType
     {
         $this->fL11IndividualEntrepreneur = $fL11IndividualEntrepreneur;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_Event_1_9';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Изменились сведения о субъекте в основной части кредитной истории, кроме сведений о дееспособности, банкротстве, индивидуальном рейтинге и кредитной оценке';
+    }
+
+    protected function initAttributes()
+    {
+        $this->addToFL8AddrReg(new FL8AddrRegType($this->template));
+        $this->fL9AddrFact = new FL9AddrFactType($this->template);
+        $this->fL10Contact = new FL10ContactType($this->template);
+        $this->fL11IndividualEntrepreneur = new FL11IndividualEntrepreneurType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'fL8AddrReg',
+            'fL9AddrFact',
+            'fL10Contact',
+            'fL11IndividualEntrepreneur',
+        ];
     }
 }
 

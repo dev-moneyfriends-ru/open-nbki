@@ -15,12 +15,12 @@ class ULEvent11Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_A;
 
     /**
      * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL45ApplicationType $uL45Application
+     * @var UL45ApplicationType $uL45Application
      */
     private $uL45Application = null;
 
@@ -55,7 +55,7 @@ class ULEvent11Type extends EventDataType
      *
      * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL45ApplicationType
+     * @return UL45ApplicationType
      */
     public function getUL45Application()
     {
@@ -67,13 +67,44 @@ class ULEvent11Type extends EventDataType
      *
      * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL45ApplicationType $uL45Application
+     * @param UL45ApplicationType $uL45Application
      * @return self
      */
-    public function setUL45Application(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL45ApplicationType $uL45Application)
+    public function setUL45Application(UL45ApplicationType $uL45Application)
     {
         $this->uL45Application = $uL45Application;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_Event_1_1';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Субъект обратился к источнику с предложением совершить сделку';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'uL45Application'
+        ];
+    }
+
+    protected function initAttributes()
+    {
+        $this->uL45Application = new UL45ApplicationType($this->template);
     }
 }
 

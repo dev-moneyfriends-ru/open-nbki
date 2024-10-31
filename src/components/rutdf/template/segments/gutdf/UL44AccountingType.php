@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 44. Сведения об учете обязательства
  * XSD Type: UL_44_Accounting_Type
  */
-class UL44AccountingType
+class UL44AccountingType extends GutdfSegment
 {
     /**
      * 44.1. Признак учета обязательства = 0
@@ -314,6 +314,103 @@ class UL44AccountingType
     {
         $this->calcDate = $calcDate;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_44_Accounting';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFields(): array
+    {
+        return [
+            'exist_0' => $this->getExist0(),
+            'exist_1' => $this->getExist1(),
+            'rate' => $this->getRate(),
+            'sum' => $this->getSum(),
+            'supportExist_0' => $this->getSupportExist0(),
+            'supportExist_1' => $this->getSupportExist1(),
+            'supportInfo' => $this->getSupportInfo(),
+            'calcDate' => $this->getCalcDate(),
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Признак учета обязательства 0' => 'код «0» – обстоятельство кода «1» отсутствует, в том числе в случае если обязательство частично учтено на внебалансовых счетах.',
+            'Признак учета обязательства 1' => 'Код «1» – обязательство учтено у источника на балансовых счетах;',
+            'Процентная ставка' => 'Значение процентной ставки в соответствии с условиями сделки.',
+            'Сумма обязательства, учтенная на внебалансовых счетах' => 'Заполняется, в случае если по показателю 54.1 «Признак учета обязательства» указан код «0». Сумма обязательства, которая учтена на внебалансовых счетах источника.',
+            'Признак льготного финансирования с государственной поддержкой 0' => 'код «1» – в случае если заем (кредит) или предмет лизинга получен субъектом в рамках программы льготного финансирования с государственной поддержкой; код «0» – в случае если обстоятельство кода «1» отсутствует.',
+            'Признак льготного финансирования с государственной поддержкой 1' => 'код «1» – в случае если заем (кредит) или предмет лизинга получен субъектом в рамках программы льготного финансирования с государственной поддержкой; код «0» – в случае если обстоятельство кода «1» отсутствует.',
+            'Информация о программе государственной поддержки' => 'Регистрационный номер, дата и наименование нормативного акта, которым утверждена программа льготного финансирования с государственной поддержкой.',
+            'Дата расчета' => 'Дата, по состоянию на которую сформированы (рассчитаны) показатели блока',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 44. Сведения об учете обязательства';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $account = $this->template->sendData->getAccountReplyRUTDF();
+
+        if($account->obligAccountCode){
+            $this->exist0 = null;
+            $this->exist1 = '';
+            $this->sum = $this->formatCurrency($account->offbalanceAmt);
+        }else{
+            $this->exist0 = '';
+            $this->exist1 = null;
+        }
+
+        $this->rate = $account->intRate;
+
+        if($account->preferenFinanc){
+            $this->supportExist0 = null;
+            $this->supportExist1 = '';
+            $this->supportInfo = $account->preferenFinancInfo;
+        }else{
+            $this->supportExist0 = '';
+            $this->supportExist1 = null;
+        }
+
+        $this->calcDate = $this->formatDate($this->template->sendData->getReportingDt());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'exist_0' => 'exist0',
+            'exist_1' => 'exist1',
+            'rate',
+            'sum',
+            'supportExist_0' => 'supportExist0',
+            'supportExist_1' => 'supportExist1',
+            'supportInfo',
+            'calcDate'
+        ];
     }
 }
 

@@ -13,14 +13,14 @@ class SubjectTitleDataFLType extends SubjectTitleDataType
     /**
      * Блок 1,4
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL14GroupType $fL14Group
+     * @var FL14GroupType $fL14Group
      */
     private $fL14Group = null;
 
     /**
      * Блок 2,5
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25GroupType[] $fL25Group
+     * @var FL25GroupType[] $fL25Group
      */
     private $fL25Group = [
         
@@ -29,21 +29,21 @@ class SubjectTitleDataFLType extends SubjectTitleDataType
     /**
      * Блок 3. Дата и место рождения
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL3BirthType $fL3Birth
+     * @var FL3BirthType $fL3Birth
      */
     private $fL3Birth = null;
 
     /**
      * Блок 6. Номер налогоплательщика и регистрационный номер
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL6TaxType $fL6Tax
+     * @var FL6TaxType $fL6Tax
      */
     private $fL6Tax = null;
 
     /**
      * Блок 7. СНИЛС
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL7SocialType $fL7Social
+     * @var FL7SocialType $fL7Social
      */
     private $fL7Social = null;
 
@@ -52,7 +52,7 @@ class SubjectTitleDataFLType extends SubjectTitleDataType
      *
      * Блок 1,4
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL14GroupType
+     * @return FL14GroupType
      */
     public function getFL14Group()
     {
@@ -64,10 +64,10 @@ class SubjectTitleDataFLType extends SubjectTitleDataType
      *
      * Блок 1,4
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL14GroupType $fL14Group
+     * @param FL14GroupType $fL14Group
      * @return self
      */
-    public function setFL14Group(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL14GroupType $fL14Group)
+    public function setFL14Group(FL14GroupType $fL14Group)
     {
         $this->fL14Group = $fL14Group;
         return $this;
@@ -78,10 +78,10 @@ class SubjectTitleDataFLType extends SubjectTitleDataType
      *
      * Блок 2,5
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25GroupType $fL25Group
-     *@return self
+     * @param FL25GroupType $fL25Group
+     * @return self
      */
-    public function addToFL25Group(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL25GroupType $fL25Group)
+    public function addToFL25Group(FL25GroupType $fL25Group)
     {
         $this->fL25Group[] = $fL25Group;
         return $this;
@@ -118,7 +118,7 @@ class SubjectTitleDataFLType extends SubjectTitleDataType
      *
      * Блок 2,5
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25GroupType[]
+     * @return FL25GroupType[]
      */
     public function getFL25Group()
     {
@@ -130,7 +130,7 @@ class SubjectTitleDataFLType extends SubjectTitleDataType
      *
      * Блок 2,5
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL25GroupType[] $fL25Group
+     * @param FL25GroupType[] $fL25Group
      * @return self
      */
     public function setFL25Group(array $fL25Group)
@@ -144,7 +144,7 @@ class SubjectTitleDataFLType extends SubjectTitleDataType
      *
      * Блок 3. Дата и место рождения
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL3BirthType
+     * @return FL3BirthType
      */
     public function getFL3Birth()
     {
@@ -156,10 +156,10 @@ class SubjectTitleDataFLType extends SubjectTitleDataType
      *
      * Блок 3. Дата и место рождения
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL3BirthType $fL3Birth
+     * @param FL3BirthType $fL3Birth
      * @return self
      */
-    public function setFL3Birth(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL3BirthType $fL3Birth)
+    public function setFL3Birth(FL3BirthType $fL3Birth)
     {
         $this->fL3Birth = $fL3Birth;
         return $this;
@@ -170,7 +170,7 @@ class SubjectTitleDataFLType extends SubjectTitleDataType
      *
      * Блок 6. Номер налогоплательщика и регистрационный номер
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL6TaxType
+     * @return FL6TaxType
      */
     public function getFL6Tax()
     {
@@ -182,10 +182,10 @@ class SubjectTitleDataFLType extends SubjectTitleDataType
      *
      * Блок 6. Номер налогоплательщика и регистрационный номер
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL6TaxType $fL6Tax
+     * @param FL6TaxType $fL6Tax
      * @return self
      */
-    public function setFL6Tax(?\mfteam\nbch\components\rutdf\template\segments\gutdf\FL6TaxType $fL6Tax = null)
+    public function setFL6Tax(?FL6TaxType $fL6Tax = null)
     {
         $this->fL6Tax = $fL6Tax;
         return $this;
@@ -196,7 +196,7 @@ class SubjectTitleDataFLType extends SubjectTitleDataType
      *
      * Блок 7. СНИЛС
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL7SocialType
+     * @return FL7SocialType
      */
     public function getFL7Social()
     {
@@ -208,13 +208,69 @@ class SubjectTitleDataFLType extends SubjectTitleDataType
      *
      * Блок 7. СНИЛС
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL7SocialType $fL7Social
+     * @param FL7SocialType $fL7Social
      * @return self
      */
-    public function setFL7Social(?\mfteam\nbch\components\rutdf\template\segments\gutdf\FL7SocialType $fL7Social = null)
+    public function setFL7Social(?FL7SocialType $fL7Social = null)
     {
         $this->fL7Social = $fL7Social;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'Title';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Титульная часть ФЛ';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $this->fL14Group = new FL14GroupType($this->template);
+        $this->addToFL25Group(new FL25GroupType($this->template));
+        $this->fL3Birth = new FL3BirthType($this->template);
+        $this->fL6Tax = new FL6TaxType($this->template);
+        $this->fL7Social = new FL7SocialType($this->template);
+
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'fL14Group',
+            'fL25Group',
+            'fL3Birth',
+            'fL6Tax',
+            'fL7Social',
+        ];
+    }
+
+    public function getFields(): array
+    {
+        return [];
     }
 }
 

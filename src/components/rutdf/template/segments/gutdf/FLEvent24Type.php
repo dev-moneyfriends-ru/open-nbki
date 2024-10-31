@@ -207,5 +207,45 @@ class FLEvent24Type extends EventDataType
         $this->fL36ProvisionPayment = $fL36ProvisionPayment;
         return $this;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_Event_2_4';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Изменились сведения об обеспечении исполнения обязательства';
+    }
+
+    protected function initAttributes()
+    {
+        $this->fL17DealUid = new FL17DealUidType($this->template);
+        $this->fL3235Group = new FL3235GroupType($this->template);
+        $this->fL33Warranty = new FL33WarrantyType($this->template);
+        $this->fL34Guarantee = new FL34GuaranteeType($this->template);
+        $this->fL36ProvisionPayment = new FL36ProvisionPaymentType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'fL17DealUid',
+            'fL3235Group',
+            'fL33Warranty',
+            'fL34Guarantee',
+            'fL36ProvisionPayment',
+
+        ];
+    }
 }
 

@@ -15,7 +15,7 @@ class ULEvent22Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
      * Блок 10. Идентификатор сделки
@@ -249,8 +249,8 @@ class ULEvent22Type extends EventDataType
      *
      * Блок 12(1). Сведения об обеспечиваемом обязательстве
      *
+     * @return self
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL121AmountInfoType $uL121AmountInfo
-     *@return self
      */
     public function addToUL121AmountInfo(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL121AmountInfoType $uL121AmountInfo)
     {
@@ -393,8 +393,8 @@ class ULEvent22Type extends EventDataType
      *
      * Блок 22. Сведения о неденежном обязательстве субъекта
      *
+     * @return self
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL22NonMonetarySubjectType $uL22NonMonetarySubject
-     *@return self
      */
     public function addToUL22NonMonetarySubject(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL22NonMonetarySubjectType $uL22NonMonetarySubject)
     {
@@ -459,8 +459,8 @@ class ULEvent22Type extends EventDataType
      *
      * Блок 21. Сведения о неденежном обязательстве источника
      *
+     * @return self
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL21NonMonetarySourceType $uL21NonMonetarySource
-     *@return self
      */
     public function addToUL21NonMonetarySource(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL21NonMonetarySourceType $uL21NonMonetarySource)
     {
@@ -596,6 +596,76 @@ class ULEvent22Type extends EventDataType
     {
         $this->uL46Participation = $uL46Participation;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+       return 'UL_Event_2_2';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Субъекту передана сумма займа (кредита), предмет лизинга передан лизингополучателю';
+    }
+
+    protected function initAttributes()
+    {
+        $this->uL10DealUid = new UL10DealUidType($this->template);
+        $this->uL11Deal = new UL11DealType($this->template);
+        $this->uL12Amount= new UL12AmountType($this->template);
+
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+            $this->addToUL121AmountInfo(new UL121AmountInfoType($this->template, $key));
+        }
+
+        $this->uL13JointDebtors = new UL13JointDebtorsType($this->template);
+        $this->uL14PaymentTerms = new UL14PaymentTermsType($this->template);
+
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getFundDateRUTDF() as $key => $value) {
+            $this->setUL16Fund(new UL16FundType($this->template, $key));
+        }
+
+        $this->setUL17181920Group(new UL17181920GroupType($this->template));
+
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
+            $this->addToUL21NonMonetarySource(new UL21NonMonetarySourceType($this->template, $key));
+        }
+
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray() as $key => $value) {
+            $this->addToUL22NonMonetarySubject(new UL22NonMonetarySubjectType($this->template, $key));
+        }
+
+        $this->uL44Accounting = new UL44AccountingType($this->template);
+        $this->uL45Application = new UL45ApplicationType($this->template);
+        $this->uL46Participation = new UL46ParticipationType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'uL10DealUid',
+            'uL11Deal',
+            'uL12Amount',
+            'uL121AmountInfo',
+            'uL13JointDebtors',
+            'uL14PaymentTerms',
+            'uL16Fund',
+            'uL17181920Group',
+            'uL21NonMonetarySource',
+            'uL22NonMonetarySubject',
+            'uL44Accounting',
+            'uL45Application',
+            'uL46Participation',
+        ];
     }
 }
 

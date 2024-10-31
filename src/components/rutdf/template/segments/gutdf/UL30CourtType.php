@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 30. Сведения о судебном споре или требовании по обязательству
  * XSD Type: UL_30_Court_Type
  */
-class UL30CourtType
+class UL30CourtType extends GutdfSegment
 {
     /**
      * 30.1. Признак судебного спора или требования = 0
@@ -404,6 +404,104 @@ class UL30CourtType
     {
         $this->info = $info;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_30_Court';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Признак судебного спора или требования 0' => 'Код «1» – в производстве суда находится иск по обязательству источника и субъекта либо заявление источника о выдаче судебного приказа по обязательству; код «0» – обстоятельства кода «1» отсутствуют. Если указан код «0», иные показатели блока не заполняются.',
+            'Признак судебного спора или требования 1' => 'Код «1» – в производстве суда находится иск по обязательству источника и субъекта либо заявление источника о выдаче судебного приказа по обязательству; код «0» – обстоятельства кода «1» отсутствуют. Если указан код «0», иные показатели блока не заполняются.',
+            'Признак наличия судебного акта 0' => 'Код «1» – суд принял акт, которым заканчивается рассмотрение дела по существу (в частности, судебное решение или судебный приказ); код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», показатели 39.3–39.6 не заполняются.',
+            'Признак наличия судебного акта 1' => 'Код «1» – суд принял акт, которым заканчивается рассмотрение дела по существу (в частности, судебное решение или судебный приказ); код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», показатели 39.3–39.6 не заполняются.',
+            'Дата принятия судебного акта' => '',
+            'Номер судебного акта' => '',
+            'Резолютивная часть судебного акта' => 'Заполняется по справочнику 5.5',
+            'Признак вступления акта в законную силу 0' => 'Код «1» – судебный акт вступил в законную силу; код «0» – обстоятельство кода «1» отсутствует.',
+            'Признак вступления акта в законную силу 1' => 'Код «1» – судебный акт вступил в законную силу; код «0» – обстоятельство кода «1» отсутствует.',
+            'Код иска или требования' => 'Заполняется по справочнику 5.6',
+            'Сумма требований, подлежащих удовлетворению' => 'Сумма требований, подлежащих удовлетворению на основании решения суда.',
+            'Дополнительные сведения по судебному акту' => 'Дополнительные сведения по судебному акту, заполняется по решению Источника.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 30. Сведения о судебном споре или требовании по обязательству';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        if($this->idx === null){
+            $this->exist0 = '';
+            $this->exist1 = null;
+            return;
+        }
+        $this->exist1 = '';
+        $this->exist0 = null;
+
+        $court = $this->template->sendData->getAccountReplyRUTDF()->getLegalItems()[$this->idx];
+
+        if($court->hasCourtAct){
+            $this->actExist1 = '';
+            $this->actExist0 = null;
+        }else{
+            $this->actExist0 = '';
+            $this->actExist1 = null;
+        }
+
+        $this->date = $this->formatDate($court->courtActDt);
+        $this->num = $court->courtActNum;
+        $this->actResolution = $court->resolution;
+
+        if($court->courtActEffectCode){
+            $this->actStartExist1 = '';
+            $this->actStartExist0 = null;
+        }else{
+            $this->actStartExist0 = '';
+            $this->actStartExist1 = null;
+        }
+
+        $this->lawsuitCode = $court->lawsuitCode;
+        $this->sumTotal = $this->formatCurrency($court->sumTotal);
+        $this->info = $court->info;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'exist_0' => 'exist0',
+            'exist_1' => 'exist1',
+            'actExist_0' => 'actExist0',
+            'actExist_1' => 'actExist1',
+            'date',
+            'num',
+            'actResolution',
+            'actStartExist_0' => 'actStartExist0',
+            'actStartExist_1' => 'actStartExist1',
+            'lawsuitCode',
+            'sumTotal',
+            'info',
+        ];
     }
 }
 

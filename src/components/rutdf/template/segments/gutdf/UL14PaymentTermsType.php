@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 14. Сведения об условиях платежей
  * XSD Type: UL_14_PaymentTerms_Type
  */
-class UL14PaymentTermsType
+class UL14PaymentTermsType extends GutdfSegment
 {
     /**
      * 14.1. Сумма ближайшего следующего платежа по основному долгу
@@ -305,6 +305,78 @@ class UL14PaymentTermsType
     {
         $this->percentEndDate = $percentEndDate;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_14_PaymentTerms';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Сумма ближайшего следующего платежа по основному долгу' => 'По обязательству поручителя до наступления его ответственности указывается значение «0,00» Если по этому показателю, а также по показателю 21.3 указано значение «0,00», иные показатели блока 21 не заполняются.',
+            'Дата ближайшего следующего платежа по основному долгу' => '',
+            'Сумма ближайшего следующего платежа по процентам' => 'По обязательству поручителя до наступления его ответственности указывается значение «0,00».',
+            'Дата ближайшего следующего платежа по процентам' => '',
+            'Код частоты платежей' => 'Заполняется по справочнику 2.5. Частота платежей определяется в целом по сделке количеством дней, в которые истекает срок для внесения платежа по основному долгу или процентам.',
+            'Сумма минимального платежа по кредитной карте' => 'Заполняется, если КИ формируется по кредитной карте с условием о минимальном платеже.',
+            'Дата начала беспроцентного периода' => 'Заполняется при наличии в договоре займа (кредита) с расходным лимитом беспроцентного периода.',
+            'Дата окончания беспроцентного периода' => 'Заполняются при наличии в договоре займа (кредита) с расходным лимитом беспроцентного периода. Если на дату расчета действует беспроцентный период, то указывается плановая дата окончания беспроцентного периода.',
+            'Дата окончания срока уплаты процентов' => 'Определяется последней датой, в которую субъект должен полностью погасить требования по процентам на срочный долг, согласно условиям сделки.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 14. Сведения об условиях платежей';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $paymentCond = $this->template->sendData->getAccountReplyRUTDF()->getPaymtCondition();
+        if($paymentCond === null){
+            return;
+        }
+        $this->mainPaySum = $this->formatCurrency($paymentCond->principalTermsAmt);
+        $this->mainPayDate = $this->formatDate($paymentCond->principalTermsAmtDt);
+        $this->percentPaySum = $this->formatCurrency($paymentCond->interestTermsAmt);
+        $this->percentPayDate = $this->formatDate($paymentCond->interestTermsAmtDt);
+        $this->freqCode = $paymentCond->termsFrequency;
+        $this->minCardPay = $this->formatCurrency($paymentCond->minPaymt)  ;
+        $this->graceDate = $this->formatDate($paymentCond->graceStartDt);
+        $this->graceEndDate = $this->formatDate($paymentCond->graceEndDt);
+        $this->percentEndDate = $this->formatDate($paymentCond->interestPaymentDueDate);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'mainPaySum',
+            'mainPayDate',
+            'percentPaySum',
+            'percentPayDate',
+            'freqCode',
+            'minCardPay',
+            'graceDate',
+            'graceEndDate',
+            'percentEndDate',
+        ];
     }
 }
 

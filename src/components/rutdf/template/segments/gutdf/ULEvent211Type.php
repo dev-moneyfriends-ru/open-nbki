@@ -174,5 +174,34 @@ class ULEvent211Type extends EventDataType
         $this->uL42PersonAcquirer = $uL42PersonAcquirer;
         return $this;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        // TODO: Implement getSegmentName() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        // TODO: Implement getTitle() method.
+    }
+
+    protected function initAttributes()
+    {
+        // TODO: Implement initAttributes() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        // TODO: Implement getXmlAttributes() method.
+    }
 }
 

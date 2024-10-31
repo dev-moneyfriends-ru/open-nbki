@@ -15,19 +15,19 @@ class ULEvent26Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
      * Блок 10. Идентификатор сделки
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL10DealUidType $uL10DealUid
+     * @var UL10DealUidType $uL10DealUid
      */
     private $uL10DealUid = null;
 
     /**
      * Блок 30. Сведения о судебном споре или требовании по обязательству
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL30CourtType[] $uL30Court
+     * @var UL30CourtType[] $uL30Court
      */
     private $uL30Court = [
         
@@ -64,7 +64,7 @@ class ULEvent26Type extends EventDataType
      *
      * Блок 10. Идентификатор сделки
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL10DealUidType
+     * @return UL10DealUidType
      */
     public function getUL10DealUid()
     {
@@ -76,10 +76,10 @@ class ULEvent26Type extends EventDataType
      *
      * Блок 10. Идентификатор сделки
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL10DealUidType $uL10DealUid
+     * @param UL10DealUidType $uL10DealUid
      * @return self
      */
-    public function setUL10DealUid(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL10DealUidType $uL10DealUid)
+    public function setUL10DealUid(UL10DealUidType $uL10DealUid)
     {
         $this->uL10DealUid = $uL10DealUid;
         return $this;
@@ -90,10 +90,10 @@ class ULEvent26Type extends EventDataType
      *
      * Блок 30. Сведения о судебном споре или требовании по обязательству
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL30CourtType $uL30Court
-     *@return self
+     * @param UL30CourtType $uL30Court
+     * @return self
      */
-    public function addToUL30Court(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL30CourtType $uL30Court)
+    public function addToUL30Court(UL30CourtType $uL30Court)
     {
         $this->uL30Court[] = $uL30Court;
         return $this;
@@ -130,7 +130,7 @@ class ULEvent26Type extends EventDataType
      *
      * Блок 30. Сведения о судебном споре или требовании по обязательству
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL30CourtType[]
+     * @return UL30CourtType[]
      */
     public function getUL30Court()
     {
@@ -142,13 +142,51 @@ class ULEvent26Type extends EventDataType
      *
      * Блок 30. Сведения о судебном споре или требовании по обязательству
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL30CourtType[] $uL30Court
+     * @param UL30CourtType[] $uL30Court
      * @return self
      */
     public function setUL30Court(array $uL30Court)
     {
         $this->uL30Court = $uL30Court;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_Event_2_6';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Изменились сведения о судебном споре или требовании по обязательству';
+    }
+
+    protected function initAttributes()
+    {
+        $this->uL10DealUid = new UL10DealUidType($this->template);
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getLegalItems() as $key => $item) {
+            $this->addToUL30Court(new UL30CourtType($this->template, $key));
+        }
+        if(empty($this->uL30Court)){
+            $this->addToUL30Court(new UL30CourtType($this->template));
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'uL10DealUid',
+            'uL30Court',
+        ];
     }
 }
 

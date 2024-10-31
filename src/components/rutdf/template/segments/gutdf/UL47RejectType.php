@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 47. Сведения об отказе источника от предложения совершить сделку
  * XSD Type: UL_47_Reject_Type
  */
-class UL47RejectType
+class UL47RejectType extends GutdfSegment
 {
     /**
      * 47.1. Дата отказа
@@ -116,6 +116,82 @@ class UL47RejectType
     {
         $this->rejectCode = $rejectCode;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_47_Reject';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFields(): array
+    {
+        return [
+            'rejectDate' => $this->rejectDate,
+            'rejectCode' => $this->rejectCode,
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Дата отказа' => '',
+            'Код причины отказа' => 'Заполняется по справочнику 6.5. При наличии нескольких причин значения указываются через запятую.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getDescription(): string
+    {
+        return '';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 47. Сведения об отказе источника от предложения совершить сделку';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getProperties(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $infoPart = $this->template->sendData->getInformationPartRUTDF();
+
+        $this->rejectDate = $infoPart->rejectedDate;
+        $this->rejectCode = implode(',', $infoPart->rejectedReasonCode);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'rejectDate',
+            'rejectCode'
+        ];
     }
 }
 

@@ -15,40 +15,40 @@ class ULEvent24Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
      * Блок 10. Идентификатор сделки
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL10DealUidType $uL10DealUid
+     * @var UL10DealUidType $uL10DealUid
      */
     private $uL10DealUid = null;
 
     /**
      * Блок 23,26
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL2326GroupType $uL2326Group
+     * @var UL2326GroupType $uL2326Group
      */
     private $uL2326Group = null;
 
     /**
      * Блок 24. Сведения о поручительстве
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL24WarrantyType $uL24Warranty
+     * @var UL24WarrantyType $uL24Warranty
      */
     private $uL24Warranty = null;
 
     /**
      * Блок 25. Сведения о независимой гарантии
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL25GuaranteeType $uL25Guarantee
+     * @var UL25GuaranteeType $uL25Guarantee
      */
     private $uL25Guarantee = null;
 
     /**
      * Блок 27. Сведения о погашении требований кредитора по обязательству за счет обеспечения
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL27ProvisionPaymentType $uL27ProvisionPayment
+     * @var UL27ProvisionPaymentType $uL27ProvisionPayment
      */
     private $uL27ProvisionPayment = null;
 
@@ -83,7 +83,7 @@ class ULEvent24Type extends EventDataType
      *
      * Блок 10. Идентификатор сделки
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL10DealUidType
+     * @return UL10DealUidType
      */
     public function getUL10DealUid()
     {
@@ -95,10 +95,10 @@ class ULEvent24Type extends EventDataType
      *
      * Блок 10. Идентификатор сделки
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL10DealUidType $uL10DealUid
+     * @param UL10DealUidType $uL10DealUid
      * @return self
      */
-    public function setUL10DealUid(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL10DealUidType $uL10DealUid)
+    public function setUL10DealUid(UL10DealUidType $uL10DealUid)
     {
         $this->uL10DealUid = $uL10DealUid;
         return $this;
@@ -109,7 +109,7 @@ class ULEvent24Type extends EventDataType
      *
      * Блок 23,26
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL2326GroupType
+     * @return UL2326GroupType
      */
     public function getUL2326Group()
     {
@@ -121,10 +121,10 @@ class ULEvent24Type extends EventDataType
      *
      * Блок 23,26
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL2326GroupType $uL2326Group
+     * @param UL2326GroupType $uL2326Group
      * @return self
      */
-    public function setUL2326Group(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL2326GroupType $uL2326Group)
+    public function setUL2326Group(UL2326GroupType $uL2326Group)
     {
         $this->uL2326Group = $uL2326Group;
         return $this;
@@ -135,7 +135,7 @@ class ULEvent24Type extends EventDataType
      *
      * Блок 24. Сведения о поручительстве
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL24WarrantyType
+     * @return UL24WarrantyType
      */
     public function getUL24Warranty()
     {
@@ -147,10 +147,10 @@ class ULEvent24Type extends EventDataType
      *
      * Блок 24. Сведения о поручительстве
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL24WarrantyType $uL24Warranty
+     * @param UL24WarrantyType $uL24Warranty
      * @return self
      */
-    public function setUL24Warranty(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL24WarrantyType $uL24Warranty)
+    public function setUL24Warranty(UL24WarrantyType $uL24Warranty)
     {
         $this->uL24Warranty = $uL24Warranty;
         return $this;
@@ -161,7 +161,7 @@ class ULEvent24Type extends EventDataType
      *
      * Блок 25. Сведения о независимой гарантии
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL25GuaranteeType
+     * @return UL25GuaranteeType
      */
     public function getUL25Guarantee()
     {
@@ -173,10 +173,10 @@ class ULEvent24Type extends EventDataType
      *
      * Блок 25. Сведения о независимой гарантии
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL25GuaranteeType $uL25Guarantee
+     * @param UL25GuaranteeType $uL25Guarantee
      * @return self
      */
-    public function setUL25Guarantee(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL25GuaranteeType $uL25Guarantee)
+    public function setUL25Guarantee(UL25GuaranteeType $uL25Guarantee)
     {
         $this->uL25Guarantee = $uL25Guarantee;
         return $this;
@@ -187,7 +187,7 @@ class ULEvent24Type extends EventDataType
      *
      * Блок 27. Сведения о погашении требований кредитора по обязательству за счет обеспечения
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL27ProvisionPaymentType
+     * @return UL27ProvisionPaymentType
      */
     public function getUL27ProvisionPayment()
     {
@@ -199,13 +199,53 @@ class ULEvent24Type extends EventDataType
      *
      * Блок 27. Сведения о погашении требований кредитора по обязательству за счет обеспечения
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL27ProvisionPaymentType $uL27ProvisionPayment
+     * @param UL27ProvisionPaymentType $uL27ProvisionPayment
      * @return self
      */
-    public function setUL27ProvisionPayment(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL27ProvisionPaymentType $uL27ProvisionPayment)
+    public function setUL27ProvisionPayment(UL27ProvisionPaymentType $uL27ProvisionPayment)
     {
         $this->uL27ProvisionPayment = $uL27ProvisionPayment;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_Event_2_4';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Изменились сведения об обеспечении исполнения обязательства';
+    }
+
+    protected function initAttributes()
+    {
+        $this->uL10DealUid = new UL10DealUidType($this->template);
+        $this->uL2326Group = new UL2326GroupType($this->template);
+        $this->uL24Warranty = new UL24WarrantyType($this->template);
+        $this->uL25Guarantee = new UL25GuaranteeType($this->template);
+        $this->uL27ProvisionPayment = new UL27ProvisionPaymentType($this->template);
+
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'uL10DealUid',
+            'uL2326Group',
+            'uL24Warranty',
+            'uL25Guarantee',
+            'uL27ProvisionPayment',
+        ];
     }
 }
 

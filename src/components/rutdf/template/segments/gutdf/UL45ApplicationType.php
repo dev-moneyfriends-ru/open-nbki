@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
  * XSD Type: UL_45_Application_Type
  */
-class UL45ApplicationType
+class UL45ApplicationType extends GutdfSegment
 {
     /**
      * 45.1. Код вида участия в сделке
@@ -79,7 +79,7 @@ class UL45ApplicationType
      * @var string[] $purposeCode
      */
     private $purposeCode = [
-        
+
     ];
 
     /**
@@ -356,8 +356,8 @@ class UL45ApplicationType
      *
      * 45.10. Код цели запрошенного займа (кредита)
      *
-     * @return self
      * @param string $purposeCode
+     * @return self
      */
     public function addToPurposeCode($purposeCode)
     {
@@ -545,6 +545,134 @@ class UL45ApplicationType
     {
         $this->loanSum = $loanSum;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_45_Application';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFields(): array
+    {
+        return [
+            'role' => $this->getRole(),
+            'sum' => $this->getSum(),
+            'currency' => $this->getCurrency(),
+            'uid' => $this->getUid(),
+            'applicationDate' => $this->getApplicationDate(),
+            'sourceCode' => $this->getSourceCode(),
+            'wayCode' => $this->getWayCode(),
+            'approvalEndDate' => $this->getApprovalEndDate(),
+            'stageEndDate' => $this->getStageEndDate(),
+            'purposeCode' => $this->getPurposeCode(),
+            'stageCode' => $this->getStageCode(),
+            'stageDate' => $this->getStageDate(),
+            'applicationCode' => $this->getApplicationCode(),
+            'num' => $this->getNum(),
+            'loanSum' => $this->getLoanSum(),
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Код вида участия в сделке' => 'Заполняется по справочнику 2.1.',
+            'Сумма запрошенного займа (кредита), лизинга или обеспечения' => '',
+            'Запрошенная валюта обязательства' => '',
+            'УИд обращения' => 'УИд, который присваивается обращению по правилам, установленным приложением 2 к Положению Банка России «О порядке формирования кредитной истории» для присвоения УИд сделке. Если по этому обращению совершена сделка, то значение поля должно соответствовать показателю 17.1 «УИд сделки». Если УИд не присваивался, то укажите его произвольный уникальный идентификатор в показателе 55.14 «Номер обращения». УИд обязателен для всех обращений, показатель «Дата обращения» по которым больше или равен 01.11.2022.',
+            'Дата обращения' => '',
+            'Код источника' => 'Заполняется по справочнику 6.1.',
+            'Код способа обращения' => 'Заполняется кодом 6, 7 или 8 по справочнику 6.4.1.',
+            'Дата окончания действия инвестиционного предложения, одобрения обращения (оферты кредитора)' => 'Заполняется для инвестиционного предложения в соответствии с частью 2 статьи 13 Федерального закона от 2 августа 2019 года № 259-ФЗ «О привлечении инвестиций с использованием инвестиционных платформ и о внесении изменений в отдельные законодательные акты Российской Федерации» (Собрание законодательства Российской Федерации, 2019, № 31, ст. 4418) (далее – инвестиционное предложение) или оферты кредитора со сроком для ее акцепта и принятом решении об одобрении.',
+            'Дата окончания срока рассмотрения обращения' => 'Плановая дата окончания срока рассмотрения источником обращения. В случае если по истечении 5 календарных дней со дня окончания указанного по этому показателю срока в бюро не поступили сведения об изменении стадии рассмотрения обращения, НБКИ исключает из КИ информацию об обращении. ',
+            'Код цели запрошенного займа (кредита)' => 'Заполняется по справочнику 2.4. При наличии нескольких целей займа (кредита) значения указываются через запятую',
+            'Код стадии рассмотрения обращения' => 'Заполняется по справочнику 6.4.2',
+            'Дата перехода обращения в текущую стадию рассмотрения' => 'Дата, в которую рассмотрение обращения перешло к стадии, указанной по показателю 55.11 «Код стадии рассмотрения обращения».',
+            'Код вида обращения' => 'Заполняется по справочнику 6.4',
+            'Номер обращения' => 'Номер обращения, присвоенный источником.',
+            'Сумма одобренного займа (кредита), лизинга или обеспечения' => 'Сумма одобренного источником займа (кредита), лизинга или обеспечения по результатам рассмотрения источником обращения субъекта.',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getDescription(): string
+    {
+        return 'Если обращение перешло в стадию рассмотрения «4» либо по истечении 10 рабочих дней со дня окончания указанного в показателе 45.8 срока в бюро не поступили сведения о заключении договора, НБКИ исключает из КИ информацию об обращении (в течение 2 рабочих дней). Если за один день произошло несколько переходов из одной стадии рассмотрения обращения в другую, то передать их в одном файле с соответствующими событиями и в порядке наступления этих событий в этот день.';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getProperties(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function init(): void
+    {
+        $informPart = $this->template->sendData->getInformationPartRUTDF();
+
+        $this->role = $informPart->requestedFlagIndicatorCode;
+        $this->sum = $informPart->requestedAmt;
+        $this->currency = $informPart->requestedCurrencyCode;
+        $this->uid = $informPart->applicationNumber . '-' . $informPart->getUuidControlSum($informPart->applicationNumber);
+        $this->applicationDate = $informPart->applicationDate;
+        $this->sourceCode = $informPart->creditorTypeCode;
+        $this->wayCode = $informPart->applicationShipmentCode;
+        $this->approvalEndDate = $informPart->approvalExpireDate;
+        $this->stageEndDate = $informPart->considerationShipmentDate;
+        $this->purposeCode = $informPart->requestloanCode;
+        $this->stageCode = $informPart->considerationShipmentCode;
+        $this->stageDate = $informPart->transitDate;
+        $this->applicationCode = $informPart->applicationCode;
+        $this->num = $informPart->oldAppNum;
+        $this->loanSum = $informPart->loanSum;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'role',
+            'sum',
+            'currency',
+            'uid',
+            'applicationDate',
+            'sourceCode',
+            'wayCode',
+            'approvalEndDate',
+            'stageEndDate',
+            'purposeCode',
+            'stageCode',
+            'stageDate',
+            'applicationCode',
+            'num',
+            'loanSum',
+        ];
     }
 }
 
