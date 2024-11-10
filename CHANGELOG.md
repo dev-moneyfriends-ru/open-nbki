@@ -1,3 +1,42 @@
+v3.0
+-----
+- Добавлен обязательный параметр \mfteam\nbch\models\AccountReplyRUTDF::$memberTypeCode
+- Добавлен обязательный параметр \mfteam\nbch\models\AccountReplyRUTDF::$memberFullName
+- Добавлен параметр \mfteam\nbch\models\AccountReplyRUTDF::$refUid
+- Добавлен параметр \mfteam\nbch\models\AccountReplyRUTDF::$amountInfoArray
+- Добавлен параметр \mfteam\nbch\models\AccountReplyRUTDF::$contractTermsChanges
+- Добавлен параметр \mfteam\nbch\models\AccountReplyRUTDF::$fundDateRUTDF
+- Добавлен параметр \mfteam\nbch\models\AccountReplyRUTDF::$debtBurdenInfo
+- Добавлен параметр \mfteam\nbch\models\AccountReplyRUTDF::$calcDate
+- Параметр \mfteam\nbch\models\AccountReplyRUTDF::$acctNum теперь по умолчанию имеет тип null
+- Добавлен параметр \mfteam\nbch\models\AddressReplyRUTDF::$foreignerFact
+- Добавлен параметр \mfteam\nbch\models\TradeRUTDF::$transferFact
+- Добавлен параметр \mfteam\nbch\models\TradeRUTDF::$partnerFinancingFact
+- Добавлен параметр \mfteam\nbch\models\TradeRUTDF::$repaymentFact
+- Добавлен класс \mfteam\nbch\models\AmountInfoRUTDF
+- Добавлен класс \mfteam\nbch\models\DebtBurdenInfoRUTDF
+- Параметры класса \mfteam\nbch\models\AccountAmtRUTDF перенесенные в \mfteam\nbch\models\AmountInfoRUTDF объявлены устаревшими
+- Добавлен класс \mfteam\nbch\models\ContractTermsChangesRUTDF
+- Добавлен параметр  \mfteam\nbch\models\InformationPartReplyRUTDF::$loanSum
+- Добавлен параметр \mfteam\nbch\models\PastdueArrearRUTDF::$missFact
+- Добавлен параметр \mfteam\nbch\models\PastdueArrearRUTDF::$daysPastDue
+- Добавлен параметр \mfteam\nbch\models\PastdueArrearRUTDF::$repaidMissDuration
+- Добавлен параметр \mfteam\nbch\models\PaymentRUTDF::$calcDate
+- Добавлен параметр \mfteam\nbch\models\PaymentRUTDF::$lastMissPaySum
+- Добавлен параметр \mfteam\nbch\models\PaymentRUTDF::$paySum24
+- Добавлен параметр \mfteam\nbch\models\CollateralRUTDF::$location
+- Добавлен параметр \mfteam\nbch\models\CollateralRUTDF::$actualCost
+- Добавлен параметр \mfteam\nbch\models\CollateralRUTDF::$calcDate
+- Добавлен параметр \mfteam\nbch\models\LegalItemsRUTDF::$lawsuitCode
+- Добавлен параметр \mfteam\nbch\models\LegalItemsRUTDF::$sumTotal
+- Добавлен параметр \mfteam\nbch\models\MonthAverPaymtRUTDF::$sumTotal
+- Добавлен параметр \mfteam\nbch\models\LegalItemsRUTDF::$info
+- Событие \mfteam\nbch\components\rutdf\NbchEvents::EVENT_1_4B белее не доступно в новом формате
+- Добавлено событие \mfteam\nbch\components\rutdf\NbchEvents::EVENT_1_12
+- Добавлена отправка данных в НБКИ GUTDF
+- Добавлен справочник \mfteam\nbch\models\references\AmtKeepCode
+- Добавлен справочник \mfteam\nbch\models\references\TermsDueCode
+
 2.1
 ----
 - Добавлена обработка событий EVENT_3_3, EVENT_4_2
