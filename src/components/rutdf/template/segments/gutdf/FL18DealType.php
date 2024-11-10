@@ -1241,7 +1241,7 @@ class FL18DealType extends GutdfSegment
         $this->transferFact0 = $trade->transferFact?null:'';
         $this->transferFact1 = !$trade->transferFact?null:'';
         $this->partnerFinancingFact0 = $trade->partnerFinancingFact?null:'';
-        $this->partnerFinancingFact1 = $trade->partnerFinancingFact?null:'';
+        $this->partnerFinancingFact1 = !$trade->partnerFinancingFact?null:'';
     }
 
     /**

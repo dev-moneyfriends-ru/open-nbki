@@ -106,7 +106,7 @@ abstract class BaseTemplate implements TemplateInterface
         $this->generateTime = time();
         $module = Env::ensure()->module;
         $name = $module->rutdf->userName;
-        $suffix = (new \DateTime())->setTimestamp($this->generateTime)->format('_Ymd_His');
+        $suffix = (new \DateTime())->setTimestamp($this->generateTime)->format('_Ymd_His')  . static::FILE_EXTENSION;
         while (
         $module->file->fileExist(
             $name . $suffix,
@@ -117,7 +117,7 @@ abstract class BaseTemplate implements TemplateInterface
         ) {
             sleep(1);
             $this->generateTime = time();
-            $suffix = Yii::$app->formatter->asDatetime($this->generateTime, '_yyyyMMdd_HHmmss');
+            $suffix = Yii::$app->formatter->asDatetime($this->generateTime, '_yyyyMMdd_HHmmss')  . static::FILE_EXTENSION;
         }
         $this->baseFileName = $name . $suffix;
         return $this->baseFileName;

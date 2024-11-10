@@ -178,11 +178,11 @@ class FL11IndividualEntrepreneurType extends GutdfSegment
     {
         $regNum = $this->template->sendData->getRegnumReply();
         if(empty($regNum->regNum)){
-            $this->regFact0 = '1';
+            $this->regFact0 = '';
             $this->regFact1 = null;
             return;
         }
-        $this->regFact1 = '1';
+        $this->regFact1 = '';
         $this->regFact0 = null;
         $this->regNum = $regNum->regNum;
         $this->date = $this->formatDate($regNum->regDate);

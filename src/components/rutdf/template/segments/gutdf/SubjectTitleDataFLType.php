@@ -250,7 +250,9 @@ class SubjectTitleDataFLType extends SubjectTitleDataType
         $this->addToFL25Group(new FL25GroupType($this->template));
         $this->fL3Birth = new FL3BirthType($this->template);
         $this->fL6Tax = new FL6TaxType($this->template);
-        $this->fL7Social = new FL7SocialType($this->template);
+        if($this->template->sendData->getSNILSReply()){
+            $this->fL7Social = new FL7SocialType($this->template);
+        }
 
     }
 

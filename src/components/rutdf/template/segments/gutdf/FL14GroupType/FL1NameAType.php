@@ -145,9 +145,9 @@ class FL1NameAType extends GutdfSegment
         if($person === null){
             return;
         }
-        $this->lastName = $person->name1;
-        $this->firstName = $person->first;
-        $this->middleName = $person->paternal;
+        $this->lastName = $this->formatString($person->name1);
+        $this->firstName = $this->formatString($person->first);
+        $this->middleName = $this->formatString($person->paternal);
     }
 
     /**

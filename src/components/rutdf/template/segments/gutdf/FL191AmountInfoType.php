@@ -281,7 +281,7 @@ class FL191AmountInfoType extends GutdfSegment
      */
     public function getSegmentName(): string
     {
-        return 'UL_12_1_AmountInfo';
+        return 'FL_19_1_AmountInfo';
     }
 
     /**

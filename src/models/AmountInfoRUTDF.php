@@ -21,7 +21,7 @@ class AmountInfoRUTDF extends BaseItem
      * Валюта обеспечиваемого обязательства
      * @var string $commitcurrCode
      */
-    public string $commitcurrCode = '';
+    public string $commitcurrCode = 'RUB';
 
     /**
      * Код типа обеспечиваемого обязательства

@@ -509,9 +509,11 @@ class FL9AddrFactType extends GutdfSegment
         $this->street = $this->formatString($address->street);
         $this->house = $this->formatString($address->houseNumber);
         $this->estate = $this->formatString($address->estate);
-        $this->block = str_replace(" ", "", $this->formatString($address->block));
+        $this->block = $this->formatString(str_replace(" ", "", $address->block));
         $this->build = $this->formatString($address->building);
         $this->apart = $this->formatString($address->apartment);
+        $this->date = $this->formatString($address->regAuthority);
+        $this->deptCode = $this->formatString($address->divCode);
     }
 
     /**

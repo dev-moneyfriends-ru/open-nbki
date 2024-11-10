@@ -519,7 +519,6 @@ class FL28PaymentAType extends GutdfSegment
     public function getXmlAttributes(): array
     {
         return [
-            'date',
             'paymentSum',
             'paymentMainSum',
             'paymentPercentSum',
@@ -528,6 +527,7 @@ class FL28PaymentAType extends GutdfSegment
             'totalMainSum',
             'totalPercentSum',
             'totalOtherSum',
+            'date',
             'sizeCode',
             'scheduleCode',
             'lastMissPaySum',

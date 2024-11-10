@@ -26,6 +26,7 @@ class GenerateGutdfXml
     public function execute(Document $document)
     {
         $dom = new DOMDocument($this->version, $this->encoding);
+        $dom->formatOutput = true;
         $root = $this->getDOMElement($document);
         $dom->appendChild($root);
         $this->addProperties($document, $root);

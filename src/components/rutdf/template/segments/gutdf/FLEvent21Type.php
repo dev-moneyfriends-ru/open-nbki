@@ -779,18 +779,28 @@ class FLEvent21Type extends EventDataType
         foreach ($this->template->sendData->getAccountReplyRUTDF()->getContractTermsChanges() as $key => $value) {
             $this->addToFL231ContractTermsChanges(new FL231ContractTermsChangesType($this->template, $key));
         }
-
+        if(empty($this->fL231ContractChanges)){
+            $this->addToFL231ContractTermsChanges(new FL231ContractTermsChangesType($this->template));
+        }
         foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmendment() as $key => $value) {
             $this->addToFL23ContractChanges(new FL23ContractChangesType($this->template, $key));
         }
 
+        if(empty($this->fL23ContractChanges)){
+            $this->addToFL23ContractChanges(new FL23ContractChangesType($this->template));
+        }
         $this->setFL25262728Group(new FL25262728GroupType($this->template));
-        $this->fL29MonthlyPayment = new FL29MonthlyPaymentType($this->template);
-        $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+        if($this->template->sendData->getAccountReplyRUTDF()->getMonthAverPaymt()){
+            $this->fL29MonthlyPayment = new FL29MonthlyPaymentType($this->template);
+        }
+
+        if($this->template->sendData->getAccountReplyRUTDF()->getDebtBurdenInfo()){
+            $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
+        }
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
             $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
         }
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray() as $key => $value) {
             $this->addToFL31NonMonetarySubject(new FL31NonMonetarySubjectType($this->template, $key));
         }
         $this->fL54Accounting = new FL54AccountingType($this->template);
@@ -806,17 +816,17 @@ class FLEvent21Type extends EventDataType
             'fL18Deal',
             'fL19Amount',
             'fL191AmountInfo',
-            'fL20JointDebtors',
             'fL21PaymentTerms',
             'fL22TotalCost',
+            'fL25262728Group',
+            'fL20JointDebtors',
             'fL23ContractChanges',
             'fL231ContractTermsChanges',
-            'fL25262728Group',
             'fL29MonthlyPayment',
             'fL291DebtBurdenInfo',
             'fL30NonMonetarySource',
-            'fL31NonMonetarySubject',
             'fL54Accounting',
+            'fL31NonMonetarySubject',
         ];
     }
 }

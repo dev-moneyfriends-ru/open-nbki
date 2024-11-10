@@ -118,7 +118,8 @@ class AccountReplyRUTDF extends Account
     /**
      * Порядковый номер транша.
      * Заполняется для займа (кредита), который выдается траншами, за исключением выданного с использованием платежной карты, и займа (кредита), предоставленного на условиях овердрафта
-     * @var int|null $trancheNum
+     * @var int $trancheNum
+     * @deprecated
      */
     public $trancheNum;
     
@@ -342,6 +343,7 @@ class AccountReplyRUTDF extends Account
     public $calcDate = '';
 
     /**
+     * Сведения об обеспечиваемом обязательстве
      * @var array|AmountInfoRUTDF[]
      */
     private $amountInfoArray = [];
@@ -650,7 +652,7 @@ class AccountReplyRUTDF extends Account
     }
     
     /**
-     * @param array $config
+     * @param SourceNonMonetObligRUTDF[]|array $sourceNonMonetObligArray
      */
     public function setSourceNonMonetOblig(array $config): void
     {

@@ -595,20 +595,20 @@ class FL55ApplicationType extends GutdfSegment
         $informPart = $this->template->sendData->getInformationPartRUTDF();
 
         $this->role = $informPart->requestedFlagIndicatorCode;
-        $this->sum = $informPart->requestedAmt;
+        $this->sum = $this->formatCurrency($informPart->requestedAmt);
         $this->currency = $informPart->requestedCurrencyCode;
         $this->uid = $informPart->applicationNumber . '-' . $informPart->getUuidControlSum($informPart->applicationNumber);
-        $this->applicationDate = $informPart->applicationDate;
+        $this->applicationDate = $this->formatDate($informPart->applicationDate);
         $this->sourceCode = $informPart->creditorTypeCode;
         $this->wayCode = $informPart->applicationShipmentCode;
-        $this->approvalEndDate = $informPart->approvalExpireDate;
-        $this->stageEndDate = $informPart->considerationShipmentDate;
+        $this->approvalEndDate = $this->formatDate($informPart->approvalExpireDate);
+        $this->stageEndDate = $this->formatDate($informPart->considerationShipmentDate);
         $this->purposeCode = $informPart->requestloanCode;
         $this->stageCode = $informPart->considerationShipmentCode;
-        $this->stageDate = $informPart->transitDate;
+        $this->stageDate = $this->formatDate($informPart->transitDate);
         $this->applicationCode = $informPart->applicationCode;
         $this->num = $informPart->oldAppNum;
-        $this->loanSum = $informPart->loanSum;
+        $this->loanSum = $this->formatCurrency($informPart->loanSum);
     }
 
     /**

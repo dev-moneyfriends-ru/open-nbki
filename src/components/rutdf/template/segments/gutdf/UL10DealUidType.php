@@ -2,6 +2,8 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
+use mfteam\nbch\helpers\UuidHelper;
+
 /**
  * Class representing UL10DealUidType
  *
@@ -232,10 +234,10 @@ class UL10DealUidType extends GutdfSegment
     public function init(): void
     {
         $account = $this->template->sendData->getAccountReplyRUTDF();
-        $this->uid = $account->uuid;
+        $this->uid = UuidHelper::getUuidWithControl($account->uuid);
         $this->num = $account->acctNum??self::EMPTY_VALUE;
         $this->addToRefUid($account->refUid);
-        $this->openDate = $account->getTrade()->openedDt;
+        $this->openDate = $this->formatDate($account->getTrade()->openedDt);
     }
 
     /**

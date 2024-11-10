@@ -380,9 +380,10 @@ class UL44AccountingType extends GutdfSegment
         }else{
             $this->exist0 = '';
             $this->exist1 = null;
+            $this->sum = $this->formatCurrency(0);
         }
 
-        $this->rate = $account->intRate;
+        $this->rate = $this->formatCurrency($account->intRate);
 
         if($account->preferenFinanc){
             $this->supportExist0 = null;
@@ -404,8 +405,8 @@ class UL44AccountingType extends GutdfSegment
         return [
             'exist_0' => 'exist0',
             'exist_1' => 'exist1',
-            'rate',
             'sum',
+            'rate',
             'supportExist_0' => 'supportExist0',
             'supportExist_1' => 'supportExist1',
             'supportInfo',

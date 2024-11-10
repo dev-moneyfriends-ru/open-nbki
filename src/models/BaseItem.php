@@ -216,19 +216,24 @@ abstract class BaseItem extends \yii\base\Model
      * @param string $class
      * @return array
      */
-    public function initPropertyModels(array $data, string $class)
+    public function initPropertyModels(?array $data, string $class): array
     {
         $models = [];
+        if($data === null){
+            return $models;
+        }
         if (ArrayHelper::isIndexed($data)) {
             foreach ($data as $config) {
                 if (is_object($config)) {
                     $models[] = $config;
                     continue;
                 }
-                /** @var BaseItem $model */
-                $model = new $class();
-                $model->setAttributes($config, false);
-                $models[] = $model;
+                if (is_array($config)) {
+                    /** @var BaseItem $model */
+                    $model = new $class();
+                    $model->setAttributes($config);
+                    $models[] = $model;
+                }
             }
         } elseif (is_object($data)) {
             $models[] = $data;
@@ -250,6 +255,9 @@ abstract class BaseItem extends \yii\base\Model
         $model = null;
         if(empty($this->$attribute)){
             return null;
+        }
+        if(is_array($this->$attribute) && count($this->$attribute) === 1){
+            return $this->$attribute[0];
         }
         foreach ($this->$attribute as $item) {
             if ($model === null) {

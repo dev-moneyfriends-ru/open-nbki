@@ -595,7 +595,7 @@ class FL46UL36OrgSourceType extends GutdfSegment
 
     public function init(): void
     {
-        $this->sourceCode = $this->template->sendData->getAccountReplyRUTDF()->memberCode;
+        $this->sourceCode = $this->template->sendData->getAccountReplyRUTDF()->memberTypeCode;
         $this->fullName = $this->template->sendData->getAccountReplyRUTDF()->memberFullName;
         $this->regNum = $this->template->config->sourceOgrn;
         $this->addToTaxNumGroupFL46UL36OrgSource((new TaxNumGroupFL46UL36OrgSourceAType($this->template)));

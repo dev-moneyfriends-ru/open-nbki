@@ -59,6 +59,7 @@ class CollateralRUTDF extends BaseItem
      * В предыдущих версиях в этом показателе указывался код «1» – имеется иное обременение предмета залога,
      * либо код «0» – обстоятельство кода «1» отсутствовало.
      * @var int|null $collateralEncum
+     * @deprecated
      */
     public $collateralEncum = null;
     

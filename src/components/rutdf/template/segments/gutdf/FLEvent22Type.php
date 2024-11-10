@@ -15,7 +15,7 @@ class FLEvent22Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
      * Блок 17. Идентификатор сделки
@@ -727,11 +727,13 @@ class FLEvent22Type extends EventDataType
         $this->fL24Fund = new FL24FundType($this->template);
         $this->setFL25262728Group(new FL25262728GroupType($this->template));
         $this->fL29MonthlyPayment = new FL29MonthlyPaymentType($this->template);
-        $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+        if($this->template->sendData->getAccountReplyRUTDF()->getDebtBurdenInfo()){
+            $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
+        }
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
             $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
         }
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray() as $key => $value) {
             $this->addToFL31NonMonetarySubject(new FL31NonMonetarySubjectType($this->template, $key));
         }
         $this->fL54Accounting = new FL54AccountingType($this->template);
@@ -749,11 +751,9 @@ class FLEvent22Type extends EventDataType
             'fL18Deal',
             'fL19Amount',
             'fL191AmountInfo',
-            'fL20JointDebtors',
             'fL21PaymentTerms',
+            'fL20JointDebtors',
             'fL22TotalCost',
-            'fL23ContractChanges',
-            'fL231ContractTermsChanges',
             'fL24Fund',
             'fL25262728Group',
             'fL29MonthlyPayment',

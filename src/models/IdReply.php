@@ -93,6 +93,7 @@ class IdReply extends BaseIdReply
     /**
      * Признак иностранного гражданина
      * Заполняется по справочнику 1.8
+     * @see ForeignerCode
      * @var string|null
      */
     public $foreignerCode = null;

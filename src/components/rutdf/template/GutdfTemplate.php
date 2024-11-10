@@ -10,12 +10,10 @@ use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
  */
 class GutdfTemplate extends BaseTemplate
 {
+    public const FORMAT_VERSION = 'GUTDF3';
     public const ENTITY = "GutdfTemplate";
 
-    public const FILE_EXTENSION = '';
-    /**
-     * @var Document
-     */
+    public const FILE_EXTENSION = '.xml';
     private $document;
 
     /**
@@ -42,6 +40,15 @@ class GutdfTemplate extends BaseTemplate
             if($parentSegment->$attribute instanceof GutdfSegment){
                 $this->segments[] = $parentSegment->$attribute;
                 $this->exctractSegments($parentSegment->$attribute);
+                continue;
+            }
+            if(is_array($parentSegment->$attribute)){
+                foreach ($parentSegment->$attribute as $subSegment){
+                    if($subSegment instanceof GutdfSegment){
+                        $this->segments[] = $subSegment;
+                        $this->exctractSegments($subSegment);
+                    }
+                }
             }
         }
     }

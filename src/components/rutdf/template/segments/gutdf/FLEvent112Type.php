@@ -15,7 +15,7 @@ class FLEvent112Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
      * Блок 13. Сведения по делу о несостоятельности (банкротстве)

@@ -82,6 +82,7 @@ class SubjectEventDataType extends GutdfSegment
             $event = new $eventClass($this->template, $eventId);
             $event->setOrderNum($cnt);
             $this->events[] = $event;
+            $cnt++;
         }
     }
 

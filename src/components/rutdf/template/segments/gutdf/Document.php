@@ -4,6 +4,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
 use DateTime;
 use Exception;
+use mfteam\nbch\components\rutdf\template\GutdfTemplate;
 use mfteam\nbch\components\rutdf\template\segments\gutdf\document\DataType;
 use mfteam\nbch\components\rutdf\template\segments\gutdf\document\SourceType;
 
@@ -70,7 +71,7 @@ class Document extends GutdfSegment
      *
      * @var int $groupBlocksCount
      */
-    private $groupBlocksCount = 0;
+    private $groupBlocksCount = 1;
 
     /**
      * Исходящий регистрационный номер документа, содержащего кредитную информацию, с ранее не принятой информацией - для документа, содержащего кредитную информацию, которая ранее была не принята
@@ -427,11 +428,12 @@ class Document extends GutdfSegment
     {
         $this->inn = $this->template->config->sourceInn;
         $this->ogrn = $this->template->config->sourceOgrn;
-        $this->sourceID = $this->template->config->memberCode;
-        $this->regNumberDoc = $this->template->getBaseName();
+        $this->sourceID = $this->template->config->sendUserName;
+        $this->regNumberDoc = str_replace(GutdfTemplate::FILE_EXTENSION, '', $this->template->getBaseName());
         $this->dateDoc = $this->formatDate($this->template->generateTime);
         $this->source = new SourceType($this->template);
         $this->data = new DataType($this->template);
+        $this->groupBlocksCount = count($this->template->getEventIds());
     }
 
     public function getXmlAttributes(): array

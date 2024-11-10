@@ -437,6 +437,7 @@ class FL4DocAType extends GutdfSegment
     public function getXmlAttributes(): array
     {
         return [
+            'endDate',
             'countryCode',
             'countryOther',
             'docCode',
@@ -446,7 +447,6 @@ class FL4DocAType extends GutdfSegment
             'issueDate',
             'docIssuer',
             'deptCode',
-            'endDate',
             'foreignerCode',
         ];
     }

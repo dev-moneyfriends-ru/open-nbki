@@ -464,6 +464,7 @@ class UL30CourtType extends GutdfSegment
         }else{
             $this->actExist0 = '';
             $this->actExist1 = null;
+            return;
         }
 
         $this->date = $this->formatDate($court->courtActDt);

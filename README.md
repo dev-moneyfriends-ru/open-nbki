@@ -158,7 +158,7 @@ $content = $template->getContent();
 
 /**
  * Или массив блоков
- * @var \lender21\nbki\components\rutdf\template\segments\BaseSegment[] $segments
+ * @var \mfteam\nbch\components\rutdf\template\segments\BaseSegment[] $segments
  */
 $segments = $template->getSegments();
 

@@ -233,7 +233,7 @@ class UL22NonMonetarySubjectType extends GutdfSegment
             'fulfillment',
             'fulfillmentFailExist_0' => 'fulfillmentFailExist0',
             'fulfillmentFailExist_1' => 'fulfillmentFailExist1',
-            'сode'
+            'code'
         ];
     }
 }

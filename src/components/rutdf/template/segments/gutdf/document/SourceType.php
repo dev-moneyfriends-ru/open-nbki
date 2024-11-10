@@ -45,7 +45,7 @@ class SourceType extends GutdfSegment
 
     public function getSegmentName(): string
     {
-        return 'Segment';
+        return 'Source';
     }
 
     public function getFields(): array

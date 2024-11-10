@@ -15,7 +15,7 @@ class FLEvent110Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
      * Блок 12. Сведения о дееспособности

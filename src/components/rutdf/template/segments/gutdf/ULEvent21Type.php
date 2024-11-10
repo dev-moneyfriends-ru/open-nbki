@@ -681,11 +681,16 @@ class ULEvent21Type extends EventDataType
         foreach ($this->template->sendData->getAccountReplyRUTDF()->getContractTermsChanges() as $key => $value) {
             $this->addToUL151ContractTermsChanges(new UL151ContractTermsChangesType($this->template, $key));
         }
-
+        if(empty($this->uL151ContractTermsChanges)){
+            $this->addToUL151ContractTermsChanges(new UL151ContractTermsChangesType($this->template));
+        }
         foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmendment() as $key => $value) {
             $this->addToUL15ContractChanges(new UL15ContractChangesType($this->template, $key));
         }
 
+        if(empty($this->uL15ContractChanges)){
+            $this->addToUL15ContractChanges(new UL15ContractChangesType($this->template));
+        }
         $this->setUL17181920Group(new UL17181920GroupType($this->template));
 
         foreach ($this->template->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
@@ -707,13 +712,13 @@ class ULEvent21Type extends EventDataType
         return [
             'uL10DealUid',
             'uL11Deal',
-            'uL121AmountInfo',
             'uL12Amount',
-            'uL13JointDebtors',
-            'uL14PaymentsTerms',
-            'uL151ContactTermsChanges',
-            'uL15ContactChanges',
+            'uL121AmountInfo',
+            'uL14PaymentTerms',
             'uL17181920Group',
+            'uL13JointDebtors',
+            'uL15ContractChanges',
+            'uL151ContractTermsChanges',
             'uL21NonMonetarySource',
             'uL22NonMonetarySubject',
             'uL44Accounting',

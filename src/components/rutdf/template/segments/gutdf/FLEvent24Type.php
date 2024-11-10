@@ -15,7 +15,7 @@ class FLEvent24Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
      * Блок 17. Идентификатор сделки

@@ -210,7 +210,7 @@ class FL26DebtDueAType extends GutdfSegment
     public function init(): void
     {
         $debt = $this->template->sendData->getAccountReplyRUTDF()->getDueArrear();
-        if($debt === null || empty($this->debtDueSum)){
+        if($debt === null || empty($debt->amtOutstanding)){
             $this->debtDueSum = $this->formatCurrency(0);
             return;
         }
@@ -227,11 +227,11 @@ class FL26DebtDueAType extends GutdfSegment
     public function getXmlAttributes(): array
     {
         return [
-            'debtDueStartDate',
             'debtDueSum',
             'debtDueMainSum',
             'debtDuePercentSum',
             'debtDueOtherSum',
+            'debtDueStartDate',
         ];
     }
 }

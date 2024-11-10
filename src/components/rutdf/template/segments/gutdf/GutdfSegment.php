@@ -84,4 +84,16 @@ abstract class GutdfSegment extends BaseSegment
         return $fields;
     }
 
+    /**
+     * @param mixed $value
+     * @return string
+     */
+    public function formatCurrency($value): ?string
+    {
+        if($value === null){
+            return static::EMPTY_VALUE;
+        }
+        return number_format(round((float)$value, 2), 2, '.', '');
+    }
+
 }

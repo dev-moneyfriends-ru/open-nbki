@@ -15,7 +15,7 @@ class FLEvent2112Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
      * Блок 8. Регистрация физического лица по месту жительства или пребывания

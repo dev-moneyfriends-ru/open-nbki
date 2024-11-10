@@ -6,6 +6,7 @@ use mfteam\nbch\models\references\DealType;
 
 /**
  * Типы сделки
+ * @deprecated use DealType
  */
 class TradeType extends DealType
 {

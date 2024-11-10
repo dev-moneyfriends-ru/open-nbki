@@ -657,7 +657,7 @@ class UL2AddressType extends GutdfSegment
         $this->street = $this->formatString($address->street);
         $this->house = $this->formatString($address->houseNumber);
         $this->estate = $this->formatString($address->estate);
-        $this->block = str_replace(" ", "", $this->formatString($address->block));
+        $this->block = $this->formatString(str_replace(" ", "", $address->block));
         $this->build = $this->formatString($address->building);
         $this->apart = $this->formatString($address->apartment);
         if ($address->phone) {

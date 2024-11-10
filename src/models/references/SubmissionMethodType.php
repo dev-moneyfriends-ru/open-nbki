@@ -4,6 +4,9 @@ namespace mfteam\nbch\models\references;
 
 use mfteam\nbch\models\references\BaseType;
 
+/**
+ * Справочник 6.4.1. Способы обращения
+ */
 class SubmissionMethodType extends BaseType
 {
     public const T1 = '1';

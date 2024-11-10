@@ -654,9 +654,9 @@ class ULEvent22Type extends EventDataType
         return [
             'uL10DealUid',
             'uL11Deal',
+            'uL13JointDebtors',
             'uL12Amount',
             'uL121AmountInfo',
-            'uL13JointDebtors',
             'uL14PaymentTerms',
             'uL16Fund',
             'uL17181920Group',
