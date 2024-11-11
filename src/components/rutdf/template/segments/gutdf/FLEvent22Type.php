@@ -724,12 +724,20 @@ class FLEvent22Type extends EventDataType
         }
         $this->fL20JointDebtors = new FL20JointDebtorsType($this->template);
         $this->fL21PaymentTerms = new FL21PaymentTermsType($this->template);
-        $this->fL24Fund = new FL24FundType($this->template);
+
+        foreach ($this->template->sendData->getAccountReplyRUTDF()->getFundDateRUTDF() as $key => $value) {
+            $this->setFL24Fund(new FL24FundType($this->template, $key));
+        }
+
         $this->setFL25262728Group(new FL25262728GroupType($this->template));
-        $this->fL29MonthlyPayment = new FL29MonthlyPaymentType($this->template);
-        if($this->template->sendData->getAccountReplyRUTDF()->getDebtBurdenInfo()){
+
+        if ($this->template->sendData->getAccountReplyRUTDF()->getMonthAverPaymt()) {
+            $this->fL29MonthlyPayment = new FL29MonthlyPaymentType($this->template);
+        }
+        if ($this->template->sendData->getAccountReplyRUTDF()->getDebtBurdenInfo()) {
             $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
         }
+
         foreach ($this->template->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
             $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
         }
@@ -752,10 +760,10 @@ class FLEvent22Type extends EventDataType
             'fL19Amount',
             'fL191AmountInfo',
             'fL21PaymentTerms',
-            'fL20JointDebtors',
             'fL22TotalCost',
             'fL24Fund',
             'fL25262728Group',
+            'fL20JointDebtors',
             'fL29MonthlyPayment',
             'fL291DebtBurdenInfo',
             'fL30NonMonetarySource',

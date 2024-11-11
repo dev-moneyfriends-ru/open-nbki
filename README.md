@@ -147,7 +147,7 @@ $events = [
 
 //Генерация файла для отправки
 
-$template = new \mfteam\nbch\components\rutdf\template\RutdfTemplate($events, $sendData);
+$template = new \mfteam\nbch\components\rutdf\template\GutdfTemplate($events, $sendData);
 $template->loadContent();
 
 /**
