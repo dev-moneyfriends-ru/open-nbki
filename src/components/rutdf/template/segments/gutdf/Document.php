@@ -7,6 +7,7 @@ use Exception;
 use mfteam\nbch\components\rutdf\template\GutdfTemplate;
 use mfteam\nbch\components\rutdf\template\segments\gutdf\document\DataType;
 use mfteam\nbch\components\rutdf\template\segments\gutdf\document\SourceType;
+use mfteam\nbch\Env;
 
 /**
  * Class representing Document
@@ -426,9 +427,9 @@ class Document extends GutdfSegment
      */
     public function init(): void
     {
-        $this->inn = $this->template->config->sourceInn;
-        $this->ogrn = $this->template->config->sourceOgrn;
-        $this->sourceID = $this->template->config->sendUserName;
+        $this->inn = Env::ensure()->module->rutdf->sourceInn;
+        $this->ogrn = Env::ensure()->module->rutdf->sourceOgrn;
+        $this->sourceID = Env::ensure()->module->rutdf->userName;
         $this->regNumberDoc = str_replace(GutdfTemplate::FILE_EXTENSION, '', $this->template->getBaseName());
         $this->dateDoc = $this->formatDate($this->template->generateTime);
         $this->source = new SourceType($this->template);
