@@ -11,7 +11,7 @@ class PastdueArrearRUTDF extends BaseItem
      * Дата возникновения просроченной задолженности
      * @var string $pastDueDt
      */
-    public $pastDueDt = '';
+    public $pastDueDt = null;
     
     /**
      * Признак расчета по последнему платежу.
@@ -32,7 +32,7 @@ class PastdueArrearRUTDF extends BaseItem
      * Заполняется в валюте, которая указана по показателю 19.2 «Валюта обязательства».
      * @var float $amtPastDue
      */
-    public $amtPastDue = 0;
+    public $amtPastDue = null;
     
     /**
      * Сумма просроченной задолженности по основному долгу.
@@ -73,14 +73,14 @@ class PastdueArrearRUTDF extends BaseItem
      * Ближайшая прошедшая дата, в которую заемщик по условиям сделки должен был внести, но не внес платеж по срочной задолженности.
      * @var string $principalMissedDate
      */
-    public $principalMissedDate = '';
+    public $principalMissedDate = null;
     
     /**
      * Дата последнего пропущенного платежа по процентам
      * Ближайшая прошедшая дата, в которую заемщик по условиям сделки должен был внести, но не внес платеж по срочной задолженности.
      * @var string $intMissedDate
      */
-    public string $intMissedDate = '';
+    public $intMissedDate = null;
 
     /**
      * Признак наличия просроченной задолженности.
@@ -90,7 +90,7 @@ class PastdueArrearRUTDF extends BaseItem
      * Если указан код «0», иные показатели блока не заполняются.
      * @var int|null $missFact
      */
-    public ?int $missFact = null;
+    public $missFact = null;
 
     /**
      * Продолжительность просрочки.
@@ -98,14 +98,14 @@ class PastdueArrearRUTDF extends BaseItem
      * В случае прекращения обязательства субъекта указывается значение «0».
      * @var int|null $daysPastDue
      */
-    public ?int $daysPastDue = null;
+    public $daysPastDue = null;
 
     /**
      * Продолжительность последней погашенной просрочки.
      * В случае прекращения обязательства субъекта указывается количество календарных дней, в течение которых субъект нарушал обязанность вносить платежи, по состоянию на дату прекращения обязательства субъекта.
      * @var int|null $repaidMissDuration
      */
-    public ?int $repaidMissDuration = null;
+    public $repaidMissDuration = null;
 
     /**
      * Количество дней просрочки

@@ -119,8 +119,8 @@ class UL29ContractEndType extends GutdfSegment
     public function getXmlAttributes(): array
     {
         return [
-            'code',
             'date',
+            'code',
         ];
     }
 }

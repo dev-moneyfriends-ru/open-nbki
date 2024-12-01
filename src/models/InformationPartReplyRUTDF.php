@@ -43,7 +43,7 @@ class InformationPartReplyRUTDF extends BaseInformationPartReplyRUTDF
      * Номер обращения, присвоенный источником.
      * @var string $oldAppNum
      */
-    public $oldAppNum = '';
+    public $oldAppNum = null;
     
     /**
      * Дата обращения
@@ -73,7 +73,7 @@ class InformationPartReplyRUTDF extends BaseInformationPartReplyRUTDF
      * или оферты кредитора со сроком для ее акцепта и принятом решении об одобрении.
      * @var string $approvalExpireDate
      */
-    public $approvalExpireDate = '';
+    public $approvalExpireDate = null;
     
     /**
      * Дата окончания срока рассмотрения обращения
@@ -82,7 +82,7 @@ class InformationPartReplyRUTDF extends BaseInformationPartReplyRUTDF
      * в бюро не поступили сведения об изменении стадии рассмотрения обращения, НБКИ исключает из КИ информацию об обращении.
      * @var string $considerationShipmentDate
      */
-    public $considerationShipmentDate = '';
+    public $considerationShipmentDate = null;
     
     /**
      * Код цели запрошенного займа (кредита)
@@ -142,7 +142,7 @@ class InformationPartReplyRUTDF extends BaseInformationPartReplyRUTDF
      * Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
      * @var string $fundDt
      */
-    public $fundDt = '';
+    public $fundDt = null;
     
     /**
      * Признак просрочки должника более 90 дней

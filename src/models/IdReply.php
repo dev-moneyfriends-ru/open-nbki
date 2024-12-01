@@ -81,7 +81,7 @@ class IdReply extends BaseIdReply
      * Заполняется при наличии такого срока в документе.
      * @var string $validTo
      */
-    public $validTo = '';
+    public $validTo = null;
     
     /**
      * Признак наличия документа. Код «1» – у субъекта имеется документ, удостоверявший личность ранее;

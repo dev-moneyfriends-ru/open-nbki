@@ -11,7 +11,7 @@ class PaymentRUTDF extends BaseItem
      * Дата последнего внесенного платежа
      * @var string $paymtDate
      */
-    public $paymtDate = '';
+    public $paymtDate = null;
     
     /**
      * Сумма последнего внесенного платежа.

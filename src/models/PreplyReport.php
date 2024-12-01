@@ -29,6 +29,7 @@ use yii\helpers\ArrayHelper;
  */
 class PreplyReport extends BaseObject
 {
+    public $source = 'НБКИ';
     /**
      * Значения отчета в виде массива
      * @var array

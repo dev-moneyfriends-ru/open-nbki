@@ -27,7 +27,7 @@ class BusinessReply extends Business
      * Заполняется при наличии у источника сведений об ином наименовании субъекта.
      * @var string $businessNameAlt
      */
-    public $businessNameAlt = '';
+    public $businessNameAlt = null;
     
     /**
      * Признак смены наименования
@@ -45,5 +45,5 @@ class BusinessReply extends Business
      * Указывается полное наименование субъекта до его смены.
      * @var string $businessNamebfrChange
      */
-    public $businessNamebfrChange = '';
+    public $businessNamebfrChange = null;
 }

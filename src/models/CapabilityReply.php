@@ -17,14 +17,14 @@ class CapabilityReply extends BaseItem
      * Дата вступления в силу решения суда о признании недееспособным или об ограничении дееспособности
      * @var string $incapDecisionDt
      */
-    public $incapDecisionDt = '';
+    public $incapDecisionDt = null;
     
     /**
      * Номер решения суда.
      * Сведения о решении суда, который признал гражданина недееспособным или ограничил его дееспособность.
      * @var string $incapDecisionNum
      */
-    public $incapDecisionNum = '';
+    public $incapDecisionNum = null;
     
     /**
      * Наименование суда.
@@ -32,20 +32,20 @@ class CapabilityReply extends BaseItem
      * Сведения о решении суда, который признал гражданина недееспособным или ограничил его дееспособность.
      * @var string $incapCourtName
      */
-    public $incapCourtName = '';
+    public $incapCourtName = null;
     
     /**
      * Дата вступления в силу решения суда о признании дееспособным или об отмене ограничения дееспособности
      * @var string $capDecisionDt
      */
-    public $capDecisionDt = '';
+    public $capDecisionDt = null;
     
     /**
      * Номер решения суда.
      * Сведения о решении суда, который признал гражданина дееспособным или отменил ограничение его дееспособности
      * @var string $capDecisionNum
      */
-    public $capDecisionNum = '';
+    public $capDecisionNum = null;
     
     /**
      * Наименование суда.
@@ -53,7 +53,7 @@ class CapabilityReply extends BaseItem
      * для иностранного суда заполняются на языке страны места нахождения данного суда. В скобках указывается перевод наименования суда на русский язык (при наличии перевода).
      * @var string $capCourtName
      */
-    public $capCourtName = '';
+    public $capCourtName = null;
     
     
     /**

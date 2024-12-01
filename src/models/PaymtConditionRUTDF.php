@@ -19,7 +19,7 @@ class PaymtConditionRUTDF extends BaseItem
      * Дата ближайшего следующего платежа по основному долгу
      * @var string $principalTermsAmtDt
      */
-    public $principalTermsAmtDt = '';
+    public $principalTermsAmtDt = null;
     
     /**
      * Сумма ближайшего следующего платежа по процентам.
@@ -32,7 +32,7 @@ class PaymtConditionRUTDF extends BaseItem
      * Дата ближайшего следующего платежа по процентам
      * @var string $interestTermsAmtDt
      */
-    public $interestTermsAmtDt = '';
+    public $interestTermsAmtDt = null;
     
     /**
      * Код частоты платежей.
@@ -49,7 +49,7 @@ class PaymtConditionRUTDF extends BaseItem
      * 99    Иное
      * @var string $termsFrequency
      */
-    public $termsFrequency = '';
+    public $termsFrequency = null;
     
     /**
      * Сумма минимального платежа по кредитной карте.
@@ -63,7 +63,7 @@ class PaymtConditionRUTDF extends BaseItem
      * Заполняются при наличии в договоре займа (кредита) с расходным лимитом беспроцентного периода.
      * @var string $graceStartDt
      */
-    public $graceStartDt = '';
+    public $graceStartDt = null;
     
     /**
      * Дата окончания беспроцентного периода.
@@ -71,7 +71,7 @@ class PaymtConditionRUTDF extends BaseItem
      * Если на дату расчета действует беспроцентный период, то указывается плановая дата окончания беспроцентного периода.
      * @var string $graceEndDt
      */
-    public $graceEndDt = '';
+    public $graceEndDt = null;
     
     /**
      * Дата окончания срока уплаты процентов

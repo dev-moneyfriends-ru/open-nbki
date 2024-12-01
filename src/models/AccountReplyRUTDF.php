@@ -99,7 +99,7 @@ class AccountReplyRUTDF extends Account
      * Сведения о передаче финансирования субъекту или о возникновении обеспечения исполнения обязательства.
      * @var array|FundDateRUTDF[] $fundDateArray
      */
-    private array $fundDateRUTDF = [];
+    private $fundDateRUTDF = [];
 
     /**
      * Код источника.
@@ -107,13 +107,13 @@ class AccountReplyRUTDF extends Account
      * @see SourceType
      * @var string
      */
-    public string $memberTypeCode;
+    public $memberTypeCode;
 
     /**
      * Полное наименование источника.
      * @var string $memberFullName
      */
-    public string $memberFullName;
+    public $memberFullName;
     
     /**
      * Порядковый номер транша.
@@ -844,7 +844,7 @@ class AccountReplyRUTDF extends Account
         $maxValue = 0;
         foreach ($this->pastdueArrearArray as $model)
         {
-            $daysPastDue = $model->getDaysPastDue();
+            $daysPastDue = $model->daysPastDue;
             if($daysPastDue === 0 || $daysPastDue < $minDays){
                 continue;
             }

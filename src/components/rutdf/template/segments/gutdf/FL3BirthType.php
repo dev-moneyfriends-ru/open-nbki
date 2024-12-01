@@ -148,7 +148,7 @@ class FL3BirthType extends GutdfSegment
         }
         $this->birthDate = $this->formatDate($person->birthDt);
         $this->countryCode = $person->oksm;
-        $this->birthPlace = $person->placeOfBirth;
+        $this->birthPlace = $this->formatString($person->placeOfBirth);
     }
 
     /**

@@ -16,24 +16,8 @@ class PrequestReq extends BaseItem
     /**
      * Версия формата ответа
      */
-    public const VERSION = 17;
-    
-    /**
-     * @param array $config
-     * @throws InvalidConfigException
-     * @throws NotInstantiableException
-     */
-    public function __construct($config = [])
-    {
-        $module = Env::ensure()->module;
-        $this->requestorReq = new RequestorReq([
-            'memberCode' => $module->memberCode,
-            'userID' => $module->creditHistory->userName,
-            'password' => $module->creditHistory->password,
-        ]);
-        parent::__construct($config);
-    }
-    
+    public const VERSION = 20;
+
     /**
      * Данные документа удостоверяющего личность запрашиваемого субъекта.
      * Обязателен для ФЛ,ИП.
@@ -117,6 +101,21 @@ class PrequestReq extends BaseItem
      * @var int
      */
     public $allAddressBlocks = 3;
+    /**
+     * @param array $config
+     * @throws InvalidConfigException
+     * @throws NotInstantiableException
+     */
+    public function __construct($config = [])
+    {
+        $module = Env::ensure()->module;
+        $this->requestorReq = new RequestorReq([
+            'memberCode' => $module->memberCode,
+            'userID' => $module->creditHistory->userName,
+            'password' => $module->creditHistory->password,
+        ]);
+        parent::__construct($config);
+    }
     
     /**
      * @return IdReq|null

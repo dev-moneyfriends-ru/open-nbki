@@ -20,7 +20,7 @@ class LegalItemsRUTDF extends BaseItem
      * Дата принятия судебного акта
      * @var string $courtActDt
      */
-    public $courtActDt = '';
+    public $courtActDt = null;
     
     /**
      * Номер судебного акта

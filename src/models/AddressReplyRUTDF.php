@@ -11,38 +11,38 @@ class AddressReplyRUTDF extends BaseAddressReply
      * Дом
      * @var string $houseNumber
      */
-    public $houseNumber = '';
+    public $houseNumber = null;
     
     /**
      * Улица
      * @var string $street
      */
-    public $street = '';
+    public $street = null;
     
     /**
      * Корпус
      * @var string $block
      */
-    public $block = '';
+    public $block = null;
     
     /**
      * Строение
      * @var string $building
      */
-    public $building = '';
+    public $building = null;
     
     /**
      * Квартира
      * Номер квартиры, помещения или комнаты, в которой зарегистрировано лицо.
      * @var string $apartment
      */
-    public $apartment = '';
+    public $apartment = null;
     
     /**
      * Почтовый индекс
      * @var string $postal
      */
-    public $postal = '';
+    public $postal = null;
 
     
     /**
@@ -50,7 +50,7 @@ class AddressReplyRUTDF extends BaseAddressReply
      * Для ЮЛ не заполняется
      * @var string $addressType
      */
-    public $addressType = '';
+    public $addressType = null;
     
     /**
      * Дата регистрации
@@ -89,7 +89,7 @@ class AddressReplyRUTDF extends BaseAddressReply
      * При отсутствии в ОКАТО кода населенного пункта указывается «99 999 999 999».
      * @var string $okato
      */
-    public $okato = '';
+    public $okato = null;
     
     /**
      * Иной населенный пункт
@@ -97,19 +97,19 @@ class AddressReplyRUTDF extends BaseAddressReply
      * При отсутствии сведений о населенном пункте в документе, удостоверяющем личность, населенный пункт указывается на русском или английском языке (по выбору источника).
      * @var string $otherLocation
      */
-    public $otherLocation = '';
+    public $otherLocation = null;
     
     /**
      * Владение
      * @var string $estate
      */
-    public $estate = '';
+    public $estate = null;
     
     /**
      * Наименование регистрирующего органа
      * @var string $regAuthority
      */
-    public $regAuthority = '';
+    public $regAuthority = null;
     
     /**
      * Код подразделения, осуществившего регистрацию.
@@ -117,7 +117,7 @@ class AddressReplyRUTDF extends BaseAddressReply
      * Сведения указываются согласно отметке о регистрации субъекта.
      * @var string $divCode
      */
-    public $divCode = '';
+    public $divCode = null;
     
     /**
      * Номер телефона
@@ -148,7 +148,7 @@ class AddressReplyRUTDF extends BaseAddressReply
      * При отсутствии страны в ОКСМ указывается «999».
      * @var string $oksm
      */
-    public $oksm = '';
+    public $oksm = null;
 
     /**
      * Признак иностранного юридического лица
@@ -158,7 +158,7 @@ class AddressReplyRUTDF extends BaseAddressReply
      * @see IndicatorType
      * @var int|null
      */
-    public ?int $foreignerFact = null;
+    public $foreignerFact = null;
     
     /**
      * Виды адреса регистрации

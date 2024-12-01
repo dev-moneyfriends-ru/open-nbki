@@ -12,7 +12,7 @@ class MonthAverPaymtRUTDF extends BaseItem
      * При прекращении обязательства (независимо от основания), указывается значение 0
      * @var float $averPaymtAmt
      */
-    public $averPaymtAmt;
+    public $averPaymtAmt = 0;
     
     /**
      * Дата расчета величины среднемесячного платежа.

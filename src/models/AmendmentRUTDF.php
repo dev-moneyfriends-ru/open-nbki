@@ -11,7 +11,7 @@ class AmendmentRUTDF extends BaseItem
      * Дата изменения договора
      * @var string $amendDate
      */
-    public $amendDate = '';
+    public $amendDate = null;
     
     /**
      * Код вида изменения договора
@@ -20,7 +20,7 @@ class AmendmentRUTDF extends BaseItem
      * 3    Прочие изменения
      * @var string $type
      */
-    public $type = '';
+    public $type = null;
     
     /**
      * Код специального изменения договора
@@ -30,7 +30,7 @@ class AmendmentRUTDF extends BaseItem
      * по справочнику 3.4 – если по показателю $type указан код «3».
      * @var string $specType
      */
-    public $specType = '';
+    public $specType = null;
     
     /**
      * Описание иного изменения договора
@@ -38,25 +38,25 @@ class AmendmentRUTDF extends BaseItem
      * Вносится комментарий с описанием изменения договора.
      * @var string $otherDesc
      */
-    public $otherDesc = '';
+    public $otherDesc = null;
     
     /**
      * Дата вступления изменения договора в силу
      * @var string $startDt
      */
-    public $startDt = '';
+    public $startDt = null;
     
     /**
      * Дата планового прекращения действия изменения договора
      * @var string $planEndDt
      */
-    public $planEndDt = '';
+    public $planEndDt = null;
     
     /**
      * Дата фактического прекращения действия изменения договора
      * @var string $factEndDt
      */
-    public $factEndDt = '';
+    public $factEndDt = null;
     
     /**
      * Код причины прекращения действия изменения договора
@@ -68,12 +68,12 @@ class AmendmentRUTDF extends BaseItem
      * 99    По иному основанию
      * @var string $endReason
      */
-    public $endReason = '';
+    public $endReason = null;
     
     /**
      * Курс конверсии валюты долга
      * Заполняется, если валюта обязательства субъекта была изменена. По указанному показателю отражается обменный курс валюты согласно условиям сделки.
      * @var string $curRate
      */
-    public $curRate = '';
+    public $curRate = null;
 }
