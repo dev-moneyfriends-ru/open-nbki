@@ -39,6 +39,9 @@ use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent24Type;
 use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent25Type;
 use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent26Type;
 
+/**
+ * @deprecated
+ */
 class NbchEvents
 {
     public const EVENT_1_1 = "1.1";
@@ -72,7 +75,7 @@ class NbchEvents
     public const EVENT_3_3 = "3.3";
     public const EVENT_4_2 = "4.2";
 
-    protected static array $personEvents = [
+    protected static $personEvents = [
         self::EVENT_1_1 => FLEvent11Type::class,
         self::EVENT_1_2 => FLEvent12Type::class,
         self::EVENT_1_3 => FLEvent13Type::class,
@@ -102,7 +105,7 @@ class NbchEvents
         self::EVENT_2_12 => FLEvent2112Type::class,
     ];
 
-    protected static array $ulEvents = [
+    protected static $ulEvents = [
         self::EVENT_1_1 => ULEvent11Type::class,
         self::EVENT_1_2 => ULEvent12Type::class,
         self::EVENT_1_3 => ULEvent13Type::class,
