@@ -70,7 +70,7 @@ class NbchEvents
     public const EVENT_2_11_1B = "2.11.1B";
     public const EVENT_2_12 = "2.12";
 
-    protected static array $personEvents = [
+    protected static $personEvents = [
         self::EVENT_1_1 => FLEvent11Type::class,
         self::EVENT_1_2 => FLEvent12Type::class,
         self::EVENT_1_3 => FLEvent13Type::class,
@@ -100,7 +100,7 @@ class NbchEvents
         self::EVENT_2_12 => FLEvent2112Type::class,
     ];
 
-    protected static array $ulEvents = [
+    protected static $ulEvents = [
         self::EVENT_1_1 => ULEvent11Type::class,
         self::EVENT_1_2 => ULEvent12Type::class,
         self::EVENT_1_3 => ULEvent13Type::class,
