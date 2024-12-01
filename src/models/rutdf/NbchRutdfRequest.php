@@ -56,7 +56,10 @@ use yii\helpers\ArrayHelper;
 class NbchRutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterface
 {
     public const ENTITY = 'NbchRutdfRequest';
-    
+
+    public const TYPE_RUTDF = 'RUTDF';
+    public const TYPE_GUTDF = 'GUTDF';
+
     public const STATE_NEW = 0;
     public const STATE_EXECUTE_CREATE_RUTDF = 1;
     public const STATE_CREATED_RUTDF = 2;
@@ -123,7 +126,7 @@ class NbchRutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
                 'checkAt',
                 'checkBy'], 'integer'],
             [['errorMessage', 'regNum'], 'string'],
-            [['offerUuid', 'event'], 'required'],
+            [['offerUuid', 'event', 'type'], 'required'],
             [['offerUuid'], 'string', 'max' => 50],
             [['eventIds'], 'safe'],
         ];
