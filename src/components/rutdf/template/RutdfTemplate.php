@@ -212,7 +212,7 @@ class RutdfTemplate extends BaseTemplate
         $content = [];
         $segments = $this->getSegments();
         foreach ($segments as $segment) {
-            $content[] = $segment->render();
+            //$content[] = $segment->render();
         }
         $content = implode(PHP_EOL, $content);
         $this->content = mb_convert_encoding($content, 'cp1251');
@@ -439,5 +439,22 @@ class RutdfTemplate extends BaseTemplate
             $segments[] = new $segmentClass($this, $item);
         }
         return $segments;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getOperationaCode(): string
+    {
+        if ($this->gHeaderCode !== null) {
+            return $this->gHeaderCode;
+        }
+        if (in_array(NbchEvents::EVENT_3_3, $this->eventIds, true)) {
+            return GroupHeader::CODE_C2;
+        }
+        if ($this->sendData->isFirst()) {
+            return GroupHeader::CODE_A;
+        }
+        return GroupHeader::CODE_B;
     }
 }

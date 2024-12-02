@@ -32,13 +32,13 @@ abstract class BaseTemplate implements TemplateInterface
      * Содержимое существующего файла отчета
      * @var string
      */
-    protected $fileContent;
+    protected $fileContent = '';
 
     /**
      * Сгенерированное содержимое файла отчета
      * @var string
      */
-    protected $content;
+    protected $content = '';
 
     /**
      * @var NbchRutdfRequest|null
@@ -125,6 +125,9 @@ abstract class BaseTemplate implements TemplateInterface
 
     public function getFileContent(): string
     {
+        if(empty($this->fileContent)){
+            return $this->content;
+        }
         return $this->fileContent;
     }
 
@@ -159,5 +162,11 @@ abstract class BaseTemplate implements TemplateInterface
     public function getEventIds(): array
     {
         return $this->eventIds;
+    }
+
+    public function setFileContent(string $fileContent): BaseTemplate
+    {
+        $this->fileContent = $fileContent;
+        return $this;
     }
 }

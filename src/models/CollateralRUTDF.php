@@ -107,28 +107,28 @@ class CollateralRUTDF extends BaseItem
      * Количество договоров, обязательства из которых обеспечиваются одним и тем же предметом залога.
      * @var int|null $collateralcontCnt
      */
-    public ?int $collateralcontCnt = null;
+    public $collateralcontCnt = null;
 
     /**
      * Код места нахождения залога по ОКАТО.
      * Код субъекта Российской Федерации, на территории которого находится предмет залога, согласно ОКАТО. При отсутствии в ОКАТО кода населенного пункта по показателю «Код места нахождения залога по ОКАТО» указывается «99 999 999 999»
      * @var string
      */
-    public string $location = '';
+    public $location = '';
 
     /**
      * Актуальная стоимость предмета залога.
      * Последняя рассчитанная стоимость предмета залога.
      * @var float|null $actualCost
      */
-    public ?float $actualCost = null;
+    public $actualCost = null;
 
     /**
      * Дата расчета актуальной стоимости предмета залога
      * Последняя дата, по состоянию на которую рассчитана стоимость предмета залога.
      * @var string $actualCost
      */
-    public string $calcDate = '';
+    public $calcDate = '';
 
     /**
      * @return string[]

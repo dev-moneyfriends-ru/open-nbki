@@ -53,9 +53,6 @@ class B16FundDate extends BaseSegment
      */
     public function validate(): bool
     {
-        if (empty($this->template->sendData->getAccountReplyRUTDF()->fundDate)) {
-            $this->errors[] = 'Отсутствует fundDate';
-        }
         return true;
     }
     
