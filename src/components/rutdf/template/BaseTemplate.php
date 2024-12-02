@@ -8,6 +8,7 @@ use mfteam\nbch\Env;
 use mfteam\nbch\models\rutdf\NbchDataInterface;
 use mfteam\nbch\models\rutdf\NbchRutdfRequest;
 use Yii;
+use yii\base\Exception;
 
 abstract class BaseTemplate implements TemplateInterface
 {
@@ -126,9 +127,39 @@ abstract class BaseTemplate implements TemplateInterface
     public function getFileContent(): string
     {
         if(empty($this->fileContent)){
-            return $this->content;
+            $this->loadFileContent();
+        }
+        if(empty($this->fileContent) && !empty($this->content)){
+            $this->fileContent = $this->content;
         }
         return $this->fileContent;
+    }
+
+    /**
+     * Загружает содержимое файла отчета
+     * @throws Exception
+     */
+    private function loadFileContent(): void
+    {
+        if ($this->request === null || $this->request->getFile() === null) {
+            $this->fileContent = '';
+            return;
+        }
+
+        $content = $this->request->getFile()->getContent();
+        if ($content === false) {
+            throw new Exception('Невозможно получить содержимое файла');
+        }
+        $this->fileContent = mb_convert_encoding($content, 'UTF-8', 'WINDOWS-1251');
+    }
+
+    /**
+     * @param NbchRutdfRequest|null $request
+     * @return BaseTemplate
+     */
+    public function setRequest(?NbchRutdfRequest $request): void
+    {
+        $this->request = $request;
     }
 
     public function getRequest(): ?NbchRutdfRequest
@@ -136,10 +167,6 @@ abstract class BaseTemplate implements TemplateInterface
         return $this->request;
     }
 
-    public function setRequest(?NbchRutdfRequest $request): void
-    {
-        $this->request = $request;
-    }
 
     public function getSegments()
     {
