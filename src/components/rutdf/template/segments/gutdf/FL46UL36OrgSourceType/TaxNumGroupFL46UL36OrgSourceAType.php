@@ -3,6 +3,7 @@
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf\FL46UL36OrgSourceType;
 
 use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
+use mfteam\nbch\Env;
 
 /**
  * Class representing TaxNumGroupFL46UL36OrgSourceAType
@@ -117,7 +118,8 @@ class TaxNumGroupFL46UL36OrgSourceAType extends GutdfSegment
 
     public function init(): void
     {
-        $this->taxNum = $this->template->config->sourceInn;
+        $rutdf = Env::ensure()->module->rutdf;
+        $this->taxNum = $rutdf->sourceInn;
     }
 
     public function getXmlAttributes(): array

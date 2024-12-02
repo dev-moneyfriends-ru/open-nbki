@@ -74,6 +74,7 @@ class RutdfRequestComponent extends \yii\base\Component
             'offerUuid' => $offerUuid,
             'eventIds' => $events,
             'state' => NbchRutdfRequest::STATE_NEW,
+            'type' => NbchRutdfRequest::TYPE_GUTDF,
         ]);
         if (!$model->save()) {
             throw new CreateNbchRutdfRequestException('Create error' . VarDumper::dumpAsString($model->errors));

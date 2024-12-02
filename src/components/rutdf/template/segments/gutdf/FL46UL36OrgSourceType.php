@@ -4,6 +4,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
 use DateTime;
 use mfteam\nbch\components\rutdf\template\segments\gutdf\FL46UL36OrgSourceType\TaxNumGroupFL46UL36OrgSourceAType;
+use mfteam\nbch\Env;
 
 /**
  * Class representing FL46UL36OrgSourceType
@@ -595,9 +596,10 @@ class FL46UL36OrgSourceType extends GutdfSegment
 
     public function init(): void
     {
+        $rutdf = Env::ensure()->module->rutdf;
         $this->sourceCode = $this->template->sendData->getAccountReplyRUTDF()->memberTypeCode;
         $this->fullName = $this->template->sendData->getAccountReplyRUTDF()->memberFullName;
-        $this->regNum = $this->template->config->sourceOgrn;
+        $this->regNum = $rutdf->sourceOgrn;
         $this->addToTaxNumGroupFL46UL36OrgSource((new TaxNumGroupFL46UL36OrgSourceAType($this->template)));
         $this->sourceCreditInfoDate = $this->formatDate($this->template->generateTime);
     }

@@ -55,7 +55,7 @@ abstract class BaseTemplate implements TemplateInterface
      * Время генерации
      * @var int
      */
-    public int $generateTime;
+    public $generateTime;
 
     /**
      * Данные для отправки

@@ -51,6 +51,8 @@ use yii\helpers\ArrayHelper;
  * @property-read string $fileTicketType
  * @property-read string $sigFileType
  * @property string $regNum
+ * @property string $type
+ * @property-read bool $isGutdf
  * @property int $checkBy [int(11)]
  */
 class NbchRutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterface
@@ -493,5 +495,10 @@ class NbchRutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
             $this->regNum = $file->fileName;
         }
         return parent::beforeValidate();
+    }
+
+    public function getIsGutdf(): bool
+    {
+        return $this->type === self::TYPE_GUTDF;
     }
 }
