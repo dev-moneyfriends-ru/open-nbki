@@ -49,7 +49,7 @@ class RutdfRequestComponent extends \yii\base\Component
      * Адрес куда слать отчеты
      * @var string
      */
-    public $reportEmail = 'RUTDF@nbki.ru';
+    public $reportEmail = 'GUTDF@nbki.ru';
     
     /**
      * @var bool
