@@ -139,7 +139,7 @@ abstract class BaseTemplate implements TemplateInterface
      * Загружает содержимое файла отчета
      * @throws Exception
      */
-    private function loadFileContent(): void
+    protected function loadFileContent(): void
     {
         if ($this->request === null || $this->request->getFile() === null) {
             $this->fileContent = '';

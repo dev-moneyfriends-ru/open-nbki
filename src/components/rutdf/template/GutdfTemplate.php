@@ -4,6 +4,7 @@ namespace mfteam\nbch\components\rutdf\template;
 
 use mfteam\nbch\components\rutdf\template\segments\gutdf\Document;
 use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
+use yii\base\Exception;
 
 /**
  * Шаблон GUTDF
@@ -51,5 +52,23 @@ class GutdfTemplate extends BaseTemplate
                 }
             }
         }
+    }
+
+    /**
+     * Загружает содержимое файла отчета
+     * @throws Exception
+     */
+    protected function loadFileContent(): void
+    {
+        if ($this->request === null || $this->request->getFile() === null) {
+            $this->fileContent = '';
+            return;
+        }
+
+        $content = $this->request->getFile()->getContent();
+        if ($content === false) {
+            throw new Exception('Невозможно получить содержимое файла');
+        }
+        $this->fileContent = $content;
     }
 }
