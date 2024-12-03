@@ -13,7 +13,7 @@ abstract class GutdfSegment extends BaseSegment
      * Значение пустого поля
      */
     public const EMPTY_VALUE = null;
-    public const DATE_FORMAT = 'Y-m-d';
+    public const DATE_FORMAT = 'yyyy-MM-dd';
 
     /**
      * Индекс множественного сегмента
