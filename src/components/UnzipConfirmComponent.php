@@ -149,9 +149,11 @@ class UnzipConfirmComponent extends BaseObject
         foreach ($files as $fileName) {
             if ($this->isRejectFile($fileName)) {
                 $this->uploadRejectFile($fileName);
+                continue;
             }
             if ($this->isTicketFile($fileName)) {
                 $this->uploadTicketFile($fileName);
+                continue;
             }
             if ($this->isTicketSigFile($fileName)) {
                 $this->uploadTicketSigFile($fileName);
