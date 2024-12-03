@@ -167,7 +167,7 @@ class UnzipConfirmComponent extends BaseObject
     
     private function uploadRejectFile($fileName)
     {
-        $this->uploadFile($this->request->getFile()->fileName . '_reject', $fileName, $this->request->getFileRejectType());
+        $this->uploadFile($this->request->getFile()->fileName . '_reject.xml', $fileName, $this->request->getFileRejectType());
     }
     
     private function uploadFile($name, $path, $type)
@@ -192,12 +192,12 @@ class UnzipConfirmComponent extends BaseObject
     
     private function isTicketFile($fileName)
     {
-        return strpos($fileName, '_ticket2.xml') && strpos($fileName, '_ticket2.xml.sig') === false;
+        return strpos($fileName, '_ticket2.xml') && strpos($fileName, '_ticket2.xml.sig') === false && strpos($fileName, '.zip') === false;
     }
     
     private function uploadTicketFile($fileName)
     {
-        $this->uploadFile($this->request->getFile()->fileName . '_ticket', $fileName, $this->request->getFileTicketType());
+        $this->uploadFile($this->request->getFile()->fileName . '_ticket.xml', $fileName, $this->request->getFileTicketType());
     }
     
     private function isTicketSigFile($fileName)
