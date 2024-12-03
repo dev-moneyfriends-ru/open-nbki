@@ -47,6 +47,11 @@ class CreateZipArchiveComponent extends BaseObject
      * @var string
      */
     private $zipFile;
+
+    /**
+     * @var array|string|string[]
+     */
+    private $baseFileName;
     
     public function __construct(BaseSendNbchRequestInterface $request, $config = [])
     {
@@ -90,6 +95,7 @@ class CreateZipArchiveComponent extends BaseObject
         $this->client = Env::ensure()->module->esignClient;
         $this->tmpPath = $this->request->getTmpPath();
         FileHelper::createDirectory($this->tmpPath);
+        $this->baseFileName = str_replace('.xml', '', $this->file->getFileName());
     }
     
     /**
@@ -138,7 +144,7 @@ class CreateZipArchiveComponent extends BaseObject
         $this->request->save();
         
         $zip = new ZipArchive();
-        $fileName = $this->file->fileName;
+        $fileName = $this->baseFileName;
         $zipFile = $this->tmpPath . DIRECTORY_SEPARATOR . $fileName . '.zip';
         
         if (file_exists($zipFile)) {
@@ -149,8 +155,8 @@ class CreateZipArchiveComponent extends BaseObject
             throw new Exception('Create zip error ' . $zipFile);
         }
         
-        $zip->addFromString($fileName, $this->file->content);
-        $zip->addFile($this->tmpSigFile, $fileName . '.sig');
+        $zip->addFromString($this->file->getFileName(), $this->file->content);
+        $zip->addFile($this->tmpSigFile, $this->file->getFileName() . '.sig');
         $zip->close();
         
         $this->zipFile = $zipFile;
@@ -180,7 +186,7 @@ class CreateZipArchiveComponent extends BaseObject
         
         $fileManager = Env::ensure()->module->file;
     
-        $tmpFile = $this->tmpPath . DIRECTORY_SEPARATOR . $this->file->fileName . '.zip.p7m';
+        $tmpFile = $this->tmpPath . DIRECTORY_SEPARATOR . $this->baseFileName . '.zip.p7m';
         if (!file_put_contents($tmpFile, base64_decode($this->client->getResponseResult()))) {
             throw new Exception('Save file ' . $tmpFile . ' error');
         }
@@ -188,7 +194,7 @@ class CreateZipArchiveComponent extends BaseObject
         $file = new NbchFile();
         $file->setContent($content)
             ->setStoragePath($tmpFile)
-            ->setFileName($this->file->fileName . '.zip.p7m')
+            ->setFileName($this->baseFileName . '.zip.p7m')
             ->setEntityId($this->request->id)
             ->setEntity($this->request->getEntity())
             ->setType($this->request->getFileZipType());
