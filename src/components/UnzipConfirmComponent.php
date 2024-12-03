@@ -162,7 +162,7 @@ class UnzipConfirmComponent extends BaseObject
     
     private function isRejectFile($fileName)
     {
-        return strpos($fileName, '_reject');
+        return (bool) strpos(file_get_contents($fileName), 'errorNum');
     }
     
     private function uploadRejectFile($fileName)
@@ -192,7 +192,7 @@ class UnzipConfirmComponent extends BaseObject
     
     private function isTicketFile($fileName)
     {
-        return strpos($fileName, '_ticket') && strpos($fileName, '_ticket.sig') === false;
+        return strpos($fileName, '_ticket2.xml') && strpos($fileName, '_ticket2.xml.sig') === false;
     }
     
     private function uploadTicketFile($fileName)
@@ -202,7 +202,7 @@ class UnzipConfirmComponent extends BaseObject
     
     private function isTicketSigFile($fileName)
     {
-        return strpos($fileName, '_ticket.sig');
+        return strpos($fileName, '_ticket2.xml.sig');
     }
     
     private function uploadTicketSigFile($fileName)
