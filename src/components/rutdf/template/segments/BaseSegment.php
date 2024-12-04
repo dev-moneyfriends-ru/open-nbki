@@ -75,7 +75,7 @@ abstract class BaseSegment extends \yii\base\BaseObject
      * @return string
      * @throws InvalidConfigException
      */
-    public function formatDate($date): string
+    public function formatDate($date): ?string
     {
         if (empty($date)) {
             return static::EMPTY_VALUE;
