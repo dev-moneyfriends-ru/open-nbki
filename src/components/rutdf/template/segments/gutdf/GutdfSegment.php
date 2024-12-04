@@ -23,9 +23,8 @@ abstract class GutdfSegment extends BaseSegment
 
     public function __construct(BaseTemplate $template, ?int $idx = null)
     {
-        parent::__construct($template);
         $this->idx = $idx;
-        $this->init();
+        parent::__construct($template);
     }
     /**
      * @inheritDoc
