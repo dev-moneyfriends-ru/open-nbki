@@ -89,7 +89,7 @@ class GenerateGutdfXml
                 }
                 continue;
             }
-            if (!is_object($value)) {
+            if (!is_object($value) && !is_array($value)) {
                 if (is_int($xmlName)) {
                     $xmlName = $attribute;
                 }
