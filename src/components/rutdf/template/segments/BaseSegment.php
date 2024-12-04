@@ -90,7 +90,7 @@ abstract class BaseSegment extends \yii\base\BaseObject
     public function formatCurrency($value)
     {
         if($value === null){
-            return self::EMPTY_VALUE;
+            return static::EMPTY_VALUE;
         }
         
         return number_format(round((float)$value, 2), 2, ',', '');
@@ -104,7 +104,7 @@ abstract class BaseSegment extends \yii\base\BaseObject
     {
         $value = mb_strtoupper(trim($value));
         if(empty($value)){
-            return self::EMPTY_VALUE;
+            return static::EMPTY_VALUE;
         }
         return $value;
     }

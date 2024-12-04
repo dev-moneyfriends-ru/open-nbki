@@ -15,34 +15,34 @@ class AmountInfoRUTDF extends BaseItem
      * исполнение которого обеспечено обязательством субъекта, на дату формирования задолженности, изменения суммы задолженности.
      * @var float|null $ensuredAmt
      */
-    public ?float $ensuredAmt = null;
+    public $ensuredAmt = null;
 
     /**
      * Валюта обеспечиваемого обязательства
      * @var string $commitcurrCode
      */
-    public string $commitcurrCode = 'RUB';
+    public $commitcurrCode = 'RUB';
 
     /**
      * Код типа обеспечиваемого обязательства
      * Заполняется по справочнику 2.2
      * @var string $commitCode
      */
-    public string $commitCode = '';
+    public $commitCode = '';
 
     /**
      * Дата расчета.
      * Определяется датой, по состоянию на которую сформированы данные
      * @var string $amtDate
      */
-    public string $amtDate = '';
+    public $amtDate = '';
 
     /**
      * УИд сделки, в результате которой возникло обеспечиваемое обязательство
      * Указывается УИд сделки, обязательства из которой обеспечены обязательством субъекта.
      * @var string $commitUuid
      */
-    public string $commitUuid = '';
+    public $commitUuid = '';
 
     /**
      * Лимит ответственности по обеспечиваемому обязательству.
@@ -50,5 +50,5 @@ class AmountInfoRUTDF extends BaseItem
      * согласно условиям сделки
      * @var float|null
      */
-    public ?float $liabilityLimit = null;
+    public $liabilityLimit = null;
 }
