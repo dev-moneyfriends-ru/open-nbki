@@ -2,6 +2,8 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
+use mfteam\nbch\helpers\UuidHelper;
+
 /**
  * Class representing FL55ApplicationType
  *
@@ -597,7 +599,7 @@ class FL55ApplicationType extends GutdfSegment
         $this->role = $informPart->requestedFlagIndicatorCode;
         $this->sum = $this->formatCurrency($informPart->requestedAmt);
         $this->currency = $informPart->requestedCurrencyCode;
-        $this->uid = $informPart->applicationNumber . '-' . $informPart->getUuidControlSum($informPart->applicationNumber);
+        $this->uid = UuidHelper::getUuidWithControl($informPart->applicationNumber);
         $this->applicationDate = $this->formatDate($informPart->applicationDate);
         $this->sourceCode = $informPart->creditorTypeCode;
         $this->wayCode = $informPart->applicationShipmentCode;
