@@ -13,7 +13,7 @@ class SNILSReq extends SNILSReply
     public function fields()
     {
         return [
-            'SNILS' => 'number'
+            'SNILS'
         ];
     }
 }
