@@ -96,15 +96,7 @@ class PreplyReport extends BaseObject
                 }
                 /** @var BaseItem $model */
                 $model = new $class();
-                foreach ($config as $key => $value) {
-                    $setter = 'set' . $key;
-                    if (method_exists($model, $setter)) {
-                        $data = ArrayHelper::isIndexed($value) ? $value : [$value];
-                        $model->$setter($data);
-                    } else {
-                        $model->setAttributes([$key => $value], false);
-                    }
-                }
+                $model->setAttributes($config, false);
                 $models[] = $model;
             }
         } elseif (is_object($values)) {
