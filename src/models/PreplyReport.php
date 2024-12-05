@@ -56,10 +56,11 @@ class PreplyReport extends BaseObject
             return null;
         }
         $class = 'mfteam\\nbch\\models\\' . $name;
-        if(class_exists($class)){
-            $this->data[$name] = $this->initModels($this->report[$name], $class);
-        }elseif(class_exists($class.'RUTDF')){
+
+        if(class_exists($class.'RUTDF')){
             $this->data[$name] = $this->initModels($this->report[$name], $class.'RUTDF');
+        }elseif(class_exists($class)){
+            $this->data[$name] = $this->initModels($this->report[$name], $class);
         }else{
             $this->data[$name] = $this->report[$name];
         }

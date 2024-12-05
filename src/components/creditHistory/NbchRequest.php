@@ -82,9 +82,9 @@ class NbchRequest extends \yii\httpclient\Request
         if ($env->module->creditHistory->test) {
             $response->setContent(file_get_contents('testData.xml'));
         }
-        
+        $content = str_replace('<version>', '<version mappedFormat="6">', $this->getContent());
         $esignClient = $env->module->esignClient;
-        $esignClient->setSrcContent($this->getContent());
+        $esignClient->setSrcContent($content);
         
         if ($esignClient->nbchUnzip()) {
             $xmlResult = base64_decode($esignClient->getResponseResult());

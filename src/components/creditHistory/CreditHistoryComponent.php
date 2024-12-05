@@ -391,7 +391,7 @@ class CreditHistoryComponent extends Component
         $responseData = base64_decode($request->responseData);
         $parser = new XmlToArrayParser();
         $data = $parser->parseXml($responseData);
-        $model->report = ArrayHelper::getValue($data, 'preply.report');
+        $model->report = ArrayHelper::getValue($data, 'preply3.report');
         return $model;
     }
     
