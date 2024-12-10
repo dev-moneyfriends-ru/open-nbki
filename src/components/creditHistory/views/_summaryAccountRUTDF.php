@@ -12,7 +12,7 @@ use yii\web\View;
 
 $pastdueArrear = $model->getPastdueArrear();
 $amtPastDue = $pastdueArrear->amtPastDue ?? 0;
-$payment = $model->getPayment()?$model->getPayment()[count($model->getPayment()) - 1]:null;
+$payment = $model->getLastPayment();
 $daysPastDue = $payment->daysPastDue ?? 0;
 $trade = $model->getTrade()??(new TradeRUTDF());
 $accountAmt = $model->getAccountAmt();

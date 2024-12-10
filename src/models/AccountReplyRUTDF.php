@@ -47,20 +47,20 @@ class AccountReplyRUTDF extends Account
      * при передаче одно значение
      * @var TradeRUTDF[] $tradeArray
      */
-    public $tradeArray = [];
+    protected $tradeArray = [];
     
     /**
      * Сумма и валюта обязательства
      * @var AccountAmtRUTDF[] $accountAmtArray
      */
-    public $accountAmtArray = [];
+    protected $accountAmtArray = [];
     
     /**
      * Сведения о солидарных должниках
      * при передаче одно значение
      * @var CoborrowerRUTDF[] $coborrower
      */
-    public $coborrowerArray = [];
+    protected $coborrowerArray = [];
     
     /**
      * Сведения об условиях платежей.
@@ -68,7 +68,7 @@ class AccountReplyRUTDF extends Account
      * при передаче одно значение
      * @var PaymtConditionRUTDF[] $paymtCondition
      */
-    public $paymtConditionArray = [];
+    protected $paymtConditionArray = [];
     
     /**
      * Полная стоимость потребительского кредита (займа)
@@ -76,13 +76,13 @@ class AccountReplyRUTDF extends Account
      * При передаче одно значение
      * @var OverallValRUTDF[] $overallVal
      */
-    public $overallValArray = [];
+    protected $overallValArray = [];
     
     /**
      * Сведения об изменении договора
      * @var AmendmentRUTDF[] $amendment
      */
-    public $amendment = [];
+    protected $amendment = [];
     
     /**
      * Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства.
@@ -99,7 +99,7 @@ class AccountReplyRUTDF extends Account
      * Сведения о передаче финансирования субъекту или о возникновении обеспечения исполнения обязательства.
      * @var array|FundDateRUTDF[] $fundDateArray
      */
-    private $fundDateRUTDF = [];
+    protected $fundDateRUTDF = [];
 
     /**
      * Код источника.
@@ -131,7 +131,7 @@ class AccountReplyRUTDF extends Account
      * при передаче одно значение
      * @var ArrearRUTDF[] $arrear
      */
-    public $arrearArray = [];
+    protected $arrearArray = [];
     
     /**
      * Сведения о срочной задолженности.
@@ -140,7 +140,7 @@ class AccountReplyRUTDF extends Account
      * при передаче одно значение
      * @var DueArrearRUTDF[] $dueArrear
      */
-    public $dueArrearArray = [];
+    protected $dueArrearArray = [];
     
     /**
      * Сведения о просроченной задолженности
@@ -149,7 +149,7 @@ class AccountReplyRUTDF extends Account
      * при передаче одно значение
      * @var PastdueArrearRUTDF[] $pastdueArrear
      */
-    public $pastdueArrearArray = [];
+    protected $pastdueArrearArray = [];
     
     /**
      * Сведения о внесении платежей.
@@ -160,7 +160,7 @@ class AccountReplyRUTDF extends Account
      * Если передаются несколько показателей, то они будут обработаны и отображены в кредитном отчете последовательно.
      * @var PaymentRUTDF[] $payment
      */
-    public $payment = [];
+    protected $payment = [];
     
     /**
      * Величина среднемесячного платежа по договору займа (кредита) и дата ее расчета.
@@ -169,7 +169,7 @@ class AccountReplyRUTDF extends Account
      * при передаче одно значение
      * @var MonthAverPaymtRUTDF[] $monthAverPaymt
      */
-    public $monthAverPaymtArray = [];
+    protected $monthAverPaymtArray = [];
     
     /**
      * Сведения о неденежном обязательстве источника.
@@ -179,7 +179,7 @@ class AccountReplyRUTDF extends Account
      * при передаче одно значение
      * @var SourceNonMonetObligRUTDF[] $sourceNonMonetOblig
      */
-    public $sourceNonMonetObligArray = [];
+    protected $sourceNonMonetObligArray = [];
     
     /**
      * Сведения о неденежном обязательстве субъекта.
@@ -187,43 +187,43 @@ class AccountReplyRUTDF extends Account
      * при передаче одно значение
      * @var SubjectNonMonetObligRUTDF[] $subjectNonMonetOblig
      */
-    public $subjectNonMonetObligArray = [];
+    protected $subjectNonMonetObligArray = [];
     
     /**
      * Сведения о залоге
      * @var CollateralRUTDF[] $collateral
      */
-    public $collateral = [];
+    protected $collateral = [];
     
     /**
      * Сведения о поручительстве
      * @var GuarantorRUTDF[] $guarantor
      */
-    public $guarantor = [];
+    protected $guarantor = [];
     
     /**
      * Сведения о независимой гарантии
      * @var IndepGuarantorRUTDF[] $indepGuarantor
      */
-    public $indepGuarantor = [];
+    protected $indepGuarantor = [];
     
     /**
      * Сведения о страховании предмета залога
      * @var CollatInsuredRUTDF[] $collatInsured
      */
-    public $collatInsured = [];
+    protected $collatInsured = [];
     
     /**
      * Сведения о погашении требований кредитора по обязательству за счет обеспечения
      * @var CollatRepayRUTDF[] $collatRepay
      */
-    private $collatRepayArray = [];
+    protected $collatRepayArray = [];
 
     /**
      * Сведения об изменении условий обязательства, обусловленном наступлением указанных в сделке событий.
      * @var ContractTermsChangesRUTDF[] $contractTermsChanges
      */
-    private $contractTermsChanges = [];
+    protected $contractTermsChanges = [];
 
     /**
      * Признак обязанности возместить выплаченную сумму.
@@ -284,7 +284,7 @@ class AccountReplyRUTDF extends Account
      * Сведения о судебном споре или требовании по обязательству
      * @var LegalItemsRUTDF[] $legalItems
      */
-    public $legalItems = [];
+    protected $legalItems = [];
     
     /**
      * Признак учета обязательства.
@@ -328,7 +328,7 @@ class AccountReplyRUTDF extends Account
      * Сведения о прекращении передачи информации по обязательству
      * @var SubmitHoldRUTDF[] $submitHold
      */
-    private $submitHoldArray = [];
+    protected $submitHoldArray = [];
 
     /**
      * УИд сделки, задолженность по которой была рефинансирована (если по такой сделке формируется кредитная история) за счет сделки, по которой формируется кредитная история
@@ -346,13 +346,13 @@ class AccountReplyRUTDF extends Account
      * Сведения об обеспечиваемом обязательстве
      * @var array|AmountInfoRUTDF[]
      */
-    private $amountInfoArray = [];
+    protected $amountInfoArray = [];
 
     /**
      * Сведения о долговой нагрузке заемщика
      * @var array|DebtBurdenInfoRUTDF
      */
-    private $debtBurdenInfo = [];
+    protected $debtBurdenInfo = [];
 
     
     /**
@@ -594,7 +594,15 @@ class AccountReplyRUTDF extends Account
     {
         return $this->payment;
     }
-    
+
+    /**
+     * @return PaymentRUTDF|null
+     */
+    public function getLastPayment(): ?PaymentRUTDF
+    {
+        return $this->getLastValue('payment');
+    }
+
     /**
      * @param PaymentRUTDF[] $payment
      */

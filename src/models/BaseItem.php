@@ -231,7 +231,7 @@ abstract class BaseItem extends \yii\base\Model
                 if (is_array($config)) {
                     /** @var BaseItem $model */
                     $model = new $class();
-                    $model->setAttributes($config);
+                    $model->setAttributes($config, false);
                     $models[] = $model;
                 }
             }
@@ -240,7 +240,7 @@ abstract class BaseItem extends \yii\base\Model
         } else {
             /** @var BaseItem $model */
             $model = new $class();
-            $model->setAttributes($data);
+            $model->setAttributes($data, false);
             $models[] = $model;
         }
         return $models;

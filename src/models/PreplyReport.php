@@ -96,16 +96,14 @@ class PreplyReport extends BaseObject
                     continue;
                 }
                 /** @var BaseItem $model */
-                $model = new $class();
-                $model->setAttributes($config, false);
+                $model = new $class($config);
                 $models[] = $model;
             }
         } elseif (is_object($values)) {
             $models[] = $values;
         } else {
             /** @var BaseItem $model */
-            $model = new $class();
-            $model->setAttributes($values, false);
+            $model = new $class($values);
             $models[] = $model;
         }
         return $models;

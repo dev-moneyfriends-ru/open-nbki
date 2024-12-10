@@ -11,7 +11,6 @@ use mfteam\nbch\models\BusinessReply;
 use mfteam\nbch\models\RegnumReply;
 use mfteam\nbch\models\TaxpayerIdReply;
 use yii\web\View;
-
 $business = $businessReply[0];
 $regnum = null;
 if(!empty($regnumReply)){

@@ -3,7 +3,7 @@
 
 
 /* @var $this \yii\web\View */
-/* @var $models \mfteam\nbch\models\Guarantor[] */
+/* @var $models \mfteam\nbch\models\GuarantorRUTDF[] */
 ?>
 <div class="row" style="margin-top: 50px">
     <div class="col">

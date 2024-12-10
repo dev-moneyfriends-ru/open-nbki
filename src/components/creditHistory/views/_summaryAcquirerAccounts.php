@@ -2,7 +2,9 @@
 
 /* @var $this \yii\web\View */
 /* @var $accountReplyRUTDF \mfteam\nbch\models\AccountReplyRUTDF[] */
-
+if(empty($accountReplyRUTDF)){
+    return;
+}
 $creditLimit = 0;
 $amtOutstanding = 0;
 $amtPastDue = 0;
