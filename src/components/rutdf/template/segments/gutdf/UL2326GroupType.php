@@ -179,7 +179,8 @@ class UL2326GroupType extends GutdfSegment
             $this->assetKind1 = null;
             return;
         }
-
+        $this->assetKind0 = null;
+        $this->assetKind1 = '';
         foreach ($collaterals as $key => $collateral) {
             $this->addToPropertyIdGroupUL2326Group(new PropertyIdGroupUL2326GroupAType($this->template, $key));
         }
