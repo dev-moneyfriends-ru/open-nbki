@@ -146,7 +146,7 @@ class UL25GuaranteeType extends GutdfSegment
      */
     public function getSegmentName(): string
     {
-        return 'UL_25_Guarantee_Type';
+        return 'UL_25_Guarantee';
     }
 
     /**

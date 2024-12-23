@@ -6,6 +6,8 @@
 
 use mfteam\nbch\models\AccountReplyRUTDF;
 use mfteam\nbch\models\LoanKind;
+use mfteam\nbch\models\references\DealType;
+use mfteam\nbch\models\references\RoleType;
 use mfteam\nbch\models\TradeRUTDF;
 use mfteam\nbch\models\TradeType;
 use yii\web\View;
@@ -47,12 +49,12 @@ if ($maxPatDue > 30) {
     <td><?= $model->uuid ?? $model->serialNum ?></td>
     <td><?= $model->businessCategory ?></td>
     <td>
-        <?= TradeType::getText($trade->tradeTypeCode) ?>
-        <?= $trade->loanKindCode ?>
+        <?= RoleType::getText($trade->ownerIndic) ?>
+        <?= DealType::getText($trade->tradeTypeCode) ?>
     </td>
     <td><?= $accountAmt?Yii::$app->formatter->asDecimal((float)$accountAmt->creditLimit, 2):'-' ?></td>
     <td><?= $accountAmt?$accountAmt->currencyCode:'-'?></td>
-    <td><?= $trade->openedDt ? Yii::$app->formatter->asDate($trade->openedDt, 'dd.MM.yyyy') : '-'; ?></td>
+    <td><?= $model->getFundDateRUTDF() ? Yii::$app->formatter->asDate($model->getFundDateRUTDF()[0]->fundDate):'-' ?></td>
     <td><?= $trade->closeDt ? Yii::$app->formatter->asDate($trade->closeDt, 'dd.MM.yyyy') : '-'; ?></td>
     <td><?= $dueArrear ? Yii::$app->formatter->asDecimal((float)$dueArrear->amtOutstanding, 2) : '-' ?></td>
     <td class="<?= $amtPastDue ? 'text-danger' : 'text-success' ?>"><?= Yii::$app->formatter->asDecimal(
