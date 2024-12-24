@@ -623,16 +623,22 @@ class FLEvent25Type extends EventDataType
         foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToFL191AmountInfo(new FL191AmountInfoType($this->template, $key));
         }
-        $this->fL20JointDebtors = new FL20JointDebtorsType($this->template);
+
         $this->fL21PaymentTerms = new FL21PaymentTermsType($this->template);
-        $this->fL29MonthlyPayment = new FL29MonthlyPaymentType($this->template);
-        $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
+        $this->setFL25262728Group(new FL25262728GroupType($this->template));
+        if($this->template->sendData->getAccountReplyRUTDF()->getMonthAverPaymt()){
+            $this->fL29MonthlyPayment = new FL29MonthlyPaymentType($this->template);
+        }
+
+        if($this->template->sendData->getAccountReplyRUTDF()->getDebtBurdenInfo()){
+            $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
+        }
         foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
         }
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
-            $this->addToFL31NonMonetarySubject(new FL31NonMonetarySubjectType($this->template, $key));
-        }
+//        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+//            $this->addToFL31NonMonetarySubject(new FL31NonMonetarySubjectType($this->template, $key));
+//        }
         $this->fL38ContractEnd = new FL38ContractEndType($this->template);
         $this->fL56Participation = new FL56ParticipationType($this->template);
     }
@@ -647,7 +653,6 @@ class FLEvent25Type extends EventDataType
             'fL18Deal',
             'fL19Amount',
             'fL191AmountInfo',
-            'fL20JointDebtors',
             'fL21PaymentTerms',
             'fL22TotalCost',
             'fL25262728Group',
