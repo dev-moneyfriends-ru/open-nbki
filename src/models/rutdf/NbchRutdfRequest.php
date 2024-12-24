@@ -233,6 +233,7 @@ class NbchRutdfRequest extends ActiveRecord implements BaseSendNbchRequestInterf
             self::STATE_ERROR,
             self::STATE_NEW,
             self::STATE_CREATED_RUTDF,
+            self::STATE_NBCH_ERROR,
         ]);
     }
     
