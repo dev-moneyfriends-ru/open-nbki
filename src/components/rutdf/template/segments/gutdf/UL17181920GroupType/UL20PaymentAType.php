@@ -420,8 +420,6 @@ class UL20PaymentAType extends GutdfSegment
             $this->paymentSum = $this->formatCurrency(0);
             $this->sizeCode = AmtKeepCode::T3;
             $this->scheduleCode = TermsDueCode::T1;
-            $this->lastMissPaySum = $this->formatCurrency(0);
-            $this->paySum24 = $this->formatCurrency(0);
             return;
         }
         $payment = array_shift($payments);
@@ -429,8 +427,6 @@ class UL20PaymentAType extends GutdfSegment
             $this->paymentSum = $this->formatCurrency(0);
             $this->sizeCode = AmtKeepCode::T3;
             $this->scheduleCode = TermsDueCode::T1;
-            $this->lastMissPaySum = $this->formatCurrency($payment->lastMissPaySum);
-            $this->paySum24 = $this->formatCurrency($payment->paySum24);
             return;
         }
 
