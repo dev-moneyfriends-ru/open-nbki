@@ -296,7 +296,10 @@ class FL25262728GroupType extends GutdfSegment
         $this->fL25Debt = new FL25DebtAType($this->template);
         $this->fL26DebtDue = new FL26DebtDueAType($this->template);
         $this->fL27DebtOverdue = new FL27DebtOverdueAType($this->template);
-        $this->fL28Payment = new FL28PaymentAType($this->template);
+
+        if(!empty($this->template->sendData->getAccountReplyRUTDF()->getPayment())){
+            $this->fL28Payment = new FL28PaymentAType($this->template);
+        }
     }
 
     /**

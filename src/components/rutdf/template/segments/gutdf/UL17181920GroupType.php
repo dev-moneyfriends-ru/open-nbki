@@ -297,7 +297,10 @@ class UL17181920GroupType extends GutdfSegment
         $this->uL17Debt = new UL17DebtAType($this->template);
         $this->uL18DebtDue = new UL18DebtDueAType($this->template);
         $this->uL19DebtOverdue = new UL19DebtOverdueAType($this->template);
-        $this->uL20Payment = new UL20PaymentAType($this->template);
+
+        if(!empty($this->template->sendData->getAccountReplyRUTDF()->getPayment())){
+            $this->fL28Payment = new UL20PaymentAType($this->template);
+        }
     }
 
     /**
