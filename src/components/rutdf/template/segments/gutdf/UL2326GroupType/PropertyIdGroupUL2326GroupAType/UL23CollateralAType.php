@@ -471,7 +471,7 @@ class UL23CollateralAType extends GutdfSegment
         $this->date = $this->formatDate($collateral->collateralAgreementDt);
         $this->collateralEndDate = $this->formatDate($collateral->collateralExpirationDate);
         $this->collateralFactEndDate = $this->formatDate($collateral->collateralFactExpirationDate);
-        $this->calcDate = $this->formatDate($collateral->collateralFactExpirationDate);
+        $this->calcDate = $this->formatDate($collateral->calcDate);
 
         $this->addToSumGroupUL2326Group(new SumGroupUL2326GroupAType($this->template, $this->idx));
 

@@ -453,7 +453,7 @@ class FL32CollateralAType extends GutdfSegment
         $this->date = $this->formatDate($collateral->collateralAgreementDt);
         $this->collateralEndDate = $this->formatDate($collateral->collateralExpirationDate);
         $this->collateralFactEndDate = $this->formatDate($collateral->collateralFactExpirationDate);
-        $this->calcDate = $this->formatDate($collateral->collateralFactExpirationDate);
+        $this->calcDate = $this->formatDate($collateral->calcDate);
 
         $this->addToSumGroupFL3235Group(new SumGroupFL3235GroupAType($this->template, $this->idx));
 
