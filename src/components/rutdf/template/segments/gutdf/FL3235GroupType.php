@@ -180,6 +180,8 @@ class FL3235GroupType extends GutdfSegment
             $this->assetKind1 = null;
             return;
         }
+        $this->assetKind0 = null;
+        $this->assetKind1 = '';
 
         foreach ($collaterals as $key => $collateral) {
             $this->addToPropertyIdGroupFL3235Group(new PropertyIdGroupFL3235GroupAType($this->template, $key));
