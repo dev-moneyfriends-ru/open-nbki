@@ -485,14 +485,19 @@ class FL28PaymentAType extends GutdfSegment
     {
         $payments = $this->template->sendData->getAccountReplyRUTDF()->getPayment();
         if(empty($payments)){
+            $this->paymentSum = $this->formatCurrency(0);
+            $this->sizeCode = AmtKeepCode::T3;
+            $this->scheduleCode = TermsDueCode::T1;
+            $this->lastMissPaySum = $this->formatCurrency(0);
+            $this->paySum24 = $this->formatCurrency(0);
             return;
         }
         $payment = array_shift($payments);
         if(empty($payment->paymtAmt)){
-            $this->paymentSum = $this->formatCurrency($payment->paymtAmt);
+            $this->paymentSum = $this->formatCurrency(0);
             $this->sizeCode = AmtKeepCode::T3;
             $this->scheduleCode = TermsDueCode::T1;
-            $this->lastMissPaySum = $this->formatCurrency(0);
+            $this->lastMissPaySum = $this->formatCurrency($payment->lastMissPaySum);
             $this->paySum24 = $this->formatCurrency($payment->paySum24);
             return;
         }

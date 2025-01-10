@@ -416,14 +416,23 @@ class UL20PaymentAType extends GutdfSegment
     public function init(): void
     {
         $payments = $this->template->sendData->getAccountReplyRUTDF()->getPayment();
-        if(empty($payments) || empty($payments[0]->paymtAmt)){
+        if(empty($payments)){
             $this->paymentSum = $this->formatCurrency(0);
             $this->sizeCode = AmtKeepCode::T3;
             $this->scheduleCode = TermsDueCode::T1;
+            $this->lastMissPaySum = $this->formatCurrency(0);
+            $this->paySum24 = $this->formatCurrency(0);
             return;
         }
-
-        $payment = $payments[0];
+        $payment = array_shift($payments);
+        if(empty($payment->paymtAmt)){
+            $this->paymentSum = $this->formatCurrency(0);
+            $this->sizeCode = AmtKeepCode::T3;
+            $this->scheduleCode = TermsDueCode::T1;
+            $this->lastMissPaySum = $this->formatCurrency($payment->lastMissPaySum);
+            $this->paySum24 = $this->formatCurrency($payment->paySum24);
+            return;
+        }
 
         $this->date = $this->formatDate($payment->paymtDate);
         $this->sizeCode = $payment->amtKeepCode;
