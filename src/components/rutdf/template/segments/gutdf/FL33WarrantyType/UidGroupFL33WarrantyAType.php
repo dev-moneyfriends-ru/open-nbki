@@ -286,7 +286,7 @@ class UidGroupFL33WarrantyAType extends GutdfSegment
         $this->openDate = $this->formatDate($warranty->guaranteeAgreementDt);
         $this->endDate = $this->formatDate($warranty->guaranteeExpirationDate);
         $this->factEndDate = $this->formatDate($warranty->guaranteeFactExpirationDate);
-        $this->endCode = $warranty->guaranteeFactExpirationDate;
+        $this->endCode = $warranty->guaranteeEndReason;
     }
 
     /**
