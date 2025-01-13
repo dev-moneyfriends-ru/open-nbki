@@ -292,7 +292,7 @@ class FL25262728GroupType extends GutdfSegment
             $this->lastPayExist1 = null;
             $this->lastPayExist0 = null;
         }
-        $this->calcDate = $this->formatDate($account->calcDate);
+        $this->calcDate = $this->formatDate($this->template->sendData->getReportingDt());
         $this->fL25Debt = new FL25DebtAType($this->template);
         $this->fL26DebtDue = new FL26DebtDueAType($this->template);
         $this->fL27DebtOverdue = new FL27DebtOverdueAType($this->template);

@@ -292,7 +292,7 @@ class UL17181920GroupType extends GutdfSegment
             $this->lastPayExist1 = null;
             $this->lastPayExist0 = null;
         }
-        $this->calcDate = $this->formatDate($account->calcDate);
+        $this->calcDate = $this->formatDate($this->template->sendData->getReportingDt());
 
         $this->uL17Debt = new UL17DebtAType($this->template);
         $this->uL18DebtDue = new UL18DebtDueAType($this->template);
