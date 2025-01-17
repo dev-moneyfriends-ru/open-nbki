@@ -819,14 +819,14 @@ class FLEvent21Type extends EventDataType
             'fL21PaymentTerms',
             'fL22TotalCost',
             'fL25262728Group',
+            'fL29MonthlyPayment',
+            'fL291DebtBurdenInfo',
+            'fL31NonMonetarySubject',
             'fL20JointDebtors',
             'fL23ContractChanges',
             'fL231ContractTermsChanges',
-            'fL29MonthlyPayment',
-            'fL291DebtBurdenInfo',
             'fL30NonMonetarySource',
-            'fL54Accounting',
-            'fL31NonMonetarySubject',
+            'fL54Accounting'
         ];
     }
 }

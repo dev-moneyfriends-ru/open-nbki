@@ -389,20 +389,17 @@ class FL54AccountingType extends GutdfSegment
     public function init(): void
     {
         $account = $this->template->sendData->getAccountReplyRUTDF();
-
         if($account->obligAccountCode){
             $this->exist0 = null;
             $this->exist1 = '';
-            $this->sum = $this->formatCurrency($account->offbalanceAmt);
         }else{
             $this->exist0 = '';
             $this->exist1 = null;
-            $this->sum = $this->formatCurrency(0);
+            $this->sum = $this->formatCurrency($account->offbalanceAmt);
         }
 
         $this->minInterest = $account->intRate;
         $this->maxInterest = $account->intRate;
-
         if($account->preferenFinanc){
             $this->supportExist0 = null;
             $this->supportExist1 = '';
@@ -424,6 +421,8 @@ class FL54AccountingType extends GutdfSegment
             'exist_0' => 'exist0',
             'exist_1' => 'exist1',
             'sum',
+//            'minInterest',
+//            'maxInterest',
             'supportExist_0' => 'supportExist0',
             'supportExist_1' => 'supportExist1',
             'supportInfo',

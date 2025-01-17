@@ -177,6 +177,9 @@ class FL30NonMonetarySourceType extends GutdfSegment
     public function init(): void
     {
         $model = $this->template->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray()[$this->idx];
+        if(empty($model) || empty($model->srcNonMonetOblig)) {
+            return;
+        }
         $this->item = $model->srcNonMonetOblig;
         $this->code = $model->srcNonMonetObligCode;
         $this->propertyId = $model->srcNonMonetObligCodeIdent;

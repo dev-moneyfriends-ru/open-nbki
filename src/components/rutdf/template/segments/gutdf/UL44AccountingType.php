@@ -372,19 +372,15 @@ class UL44AccountingType extends GutdfSegment
     public function init(): void
     {
         $account = $this->template->sendData->getAccountReplyRUTDF();
-
         if($account->obligAccountCode){
             $this->exist0 = null;
             $this->exist1 = '';
-            $this->sum = $this->formatCurrency($account->offbalanceAmt);
         }else{
             $this->exist0 = '';
             $this->exist1 = null;
-            $this->sum = $this->formatCurrency(0);
+            $this->sum = $this->formatCurrency($account->offbalanceAmt);
         }
-
         $this->rate = $this->formatCurrency($account->intRate);
-
         if($account->preferenFinanc){
             $this->supportExist0 = null;
             $this->supportExist1 = '';
@@ -393,7 +389,6 @@ class UL44AccountingType extends GutdfSegment
             $this->supportExist0 = '';
             $this->supportExist1 = null;
         }
-
         $this->calcDate = $this->formatDate($this->template->sendData->getReportingDt());
     }
 
