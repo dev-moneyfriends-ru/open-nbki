@@ -608,6 +608,7 @@ class FL8AddrRegType extends GutdfSegment
         $this->countryOther = $address->otherCountry;
         $this->regStateNum = $address->fias;
         $this->locationCode = $address->okato;
+        $this->locationOther = $this->formatString($address->otherLocation);
         $this->street = $this->formatString($address->street);
         $this->house = $this->formatString($address->houseNumber);
         $this->estate = $this->formatString($address->estate);

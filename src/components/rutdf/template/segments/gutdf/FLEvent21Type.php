@@ -825,8 +825,8 @@ class FLEvent21Type extends EventDataType
             'fL29MonthlyPayment',
             'fL291DebtBurdenInfo',
             'fL30NonMonetarySource',
-            'fL54Accounting',
             'fL31NonMonetarySubject',
+            'fL54Accounting',
         ];
     }
 }
