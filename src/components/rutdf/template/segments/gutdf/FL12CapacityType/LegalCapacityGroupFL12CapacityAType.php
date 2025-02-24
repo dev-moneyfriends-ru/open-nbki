@@ -141,7 +141,7 @@ class LegalCapacityGroupFL12CapacityAType extends GutdfSegment
      */
     public function init(): void
     {
-        $model = $this->template->sendData->getCapabilityReply();
+        $model = $this->sendData->getCapabilityReply();
         $this->legalCapacityDate = $this->formatDate($model->capDecisionDt);
         $this->legalCapacityDecisionNum = $model->capDecisionNum;
         $this->legalCapacityCourtName = $model->capCourtName;

@@ -388,7 +388,7 @@ class FL54AccountingType extends GutdfSegment
      */
     public function init(): void
     {
-        $account = $this->template->sendData->getAccountReplyRUTDF();
+        $account = $this->sendData->getAccountReplyRUTDF();
 
         if($account->obligAccountCode){
             $this->exist0 = null;
@@ -412,7 +412,7 @@ class FL54AccountingType extends GutdfSegment
             $this->supportExist1 = null;
         }
 
-        $this->calcDate = $this->formatDate($this->template->sendData->getReportingDt());
+        $this->calcDate = $this->formatDate($this->sendData->getReportingDt());
     }
 
     /**

@@ -723,7 +723,7 @@ class FLEvent23Type extends EventDataType
         $this->fL17DealUid = new FL17DealUidType($this->template);
         $this->fL18Deal = new FL18DealType($this->template);
         $this->fL19Amount = new FL19AmountType($this->template);
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+        foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToFL191AmountInfo(new FL191AmountInfoType($this->template, $key));
         }
         $this->fL20JointDebtors = new FL20JointDebtorsType($this->template);
@@ -731,10 +731,10 @@ class FLEvent23Type extends EventDataType
         $this->setFL25262728Group(new FL25262728GroupType($this->template));
         $this->fL29MonthlyPayment = new FL29MonthlyPaymentType($this->template);
         $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+        foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
         }
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+        foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToFL31NonMonetarySubject(new FL31NonMonetarySubjectType($this->template, $key));
         }
 

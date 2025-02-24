@@ -14,6 +14,7 @@ abstract class EventDataType extends GutdfSegment
 {
     public const OPERATION_CODE_A = 'A';
     public const OPERATION_CODE_B = 'B';
+    public const OPERATION_CODE_C1 = 'C.1';
     /**
      * Комментарий с пояснением причины представления группы блоков показателей
      *
@@ -183,7 +184,7 @@ abstract class EventDataType extends GutdfSegment
      */
     public function init(): void
     {
-        $this->eventDate = $this->formatDate($this->template->sendData->getReportingDt());
+        $this->eventDate = $this->formatDate($this->sendData->getReportingDt());
         $this->initAttributes();
     }
 

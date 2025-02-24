@@ -88,7 +88,7 @@ class FL19AmountType extends GutdfSegment
      *
      * 19.6. Дата расчета
      *
-     * @return \DateTime
+     * @return string
      */
     public function getCalcDate()
     {
@@ -100,10 +100,10 @@ class FL19AmountType extends GutdfSegment
      *
      * 19.6. Дата расчета
      *
-     * @param \DateTime $calcDate
+     * @param string $calcDate
      * @return self
      */
-    public function setCalcDate(\DateTime $calcDate)
+    public function setCalcDate(string $calcDate)
     {
         $this->calcDate = $calcDate;
         return $this;
@@ -142,7 +142,7 @@ class FL19AmountType extends GutdfSegment
      */
     public function init(): void
     {
-        $accountAmt = $this->template->sendData->getAccountReplyRUTDF()->getAccountAmt();
+        $accountAmt = $this->sendData->getAccountReplyRUTDF()->getAccountAmt();
         if($accountAmt === null){
             return;
         }

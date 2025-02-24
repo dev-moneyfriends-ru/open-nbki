@@ -346,7 +346,7 @@ class FL21PaymentTermsType extends GutdfSegment
      */
     public function init(): void
     {
-        $paymentCond = $this->template->sendData->getAccountReplyRUTDF()->getPaymtCondition();
+        $paymentCond = $this->sendData->getAccountReplyRUTDF()->getPaymtCondition();
         if($paymentCond === null){
             return;
         }

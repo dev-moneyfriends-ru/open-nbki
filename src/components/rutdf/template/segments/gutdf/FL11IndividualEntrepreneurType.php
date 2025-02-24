@@ -176,7 +176,7 @@ class FL11IndividualEntrepreneurType extends GutdfSegment
      */
     public function init(): void
     {
-        $regNum = $this->template->sendData->getRegnumReply();
+        $regNum = $this->sendData->getRegnumReply();
         if(empty($regNum->regNum)){
             $this->regFact0 = '';
             $this->regFact1 = null;

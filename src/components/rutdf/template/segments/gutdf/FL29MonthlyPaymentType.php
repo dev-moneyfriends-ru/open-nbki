@@ -142,7 +142,7 @@ class FL29MonthlyPaymentType extends GutdfSegment
      */
     public function init(): void
     {
-        $payment = $this->template->sendData->getAccountReplyRUTDF()->getMonthAverPaymt();
+        $payment = $this->sendData->getAccountReplyRUTDF()->getMonthAverPaymt();
         if ($payment === null) {
             return;
         }

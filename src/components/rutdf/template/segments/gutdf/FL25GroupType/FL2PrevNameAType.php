@@ -243,7 +243,7 @@ class FL2PrevNameAType extends GutdfSegment
      */
     public function init(): void
     {
-        $person = $this->template->sendData->getPrevPersonReply();
+        $person = $this->sendData->getPrevPersonReply();
         if($person === null || empty($person->isPrevName)){
             $this->prevNameFlag0 = '';
             $this->prevNameFlag1 = null;

@@ -415,7 +415,7 @@ class UL20PaymentAType extends GutdfSegment
      */
     public function init(): void
     {
-        $payments = $this->template->sendData->getAccountReplyRUTDF()->getPayment();
+        $payments = $this->sendData->getAccountReplyRUTDF()->getPayment();
         if(empty($payments)){
             $this->paymentSum = $this->formatCurrency(0);
             $this->sizeCode = AmtKeepCode::T3;

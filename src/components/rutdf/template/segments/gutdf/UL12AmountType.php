@@ -142,7 +142,7 @@ class UL12AmountType extends GutdfSegment
      */
     public function init(): void
     {
-        $accountAmt = $this->template->sendData->getAccountReplyRUTDF()->getAccountAmt();
+        $accountAmt = $this->sendData->getAccountReplyRUTDF()->getAccountAmt();
         if($accountAmt === null){
             return;
         }

@@ -446,7 +446,7 @@ class FL32CollateralAType extends GutdfSegment
      */
     public function init(): void
     {
-        $collateral = $this->template->sendData->getAccountReplyRUTDF()->getCollateral()[$this->idx];
+        $collateral = $this->sendData->getAccountReplyRUTDF()->getCollateral()[$this->idx];
 
         $this->code = $collateral->collateralCode;
 

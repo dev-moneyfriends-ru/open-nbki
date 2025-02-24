@@ -278,7 +278,7 @@ class UL28WarrantyReturnType extends GutdfSegment
      */
     public function init(): void
     {
-        $account = $this->template->sendData->getAccountReplyRUTDF();
+        $account = $this->sendData->getAccountReplyRUTDF();
 
         if(!$account->hasGuaranteeRepay){
             $this->exist0 = '';

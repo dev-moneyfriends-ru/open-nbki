@@ -21,6 +21,7 @@ use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent23Type;
 use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent24Type;
 use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent25Type;
 use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent26Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FLEvent32Type;
 use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent112Type;
 use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent11Type;
 use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent12Type;
@@ -38,6 +39,7 @@ use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent23Type;
 use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent24Type;
 use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent25Type;
 use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent26Type;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent32Type;
 
 class NbchEvents
 {
@@ -69,6 +71,7 @@ class NbchEvents
     public const EVENT_2_11_1A = "2.11.1A";
     public const EVENT_2_11_1B = "2.11.1B";
     public const EVENT_2_12 = "2.12";
+    public const EVENT_3_2 = "3.2";
 
     protected static $personEvents = [
         self::EVENT_1_1 => FLEvent11Type::class,
@@ -94,10 +97,10 @@ class NbchEvents
         self::EVENT_2_5B => FLEvent25Type::class,
         self::EVENT_2_6 => FLEvent26Type::class,
         self::EVENT_2_10 => FLEvent210Type::class,
-        self::EVENT_2_11 => FLEvent211Type::class,
         self::EVENT_2_11_1A => FLEvent2111Type::class,
         self::EVENT_2_11_1B => FLEvent2111Type::class,
         self::EVENT_2_12 => FLEvent2112Type::class,
+        self::EVENT_3_2 => FLEvent32Type::class,
     ];
 
     protected static $ulEvents = [
@@ -125,6 +128,7 @@ class NbchEvents
         self::EVENT_2_11 => ULEvent211Type::class,
         self::EVENT_2_11_1A => ULEvent2111Type::class,
         self::EVENT_2_11_1B => ULEvent2111Type::class,
+        self::EVENT_3_2 => ULEvent32Type::class,
     ];
 
     public static function list()
@@ -157,6 +161,7 @@ class NbchEvents
             self::EVENT_2_11 => '2.11 Права кредитора по обязательству полностью перешли к другому лицу',
             self::EVENT_2_11_1A => '2.11.1а Права кредитора по обязательству частично перешли к другому лицу для денежного обязательства',
             self::EVENT_2_11_1B => '2.11.1б Права кредитора по обязательству частично перешли к другому лицу для неденежного обязательства',
+            self::EVENT_3_2 => '3.2 Требуется внесение изменений в связи с ошибкой в показателях по событиям, связанным с записью кредитной истории',
         ];
     }
 

@@ -414,7 +414,7 @@ class  UL15ContractChangesType extends GutdfSegment
      */
     public function init(): void
     {
-        $changes = $this->template->sendData->getAccountReplyRUTDF()->getAmendment();
+        $changes = $this->sendData->getAccountReplyRUTDF()->getAmendment();
         if(empty($changes)){
             $this->exist0 = '';
             $this->exist1 = null;

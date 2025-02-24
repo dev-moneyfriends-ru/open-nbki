@@ -278,7 +278,7 @@ class UidGroupUL24WarrantyAType extends GutdfSegment
      */
     public function init(): void
     {
-        $warranty = $this->template->sendData->getAccountReplyRUTDF()->getGuarantor()[$this->idx];
+        $warranty = $this->sendData->getAccountReplyRUTDF()->getGuarantor()[$this->idx];
 
         $this->uid = UuidHelper::getUuidWithControl($warranty->guaranteeUuid);
         $this->sum = $this->formatCurrency($warranty->guaranteeVolume);

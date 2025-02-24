@@ -314,7 +314,7 @@ class FL56ParticipationType extends GutdfSegment
      */
     public function init(): void
     {
-        $informPart = $this->template->sendData->getInformationPartRUTDF();
+        $informPart = $this->sendData->getInformationPartRUTDF();
         $this->role = $informPart->flagIndicatorCode;
         $this->kindCode = $informPart->approvedLoanTypeCode;
         $this->uid = UuidHelper::getUuidWithControl($informPart->agreementNumber);

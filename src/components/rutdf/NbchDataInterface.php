@@ -109,4 +109,36 @@ interface NbchDataInterface
      * @return InformationPartReplyRUTDF
      */
     public function getInformationPartRUTDF(): InformationPartReplyRUTDF;
+
+    /**
+     * При передаче данных для события 3 или 4 в показателе startDate указать дату события, в составе которого был передан блок с ошибочной информацией
+     * (или наиболее раннюю из дат, если таких событий было несколько). Если startDate не указана, значит, обновляется вся история по обязательству
+     * @return string|null
+     */
+    public function getStartDate(): ?string;
+
+    /**
+     * При передаче данных по исправлению/аннулированию сведении (NbchDataInterface::getCorrectionData()),
+     * передается id события в рамках которого были сформированы данные показатели
+     * @return string|null
+     */
+    public function getCorrectionEventId(): ?string;
+
+    /**
+     * Показатели КИ по событиям произошедшим начиная с даты (включая саму дату) указанную в NbchDataInterface::getStartDate().
+     * @return array|\mfteam\nbch\components\rutdf\NbchDataInterface[]
+     */
+    public function getCorrectionData(): array;
+
+    /**
+     * @param array $correctionDataArray массив показателей КИ по событиям произошедшим начиная с даты (включая саму дату) указанную в NbchDataInterface::getStartDate()
+     * @return void
+     */
+    public function setCorrectionData(array $correctionDataArray): void;
+
+    /**
+     * @param NbchDataInterface $correctionData Показатели КИ по событию произошедшему начиная с даты (включая саму дату) указанную в NbchDataInterface::getStartDate()
+     * @return void
+     */
+    public function addCorrectionData(NbchDataInterface $correctionData): void;
 }

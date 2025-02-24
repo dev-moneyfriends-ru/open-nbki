@@ -175,7 +175,7 @@ class SumGroupFL3235GroupAType extends GutdfSegment
      */
     public function init(): void
     {
-        $collateral = $this->template->sendData->getAccountReplyRUTDF()->getCollateral()[$this->idx];
+        $collateral = $this->sendData->getAccountReplyRUTDF()->getCollateral()[$this->idx];
 
         $this->sum = $this->formatCurrency($collateral->collateralValue);
         $this->currency = $collateral->currencyCode;

@@ -3,9 +3,9 @@
 namespace mfteam\nbch\components\rutdf\template;
 
 
+use mfteam\nbch\components\rutdf\NbchDataInterface;
 use mfteam\nbch\components\rutdf\template\segments\BaseSegment;
 use mfteam\nbch\Env;
-use mfteam\nbch\models\rutdf\NbchDataInterface;
 use mfteam\nbch\models\rutdf\NbchRutdfRequest;
 use Yii;
 use yii\base\Exception;
@@ -63,6 +63,11 @@ abstract class BaseTemplate implements TemplateInterface
      * @var NbchDataInterface
      */
     public $sendData;
+    /**
+     * Данные для коррекции
+     * @var NbchDataInterface|null
+     */
+    public $correctionData = null;
 
     /**
      * @var BaseSegment[]
@@ -194,6 +199,16 @@ abstract class BaseTemplate implements TemplateInterface
     public function setFileContent(string $fileContent): BaseTemplate
     {
         $this->fileContent = $fileContent;
+        return $this;
+    }
+
+    /**
+     * @param NbchDataInterface|null $correctionData
+     * @return $this
+     */
+    public function setCorrectionData(?NbchDataInterface $correctionData): BaseTemplate
+    {
+        $this->correctionData = $correctionData;
         return $this;
     }
 }

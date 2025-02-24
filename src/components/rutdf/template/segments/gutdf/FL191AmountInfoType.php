@@ -314,7 +314,7 @@ class FL191AmountInfoType extends GutdfSegment
      */
     public function init(): void
     {
-        $amountInfo = $this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray()[$this->idx];
+        $amountInfo = $this->sendData->getAccountReplyRUTDF()->getAmountInfoArray()[$this->idx];
         if (empty($amountInfo->ensuredAmt)) {
             $this->securityFact0 = '';
             $this->securityFact1 = null;

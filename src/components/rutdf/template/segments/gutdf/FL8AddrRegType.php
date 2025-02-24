@@ -598,7 +598,7 @@ class FL8AddrRegType extends GutdfSegment
      */
     public function init(): void
     {
-        $address = $this->template->sendData->getRegAddress();
+        $address = $this->sendData->getRegAddress();
         $this->code = $address->regType;
         if($this->code === '3'){
             return;

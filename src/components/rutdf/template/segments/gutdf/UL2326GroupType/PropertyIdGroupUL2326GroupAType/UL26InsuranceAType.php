@@ -317,7 +317,7 @@ class UL26InsuranceAType extends GutdfSegment
             return;
         }
 
-        $collatInsured = $this->template->sendData->getAccountReplyRUTDF()->getCollatInsured()[$this->idx];
+        $collatInsured = $this->sendData->getAccountReplyRUTDF()->getCollatInsured()[$this->idx];
 
         $this->exist0 = null;
         $this->exist1 = '';

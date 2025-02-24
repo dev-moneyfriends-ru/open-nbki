@@ -456,7 +456,7 @@ class FL39CourtType extends GutdfSegment
         $this->exist1 = '';
         $this->exist0 = null;
 
-        $court = $this->template->sendData->getAccountReplyRUTDF()->getLegalItems()[$this->idx];
+        $court = $this->sendData->getAccountReplyRUTDF()->getLegalItems()[$this->idx];
 
         if($court->hasCourtAct){
             $this->actExist1 = '';

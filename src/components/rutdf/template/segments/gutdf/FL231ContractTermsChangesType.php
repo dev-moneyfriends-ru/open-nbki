@@ -210,7 +210,7 @@ class FL231ContractTermsChangesType extends GutdfSegment
      */
     public function init(): void
     {
-        $changes = $this->template->sendData->getAccountReplyRUTDF()->getContractTermsChanges();
+        $changes = $this->sendData->getAccountReplyRUTDF()->getContractTermsChanges();
         if(empty($changes)){
             $this->changeFact0 = '';
             $this->changeFact1 = null;

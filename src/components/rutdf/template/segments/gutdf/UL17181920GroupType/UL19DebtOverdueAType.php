@@ -413,7 +413,7 @@ class UL19DebtOverdueAType extends GutdfSegment
      */
     public function init(): void
     {
-        $debt = $this->template->sendData->getAccountReplyRUTDF()->getPastdueArrear();
+        $debt = $this->sendData->getAccountReplyRUTDF()->getPastdueArrear();
         if($debt === null || empty($debt->missFact)){
             $this->missFact0 = '';
             $this->missFact1 = null;

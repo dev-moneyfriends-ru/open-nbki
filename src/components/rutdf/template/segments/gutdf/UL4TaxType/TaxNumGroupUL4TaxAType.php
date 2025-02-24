@@ -136,8 +136,8 @@ class TaxNumGroupUL4TaxAType extends GutdfSegment
      */
     public function init(): void
     {
-        $this->taxCode = $this->template->sendData->getRegnumReply()->taxpayerCode;
-        $this->taxNum = $this->template->sendData->getRegnumReply()->taxpayerNum;
+        $this->taxCode = $this->sendData->getRegnumReply()->taxpayerCode;
+        $this->taxNum = $this->sendData->getRegnumReply()->taxpayerNum;
     }
 
     /**

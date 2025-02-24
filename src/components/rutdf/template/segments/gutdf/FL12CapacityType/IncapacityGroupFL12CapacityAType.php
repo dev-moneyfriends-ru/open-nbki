@@ -141,7 +141,7 @@ class IncapacityGroupFL12CapacityAType extends GutdfSegment
      */
     public function init(): void
     {
-        $model = $this->template->sendData->getCapabilityReply();
+        $model = $this->sendData->getCapabilityReply();
         $this->incapacityDate = $this->formatDate($model->incapDecisionDt);
         $this->incapacityDecisionNum = $model->incapDecisionNum;
         $this->incapacityCourtName = $model->incapCourtName;

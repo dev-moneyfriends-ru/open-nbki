@@ -594,7 +594,7 @@ class FL55ApplicationType extends GutdfSegment
      */
     public function init(): void
     {
-        $informPart = $this->template->sendData->getInformationPartRUTDF();
+        $informPart = $this->sendData->getInformationPartRUTDF();
 
         $this->role = $informPart->requestedFlagIndicatorCode;
         $this->sum = $this->formatCurrency($informPart->requestedAmt);

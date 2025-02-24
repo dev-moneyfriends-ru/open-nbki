@@ -74,7 +74,7 @@ class SubjectEventDataType extends GutdfSegment
         $eventIds = $this->template->getEventIds();
         $cnt = 1;
         foreach ($eventIds as $eventId) {
-            $eventClass = NbchEvents::getEventClass($eventId, $this->template->sendData->isLegal());
+            $eventClass = NbchEvents::getEventClass($eventId, $this->sendData->isLegal());
             if ($eventClass === null) {
                 continue;
             }

@@ -107,7 +107,7 @@ class TaxNumGroupFL6TaxAType extends GutdfSegment
      */
     public function init(): void
     {
-        $tax = $this->template->sendData->getRegnumReply();
+        $tax = $this->sendData->getRegnumReply();
         if ($tax === null) {
             return;
         }

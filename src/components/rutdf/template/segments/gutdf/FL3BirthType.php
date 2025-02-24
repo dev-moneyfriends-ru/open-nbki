@@ -142,7 +142,7 @@ class FL3BirthType extends GutdfSegment
      */
     public function init(): void
     {
-        $person = $this->template->sendData->getPersonReply();
+        $person = $this->sendData->getPersonReply();
         if($person === null){
             return;
         }

@@ -41,6 +41,7 @@ use mfteam\nbch\components\rutdf\template\segments\gutdf\ULEvent26Type;
 
 /**
  * @deprecated
+ * @use \mfteam\nbch\components\rutdf\NbchEvents
  */
 class NbchEvents
 {

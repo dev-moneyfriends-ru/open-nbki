@@ -177,7 +177,7 @@ class UL47RejectType extends GutdfSegment
      */
     public function init(): void
     {
-        $infoPart = $this->template->sendData->getInformationPartRUTDF();
+        $infoPart = $this->sendData->getInformationPartRUTDF();
 
         $this->rejectDate = $infoPart->rejectedDate;
         $this->rejectCode = implode(',', $infoPart->rejectedReasonCode);

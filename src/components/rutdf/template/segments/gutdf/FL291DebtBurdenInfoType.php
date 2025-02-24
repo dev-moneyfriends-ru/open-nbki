@@ -386,7 +386,7 @@ class FL291DebtBurdenInfoType extends GutdfSegment
      */
     public function init(): void
     {
-        $debtBurdenInfos = $this->template->sendData->getAccountReplyRUTDF()->getDebtBurdenInfo();
+        $debtBurdenInfos = $this->sendData->getAccountReplyRUTDF()->getDebtBurdenInfo();
         if(empty($debtBurdenInfos)){
             return;
         }

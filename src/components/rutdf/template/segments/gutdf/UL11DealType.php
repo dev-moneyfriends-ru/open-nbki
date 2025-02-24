@@ -1037,7 +1037,7 @@ class UL11DealType extends GutdfSegment
      */
     public function init(): void
     {
-        $trade = $this->template->sendData->getAccountReplyRUTDF()->getTrade();
+        $trade = $this->sendData->getAccountReplyRUTDF()->getTrade();
         if ($trade === null) {
             return;
         }

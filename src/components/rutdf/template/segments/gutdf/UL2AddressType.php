@@ -649,7 +649,7 @@ class UL2AddressType extends GutdfSegment
 
     public function init(): void
     {
-        $address = $this->template->sendData->getRegAddress();
+        $address = $this->sendData->getRegAddress();
         $this->countryCode = $address->oksm;
         $this->countryOther = $address->otherCountry;
         $this->regStateNum = $address->fias;

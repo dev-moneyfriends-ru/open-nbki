@@ -2,8 +2,6 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
-use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions\F;
-
 /**
  * Class representing FLEvent14Type
  *
@@ -833,18 +831,18 @@ class FLEvent14Type extends EventDataType
         $this->fL17DealUid = new FL17DealUidType($this->template);
         $this->fL18Deal = new FL18DealType($this->template);
         $this->fL19Amount = new FL19AmountType($this->template);
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+        foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToFL191AmountInfo(new FL191AmountInfoType($this->template, $key));
         }
         $this->fL20JointDebtors = new FL20JointDebtorsType($this->template);
         $this->fL21PaymentTerms = new FL21PaymentTermsType($this->template);
-        if($this->template->sendData->getAccountReplyRUTDF()->getDebtBurdenInfo()){
+        if($this->sendData->getAccountReplyRUTDF()->getDebtBurdenInfo()){
             $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
         }
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
+        foreach ($this->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
             $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
         }
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray() as $key => $value) {
+        foreach ($this->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray() as $key => $value) {
             $this->addToFL31NonMonetarySubject(new FL31NonMonetarySubjectType($this->template, $key));
         }
         $this->fL54Accounting = new FL54AccountingType($this->template);

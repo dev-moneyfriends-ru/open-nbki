@@ -138,7 +138,7 @@ class FL12CapacityType extends GutdfSegment
      */
     public function init(): void
     {
-        $model = $this->template->sendData->getCapabilityReply();
+        $model = $this->sendData->getCapabilityReply();
         $this->code = $model->capability;
         if ($this->code === 1 || $this->code === 2) {
             return;

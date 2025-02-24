@@ -183,12 +183,12 @@ class PropertyIdGroupUL2326GroupAType extends GutdfSegment
      */
     public function init(): void
     {
-        $collateral = $this->template->sendData->getAccountReplyRUTDF()->getCollateral()[$this->idx];
+        $collateral = $this->sendData->getAccountReplyRUTDF()->getCollateral()[$this->idx];
 
         $this->propertyId = $collateral->collateralId;
         $this->uL23Collateral = new UL23CollateralAType($this->template, $this->idx);
 
-        $collatInsureds =  $this->template->sendData->getAccountReplyRUTDF()->getCollatInsured();
+        $collatInsureds =  $this->sendData->getAccountReplyRUTDF()->getCollatInsured();
 
         foreach ($collatInsureds as $key => $collatInsured) {
             if($collatInsured->collateralId === $collateral->collateralId){

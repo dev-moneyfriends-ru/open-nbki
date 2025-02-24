@@ -704,24 +704,24 @@ class ULEvent141Type extends EventDataType
         $this->uL11Deal = new UL11DealType($this->template);
         $this->uL12Amount= new UL12AmountType($this->template);
 
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+        foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToUL121AmountInfo(new UL121AmountInfoType($this->template, $key));
         }
 
         $this->uL13JointDebtors = new UL13JointDebtorsType($this->template);
         $this->uL14PaymentTerms = new UL14PaymentTermsType($this->template);
 
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getFundDateRUTDF() as $key => $value) {
+        foreach ($this->sendData->getAccountReplyRUTDF()->getFundDateRUTDF() as $key => $value) {
             $this->addToUL16Fund(new UL16FundType($this->template, $key));
         }
 
         $this->addToUL17181920Group(new UL17181920GroupType($this->template));
 
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
+        foreach ($this->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
             $this->addToUL21NonMonetarySource(new UL21NonMonetarySourceType($this->template, $key));
         }
 
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray() as $key => $value) {
+        foreach ($this->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray() as $key => $value) {
             $this->addToUL22NonMonetarySubject(new UL22NonMonetarySubjectType($this->template, $key));
         }
 

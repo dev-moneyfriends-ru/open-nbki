@@ -17,6 +17,8 @@ use mfteam\nbch\models\SNILSReply;
 /**
  * Данные по субъекту кредитной истории.
  * Атрибуты имеющие тип null заполняются в зависимости от типа субъекта кредитной истории (ЮЛ, ФЛ, ИП) или не обязательные.
+ * @deprecated
+ * @use \mfteam\nbch\components\rutdf\NbchDataInterface
  */
 interface NbchDataInterface
 {

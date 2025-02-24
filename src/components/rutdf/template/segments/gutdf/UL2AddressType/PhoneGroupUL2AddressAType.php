@@ -117,7 +117,7 @@ class PhoneGroupUL2AddressAType extends GutdfSegment
 
     public function init(): void
     {
-        $address = $this->template->sendData->getRegAddress();
+        $address = $this->sendData->getRegAddress();
         $this->phone = $address->phone;
         $this->phoneComment = $address->phoneComment?$this->formatString($address->phoneComment):self::EMPTY_VALUE;
     }

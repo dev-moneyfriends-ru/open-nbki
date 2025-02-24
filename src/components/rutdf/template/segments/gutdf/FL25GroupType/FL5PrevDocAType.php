@@ -447,7 +447,7 @@ class FL5PrevDocAType extends GutdfSegment
      */
     public function init(): void
     {
-        $idReply = $this->template->sendData->getPrevIdReply();
+        $idReply = $this->sendData->getPrevIdReply();
         if(empty($idReply) || empty($idReply->isPrevId)){
             $this->prevDocFact0 = '';
             $this->prevDocFact1 = null;

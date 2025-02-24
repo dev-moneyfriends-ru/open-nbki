@@ -193,7 +193,7 @@ class DataType extends GutdfSegment
 
     public function init(): void
     {
-        if($this->template->sendData->isLegal()){
+        if($this->sendData->isLegal()){
             $this->addToSubjectUL(new SubjectULAType($this->template));
         }else{
             $this->addToSubjectFL(new SubjectFLAType($this->template));

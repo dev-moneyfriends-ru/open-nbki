@@ -278,7 +278,7 @@ class UidGroupUL25GuaranteeAType extends GutdfSegment
      */
     public function init(): void
     {
-        $guaranty = $this->template->sendData->getAccountReplyRUTDF()->getIndepGuarantor()[$this->idx];
+        $guaranty = $this->sendData->getAccountReplyRUTDF()->getIndepGuarantor()[$this->idx];
 
         $this->uid = UuidHelper::getUuidWithControl($guaranty->indepGuaranteeUuid);
         $this->sum = $this->formatCurrency($guaranty->indepGuaranteeVolume);

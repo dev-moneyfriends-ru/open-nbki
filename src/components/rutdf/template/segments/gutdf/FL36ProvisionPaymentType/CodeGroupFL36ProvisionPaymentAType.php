@@ -141,7 +141,7 @@ class CodeGroupFL36ProvisionPaymentAType extends GutdfSegment
      */
     public function init(): void
     {
-        $provision = $this->template->sendData->getAccountReplyRUTDF()->getCollatRepay()[$this->idx];
+        $provision = $this->sendData->getAccountReplyRUTDF()->getCollatRepay()[$this->idx];
         $this->code = $provision->collatRepayCode;
         $this->date = $this->formatDate($provision->collatRepayDt);
         $this->sum = $this->formatCurrency($provision->collatRepayAmt);

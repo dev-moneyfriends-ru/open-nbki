@@ -210,7 +210,7 @@ class UL22NonMonetarySubjectType extends GutdfSegment
      */
     public function init(): void
     {
-        $model = $this->template->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray()[$this->idx];
+        $model = $this->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray()[$this->idx];
         $this->item = $model->subjNonMonetOblig;
         $this->fulfillment = $model->subjNonMonetObligRegul;
         if($model->subjNonMonetObligAdverseCode){

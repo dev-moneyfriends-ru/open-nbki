@@ -309,7 +309,7 @@ class FL25DebtAType extends GutdfSegment
      */
     public function init(): void
     {
-        $debt = $this->template->sendData->getAccountReplyRUTDF()->getArrear();
+        $debt = $this->sendData->getAccountReplyRUTDF()->getArrear();
         if($debt === null || empty($debt->amtOutstanding)){
             $this->exist0 = '';
             $this->exist1 = null;

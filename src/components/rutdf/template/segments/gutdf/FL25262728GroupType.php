@@ -280,7 +280,7 @@ class FL25262728GroupType extends GutdfSegment
      */
     public function init(): void
     {
-        $account = $this->template->sendData->getAccountReplyRUTDF();
+        $account = $this->sendData->getAccountReplyRUTDF();
         $debt = $account->getArrear();
         if($debt && $debt->lastPaymentDueCode){
             $this->lastPayExist1 = '';
@@ -292,7 +292,7 @@ class FL25262728GroupType extends GutdfSegment
             $this->lastPayExist1 = null;
             $this->lastPayExist0 = null;
         }
-        $this->calcDate = $this->formatDate($this->template->sendData->getReportingDt());
+        $this->calcDate = $this->formatDate($this->sendData->getReportingDt());
         $this->fL25Debt = new FL25DebtAType($this->template);
         $this->fL26DebtDue = new FL26DebtDueAType($this->template);
         $this->fL27DebtOverdue = new FL27DebtOverdueAType($this->template);

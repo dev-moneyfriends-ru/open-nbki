@@ -181,7 +181,7 @@ class UL27ProvisionPaymentType extends GutdfSegment
      */
     public function init(): void
     {
-        $provisions = $this->template->sendData->getAccountReplyRUTDF()->getCollatRepay();
+        $provisions = $this->sendData->getAccountReplyRUTDF()->getCollatRepay();
         if(empty($provisions)){
             $this->exist0 = '';
             $this->exist1 = null;

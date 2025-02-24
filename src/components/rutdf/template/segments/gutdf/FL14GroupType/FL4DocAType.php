@@ -413,7 +413,7 @@ class FL4DocAType extends GutdfSegment
      */
     public function init(): void
     {
-        $idReply = $this->template->sendData->getIdReply();
+        $idReply = $this->sendData->getIdReply();
         if(empty($idReply)){
             return;
         }

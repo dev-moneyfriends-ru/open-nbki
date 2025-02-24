@@ -74,7 +74,7 @@ class FL7SocialType extends GutdfSegment
      */
     public function init(): void
     {
-        $snils = $this->template->sendData->getSNILSReply();
+        $snils = $this->sendData->getSNILSReply();
         if($snils === null){
             return;
         }

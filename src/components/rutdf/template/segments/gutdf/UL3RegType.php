@@ -126,8 +126,8 @@ class UL3RegType extends GutdfSegment
      */
     public function init(): void
     {
-        $this->regNum = $this->template->sendData->getRegnumReply()->regNum;
-        $this->lei = $this->template->sendData->getRegnumReply()->lei ?? self::EMPTY_VALUE;
+        $this->regNum = $this->sendData->getRegnumReply()->regNum;
+        $this->lei = $this->sendData->getRegnumReply()->lei ?? self::EMPTY_VALUE;
     }
 
     /**

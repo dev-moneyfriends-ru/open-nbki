@@ -220,7 +220,7 @@ class FL17DealUidType extends GutdfSegment
      */
     public function init(): void
     {
-        $account = $this->template->sendData->getAccountReplyRUTDF();
+        $account = $this->sendData->getAccountReplyRUTDF();
         $this->uid = UuidHelper::getUuidWithControl($account->uuid);
         $this->num = $account->acctNum??self::EMPTY_VALUE;
         $this->addToRefUid($account->refUid);

@@ -493,7 +493,7 @@ class FL9AddrFactType extends GutdfSegment
      */
     public function init(): void
     {
-        $address = $this->template->sendData->getActualAddress();
+        $address = $this->sendData->getActualAddress();
         if($address === null){
             $this->exist0 = '';
             $this->exist1 = null;

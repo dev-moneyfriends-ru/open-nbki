@@ -671,20 +671,20 @@ class ULEvent21Type extends EventDataType
         $this->uL11Deal = new UL11DealType($this->template);
         $this->uL12Amount= new UL12AmountType($this->template);
 
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+        foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToUL121AmountInfo(new UL121AmountInfoType($this->template, $key));
         }
 
         $this->uL13JointDebtors = new UL13JointDebtorsType($this->template);
         $this->uL14PaymentTerms = new UL14PaymentTermsType($this->template);
 
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getContractTermsChanges() as $key => $value) {
+        foreach ($this->sendData->getAccountReplyRUTDF()->getContractTermsChanges() as $key => $value) {
             $this->addToUL151ContractTermsChanges(new UL151ContractTermsChangesType($this->template, $key));
         }
         if(empty($this->uL151ContractTermsChanges)){
             $this->addToUL151ContractTermsChanges(new UL151ContractTermsChangesType($this->template));
         }
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getAmendment() as $key => $value) {
+        foreach ($this->sendData->getAccountReplyRUTDF()->getAmendment() as $key => $value) {
             $this->addToUL15ContractChanges(new UL15ContractChangesType($this->template, $key));
         }
 
@@ -693,11 +693,11 @@ class ULEvent21Type extends EventDataType
         }
         $this->setUL17181920Group(new UL17181920GroupType($this->template));
 
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
+        foreach ($this->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
             $this->addToUL21NonMonetarySource(new UL21NonMonetarySourceType($this->template, $key));
         }
 
-        foreach ($this->template->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray() as $key => $value) {
+        foreach ($this->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray() as $key => $value) {
             $this->addToUL22NonMonetarySubject(new UL22NonMonetarySubjectType($this->template, $key));
         }
 

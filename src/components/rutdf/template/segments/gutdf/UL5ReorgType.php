@@ -344,7 +344,7 @@ class UL5ReorgType extends GutdfSegment
      */
     public function init(): void
     {
-        $reorg = $this->template->sendData->getReorgReply();
+        $reorg = $this->sendData->getReorgReply();
         if($reorg === null || empty($reorg->isReorg)){
             $this->exist0 = '';
             $this->exist1 = null;

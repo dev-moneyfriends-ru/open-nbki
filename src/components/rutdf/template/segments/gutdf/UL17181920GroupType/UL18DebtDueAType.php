@@ -209,7 +209,7 @@ class UL18DebtDueAType extends GutdfSegment
      */
     public function init(): void
     {
-        $debt = $this->template->sendData->getAccountReplyRUTDF()->getDueArrear();
+        $debt = $this->sendData->getAccountReplyRUTDF()->getDueArrear();
         if($debt === null || empty($debt->amtOutstanding)){
             $this->debtDueSum = $this->formatCurrency(0);
             return;

@@ -3,9 +3,9 @@
 namespace mfteam\nbch\components\rutdf\template\segments;
 
 
+use mfteam\nbch\components\rutdf\NbchDataInterface;
 use mfteam\nbch\components\rutdf\template\BaseTemplate;
 use mfteam\nbch\components\rutdf\template\RutdfTemplate;
-use mfteam\nbch\models\rutdf\NbchDataInterface;
 use yii\base\InvalidConfigException;
 use yii\base\InvalidValueException;
 use yii\helpers\ArrayHelper;
@@ -66,7 +66,7 @@ abstract class BaseSegment extends \yii\base\BaseObject
     public function __construct(BaseTemplate $template, $config = [])
     {
         $this->template = $template;
-        $this->sendData = $template->sendData;
+        $this->sendData = $template->correctionData??$template->sendData;
         parent::__construct($config);
     }
     

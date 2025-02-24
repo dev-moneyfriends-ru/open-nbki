@@ -184,50 +184,106 @@ $component->send($request);
 
 ```
 
-Исключение и аннулирование записи об обязательстве
+Исключение и корректировка показателей по событиям, связанным с записью кредитной истории
 -
-Выполняется через событие  3.3 «Требуется исключение записи кредитной истории,
-сведения о которой отсутствуют у источника формирования кредитной истории» или 
-4.2 «Требуется аннулирование записи кредитной истории».
+Выполняется через событие 3.2 Требуется внесение изменений в связи с ошибкой в показателях по событиям, связанным с записью кредитной истории.
 
-Помимо данных по сделке, необходимо передать код операции, в рамках которой сформирована группа блоков показателей" заголовка группы блоков значение C.2 для события 3.3, или одно из значений D.1-D.4 для события 4.2
+В данных по сделке, показатели которой надо скорректировать, передается дата, с которой все события будут исключены. А также показатели по каждому событию которые будут добавлены в КИ начиная с даты корректировки.
+Если дата корректировки не задана, будут исключены и отправлены корректирующие показатели по всей КИ.
 
-Пример. Сведения об обязательстве были направлены ошибочно и должны быть удалены. 
-Передаем с кодом операции C.2
+Пример 1. Сведения об обязательстве были направлены ошибочно и должны быть удалены. Также будут удалены все сведения отправленные позднее
 
 ```php
 /**
- * @var \mfteam\nbch\models\rutdf\NbchDataInterface $sendData Данные для отправки в НБКИ
  * @var string $offerUuid Уникальный идентификатор договора
  */
-
-$events = [
-    NbchEvents::EVENT_3_3,
-];
+ 
+ /**
+ * Данные по сделке показатели которой корректируются
+ */
+ class NbchData implements \mfteam\nbch\components\rutdf\NbchDataInterface
+ {
+     //реализация класса
+     ...
+    public function setStartDate(?string $date) {
+        ...
+    }
+ }
+$sendData = new NbchData();
+$sendData->setStartDate('2025-02-01');
+//заполняем показатели по сделке
+...
 
 //Генерация файла для отправки
-
-$template = new \mfteam\nbch\components\rutdf\template\RutdfTemplate(
-                    $events, 
-                    $sendData, 
-                    \mfteam\nbch\components\rutdf\template\segments\GroupHeader::CODE_C2
-                );
+$template = new \mfteam\nbch\components\rutdf\template\GutdfTemplate([NbchEvents::EVENT_3_2], $sendData);
 $template->loadContent();
-
 $component = \mfteam\nbch\Env::ensure()->module->rutdf;
-
 //Создание записи о запросе
 $rutdfRequest = $component->createRequest($offerUuid, $events);
-
 //Создание файла для запроса
-
 $component->createFile($template, $request);
-
 //Отправка 
-
 $component->send($request);
 ```
+Пример 2. В сведениях об обязательстве были ошибки, которые необходимо скорректировать. Также необходимо скорректировать все данные отправленные позднее
 
+```php
+/**
+ * @var string $offerUuid Уникальный идентификатор договора
+ */
+ 
+ /**
+ * Данные по сделке показатели которой корректируются
+ */
+ class NbchData implements \mfteam\nbch\components\rutdf\NbchDataInterface
+ {
+     //реализация класса
+     ...
+    public function setStartDate(?string $date) {
+        ...
+    }
+    public function setReportingDt(?string $date) {
+        ...
+    }
+    public function setCorrectionEventId(?string $eventId) {
+        ...
+    }
+ }
+$sendData = new NbchData();
+$sendData->setStartDate('2025-01-01');
+//заполняем показатели по сделке
+...
+
+$events = [
+    NbchEvents::EVENT_2_1A => [
+        '2025-01-01',
+        '2025-02-01',
+        '2025-03-01',
+    ],
+];
+//Добавляем данные по событиям отправленным с даты корректировки
+foreach ($events as $eventId => $dates){
+    foreach ($dates as $date){
+        $correctionData = new NbchData();
+        $correctionData->setCorrectionEventId($eventId);
+        $correctionData->setReportingDt($date);
+        //заполняем остальные данные
+        ...
+        
+        $sendData->addCorrectionData($correctionData);
+    }
+}
+//Генерация файла для отправки
+$template = new \mfteam\nbch\components\rutdf\template\GutdfTemplate([NbchEvents::EVENT_3_2], $sendData);
+$template->loadContent();
+$component = \mfteam\nbch\Env::ensure()->module->rutdf;
+//Создание записи о запросе
+$rutdfRequest = $component->createRequest($offerUuid, $events);
+//Создание файла для запроса
+$component->createFile($template, $request);
+//Отправка 
+$component->send($request);
+```
 Получение КИ:
 -
 ```php

@@ -180,7 +180,7 @@ class UL24WarrantyType extends GutdfSegment
      */
     public function init(): void
     {
-        $warranties = $this->template->sendData->getAccountReplyRUTDF()->getGuarantor();
+        $warranties = $this->sendData->getAccountReplyRUTDF()->getGuarantor();
         if(empty($warranties)){
             $this->warrantyFact0 = '';
             $this->warrantyFact1 = null;

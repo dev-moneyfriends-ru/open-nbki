@@ -108,7 +108,7 @@ class UL29ContractEndType extends GutdfSegment
      */
     public function init(): void
     {
-        $account = $this->template->sendData->getAccountReplyRUTDF();
+        $account = $this->sendData->getAccountReplyRUTDF();
         $this->code = $account->loanIndicator;
         $this->date = $this->formatDate($account->loanIndicatorDt);
     }

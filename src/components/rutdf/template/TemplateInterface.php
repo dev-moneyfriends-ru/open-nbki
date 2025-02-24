@@ -3,8 +3,8 @@
 namespace mfteam\nbch\components\rutdf\template;
 
 
+use mfteam\nbch\components\rutdf\NbchDataInterface;
 use mfteam\nbch\components\rutdf\template\segments\BaseSegment;
-use mfteam\nbch\models\rutdf\NbchDataInterface;
 use mfteam\nbch\models\rutdf\NbchRutdfRequest;
 
 /**

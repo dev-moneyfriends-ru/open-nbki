@@ -142,7 +142,7 @@ class FL20JointDebtorsType extends GutdfSegment
      */
     public function init(): void
     {
-        $coBorrower = $this->template->sendData->getAccountReplyRUTDF()->getCoborrower();
+        $coBorrower = $this->sendData->getAccountReplyRUTDF()->getCoborrower();
         if($coBorrower === null || empty($coBorrower->solidaryNum)){
             $this->exist0 = '';
             $this->exist1 = null;

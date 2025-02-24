@@ -7,6 +7,9 @@ namespace mfteam\nbch\models;
  */
 class AmendmentRUTDF extends BaseItem
 {
+    public const TYPE_1 = '1';
+    public const TYPE_2 = '2';
+    public const TYPE_3 = '3';
     /**
      * Дата изменения договора
      * @var string $amendDate

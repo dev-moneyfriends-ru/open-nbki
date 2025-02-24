@@ -174,7 +174,7 @@ class FL3235GroupType extends GutdfSegment
      */
     public function init(): void
     {
-        $collaterals = $this->template->sendData->getAccountReplyRUTDF()->getCollateral();
+        $collaterals = $this->sendData->getAccountReplyRUTDF()->getCollateral();
         if(empty($collaterals)){
             $this->assetKind0 = '';
             $this->assetKind1 = null;

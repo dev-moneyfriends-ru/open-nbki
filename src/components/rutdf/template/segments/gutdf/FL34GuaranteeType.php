@@ -174,7 +174,7 @@ class FL34GuaranteeType extends GutdfSegment
      */
     public function init(): void
     {
-        $guaranties = $this->template->sendData->getAccountReplyRUTDF()->getIndepGuarantor();
+        $guaranties = $this->sendData->getAccountReplyRUTDF()->getIndepGuarantor();
         if(empty($guaranties)){
             $this->exist0 = '';
             $this->exist1 = null;

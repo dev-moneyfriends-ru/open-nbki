@@ -183,12 +183,12 @@ class PropertyIdGroupFL3235GroupAType extends GutdfSegment
      */
     public function init(): void
     {
-        $collateral = $this->template->sendData->getAccountReplyRUTDF()->getCollateral()[$this->idx];
+        $collateral = $this->sendData->getAccountReplyRUTDF()->getCollateral()[$this->idx];
 
         $this->propertyId = $collateral->collateralId;
         $this->fL32Collateral = new FL32CollateralAType($this->template, $this->idx);
 
-        $collatInsureds =  $this->template->sendData->getAccountReplyRUTDF()->getCollatInsured();
+        $collatInsureds =  $this->sendData->getAccountReplyRUTDF()->getCollatInsured();
 
         foreach ($collatInsureds as $key => $collatInsured) {
             if($collatInsured->collateralId === $collateral->collateralId){

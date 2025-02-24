@@ -9,7 +9,6 @@ use mfteam\nbch\components\SendToNbchComponent;
 use mfteam\nbch\components\UnzipConfirmComponent;
 use mfteam\nbch\exceptions\CreateNbchRutdfRequestException;
 use mfteam\nbch\models\control\NbchControl;
-use mfteam\nbch\models\rutdf\NbchDataInterface;
 use mfteam\nbch\models\rutdf\NbchRutdfRequest;
 use Yii;
 use yii\base\Exception;
