@@ -23,7 +23,7 @@ class Document extends GutdfSegment
      *
      * @var string $schemaVersion
      */
-    private $schemaVersion = '2.2';
+    private $schemaVersion = '3.0';
 
     /**
      * ИНН

@@ -17,6 +17,7 @@ class RegnumReq extends RegnumReply
             'taxpayerCode',
             'regNum',
             'regNumCode',
+            'taxpayerChecked',
         ];
     }
 }

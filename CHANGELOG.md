@@ -1,7 +1,12 @@
+v4.0
+-----
+- Добавлен параметр \mfteam\nbch\models\RegnumReply::$taxpayerChecked
+
 v3.1
 -----
 - Добавлено событие корректировки/аннулирования сведений связанных с КИ \mfteam\nbch\components\rutdf\NbchEvents::EVENT_3_2
 - Изменен \mfteam\nbch\components\rutdf\NbchDataInterface
+- 
 v3.0
 -----
 - Добавлен обязательный параметр \mfteam\nbch\models\AccountReplyRUTDF::$memberTypeCode

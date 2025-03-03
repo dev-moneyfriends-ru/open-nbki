@@ -421,7 +421,7 @@ class  UL15ContractChangesType extends GutdfSegment
             return;
         }
         $this->exist0 = null;
-        $this->exist1 = '1';
+        $this->exist1 = '';
 
         $change = $changes[$this->idx];
 
