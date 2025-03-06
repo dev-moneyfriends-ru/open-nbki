@@ -490,6 +490,14 @@ class FL28PaymentAType extends GutdfSegment
             $this->scheduleCode = TermsDueCode::T1;
             $this->lastMissPaySum = $this->formatCurrency(0);
             $this->paySum24 = $this->formatCurrency(0);
+            $this->paymentSum = $this->formatCurrency(0);
+            $this->paymentMainSum = $this->formatCurrency(0);
+            $this->paymentPercentSum = $this->formatCurrency(0);
+            $this->paymentOtherSum = $this->formatCurrency(0);
+            $this->totalSum = $this->formatCurrency(0);
+            $this->totalMainSum = $this->formatCurrency(0);
+            $this->totalPercentSum = $this->formatCurrency(0);
+            $this->totalOtherSum = $this->formatCurrency(0);
             return;
         }
         $payment = array_shift($payments);
@@ -499,6 +507,13 @@ class FL28PaymentAType extends GutdfSegment
             $this->scheduleCode = TermsDueCode::T1;
             $this->lastMissPaySum = $this->formatCurrency($payment->lastMissPaySum);
             $this->paySum24 = $this->formatCurrency($payment->paySum24);
+            $this->paymentMainSum = $this->formatCurrency(0);
+            $this->paymentPercentSum = $this->formatCurrency(0);
+            $this->paymentOtherSum = $this->formatCurrency(0);
+            $this->totalSum = $this->formatCurrency($payment->totalAmt);
+            $this->totalMainSum = $this->formatCurrency($payment->principalTotalAmt);
+            $this->totalPercentSum = $this->formatCurrency($payment->intTotalAmt);
+            $this->totalOtherSum = $this->formatCurrency($payment->otherTotalAmt);
             return;
         }
 

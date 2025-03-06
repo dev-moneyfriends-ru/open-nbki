@@ -47,9 +47,9 @@ class TradeRUTDF extends BaseItem
      * 16    Заем с ипотекой
      * 17    Заем на приобретение автомобиля
      * 99    Иной заем (кредит)
-     * @var string $loanKindCode
+     * @var string|null $loanKindCode
      */
-    public $loanKindCode = '';
+    public $loanKindCode = null;
     
     /**
      * Код цели займа (кредита)

@@ -1,3 +1,8 @@
+v4.2
+-----
+- Показатели `totalAmt` `principalTotalAmt` `intTotalAmt` `otherTotalAmt` при передаче \mfteam\nbch\models\PaymentRUTDF обязательны для заполнения
+- Если значение показателя \mfteam\nbch\models\AccountReplyRUTDF::$memberTypeCode 1-6, то \mfteam\nbch\models\TradeRUTDF::$loanKindCode не заполняется 
+
 v4.0
 -----
 - Добавлен параметр \mfteam\nbch\models\RegnumReply::$taxpayerChecked

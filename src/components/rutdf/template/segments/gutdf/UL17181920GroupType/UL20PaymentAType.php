@@ -420,6 +420,14 @@ class UL20PaymentAType extends GutdfSegment
             $this->paymentSum = $this->formatCurrency(0);
             $this->sizeCode = AmtKeepCode::T3;
             $this->scheduleCode = TermsDueCode::T1;
+            $this->paymentSum = $this->formatCurrency(0);
+            $this->paymentMainSum = $this->formatCurrency(0);
+            $this->paymentPercentSum = $this->formatCurrency(0);
+            $this->paymentOtherSum = $this->formatCurrency(0);
+            $this->totalSum = $this->formatCurrency(0);
+            $this->totalMainSum = $this->formatCurrency(0);
+            $this->totalPercentSum = $this->formatCurrency(0);
+            $this->totalOtherSum = $this->formatCurrency(0);
             return;
         }
         $payment = array_shift($payments);
@@ -427,6 +435,14 @@ class UL20PaymentAType extends GutdfSegment
             $this->paymentSum = $this->formatCurrency(0);
             $this->sizeCode = AmtKeepCode::T3;
             $this->scheduleCode = TermsDueCode::T1;
+            $this->paymentSum = $this->formatCurrency(0);
+            $this->paymentMainSum = $this->formatCurrency(0);
+            $this->paymentPercentSum = $this->formatCurrency(0);
+            $this->paymentOtherSum = $this->formatCurrency(0);
+            $this->totalSum = $this->formatCurrency($payment->totalAmt);
+            $this->totalMainSum = $this->formatCurrency($payment->principalTotalAmt);
+            $this->totalPercentSum = $this->formatCurrency($payment->intTotalAmt);
+            $this->totalOtherSum = $this->formatCurrency($payment->otherTotalAmt);
             return;
         }
 
