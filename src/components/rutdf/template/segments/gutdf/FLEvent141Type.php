@@ -15,7 +15,7 @@ class FLEvent141Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = EventDataType::OPERATION_CODE_B;
+    private $operationCode = EventDataType::OPERATION_CODE_A;
 
     /**
      * Блок 8. Регистрация физического лица по месту жительства или пребывания

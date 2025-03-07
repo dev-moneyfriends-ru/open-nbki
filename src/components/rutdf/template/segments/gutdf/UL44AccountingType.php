@@ -376,11 +376,10 @@ class UL44AccountingType extends GutdfSegment
         if($account->obligAccountCode){
             $this->exist0 = null;
             $this->exist1 = '';
-            $this->sum = $this->formatCurrency($account->offbalanceAmt);
         }else{
             $this->exist0 = '';
             $this->exist1 = null;
-            $this->sum = $this->formatCurrency(0);
+            $this->sum = $this->formatCurrency($account->offbalanceAmt);
         }
 
         $this->rate = $this->formatCurrency($account->intRate);
