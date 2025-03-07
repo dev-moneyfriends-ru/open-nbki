@@ -3,6 +3,7 @@
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
 use mfteam\nbch\helpers\UuidHelper;
+use mfteam\nbch\models\references\SourceType;
 
 /**
  * Class representing FL18DealType
@@ -1224,7 +1225,16 @@ class FL18DealType extends GutdfSegment
         $this->monetarySubjectExist0 = $trade->isMoneyBorrower ? null : '';
         $this->monetarySubjectExist1 = !$trade->isMoneyBorrower ? null : '';
         $this->endDate = $this->formatDate($trade->closeDt);
-        $this->creditorCode = $trade->lendertypeCode;
+        if (in_array($this->sendData->getAccountReplyRUTDF()->memberTypeCode, [
+            SourceType::T1,
+            SourceType::T2,
+            SourceType::T3,
+            SourceType::T4,
+            SourceType::T5,
+            SourceType::T6,
+        ], true)) {
+            $this->creditorCode = $trade->lendertypeCode;
+        }
         $this->partialExist0 = $trade->obtainpartCred ? null : '';
         $this->partialExist1 = !$trade->obtainpartCred ? null : '';
         $this->creditLineExist0 = $trade->creditLine ? null : '';
