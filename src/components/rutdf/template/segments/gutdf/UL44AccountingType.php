@@ -380,7 +380,7 @@ class UL44AccountingType extends GutdfSegment
         }else{
             $this->exist0 = '';
             $this->exist1 = null;
-            $this->sum = $this->formatCurrency(0);
+            $this->sum = self::EMPTY_VALUE;
         }
 
         $this->rate = $this->formatCurrency($account->intRate);

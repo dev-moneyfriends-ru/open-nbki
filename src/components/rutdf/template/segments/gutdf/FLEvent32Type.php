@@ -1319,7 +1319,6 @@ class FLEvent32Type extends EventDataType
     public function getXmlAttributes(): array
     {
         return [
-            'startDate',
             'fL17DealUid',
             'fLEvent14',
             'fLEvent141',
