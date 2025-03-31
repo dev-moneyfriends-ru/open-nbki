@@ -1302,7 +1302,7 @@ class ULEvent32Type extends EventDataType
                 $method = "addTo$method";
                 $this->$method($event);
             }else{
-                $method = "setTo$method";
+                $method = "set$method";
                 $this->$method($event);
             }
         }

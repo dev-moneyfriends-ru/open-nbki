@@ -25,7 +25,7 @@ use yii\base\View;
         <div class="col">
             <?=$this->render('_personReply', [
                 'personReply' => $preplyReport->personReply,
-                'regnumReply' => $preplyReport->regnumReply,
+                'regnumReply' => $preplyReport->regnumReply??[],
                 'snilsReply' => $preplyReport->snilsReply,
                 'idReply' => $preplyReport->idReply,
                 'entrepReply' => $preplyReport->entrepReply,
@@ -42,7 +42,7 @@ use yii\base\View;
         <div class="col">
             <?=$this->render('_personReplyChange', [
                 'personReply' => $preplyReport->personReply,
-                'regnumReply' => $preplyReport->regnumReply,
+                'regnumReply' => $preplyReport->regnumReply??[],
                 'snilsReply' => $preplyReport->snilsReply,
                 'idReply' => $preplyReport->idReply,
                 'entrepReply' => $preplyReport->entrepReply,
