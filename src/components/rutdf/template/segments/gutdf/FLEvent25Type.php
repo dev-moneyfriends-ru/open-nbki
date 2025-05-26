@@ -633,8 +633,10 @@ class FLEvent25Type extends EventDataType
         if($this->sendData->getAccountReplyRUTDF()->getDebtBurdenInfo()){
             $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
         }
-        foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
-            $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
+        if(!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneySource){
+            foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+                $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
+            }
         }
         $this->fL38ContractEnd = new FL38ContractEndType($this->template);
         $this->fL56Participation = new FL56ParticipationType($this->template);
