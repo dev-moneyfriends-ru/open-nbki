@@ -173,7 +173,7 @@ class FLEvent26Type extends EventDataType
         foreach ($this->sendData->getAccountReplyRUTDF()->getLegalItems() as $key => $item) {
             $this->addToFL39Court(new FL39CourtType($this->template, $key));
         }
-        if(empty($this->uL30Court)){
+        if(empty($this->fL39Court)){
             $this->addToFL39Court(new FL39CourtType($this->template));
         }
     }
