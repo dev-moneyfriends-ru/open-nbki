@@ -623,20 +623,21 @@ class FLEvent25Type extends EventDataType
         foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToFL191AmountInfo(new FL191AmountInfoType($this->template, $key));
         }
-
         $this->fL21PaymentTerms = new FL21PaymentTermsType($this->template);
         $this->setFL25262728Group(new FL25262728GroupType($this->template));
         if($this->sendData->getAccountReplyRUTDF()->getMonthAverPaymt()){
             $this->fL29MonthlyPayment = new FL29MonthlyPaymentType($this->template);
         }
-
         if($this->sendData->getAccountReplyRUTDF()->getDebtBurdenInfo()){
             $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
         }
         if(!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneySource){
-            foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+            foreach ($this->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
                 $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
             }
+        }
+        if(!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneyBorrower){
+            $this->fL31NonMonetarySubject = new FL31NonMonetarySubjectType($this->template);
         }
         $this->fL38ContractEnd = new FL38ContractEndType($this->template);
         $this->fL56Participation = new FL56ParticipationType($this->template);
