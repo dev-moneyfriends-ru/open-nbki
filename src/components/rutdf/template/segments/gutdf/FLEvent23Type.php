@@ -732,14 +732,13 @@ class FLEvent23Type extends EventDataType
         $this->fL29MonthlyPayment = new FL29MonthlyPaymentType($this->template);
         $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
         if(!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneySource){
-            foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+            foreach ($this->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
                 $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
             }
         }
-        foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
-            $this->addToFL31NonMonetarySubject(new FL31NonMonetarySubjectType($this->template, $key));
+        if(!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneyBorrower){
+            $this->fL31NonMonetarySubject = new FL31NonMonetarySubjectType($this->template);
         }
-
         $this->fL37WarrantyReturn = new FL37WarrantyReturnType($this->template);
         $this->fL54Accounting = new FL54AccountingType($this->template);
         $this->fL55Application = new FL55ApplicationType($this->template);
