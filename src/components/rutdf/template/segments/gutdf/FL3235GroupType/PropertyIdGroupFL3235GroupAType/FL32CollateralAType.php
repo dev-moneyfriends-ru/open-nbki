@@ -457,7 +457,7 @@ class FL32CollateralAType extends GutdfSegment
 
         $this->addToSumGroupFL3235Group(new SumGroupFL3235GroupAType($this->template, $this->idx));
 
-        $this->endReason = $collateral->collateralEndReason;
+        $this->endReason = $collateral->collateralEndReason ?: null;
         $this->contractTotalSum = $this->formatCurrency($collateral->collateralcommAmt);
         $this->actualCost = $this->formatCurrency($collateral->actualCost);
         $this->contractCount = $collateral->collateralcontCnt;

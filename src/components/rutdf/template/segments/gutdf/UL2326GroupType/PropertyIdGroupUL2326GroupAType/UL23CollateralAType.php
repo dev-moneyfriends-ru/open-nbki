@@ -475,7 +475,7 @@ class UL23CollateralAType extends GutdfSegment
 
         $this->addToSumGroupUL2326Group(new SumGroupUL2326GroupAType($this->template, $this->idx));
 
-        $this->endReason = $collateral->collateralEndReason;
+        $this->endReason = $collateral->collateralEndReason ?: null;
         $this->contractTotalSum = $this->formatCurrency($collateral->collateralcommAmt);
         $this->actualCost = $this->formatCurrency($collateral->actualCost);
         $this->contractCount = $collateral->collateralcontCnt;

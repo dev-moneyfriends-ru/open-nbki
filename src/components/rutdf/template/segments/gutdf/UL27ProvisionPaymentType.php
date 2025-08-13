@@ -188,9 +188,8 @@ class UL27ProvisionPaymentType extends GutdfSegment
             return;
         }
 
-        $this->exist0 = '';
-        $this->exist1 = null;
-
+        $this->exist0 = null;
+        $this->exist1 = '';
         foreach ($provisions as $key => $provision){
             $this->addToCodeGroupUL27ProvisionPayment(new CodeGroupUL27ProvisionPaymentAType($this->template, $key));
         }

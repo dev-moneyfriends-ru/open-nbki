@@ -344,7 +344,7 @@ class UL121AmountInfoType extends GutdfSegment
         $this->securityTypeCode = $amountInfo->commitCode;
         $this->calcDate = $this->formatDate($amountInfo->amtDate);
         $this->securityUid = UuidHelper::getUuidWithControl($amountInfo->commitUuid);
-        $this->liabilityLimit = $this->formatCurrency($amountInfo->liabilityLimit);
+        $this->liabilityLimit = $amountInfo->liabilityLimit;
     }
 
     /**
