@@ -333,7 +333,7 @@ class UL26InsuranceAType extends GutdfSegment
         $this->startDate = $this->formatDate($collatInsured->insurStartDt);
         $this->insuranceEndDate = $this->formatDate($collatInsured->insurEndDt);
         $this->insuranceFactEndDate = $this->formatDate($collatInsured->insurFactEndDt);
-        $this->endCode = $collatInsured->insurEndReason;
+        $this->endCode = $collatInsured->insurEndReason ?: null;
     }
 
     /**

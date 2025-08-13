@@ -286,7 +286,7 @@ class UidGroupFL34GuaranteeAType extends GutdfSegment
         $this->openDate = $this->formatDate($guaranty->indepGuaranteeDt);
         $this->endDate = $this->formatDate($guaranty->indepGuaranteeExpirationDate);
         $this->factEndDate = $this->formatDate($guaranty->indepGuaranteeFactExpirationDate);
-        $this->endCode = $guaranty->indepGuaranteeEndReason;
+        $this->endCode = $guaranty->indepGuaranteeEndReason ?: null;
     }
 
     /**

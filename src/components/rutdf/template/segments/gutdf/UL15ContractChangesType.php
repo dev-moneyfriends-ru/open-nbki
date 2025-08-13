@@ -452,6 +452,7 @@ class  UL15ContractChangesType extends GutdfSegment
             'startDate',
             'endDate',
             'actualEndDate',
+            'endCode',
             'currencyRate',
         ];
     }

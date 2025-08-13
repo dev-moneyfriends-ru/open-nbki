@@ -290,6 +290,46 @@ class FLEvent221Type extends EventDataType
     }
 
     /**
+     * Adds as fL24Fund
+     *
+     * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     *
+     * @param FL24FundType $fL24Fund
+     * @return self
+     */
+    public function addToFL24Fund(FL24FundType $fL24Fund)
+    {
+        $this->fL24Fund[] = $fL24Fund;
+        return $this;
+    }
+
+    /**
+     * isset fL24Fund
+     *
+     * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     *
+     * @param int|string $index
+     * @return bool
+     */
+    public function issetFL24Fund($index)
+    {
+        return isset($this->fL24Fund[$index]);
+    }
+
+    /**
+     * unset fL24Fund
+     *
+     * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     *
+     * @param int|string $index
+     * @return void
+     */
+    public function unsetFL24Fund($index)
+    {
+        unset($this->fL24Fund[$index]);
+    }
+
+    /**
      * Gets as fL24Fund
      *
      * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
@@ -497,6 +537,61 @@ class FLEvent221Type extends EventDataType
     {
         $this->fL56Participation = $fL56Participation;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_Event_2_2_1';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Субъект стал принципалом по гарантии или поручителем по сделке';
+    }
+
+    protected function initAttributes()
+    {
+        $this->fL17DealUid = new FL17DealUidType($this->template);
+        $this->fL18Deal = new FL18DealType($this->template);
+        $this->fL19Amount = new FL19AmountType($this->template);
+        foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+            $this->addToFL191AmountInfo(new FL191AmountInfoType($this->template, $key));
+        }
+        $this->fL21PaymentTerms = new FL21PaymentTermsType($this->template);
+        foreach ($this->sendData->getAccountReplyRUTDF()->getFundDateRUTDF() as $key => $value) {
+            $this->addToFL24Fund(new FL24FundType($this->template, $key));
+        }
+        if(!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneySource){
+            foreach ($this->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
+                $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
+            }
+        }
+        $this->fL54Accounting = new FL54AccountingType($this->template);
+        $this->fL56Participation = new FL56ParticipationType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'fL17DealUid',
+            'fL18Deal',
+            'fL19Amount',
+            'fL191AmountInfo',
+            'fL21PaymentTerms',
+            'fL24Fund',
+            'fL30NonMonetarySource',
+            'fL54Accounting',
+            'fL56Participation',
+        ];
     }
 }
 

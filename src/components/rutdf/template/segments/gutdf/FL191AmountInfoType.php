@@ -324,10 +324,10 @@ class FL191AmountInfoType extends GutdfSegment
         $this->securityFact1 = '';
         $this->securitySum = $this->formatCurrency($amountInfo->ensuredAmt);
         $this->securityCurrency = $amountInfo->commitcurrCode;
-        $this->securityTypeCode = $amountInfo->commitcurrCode;
+        $this->securityTypeCode = $amountInfo->commitCode;
         $this->calcDate = $this->formatDate($amountInfo->amtDate);
         $this->securityUid = UuidHelper::getUuidWithControl($amountInfo->commitUuid);
-        $this->liabilityLimit = $this->formatCurrency($amountInfo->liabilityLimit);
+        $this->liabilityLimit = $amountInfo->liabilityLimit;
     }
 
     /**

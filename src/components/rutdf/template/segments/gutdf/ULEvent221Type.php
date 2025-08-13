@@ -290,6 +290,46 @@ class ULEvent221Type extends EventDataType
     }
 
     /**
+     * Adds as uL16Fund
+     *
+     * Блок 16. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     *
+     * @param UL16FundType $uL16Fund
+     * @return self
+     */
+    public function addToUL16Fund(UL16FundType $uL16Fund)
+    {
+        $this->uL16Fund[] = $uL16Fund;
+        return $this;
+    }
+
+    /**
+     * isset uL16Fund
+     *
+     * Блок 16. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     *
+     * @param int|string $index
+     * @return bool
+     */
+    public function issetUL16Fund($index)
+    {
+        return isset($this->uL16Fund[$index]);
+    }
+
+    /**
+     * unset uL16Fund
+     *
+     * Блок 16. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     *
+     * @param int|string $index
+     * @return void
+     */
+    public function unsetUL16Fund($index)
+    {
+        unset($this->uL16Fund[$index]);
+    }
+
+    /**
      * Gets as uL16Fund
      *
      * Блок 16. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
@@ -497,6 +537,59 @@ class ULEvent221Type extends EventDataType
     {
         $this->uL46Participation = $uL46Participation;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_Event_2_2_1';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Субъект стал принципалом по гарантии или поручителем по сделке';
+    }
+
+    protected function initAttributes()
+    {
+        $this->uL10DealUid = new UL10DealUidType($this->template);
+        $this->uL11Deal = new UL11DealType($this->template);
+        $this->uL12Amount= new UL12AmountType($this->template);
+        foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
+            $this->addToUL121AmountInfo(new UL121AmountInfoType($this->template, $key));
+        }
+        $this->uL14PaymentTerms = new UL14PaymentTermsType($this->template);
+        foreach ($this->sendData->getAccountReplyRUTDF()->getFundDateRUTDF() as $key => $value) {
+            $this->addToUL16Fund(new UL16FundType($this->template, $key));
+        }
+        foreach ($this->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
+            $this->addToUL21NonMonetarySource(new UL21NonMonetarySourceType($this->template, $key));
+        }
+        $this->uL44Accounting = new UL44AccountingType($this->template);
+        $this->uL46Participation = new UL46ParticipationType($this->template);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'uL10DealUid',
+            'uL11Deal',
+            'uL12Amount',
+            'uL121AmountInfo',
+            'uL14PaymentTerms',
+            'uL16Fund',
+            'uL21NonMonetarySource',
+            'uL44Accounting',
+            'uL46Participation',
+        ];
     }
 }
 

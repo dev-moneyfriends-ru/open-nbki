@@ -715,11 +715,6 @@ class FLEvent23Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->addToFL8AddrReg(new FL8AddrRegType($this->template));
-        $this->fL9AddrFact = new FL9AddrFactType($this->template);
-        $this->fL10Contact = new FL10ContactType($this->template);
-        $this->fL11IndividualEntrepreneur = new FL11IndividualEntrepreneurType($this->template);
-        $this->fL12Capacity = new FL12CapacityType($this->template);
         $this->fL17DealUid = new FL17DealUidType($this->template);
         $this->fL18Deal = new FL18DealType($this->template);
         $this->fL19Amount = new FL19AmountType($this->template);
@@ -755,12 +750,12 @@ class FLEvent23Type extends EventDataType
             'fL18Deal',
             'fL19Amount',
             'fL191AmountInfo',
-            'fL20JointDebtors',
             'fL21PaymentTerms',
             'fL22TotalCost',
             'fL25262728Group',
             'fL29MonthlyPayment',
             'fL291DebtBurdenInfo',
+            'fL20JointDebtors',
             'fL30NonMonetarySource',
             'fL31NonMonetarySubject',
             'fL37WarrantyReturn',
