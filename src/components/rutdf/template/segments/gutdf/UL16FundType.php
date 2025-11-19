@@ -60,7 +60,7 @@ class UL16FundType extends GutdfSegment
      * @param string $date
      * @return self
      */
-    public function setDate(?\DateTime $date = null)
+    public function setDate(?string$date = null)
     {
         $this->date = $date;
         return $this;
@@ -182,7 +182,7 @@ class UL16FundType extends GutdfSegment
         $this->setDate($this->formatDate($fund->fundDate));
         $this->setNum($fund->trancheNum);
         $this->setStartSum($this->formatCurrency($fund->startSum));
-        $this->setCurrency($fund->getFundCurrency());
+        $this->setCurrency($fund->fundCurrency);
     }
 
     /**

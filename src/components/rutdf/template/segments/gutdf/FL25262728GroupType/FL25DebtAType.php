@@ -290,7 +290,7 @@ class FL25DebtAType extends GutdfSegment
             $this->graceUnconfExist1 = null;
             $this->graceUnconfExist0 = '';
         }
-        $this->currency = $debt->getArrearCurrency();
+        $this->currency = $debt->arrearCurrency;
     }
 
     /**

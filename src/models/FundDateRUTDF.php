@@ -39,4 +39,6 @@ class FundDateRUTDF extends BaseItem
      */
     public $startSum = null;
 
+    public $fundCurrency = 'RUB';
+
 }

@@ -13,7 +13,7 @@ class FL24FundType extends GutdfSegment
     /**
      * 24.1. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
      *
-     * @var \DateTime $date
+     * @var string $date
      */
     private $date = null;
 
@@ -43,7 +43,7 @@ class FL24FundType extends GutdfSegment
      *
      * 24.1. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
      *
-     * @return \DateTime
+     * @return string
      */
     public function getDate()
     {
@@ -55,10 +55,10 @@ class FL24FundType extends GutdfSegment
      *
      * 24.1. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
      *
-     * @param \DateTime $date
+     * @param string $date
      * @return self
      */
-    public function setDate(?\DateTime $date = null)
+    public function setDate(?string $date = null)
     {
         $this->date = $date;
         return $this;
@@ -175,11 +175,14 @@ class FL24FundType extends GutdfSegment
      */
     public function init(): void
     {
+        if(empty($this->sendData->getAccountReplyRUTDF()->getFundDateRUTDF()) || empty($this->sendData->getAccountReplyRUTDF()->getFundDateRUTDF()[$this->idx])){
+            return;
+        }
         $fund = $this->sendData->getAccountReplyRUTDF()->getFundDateRUTDF()[$this->idx];
         $this->setDate($this->formatDate($fund->fundDate));
         $this->setNum($fund->trancheNum);
         $this->setStartSum($this->formatCurrency($fund->startSum));
-        $this->setCurrency($fund->getFundCurrency());
+        $this->setCurrency($fund->fundCurrency);
     }
 
     /**
