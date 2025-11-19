@@ -604,6 +604,7 @@ class FL46UL36OrgSourceType extends GutdfSegment
         $this->sourceCreditInfoDate = $this->formatDate($this->template->generateTime);
         $this->setSourceRegistrationFact0(null);
         $this->setSourceRegistrationFact1('');
+        $this->setSourceDateStart($this->formatDate($this->sendData->getAccountReplyRUTDF()->memberStartDt));
     }
 
     public function getXmlAttributes(): array
@@ -613,6 +614,7 @@ class FL46UL36OrgSourceType extends GutdfSegment
             'sourceRegistrationFact_0' => 'sourceRegistrationFact0',
             'sourceRegistrationFact_1' => 'sourceRegistrationFact1',
             'fullName',
+            'sourceDateStart',
             'regNum',
             'taxNumGroupFL46UL36OrgSource',
             'sourceCreditInfoDate',
