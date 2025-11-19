@@ -277,7 +277,6 @@ class UL18DebtDueAType extends GutdfSegment
     {
         $debt = $this->sendData->getAccountReplyRUTDF()->getDueArrear();
         if ($debt === null || empty($debt->amtOutstanding)) {
-            $this->setDebtDueSum(0);
             $this->setDebtDueExist0('');
             $this->setDebtDueExist1(null);
             return;
