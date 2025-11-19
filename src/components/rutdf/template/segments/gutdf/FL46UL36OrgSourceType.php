@@ -602,6 +602,8 @@ class FL46UL36OrgSourceType extends GutdfSegment
         $this->regNum = $rutdf->sourceOgrn;
         $this->addToTaxNumGroupFL46UL36OrgSource((new TaxNumGroupFL46UL36OrgSourceAType($this->template)));
         $this->sourceCreditInfoDate = $this->formatDate($this->template->generateTime);
+        $this->setSourceRegistrationFact0(null);
+        $this->setSourceRegistrationFact1('');
     }
 
     public function getXmlAttributes(): array
