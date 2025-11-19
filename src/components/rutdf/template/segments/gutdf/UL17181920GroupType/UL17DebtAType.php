@@ -216,7 +216,7 @@ class UL17DebtAType extends GutdfSegment
         $this->debtMainSum = $this->formatCurrency($debt->principalOutstanding);
         $this->debtPercentSum = $this->formatCurrency($debt->intOutstanding);
         $this->debtOtherSum = $this->formatCurrency($debt->otherAmtOutstanding);
-        $this->currency = $debt->getArrearCurrency();
+        $this->currency = $debt->arrearCurrency;
     }
 
     /**

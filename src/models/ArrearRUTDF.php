@@ -80,4 +80,6 @@ class ArrearRUTDF extends BaseItem
      */
     public $unconfirmGrace = 0;
 
+    public $arrearCurrency = 'RUB';
+
 }
