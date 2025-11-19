@@ -90,6 +90,8 @@ class UL2AddressType extends GutdfSegment
     private $apart = null;
 
     /**
+     * Номера телефонов
+     *
      * @var PhoneGroupUL2AddressAType[] $phoneGroupUL2Address
      */
     private $phoneGroupUL2Address = [
@@ -110,7 +112,7 @@ class UL2AddressType extends GutdfSegment
      *
      * @var string $foreignerFact0
      */
-    private $foreignerFact0 = '';
+    private $foreignerFact0 = null;
 
     /**
      * 2.15. Признак иностранного юридического лица = 1
@@ -408,6 +410,8 @@ class UL2AddressType extends GutdfSegment
     /**
      * Adds as phoneGroupUL2Address
      *
+     * Номера телефонов
+     *
      * @param PhoneGroupUL2AddressAType $phoneGroupUL2Address
      * @return self
      */
@@ -420,6 +424,8 @@ class UL2AddressType extends GutdfSegment
     /**
      * isset phoneGroupUL2Address
      *
+     * Номера телефонов
+     *
      * @param int|string $index
      * @return bool
      */
@@ -430,6 +436,8 @@ class UL2AddressType extends GutdfSegment
 
     /**
      * unset phoneGroupUL2Address
+     *
+     * Номера телефонов
      *
      * @param int|string $index
      * @return void
@@ -442,6 +450,8 @@ class UL2AddressType extends GutdfSegment
     /**
      * Gets as phoneGroupUL2Address
      *
+     * Номера телефонов
+     *
      * @return PhoneGroupUL2AddressAType[]
      */
     public function getPhoneGroupUL2Address()
@@ -451,6 +461,8 @@ class UL2AddressType extends GutdfSegment
 
     /**
      * Sets a new phoneGroupUL2Address
+     *
+     * Номера телефонов
      *
      * @param PhoneGroupUL2AddressAType[] $phoneGroupUL2Address
      * @return self
@@ -654,7 +666,6 @@ class UL2AddressType extends GutdfSegment
         $this->countryOther = $address->otherCountry;
         $this->regStateNum = $address->fias;
         $this->locationCode = $address->okato;
-        $this->locationOther = $this->formatString($address->otherLocation);
         $this->street = $this->formatString($address->street);
         $this->house = $this->formatString($address->houseNumber);
         $this->estate = $this->formatString($address->estate);

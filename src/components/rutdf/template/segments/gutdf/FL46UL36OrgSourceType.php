@@ -33,7 +33,7 @@ class FL46UL36OrgSourceType extends GutdfSegment
      *
      * @var string $sourceRegistrationFact1
      */
-    private $sourceRegistrationFact1 = '';
+    private $sourceRegistrationFact1 = null;
 
     /**
      * 46.3., 36.3. Полное наименование
@@ -78,7 +78,7 @@ class FL46UL36OrgSourceType extends GutdfSegment
     private $regNum = null;
 
     /**
-     * Номер налогоплательщика
+     * Номера налогоплательщика
      *
      * @var TaxNumGroupFL46UL36OrgSourceAType[] $taxNumGroupFL46UL36OrgSource
      */
@@ -320,10 +320,10 @@ class FL46UL36OrgSourceType extends GutdfSegment
      *
      * 46.7., 36.7. Дата создания источника
      *
-     * @param DateTime $sourceDateStart
+     * @param string $sourceDateStart
      * @return self
      */
-    public function setSourceDateStart(?DateTime $sourceDateStart = null)
+    public function setSourceDateStart($sourceDateStart)
     {
         $this->sourceDateStart = $sourceDateStart;
         return $this;
@@ -358,7 +358,7 @@ class FL46UL36OrgSourceType extends GutdfSegment
     /**
      * Adds as taxNumGroupFL46UL36OrgSource
      *
-     * Номер налогоплательщика
+     * Номера налогоплательщика
      *
      * @param TaxNumGroupFL46UL36OrgSourceAType $taxNumGroupFL46UL36OrgSource
      * @return self
@@ -372,7 +372,7 @@ class FL46UL36OrgSourceType extends GutdfSegment
     /**
      * isset taxNumGroupFL46UL36OrgSource
      *
-     * Номер налогоплательщика
+     * Номера налогоплательщика
      *
      * @param int|string $index
      * @return bool
@@ -385,7 +385,7 @@ class FL46UL36OrgSourceType extends GutdfSegment
     /**
      * unset taxNumGroupFL46UL36OrgSource
      *
-     * Номер налогоплательщика
+     * Номера налогоплательщика
      *
      * @param int|string $index
      * @return void
@@ -398,7 +398,7 @@ class FL46UL36OrgSourceType extends GutdfSegment
     /**
      * Gets as taxNumGroupFL46UL36OrgSource
      *
-     * Номер налогоплательщика
+     * Номера налогоплательщика
      *
      * @return TaxNumGroupFL46UL36OrgSourceAType[]
      */
@@ -410,7 +410,7 @@ class FL46UL36OrgSourceType extends GutdfSegment
     /**
      * Sets a new taxNumGroupFL46UL36OrgSource
      *
-     * Номер налогоплательщика
+     * Номера налогоплательщика
      *
      * @param TaxNumGroupFL46UL36OrgSourceAType[] $taxNumGroupFL46UL36OrgSource
      * @return self

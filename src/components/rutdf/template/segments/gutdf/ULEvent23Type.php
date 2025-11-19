@@ -5,7 +5,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 /**
  * Class representing ULEvent23Type
  *
- * Изменение задолженности, в том числе ввиду исполнения обязательства, наступила ответственность поручителя или обязательство принципала возместить выплаченную сумму
+ * Изменение задолженности, в том числе ввиду исполнения обязательства, наступили ответственность поручителя или обязательство принципала возместить выплаченную сумму
  * XSD Type: UL_Event_2_3_Type
  */
 class ULEvent23Type extends EventDataType
@@ -87,6 +87,13 @@ class ULEvent23Type extends EventDataType
     ];
 
     /**
+     * Блок 27(1). Сведения о погашении требований кредитора по обязательству предоставлением отступного, зачетом встречных требований, прощением долга, за счет реализации предмета лизинга
+     *
+     * @var UL271ProvisionPaymentOffsetType $uL271ProvisionPaymentOffset
+     */
+    private $uL271ProvisionPaymentOffset = null;
+
+    /**
      * Блок 28. Сведения о возмещении принципалом гаранту выплаченной суммы
      *
      * @var UL28WarrantyReturnType $uL28WarrantyReturn
@@ -94,14 +101,14 @@ class ULEvent23Type extends EventDataType
     private $uL28WarrantyReturn = null;
 
     /**
-     * Блок 44. Сведения об учете обязательства
+     * Блок 44. Сведения об учете задолженности
      *
      * @var UL44AccountingType $uL44Accounting
      */
     private $uL44Accounting = null;
 
     /**
-     * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 45. Сведения об обращении
      *
      * @var UL45ApplicationType $uL45Application
      */
@@ -495,6 +502,32 @@ class ULEvent23Type extends EventDataType
     }
 
     /**
+     * Gets as uL271ProvisionPaymentOffset
+     *
+     * Блок 27(1). Сведения о погашении требований кредитора по обязательству предоставлением отступного, зачетом встречных требований, прощением долга, за счет реализации предмета лизинга
+     *
+     * @return UL271ProvisionPaymentOffsetType
+     */
+    public function getUL271ProvisionPaymentOffset()
+    {
+        return $this->uL271ProvisionPaymentOffset;
+    }
+
+    /**
+     * Sets a new uL271ProvisionPaymentOffset
+     *
+     * Блок 27(1). Сведения о погашении требований кредитора по обязательству предоставлением отступного, зачетом встречных требований, прощением долга, за счет реализации предмета лизинга
+     *
+     * @param UL271ProvisionPaymentOffsetType $uL271ProvisionPaymentOffset
+     * @return self
+     */
+    public function setUL271ProvisionPaymentOffset(UL271ProvisionPaymentOffsetType $uL271ProvisionPaymentOffset)
+    {
+        $this->uL271ProvisionPaymentOffset = $uL271ProvisionPaymentOffset;
+        return $this;
+    }
+
+    /**
      * Gets as uL28WarrantyReturn
      *
      * Блок 28. Сведения о возмещении принципалом гаранту выплаченной суммы
@@ -523,7 +556,7 @@ class ULEvent23Type extends EventDataType
     /**
      * Gets as uL44Accounting
      *
-     * Блок 44. Сведения об учете обязательства
+     * Блок 44. Сведения об учете задолженности
      *
      * @return UL44AccountingType
      */
@@ -535,7 +568,7 @@ class ULEvent23Type extends EventDataType
     /**
      * Sets a new uL44Accounting
      *
-     * Блок 44. Сведения об учете обязательства
+     * Блок 44. Сведения об учете задолженности
      *
      * @param UL44AccountingType $uL44Accounting
      * @return self
@@ -549,7 +582,7 @@ class ULEvent23Type extends EventDataType
     /**
      * Gets as uL45Application
      *
-     * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 45. Сведения об обращении
      *
      * @return UL45ApplicationType
      */
@@ -561,7 +594,7 @@ class ULEvent23Type extends EventDataType
     /**
      * Sets a new uL45Application
      *
-     * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 45. Сведения об обращении
      *
      * @param UL45ApplicationType $uL45Application
      * @return self
@@ -616,16 +649,16 @@ class ULEvent23Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->uL10DealUid = new UL10DealUidType($this->template);
-        $this->uL11Deal = new UL11DealType($this->template);
-        $this->uL12Amount= new UL12AmountType($this->template);
+        $this->setUL10DealUid(new UL10DealUidType($this->template));
+        $this->setUL11Deal(new UL11DealType($this->template));
+        $this->setUL12Amount(new UL12AmountType($this->template));
 
         foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToUL121AmountInfo(new UL121AmountInfoType($this->template, $key));
         }
 
-        $this->uL13JointDebtors = new UL13JointDebtorsType($this->template);
-        $this->uL14PaymentTerms = new UL14PaymentTermsType($this->template);
+        $this->setUL13JointDebtors(new UL13JointDebtorsType($this->template));
+        $this->setUL14PaymentTerms(new UL14PaymentTermsType($this->template));
 
         $this->setUL17181920Group(new UL17181920GroupType($this->template));
 
@@ -637,10 +670,11 @@ class ULEvent23Type extends EventDataType
             $this->addToUL22NonMonetarySubject(new UL22NonMonetarySubjectType($this->template, $key));
         }
 
-        $this->uL28WarrantyReturn = new UL28WarrantyReturnType($this->template);
-        $this->uL44Accounting = new UL44AccountingType($this->template);
-        $this->uL45Application = new UL45ApplicationType($this->template);
-        $this->uL46Participation = new UL46ParticipationType($this->template);
+        $this->setUL271ProvisionPaymentOffset(new UL271ProvisionPaymentOffsetType($this->template));
+        $this->setUL28WarrantyReturn(new UL28WarrantyReturnType($this->template));
+        $this->setUL44Accounting(new UL44AccountingType($this->template));
+        $this->setUL45Application(new UL45ApplicationType($this->template));
+        $this->setUL46Participation(new UL46ParticipationType($this->template));
     }
 
     /**
@@ -655,9 +689,10 @@ class ULEvent23Type extends EventDataType
             'uL121AmountInfo',
             'uL14PaymentTerms',
             'uL17181920Group',
+            'uL22NonMonetarySubject',
             'uL13JointDebtors',
             'uL21NonMonetarySource',
-            'uL22NonMonetarySubject',
+            'uL271ProvisionPaymentOffset',
             'uL28WarrantyReturn',
             'uL44Accounting',
             'uL45Application',

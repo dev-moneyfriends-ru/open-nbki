@@ -3,6 +3,7 @@
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
 use mfteam\nbch\components\rutdf\template\segments\gutdf\UL25GuaranteeType\UidGroupUL25GuaranteeAType;
+use mfteam\nbch\helpers\UuidHelper;
 
 /**
  * Class representing UL25GuaranteeType
@@ -27,11 +28,53 @@ class UL25GuaranteeType extends GutdfSegment
     private $exist1 = null;
 
     /**
-     * @var UidGroupUL25GuaranteeAType[] $uidGroupUL25Guarantee
+     * 25.2. УИд независимой гарантии
+     *
+     * @var string $uid
      */
-    private $uidGroupUL25Guarantee = [
-        
-    ];
+    private $uid = null;
+
+    /**
+     * 25.3. Сумма независимой гарантии
+     *
+     * @var string $sum
+     */
+    private $sum = null;
+
+    /**
+     * 25.4. Валюта независимой гарантии
+     *
+     * @var string $currency
+     */
+    private $currency = null;
+
+    /**
+     * 25.5. Дата выдачи независимой гарантии
+     *
+     * @var string $openDate
+     */
+    private $openDate = null;
+
+    /**
+     * 25.6. Дата окончания независимой гарантии согласно ее условиям
+     *
+     * @var string $endDate
+     */
+    private $endDate = null;
+
+    /**
+     * 25.7. Дата фактического прекращения независимой гарантии
+     *
+     * @var \DateTime $factEndDate
+     */
+    private $factEndDate = null;
+
+    /**
+     * 25.8. Код причины прекращения независимой гарантии
+     *
+     * @var int $endCode
+     */
+    private $endCode = null;
 
     /**
      * Gets as exist0
@@ -86,58 +129,184 @@ class UL25GuaranteeType extends GutdfSegment
     }
 
     /**
-     * Adds as uidGroupUL25Guarantee
+     * Gets as uid
      *
-     * @return self
-     * @param UidGroupUL25GuaranteeAType $uidGroupUL25Guarantee
+     * 25.2. УИд независимой гарантии
+     *
+     * @return string
      */
-    public function addToUidGroupUL25Guarantee(UidGroupUL25GuaranteeAType $uidGroupUL25Guarantee)
+    public function getUid()
     {
-        $this->uidGroupUL25Guarantee[] = $uidGroupUL25Guarantee;
+        return $this->uid;
+    }
+
+    /**
+     * Sets a new uid
+     *
+     * 25.2. УИд независимой гарантии
+     *
+     * @param string $uid
+     * @return self
+     */
+    public function setUid($uid)
+    {
+        $this->uid = $uid;
         return $this;
     }
 
     /**
-     * isset uidGroupUL25Guarantee
+     * Gets as sum
      *
-     * @param int|string $index
-     * @return bool
+     * 25.3. Сумма независимой гарантии
+     *
+     * @return string
      */
-    public function issetUidGroupUL25Guarantee($index)
+    public function getSum()
     {
-        return isset($this->uidGroupUL25Guarantee[$index]);
+        return $this->sum;
     }
 
     /**
-     * unset uidGroupUL25Guarantee
+     * Sets a new sum
      *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetUidGroupUL25Guarantee($index)
-    {
-        unset($this->uidGroupUL25Guarantee[$index]);
-    }
-
-    /**
-     * Gets as uidGroupUL25Guarantee
+     * 25.3. Сумма независимой гарантии
      *
-     * @return UidGroupUL25GuaranteeAType[]
-     */
-    public function getUidGroupUL25Guarantee()
-    {
-        return $this->uidGroupUL25Guarantee;
-    }
-
-    /**
-     * Sets a new uidGroupUL25Guarantee
-     *
-     * @param UidGroupUL25GuaranteeAType[] $uidGroupUL25Guarantee
+     * @param string $sum
      * @return self
      */
-    public function setUidGroupUL25Guarantee(array $uidGroupUL25Guarantee = null)
+    public function setSum($sum)
     {
-        $this->uidGroupUL25Guarantee = $uidGroupUL25Guarantee;
+        $this->sum = $sum;
+        return $this;
+    }
+
+    /**
+     * Gets as currency
+     *
+     * 25.4. Валюта независимой гарантии
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * Sets a new currency
+     *
+     * 25.4. Валюта независимой гарантии
+     *
+     * @param string $currency
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+        return $this;
+    }
+
+    /**
+     * Gets as openDate
+     *
+     * 25.5. Дата выдачи независимой гарантии
+     *
+     * @return string
+     */
+    public function getOpenDate()
+    {
+        return $this->openDate;
+    }
+
+    /**
+     * Sets a new openDate
+     *
+     * 25.5. Дата выдачи независимой гарантии
+     *
+     * @param string $openDate
+     * @return self
+     */
+    public function setOpenDate($openDate)
+    {
+        $this->openDate = $openDate;
+        return $this;
+    }
+
+    /**
+     * Gets as endDate
+     *
+     * 25.6. Дата окончания независимой гарантии согласно ее условиям
+     *
+     * @return string
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
+
+    /**
+     * Sets a new endDate
+     *
+     * 25.6. Дата окончания независимой гарантии согласно ее условиям
+     *
+     * @param string $endDate
+     * @return self
+     */
+    public function setEndDate($endDate)
+    {
+        $this->endDate = $endDate;
+        return $this;
+    }
+
+    /**
+     * Gets as factEndDate
+     *
+     * 25.7. Дата фактического прекращения независимой гарантии
+     *
+     * @return \DateTime
+     */
+    public function getFactEndDate()
+    {
+        return $this->factEndDate;
+    }
+
+    /**
+     * Sets a new factEndDate
+     *
+     * 25.7. Дата фактического прекращения независимой гарантии
+     *
+     * @param \DateTime $factEndDate
+     * @return self
+     */
+    public function setFactEndDate(?\DateTime $factEndDate = null)
+    {
+        $this->factEndDate = $factEndDate;
+        return $this;
+    }
+
+    /**
+     * Gets as endCode
+     *
+     * 25.8. Код причины прекращения независимой гарантии
+     *
+     * @return int
+     */
+    public function getEndCode()
+    {
+        return $this->endCode;
+    }
+
+    /**
+     * Sets a new endCode
+     *
+     * 25.8. Код причины прекращения независимой гарантии
+     *
+     * @param int $endCode
+     * @return self
+     */
+    public function setEndCode($endCode)
+    {
+        $this->endCode = $endCode;
         return $this;
     }
 
@@ -155,8 +324,15 @@ class UL25GuaranteeType extends GutdfSegment
     public function getFieldsDescriptions(): array
     {
         return [
-          'Признак наличия независимой гарантии 0' => 'Код «1» – исполнение обязательства обеспечено независимой гарантией; код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока не передаются в соответствии со схемой Blocks.xsd.',
-          'Признак наличия независимой гарантии 1' => 'Код «1» – исполнение обязательства обеспечено независимой гарантией; код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока не передаются в соответствии со схемой Blocks.xsd.',
+            'Признак наличия независимой гарантии 0' => 'Код «1» – исполнение обязательства обеспечено независимой гарантией; код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока не передаются в соответствии со схемой Blocks.xsd.',
+            'Признак наличия независимой гарантии 1' => 'Код «1» – исполнение обязательства обеспечено независимой гарантией; код «0» – обстоятельство кода «1» отсутствует. Если указан код «0», иные показатели блока не передаются в соответствии со схемой Blocks.xsd.',
+            'УИд независимой гарантии' => 'Заполняется, если по обязательству принципала формируется КИ. Значение указанного показателя должно соответствовать значению показателя 17.1 «УИд сделки» блока 17 в КИ принципала – физического лица или показателя 10.1 «УИд сделки» блока 10 в КИ принципала – юридического лица.',
+            'Сумма независимой гарантии' => '',
+            'Валюта независимой гарантии' => '',
+            'Дата выдачи независимой гарантии' => '',
+            'Дата окончания независимой гарантии согласно ее условиям' => '',
+            'Дата фактического прекращения независимой гарантии' => '',
+            'Код причины прекращения независимой гарантии' => 'Заполняется по справочнику 4.2.',
         ];
     }
 
@@ -173,18 +349,22 @@ class UL25GuaranteeType extends GutdfSegment
      */
     public function init(): void
     {
-        $guaranties = $this->sendData->getAccountReplyRUTDF()->getIndepGuarantor();
-        if(empty($guaranties)){
+        if(empty($this->idx)){
             $this->exist0 = '';
             $this->exist1 = null;
             return;
         }
+        $guaranty = $this->sendData->getAccountReplyRUTDF()->getIndepGuarantor()[$this->idx];
         $this->exist1 = '';
         $this->exist0 = null;
 
-        foreach ($guaranties as $key => $guaranty){
-            $this->addToUidGroupUL25Guarantee(new UidGroupUL25GuaranteeAType($this->template, $key));
-        }
+        $this->uid = UuidHelper::getUuidWithControl($guaranty->indepGuaranteeUuid);
+        $this->sum = $this->formatCurrency($guaranty->indepGuaranteeVolume);
+        $this->currency = $guaranty->currencyCode;
+        $this->openDate = $this->formatDate($guaranty->indepGuaranteeDt);
+        $this->endDate = $this->formatDate($guaranty->indepGuaranteeExpirationDate);
+        $this->factEndDate = $this->formatDate($guaranty->indepGuaranteeFactExpirationDate);
+        $this->endCode = $guaranty->indepGuaranteeEndReason ?: null;
     }
 
     /**
@@ -193,9 +373,15 @@ class UL25GuaranteeType extends GutdfSegment
     public function getXmlAttributes(): array
     {
         return [
-          'exist_0' => 'exist0',
-          'exist_1' => 'exist1',
-          'uidGroupUL25Guarantee',
+            'exist_0' => 'exist0',
+            'exist_1' => 'exist1',
+            'uid',
+            'sum',
+            'currency',
+            'openDate',
+            'endDate',
+            'factEndDate',
+            'endCode',
         ];
     }
 
@@ -204,6 +390,13 @@ class UL25GuaranteeType extends GutdfSegment
         return [
             'exist_0' => $this->exist0,
             'exist_1' => $this->exist1,
+            'uid',
+            'sum',
+            'currency',
+            'openDate',
+            'endDate',
+            'factEndDate',
+            'endCode',
         ];
     }
 }

@@ -22,9 +22,11 @@ class SubjectTitleDataULType extends SubjectTitleDataType
     /**
      * Блок 2. Адрес юридического лица в пределах его места нахождения и контактная информация
      *
-     * @var UL2AddressType $uL2Address
+     * @var UL2AddressType[] $uL2Address
      */
-    private $uL2Address = null;
+    private $uL2Address = [
+
+    ];
 
     /**
      * Блок 3. Регистрационный номер
@@ -41,7 +43,7 @@ class SubjectTitleDataULType extends SubjectTitleDataType
     private $uL4Tax = null;
 
     /**
-     * Блок 5. Сведения о смене наименования либо правопреемстве при реорганизации
+     * Блок 5. Сведения о правопреемстве при реорганизации
      *
      * @var UL5ReorgType[] $uL5Reorg
      */
@@ -76,11 +78,51 @@ class SubjectTitleDataULType extends SubjectTitleDataType
     }
 
     /**
+     * Adds as uL2Address
+     *
+     * Блок 2. Адрес юридического лица в пределах его места нахождения и контактная информация
+     *
+     * @param UL2AddressType $uL2Address
+     * @return self
+     */
+    public function addToUL2Address(UL2AddressType $uL2Address)
+    {
+        $this->uL2Address[] = $uL2Address;
+        return $this;
+    }
+
+    /**
+     * isset uL2Address
+     *
+     * Блок 2. Адрес юридического лица в пределах его места нахождения и контактная информация
+     *
+     * @param int|string $index
+     * @return bool
+     */
+    public function issetUL2Address($index)
+    {
+        return isset($this->uL2Address[$index]);
+    }
+
+    /**
+     * unset uL2Address
+     *
+     * Блок 2. Адрес юридического лица в пределах его места нахождения и контактная информация
+     *
+     * @param int|string $index
+     * @return void
+     */
+    public function unsetUL2Address($index)
+    {
+        unset($this->uL2Address[$index]);
+    }
+
+    /**
      * Gets as uL2Address
      *
      * Блок 2. Адрес юридического лица в пределах его места нахождения и контактная информация
      *
-     * @return UL2AddressType
+     * @return UL2AddressType[]
      */
     public function getUL2Address()
     {
@@ -92,10 +134,10 @@ class SubjectTitleDataULType extends SubjectTitleDataType
      *
      * Блок 2. Адрес юридического лица в пределах его места нахождения и контактная информация
      *
-     * @param UL2AddressType $uL2Address
+     * @param UL2AddressType[] $uL2Address
      * @return self
      */
-    public function setUL2Address(UL2AddressType $uL2Address)
+    public function setUL2Address(array $uL2Address)
     {
         $this->uL2Address = $uL2Address;
         return $this;
@@ -196,7 +238,7 @@ class SubjectTitleDataULType extends SubjectTitleDataType
     /**
      * Adds as uL5Reorg
      *
-     * Блок 5. Сведения о смене наименования либо правопреемстве при реорганизации
+     * Блок 5. Сведения о правопреемстве при реорганизации
      *
      * @param UL5ReorgType $uL5Reorg
      * @return self
@@ -210,7 +252,7 @@ class SubjectTitleDataULType extends SubjectTitleDataType
     /**
      * isset uL5Reorg
      *
-     * Блок 5. Сведения о смене наименования либо правопреемстве при реорганизации
+     * Блок 5. Сведения о правопреемстве при реорганизации
      *
      * @param int|string $index
      * @return bool
@@ -223,7 +265,7 @@ class SubjectTitleDataULType extends SubjectTitleDataType
     /**
      * unset uL5Reorg
      *
-     * Блок 5. Сведения о смене наименования либо правопреемстве при реорганизации
+     * Блок 5. Сведения о правопреемстве при реорганизации
      *
      * @param int|string $index
      * @return void
@@ -236,7 +278,7 @@ class SubjectTitleDataULType extends SubjectTitleDataType
     /**
      * Gets as uL5Reorg
      *
-     * Блок 5. Сведения о смене наименования либо правопреемстве при реорганизации
+     * Блок 5. Сведения о правопреемстве при реорганизации
      *
      * @return UL5ReorgType[]
      */
@@ -248,7 +290,7 @@ class SubjectTitleDataULType extends SubjectTitleDataType
     /**
      * Sets a new uL5Reorg
      *
-     * Блок 5. Сведения о смене наименования либо правопреемстве при реорганизации
+     * Блок 5. Сведения о правопреемстве при реорганизации
      *
      * @param UL5ReorgType[] $uL5Reorg
      * @return self
@@ -292,7 +334,7 @@ class SubjectTitleDataULType extends SubjectTitleDataType
     public function init(): void
     {
         $this->setUL1Name(new UL1NameType($this->template));
-        $this->setUL2Address(new UL2AddressType($this->template));
+        $this->addToUL2Address(new UL2AddressType($this->template));
         $this->setUL3Reg(new UL3RegType($this->template));
         $this->addToUL4Tax(new TaxNumGroupUL4TaxAType($this->template));
         $this->addToUL5Reorg(new UL5ReorgType($this->template));

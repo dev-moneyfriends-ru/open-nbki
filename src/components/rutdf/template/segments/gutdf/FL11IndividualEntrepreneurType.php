@@ -18,6 +18,13 @@ class FL11IndividualEntrepreneurType extends GutdfSegment
     private $regFact0 = null;
 
     /**
+     * 11.4. Дата прекращения статуса индивидуального предпринимателя
+     *
+     * @var ?string $endDate
+     */
+    private $endDate = null;
+
+    /**
      * 11.1. Признак индивидуального предпринимателя = 1
      *
      * @var string $regFact1
@@ -34,7 +41,7 @@ class FL11IndividualEntrepreneurType extends GutdfSegment
     /**
      * 11.3. Дата регистрации индивидуального предпринимателя
      *
-     * @var \DateTime $date
+     * @var ?string $date
      */
     private $date = null;
 
@@ -61,6 +68,32 @@ class FL11IndividualEntrepreneurType extends GutdfSegment
     public function setRegFact0($regFact0)
     {
         $this->regFact0 = $regFact0;
+        return $this;
+    }
+
+    /**
+     * Gets as endDate
+     *
+     * 11.4. Дата прекращения статуса индивидуального предпринимателя
+     *
+     * @return string|null
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
+
+    /**
+     * Sets a new endDate
+     *
+     * 11.4. Дата прекращения статуса индивидуального предпринимателя
+     *
+     * @param string|null $endDate
+     * @return self
+     */
+    public function setEndDate(?string $endDate = null)
+    {
+        $this->endDate = $endDate;
         return $this;
     }
 
@@ -121,7 +154,7 @@ class FL11IndividualEntrepreneurType extends GutdfSegment
      *
      * 11.3. Дата регистрации индивидуального предпринимателя
      *
-     * @return \DateTime
+     * @return string|null
      */
     public function getDate()
     {
@@ -133,10 +166,10 @@ class FL11IndividualEntrepreneurType extends GutdfSegment
      *
      * 11.3. Дата регистрации индивидуального предпринимателя
      *
-     * @param \DateTime $date
+     * @param string|null $date
      * @return self
      */
-    public function setDate(?\DateTime $date = null)
+    public function setDate(?string $date = null)
     {
         $this->date = $date;
         return $this;
@@ -157,6 +190,7 @@ class FL11IndividualEntrepreneurType extends GutdfSegment
     {
         return [
             'Признак индивидуального предпринимателя 0' => 'Код «1» – субъект зарегистрирован в Российской Федерации в качестве индивидуального предпринимателя; код «0» – обстоятельство кода «1» отсутствует. Если по показателю 11.1 «Признак индивидуального предпринимателя» указан код «0», иные показатели блока 11 не заполняются',
+            'Дата прекращения статуса индивидуального предпринимателя' => '',
             'Признак индивидуального предпринимателя 1' => 'Код «1» – субъект зарегистрирован в Российской Федерации в качестве индивидуального предпринимателя; код «0» – обстоятельство кода «1» отсутствует. Если по показателю 11.1 «Признак индивидуального предпринимателя» указан код «0», иные показатели блока 11 не заполняются',
             'Регистрационный номер' => '',
             'Дата регистрации индивидуального предпринимателя' => '',
@@ -195,6 +229,7 @@ class FL11IndividualEntrepreneurType extends GutdfSegment
     {
         return [
             'regFact_0' => 'regFact0',
+            'endDate' => 'endDate',
             'regFact_1' => 'regFact1',
             'regNum',
             'date',

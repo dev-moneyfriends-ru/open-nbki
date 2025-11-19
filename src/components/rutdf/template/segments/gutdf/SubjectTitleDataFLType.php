@@ -34,11 +34,13 @@ class SubjectTitleDataFLType extends SubjectTitleDataType
     private $fL3Birth = null;
 
     /**
-     * Блок 6. Номер налогоплательщика и регистрационный номер
+     * Блок 6. Номер налогоплательщика, регистрационный номер и признак специального налогового режима
      *
-     * @var FL6TaxType $fL6Tax
+     * @var FL6TaxType[] $fL6Tax
      */
-    private $fL6Tax = null;
+    private $fL6Tax = [
+
+    ];
 
     /**
      * Блок 7. СНИЛС
@@ -166,11 +168,51 @@ class SubjectTitleDataFLType extends SubjectTitleDataType
     }
 
     /**
+     * Adds as fL6Tax
+     *
+     * Блок 6. Номер налогоплательщика, регистрационный номер и признак специального налогового режима
+     *
+     * @param FL6TaxType $fL6Tax
+     * @return self
+     */
+    public function addToFL6Tax(FL6TaxType $fL6Tax)
+    {
+        $this->fL6Tax[] = $fL6Tax;
+        return $this;
+    }
+
+    /**
+     * isset fL6Tax
+     *
+     * Блок 6. Номер налогоплательщика, регистрационный номер и признак специального налогового режима
+     *
+     * @param int|string $index
+     * @return bool
+     */
+    public function issetFL6Tax($index)
+    {
+        return isset($this->fL6Tax[$index]);
+    }
+
+    /**
+     * unset fL6Tax
+     *
+     * Блок 6. Номер налогоплательщика, регистрационный номер и признак специального налогового режима
+     *
+     * @param int|string $index
+     * @return void
+     */
+    public function unsetFL6Tax($index)
+    {
+        unset($this->fL6Tax[$index]);
+    }
+
+    /**
      * Gets as fL6Tax
      *
-     * Блок 6. Номер налогоплательщика и регистрационный номер
+     * Блок 6. Номер налогоплательщика, регистрационный номер и признак специального налогового режима
      *
-     * @return FL6TaxType
+     * @return FL6TaxType[]
      */
     public function getFL6Tax()
     {
@@ -180,12 +222,12 @@ class SubjectTitleDataFLType extends SubjectTitleDataType
     /**
      * Sets a new fL6Tax
      *
-     * Блок 6. Номер налогоплательщика и регистрационный номер
+     * Блок 6. Номер налогоплательщика, регистрационный номер и признак специального налогового режима
      *
-     * @param FL6TaxType $fL6Tax
+     * @param FL6TaxType[] $fL6Tax
      * @return self
      */
-    public function setFL6Tax(?FL6TaxType $fL6Tax = null)
+    public function setFL6Tax(array $fL6Tax = null)
     {
         $this->fL6Tax = $fL6Tax;
         return $this;
@@ -249,7 +291,7 @@ class SubjectTitleDataFLType extends SubjectTitleDataType
         $this->fL14Group = new FL14GroupType($this->template);
         $this->addToFL25Group(new FL25GroupType($this->template));
         $this->fL3Birth = new FL3BirthType($this->template);
-        $this->fL6Tax = new FL6TaxType($this->template);
+        $this->addToFL6Tax(new FL6TaxType($this->template));
         if($this->sendData->getSNILSReply()){
             $this->fL7Social = new FL7SocialType($this->template);
         }

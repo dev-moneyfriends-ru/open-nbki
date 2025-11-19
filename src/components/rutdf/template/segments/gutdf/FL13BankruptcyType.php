@@ -27,11 +27,25 @@ class FL13BankruptcyType extends GutdfSegment
     private $bankruptcyFact1 = null;
 
     /**
-     * @var DateGroupFL13BankruptcyAType[] $dateGroupFL13Bankruptcy
+     * 13.3. Дата публикации в ЕФРСБ сведений о стадии рассмотрения дела
+     *
+     * @var string $date
      */
-    private $dateGroupFL13Bankruptcy = [
-        
-    ];
+    private $date = null;
+
+    /**
+     * 13.2. Код стадии рассмотрения дела
+     *
+     * @var string $stage
+     */
+    private $stage = null;
+
+    /**
+     * 13.4. Ссылка на публикацию в ЕФРСБ
+     *
+     * @var string $link
+     */
+    private $link = null;
 
     /**
      * 13.5. Признак неправомерных действий в деле = 0
@@ -87,6 +101,13 @@ class FL13BankruptcyType extends GutdfSegment
     private $info = null;
 
     /**
+     * 13.10. Номер дела о банкротстве
+     *
+     * @var string $caseNum
+     */
+    private $caseNum = null;
+
+    /**
      * Gets as bankruptcyFact0
      *
      * 13.1. Признак дела о банкротстве = 0
@@ -139,58 +160,80 @@ class FL13BankruptcyType extends GutdfSegment
     }
 
     /**
-     * Adds as dateGroupFL13Bankruptcy
+     * Gets as date
      *
-     * @return self
-     * @param DateGroupFL13BankruptcyAType $dateGroupFL13Bankruptcy
+     * 13.3. Дата публикации в ЕФРСБ сведений о стадии рассмотрения дела
+     *
+     * @return string
      */
-    public function addToDateGroupFL13Bankruptcy(DateGroupFL13BankruptcyAType $dateGroupFL13Bankruptcy)
+    public function getDate()
     {
-        $this->dateGroupFL13Bankruptcy[] = $dateGroupFL13Bankruptcy;
+        return $this->date;
+    }
+
+    /**
+     * Sets a new date
+     *
+     * 13.3. Дата публикации в ЕФРСБ сведений о стадии рассмотрения дела
+     *
+     * @param string $date
+     * @return self
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
         return $this;
     }
 
     /**
-     * isset dateGroupFL13Bankruptcy
+     * Gets as stage
      *
-     * @param int|string $index
-     * @return bool
+     * 13.2. Код стадии рассмотрения дела
+     *
+     * @return string
      */
-    public function issetDateGroupFL13Bankruptcy($index)
+    public function getStage()
     {
-        return isset($this->dateGroupFL13Bankruptcy[$index]);
+        return $this->stage;
     }
 
     /**
-     * unset dateGroupFL13Bankruptcy
+     * Sets a new stage
      *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetDateGroupFL13Bankruptcy($index)
-    {
-        unset($this->dateGroupFL13Bankruptcy[$index]);
-    }
-
-    /**
-     * Gets as dateGroupFL13Bankruptcy
+     * 13.2. Код стадии рассмотрения дела
      *
-     * @return DateGroupFL13BankruptcyAType[]
-     */
-    public function getDateGroupFL13Bankruptcy()
-    {
-        return $this->dateGroupFL13Bankruptcy;
-    }
-
-    /**
-     * Sets a new dateGroupFL13Bankruptcy
-     *
-     * @param DateGroupFL13BankruptcyAType[] $dateGroupFL13Bankruptcy
+     * @param string $stage
      * @return self
      */
-    public function setDateGroupFL13Bankruptcy(array $dateGroupFL13Bankruptcy = null)
+    public function setStage($stage)
     {
-        $this->dateGroupFL13Bankruptcy = $dateGroupFL13Bankruptcy;
+        $this->stage = $stage;
+        return $this;
+    }
+
+    /**
+     * Gets as link
+     *
+     * 13.4. Ссылка на публикацию в ЕФРСБ
+     *
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * Sets a new link
+     *
+     * 13.4. Ссылка на публикацию в ЕФРСБ
+     *
+     * @param string $link
+     * @return self
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
         return $this;
     }
 
@@ -453,6 +496,32 @@ class FL13BankruptcyType extends GutdfSegment
     public function setInfo($info)
     {
         $this->info = $info;
+        return $this;
+    }
+
+    /**
+     * Gets as num
+     *
+     * 13.10. Номер дела о банкротстве
+     *
+     * @return string
+     */
+    public function getCaseNum()
+    {
+        return $this->caseNum;
+    }
+
+    /**
+     * Sets a new num
+     *
+     * 13.10. Номер дела о банкротстве
+     *
+     * @param string $num
+     * @return self
+     */
+    public function setCaseNum($num)
+    {
+        $this->caseNum = $num;
         return $this;
     }
 

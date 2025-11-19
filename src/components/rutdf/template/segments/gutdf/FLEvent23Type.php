@@ -5,7 +5,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 /**
  * Class representing FLEvent23Type
  *
- * Изменение задолженности, в том числе ввиду исполнения обязательства, наступила ответственность поручителя или обязательство принципала возместить выплаченную сумму
+ * Изменение задолженности, в том числе ввиду исполнения обязательства, наступили ответственность поручителя или обязательство принципала возместить выплаченную сумму
  * XSD Type: FL_Event_2_3_Type
  */
 class FLEvent23Type extends EventDataType
@@ -108,6 +108,13 @@ class FLEvent23Type extends EventDataType
     ];
 
     /**
+     * Блок 36(1). Сведения о погашении требований кредитора по обязательству предоставлением отступного, зачетом встречных требований, прощением долга, за счет реализации предмета лизинга
+     *
+     * @var FL361ProvisionPaymentOffsetType $fL361ProvisionPaymentOffset
+     */
+    private $fL361ProvisionPaymentOffset = null;
+
+    /**
      * Блок 37. Сведения о возмещении принципалом гаранту выплаченной суммы
      *
      * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL37WarrantyReturnType $fL37WarrantyReturn
@@ -115,14 +122,14 @@ class FLEvent23Type extends EventDataType
     private $fL37WarrantyReturn = null;
 
     /**
-     * Блок 54. Сведения об учете обязательства
+     * Блок 54. Сведения об учете задолженности, о льготном финансировании с государственной поддержкой и процентной ставке
      *
      * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL54AccountingType $fL54Accounting
      */
     private $fL54Accounting = null;
 
     /**
-     * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 55. Сведения об обращении
      *
      * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType $fL55Application
      */
@@ -594,6 +601,32 @@ class FLEvent23Type extends EventDataType
     }
 
     /**
+     * Gets as fL361ProvisionPaymentOffset
+     *
+     * Блок 36(1). Сведения о погашении требований кредитора по обязательству предоставлением отступного, зачетом встречных требований, прощением долга, за счет реализации предмета лизинга
+     *
+     * @return FL361ProvisionPaymentOffsetType
+     */
+    public function getFL361ProvisionPaymentOffset()
+    {
+        return $this->fL361ProvisionPaymentOffset;
+    }
+
+    /**
+     * Sets a new fL361ProvisionPaymentOffset
+     *
+     * Блок 36(1). Сведения о погашении требований кредитора по обязательству предоставлением отступного, зачетом встречных требований, прощением долга, за счет реализации предмета лизинга
+     *
+     * @param FL361ProvisionPaymentOffsetType $fL361ProvisionPaymentOffset
+     * @return self
+     */
+    public function setFL361ProvisionPaymentOffset(FL361ProvisionPaymentOffsetType $fL361ProvisionPaymentOffset)
+    {
+        $this->fL361ProvisionPaymentOffset = $fL361ProvisionPaymentOffset;
+        return $this;
+    }
+
+    /**
      * Gets as fL37WarrantyReturn
      *
      * Блок 37. Сведения о возмещении принципалом гаранту выплаченной суммы
@@ -622,7 +655,7 @@ class FLEvent23Type extends EventDataType
     /**
      * Gets as fL54Accounting
      *
-     * Блок 54. Сведения об учете обязательства
+     * Блок 54. Сведения об учете задолженности, о льготном финансировании с государственной поддержкой и процентной ставке
      *
      * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL54AccountingType
      */
@@ -634,7 +667,7 @@ class FLEvent23Type extends EventDataType
     /**
      * Sets a new fL54Accounting
      *
-     * Блок 54. Сведения об учете обязательства
+     * Блок 54. Сведения об учете задолженности, о льготном финансировании с государственной поддержкой и процентной ставке
      *
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL54AccountingType $fL54Accounting
      * @return self
@@ -648,7 +681,7 @@ class FLEvent23Type extends EventDataType
     /**
      * Gets as fL55Application
      *
-     * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 55. Сведения об обращении
      *
      * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType
      */
@@ -660,7 +693,7 @@ class FLEvent23Type extends EventDataType
     /**
      * Sets a new fL55Application
      *
-     * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 55. Сведения об обращении
      *
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL55ApplicationType $fL55Application
      * @return self
@@ -715,29 +748,35 @@ class FLEvent23Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->fL17DealUid = new FL17DealUidType($this->template);
-        $this->fL18Deal = new FL18DealType($this->template);
-        $this->fL19Amount = new FL19AmountType($this->template);
+        $this->setFL17DealUid(new FL17DealUidType($this->template));
+        $this->setFL18Deal(new FL18DealType($this->template));
+        $this->setFL19Amount(new FL19AmountType($this->template));
+
         foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToFL191AmountInfo(new FL191AmountInfoType($this->template, $key));
         }
-        $this->fL20JointDebtors = new FL20JointDebtorsType($this->template);
-        $this->fL21PaymentTerms = new FL21PaymentTermsType($this->template);
+
+        $this->setFL20JointDebtors(new FL20JointDebtorsType($this->template));
+        $this->setFL21PaymentTerms(new FL21PaymentTermsType($this->template));
         $this->setFL25262728Group(new FL25262728GroupType($this->template));
-        $this->fL29MonthlyPayment = new FL29MonthlyPaymentType($this->template);
-        $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
-        if(!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneySource){
+        $this->setFL29MonthlyPayment(new FL29MonthlyPaymentType($this->template));
+        $this->setFL291DebtBurdenInfo(new FL291DebtBurdenInfoType($this->template));
+
+        if (!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneySource) {
             foreach ($this->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
                 $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
             }
         }
-        if(!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneyBorrower){
-            $this->fL31NonMonetarySubject = new FL31NonMonetarySubjectType($this->template);
+
+        if (!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneyBorrower) {
+            $this->addToFL31NonMonetarySubject(new FL31NonMonetarySubjectType($this->template));
         }
-        $this->fL37WarrantyReturn = new FL37WarrantyReturnType($this->template);
-        $this->fL54Accounting = new FL54AccountingType($this->template);
-        $this->fL55Application = new FL55ApplicationType($this->template);
-        $this->fL56Participation = new FL56ParticipationType($this->template);
+
+        $this->setFL361ProvisionPaymentOffset(new FL361ProvisionPaymentOffsetType($this->template));
+        $this->setFL37WarrantyReturn(new FL37WarrantyReturnType($this->template));
+        $this->setFL54Accounting(new FL54AccountingType($this->template));
+        $this->setFL55Application(new FL55ApplicationType($this->template));
+        $this->setFL56Participation(new FL56ParticipationType($this->template));
     }
 
     /**
@@ -755,9 +794,10 @@ class FLEvent23Type extends EventDataType
             'fL25262728Group',
             'fL29MonthlyPayment',
             'fL291DebtBurdenInfo',
+            'fL31NonMonetarySubject',
             'fL20JointDebtors',
             'fL30NonMonetarySource',
-            'fL31NonMonetarySubject',
+            'fL361ProvisionPaymentOffset',
             'fL37WarrantyReturn',
             'fL54Accounting',
             'fL55Application',

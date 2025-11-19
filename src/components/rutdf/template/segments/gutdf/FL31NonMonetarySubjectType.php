@@ -210,9 +210,6 @@ class FL31NonMonetarySubjectType extends GutdfSegment
      */
     public function init(): void
     {
-        if(!isset($this->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray()[$this->idx])){
-            return;
-        }
         $model = $this->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray()[$this->idx];
         $this->item = $model->subjNonMonetOblig;
         $this->fulfillment = $model->subjNonMonetObligRegul;

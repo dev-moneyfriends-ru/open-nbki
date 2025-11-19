@@ -103,6 +103,13 @@ class FL28PaymentAType extends GutdfSegment
     private $paySum24 = null;
 
     /**
+     * 28.16. Валюта внесенных платежей
+     *
+     * @var string $payCurrency
+     */
+    private $payCurrency = null;
+
+    /**
      * Gets as paymentSum
      *
      * 28.2. Сумма последнего внесенного платежа
@@ -441,6 +448,31 @@ class FL28PaymentAType extends GutdfSegment
     }
 
     /**
+     * Gets as payCurrency
+     *
+     * 28.16. Валюта внесенных платежей
+     *
+     * @return string
+     */
+    public function getPayCurrency()
+    {
+        return $this->payCurrency;
+    }
+
+    /**
+     * Sets a new payCurrency
+     *
+     * 28.16. Валюта внесенных платежей
+     *
+     * @param string $payCurrency
+     * @return self
+     */
+    public function setPayCurrency($payCurrency)
+    {
+        $this->payCurrency = $payCurrency;
+        return $this;
+    }
+    /**
      * @inheritDoc
      */
     public function getSegmentName(): string
@@ -484,53 +516,59 @@ class FL28PaymentAType extends GutdfSegment
     public function init(): void
     {
         $payments = $this->sendData->getAccountReplyRUTDF()->getPayment();
-        if(empty($payments)){
-            $this->paymentSum = $this->formatCurrency(0);
-            $this->sizeCode = AmtKeepCode::T3;
-            $this->scheduleCode = TermsDueCode::T1;
-            $this->lastMissPaySum = $this->formatCurrency(0);
-            $this->paySum24 = $this->formatCurrency(0);
-            $this->paymentSum = $this->formatCurrency(0);
-            $this->paymentMainSum = $this->formatCurrency(0);
-            $this->paymentPercentSum = $this->formatCurrency(0);
-            $this->paymentOtherSum = $this->formatCurrency(0);
-            $this->totalSum = $this->formatCurrency(0);
-            $this->totalMainSum = $this->formatCurrency(0);
-            $this->totalPercentSum = $this->formatCurrency(0);
-            $this->totalOtherSum = $this->formatCurrency(0);
+        if (empty($payments)) {
+            $this->setPaymentSum(0);
+            $this->setSizeCode(AmtKeepCode::T3);
+            $this->setScheduleCode(TermsDueCode::T1);
+            $this->setLastMissPaySum(0);
+            $this->setPaySum24(0);
+            $this->setPaymentMainSum(0);
+            $this->setPaymentPercentSum(0);
+            $this->setPaymentOtherSum(0);
+            $this->setTotalSum(0);
+            $this->setTotalMainSum(0);
+            $this->setTotalPercentSum(0);
+            $this->setTotalOtherSum(0);
+            $this->setPayCurrency('RUB');
             return;
         }
+
         $payment = array_shift($payments);
-        if(empty($payment->paymtAmt)){
-            $this->paymentSum = $this->formatCurrency(0);
-            $this->sizeCode = AmtKeepCode::T3;
-            $this->scheduleCode = TermsDueCode::T1;
-            $this->lastMissPaySum = $this->formatCurrency($payment->lastMissPaySum);
-            $this->paySum24 = $this->formatCurrency($payment->paySum24);
-            $this->paymentMainSum = $this->formatCurrency(0);
-            $this->paymentPercentSum = $this->formatCurrency(0);
-            $this->paymentOtherSum = $this->formatCurrency(0);
-            $this->totalSum = $this->formatCurrency($payment->totalAmt);
-            $this->totalMainSum = $this->formatCurrency($payment->principalTotalAmt);
-            $this->totalPercentSum = $this->formatCurrency($payment->intTotalAmt);
-            $this->totalOtherSum = $this->formatCurrency($payment->otherTotalAmt);
+
+        $this->setPayCurrency($payment->payCurrency);
+
+        if (empty($payment->paymtAmt)) {
+            $this->setPaymentSum(0);
+            $this->setSizeCode(AmtKeepCode::T3);
+            $this->setScheduleCode(TermsDueCode::T1);
+            $this->setLastMissPaySum($payment->lastMissPaySum);
+            $this->setPaySum24($payment->paySum24);
+            $this->setPaymentMainSum(0);
+            $this->setPaymentPercentSum(0);
+            $this->setPaymentOtherSum(0);
+            $this->setTotalSum($payment->totalAmt);
+            $this->setTotalMainSum($payment->principalTotalAmt);
+            $this->setTotalPercentSum($payment->intTotalAmt);
+            $this->setTotalOtherSum($payment->otherTotalAmt);
+            $this->setPayCurrency($payment->payCurrency);
             return;
         }
 
-        $this->date = $this->formatDate($payment->paymtDate);
-        $this->sizeCode = $payment->amtKeepCode;
-        $this->scheduleCode = $payment->termsDueCode;
+        $this->setDate($this->formatDate($payment->paymtDate));
+        $this->setSizeCode($payment->amtKeepCode);
+        $this->setScheduleCode($payment->termsDueCode);
 
-        $this->paymentSum = $this->formatCurrency($payment->paymtAmt);
-        $this->paymentMainSum = $this->formatCurrency($payment->principalPaymtAmt);
-        $this->paymentPercentSum = $this->formatCurrency($payment->intPaymtAmt);
-        $this->paymentOtherSum = $this->formatCurrency($payment->otherPaymtAmt);
-        $this->totalSum = $this->formatCurrency($payment->totalAmt);
-        $this->totalMainSum = $this->formatCurrency($payment->principalTotalAmt);
-        $this->totalPercentSum = $this->formatCurrency($payment->intTotalAmt);
-        $this->totalOtherSum = $this->formatCurrency($payment->otherTotalAmt);
-        $this->lastMissPaySum = $this->formatCurrency($payment->lastMissPaySum);
-        $this->paySum24 = $this->formatCurrency($payment->paySum24);
+        $this->setPaymentSum($this->formatCurrency($payment->paymtAmt));
+        $this->setPaymentMainSum($this->formatCurrency($payment->principalPaymtAmt));
+        $this->setPaymentPercentSum($this->formatCurrency($payment->intPaymtAmt));
+        $this->setPaymentOtherSum($this->formatCurrency($payment->otherPaymtAmt));
+        $this->setTotalSum($this->formatCurrency($payment->totalAmt));
+        $this->setTotalMainSum($this->formatCurrency($payment->principalTotalAmt));
+        $this->setTotalPercentSum($this->formatCurrency($payment->intTotalAmt));
+        $this->setTotalOtherSum($this->formatCurrency($payment->otherTotalAmt));
+        $this->setLastMissPaySum($this->formatCurrency($payment->lastMissPaySum));
+        $this->setPaySum24($this->formatCurrency($payment->paySum24));
+        $this->setPayCurrency($payment->payCurrency);
     }
 
     /**
@@ -552,6 +590,7 @@ class FL28PaymentAType extends GutdfSegment
             'scheduleCode',
             'lastMissPaySum',
             'paySum24',
+            'payCurrency',
         ];
     }
 }

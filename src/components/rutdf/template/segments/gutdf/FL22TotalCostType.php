@@ -27,7 +27,7 @@ class FL22TotalCostType extends GutdfSegment
     /**
      * 22.3. Дата расчета полной стоимости кредита (займа)
      *
-     * @var \DateTime $calcDate
+     * @var string $calcDate
      */
     private $calcDate = null;
 
@@ -48,14 +48,14 @@ class FL22TotalCostType extends GutdfSegment
     /**
      * 22.6. Максимальная полная стоимость кредита (займа) в процентах годовых при его использовании путем снятия наличных денежных средств
      *
-     * @var float $maxPercentCash
+     * @var string $maxPercentCash
      */
     private $maxPercentCash = null;
 
     /**
      * 22.7. Максимальная полная стоимость кредита (займа) в процентах годовых при его использовании в безналичном порядке
      *
-     * @var float $maxPercentCashless
+     * @var string $maxPercentCashless
      */
     private $maxPercentCashless = null;
 
@@ -116,7 +116,7 @@ class FL22TotalCostType extends GutdfSegment
      *
      * 22.3. Дата расчета полной стоимости кредита (займа)
      *
-     * @return \DateTime
+     * @return string
      */
     public function getCalcDate()
     {
@@ -128,10 +128,10 @@ class FL22TotalCostType extends GutdfSegment
      *
      * 22.3. Дата расчета полной стоимости кредита (займа)
      *
-     * @param \DateTime $calcDate
+     * @param string $calcDate
      * @return self
      */
-    public function setCalcDate(?\DateTime $calcDate = null)
+    public function setCalcDate($calcDate)
     {
         $this->calcDate = $calcDate;
         return $this;
@@ -194,7 +194,7 @@ class FL22TotalCostType extends GutdfSegment
      *
      * 22.6. Максимальная полная стоимость кредита (займа) в процентах годовых при его использовании путем снятия наличных денежных средств
      *
-     * @return float
+     * @return string
      */
     public function getMaxPercentCash()
     {
@@ -206,7 +206,7 @@ class FL22TotalCostType extends GutdfSegment
      *
      * 22.6. Максимальная полная стоимость кредита (займа) в процентах годовых при его использовании путем снятия наличных денежных средств
      *
-     * @param float $maxPercentCash
+     * @param string $maxPercentCash
      * @return self
      */
     public function setMaxPercentCash($maxPercentCash)
@@ -220,7 +220,7 @@ class FL22TotalCostType extends GutdfSegment
      *
      * 22.7. Максимальная полная стоимость кредита (займа) в процентах годовых при его использовании в безналичном порядке
      *
-     * @return float
+     * @return string
      */
     public function getMaxPercentCashless()
     {
@@ -232,7 +232,7 @@ class FL22TotalCostType extends GutdfSegment
      *
      * 22.7. Максимальная полная стоимость кредита (займа) в процентах годовых при его использовании в безналичном порядке
      *
-     * @param float $maxPercentCashless
+     * @param string $maxPercentCashless
      * @return self
      */
     public function setMaxPercentCashless($maxPercentCashless)

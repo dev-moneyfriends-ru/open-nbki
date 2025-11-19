@@ -121,7 +121,7 @@ class FL18DealType extends GutdfSegment
     private $endDate = null;
 
     /**
-     * 18.12. Код вида кредитора – заимодавца
+     * 18.12. Код вида источника
      *
      * @var int $creditorCode
      */
@@ -200,7 +200,7 @@ class FL18DealType extends GutdfSegment
     /**
      * 18.19. Дата возникновения обязательства субъекта
      *
-     * @var \DateTime $startDate
+     * @var string $startDate
      */
     private $startDate = null;
 
@@ -679,7 +679,7 @@ class FL18DealType extends GutdfSegment
     /**
      * Gets as creditorCode
      *
-     * 18.12. Код вида кредитора – заимодавца
+     * 18.12. Код вида источника
      *
      * @return int
      */
@@ -691,7 +691,7 @@ class FL18DealType extends GutdfSegment
     /**
      * Sets a new creditorCode
      *
-     * 18.12. Код вида кредитора – заимодавца
+     * 18.12. Код вида источника
      *
      * @param int $creditorCode
      * @return self
@@ -967,7 +967,7 @@ class FL18DealType extends GutdfSegment
      *
      * 18.19. Дата возникновения обязательства субъекта
      *
-     * @return \DateTime
+     * @return string
      */
     public function getStartDate()
     {
@@ -979,10 +979,10 @@ class FL18DealType extends GutdfSegment
      *
      * 18.19. Дата возникновения обязательства субъекта
      *
-     * @param \DateTime $startDate
+     * @param string $startDate
      * @return self
      */
-    public function setStartDate(\DateTime $startDate)
+    public function setStartDate($startDate)
     {
         $this->startDate = $startDate;
         return $this;

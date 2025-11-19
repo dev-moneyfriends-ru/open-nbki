@@ -169,7 +169,8 @@ class ULEvent26Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->uL10DealUid = new UL10DealUidType($this->template);
+        $this->setUL10DealUid(new UL10DealUidType($this->template));
+
         foreach ($this->sendData->getAccountReplyRUTDF()->getLegalItems() as $key => $item) {
             $this->addToUL30Court(new UL30CourtType($this->template, $key));
         }

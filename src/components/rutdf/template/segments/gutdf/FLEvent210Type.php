@@ -15,19 +15,19 @@ class FLEvent210Type extends EventDataType
      *
      * @var string $operationCode
      */
-    private $operationCode = null;
+    private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
      * Блок 17. Идентификатор сделки
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL17DealUidType $fL17DealUid
+     * @var FL17DealUidType $fL17DealUid
      */
     private $fL17DealUid = null;
 
     /**
      * Блок 45. Сведения о прекращении передачи информации по обязательству
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL45StopSendType $fL45StopSend
+     * @var FL45StopSendType $fL45StopSend
      */
     private $fL45StopSend = null;
 
@@ -62,7 +62,7 @@ class FLEvent210Type extends EventDataType
      *
      * Блок 17. Идентификатор сделки
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL17DealUidType
+     * @return FL17DealUidType
      */
     public function getFL17DealUid()
     {
@@ -74,10 +74,10 @@ class FLEvent210Type extends EventDataType
      *
      * Блок 17. Идентификатор сделки
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL17DealUidType $fL17DealUid
+     * @param FL17DealUidType $fL17DealUid
      * @return self
      */
-    public function setFL17DealUid(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL17DealUidType $fL17DealUid)
+    public function setFL17DealUid(FL17DealUidType $fL17DealUid)
     {
         $this->fL17DealUid = $fL17DealUid;
         return $this;
@@ -88,7 +88,7 @@ class FLEvent210Type extends EventDataType
      *
      * Блок 45. Сведения о прекращении передачи информации по обязательству
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL45StopSendType
+     * @return FL45StopSendType
      */
     public function getFL45StopSend()
     {
@@ -100,13 +100,46 @@ class FLEvent210Type extends EventDataType
      *
      * Блок 45. Сведения о прекращении передачи информации по обязательству
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL45StopSendType $fL45StopSend
+     * @param FL45StopSendType $fL45StopSend
      * @return self
      */
-    public function setFL45StopSend(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL45StopSendType $fL45StopSend)
+    public function setFL45StopSend(FL45StopSendType $fL45StopSend)
     {
         $this->fL45StopSend = $fL45StopSend;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'FL_Event_2_10';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Источник прекратил передачу информации по обязательству';
+    }
+
+    protected function initAttributes()
+    {
+        $this->setFL17DealUid(new FL17DealUidType($this->template));
+        $this->setFL45StopSend(new FL45StopSendType($this->template));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'fl17DealUid',
+            'fL45StopSend',
+        ];
     }
 }
 

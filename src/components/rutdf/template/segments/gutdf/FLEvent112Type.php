@@ -58,6 +58,46 @@ class FLEvent112Type extends EventDataType
     }
 
     /**
+     * Adds as fL13Bankruptcy
+     *
+     * Блок 13. Сведения по делу о несостоятельности (банкротстве)
+     *
+     * @param FL13BankruptcyType $fL13Bankruptcy
+     *@return self
+     */
+    public function addToFL13Bankruptcy(FL13BankruptcyType $fL13Bankruptcy)
+    {
+        $this->fL13Bankruptcy[] = $fL13Bankruptcy;
+        return $this;
+    }
+
+    /**
+     * isset fL13Bankruptcy
+     *
+     * Блок 13. Сведения по делу о несостоятельности (банкротстве)
+     *
+     * @param int|string $index
+     * @return bool
+     */
+    public function issetFL13Bankruptcy($index)
+    {
+        return isset($this->fL13Bankruptcy[$index]);
+    }
+
+    /**
+     * unset fL13Bankruptcy
+     *
+     * Блок 13. Сведения по делу о несостоятельности (банкротстве)
+     *
+     * @param int|string $index
+     * @return void
+     */
+    public function unsetFL13Bankruptcy($index)
+    {
+        unset($this->fL13Bankruptcy[$index]);
+    }
+
+    /**
      * Gets as fL13Bankruptcy
      *
      * Блок 13. Сведения по делу о несостоятельности (банкротстве)
@@ -74,10 +114,10 @@ class FLEvent112Type extends EventDataType
      *
      * Блок 13. Сведения по делу о несостоятельности (банкротстве)
      *
-     * @param FL13BankruptcyType $fL13Bankruptcy
+     * @param FL13BankruptcyType[] $fL13Bankruptcy
      * @return self
      */
-    public function setFL13Bankruptcy(FL13BankruptcyType $fL13Bankruptcy)
+    public function setFL13Bankruptcy(array $fL13Bankruptcy)
     {
         $this->fL13Bankruptcy = $fL13Bankruptcy;
         return $this;
@@ -127,8 +167,8 @@ class FLEvent112Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->fL13BankruptcyEnd = new FL13BankruptcyType($this->template);
-        $this->fL14BankruptcyEnd = new FL14BankruptcyEndType($this->template);
+        $this->addToFL13Bankruptcy(new FL13BankruptcyType($this->template));
+        $this->setFL14BankruptcyEnd(new FL14BankruptcyEndType($this->template));
     }
 
     /**

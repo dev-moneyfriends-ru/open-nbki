@@ -108,4 +108,11 @@ class PaymentRUTDF extends BaseItem
      * @var float|null $otherTotalAmt
      */
     public $paySum24 = null;
+
+
+    /**
+     * Валюта внесенных платежей
+     * @var string $payCurrency
+     */
+    public $payCurrency = 'RUB';
 }

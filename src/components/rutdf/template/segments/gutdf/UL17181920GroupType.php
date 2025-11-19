@@ -17,25 +17,39 @@ use mfteam\nbch\components\rutdf\template\segments\gutdf\UL17181920GroupType\UL2
 class UL17181920GroupType extends GutdfSegment
 {
     /**
-     * 17.3., 18.2., 19.2. Признак расчета по последнему платежу = 0
+     * 17.3. Признак расчета по последнему платежу = 0
      *
      * @var string $lastPayExist0
      */
     private $lastPayExist0 = null;
 
     /**
-     * 17.3., 18.2., 19.2. Признак расчета по последнему платежу = 1
+     * 17.3. Признак расчета по последнему платежу = 1
      *
      * @var string $lastPayExist1
      */
     private $lastPayExist1 = null;
 
     /**
-     * 17.8., 18.7., 19.7., 20.13. Дата расчета
+     * 17.8., 20.13. Дата расчета
      *
      * @var DateTime $calcDate
      */
     private $calcDate = null;
+
+    /**
+     * 17.1. Признак наличия задолженности = 0
+     *
+     * @var string $exist0
+     */
+    private $exist0 = null;
+
+    /**
+     * 17.1. Признак наличия задолженности = 1
+     *
+     * @var string $exist1
+     */
+    private $exist1 = null;
 
     /**
      * Блок 17. Сведения о задолженности
@@ -68,7 +82,7 @@ class UL17181920GroupType extends GutdfSegment
     /**
      * Gets as lastPayExist0
      *
-     * 17.3., 18.2., 19.2. Признак расчета по последнему платежу = 0
+     * 17.3. Признак расчета по последнему платежу = 0
      *
      * @return string
      */
@@ -80,7 +94,7 @@ class UL17181920GroupType extends GutdfSegment
     /**
      * Sets a new lastPayExist0
      *
-     * 17.3., 18.2., 19.2. Признак расчета по последнему платежу = 0
+     * 17.3. Признак расчета по последнему платежу = 0
      *
      * @param string $lastPayExist0
      * @return self
@@ -94,7 +108,7 @@ class UL17181920GroupType extends GutdfSegment
     /**
      * Gets as lastPayExist1
      *
-     * 17.3., 18.2., 19.2. Признак расчета по последнему платежу = 1
+     * 17.3. Признак расчета по последнему платежу = 1
      *
      * @return string
      */
@@ -106,7 +120,7 @@ class UL17181920GroupType extends GutdfSegment
     /**
      * Sets a new lastPayExist1
      *
-     * 17.3., 18.2., 19.2. Признак расчета по последнему платежу = 1
+     * 17.3. Признак расчета по последнему платежу = 1
      *
      * @param string $lastPayExist1
      * @return self
@@ -120,7 +134,7 @@ class UL17181920GroupType extends GutdfSegment
     /**
      * Gets as calcDate
      *
-     * 17.8., 18.7., 19.7., 20.13. Дата расчета
+     * 17.8., 20.13. Дата расчета
      *
      * @return DateTime
      */
@@ -132,7 +146,7 @@ class UL17181920GroupType extends GutdfSegment
     /**
      * Sets a new calcDate
      *
-     * 17.8., 18.7., 19.7., 20.13. Дата расчета
+     * 17.8., 20.13. Дата расчета
      *
      * @param DateTime $calcDate
      * @return self
@@ -140,6 +154,58 @@ class UL17181920GroupType extends GutdfSegment
     public function setCalcDate(DateTime $calcDate)
     {
         $this->calcDate = $calcDate;
+        return $this;
+    }
+
+    /**
+     * Gets as exist0
+     *
+     * 17.1. Признак наличия задолженности = 0
+     *
+     * @return string
+     */
+    public function getExist0()
+    {
+        return $this->exist0;
+    }
+
+    /**
+     * Sets a new exist0
+     *
+     * 17.1. Признак наличия задолженности = 0
+     *
+     * @param string $exist0
+     * @return self
+     */
+    public function setExist0($exist0)
+    {
+        $this->exist0 = $exist0;
+        return $this;
+    }
+
+    /**
+     * Gets as exist1
+     *
+     * 17.1. Признак наличия задолженности = 1
+     *
+     * @return string
+     */
+    public function getExist1()
+    {
+        return $this->exist1;
+    }
+
+    /**
+     * Sets a new exist1
+     *
+     * 17.1. Признак наличия задолженности = 1
+     *
+     * @param string $exist1
+     * @return self
+     */
+    public function setExist1($exist1)
+    {
+        $this->exist1 = $exist1;
         return $this;
     }
 
@@ -163,7 +229,7 @@ class UL17181920GroupType extends GutdfSegment
      * @param UL17DebtAType $uL17Debt
      * @return self
      */
-    public function setUL17Debt(UL17DebtAType $uL17Debt)
+    public function setUL17Debt(?UL17DebtAType $uL17Debt = null)
     {
         $this->uL17Debt = $uL17Debt;
         return $this;
@@ -189,7 +255,7 @@ class UL17181920GroupType extends GutdfSegment
      * @param UL18DebtDueAType $uL18DebtDue
      * @return self
      */
-    public function setUL18DebtDue(UL18DebtDueAType $uL18DebtDue)
+    public function setUL18DebtDue(?UL18DebtDueAType $uL18DebtDue = null)
     {
         $this->uL18DebtDue = $uL18DebtDue;
         return $this;
@@ -292,12 +358,19 @@ class UL17181920GroupType extends GutdfSegment
             $this->lastPayExist1 = null;
             $this->lastPayExist0 = null;
         }
+        if($debt === null || empty($debt->amtOutstanding)){
+            $this->setExist0('');
+            $this->setExist1(null);
+        }else{
+            $this->setExist0(null);
+            $this->setExist1('');
+        }
+
         $this->calcDate = $this->formatDate($this->sendData->getReportingDt());
 
         $this->uL17Debt = new UL17DebtAType($this->template);
         $this->uL18DebtDue = new UL18DebtDueAType($this->template);
         $this->uL19DebtOverdue = new UL19DebtOverdueAType($this->template);
-
         $this->uL20Payment = new UL20PaymentAType($this->template);
     }
 
@@ -310,6 +383,8 @@ class UL17181920GroupType extends GutdfSegment
             'lastPayExist_0' => 'lastPayExist0',
             'lastPayExist_1' => 'lastPayExist1',
             'calcDate',
+            'exist_0' => 'exist0',
+            'exist_1' => 'exist1',
             'uL17Debt',
             'uL18DebtDue',
             'uL19DebtOverdue',

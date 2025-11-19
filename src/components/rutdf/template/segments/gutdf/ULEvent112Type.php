@@ -20,9 +20,11 @@ class ULEvent112Type extends EventDataType
     /**
      * Блок 6. Сведения по делу о несостоятельности (банкротстве)
      *
-     * @var UL6BankruptcyType $uL6Bankruptcy
+     * @var UL6BankruptcyType[] $uL6Bankruptcy
      */
-    private $uL6Bankruptcy = null;
+    private $uL6Bankruptcy = [
+
+    ];
 
     /**
      * Блок 7. Сведения о завершении расчетов с кредиторами и освобождении субъекта от исполнения обязательств в связи с банкротством
@@ -58,11 +60,51 @@ class ULEvent112Type extends EventDataType
     }
 
     /**
+     * Adds as uL6Bankruptcy
+     *
+     * Блок 6. Сведения по делу о несостоятельности (банкротстве)
+     *
+     * @param UL6BankruptcyType $uL6Bankruptcy
+     * @return self
+     */
+    public function addToUL6Bankruptcy(UL6BankruptcyType $uL6Bankruptcy)
+    {
+        $this->uL6Bankruptcy[] = $uL6Bankruptcy;
+        return $this;
+    }
+
+    /**
+     * isset uL6Bankruptcy
+     *
+     * Блок 6. Сведения по делу о несостоятельности (банкротстве)
+     *
+     * @param int|string $index
+     * @return bool
+     */
+    public function issetUL6Bankruptcy($index)
+    {
+        return isset($this->uL6Bankruptcy[$index]);
+    }
+
+    /**
+     * unset uL6Bankruptcy
+     *
+     * Блок 6. Сведения по делу о несостоятельности (банкротстве)
+     *
+     * @param int|string $index
+     * @return void
+     */
+    public function unsetUL6Bankruptcy($index)
+    {
+        unset($this->uL6Bankruptcy[$index]);
+    }
+
+    /**
      * Gets as uL6Bankruptcy
      *
      * Блок 6. Сведения по делу о несостоятельности (банкротстве)
      *
-     * @return UL6BankruptcyType
+     * @return UL6BankruptcyType[]
      */
     public function getUL6Bankruptcy()
     {
@@ -74,10 +116,10 @@ class ULEvent112Type extends EventDataType
      *
      * Блок 6. Сведения по делу о несостоятельности (банкротстве)
      *
-     * @param UL6BankruptcyType $uL6Bankruptcy
+     * @param UL6BankruptcyType[] $uL6Bankruptcy
      * @return self
      */
-    public function setUL6Bankruptcy(UL6BankruptcyType $uL6Bankruptcy)
+    public function setUL6Bankruptcy(array $uL6Bankruptcy)
     {
         $this->uL6Bankruptcy = $uL6Bankruptcy;
         return $this;
@@ -127,8 +169,8 @@ class ULEvent112Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->uL6Bankruptcy = new UL6BankruptcyType($this->template);
-        $this->uL7BankruptcyEnd = new UL7BankruptcyEndType($this->template);
+        $this->addToUL6Bankruptcy(new UL6BankruptcyType($this->template));
+        $this->setUL7BankruptcyEnd(new UL7BankruptcyEndType($this->template));
     }
 
     /**

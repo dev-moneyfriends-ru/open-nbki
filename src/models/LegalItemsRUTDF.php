@@ -61,4 +61,10 @@ class LegalItemsRUTDF extends BaseItem
      * @var string $info
      */
     public $info = '';
+    /**
+     * Валюта суммы требований, подлежащих
+     * удовлетворению
+     * @var string|null
+     */
+    public $legalCurrency = 'RUB';
 }

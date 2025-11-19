@@ -169,10 +169,12 @@ class FLEvent26Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->fL17DealUid = new FL17DealUidType($this->template);
+        $this->setFL17DealUid(new FL17DealUidType($this->template));
+
         foreach ($this->sendData->getAccountReplyRUTDF()->getLegalItems() as $key => $item) {
             $this->addToFL39Court(new FL39CourtType($this->template, $key));
         }
+
         if(empty($this->fL39Court)){
             $this->addToFL39Court(new FL39CourtType($this->template));
         }

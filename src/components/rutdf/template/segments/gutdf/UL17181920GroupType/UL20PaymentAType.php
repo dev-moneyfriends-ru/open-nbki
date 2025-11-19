@@ -89,6 +89,13 @@ class UL20PaymentAType extends GutdfSegment
     private $scheduleCode = null;
 
     /**
+     * 20.14. Валюта внесенных платежей
+     *
+     * @var string $payCurrency
+     */
+    private $payCurrency = null;
+
+    /**
      * Gets as paymentSum
      *
      * 20.2. Сумма последнего внесенного платежа
@@ -375,6 +382,31 @@ class UL20PaymentAType extends GutdfSegment
     }
 
     /**
+     * Gets as payCurrency
+     *
+     * 20.14. Валюта внесенных платежей
+     *
+     * @return string
+     */
+    public function getPayCurrency()
+    {
+        return $this->payCurrency;
+    }
+
+    /**
+     * Sets a new payCurrency
+     *
+     * 20.14. Валюта внесенных платежей
+     *
+     * @param string $payCurrency
+     * @return self
+     */
+    public function setPayCurrency($payCurrency)
+    {
+        $this->payCurrency = $payCurrency;
+        return $this;
+    }
+    /**
      * @inheritDoc
      */
     public function getSegmentName(): string
@@ -418,9 +450,6 @@ class UL20PaymentAType extends GutdfSegment
         $payments = $this->sendData->getAccountReplyRUTDF()->getPayment();
         if(empty($payments)){
             $this->paymentSum = $this->formatCurrency(0);
-            $this->sizeCode = AmtKeepCode::T3;
-            $this->scheduleCode = TermsDueCode::T1;
-            $this->paymentSum = $this->formatCurrency(0);
             $this->paymentMainSum = $this->formatCurrency(0);
             $this->paymentPercentSum = $this->formatCurrency(0);
             $this->paymentOtherSum = $this->formatCurrency(0);
@@ -428,13 +457,13 @@ class UL20PaymentAType extends GutdfSegment
             $this->totalMainSum = $this->formatCurrency(0);
             $this->totalPercentSum = $this->formatCurrency(0);
             $this->totalOtherSum = $this->formatCurrency(0);
+            $this->sizeCode = AmtKeepCode::T3;
+            $this->scheduleCode = TermsDueCode::T1;
+            $this->payCurrency = 'RUB';
             return;
         }
         $payment = array_shift($payments);
         if(empty($payment->paymtAmt)){
-            $this->paymentSum = $this->formatCurrency(0);
-            $this->sizeCode = AmtKeepCode::T3;
-            $this->scheduleCode = TermsDueCode::T1;
             $this->paymentSum = $this->formatCurrency(0);
             $this->paymentMainSum = $this->formatCurrency(0);
             $this->paymentPercentSum = $this->formatCurrency(0);
@@ -443,6 +472,9 @@ class UL20PaymentAType extends GutdfSegment
             $this->totalMainSum = $this->formatCurrency($payment->principalTotalAmt);
             $this->totalPercentSum = $this->formatCurrency($payment->intTotalAmt);
             $this->totalOtherSum = $this->formatCurrency($payment->otherTotalAmt);
+            $this->sizeCode = AmtKeepCode::T3;
+            $this->scheduleCode = TermsDueCode::T1;
+            $this->setPayCurrency($payment->payCurrency);
             return;
         }
 
@@ -458,6 +490,7 @@ class UL20PaymentAType extends GutdfSegment
         $this->totalMainSum = $this->formatCurrency($payment->principalTotalAmt);
         $this->totalPercentSum = $this->formatCurrency($payment->intTotalAmt);
         $this->totalOtherSum = $this->formatCurrency($payment->otherTotalAmt);
+        $this->setPayCurrency($payment->payCurrency);
     }
 
     /**
@@ -477,6 +510,7 @@ class UL20PaymentAType extends GutdfSegment
             'date',
             'sizeCode',
             'scheduleCode',
+            'payCurrency',
         ];
     }
 

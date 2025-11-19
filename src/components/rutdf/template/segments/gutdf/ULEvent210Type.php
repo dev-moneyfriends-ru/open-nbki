@@ -114,7 +114,7 @@ class ULEvent210Type extends EventDataType
      */
     public function getSegmentName(): string
     {
-        // TODO: Implement getSegmentName() method.
+        return 'UL_Event_2_10';
     }
 
     /**
@@ -122,12 +122,13 @@ class ULEvent210Type extends EventDataType
      */
     public function getTitle(): string
     {
-        // TODO: Implement getTitle() method.
+        return 'Источник прекратил передачу информации по обязательству';
     }
 
     protected function initAttributes()
     {
-        // TODO: Implement initAttributes() method.
+        $this->setUL10DealUid(new UL10DealUidType($this->template));
+        $this->setUL35StopSend(new UL35StopSendType($this->template));
     }
 
     /**
@@ -135,7 +136,10 @@ class ULEvent210Type extends EventDataType
      */
     public function getXmlAttributes(): array
     {
-        // TODO: Implement getXmlAttributes() method.
+        return [
+            'uL10DealUid',
+            'uL35StopSend',
+        ];
     }
 }
 

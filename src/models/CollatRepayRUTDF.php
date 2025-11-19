@@ -34,4 +34,6 @@ class CollatRepayRUTDF extends BaseItem
      * @var string $collatRepayAmt
      */
     public $collatRepayAmt = '';
+
+    public $collatCurrency = 'RUB';
 }

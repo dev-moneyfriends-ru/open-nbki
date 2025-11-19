@@ -13,115 +13,76 @@ use mfteam\nbch\components\rutdf\template\segments\gutdf\FL10ContactType\PhoneGr
 class FL10ContactType extends GutdfSegment
 {
     /**
-     * @var PhoneGroupFL10ContactAType[] $phoneGroupFL10Contact
+     * 10.1. Номер телефона
+     *
+     * @var string $phone
      */
-    private $phoneGroupFL10Contact = [
-        
-    ];
+    private $phone = null;
+
+    /**
+     * 10.2. Комментарий к номеру телефона
+     *
+     * @var string $phoneComment
+     */
+    private $phoneComment = null;
 
     /**
      * 10.3. Адрес электронной почты
      *
-     * @var string[] $email
+     * @var string $email
      */
-    private $email = [
-        
-    ];
+    private $email = null;
 
     /**
-     * Adds as phoneGroupFL10Contact
+     * Gets as phone
      *
-     * @return self
-     * @param PhoneGroupFL10ContactAType $phoneGroupFL10Contact
+     * 10.1. Номер телефона
+     *
+     * @return string
      */
-    public function addToPhoneGroupFL10Contact(PhoneGroupFL10ContactAType $phoneGroupFL10Contact)
+    public function getPhone()
     {
-        $this->phoneGroupFL10Contact[] = $phoneGroupFL10Contact;
+        return $this->phone;
+    }
+
+    /**
+     * Sets a new phone
+     *
+     * 10.1. Номер телефона
+     *
+     * @param string $phone
+     * @return self
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
         return $this;
     }
 
     /**
-     * isset phoneGroupFL10Contact
+     * Gets as phoneComment
      *
-     * @param int|string $index
-     * @return bool
+     * 10.2. Комментарий к номеру телефона
+     *
+     * @return string
      */
-    public function issetPhoneGroupFL10Contact($index)
+    public function getPhoneComment()
     {
-        return isset($this->phoneGroupFL10Contact[$index]);
+        return $this->phoneComment;
     }
 
     /**
-     * unset phoneGroupFL10Contact
+     * Sets a new phoneComment
      *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetPhoneGroupFL10Contact($index)
-    {
-        unset($this->phoneGroupFL10Contact[$index]);
-    }
-
-    /**
-     * Gets as phoneGroupFL10Contact
+     * 10.2. Комментарий к номеру телефона
      *
-     * @return PhoneGroupFL10ContactAType[]
-     */
-    public function getPhoneGroupFL10Contact()
-    {
-        return $this->phoneGroupFL10Contact;
-    }
-
-    /**
-     * Sets a new phoneGroupFL10Contact
-     *
-     * @param PhoneGroupFL10ContactAType[] $phoneGroupFL10Contact
+     * @param string $phoneComment
      * @return self
      */
-    public function setPhoneGroupFL10Contact(array $phoneGroupFL10Contact = null)
+    public function setPhoneComment($phoneComment)
     {
-        $this->phoneGroupFL10Contact = $phoneGroupFL10Contact;
+        $this->phoneComment = $phoneComment;
         return $this;
-    }
-
-    /**
-     * Adds as email
-     *
-     * 10.3. Адрес электронной почты
-     *
-     * @return self
-     * @param string $email
-     */
-    public function addToEmail($email)
-    {
-        $this->email[] = $email;
-        return $this;
-    }
-
-    /**
-     * isset email
-     *
-     * 10.3. Адрес электронной почты
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetEmail($index)
-    {
-        return isset($this->email[$index]);
-    }
-
-    /**
-     * unset email
-     *
-     * 10.3. Адрес электронной почты
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetEmail($index)
-    {
-        unset($this->email[$index]);
     }
 
     /**
@@ -129,7 +90,7 @@ class FL10ContactType extends GutdfSegment
      *
      * 10.3. Адрес электронной почты
      *
-     * @return string[]
+     * @return string
      */
     public function getEmail()
     {
@@ -144,7 +105,7 @@ class FL10ContactType extends GutdfSegment
      * @param string $email
      * @return self
      */
-    public function setEmail(array $email = null)
+    public function setEmail($email)
     {
         $this->email = $email;
         return $this;
@@ -161,7 +122,9 @@ class FL10ContactType extends GutdfSegment
     public function getFields(): array
     {
         return [
-            'email' => $this->email
+            'phone' => $this->getPhone(),
+            'phoneComment' => $this->getPhoneComment(),
+            'email' => $this->getEmail(),
         ];
     }
 
@@ -171,7 +134,9 @@ class FL10ContactType extends GutdfSegment
     public function getFieldsDescriptions(): array
     {
         return [
-            'Адрес электронной почты' => ''
+            'Номер телефона' => '',
+            'Комментарий к номеру телефона' => '',
+            'Адрес электронной почты' => '',
         ];
     }
 
@@ -188,11 +153,14 @@ class FL10ContactType extends GutdfSegment
      */
     public function init(): void
     {
-        $address = $this->sendData->getRegAddress();
-        if(!empty($address->phone)){
-            $this->addToPhoneGroupFL10Contact(new PhoneGroupFL10ContactAType($this->template));
+        $contacts = $this->sendData->getContactReply();
+        if(empty($contacts) || empty($contacts[$this->idx])){
+            return;
         }
-        $this->addToEmail($address->email);
+        $contact = $contacts[$this->idx];
+        $this->setPhone($contact->phone);
+        $this->setPhoneComment($contact->phoneComment);
+        $this->setEmail($contact->email);
     }
 
     /**
@@ -201,7 +169,8 @@ class FL10ContactType extends GutdfSegment
     public function getXmlAttributes(): array
     {
         return [
-            'phoneGroupFL10Contact',
+            'phone',
+            'phoneComment',
             'email'
         ];
     }

@@ -18,7 +18,7 @@ class ULEvent13Type extends EventDataType
     private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
-     * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 45. Сведения об обращении
      *
      * @var UL45ApplicationType $uL45Application
      */
@@ -60,7 +60,7 @@ class ULEvent13Type extends EventDataType
     /**
      * Gets as uL45Application
      *
-     * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 45. Сведения об обращении
      *
      * @return UL45ApplicationType
      */
@@ -72,7 +72,7 @@ class ULEvent13Type extends EventDataType
     /**
      * Sets a new uL45Application
      *
-     * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 45. Сведения об обращении
      *
      * @param UL45ApplicationType $uL45Application
      * @return self
@@ -127,8 +127,8 @@ class ULEvent13Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->uL45Application = new UL45ApplicationType($this->template);
-        $this->uL47Reject = new UL47RejectType($this->template);
+        $this->setUL45Application(new UL45ApplicationType($this->template));
+        $this->setUL47Reject(new UL47RejectType($this->template));
     }
 
     /**

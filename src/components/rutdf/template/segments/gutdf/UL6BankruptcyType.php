@@ -25,11 +25,25 @@ class UL6BankruptcyType extends GutdfSegment
     private $bankruptcyFact1 = null;
 
     /**
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL6BankruptcyType\DateGroupUL6BankruptcyAType[] $dateGroupUL6Bankruptcy
+     * 6.3. Дата публикации в ЕФРСБ сведений о стадии рассмотрения дела
+     *
+     * @var string $date
      */
-    private $dateGroupUL6Bankruptcy = [
-        
-    ];
+    private $date = null;
+
+    /**
+     * 6.2. Код стадии рассмотрения дела
+     *
+     * @var string $stage
+     */
+    private $stage = null;
+
+    /**
+     * 6.4. Ссылка на публикацию в ЕФРСБ
+     *
+     * @var string $link
+     */
+    private $link = null;
 
     /**
      * 6.5. Признак неправомерных действий в деле = 0
@@ -85,6 +99,13 @@ class UL6BankruptcyType extends GutdfSegment
     private $info = null;
 
     /**
+     * 6.10. Номер дела о банкротстве
+     *
+     * @var string $num
+     */
+    private $num = null;
+
+    /**
      * Gets as bankruptcyFact0
      *
      * 6.1. Признак дела о банкротстве = 0
@@ -137,58 +158,80 @@ class UL6BankruptcyType extends GutdfSegment
     }
 
     /**
-     * Adds as dateGroupUL6Bankruptcy
+     * Gets as date
      *
-     * @return self
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL6BankruptcyType\DateGroupUL6BankruptcyAType $dateGroupUL6Bankruptcy
+     * 6.3. Дата публикации в ЕФРСБ сведений о стадии рассмотрения дела
+     *
+     * @return string
      */
-    public function addToDateGroupUL6Bankruptcy(\mfteam\nbch\components\rutdf\template\segments\gutdf\UL6BankruptcyType\DateGroupUL6BankruptcyAType $dateGroupUL6Bankruptcy)
+    public function getDate()
     {
-        $this->dateGroupUL6Bankruptcy[] = $dateGroupUL6Bankruptcy;
+        return $this->date;
+    }
+
+    /**
+     * Sets a new date
+     *
+     * 6.3. Дата публикации в ЕФРСБ сведений о стадии рассмотрения дела
+     *
+     * @param string $date
+     * @return self
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
         return $this;
     }
 
     /**
-     * isset dateGroupUL6Bankruptcy
+     * Gets as stage
      *
-     * @param int|string $index
-     * @return bool
+     * 6.2. Код стадии рассмотрения дела
+     *
+     * @return string
      */
-    public function issetDateGroupUL6Bankruptcy($index)
+    public function getStage()
     {
-        return isset($this->dateGroupUL6Bankruptcy[$index]);
+        return $this->stage;
     }
 
     /**
-     * unset dateGroupUL6Bankruptcy
+     * Sets a new stage
      *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetDateGroupUL6Bankruptcy($index)
-    {
-        unset($this->dateGroupUL6Bankruptcy[$index]);
-    }
-
-    /**
-     * Gets as dateGroupUL6Bankruptcy
+     * 6.2. Код стадии рассмотрения дела
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL6BankruptcyType\DateGroupUL6BankruptcyAType[]
-     */
-    public function getDateGroupUL6Bankruptcy()
-    {
-        return $this->dateGroupUL6Bankruptcy;
-    }
-
-    /**
-     * Sets a new dateGroupUL6Bankruptcy
-     *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL6BankruptcyType\DateGroupUL6BankruptcyAType[] $dateGroupUL6Bankruptcy
+     * @param string $stage
      * @return self
      */
-    public function setDateGroupUL6Bankruptcy(array $dateGroupUL6Bankruptcy = null)
+    public function setStage($stage)
     {
-        $this->dateGroupUL6Bankruptcy = $dateGroupUL6Bankruptcy;
+        $this->stage = $stage;
+        return $this;
+    }
+
+    /**
+     * Gets as link
+     *
+     * 6.4. Ссылка на публикацию в ЕФРСБ
+     *
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * Sets a new link
+     *
+     * 6.4. Ссылка на публикацию в ЕФРСБ
+     *
+     * @param string $link
+     * @return self
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
         return $this;
     }
 
@@ -451,6 +494,32 @@ class UL6BankruptcyType extends GutdfSegment
     public function setInfo($info)
     {
         $this->info = $info;
+        return $this;
+    }
+
+    /**
+     * Gets as num
+     *
+     * 6.10. Номер дела о банкротстве
+     *
+     * @return string
+     */
+    public function getNum()
+    {
+        return $this->num;
+    }
+
+    /**
+     * Sets a new num
+     *
+     * 6.10. Номер дела о банкротстве
+     *
+     * @param string $num
+     * @return self
+     */
+    public function setNum($num)
+    {
+        $this->num = $num;
         return $this;
     }
 

@@ -27,7 +27,7 @@ class UL21NonMonetarySourceType extends GutdfSegment
     /**
      * 21.4. Дата передачи имущества субъекту
      *
-     * @var \DateTime $date
+     * @var string $date
      */
     private $date = null;
 
@@ -95,7 +95,7 @@ class UL21NonMonetarySourceType extends GutdfSegment
      *
      * 21.4. Дата передачи имущества субъекту
      *
-     * @return \DateTime
+     * @return string
      */
     public function getDate()
     {
@@ -107,10 +107,10 @@ class UL21NonMonetarySourceType extends GutdfSegment
      *
      * 21.4. Дата передачи имущества субъекту
      *
-     * @param \DateTime $date
+     * @param string $date
      * @return self
      */
-    public function setDate(?\DateTime $date = null)
+    public function setDate($date)
     {
         $this->date = $date;
         return $this;

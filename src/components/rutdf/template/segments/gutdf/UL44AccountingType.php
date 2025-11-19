@@ -5,27 +5,34 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 /**
  * Class representing UL44AccountingType
  *
- * Блок 44. Сведения об учете обязательства
+ * Блок 44. Сведения об учете задолженности
  * XSD Type: UL_44_Accounting_Type
  */
 class UL44AccountingType extends GutdfSegment
 {
     /**
-     * 44.1. Признак учета обязательства = 0
+     * 44.1. Признак учета задолженности = 0
      *
      * @var string $exist0
      */
     private $exist0 = null;
 
     /**
-     * 44.3. Сумма обязательства, учтенная на внебалансовых счетах
+     * 44.3. Сумма задолженности, учтенная на внебалансовых счетах
      *
      * @var float $sum
      */
     private $sum = null;
 
     /**
-     * 44.1. Признак учета обязательства = 1
+     * 44.7. Валюта суммы задолженности, учтенной на внебалансовых счетах
+     *
+     * @var string $currency
+     */
+    private $currency = null;
+
+    /**
+     * 44.1. Признак учета задолженности = 1
      *
      * @var string $exist1
      */
@@ -71,7 +78,7 @@ class UL44AccountingType extends GutdfSegment
     /**
      * Gets as exist0
      *
-     * 44.1. Признак учета обязательства = 0
+     * 44.1. Признак учета задолженности = 0
      *
      * @return string
      */
@@ -83,7 +90,7 @@ class UL44AccountingType extends GutdfSegment
     /**
      * Sets a new exist0
      *
-     * 44.1. Признак учета обязательства = 0
+     * 44.1. Признак учета задолженности = 0
      *
      * @param string $exist0
      * @return self
@@ -97,7 +104,7 @@ class UL44AccountingType extends GutdfSegment
     /**
      * Gets as sum
      *
-     * 44.3. Сумма обязательства, учтенная на внебалансовых счетах
+     * 44.3. Сумма задолженности, учтенная на внебалансовых счетах
      *
      * @return float
      */
@@ -109,7 +116,7 @@ class UL44AccountingType extends GutdfSegment
     /**
      * Sets a new sum
      *
-     * 44.3. Сумма обязательства, учтенная на внебалансовых счетах
+     * 44.3. Сумма задолженности, учтенная на внебалансовых счетах
      *
      * @param float $sum
      * @return self
@@ -121,9 +128,35 @@ class UL44AccountingType extends GutdfSegment
     }
 
     /**
+     * Gets as currency
+     *
+     * 44.7. Валюта суммы задолженности, учтенной на внебалансовых счетах
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * Sets a new currency
+     *
+     * 44.7. Валюта суммы задолженности, учтенной на внебалансовых счетах
+     *
+     * @param string $currency
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+        return $this;
+    }
+
+    /**
      * Gets as exist1
      *
-     * 44.1. Признак учета обязательства = 1
+     * 44.1. Признак учета задолженности = 1
      *
      * @return string
      */
@@ -135,7 +168,7 @@ class UL44AccountingType extends GutdfSegment
     /**
      * Sets a new exist1
      *
-     * 44.1. Признак учета обязательства = 1
+     * 44.1. Признак учета задолженности = 1
      *
      * @param string $exist1
      * @return self
@@ -355,6 +388,7 @@ class UL44AccountingType extends GutdfSegment
             'Признак льготного финансирования с государственной поддержкой 1' => 'код «1» – в случае если заем (кредит) или предмет лизинга получен субъектом в рамках программы льготного финансирования с государственной поддержкой; код «0» – в случае если обстоятельство кода «1» отсутствует.',
             'Информация о программе государственной поддержки' => 'Регистрационный номер, дата и наименование нормативного акта, которым утверждена программа льготного финансирования с государственной поддержкой.',
             'Дата расчета' => 'Дата, по состоянию на которую сформированы (рассчитаны) показатели блока',
+            'Валюта суммы задолженности, учтенной на внебалансовых счетах' => 'Валюта суммы, указанной по показателю 54.3.',
         ];
     }
 
@@ -376,6 +410,7 @@ class UL44AccountingType extends GutdfSegment
         if($account->obligAccountCode){
             $this->exist0 = null;
             $this->exist1 = '';
+            $this->sum = $this->formatCurrency($account->offbalanceAmt);
         }else{
             $this->exist0 = '';
             $this->exist1 = null;
@@ -394,6 +429,7 @@ class UL44AccountingType extends GutdfSegment
         }
 
         $this->calcDate = $this->formatDate($this->sendData->getReportingDt());
+        $this->currency = $account->accountingCurrency;
     }
 
     /**
@@ -405,6 +441,7 @@ class UL44AccountingType extends GutdfSegment
             'exist_0' => 'exist0',
             'exist_1' => 'exist1',
             'sum',
+            'currency',
             'rate',
             'supportExist_0' => 'supportExist0',
             'supportExist_1' => 'supportExist1',

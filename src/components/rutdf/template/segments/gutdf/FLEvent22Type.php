@@ -62,7 +62,7 @@ class FLEvent22Type extends EventDataType
     private $fL22TotalCost = null;
 
     /**
-     * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     * Блок 24. Сведения о передаче финансирования субъекту или о возникновении обеспечения исполнения обязательства
      *
      * @var FL24FundType $fL24Fund
      */
@@ -115,14 +115,14 @@ class FLEvent22Type extends EventDataType
     ];
 
     /**
-     * Блок 54. Сведения об учете обязательства
+     * Блок 54. Сведения об учете задолженности, о льготном финансировании с государственной поддержкой и процентной ставке
      *
      * @var FL54AccountingType $fL54Accounting
      */
     private $fL54Accounting = null;
 
     /**
-     * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 55. Сведения об обращении
      *
      * @var FL55ApplicationType $fL55Application
      */
@@ -360,7 +360,7 @@ class FLEvent22Type extends EventDataType
     /**
      * Gets as fL24Fund
      *
-     * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     * Блок 24. Сведения о передаче финансирования субъекту или о возникновении обеспечения исполнения обязательства
      *
      * @return FL24FundType
      */
@@ -372,7 +372,7 @@ class FLEvent22Type extends EventDataType
     /**
      * Sets a new fL24Fund
      *
-     * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     * Блок 24. Сведения о передаче финансирования субъекту или о возникновении обеспечения исполнения обязательства
      *
      * @param FL24FundType $fL24Fund
      * @return self
@@ -622,7 +622,7 @@ class FLEvent22Type extends EventDataType
     /**
      * Gets as fL54Accounting
      *
-     * Блок 54. Сведения об учете обязательства
+     * Блок 54. Сведения об учете задолженности, о льготном финансировании с государственной поддержкой и процентной ставке
      *
      * @return FL54AccountingType
      */
@@ -634,7 +634,7 @@ class FLEvent22Type extends EventDataType
     /**
      * Sets a new fL54Accounting
      *
-     * Блок 54. Сведения об учете обязательства
+     * Блок 54. Сведения об учете задолженности, о льготном финансировании с государственной поддержкой и процентной ставке
      *
      * @param FL54AccountingType $fL54Accounting
      * @return self
@@ -648,7 +648,7 @@ class FLEvent22Type extends EventDataType
     /**
      * Gets as fL55Application
      *
-     * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 55. Сведения об обращении
      *
      * @return FL55ApplicationType
      */
@@ -660,7 +660,7 @@ class FLEvent22Type extends EventDataType
     /**
      * Sets a new fL55Application
      *
-     * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 55. Сведения об обращении
      *
      * @param FL55ApplicationType $fL55Application
      * @return self
@@ -715,15 +715,16 @@ class FLEvent22Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->fL17DealUid = new FL17DealUidType($this->template);
-        $this->fL18Deal = new FL18DealType($this->template);
-        $this->fL19Amount = new FL19AmountType($this->template);
+        $this->setFL17DealUid(new FL17DealUidType($this->template));
+        $this->setFL18Deal(new FL18DealType($this->template));
+        $this->setFL19Amount(new FL19AmountType($this->template));
 
         foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToFL191AmountInfo(new FL191AmountInfoType($this->template, $key));
         }
-        $this->fL20JointDebtors = new FL20JointDebtorsType($this->template);
-        $this->fL21PaymentTerms = new FL21PaymentTermsType($this->template);
+
+        $this->setFL20JointDebtors(new FL20JointDebtorsType($this->template));
+        $this->setFL21PaymentTerms(new FL21PaymentTermsType($this->template));
 
         foreach ($this->sendData->getAccountReplyRUTDF()->getFundDateRUTDF() as $key => $value) {
             $this->setFL24Fund(new FL24FundType($this->template, $key));
@@ -732,23 +733,24 @@ class FLEvent22Type extends EventDataType
         $this->setFL25262728Group(new FL25262728GroupType($this->template));
 
         if ($this->sendData->getAccountReplyRUTDF()->getMonthAverPaymt()) {
-            $this->fL29MonthlyPayment = new FL29MonthlyPaymentType($this->template);
-        }
-        if ($this->sendData->getAccountReplyRUTDF()->getDebtBurdenInfo()) {
-            $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
+            $this->setFL29MonthlyPayment(new FL29MonthlyPaymentType($this->template));
         }
 
-        if(!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneySource){
-            foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
-                $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
-            }
+        if ($this->sendData->getAccountReplyRUTDF()->getDebtBurdenInfo()) {
+            $this->setFL291DebtBurdenInfo(new FL291DebtBurdenInfoType($this->template));
         }
+
+        foreach ($this->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
+            $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
+        }
+
         foreach ($this->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray() as $key => $value) {
             $this->addToFL31NonMonetarySubject(new FL31NonMonetarySubjectType($this->template, $key));
         }
-        $this->fL54Accounting = new FL54AccountingType($this->template);
-        $this->fL55Application = new FL55ApplicationType($this->template);
-        $this->fL56Participation = new FL56ParticipationType($this->template);
+
+        $this->setFL54Accounting(new FL54AccountingType($this->template));
+        $this->setFL55Application(new FL55ApplicationType($this->template));
+        $this->setFL56Participation(new FL56ParticipationType($this->template));
     }
 
     /**
@@ -765,11 +767,11 @@ class FLEvent22Type extends EventDataType
             'fL22TotalCost',
             'fL24Fund',
             'fL25262728Group',
-            'fL20JointDebtors',
             'fL29MonthlyPayment',
             'fL291DebtBurdenInfo',
-            'fL30NonMonetarySource',
             'fL31NonMonetarySubject',
+            'fL20JointDebtors',
+            'fL30NonMonetarySource',
             'fL54Accounting',
             'fL55Application',
             'fL56Participation',

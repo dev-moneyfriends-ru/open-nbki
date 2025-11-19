@@ -51,4 +51,11 @@ class AmountInfoRUTDF extends BaseItem
      * @var float|null
      */
     public $liabilityLimit = null;
+
+    /**
+     * Валюта лимита ответственности по обеспечиваемому обязательству.
+     * Валюта лимита ответственности, сумма которого указана по показателю 19(1).7.
+     * @var string|null
+     */
+    public $limitCurrency = 'RUB';
 }

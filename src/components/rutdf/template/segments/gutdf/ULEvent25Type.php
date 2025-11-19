@@ -517,15 +517,15 @@ class ULEvent25Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->uL10DealUid = new UL10DealUidType($this->template);
-        $this->uL11Deal = new UL11DealType($this->template);
-        $this->uL12Amount= new UL12AmountType($this->template);
+        $this->setUL10DealUid(new UL10DealUidType($this->template));
+        $this->setUL11Deal(new UL11DealType($this->template));
+        $this->setUL12Amount(new UL12AmountType($this->template));
 
         foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToUL121AmountInfo(new UL121AmountInfoType($this->template, $key));
         }
 
-        $this->uL14PaymentTerms = new UL14PaymentTermsType($this->template);
+        $this->setUL14PaymentTerms(new UL14PaymentTermsType($this->template));
         $this->setUL17181920Group(new UL17181920GroupType($this->template));
 
         foreach ($this->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
@@ -536,9 +536,8 @@ class ULEvent25Type extends EventDataType
             $this->addToUL22NonMonetarySubject(new UL22NonMonetarySubjectType($this->template, $key));
         }
 
-        $this->uL29ContractEnd = new UL29ContractEndType($this->template);
-
-        $this->uL46Participation = new UL46ParticipationType($this->template);
+        $this->setUL29ContractEnd(new UL29ContractEndType($this->template));
+        $this->setUL46Participation(new UL46ParticipationType($this->template));
     }
 
     /**
@@ -553,8 +552,8 @@ class ULEvent25Type extends EventDataType
             'uL121AmountInfo',
             'uL14PaymentTerms',
             'uL17181920Group',
-            'uL21NonMonetarySource',
             'uL22NonMonetarySubject',
+            'uL21NonMonetarySource',
             'uL29ContractEnd',
             'uL46Participation',
         ];

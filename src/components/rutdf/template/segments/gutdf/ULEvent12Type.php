@@ -5,7 +5,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 /**
  * Class representing ULEvent12Type
  *
- * Источник одобрил обращение (направил ему оферту) или изменились сведения об обращении
+ * Источник одобрил обращение (направил субъекту оферту), или изменились сведения об обращении
  * XSD Type: UL_Event_1_2_Type
  */
 class ULEvent12Type extends EventDataType
@@ -18,7 +18,7 @@ class ULEvent12Type extends EventDataType
     private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
-     * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 45. Сведения об обращении
      *
      * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL45ApplicationType $uL45Application
      */
@@ -53,7 +53,7 @@ class ULEvent12Type extends EventDataType
     /**
      * Gets as uL45Application
      *
-     * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 45. Сведения об обращении
      *
      * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL45ApplicationType
      */
@@ -65,7 +65,7 @@ class ULEvent12Type extends EventDataType
     /**
      * Sets a new uL45Application
      *
-     * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 45. Сведения об обращении
      *
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL45ApplicationType $uL45Application
      * @return self
@@ -94,7 +94,7 @@ class ULEvent12Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->uL45Application = new UL45ApplicationType($this->template);
+        $this->setUL45Application(new UL45ApplicationType($this->template));
     }
 
     /**

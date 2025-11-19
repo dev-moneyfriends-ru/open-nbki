@@ -94,14 +94,14 @@ class ULEvent22Type extends EventDataType
     ];
 
     /**
-     * Блок 44. Сведения об учете обязательства
+     * Блок 44. Сведения об учете задолженности
      *
      * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL44AccountingType $uL44Accounting
      */
     private $uL44Accounting = null;
 
     /**
-     * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 45. Сведения об обращении
      *
      * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL45ApplicationType $uL45Application
      */
@@ -523,7 +523,7 @@ class ULEvent22Type extends EventDataType
     /**
      * Gets as uL44Accounting
      *
-     * Блок 44. Сведения об учете обязательства
+     * Блок 44. Сведения об учете задолженности
      *
      * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL44AccountingType
      */
@@ -535,7 +535,7 @@ class ULEvent22Type extends EventDataType
     /**
      * Sets a new uL44Accounting
      *
-     * Блок 44. Сведения об учете обязательства
+     * Блок 44. Сведения об учете задолженности
      *
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL44AccountingType $uL44Accounting
      * @return self
@@ -549,7 +549,7 @@ class ULEvent22Type extends EventDataType
     /**
      * Gets as uL45Application
      *
-     * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 45. Сведения об обращении
      *
      * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL45ApplicationType
      */
@@ -561,7 +561,7 @@ class ULEvent22Type extends EventDataType
     /**
      * Sets a new uL45Application
      *
-     * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 45. Сведения об обращении
      *
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL45ApplicationType $uL45Application
      * @return self
@@ -616,16 +616,16 @@ class ULEvent22Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->uL10DealUid = new UL10DealUidType($this->template);
-        $this->uL11Deal = new UL11DealType($this->template);
-        $this->uL12Amount= new UL12AmountType($this->template);
+        $this->setUL10DealUid(new UL10DealUidType($this->template));
+        $this->setUL11Deal(new UL11DealType($this->template));
+        $this->setUL12Amount(new UL12AmountType($this->template));
 
         foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToUL121AmountInfo(new UL121AmountInfoType($this->template, $key));
         }
 
-        $this->uL13JointDebtors = new UL13JointDebtorsType($this->template);
-        $this->uL14PaymentTerms = new UL14PaymentTermsType($this->template);
+        $this->setUL13JointDebtors(new UL13JointDebtorsType($this->template));
+        $this->setUL14PaymentTerms(new UL14PaymentTermsType($this->template));
 
         foreach ($this->sendData->getAccountReplyRUTDF()->getFundDateRUTDF() as $key => $value) {
             $this->setUL16Fund(new UL16FundType($this->template, $key));
@@ -641,9 +641,9 @@ class ULEvent22Type extends EventDataType
             $this->addToUL22NonMonetarySubject(new UL22NonMonetarySubjectType($this->template, $key));
         }
 
-        $this->uL44Accounting = new UL44AccountingType($this->template);
-        $this->uL45Application = new UL45ApplicationType($this->template);
-        $this->uL46Participation = new UL46ParticipationType($this->template);
+        $this->setUL44Accounting(new UL44AccountingType($this->template));
+        $this->setUL45Application(new UL45ApplicationType($this->template));
+        $this->setUL46Participation(new UL46ParticipationType($this->template));
     }
 
     /**
@@ -660,8 +660,8 @@ class ULEvent22Type extends EventDataType
             'uL14PaymentTerms',
             'uL16Fund',
             'uL17181920Group',
-            'uL21NonMonetarySource',
             'uL22NonMonetarySubject',
+            'uL21NonMonetarySource',
             'uL44Accounting',
             'uL45Application',
             'uL46Participation',

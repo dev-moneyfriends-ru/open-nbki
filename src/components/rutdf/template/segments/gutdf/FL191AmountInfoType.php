@@ -69,6 +69,13 @@ class FL191AmountInfoType extends GutdfSegment
     private $liabilityLimit = null;
 
     /**
+     * 19(1).8. Валюта лимита ответственности по обеспечиваемому обязательству
+     *
+     * @var string $limitCurrency
+     */
+    private $limitCurrency = null;
+
+    /**
      * Gets as securityFact0
      *
      * 19(1).1. Признак обеспечивающего обязательства = 0
@@ -277,6 +284,32 @@ class FL191AmountInfoType extends GutdfSegment
     }
 
     /**
+     * Gets as limitCurrency
+     *
+     * 19(1).8. Валюта лимита ответственности по обеспечиваемому обязательству
+     *
+     * @return string
+     */
+    public function getLimitCurrency()
+    {
+        return $this->limitCurrency;
+    }
+
+    /**
+     * Sets a new limitCurrency
+     *
+     * 19(1).8. Валюта лимита ответственности по обеспечиваемому обязательству
+     *
+     * @param string $limitCurrency
+     * @return self
+     */
+    public function setLimitCurrency($limitCurrency)
+    {
+        $this->limitCurrency = $limitCurrency;
+        return $this;
+    }
+
+    /**
      * @inheritDoc
      */
     public function getSegmentName(): string
@@ -328,6 +361,7 @@ class FL191AmountInfoType extends GutdfSegment
         $this->calcDate = $this->formatDate($amountInfo->amtDate);
         $this->securityUid = UuidHelper::getUuidWithControl($amountInfo->commitUuid);
         $this->liabilityLimit = $amountInfo->liabilityLimit;
+        $this->limitCurrency = $amountInfo->limitCurrency;
     }
 
     /**
@@ -344,6 +378,7 @@ class FL191AmountInfoType extends GutdfSegment
             'calcDate',
             'securityUid',
             'liabilityLimit',
+            'limitCurrency',
         ];
     }
 }

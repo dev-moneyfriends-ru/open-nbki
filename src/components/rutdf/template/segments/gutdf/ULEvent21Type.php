@@ -105,7 +105,7 @@ class ULEvent21Type extends EventDataType
     ];
 
     /**
-     * Блок 44. Сведения об учете обязательства
+     * Блок 44. Сведения об учете задолженности
      *
      * @var UL44AccountingType $uL44Accounting
      */
@@ -626,7 +626,7 @@ class ULEvent21Type extends EventDataType
     /**
      * Gets as uL44Accounting
      *
-     * Блок 44. Сведения об учете обязательства
+     * Блок 44. Сведения об учете задолженности
      *
      * @return UL44AccountingType
      */
@@ -638,7 +638,7 @@ class ULEvent21Type extends EventDataType
     /**
      * Sets a new uL44Accounting
      *
-     * Блок 44. Сведения об учете обязательства
+     * Блок 44. Сведения об учете задолженности
      *
      * @param UL44AccountingType $uL44Accounting
      * @return self
@@ -667,30 +667,33 @@ class ULEvent21Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->uL10DealUid = new UL10DealUidType($this->template);
-        $this->uL11Deal = new UL11DealType($this->template);
-        $this->uL12Amount= new UL12AmountType($this->template);
+        $this->setUL10DealUid(new UL10DealUidType($this->template));
+        $this->setUL11Deal(new UL11DealType($this->template));
+        $this->setUL12Amount(new UL12AmountType($this->template));
 
         foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToUL121AmountInfo(new UL121AmountInfoType($this->template, $key));
         }
+        $this->setUL14PaymentTerms(new UL14PaymentTermsType($this->template));
+        $this->setUL13JointDebtors(new UL13JointDebtorsType($this->template));
 
-        $this->uL13JointDebtors = new UL13JointDebtorsType($this->template);
-        $this->uL14PaymentTerms = new UL14PaymentTermsType($this->template);
 
         foreach ($this->sendData->getAccountReplyRUTDF()->getContractTermsChanges() as $key => $value) {
             $this->addToUL151ContractTermsChanges(new UL151ContractTermsChangesType($this->template, $key));
         }
-        if(empty($this->uL151ContractTermsChanges)){
+
+        if (empty($this->uL151ContractTermsChanges)) {
             $this->addToUL151ContractTermsChanges(new UL151ContractTermsChangesType($this->template));
         }
+
         foreach ($this->sendData->getAccountReplyRUTDF()->getAmendment() as $key => $value) {
             $this->addToUL15ContractChanges(new UL15ContractChangesType($this->template, $key));
         }
 
-        if(empty($this->uL15ContractChanges)){
+        if (empty($this->uL15ContractChanges)) {
             $this->addToUL15ContractChanges(new UL15ContractChangesType($this->template));
         }
+
         $this->setUL17181920Group(new UL17181920GroupType($this->template));
 
         foreach ($this->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
@@ -701,7 +704,7 @@ class ULEvent21Type extends EventDataType
             $this->addToUL22NonMonetarySubject(new UL22NonMonetarySubjectType($this->template, $key));
         }
 
-        $this->uL44Accounting = new UL44AccountingType($this->template);
+        $this->setUL44Accounting(new UL44AccountingType($this->template));
     }
 
     /**
@@ -716,11 +719,11 @@ class ULEvent21Type extends EventDataType
             'uL121AmountInfo',
             'uL14PaymentTerms',
             'uL17181920Group',
+            'uL22NonMonetarySubject',
             'uL13JointDebtors',
             'uL15ContractChanges',
             'uL151ContractTermsChanges',
             'uL21NonMonetarySource',
-            'uL22NonMonetarySubject',
             'uL44Accounting',
         ];
     }

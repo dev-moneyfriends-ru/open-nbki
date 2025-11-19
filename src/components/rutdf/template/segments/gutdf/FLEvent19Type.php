@@ -20,7 +20,7 @@ class FLEvent19Type extends EventDataType
     /**
      * Блок 8. Регистрация физического лица по месту жительства или пребывания
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL8AddrRegType[] $fL8AddrReg
+     * @var FL8AddrRegType[] $fL8AddrReg
      */
     private $fL8AddrReg = [
         
@@ -29,21 +29,23 @@ class FLEvent19Type extends EventDataType
     /**
      * Блок 9. Фактическое место жительства
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL9AddrFactType $fL9AddrFact
+     * @var FL9AddrFactType $fL9AddrFact
      */
     private $fL9AddrFact = null;
 
     /**
      * Блок 10. Контактные данные
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL10ContactType $fL10Contact
+     * @var FL10ContactType[] $fL10Contact
      */
-    private $fL10Contact = null;
+    private $fL10Contact = [
+
+    ];
 
     /**
      * Блок 11. Государственная регистрация в качестве индивидуального предпринимателя
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL11IndividualEntrepreneurType $fL11IndividualEntrepreneur
+     * @var FL11IndividualEntrepreneurType $fL11IndividualEntrepreneur
      */
     private $fL11IndividualEntrepreneur = null;
 
@@ -78,10 +80,10 @@ class FLEvent19Type extends EventDataType
      *
      * Блок 8. Регистрация физического лица по месту жительства или пребывания
      *
+     * @param FL8AddrRegType $fL8AddrReg
      * @return self
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL8AddrRegType $fL8AddrReg
      */
-    public function addToFL8AddrReg(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL8AddrRegType $fL8AddrReg)
+    public function addToFL8AddrReg(FL8AddrRegType $fL8AddrReg)
     {
         $this->fL8AddrReg[] = $fL8AddrReg;
         return $this;
@@ -118,7 +120,7 @@ class FLEvent19Type extends EventDataType
      *
      * Блок 8. Регистрация физического лица по месту жительства или пребывания
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL8AddrRegType[]
+     * @return FL8AddrRegType[]
      */
     public function getFL8AddrReg()
     {
@@ -130,7 +132,7 @@ class FLEvent19Type extends EventDataType
      *
      * Блок 8. Регистрация физического лица по месту жительства или пребывания
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL8AddrRegType[] $fL8AddrReg
+     * @param FL8AddrRegType[] $fL8AddrReg
      * @return self
      */
     public function setFL8AddrReg(array $fL8AddrReg)
@@ -144,7 +146,7 @@ class FLEvent19Type extends EventDataType
      *
      * Блок 9. Фактическое место жительства
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL9AddrFactType
+     * @return FL9AddrFactType
      */
     public function getFL9AddrFact()
     {
@@ -156,13 +158,53 @@ class FLEvent19Type extends EventDataType
      *
      * Блок 9. Фактическое место жительства
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL9AddrFactType $fL9AddrFact
+     * @param FL9AddrFactType $fL9AddrFact
      * @return self
      */
-    public function setFL9AddrFact(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL9AddrFactType $fL9AddrFact)
+    public function setFL9AddrFact(FL9AddrFactType $fL9AddrFact)
     {
         $this->fL9AddrFact = $fL9AddrFact;
         return $this;
+    }
+
+    /**
+     * Adds as fL10Contact
+     *
+     * Блок 10. Контактные данные
+     *
+     * @param FL10ContactType $fL10Contact
+     *@return self
+     */
+    public function addToFL10Contact(FL10ContactType $fL10Contact)
+    {
+        $this->fL10Contact[] = $fL10Contact;
+        return $this;
+    }
+
+    /**
+     * isset fL10Contact
+     *
+     * Блок 10. Контактные данные
+     *
+     * @param int|string $index
+     * @return bool
+     */
+    public function issetFL10Contact($index)
+    {
+        return isset($this->fL10Contact[$index]);
+    }
+
+    /**
+     * unset fL10Contact
+     *
+     * Блок 10. Контактные данные
+     *
+     * @param int|string $index
+     * @return void
+     */
+    public function unsetFL10Contact($index)
+    {
+        unset($this->fL10Contact[$index]);
     }
 
     /**
@@ -170,7 +212,7 @@ class FLEvent19Type extends EventDataType
      *
      * Блок 10. Контактные данные
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL10ContactType
+     * @return FL10ContactType[]
      */
     public function getFL10Contact()
     {
@@ -182,10 +224,10 @@ class FLEvent19Type extends EventDataType
      *
      * Блок 10. Контактные данные
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL10ContactType $fL10Contact
+     * @param FL10ContactType[] $fL10Contact
      * @return self
      */
-    public function setFL10Contact(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL10ContactType $fL10Contact)
+    public function setFL10Contact(array $fL10Contact = null)
     {
         $this->fL10Contact = $fL10Contact;
         return $this;
@@ -196,7 +238,7 @@ class FLEvent19Type extends EventDataType
      *
      * Блок 11. Государственная регистрация в качестве индивидуального предпринимателя
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL11IndividualEntrepreneurType
+     * @return FL11IndividualEntrepreneurType
      */
     public function getFL11IndividualEntrepreneur()
     {
@@ -208,10 +250,10 @@ class FLEvent19Type extends EventDataType
      *
      * Блок 11. Государственная регистрация в качестве индивидуального предпринимателя
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL11IndividualEntrepreneurType $fL11IndividualEntrepreneur
+     * @param FL11IndividualEntrepreneurType $fL11IndividualEntrepreneur
      * @return self
      */
-    public function setFL11IndividualEntrepreneur(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL11IndividualEntrepreneurType $fL11IndividualEntrepreneur)
+    public function setFL11IndividualEntrepreneur(FL11IndividualEntrepreneurType $fL11IndividualEntrepreneur)
     {
         $this->fL11IndividualEntrepreneur = $fL11IndividualEntrepreneur;
         return $this;
@@ -236,9 +278,11 @@ class FLEvent19Type extends EventDataType
     protected function initAttributes()
     {
         $this->addToFL8AddrReg(new FL8AddrRegType($this->template));
-        $this->fL9AddrFact = new FL9AddrFactType($this->template);
-        $this->fL10Contact = new FL10ContactType($this->template);
-        $this->fL11IndividualEntrepreneur = new FL11IndividualEntrepreneurType($this->template);
+        $this->setFL9AddrFact(new FL9AddrFactType($this->template));
+        foreach ($this->sendData->getContactReply() as $key => $value) {
+            $this->addToFL10Contact(new FL10ContactType($this->template, $key));
+        }
+        $this->setFL11IndividualEntrepreneur(new FL11IndividualEntrepreneurType($this->template));
     }
 
     /**

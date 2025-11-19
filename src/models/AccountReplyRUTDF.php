@@ -265,6 +265,12 @@ class AccountReplyRUTDF extends Account
      * @var string $guaranteeDate
      */
     public $guaranteeDate = '';
+
+    /**
+     * Валюта возмещения
+     * @var string|null
+     */
+    public $guaranteeCurrency = 'RUB';
     
     /**
      * Код основания прекращения обязательства
@@ -295,11 +301,21 @@ class AccountReplyRUTDF extends Account
     public $obligAccountCode = null;
     
     /**
-     * Процентная ставка.
-     * Значение процентной ставки в соответствии с условиями сделки.
+     * Минимальная процентная ставка.
+     * Значение минимальной процентной ставки в соответствии с условиями сделки.
+     * Если условиями сделки не предусмотрены различные процентные ставки, значение равно процентной ставке в соответствии с условиями сделки.
+     * В случае отсутствия процентной ставки в соответствии с условиями сделки, указывается значение «0.00».
      * @var string $intRate
      */
     public $intRate = '';
+    /**
+     * Максимальная процентная ставка.
+     * Значение максимальной процентной ставки в соответствии с условиями сделки.
+     * Если условиями сделки не предусмотрены различные процентные ставки, значение равно процентной ставке в соответствии с условиями сделки.
+     * В случае отсутствия процентной ставки в соответствии с условиями сделки, указывается значение «0.00».
+     * @var string
+     */
+    public $maxInterest = '';
     
     /**
      * Сумма обязательства, учтенная на внебалансовых счетах.
@@ -353,6 +369,12 @@ class AccountReplyRUTDF extends Account
      * @var array|DebtBurdenInfoRUTDF
      */
     protected $debtBurdenInfo = [];
+
+    /**
+     * Валюта суммы задолженности, учтенной на внебалансовых счетах
+     * @var string
+     */
+    public $accountingCurrency = 'RUB';
 
     
     /**
@@ -780,6 +802,14 @@ class AccountReplyRUTDF extends Account
     {
         return $this->collatRepayArray;
     }
+
+    /**
+     * @return ProvisionPaymentOffsetRUTDF[]
+     */
+    public function getProvisionPaymentOffset(): array
+    {
+        return $this->provisionPaymentOffsetArray;
+    }
     
     /**
      * @param CollatRepayRUTDF[]|array $config
@@ -787,6 +817,14 @@ class AccountReplyRUTDF extends Account
     public function setCollatRepay(array $config): void
     {
         $this->collatRepayArray = $this->initPropertyModels($config, CollatRepayRUTDF::class);
+    }
+
+    /**
+     * @param ProvisionPaymentOffsetRUTDF[]|array $config
+     */
+    public function setProvisionPaymentOffset(array $config): void
+    {
+        $this->provisionPaymentOffsetArray = $this->initPropertyModels($config, ProvisionPaymentOffsetRUTDF::class);
     }
 
     /**

@@ -20,7 +20,7 @@ class FLEvent221Type extends EventDataType
     /**
      * Блок 17. Идентификатор сделки
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL17DealUidType $fL17DealUid
+     * @var FL17DealUidType $fL17DealUid
      */
     private $fL17DealUid = null;
 
@@ -80,7 +80,7 @@ class FLEvent221Type extends EventDataType
     ];
 
     /**
-     * Блок 54. Сведения об учете обязательства
+     * Блок 54. Сведения об учете задолженности, о льготном финансировании с государственной поддержкой и процентной ставке
      *
      * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL54AccountingType $fL54Accounting
      */
@@ -290,49 +290,9 @@ class FLEvent221Type extends EventDataType
     }
 
     /**
-     * Adds as fL24Fund
-     *
-     * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
-     *
-     * @param FL24FundType $fL24Fund
-     * @return self
-     */
-    public function addToFL24Fund(FL24FundType $fL24Fund)
-    {
-        $this->fL24Fund[] = $fL24Fund;
-        return $this;
-    }
-
-    /**
-     * isset fL24Fund
-     *
-     * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetFL24Fund($index)
-    {
-        return isset($this->fL24Fund[$index]);
-    }
-
-    /**
-     * unset fL24Fund
-     *
-     * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetFL24Fund($index)
-    {
-        unset($this->fL24Fund[$index]);
-    }
-
-    /**
      * Gets as fL24Fund
      *
-     * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     * Блок 24. Сведения о передаче финансирования субъекту или о возникновении обеспечения исполнения обязательства
      *
      * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL24FundType
      */
@@ -344,7 +304,7 @@ class FLEvent221Type extends EventDataType
     /**
      * Sets a new fL24Fund
      *
-     * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     * Блок 24. Сведения о передаче финансирования субъекту или о возникновении обеспечения исполнения обязательства
      *
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL24FundType $fL24Fund
      * @return self
@@ -360,6 +320,7 @@ class FLEvent221Type extends EventDataType
      *
      * Блок 31. Сведения о неденежном обязательстве субъекта
      *
+     * @param FL31NonMonetarySubjectType $fL31NonMonetarySubject
      * @return self
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL31NonMonetarySubjectType $fL31NonMonetarySubject
      */
@@ -490,7 +451,7 @@ class FLEvent221Type extends EventDataType
     /**
      * Gets as fL54Accounting
      *
-     * Блок 54. Сведения об учете обязательства
+     * Блок 54. Сведения об учете задолженности, о льготном финансировании с государственной поддержкой и процентной ставке
      *
      * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL54AccountingType
      */
@@ -502,7 +463,7 @@ class FLEvent221Type extends EventDataType
     /**
      * Sets a new fL54Accounting
      *
-     * Блок 54. Сведения об учете обязательства
+     * Блок 54. Сведения об учете задолженности, о льготном финансировании с государственной поддержкой и процентной ставке
      *
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL54AccountingType $fL54Accounting
      * @return self
@@ -557,23 +518,30 @@ class FLEvent221Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->fL17DealUid = new FL17DealUidType($this->template);
-        $this->fL18Deal = new FL18DealType($this->template);
-        $this->fL19Amount = new FL19AmountType($this->template);
+        $this->setFL17DealUid(new FL17DealUidType($this->template));
+        $this->setFL18Deal(new FL18DealType($this->template));
+        $this->setFL19Amount(new FL19AmountType($this->template));
+
         foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToFL191AmountInfo(new FL191AmountInfoType($this->template, $key));
         }
-        $this->fL21PaymentTerms = new FL21PaymentTermsType($this->template);
+
+        $this->setFL21PaymentTerms(new FL21PaymentTermsType($this->template));
+
         foreach ($this->sendData->getAccountReplyRUTDF()->getFundDateRUTDF() as $key => $value) {
-            $this->addToFL24Fund(new FL24FundType($this->template, $key));
+            $this->setFL24Fund(new FL24FundType($this->template, $key));
         }
-        if(!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneySource){
-            foreach ($this->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
-                $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
-            }
+
+        foreach ($this->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
+            $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
         }
-        $this->fL54Accounting = new FL54AccountingType($this->template);
-        $this->fL56Participation = new FL56ParticipationType($this->template);
+
+        foreach ($this->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray() as $key => $value) {
+            $this->addToFL31NonMonetarySubject(new FL31NonMonetarySubjectType($this->template, $key));
+        }
+
+        $this->setFL54Accounting(new FL54AccountingType($this->template));
+        $this->setFL56Participation(new FL56ParticipationType($this->template));
     }
 
     /**
@@ -588,6 +556,7 @@ class FLEvent221Type extends EventDataType
             'fL191AmountInfo',
             'fL21PaymentTerms',
             'fL24Fund',
+            'fL31NonMonetarySubject',
             'fL30NonMonetarySource',
             'fL54Accounting',
             'fL56Participation',

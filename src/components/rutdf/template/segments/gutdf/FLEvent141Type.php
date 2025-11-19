@@ -5,7 +5,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 /**
  * Class representing FLEvent141Type
  *
- * Субъект и источник заключили договор лизинга либо поручительства по лизингу и предмет лизинга передан лизингополучателю
+ * Субъект и источник заключили договор лизинга либо поручительства по лизингу, и предмет лизинга передан лизингополучателю
  * XSD Type: FL_Event_1_4_1_Type
  */
 class FLEvent141Type extends EventDataType
@@ -38,7 +38,9 @@ class FLEvent141Type extends EventDataType
      *
      * @var FL10ContactType $fL10Contact
      */
-    private $fL10Contact = null;
+    private $fL10Contact = [
+
+    ];
 
     /**
      * Блок 11. Государственная регистрация в качестве индивидуального предпринимателя
@@ -99,7 +101,7 @@ class FLEvent141Type extends EventDataType
     private $fL21PaymentTerms = null;
 
     /**
-     * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     * Блок 24. Сведения о передаче финансирования субъекту или о возникновении обеспечения исполнения обязательства
      *
      * @var FL24FundType[] $fL24Fund
      */
@@ -110,11 +112,9 @@ class FLEvent141Type extends EventDataType
     /**
      * Блок 25-28
      *
-     * @var FL25262728GroupType[] $fL25262728Group
+     * @var FL25262728GroupType $fL25262728Group
      */
-    private $fL25262728Group = [
-        
-    ];
+    private $fL25262728Group = null;
 
     /**
      * Блок 30. Сведения о неденежном обязательстве источника
@@ -135,14 +135,14 @@ class FLEvent141Type extends EventDataType
     ];
 
     /**
-     * Блок 54. Сведения об учете обязательства
+     * Блок 54. Сведения об учете задолженности, о льготном финансировании с государственной поддержкой и процентной ставке
      *
      * @var FL54AccountingType $fL54Accounting
      */
     private $fL54Accounting = null;
 
     /**
-     * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 55. Сведения об обращении
      *
      * @var FL55ApplicationType $fL55Application
      */
@@ -274,6 +274,46 @@ class FLEvent141Type extends EventDataType
     }
 
     /**
+     * Adds as fL10Contact
+     *
+     * Блок 10. Контактные данные
+     *
+     * @return self
+     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL10ContactType $fL10Contact
+     */
+    public function addToFL10Contact(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL10ContactType $fL10Contact)
+    {
+        $this->fL10Contact[] = $fL10Contact;
+        return $this;
+    }
+
+    /**
+     * isset fL10Contact
+     *
+     * Блок 10. Контактные данные
+     *
+     * @param int|string $index
+     * @return bool
+     */
+    public function issetFL10Contact($index)
+    {
+        return isset($this->fL10Contact[$index]);
+    }
+
+    /**
+     * unset fL10Contact
+     *
+     * Блок 10. Контактные данные
+     *
+     * @param int|string $index
+     * @return void
+     */
+    public function unsetFL10Contact($index)
+    {
+        unset($this->fL10Contact[$index]);
+    }
+
+    /**
      * Gets as fL10Contact
      *
      * Блок 10. Контактные данные
@@ -293,7 +333,7 @@ class FLEvent141Type extends EventDataType
      * @param FL10ContactType $fL10Contact
      * @return self
      */
-    public function setFL10Contact(FL10ContactType $fL10Contact)
+    public function setFL10Contact(array $fL10Contact = null)
     {
         $this->fL10Contact = $fL10Contact;
         return $this;
@@ -550,7 +590,7 @@ class FLEvent141Type extends EventDataType
     /**
      * Adds as fL24Fund
      *
-     * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     * Блок 24. Сведения о передаче финансирования субъекту или о возникновении обеспечения исполнения обязательства
      *
      * @param FL24FundType $fL24Fund
      * @return self
@@ -564,7 +604,7 @@ class FLEvent141Type extends EventDataType
     /**
      * isset fL24Fund
      *
-     * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     * Блок 24. Сведения о передаче финансирования субъекту или о возникновении обеспечения исполнения обязательства
      *
      * @param int|string $index
      * @return bool
@@ -577,7 +617,7 @@ class FLEvent141Type extends EventDataType
     /**
      * unset fL24Fund
      *
-     * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     * Блок 24. Сведения о передаче финансирования субъекту или о возникновении обеспечения исполнения обязательства
      *
      * @param int|string $index
      * @return void
@@ -590,7 +630,7 @@ class FLEvent141Type extends EventDataType
     /**
      * Gets as fL24Fund
      *
-     * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     * Блок 24. Сведения о передаче финансирования субъекту или о возникновении обеспечения исполнения обязательства
      *
      * @return FL24FundType[]
      */
@@ -602,7 +642,7 @@ class FLEvent141Type extends EventDataType
     /**
      * Sets a new fL24Fund
      *
-     * Блок 24. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     * Блок 24. Сведения о передаче финансирования субъекту или о возникновении обеспечения исполнения обязательства
      *
      * @param FL24FundType[] $fL24Fund
      * @return self
@@ -614,51 +654,11 @@ class FLEvent141Type extends EventDataType
     }
 
     /**
-     * Adds as fL25262728Group
-     *
-     * Блок 25-28
-     *
-     * @param FL25262728GroupType $fL25262728Group
-     *@return self
-     */
-    public function addToFL25262728Group(FL25262728GroupType $fL25262728Group)
-    {
-        $this->fL25262728Group[] = $fL25262728Group;
-        return $this;
-    }
-
-    /**
-     * isset fL25262728Group
-     *
-     * Блок 25-28
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetFL25262728Group($index)
-    {
-        return isset($this->fL25262728Group[$index]);
-    }
-
-    /**
-     * unset fL25262728Group
-     *
-     * Блок 25-28
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetFL25262728Group($index)
-    {
-        unset($this->fL25262728Group[$index]);
-    }
-
-    /**
      * Gets as fL25262728Group
      *
      * Блок 25-28
      *
-     * @return FL25262728GroupType[]
+     * @return FL25262728GroupType
      */
     public function getFL25262728Group()
     {
@@ -670,10 +670,10 @@ class FLEvent141Type extends EventDataType
      *
      * Блок 25-28
      *
-     * @param FL25262728GroupType[] $fL25262728Group
+     * @param FL25262728GroupType $fL25262728Group
      * @return self
      */
-    public function setFL25262728Group(array $fL25262728Group)
+    public function setFL25262728Group(FL25262728GroupType $fL25262728Group)
     {
         $this->fL25262728Group = $fL25262728Group;
         return $this;
@@ -814,7 +814,7 @@ class FLEvent141Type extends EventDataType
     /**
      * Gets as fL54Accounting
      *
-     * Блок 54. Сведения об учете обязательства
+     * Блок 54. Сведения об учете задолженности, о льготном финансировании с государственной поддержкой и процентной ставке
      *
      * @return FL54AccountingType
      */
@@ -826,7 +826,7 @@ class FLEvent141Type extends EventDataType
     /**
      * Sets a new fL54Accounting
      *
-     * Блок 54. Сведения об учете обязательства
+     * Блок 54. Сведения об учете задолженности, о льготном финансировании с государственной поддержкой и процентной ставке
      *
      * @param FL54AccountingType $fL54Accounting
      * @return self
@@ -840,7 +840,7 @@ class FLEvent141Type extends EventDataType
     /**
      * Gets as fL55Application
      *
-     * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 55. Сведения об обращении
      *
      * @return FL55ApplicationType
      */
@@ -852,7 +852,7 @@ class FLEvent141Type extends EventDataType
     /**
      * Sets a new fL55Application
      *
-     * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 55. Сведения об обращении
      *
      * @param FL55ApplicationType $fL55Application
      * @return self
@@ -908,33 +908,40 @@ class FLEvent141Type extends EventDataType
     protected function initAttributes()
     {
         $this->addToFL8AddrReg(new FL8AddrRegType($this->template));
-        $this->fL9AddrFact = new FL9AddrFactType($this->template);
-        $this->fL10Contact = new FL10ContactType($this->template);
-        $this->fL11IndividualEntrepreneur = new FL11IndividualEntrepreneurType($this->template);
-        $this->fL12Capacity = new FL12CapacityType($this->template);
-        $this->fL17DealUid = new FL17DealUidType($this->template);
-        $this->fL18Deal = new FL18DealType($this->template);
-        $this->fL19Amount = new FL19AmountType($this->template);
+        $this->setFL9AddrFact(new FL9AddrFactType($this->template));
+
+        foreach ($this->sendData->getContactReply() as $key => $value) {
+            $this->addToFL10Contact(new FL10ContactType($this->template, $key));
+        }
+
+        $this->setFL11IndividualEntrepreneur(new FL11IndividualEntrepreneurType($this->template));
+        $this->setFL12Capacity(new FL12CapacityType($this->template));
+        $this->setFL17DealUid(new FL17DealUidType($this->template));
+        $this->setFL18Deal(new FL18DealType($this->template));
+        $this->setFL19Amount(new FL19AmountType($this->template));
+
         foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToFL191AmountInfo(new FL191AmountInfoType($this->template, $key));
         }
-        $this->fL20JointDebtors = new FL20JointDebtorsType($this->template);
-        $this->fL21PaymentTerms = new FL21PaymentTermsType($this->template);
-        foreach ($this->sendData->getAccountReplyRUTDF()->getFundDateRUTDF() as $key => $value) {
-            $this->addToFL24Fund(new FL24FundType($this->template, $key));
-        }
-        $this->addToFL25262728Group(new FL25262728GroupType($this->template));
-        if(!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneySource){
+
+        $this->setFL20JointDebtors(new FL20JointDebtorsType($this->template));
+        $this->setFL21PaymentTerms(new FL21PaymentTermsType($this->template));
+        $this->addToFL24Fund(new FL24FundType($this->template));
+        $this->setFL25262728Group(new FL25262728GroupType($this->template));
+
+        if (!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneySource) {
             foreach ($this->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
                 $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
             }
         }
-        if(!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneyBorrower){
-            $this->fL31NonMonetarySubject = new FL31NonMonetarySubjectType($this->template);
+
+        if (!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneyBorrower) {
+            $this->addToFL31NonMonetarySubject(new FL31NonMonetarySubjectType($this->template));
         }
-        $this->fL54Accounting = new FL54AccountingType($this->template);
-        $this->fL55Application = new FL55ApplicationType($this->template);
-        $this->fL56Participation = new FL56ParticipationType($this->template);
+
+        $this->setFL54Accounting(new FL54AccountingType($this->template));
+        $this->setFL55Application(new FL55ApplicationType($this->template));
+        $this->setFL56Participation(new FL56ParticipationType($this->template));
     }
 
     /**

@@ -179,7 +179,7 @@ class UL11DealType extends GutdfSegment
     /**
      * 11.17. Дата возникновения обязательства субъекта
      *
-     * @var \DateTime $startDate
+     * @var string $startDate
      */
     private $startDate = null;
 
@@ -854,7 +854,7 @@ class UL11DealType extends GutdfSegment
      *
      * 11.17. Дата возникновения обязательства субъекта
      *
-     * @return \DateTime
+     * @return string
      */
     public function getStartDate()
     {
@@ -866,10 +866,10 @@ class UL11DealType extends GutdfSegment
      *
      * 11.17. Дата возникновения обязательства субъекта
      *
-     * @param \DateTime $startDate
+     * @param string $startDate
      * @return self
      */
-    public function setStartDate(\DateTime $startDate)
+    public function setStartDate($startDate)
     {
         $this->startDate = $startDate;
         return $this;

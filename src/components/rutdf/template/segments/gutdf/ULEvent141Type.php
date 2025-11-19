@@ -5,7 +5,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 /**
  * Class representing ULEvent141Type
  *
- * Субъект и источник заключили договор лизинга либо поручительства по лизингу и предмет лизинга передан лизингополучателю
+ * Субъект и источник заключили договор лизинга либо поручительства по лизингу, и предмет лизинга передан лизингополучателю
  * XSD Type: UL_Event_1_4_1_Type
  */
 class ULEvent141Type extends EventDataType
@@ -73,11 +73,9 @@ class ULEvent141Type extends EventDataType
     /**
      * Блок 17-20
      *
-     * @var UL17181920GroupType[] $uL17181920Group
+     * @var UL17181920GroupType $uL17181920Group
      */
-    private $uL17181920Group = [
-        
-    ];
+    private $uL17181920Group = null;
 
     /**
      * Блок 21. Сведения о неденежном обязательстве источника
@@ -98,14 +96,14 @@ class ULEvent141Type extends EventDataType
     ];
 
     /**
-     * Блок 44. Сведения об учете обязательства
+     * Блок 44. Сведения об учете задолженности
      *
      * @var UL44AccountingType $uL44Accounting
      */
     private $uL44Accounting = null;
 
     /**
-     * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 45. Сведения об обращении
      *
      * @var UL45ApplicationType $uL45Application
      */
@@ -407,51 +405,11 @@ class ULEvent141Type extends EventDataType
     }
 
     /**
-     * Adds as uL17181920Group
-     *
-     * Блок 17-20
-     *
-     * @param UL17181920GroupType $uL17181920Group
-     *@return self
-     */
-    public function addToUL17181920Group(UL17181920GroupType $uL17181920Group)
-    {
-        $this->uL17181920Group[] = $uL17181920Group;
-        return $this;
-    }
-
-    /**
-     * isset uL17181920Group
-     *
-     * Блок 17-20
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetUL17181920Group($index)
-    {
-        return isset($this->uL17181920Group[$index]);
-    }
-
-    /**
-     * unset uL17181920Group
-     *
-     * Блок 17-20
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetUL17181920Group($index)
-    {
-        unset($this->uL17181920Group[$index]);
-    }
-
-    /**
      * Gets as uL17181920Group
      *
      * Блок 17-20
      *
-     * @return UL17181920GroupType[]
+     * @return UL17181920GroupType
      */
     public function getUL17181920Group()
     {
@@ -463,10 +421,10 @@ class ULEvent141Type extends EventDataType
      *
      * Блок 17-20
      *
-     * @param UL17181920GroupType[] $uL17181920Group
+     * @param UL17181920GroupType $uL17181920Group
      * @return self
      */
-    public function setUL17181920Group(array $uL17181920Group)
+    public function setUL17181920Group(UL17181920GroupType $uL17181920Group)
     {
         $this->uL17181920Group = $uL17181920Group;
         return $this;
@@ -607,7 +565,7 @@ class ULEvent141Type extends EventDataType
     /**
      * Gets as uL44Accounting
      *
-     * Блок 44. Сведения об учете обязательства
+     * Блок 44. Сведения об учете задолженности
      *
      * @return UL44AccountingType
      */
@@ -619,7 +577,7 @@ class ULEvent141Type extends EventDataType
     /**
      * Sets a new uL44Accounting
      *
-     * Блок 44. Сведения об учете обязательства
+     * Блок 44. Сведения об учете задолженности
      *
      * @param UL44AccountingType $uL44Accounting
      * @return self
@@ -633,7 +591,7 @@ class ULEvent141Type extends EventDataType
     /**
      * Gets as uL45Application
      *
-     * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 45. Сведения об обращении
      *
      * @return UL45ApplicationType
      */
@@ -645,7 +603,7 @@ class ULEvent141Type extends EventDataType
     /**
      * Sets a new uL45Application
      *
-     * Блок 45. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 45. Сведения об обращении
      *
      * @param UL45ApplicationType $uL45Application
      * @return self
@@ -700,22 +658,22 @@ class ULEvent141Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->uL10DealUid = new UL10DealUidType($this->template);
-        $this->uL11Deal = new UL11DealType($this->template);
-        $this->uL12Amount= new UL12AmountType($this->template);
+        $this->setUL10DealUid(new UL10DealUidType($this->template));
+        $this->setUL11Deal(new UL11DealType($this->template));
+        $this->setUL12Amount(new UL12AmountType($this->template));
 
         foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToUL121AmountInfo(new UL121AmountInfoType($this->template, $key));
         }
 
-        $this->uL13JointDebtors = new UL13JointDebtorsType($this->template);
-        $this->uL14PaymentTerms = new UL14PaymentTermsType($this->template);
+        $this->setUL13JointDebtors(new UL13JointDebtorsType($this->template));
+        $this->setUL14PaymentTerms(new UL14PaymentTermsType($this->template));
 
         foreach ($this->sendData->getAccountReplyRUTDF()->getFundDateRUTDF() as $key => $value) {
             $this->addToUL16Fund(new UL16FundType($this->template, $key));
         }
 
-        $this->addToUL17181920Group(new UL17181920GroupType($this->template));
+        $this->setUL17181920Group(new UL17181920GroupType($this->template));
 
         foreach ($this->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
             $this->addToUL21NonMonetarySource(new UL21NonMonetarySourceType($this->template, $key));
@@ -725,9 +683,9 @@ class ULEvent141Type extends EventDataType
             $this->addToUL22NonMonetarySubject(new UL22NonMonetarySubjectType($this->template, $key));
         }
 
-        $this->uL44Accounting = new UL44AccountingType($this->template);
-        $this->uL45Application = new UL45ApplicationType($this->template);
-        $this->uL46Participation = new UL46ParticipationType($this->template);
+        $this->setUL44Accounting(new UL44AccountingType($this->template));
+        $this->setUL45Application(new UL45ApplicationType($this->template));
+        $this->setUL46Participation(new UL46ParticipationType($this->template));
     }
 
     /**

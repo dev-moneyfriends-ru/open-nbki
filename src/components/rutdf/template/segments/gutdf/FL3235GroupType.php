@@ -2,8 +2,8 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
-use mfteam\nbch\components\rutdf\template\segments\gutdf\FL3235GroupType\PropertyIdGroupFL3235GroupAType;
-use mfteam\nbch\components\rutdf\template\segments\gutdf\UL2326GroupType\PropertyIdGroupUL2326GroupAType;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FL3235GroupType\FL32CollateralAType;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\FL3235GroupType\FL35InsuranceAType;
 
 /**
  * Class representing FL3235GroupType
@@ -28,9 +28,25 @@ class FL3235GroupType extends GutdfSegment
     private $assetKind1 = null;
 
     /**
-     * @var PropertyIdGroupFL3235GroupAType[] $propertyIdGroupFL3235Group
+     * 32.3., 35.9. Идентификационный код предмета залога
+     *
+     * @var string $propertyId
      */
-    private $propertyIdGroupFL3235Group = [
+    private $propertyId = null;
+
+    /**
+     * Блок 32. Сведения о залоге
+     *
+     * @var FL32CollateralAType $fL32Collateral
+     */
+    private $fL32Collateral = null;
+
+    /**
+     * Блок 35. Сведения о страховании предмета залога
+     *
+     * @var FL35InsuranceAType[] $fL35Insurance
+     */
+    private $fL35Insurance = [
         
     ];
 
@@ -87,58 +103,120 @@ class FL3235GroupType extends GutdfSegment
     }
 
     /**
-     * Adds as propertyIdGroupFL3235Group
+     * Gets as propertyId
      *
-     * @param PropertyIdGroupFL3235GroupAType $propertyIdGroupFL3235Group
-     *@return self
+     * 32.3., 35.9. Идентификационный код предмета залога
+     *
+     * @return string
      */
-    public function addToPropertyIdGroupFL3235Group(PropertyIdGroupFL3235GroupAType $propertyIdGroupFL3235Group)
+    public function getPropertyId()
     {
-        $this->propertyIdGroupFL3235Group[] = $propertyIdGroupFL3235Group;
+        return $this->propertyId;
+    }
+
+    /**
+     * Sets a new propertyId
+     *
+     * 32.3., 35.9. Идентификационный код предмета залога
+     *
+     * @param string $propertyId
+     * @return self
+     */
+    public function setPropertyId($propertyId)
+    {
+        $this->propertyId = $propertyId;
         return $this;
     }
 
     /**
-     * isset propertyIdGroupFL3235Group
+     * Gets as fL32Collateral
+     *
+     * Блок 32. Сведения о залоге
+     *
+     * @return FL32CollateralAType
+     */
+    public function getFL32Collateral()
+    {
+        return $this->fL32Collateral;
+    }
+
+    /**
+     * Sets a new fL32Collateral
+     *
+     * Блок 32. Сведения о залоге
+     *
+     * @param FL32CollateralAType $fL32Collateral
+     * @return self
+     */
+    public function setFL32Collateral(?FL32CollateralAType $fL32Collateral = null)
+    {
+        $this->fL32Collateral = $fL32Collateral;
+        return $this;
+    }
+
+    /**
+     * Adds as fL35Insurance
+     *
+     * Блок 35. Сведения о страховании предмета залога
+     *
+     * @return self
+     * @param FL35InsuranceAType $fL35Insurance
+     */
+    public function addToFL35Insurance(FL35InsuranceAType $fL35Insurance)
+    {
+        $this->fL35Insurance[] = $fL35Insurance;
+        return $this;
+    }
+
+    /**
+     * isset fL35Insurance
+     *
+     * Блок 35. Сведения о страховании предмета залога
      *
      * @param int|string $index
      * @return bool
      */
-    public function issetPropertyIdGroupFL3235Group($index)
+    public function issetFL35Insurance($index)
     {
-        return isset($this->propertyIdGroupFL3235Group[$index]);
+        return isset($this->fL35Insurance[$index]);
     }
 
     /**
-     * unset propertyIdGroupFL3235Group
+     * unset fL35Insurance
+     *
+     * Блок 35. Сведения о страховании предмета залога
      *
      * @param int|string $index
      * @return void
      */
-    public function unsetPropertyIdGroupFL3235Group($index)
+    public function unsetFL35Insurance($index)
     {
-        unset($this->propertyIdGroupFL3235Group[$index]);
+        unset($this->fL35Insurance[$index]);
     }
 
     /**
-     * Gets as propertyIdGroupFL3235Group
+     * Gets as fL35Insurance
      *
-     * @return PropertyIdGroupFL3235GroupAType[]
+     * Блок 35. Сведения о страховании предмета залога
+     *
+     * @return FL35InsuranceAType[]
      */
-    public function getPropertyIdGroupFL3235Group()
+    public function getFL35Insurance()
     {
-        return $this->propertyIdGroupFL3235Group;
+        return $this->fL35Insurance;
     }
 
     /**
-     * Sets a new propertyIdGroupFL3235Group
+     * Sets a new fL35Insurance
      *
-     * @param PropertyIdGroupFL3235GroupAType[] $propertyIdGroupFL3235Group
+     * Блок 35. Сведения о страховании предмета залога
+     *
+     * @param FL35InsuranceAType[] $fL35Insurance
      * @return self
      */
-    public function setPropertyIdGroupFL3235Group(array $propertyIdGroupFL3235Group = null)
+    public function setFL35Insurance(array $fL35Insurance = null)
     {
-        $this->propertyIdGroupFL3235Group = $propertyIdGroupFL3235Group;
+        $this->fL35Insurance = $fL35Insurance;
         return $this;
     }
 
@@ -174,17 +252,23 @@ class FL3235GroupType extends GutdfSegment
      */
     public function init(): void
     {
-        $collaterals = $this->sendData->getAccountReplyRUTDF()->getCollateral();
-        if(empty($collaterals)){
+        if(empty($this->sendData->getAccountReplyRUTDF()->getCollateral()[$this->idx])){
             $this->assetKind0 = '';
             $this->assetKind1 = null;
             return;
         }
+        $collateral = $this->sendData->getAccountReplyRUTDF()->getCollateral()[$this->idx];
         $this->assetKind0 = null;
         $this->assetKind1 = '';
-
-        foreach ($collaterals as $key => $collateral) {
-            $this->addToPropertyIdGroupFL3235Group(new PropertyIdGroupFL3235GroupAType($this->template, $key));
+        $this->propertyId = $collateral->collateralId;
+        $this->setFL32Collateral(new FL32CollateralAType($this->template, $this->idx));
+        foreach ($this->sendData->getAccountReplyRUTDF()->getCollatInsured() as $key => $collateralInsured){
+            if($collateral->collateralId === $collateralInsured->collateralId){
+                $this->addToFL35Insurance(new FL35InsuranceAType($this->template, $key));
+            }
+        }
+        if(empty($this->fL35Insurance)){
+            $this->addToFL35Insurance(new FL35InsuranceAType($this->template));
         }
     }
 
@@ -196,7 +280,9 @@ class FL3235GroupType extends GutdfSegment
         return [
             'assetKind_0' => 'assetKind0',
             'assetKind_1' => 'assetKind1',
-            'propertyIdGroupFL3235Group',
+            'propertyId',
+            'fl32Collateral',
+            'fl35Insurance',
         ];
     }
 
@@ -208,6 +294,9 @@ class FL3235GroupType extends GutdfSegment
         return [
             'assetKind_0' => $this->assetKind0,
             'assetKind_1' => $this->assetKind1,
+            'propertyId',
+            'fl32Collateral',
+            'fl35Insurance',
         ];
     }
 }

@@ -38,7 +38,9 @@ class FLEvent14Type extends EventDataType
      *
      * @var FL10ContactType $fL10Contact
      */
-    private $fL10Contact = null;
+    private $fL10Contact = [
+
+    ];
 
     /**
      * Блок 11. Государственная регистрация в качестве индивидуального предпринимателя
@@ -131,14 +133,14 @@ class FLEvent14Type extends EventDataType
     ];
 
     /**
-     * Блок 54. Сведения об учете обязательства
+     * Блок 54. Сведения об учете задолженности, о льготном финансировании с государственной поддержкой и процентной ставке
      *
      * @var FL54AccountingType $fL54Accounting
      */
     private $fL54Accounting = null;
 
     /**
-     * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 55. Сведения об обращении
      *
      * @var FL55ApplicationType $fL55Application
      */
@@ -270,11 +272,51 @@ class FLEvent14Type extends EventDataType
     }
 
     /**
+     * Adds as fL10Contact
+     *
+     * Блок 10. Контактные данные
+     *
+     * @param FL10ContactType $fL10Contact
+     *@return self
+     */
+    public function addToFL10Contact(FL10ContactType $fL10Contact)
+    {
+        $this->fL10Contact[] = $fL10Contact;
+        return $this;
+    }
+
+    /**
+     * isset fL10Contact
+     *
+     * Блок 10. Контактные данные
+     *
+     * @param int|string $index
+     * @return bool
+     */
+    public function issetFL10Contact($index)
+    {
+        return isset($this->fL10Contact[$index]);
+    }
+
+    /**
+     * unset fL10Contact
+     *
+     * Блок 10. Контактные данные
+     *
+     * @param int|string $index
+     * @return void
+     */
+    public function unsetFL10Contact($index)
+    {
+        unset($this->fL10Contact[$index]);
+    }
+
+    /**
      * Gets as fL10Contact
      *
      * Блок 10. Контактные данные
      *
-     * @return FL10ContactType
+     * @return FL10ContactType[]
      */
     public function getFL10Contact()
     {
@@ -286,10 +328,10 @@ class FLEvent14Type extends EventDataType
      *
      * Блок 10. Контактные данные
      *
-     * @param FL10ContactType $fL10Contact
+     * @param FL10ContactType[] $fL10Contact
      * @return self
      */
-    public function setFL10Contact(FL10ContactType $fL10Contact)
+    public function setFL10Contact(array $fL10Contact = null)
     {
         $this->fL10Contact = $fL10Contact;
         return $this;
@@ -730,7 +772,7 @@ class FLEvent14Type extends EventDataType
     /**
      * Gets as fL54Accounting
      *
-     * Блок 54. Сведения об учете обязательства
+     * Блок 54. Сведения об учете задолженности, о льготном финансировании с государственной поддержкой и процентной ставке
      *
      * @return FL54AccountingType
      */
@@ -742,7 +784,7 @@ class FLEvent14Type extends EventDataType
     /**
      * Sets a new fL54Accounting
      *
-     * Блок 54. Сведения об учете обязательства
+     * Блок 54. Сведения об учете задолженности, о льготном финансировании с государственной поддержкой и процентной ставке
      *
      * @param FL54AccountingType $fL54Accounting
      * @return self
@@ -756,7 +798,7 @@ class FLEvent14Type extends EventDataType
     /**
      * Gets as fL55Application
      *
-     * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 55. Сведения об обращении
      *
      * @return FL55ApplicationType
      */
@@ -768,7 +810,7 @@ class FLEvent14Type extends EventDataType
     /**
      * Sets a new fL55Application
      *
-     * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 55. Сведения об обращении
      *
      * @param FL55ApplicationType $fL55Application
      * @return self
@@ -824,32 +866,42 @@ class FLEvent14Type extends EventDataType
     protected function initAttributes()
     {
         $this->addToFL8AddrReg(new FL8AddrRegType($this->template));
-        $this->fL9AddrFact = new FL9AddrFactType($this->template);
-        $this->fL10Contact = new FL10ContactType($this->template);
-        $this->fL11IndividualEntrepreneur = new FL11IndividualEntrepreneurType($this->template);
-        $this->fL12Capacity = new FL12CapacityType($this->template);
-        $this->fL17DealUid = new FL17DealUidType($this->template);
-        $this->fL18Deal = new FL18DealType($this->template);
-        $this->fL19Amount = new FL19AmountType($this->template);
+        $this->setFL9AddrFact(new FL9AddrFactType($this->template));
+
+        foreach ($this->sendData->getContactReply() as $key => $value) {
+            $this->addToFL10Contact(new FL10ContactType($this->template, $key));
+        }
+
+        $this->setFL11IndividualEntrepreneur(new FL11IndividualEntrepreneurType($this->template));
+        $this->setFL12Capacity(new FL12CapacityType($this->template));
+        $this->setFL17DealUid(new FL17DealUidType($this->template));
+        $this->setFL18Deal(new FL18DealType($this->template));
+        $this->setFL19Amount(new FL19AmountType($this->template));
+
         foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToFL191AmountInfo(new FL191AmountInfoType($this->template, $key));
         }
-        $this->fL20JointDebtors = new FL20JointDebtorsType($this->template);
-        $this->fL21PaymentTerms = new FL21PaymentTermsType($this->template);
-        if($this->sendData->getAccountReplyRUTDF()->getDebtBurdenInfo()){
-            $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
+
+        $this->setFL20JointDebtors(new FL20JointDebtorsType($this->template));
+        $this->setFL21PaymentTerms(new FL21PaymentTermsType($this->template));
+
+        if ($this->sendData->getAccountReplyRUTDF()->getDebtBurdenInfo()) {
+            $this->setFL291DebtBurdenInfo(new FL291DebtBurdenInfoType($this->template));
         }
-        if(!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneySource){
+
+        if (!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneySource) {
             foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
                 $this->addToFL30NonMonetarySource(new FL30NonMonetarySourceType($this->template, $key));
             }
         }
+
         foreach ($this->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray() as $key => $value) {
             $this->addToFL31NonMonetarySubject(new FL31NonMonetarySubjectType($this->template, $key));
         }
-        $this->fL54Accounting = new FL54AccountingType($this->template);
-        $this->fL55Application = new FL55ApplicationType($this->template);
-        $this->fL56Participation = new FL56ParticipationType($this->template);
+
+        $this->setFL54Accounting(new FL54AccountingType($this->template));
+        $this->setFL55Application(new FL55ApplicationType($this->template));
+        $this->setFL56Participation(new FL56ParticipationType($this->template));
     }
 
     /**
@@ -868,11 +920,11 @@ class FLEvent14Type extends EventDataType
             'fL19Amount',
             'fL191AmountInfo',
             'fL21PaymentTerms',
+            'fL31NonMonetarySubject',
             'fL20JointDebtors',
             'fL22TotalCost',
             'fL291DebtBurdenInfo',
             'fL30NonMonetarySource',
-            'fL31NonMonetarySubject',
             'fL54Accounting',
             'fL55Application',
             'fL56Participation',

@@ -95,6 +95,13 @@ class UL30CourtType extends GutdfSegment
     private $info = null;
 
     /**
+     * 30.10. Валюта суммы требований, подлежащих удовлетворению
+     *
+     * @var string $currency
+     */
+    private $currency = null;
+
+    /**
      * Gets as exist0
      *
      * 30.1. Признак судебного спора или требования = 0
@@ -359,7 +366,7 @@ class UL30CourtType extends GutdfSegment
      *
      * 30.8. Сумма требований, подлежащих удовлетворению
      *
-     * @return string
+     * @return float
      */
     public function getSumTotal()
     {
@@ -403,6 +410,32 @@ class UL30CourtType extends GutdfSegment
     public function setInfo($info)
     {
         $this->info = $info;
+        return $this;
+    }
+
+    /**
+     * Gets as currency
+     *
+     * 30.10. Валюта суммы требований, подлежащих удовлетворению
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * Sets a new currency
+     *
+     * 30.10. Валюта суммы требований, подлежащих удовлетворению
+     *
+     * @param string $currency
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
         return $this;
     }
 
@@ -482,6 +515,7 @@ class UL30CourtType extends GutdfSegment
         $this->lawsuitCode = $court->lawsuitCode;
         $this->sumTotal = $this->formatCurrency($court->sumTotal);
         $this->info = $court->info;
+        $this->currency = $court->legalCurrency;
     }
 
     /**
@@ -502,6 +536,7 @@ class UL30CourtType extends GutdfSegment
             'lawsuitCode',
             'sumTotal',
             'info',
+            'currency',
         ];
     }
 }

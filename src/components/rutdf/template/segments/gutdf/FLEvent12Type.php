@@ -127,8 +127,8 @@ class FLEvent12Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
-        $this->fL55Application = new FL55ApplicationType($this->template);
+        $this->setFL291DebtBurdenInfo(new FL291DebtBurdenInfoType($this->template));
+        $this->setFL55Application(new FL55ApplicationType($this->template));
     }
 
     /**

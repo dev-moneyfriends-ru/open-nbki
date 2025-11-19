@@ -124,6 +124,7 @@ class AddressReplyRUTDF extends BaseAddressReply
      * Контактный номер телефона.
      * Заполняется, если субъект предоставил данные источнику.
      * @var string $phone
+     * @deprecated use ContactReply::phone
      */
     public $phone = null;
     
@@ -132,6 +133,7 @@ class AddressReplyRUTDF extends BaseAddressReply
      * Пояснительные сведения о номере телефона
      * Заполняется, если субъект предоставил данные источнику.
      * @var string $phoneComment
+     * @deprecated use ContactReply::phone
      */
     public $phoneComment = null;
     
@@ -139,6 +141,7 @@ class AddressReplyRUTDF extends BaseAddressReply
      * Адрес электронной почты
      * Заполняется, если субъект предоставил данные источнику.
      * @var string $email
+     * @deprecated use ContactReply::phone
      */
     public $email = null;
     

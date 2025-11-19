@@ -10,6 +10,27 @@ use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
 class FL26DebtDueAType extends GutdfSegment
 {
     /**
+     * 26.8. Признак наличия срочной задолженности = 0
+     *
+     * @var string $debtDueExist0
+     */
+    private $debtDueExist0 = null;
+
+    /**
+     * 26.8. Признак наличия срочной задолженности = 1
+     *
+     * @var string $debtDueExist1
+     */
+    private $debtDueExist1 = null;
+
+    /**
+     * 26.1. Дата возникновения срочной задолженности
+     *
+     * @var string $debtDueStartDate
+     */
+    private $debtDueStartDate = null;
+
+    /**
      * 26.3. Сумма срочной задолженности
      *
      * @var float $debtDueSum
@@ -38,11 +59,82 @@ class FL26DebtDueAType extends GutdfSegment
     private $debtDueOtherSum = null;
 
     /**
+     * Gets as debtDueExist0
+     *
+     * 26.8. Признак наличия срочной задолженности = 0
+     *
+     * @return string
+     */
+    public function getDebtDueExist0()
+    {
+        return $this->debtDueExist0;
+    }
+
+    /**
+     * Sets a new debtDueExist0
+     *
+     * 26.8. Признак наличия срочной задолженности = 0
+     *
+     * @param string $debtDueExist0
+     * @return self
+     */
+    public function setDebtDueExist0($debtDueExist0)
+    {
+        $this->debtDueExist0 = $debtDueExist0;
+        return $this;
+    }
+
+    /**
+     * Gets as debtDueExist1
+     *
+     * 26.8. Признак наличия срочной задолженности = 1
+     *
+     * @return string
+     */
+    public function getDebtDueExist1()
+    {
+        return $this->debtDueExist1;
+    }
+
+    /**
+     * Sets a new debtDueExist1
+     *
+     * 26.8. Признак наличия срочной задолженности = 1
+     *
+     * @param string $debtDueExist1
+     * @return self
+     */
+    public function setDebtDueExist1($debtDueExist1)
+    {
+        $this->debtDueExist1 = $debtDueExist1;
+        return $this;
+    }
+
+    /**
+     * Gets as debtDueStartDate
+     *
      * 26.1. Дата возникновения срочной задолженности
      *
-     * @var \DateTime $debtDueStartDate
+     * @return string
      */
-    private $debtDueStartDate = null;
+    public function getDebtDueStartDate()
+    {
+        return $this->debtDueStartDate;
+    }
+
+    /**
+     * Sets a new debtDueStartDate
+     *
+     * 26.1. Дата возникновения срочной задолженности
+     *
+     * @param string $debtDueStartDate
+     * @return self
+     */
+    public function setDebtDueStartDate($debtDueStartDate)
+    {
+        $this->debtDueStartDate = $debtDueStartDate;
+        return $this;
+    }
 
     /**
      * Gets as debtDueSum
@@ -149,32 +241,6 @@ class FL26DebtDueAType extends GutdfSegment
     }
 
     /**
-     * Gets as debtDueStartDate
-     *
-     * 26.1. Дата возникновения срочной задолженности
-     *
-     * @return \DateTime
-     */
-    public function getDebtDueStartDate()
-    {
-        return $this->debtDueStartDate;
-    }
-
-    /**
-     * Sets a new debtDueStartDate
-     *
-     * 26.1. Дата возникновения срочной задолженности
-     *
-     * @param \DateTime $debtDueStartDate
-     * @return self
-     */
-    public function setDebtDueStartDate(?\DateTime $debtDueStartDate = null)
-    {
-        $this->debtDueStartDate = $debtDueStartDate;
-        return $this;
-    }
-
-    /**
      * @inheritDoc
      */
     public function getSegmentName(): string
@@ -188,6 +254,8 @@ class FL26DebtDueAType extends GutdfSegment
     public function getFieldsDescriptions(): array
     {
         return [
+            '26.8. Признак наличия срочной задолженности = 0' => 'Код «1» – в случае если у субъекта имеется срочная задолженность перед источником; ',
+            '26.8. Признак наличия срочной задолженности = 1' => 'код «0» – в случае если обстоятельство кода «1» отсутствует. ',
             'Дата возникновения срочной задолженности' => 'Указывается дата возникновения срочной задолженности. По обязательству источника выдавать сумму займа (кредита) траншами или в пределах расходного лимита указывается дата возникновения срочной задолженности при передаче первого транша и каждый раз при выдаче транша после полного погашения задолженности по предыдущему (предыдущим) траншам.',
             'Сумма срочной задолженности' => 'Сумма определяется на момент наступления каждого события, которое указано по показателю 18.2 «Признак расчета по последнему платежу». Если указано значение «0.00», иные показатели блока 18 не заполняются. Если показатель 18.2 «Признак расчета по последнему платежу» не заполнен, то сумма указывается на дату их изменения вследствие иных событий согласно Приложению 2. В валюте, которая указана по показателю 12.2 «Валюта обязательства».',
             'Сумма срочной задолженности по основному долгу' => 'Сумма определяется на момент наступления каждого события, которое указано по показателю 18.2 «Признак расчета по последнему платежу». Если показатель 18.2 «Признак расчета по последнему платежу» не заполнен, то сумма указывается на дату их изменения вследствие иных событий согласно Приложению 2. В валюте, которая указана по показателю 12.2 «Валюта обязательства».',
@@ -210,15 +278,20 @@ class FL26DebtDueAType extends GutdfSegment
     public function init(): void
     {
         $debt = $this->sendData->getAccountReplyRUTDF()->getDueArrear();
-        if($debt === null || empty($debt->amtOutstanding)){
-            $this->debtDueSum = $this->formatCurrency(0);
+        if ($debt === null || empty($debt->amtOutstanding)) {
+            $this->setDebtDueSum(0);
+            $this->setDebtDueExist0('');
+            $this->setDebtDueExist1(null);
             return;
         }
-        $this->debtDueStartDate = $this->formatDate($debt->startDt);
-        $this->debtDueSum = $this->formatCurrency($debt->amtOutstanding);
-        $this->debtDueMainSum = $this->formatCurrency($debt->principalOutstanding);
-        $this->debtDuePercentSum = $this->formatCurrency($debt->intOutstanding);
-        $this->debtDueOtherSum = $this->formatCurrency($debt->otherAmtOutstanding);
+
+        $this->setDebtDueExist0(null);
+        $this->setDebtDueExist1('');
+        $this->setDebtDueStartDate($this->formatDate($debt->startDt));
+        $this->setDebtDueSum($debt->amtOutstanding);
+        $this->setDebtDueMainSum($debt->principalOutstanding);
+        $this->setDebtDuePercentSum($debt->intOutstanding);
+        $this->setDebtDueOtherSum($debt->otherAmtOutstanding);
     }
 
     /**
@@ -227,11 +300,13 @@ class FL26DebtDueAType extends GutdfSegment
     public function getXmlAttributes(): array
     {
         return [
+            'debtDueExist_0' => 'debtDueExist0',
+            'debtDueExist_1' => 'debtDueExist1',
+            'debtDueStartDate',
             'debtDueSum',
             'debtDueMainSum',
             'debtDuePercentSum',
             'debtDueOtherSum',
-            'debtDueStartDate',
         ];
     }
 }

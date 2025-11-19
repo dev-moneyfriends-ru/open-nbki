@@ -20,37 +20,45 @@ class FLEvent24Type extends EventDataType
     /**
      * Блок 17. Идентификатор сделки
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL17DealUidType $fL17DealUid
+     * @var FL17DealUidType $fL17DealUid
      */
     private $fL17DealUid = null;
 
     /**
      * Блок 32,35
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL3235GroupType $fL3235Group
+     * @var FL3235GroupType[] $fL3235Group
      */
-    private $fL3235Group = null;
+    private $fL3235Group = [
+
+    ];
 
     /**
      * Блок 33. Сведения о поручительстве
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL33WarrantyType $fL33Warranty
+     * @var FL33WarrantyType[] $fL33Warranty
      */
-    private $fL33Warranty = null;
+    private $fL33Warranty = [
+
+    ];
 
     /**
      * Блок 34. Сведения о независимой гарантии
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL34GuaranteeType $fL34Guarantee
+     * @var FL34GuaranteeType[] $fL34Guarantee
      */
-    private $fL34Guarantee = null;
+    private $fL34Guarantee = [
+
+    ];
 
     /**
      * Блок 36. Сведения о погашении требований кредитора по обязательству за счет обеспечения
      *
-     * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\FL36ProvisionPaymentType $fL36ProvisionPayment
+     * @var FL36ProvisionPaymentType[] $fL36ProvisionPayment
      */
-    private $fL36ProvisionPayment = null;
+    private $fL36ProvisionPayment = [
+
+    ];
 
     /**
      * Gets as operationCode
@@ -83,7 +91,7 @@ class FLEvent24Type extends EventDataType
      *
      * Блок 17. Идентификатор сделки
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL17DealUidType
+     * @return FL17DealUidType
      */
     public function getFL17DealUid()
     {
@@ -95,13 +103,53 @@ class FLEvent24Type extends EventDataType
      *
      * Блок 17. Идентификатор сделки
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL17DealUidType $fL17DealUid
+     * @param FL17DealUidType $fL17DealUid
      * @return self
      */
-    public function setFL17DealUid(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL17DealUidType $fL17DealUid)
+    public function setFL17DealUid(FL17DealUidType $fL17DealUid)
     {
         $this->fL17DealUid = $fL17DealUid;
         return $this;
+    }
+
+    /**
+     * Adds as fL3235Group
+     *
+     * Блок 32,35
+     *
+     * @param FL3235GroupType $fL3235Group
+     * @return self
+     */
+    public function addToFL3235Group(FL3235GroupType $fL3235Group)
+    {
+        $this->fL3235Group[] = $fL3235Group;
+        return $this;
+    }
+
+    /**
+     * isset fL3235Group
+     *
+     * Блок 32,35
+     *
+     * @param int|string $index
+     * @return bool
+     */
+    public function issetFL3235Group($index)
+    {
+        return isset($this->fL3235Group[$index]);
+    }
+
+    /**
+     * unset fL3235Group
+     *
+     * Блок 32,35
+     *
+     * @param int|string $index
+     * @return void
+     */
+    public function unsetFL3235Group($index)
+    {
+        unset($this->fL3235Group[$index]);
     }
 
     /**
@@ -109,7 +157,7 @@ class FLEvent24Type extends EventDataType
      *
      * Блок 32,35
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL3235GroupType
+     * @return FL3235GroupType[]
      */
     public function getFL3235Group()
     {
@@ -121,13 +169,53 @@ class FLEvent24Type extends EventDataType
      *
      * Блок 32,35
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL3235GroupType $fL3235Group
+     * @param FL3235GroupType[] $fL3235Group
      * @return self
      */
-    public function setFL3235Group(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL3235GroupType $fL3235Group)
+    public function setFL3235Group(array $fL3235Group)
     {
         $this->fL3235Group = $fL3235Group;
         return $this;
+    }
+
+    /**
+     * Adds as fL33Warranty
+     *
+     * Блок 33. Сведения о поручительстве
+     *
+     * @param FL33WarrantyType $fL33Warranty
+     * @return self
+     */
+    public function addToFL33Warranty(FL33WarrantyType $fL33Warranty)
+    {
+        $this->fL33Warranty[] = $fL33Warranty;
+        return $this;
+    }
+
+    /**
+     * isset fL33Warranty
+     *
+     * Блок 33. Сведения о поручительстве
+     *
+     * @param int|string $index
+     * @return bool
+     */
+    public function issetFL33Warranty($index)
+    {
+        return isset($this->fL33Warranty[$index]);
+    }
+
+    /**
+     * unset fL33Warranty
+     *
+     * Блок 33. Сведения о поручительстве
+     *
+     * @param int|string $index
+     * @return void
+     */
+    public function unsetFL33Warranty($index)
+    {
+        unset($this->fL33Warranty[$index]);
     }
 
     /**
@@ -135,7 +223,7 @@ class FLEvent24Type extends EventDataType
      *
      * Блок 33. Сведения о поручительстве
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL33WarrantyType
+     * @return FL33WarrantyType[]
      */
     public function getFL33Warranty()
     {
@@ -147,13 +235,53 @@ class FLEvent24Type extends EventDataType
      *
      * Блок 33. Сведения о поручительстве
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL33WarrantyType $fL33Warranty
+     * @param FL33WarrantyType $fL33Warranty
      * @return self
      */
-    public function setFL33Warranty(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL33WarrantyType $fL33Warranty)
+    public function setFL33Warranty(array $fL33Warranty)
     {
         $this->fL33Warranty = $fL33Warranty;
         return $this;
+    }
+
+    /**
+     * Adds as fL34Guarantee
+     *
+     * Блок 34. Сведения о независимой гарантии
+     *
+     * @param FL34GuaranteeType $fL34Guarantee
+     * @return self
+     */
+    public function addToFL34Guarantee(FL34GuaranteeType $fL34Guarantee)
+    {
+        $this->fL34Guarantee[] = $fL34Guarantee;
+        return $this;
+    }
+
+    /**
+     * isset fL34Guarantee
+     *
+     * Блок 34. Сведения о независимой гарантии
+     *
+     * @param int|string $index
+     * @return bool
+     */
+    public function issetFL34Guarantee($index)
+    {
+        return isset($this->fL34Guarantee[$index]);
+    }
+
+    /**
+     * unset fL34Guarantee
+     *
+     * Блок 34. Сведения о независимой гарантии
+     *
+     * @param int|string $index
+     * @return void
+     */
+    public function unsetFL34Guarantee($index)
+    {
+        unset($this->fL34Guarantee[$index]);
     }
 
     /**
@@ -161,7 +289,7 @@ class FLEvent24Type extends EventDataType
      *
      * Блок 34. Сведения о независимой гарантии
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL34GuaranteeType
+     * @return FL34GuaranteeType[]
      */
     public function getFL34Guarantee()
     {
@@ -173,13 +301,53 @@ class FLEvent24Type extends EventDataType
      *
      * Блок 34. Сведения о независимой гарантии
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL34GuaranteeType $fL34Guarantee
+     * @param FL34GuaranteeType[] $fL34Guarantee
      * @return self
      */
-    public function setFL34Guarantee(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL34GuaranteeType $fL34Guarantee)
+    public function setFL34Guarantee(array $fL34Guarantee)
     {
         $this->fL34Guarantee = $fL34Guarantee;
         return $this;
+    }
+
+    /**
+     * Adds as fL36ProvisionPayment
+     *
+     * Блок 36. Сведения о погашении требований кредитора по обязательству за счет обеспечения
+     *
+     * @param FL36ProvisionPaymentType $fL36ProvisionPayment
+     * @return self
+     */
+    public function addToFL36ProvisionPayment(FL36ProvisionPaymentType $fL36ProvisionPayment)
+    {
+        $this->fL36ProvisionPayment[] = $fL36ProvisionPayment;
+        return $this;
+    }
+
+    /**
+     * isset fL36ProvisionPayment
+     *
+     * Блок 36. Сведения о погашении требований кредитора по обязательству за счет обеспечения
+     *
+     * @param int|string $index
+     * @return bool
+     */
+    public function issetFL36ProvisionPayment($index)
+    {
+        return isset($this->fL36ProvisionPayment[$index]);
+    }
+
+    /**
+     * unset fL36ProvisionPayment
+     *
+     * Блок 36. Сведения о погашении требований кредитора по обязательству за счет обеспечения
+     *
+     * @param int|string $index
+     * @return void
+     */
+    public function unsetFL36ProvisionPayment($index)
+    {
+        unset($this->fL36ProvisionPayment[$index]);
     }
 
     /**
@@ -187,7 +355,7 @@ class FLEvent24Type extends EventDataType
      *
      * Блок 36. Сведения о погашении требований кредитора по обязательству за счет обеспечения
      *
-     * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\FL36ProvisionPaymentType
+     * @return FL36ProvisionPaymentType[]
      */
     public function getFL36ProvisionPayment()
     {
@@ -199,10 +367,10 @@ class FLEvent24Type extends EventDataType
      *
      * Блок 36. Сведения о погашении требований кредитора по обязательству за счет обеспечения
      *
-     * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\FL36ProvisionPaymentType $fL36ProvisionPayment
+     * @param FL36ProvisionPaymentType[] $fL36ProvisionPayment
      * @return self
      */
-    public function setFL36ProvisionPayment(\mfteam\nbch\components\rutdf\template\segments\gutdf\FL36ProvisionPaymentType $fL36ProvisionPayment)
+    public function setFL36ProvisionPayment(array $fL36ProvisionPayment)
     {
         $this->fL36ProvisionPayment = $fL36ProvisionPayment;
         return $this;
@@ -226,11 +394,19 @@ class FLEvent24Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->fL17DealUid = new FL17DealUidType($this->template);
-        $this->fL3235Group = new FL3235GroupType($this->template);
-        $this->fL33Warranty = new FL33WarrantyType($this->template);
-        $this->fL34Guarantee = new FL34GuaranteeType($this->template);
-        $this->fL36ProvisionPayment = new FL36ProvisionPaymentType($this->template);
+        $this->setFL17DealUid(new FL17DealUidType($this->template));
+        foreach ($this->sendData->getAccountReplyRUTDF()->getCollateral() as $key => $value){
+            $this->addToFL3235Group(new FL3235GroupType($this->template, $key));
+        }
+        foreach ($this->sendData->getAccountReplyRUTDF()->getGuarantor() as $key => $value){
+            $this->addToFL33Warranty(new FL33WarrantyType($this->template, $key));
+        }
+        foreach ($this->sendData->getAccountReplyRUTDF()->getIndepGuarantor() as $key => $value){
+            $this->addToFL34Guarantee(new FL34GuaranteeType($this->template, $key));
+        }
+        foreach ($this->sendData->getAccountReplyRUTDF()->getCollatRepay() as $key => $value){
+            $this->addToFL36ProvisionPayment(new FL36ProvisionPaymentType($this->template, $key));
+        }
     }
 
     /**
@@ -244,7 +420,6 @@ class FLEvent24Type extends EventDataType
             'fL33Warranty',
             'fL34Guarantee',
             'fL36ProvisionPayment',
-
         ];
     }
 }

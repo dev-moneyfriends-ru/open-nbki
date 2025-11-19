@@ -95,6 +95,13 @@ class FL39CourtType extends GutdfSegment
     private $info = null;
 
     /**
+     * 39.10. Валюта суммы требований, подлежащих удовлетворению
+     *
+     * @var string $currency
+     */
+    private $currency = null;
+
+    /**
      * Gets as exist0
      *
      * 39.1. Признак судебного спора или требования = 0
@@ -407,6 +414,32 @@ class FL39CourtType extends GutdfSegment
     }
 
     /**
+     * Gets as currency
+     *
+     * 39.10. Валюта суммы требований, подлежащих удовлетворению
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * Sets a new currency
+     *
+     * 39.10. Валюта суммы требований, подлежащих удовлетворению
+     *
+     * @param string $currency
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+        return $this;
+    }
+
+    /**
      * @inheritDoc
      */
     public function getSegmentName(): string
@@ -482,6 +515,7 @@ class FL39CourtType extends GutdfSegment
         $this->lawsuitCode = $court->lawsuitCode;
         $this->sumTotal = $this->formatCurrency($court->sumTotal);
         $this->info = $court->info;
+        $this->currency = $court->legalCurrency;
     }
 
     /**
@@ -502,6 +536,7 @@ class FL39CourtType extends GutdfSegment
             'lawsuitCode',
             'sumTotal',
             'info',
+            'currency',
         ];
     }
 }

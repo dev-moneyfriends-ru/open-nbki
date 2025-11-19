@@ -94,7 +94,7 @@ class FLEvent110Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->fL12Capacity = new FL12CapacityType($this->template);
+        $this->setFL12Capacity(new FL12CapacityType($this->template));
     }
 
     /**

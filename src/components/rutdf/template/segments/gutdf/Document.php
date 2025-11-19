@@ -13,8 +13,8 @@ use mfteam\nbch\Env;
  * Class representing Document
  *
  * Электронный документ
- * Версия 2.2
- * Сборка 30.07.2024
+ * Версия 4.1
+ * Сборка 22.05.2025
  */
 class Document extends GutdfSegment
 {
@@ -23,7 +23,7 @@ class Document extends GutdfSegment
      *
      * @var string $schemaVersion
      */
-    private $schemaVersion = '3.0';
+    private $schemaVersion = '4.1';
 
     /**
      * ИНН
@@ -47,7 +47,7 @@ class Document extends GutdfSegment
     private $sourceID = null;
 
     /**
-     * Регистрационный номер документа, содержащего кредитную информацию
+     * Исходящий регистрационный номер документа, содержащего кредитную информацию
      *
      * @var string $regNumberDoc
      */
@@ -202,7 +202,7 @@ class Document extends GutdfSegment
     /**
      * Gets as regNumberDoc
      *
-     * Регистрационный номер документа, содержащего кредитную информацию
+     * Исходящий регистрационный номер документа, содержащего кредитную информацию
      *
      * @return string
      */
@@ -214,7 +214,7 @@ class Document extends GutdfSegment
     /**
      * Sets a new regNumberDoc
      *
-     * Регистрационный номер документа, содержащего кредитную информацию
+     * Исходящий регистрационный номер документа, содержащего кредитную информацию
      *
      * @param string $regNumberDoc
      * @return self

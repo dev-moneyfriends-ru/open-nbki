@@ -10,20 +10,6 @@ use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
 class FL25DebtAType extends GutdfSegment
 {
     /**
-     * 25.1. Признак наличия задолженности = 0
-     *
-     * @var string $exist0
-     */
-    private $exist0 = null;
-
-    /**
-     * 25.1. Признак наличия задолженности = 1
-     *
-     * @var string $exist1
-     */
-    private $exist1 = null;
-
-    /**
      * 25.4. Сумма задолженности
      *
      * @var float $debtSum
@@ -66,56 +52,11 @@ class FL25DebtAType extends GutdfSegment
     private $graceUnconfExist1 = null;
 
     /**
-     * Gets as exist0
+     * 25.10. Валюта задолженности
      *
-     * 25.1. Признак наличия задолженности = 0
-     *
-     * @return string
+     * @var string $currency
      */
-    public function getExist0()
-    {
-        return $this->exist0;
-    }
-
-    /**
-     * Sets a new exist0
-     *
-     * 25.1. Признак наличия задолженности = 0
-     *
-     * @param string $exist0
-     * @return self
-     */
-    public function setExist0($exist0)
-    {
-        $this->exist0 = $exist0;
-        return $this;
-    }
-
-    /**
-     * Gets as exist1
-     *
-     * 25.1. Признак наличия задолженности = 1
-     *
-     * @return string
-     */
-    public function getExist1()
-    {
-        return $this->exist1;
-    }
-
-    /**
-     * Sets a new exist1
-     *
-     * 25.1. Признак наличия задолженности = 1
-     *
-     * @param string $exist1
-     * @return self
-     */
-    public function setExist1($exist1)
-    {
-        $this->exist1 = $exist1;
-        return $this;
-    }
+    private $currency = null;
 
     /**
      * Gets as debtSum
@@ -274,6 +215,31 @@ class FL25DebtAType extends GutdfSegment
     }
 
     /**
+     * Gets as currency
+     *
+     * 25.10. Валюта задолженности
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * Sets a new currency
+     *
+     * 25.10. Валюта задолженности
+     *
+     * @param string $currency
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+        return $this;
+    }
+    /**
      * @inheritDoc
      */
     public function getSegmentName(): string
@@ -287,7 +253,6 @@ class FL25DebtAType extends GutdfSegment
     public function getFieldsDescriptions(): array
     {
         return [
-            'Признак наличия задолженности' => 'Код «1» – у субъекта имеется задолженность перед источником; код «0» – обстоятельство кода «1» отсутствует (в частности, если субъекту не передана сумма займа (кредита), ответственность субъекта-поручителя не наступила, обязательство принципала возместить выплаченную по независимой гарантии сумму не возникло). Если по показателю 25.1 «Признак наличия задолженности» указан код «0», иные показатели блока 25 Показателей КИ ФЛ не заполняются.',
             'Сумма задолженности' => 'Сумма определяется на момент наступления каждого события, которое указано по показателю 17.3 «Признак расчета по последнему платежу». Если показатель 17.3 «Признак расчета по последнему платежу» не заполнен, то сумма указывается на дату их изменения вследствие иных событий согласно Приложению 2. В валюте, которая указана по показателю 12.2 «Валюта обязательства».',
             'Сумма задолженности по основному долгу' => 'Сумма определяется на момент наступления каждого события, которое указано по показателю 17.3 «Признак расчета по последнему платежу». Если показатель 17.3 «Признак расчета по последнему платежу» не заполнен, то сумма указывается на дату их изменения вследствие иных событий согласно Приложению 2. В валюте, которая указана по показателю 12.2 «Валюта обязательства».',
             'Сумма задолженности по процентам' => 'Сумма определяется на момент наступления каждого события, которое указано по показателю 17.3 «Признак расчета по последнему платежу». Если показатель 17.3 «Признак расчета по последнему платежу» не заполнен, то сумма указывается на дату их изменения вследствие иных событий согласно Приложению 2. В валюте, которая указана по показателю 12.2 «Валюта обязательства».',
@@ -311,12 +276,8 @@ class FL25DebtAType extends GutdfSegment
     {
         $debt = $this->sendData->getAccountReplyRUTDF()->getArrear();
         if($debt === null || empty($debt->amtOutstanding)){
-            $this->exist0 = '';
-            $this->exist1 = null;
             return;
         }
-        $this->exist0 = null;
-        $this->exist1 = '';
         $this->debtSum = $this->formatCurrency($debt->amtOutstanding);
         $this->debtMainSum = $this->formatCurrency($debt->principalOutstanding);
         $this->debtPercentSum = $this->formatCurrency($debt->intOutstanding);
@@ -329,6 +290,7 @@ class FL25DebtAType extends GutdfSegment
             $this->graceUnconfExist1 = null;
             $this->graceUnconfExist0 = '';
         }
+        $this->currency = $debt->getArrearCurrency();
     }
 
     /**
@@ -337,14 +299,13 @@ class FL25DebtAType extends GutdfSegment
     public function getXmlAttributes(): array
     {
         return [
-            'exist_0' => 'exist0',
-            'exist_1' => 'exist1',
             'debtSum',
             'debtMainSum',
             'debtPercentSum',
             'debtOtherSum',
             'graceUnconfExist_0' => 'graceUnconfExist0',
             'graceUnconfExist_1' => 'graceUnconfExist1',
+            'currency',
         ];
     }
 }

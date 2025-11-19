@@ -5,27 +5,34 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 /**
  * Class representing FL54AccountingType
  *
- * Блок 54. Сведения об учете обязательства
+ * Блок 54. Сведения об учете задолженности, о льготном финансировании с государственной поддержкой и процентной ставке
  * XSD Type: FL_54_Accounting_Type
  */
 class FL54AccountingType extends GutdfSegment
 {
     /**
-     * 54.1. Признак учета обязательства = 0
+     * 54.1. Признак учета задолженности = 0
      *
      * @var string $exist0
      */
     private $exist0 = null;
 
     /**
-     * 54.3. Сумма обязательства, учтенная на внебалансовых счетах
+     * 54.3. Сумма задолженности, учтенная на внебалансовых счетах
      *
      * @var float $sum
      */
     private $sum = null;
 
     /**
-     * 54.1. Признак учета обязательства = 1
+     * 54.8. Валюта суммы задолженности, учтенной на внебалансовых счетах
+     *
+     * @var string $currency
+     */
+    private $currency = null;
+
+    /**
+     * 54.1. Признак учета задолженности = 1
      *
      * @var string $exist1
      */
@@ -71,14 +78,14 @@ class FL54AccountingType extends GutdfSegment
     /**
      * 54.7. Дата расчета
      *
-     * @var \DateTime $calcDate
+     * @var string $calcDate
      */
     private $calcDate = null;
 
     /**
      * Gets as exist0
      *
-     * 54.1. Признак учета обязательства = 0
+     * 54.1. Признак учета задолженности = 0
      *
      * @return string
      */
@@ -90,7 +97,7 @@ class FL54AccountingType extends GutdfSegment
     /**
      * Sets a new exist0
      *
-     * 54.1. Признак учета обязательства = 0
+     * 54.1. Признак учета задолженности = 0
      *
      * @param string $exist0
      * @return self
@@ -104,7 +111,7 @@ class FL54AccountingType extends GutdfSegment
     /**
      * Gets as sum
      *
-     * 54.3. Сумма обязательства, учтенная на внебалансовых счетах
+     * 54.3. Сумма задолженности, учтенная на внебалансовых счетах
      *
      * @return float
      */
@@ -116,7 +123,7 @@ class FL54AccountingType extends GutdfSegment
     /**
      * Sets a new sum
      *
-     * 54.3. Сумма обязательства, учтенная на внебалансовых счетах
+     * 54.3. Сумма задолженности, учтенная на внебалансовых счетах
      *
      * @param float $sum
      * @return self
@@ -128,9 +135,35 @@ class FL54AccountingType extends GutdfSegment
     }
 
     /**
+     * Gets as currency
+     *
+     * 54.8. Валюта суммы задолженности, учтенной на внебалансовых счетах
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * Sets a new currency
+     *
+     * 54.8. Валюта суммы задолженности, учтенной на внебалансовых счетах
+     *
+     * @param string $currency
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+        return $this;
+    }
+
+    /**
      * Gets as exist1
      *
-     * 54.1. Признак учета обязательства = 1
+     * 54.1. Признак учета задолженности = 1
      *
      * @return string
      */
@@ -142,7 +175,7 @@ class FL54AccountingType extends GutdfSegment
     /**
      * Sets a new exist1
      *
-     * 54.1. Признак учета обязательства = 1
+     * 54.1. Признак учета задолженности = 1
      *
      * @param string $exist1
      * @return self
@@ -328,7 +361,7 @@ class FL54AccountingType extends GutdfSegment
      *
      * 54.7. Дата расчета
      *
-     * @return \DateTime
+     * @return string
      */
     public function getCalcDate()
     {
@@ -340,10 +373,10 @@ class FL54AccountingType extends GutdfSegment
      *
      * 54.7. Дата расчета
      *
-     * @param \DateTime $calcDate
+     * @param string $calcDate
      * @return self
      */
-    public function setCalcDate(\DateTime $calcDate)
+    public function setCalcDate(string $calcDate)
     {
         $this->calcDate = $calcDate;
         return $this;
@@ -372,6 +405,7 @@ class FL54AccountingType extends GutdfSegment
             'Информация о программе государственной поддержки' => 'Регистрационный номер, дата и наименование нормативного акта, которым утверждена программа льготного финансирования с государственной поддержкой.',
             'Максимальная процентная ставка' => 'Значение максимальной процентной ставки в соответствии с условиями сделки. Если условиями сделки не предусмотрены различные процентные ставки, значение равно процентной ставке в соответствии с условиями сделки. В случае отсутствия процентной ставки в соответствии с условиями сделки, указывается значение «0.00».',
             'Дата расчета' => 'Дата, по состоянию на которую сформированы (рассчитаны) показатели блока',
+            'Валюта суммы задолженности, учтенной на внебалансовых счетах' => 'Валюта суммы, указанной по показателю 54.3.',
         ];
     }
 
@@ -401,7 +435,7 @@ class FL54AccountingType extends GutdfSegment
         }
 
         $this->minInterest = $account->intRate;
-        $this->maxInterest = $account->intRate;
+        $this->maxInterest = $account->maxInterest??$account->intRate;
 
         if($account->preferenFinanc){
             $this->supportExist0 = null;
@@ -413,6 +447,7 @@ class FL54AccountingType extends GutdfSegment
         }
 
         $this->calcDate = $this->formatDate($this->sendData->getReportingDt());
+        $this->currency = $account->accountingCurrency;
     }
 
     /**
@@ -424,10 +459,13 @@ class FL54AccountingType extends GutdfSegment
             'exist_0' => 'exist0',
             'exist_1' => 'exist1',
             'sum',
+            'currency',
+            'minInterest',
+            'maxInterest',
             'supportExist_0' => 'supportExist0',
             'supportExist_1' => 'supportExist1',
             'supportInfo',
-            'calcDate'
+            'calcDate',
         ];
     }
 }

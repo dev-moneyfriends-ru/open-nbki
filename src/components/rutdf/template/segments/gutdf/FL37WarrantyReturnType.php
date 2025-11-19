@@ -60,6 +60,13 @@ class FL37WarrantyReturnType extends GutdfSegment
     private $calcDate = null;
 
     /**
+     * 37.6. Валюта возмещения
+     *
+     * @var string $currency
+     */
+    private $currency = null;
+
+    /**
      * Gets as exist0
      *
      * 37.1. Признак обязанности возместить выплаченную сумму = 0
@@ -242,6 +249,32 @@ class FL37WarrantyReturnType extends GutdfSegment
     }
 
     /**
+     * Gets as currency
+     *
+     * 37.6. Валюта возмещения
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * Sets a new currency
+     *
+     * 37.6. Валюта возмещения
+     *
+     * @param string $currency
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+        return $this;
+    }
+
+    /**
      * @inheritDoc
      */
     public function getSegmentName(): string
@@ -300,6 +333,7 @@ class FL37WarrantyReturnType extends GutdfSegment
         }
 
         $this->calcDate = $this->formatDate($account->guaranteeDate);
+        $this->setCurrency($account->guaranteeCurrency);
     }
 
     /**
@@ -315,6 +349,7 @@ class FL37WarrantyReturnType extends GutdfSegment
             'compliance_0' => 'compliance0',
             'compliance_1' => 'compliance1',
             'calcDate',
+            'currency',
         ];
     }
 }

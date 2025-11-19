@@ -54,7 +54,7 @@ class UL19DebtOverdueAType extends GutdfSegment
     /**
      * 19.1. Дата возникновения просроченной задолженности
      *
-     * @var \DateTime $debtOverdueStartDate
+     * @var string $debtOverdueStartDate
      */
     private $debtOverdueStartDate = null;
 
@@ -247,7 +247,7 @@ class UL19DebtOverdueAType extends GutdfSegment
      *
      * 19.1. Дата возникновения просроченной задолженности
      *
-     * @return \DateTime
+     * @return string
      */
     public function getDebtOverdueStartDate()
     {
@@ -259,10 +259,10 @@ class UL19DebtOverdueAType extends GutdfSegment
      *
      * 19.1. Дата возникновения просроченной задолженности
      *
-     * @param \DateTime $debtOverdueStartDate
+     * @param string $debtOverdueStartDate
      * @return self
      */
-    public function setDebtOverdueStartDate(?\DateTime $debtOverdueStartDate = null)
+    public function setDebtOverdueStartDate($debtOverdueStartDate)
     {
         $this->debtOverdueStartDate = $debtOverdueStartDate;
         return $this;

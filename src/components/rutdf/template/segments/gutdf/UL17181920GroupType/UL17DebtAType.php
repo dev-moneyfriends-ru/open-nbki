@@ -10,20 +10,6 @@ use mfteam\nbch\components\rutdf\template\segments\gutdf\GutdfSegment;
 class UL17DebtAType extends GutdfSegment
 {
     /**
-     * 17.1. Признак наличия задолженности = 0
-     *
-     * @var string $exist0
-     */
-    private $exist0 = null;
-
-    /**
-     * 17.1. Признак наличия задолженности = 1
-     *
-     * @var string $exist1
-     */
-    private $exist1 = null;
-
-    /**
      * 17.4. Сумма задолженности
      *
      * @var float $debtSum
@@ -52,56 +38,11 @@ class UL17DebtAType extends GutdfSegment
     private $debtOtherSum = null;
 
     /**
-     * Gets as exist0
+     * 17.9. Валюта задолженности
      *
-     * 17.1. Признак наличия задолженности = 0
-     *
-     * @return string
+     * @var string $currency
      */
-    public function getExist0()
-    {
-        return $this->exist0;
-    }
-
-    /**
-     * Sets a new exist0
-     *
-     * 17.1. Признак наличия задолженности = 0
-     *
-     * @param string $exist0
-     * @return self
-     */
-    public function setExist0($exist0)
-    {
-        $this->exist0 = $exist0;
-        return $this;
-    }
-
-    /**
-     * Gets as exist1
-     *
-     * 17.1. Признак наличия задолженности = 1
-     *
-     * @return string
-     */
-    public function getExist1()
-    {
-        return $this->exist1;
-    }
-
-    /**
-     * Sets a new exist1
-     *
-     * 17.1. Признак наличия задолженности = 1
-     *
-     * @param string $exist1
-     * @return self
-     */
-    public function setExist1($exist1)
-    {
-        $this->exist1 = $exist1;
-        return $this;
-    }
+    private $currency = null;
 
     /**
      * Gets as debtSum
@@ -208,6 +149,31 @@ class UL17DebtAType extends GutdfSegment
     }
 
     /**
+     * Gets as currency
+     *
+     * 17.9. Валюта задолженности
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * Sets a new currency
+     *
+     * 17.9. Валюта задолженности
+     *
+     * @param string $currency
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+        return $this;
+    }
+    /**
      * @inheritDoc
      */
     public function getSegmentName(): string
@@ -244,16 +210,13 @@ class UL17DebtAType extends GutdfSegment
     {
         $debt = $this->sendData->getAccountReplyRUTDF()->getArrear();
         if($debt === null || empty($debt->amtOutstanding)){
-            $this->exist0 = '';
-            $this->exist1 = null;
             return;
         }
-        $this->exist0 = null;
-        $this->exist1 = '';
         $this->debtSum = $this->formatCurrency($debt->amtOutstanding);
         $this->debtMainSum = $this->formatCurrency($debt->principalOutstanding);
         $this->debtPercentSum = $this->formatCurrency($debt->intOutstanding);
         $this->debtOtherSum = $this->formatCurrency($debt->otherAmtOutstanding);
+        $this->currency = $debt->getArrearCurrency();
     }
 
     /**
@@ -262,12 +225,11 @@ class UL17DebtAType extends GutdfSegment
     public function getXmlAttributes(): array
     {
         return [
-            'exist_0' => 'exist0',
-            'exist_1' => 'exist1',
             'debtSum',
             'debtMainSum',
             'debtPercentSum',
             'debtOtherSum',
+            'currency',
         ];
     }
 

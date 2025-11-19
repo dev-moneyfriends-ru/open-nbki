@@ -46,7 +46,7 @@ class UL14PaymentTermsType extends GutdfSegment
     private $freqCode = null;
 
     /**
-     * 14.6. Сумма минимального платежа по кредитной карте
+     * 14.6. Сумма минимального платежа
      *
      * @var float $minCardPay
      */
@@ -206,7 +206,7 @@ class UL14PaymentTermsType extends GutdfSegment
     /**
      * Gets as minCardPay
      *
-     * 14.6. Сумма минимального платежа по кредитной карте
+     * 14.6. Сумма минимального платежа
      *
      * @return float
      */
@@ -218,7 +218,7 @@ class UL14PaymentTermsType extends GutdfSegment
     /**
      * Sets a new minCardPay
      *
-     * 14.6. Сумма минимального платежа по кредитной карте
+     * 14.6. Сумма минимального платежа
      *
      * @param float $minCardPay
      * @return self

@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 35. Сведения о прекращении передачи информации по обязательству
  * XSD Type: UL_35_StopSend_Type
  */
-class UL35StopSendType
+class UL35StopSendType extends GutdfSegment
 {
     /**
      * 35.1. Код причины прекращения передачи информации
@@ -20,7 +20,7 @@ class UL35StopSendType
     /**
      * 35.2. Дата прекращения передачи информации
      *
-     * @var \DateTime $date
+     * @var string $date
      */
     private $date = null;
 
@@ -55,7 +55,7 @@ class UL35StopSendType
      *
      * 35.2. Дата прекращения передачи информации
      *
-     * @return \DateTime
+     * @return string
      */
     public function getDate()
     {
@@ -67,13 +67,61 @@ class UL35StopSendType
      *
      * 35.2. Дата прекращения передачи информации
      *
-     * @param \DateTime $date
+     * @param string $date
      * @return self
      */
-    public function setDate(\DateTime $date)
+    public function setDate(string $date)
     {
         $this->date = $date;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        return 'UL_35_StopSend';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        return [
+            'Код причины прекращения передачи информации' => '',
+            'Дата прекращения передачи информации' => ''
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        return 'Блок 35. Сведения о прекращении передачи информации по обязательству';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        return [
+            'code',
+            'date',
+        ];
+    }
+
+    public function init(): void
+    {
+        $submitHold = $this->template->sendData->getAccountReplyRUTDF()->getSubmitHold();
+        if($submitHold === null){
+            return;
+        }
+        $this->setCode($submitHold->holdCode);
+        $this->setDate($submitHold->holdDt);
     }
 }
 

@@ -8,7 +8,7 @@ namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
  * Блок 14. Сведения о завершении расчетов с кредиторами и освобождении субъекта от исполнения обязательств в связи с банкротством
  * XSD Type: FL_14_BankruptcyEnd_Type
  */
-class FL14BankruptcyEndType
+class FL14BankruptcyEndType extends GutdfSegment
 {
     /**
      * 14.1. Признак завершения расчетов с кредиторами = 0
@@ -239,6 +239,38 @@ class FL14BankruptcyEndType
     {
         $this->settlementDate = $settlementDate;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSegmentName(): string
+    {
+        // TODO: Implement getSegmentName() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFieldsDescriptions(): array
+    {
+        // TODO: Implement getFieldsDescriptions() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle(): string
+    {
+        // TODO: Implement getTitle() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getXmlAttributes(): array
+    {
+        // TODO: Implement getXmlAttributes() method.
     }
 }
 

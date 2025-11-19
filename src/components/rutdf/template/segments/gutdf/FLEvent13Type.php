@@ -18,14 +18,7 @@ class FLEvent13Type extends EventDataType
     private $operationCode = EventDataType::OPERATION_CODE_B;
 
     /**
-     * Блок 29(1). Сведения о долговой нагрузке заемщика
-     *
-     * @var FL291DebtBurdenInfoType $fL291DebtBurdenInfo
-     */
-    private $fL291DebtBurdenInfo = null;
-
-    /**
-     * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 55. Сведения об обращении
      *
      * @var FL55ApplicationType $fL55Application
      */
@@ -65,35 +58,9 @@ class FLEvent13Type extends EventDataType
     }
 
     /**
-     * Gets as fL291DebtBurdenInfo
-     *
-     * Блок 29(1). Сведения о долговой нагрузке заемщика
-     *
-     * @return FL291DebtBurdenInfoType
-     */
-    public function getFL291DebtBurdenInfo()
-    {
-        return $this->fL291DebtBurdenInfo;
-    }
-
-    /**
-     * Sets a new fL291DebtBurdenInfo
-     *
-     * Блок 29(1). Сведения о долговой нагрузке заемщика
-     *
-     * @param FL291DebtBurdenInfoType $fL291DebtBurdenInfo
-     * @return self
-     */
-    public function setFL291DebtBurdenInfo(?FL291DebtBurdenInfoType $fL291DebtBurdenInfo = null)
-    {
-        $this->fL291DebtBurdenInfo = $fL291DebtBurdenInfo;
-        return $this;
-    }
-
-    /**
      * Gets as fL55Application
      *
-     * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 55. Сведения об обращении
      *
      * @return FL55ApplicationType
      */
@@ -105,7 +72,7 @@ class FLEvent13Type extends EventDataType
     /**
      * Sets a new fL55Application
      *
-     * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
+     * Блок 55. Сведения об обращении
      *
      * @param FL55ApplicationType $fL55Application
      * @return self
@@ -160,9 +127,8 @@ class FLEvent13Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->fL291DebtBurdenInfo = new FL291DebtBurdenInfoType($this->template);
-        $this->fL55Application = new FL55ApplicationType($this->template);
-        $this->fL57Reject = new FL57RejectType($this->template);
+        $this->setFL55Application(new FL55ApplicationType($this->template));
+        $this->setFL57Reject(new FL57RejectType($this->template));
     }
 
     /**
@@ -171,7 +137,6 @@ class FLEvent13Type extends EventDataType
     public function getXmlAttributes(): array
     {
         return [
-            'fL291DebtBurdenInfo',
             'fL55Application',
             'fL57Reject',
         ];

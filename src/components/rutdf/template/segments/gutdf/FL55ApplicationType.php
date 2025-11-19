@@ -7,7 +7,7 @@ use mfteam\nbch\helpers\UuidHelper;
 /**
  * Class representing FL55ApplicationType
  *
- * Блок 55. Сведения об обращении субъекта к источнику с предложением совершить сделку
+ * Блок 55. Сведения об обращении
  * XSD Type: FL_55_Application_Type
  */
 class FL55ApplicationType extends GutdfSegment
@@ -118,6 +118,27 @@ class FL55ApplicationType extends GutdfSegment
      * @var float $loanSum
      */
     private $loanSum = null;
+
+    /**
+     * 55.16. Валюта одобренного займа (кредита), лизинга или обеспечения
+     *
+     * @var string $loanCurrency
+     */
+    private $loanCurrency = null;
+
+    /**
+     * 55.17. Признак подачи обращения с использованием финансовой платформы = 0
+     *
+     * @var string $platformExist0
+     */
+    private $platformExist0 = null;
+
+    /**
+     * 55.17. Признак подачи обращения с использованием финансовой платформы = 1
+     *
+     * @var string $platformExist1
+     */
+    private $platformExist1 = null;
 
     /**
      * Gets as role
@@ -550,6 +571,84 @@ class FL55ApplicationType extends GutdfSegment
     }
 
     /**
+     * Gets as loanCurrency
+     *
+     * 55.16. Валюта одобренного займа (кредита), лизинга или обеспечения
+     *
+     * @return string
+     */
+    public function getLoanCurrency()
+    {
+        return $this->loanCurrency;
+    }
+
+    /**
+     * Sets a new loanCurrency
+     *
+     * 55.16. Валюта одобренного займа (кредита), лизинга или обеспечения
+     *
+     * @param string $loanCurrency
+     * @return self
+     */
+    public function setLoanCurrency($loanCurrency)
+    {
+        $this->loanCurrency = $loanCurrency;
+        return $this;
+    }
+
+    /**
+     * Gets as platformExist0
+     *
+     * 55.17. Признак подачи обращения с использованием финансовой платформы = 0
+     *
+     * @return string
+     */
+    public function getPlatformExist0()
+    {
+        return $this->platformExist0;
+    }
+
+    /**
+     * Sets a new platformExist0
+     *
+     * 55.17. Признак подачи обращения с использованием финансовой платформы = 0
+     *
+     * @param string $platformExist0
+     * @return self
+     */
+    public function setPlatformExist0($platformExist0)
+    {
+        $this->platformExist0 = $platformExist0;
+        return $this;
+    }
+
+    /**
+     * Gets as platformExist1
+     *
+     * 55.17. Признак подачи обращения с использованием финансовой платформы = 1
+     *
+     * @return string
+     */
+    public function getPlatformExist1()
+    {
+        return $this->platformExist1;
+    }
+
+    /**
+     * Sets a new platformExist1
+     *
+     * 55.17. Признак подачи обращения с использованием финансовой платформы = 1
+     *
+     * @param string $platformExist1
+     * @return self
+     */
+    public function setPlatformExist1($platformExist1)
+    {
+        $this->platformExist1 = $platformExist1;
+        return $this;
+    }
+
+    /**
      * @inheritDoc
      */
     public function getSegmentName(): string
@@ -599,7 +698,7 @@ class FL55ApplicationType extends GutdfSegment
         $this->role = $informPart->requestedFlagIndicatorCode;
         $this->sum = $this->formatCurrency($informPart->requestedAmt);
         $this->currency = $informPart->requestedCurrencyCode;
-        $this->uid = UuidHelper::getUuidWithControl($informPart->applicationNumber);
+        $this->uid = $informPart->applicationNumber . '-' . $informPart->getUuidControlSum($informPart->applicationNumber);
         $this->applicationDate = $this->formatDate($informPart->applicationDate);
         $this->sourceCode = $informPart->creditorTypeCode;
         $this->wayCode = $informPart->applicationShipmentCode;
@@ -611,6 +710,14 @@ class FL55ApplicationType extends GutdfSegment
         $this->applicationCode = $informPart->applicationCode;
         $this->num = $informPart->oldAppNum;
         $this->loanSum = $this->formatCurrency($informPart->loanSum);
+        $this->loanCurrency = $informPart->loanCurrency;
+        if($informPart->platformExist){
+            $this->setPlatformExist0(null);
+            $this->setPlatformExist1('');
+        }else{
+            $this->setPlatformExist0('');
+            $this->setPlatformExist1(null);
+        }
     }
 
     /**
@@ -634,6 +741,9 @@ class FL55ApplicationType extends GutdfSegment
             'applicationCode',
             'num',
             'loanSum',
+            'loanCurrency',
+            'platformExist_0' => 'platformExist0',
+            'platformExist_1' => 'platformExist1',
         ];
     }
 

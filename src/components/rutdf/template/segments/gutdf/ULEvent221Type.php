@@ -80,7 +80,7 @@ class ULEvent221Type extends EventDataType
     ];
 
     /**
-     * Блок 44. Сведения об учете обязательства
+     * Блок 44. Сведения об учете задолженности
      *
      * @var \mfteam\nbch\components\rutdf\template\segments\gutdf\UL44AccountingType $uL44Accounting
      */
@@ -290,46 +290,6 @@ class ULEvent221Type extends EventDataType
     }
 
     /**
-     * Adds as uL16Fund
-     *
-     * Блок 16. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
-     *
-     * @param UL16FundType $uL16Fund
-     * @return self
-     */
-    public function addToUL16Fund(UL16FundType $uL16Fund)
-    {
-        $this->uL16Fund[] = $uL16Fund;
-        return $this;
-    }
-
-    /**
-     * isset uL16Fund
-     *
-     * Блок 16. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetUL16Fund($index)
-    {
-        return isset($this->uL16Fund[$index]);
-    }
-
-    /**
-     * unset uL16Fund
-     *
-     * Блок 16. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetUL16Fund($index)
-    {
-        unset($this->uL16Fund[$index]);
-    }
-
-    /**
      * Gets as uL16Fund
      *
      * Блок 16. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
@@ -490,7 +450,7 @@ class ULEvent221Type extends EventDataType
     /**
      * Gets as uL44Accounting
      *
-     * Блок 44. Сведения об учете обязательства
+     * Блок 44. Сведения об учете задолженности
      *
      * @return \mfteam\nbch\components\rutdf\template\segments\gutdf\UL44AccountingType
      */
@@ -502,7 +462,7 @@ class ULEvent221Type extends EventDataType
     /**
      * Sets a new uL44Accounting
      *
-     * Блок 44. Сведения об учете обязательства
+     * Блок 44. Сведения об учете задолженности
      *
      * @param \mfteam\nbch\components\rutdf\template\segments\gutdf\UL44AccountingType $uL44Accounting
      * @return self
@@ -557,21 +517,30 @@ class ULEvent221Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->uL10DealUid = new UL10DealUidType($this->template);
-        $this->uL11Deal = new UL11DealType($this->template);
-        $this->uL12Amount= new UL12AmountType($this->template);
+        $this->setUL10DealUid(new UL10DealUidType($this->template));
+        $this->setUL11Deal(new UL11DealType($this->template));
+        $this->setUL12Amount(new UL12AmountType($this->template));
+
         foreach ($this->sendData->getAccountReplyRUTDF()->getAmountInfoArray() as $key => $value) {
             $this->addToUL121AmountInfo(new UL121AmountInfoType($this->template, $key));
         }
-        $this->uL14PaymentTerms = new UL14PaymentTermsType($this->template);
+
+        $this->setUL14PaymentTerms(new UL14PaymentTermsType($this->template));
+
         foreach ($this->sendData->getAccountReplyRUTDF()->getFundDateRUTDF() as $key => $value) {
-            $this->addToUL16Fund(new UL16FundType($this->template, $key));
+            $this->setUL16Fund(new UL16FundType($this->template, $key));
         }
+
         foreach ($this->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray() as $key => $value) {
             $this->addToUL21NonMonetarySource(new UL21NonMonetarySourceType($this->template, $key));
         }
-        $this->uL44Accounting = new UL44AccountingType($this->template);
-        $this->uL46Participation = new UL46ParticipationType($this->template);
+
+        foreach ($this->sendData->getAccountReplyRUTDF()->getSubjectNonMonetObligArray() as $key => $value) {
+            $this->addToUL22NonMonetarySubject(new UL22NonMonetarySubjectType($this->template, $key));
+        }
+
+        $this->setUL44Accounting(new UL44AccountingType($this->template));
+        $this->setUL46Participation(new UL46ParticipationType($this->template));
     }
 
     /**
@@ -586,6 +555,7 @@ class ULEvent221Type extends EventDataType
             'uL121AmountInfo',
             'uL14PaymentTerms',
             'uL16Fund',
+            'uL22NonMonetarySubject',
             'uL21NonMonetarySource',
             'uL44Accounting',
             'uL46Participation',

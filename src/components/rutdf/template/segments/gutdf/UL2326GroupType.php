@@ -2,7 +2,8 @@
 
 namespace mfteam\nbch\components\rutdf\template\segments\gutdf;
 
-use mfteam\nbch\components\rutdf\template\segments\gutdf\UL2326GroupType\PropertyIdGroupUL2326GroupAType;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\UL2326GroupType\UL23CollateralAType;
+use mfteam\nbch\components\rutdf\template\segments\gutdf\UL2326GroupType\UL26InsuranceAType;
 
 /**
  * Class representing UL2326GroupType
@@ -27,9 +28,25 @@ class UL2326GroupType extends GutdfSegment
     private $assetKind1 = null;
 
     /**
-     * @var PropertyIdGroupUL2326GroupAType[] $propertyIdGroupUL2326Group
+     * 23.3., 26.9. Идентификационный код предмета залога
+     *
+     * @var string $propertyId
      */
-    private $propertyIdGroupUL2326Group = [
+    private $propertyId = null;
+
+    /**
+     * Блок 23. Сведения о залоге
+     *
+     * @var UL23CollateralAType $uL23Collateral
+     */
+    private $uL23Collateral = null;
+
+    /**
+     * Блок 26. Сведения о страховании предмета залога
+     *
+     * @var UL26InsuranceAType[] $uL26Insurance
+     */
+    private $uL26Insurance = [
         
     ];
 
@@ -86,58 +103,120 @@ class UL2326GroupType extends GutdfSegment
     }
 
     /**
-     * Adds as propertyIdGroupUL2326Group
+     * Gets as propertyId
      *
-     * @return self
-     * @param PropertyIdGroupUL2326GroupAType $propertyIdGroupUL2326Group
+     * 23.3., 26.9. Идентификационный код предмета залога
+     *
+     * @return string
      */
-    public function addToPropertyIdGroupUL2326Group(PropertyIdGroupUL2326GroupAType $propertyIdGroupUL2326Group)
+    public function getPropertyId()
     {
-        $this->propertyIdGroupUL2326Group[] = $propertyIdGroupUL2326Group;
+        return $this->propertyId;
+    }
+
+    /**
+     * Sets a new propertyId
+     *
+     * 23.3., 26.9. Идентификационный код предмета залога
+     *
+     * @param string $propertyId
+     * @return self
+     */
+    public function setPropertyId($propertyId)
+    {
+        $this->propertyId = $propertyId;
         return $this;
     }
 
     /**
-     * isset propertyIdGroupUL2326Group
+     * Gets as uL23Collateral
+     *
+     * Блок 23. Сведения о залоге
+     *
+     * @return UL23CollateralAType
+     */
+    public function getUL23Collateral()
+    {
+        return $this->uL23Collateral;
+    }
+
+    /**
+     * Sets a new uL23Collateral
+     *
+     * Блок 23. Сведения о залоге
+     *
+     * @param UL23CollateralAType $uL23Collateral
+     * @return self
+     */
+    public function setUL23Collateral(?UL23CollateralAType $uL23Collateral = null)
+    {
+        $this->uL23Collateral = $uL23Collateral;
+        return $this;
+    }
+
+    /**
+     * Adds as uL26Insurance
+     *
+     * Блок 26. Сведения о страховании предмета залога
+     *
+     * @return self
+     * @param UL26InsuranceAType $uL26Insurance
+     */
+    public function addToUL26Insurance(UL26InsuranceAType $uL26Insurance)
+    {
+        $this->uL26Insurance[] = $uL26Insurance;
+        return $this;
+    }
+
+    /**
+     * isset uL26Insurance
+     *
+     * Блок 26. Сведения о страховании предмета залога
      *
      * @param int|string $index
      * @return bool
      */
-    public function issetPropertyIdGroupUL2326Group($index)
+    public function issetUL26Insurance($index)
     {
-        return isset($this->propertyIdGroupUL2326Group[$index]);
+        return isset($this->uL26Insurance[$index]);
     }
 
     /**
-     * unset propertyIdGroupUL2326Group
+     * unset uL26Insurance
+     *
+     * Блок 26. Сведения о страховании предмета залога
      *
      * @param int|string $index
      * @return void
      */
-    public function unsetPropertyIdGroupUL2326Group($index)
+    public function unsetUL26Insurance($index)
     {
-        unset($this->propertyIdGroupUL2326Group[$index]);
+        unset($this->uL26Insurance[$index]);
     }
 
     /**
-     * Gets as propertyIdGroupUL2326Group
+     * Gets as uL26Insurance
      *
-     * @return PropertyIdGroupUL2326GroupAType[]
+     * Блок 26. Сведения о страховании предмета залога
+     *
+     * @return UL26InsuranceAType[]
      */
-    public function getPropertyIdGroupUL2326Group()
+    public function getUL26Insurance()
     {
-        return $this->propertyIdGroupUL2326Group;
+        return $this->uL26Insurance;
     }
 
     /**
-     * Sets a new propertyIdGroupUL2326Group
+     * Sets a new uL26Insurance
      *
-     * @param PropertyIdGroupUL2326GroupAType[] $propertyIdGroupUL2326Group
+     * Блок 26. Сведения о страховании предмета залога
+     *
+     * @param UL26InsuranceAType[] $uL26Insurance
      * @return self
      */
-    public function setPropertyIdGroupUL2326Group(array $propertyIdGroupUL2326Group = null)
+    public function setUL26Insurance(array $uL26Insurance = null)
     {
-        $this->propertyIdGroupUL2326Group = $propertyIdGroupUL2326Group;
+        $this->uL26Insurance = $uL26Insurance;
         return $this;
     }
 
@@ -173,17 +252,24 @@ class UL2326GroupType extends GutdfSegment
      */
     public function init(): void
     {
-        $collaterals = $this->sendData->getAccountReplyRUTDF()->getCollateral();
-        if(empty($collaterals)){
+        if(empty($this->sendData->getAccountReplyRUTDF()->getCollateral()[$this->idx])){
             $this->assetKind0 = '';
             $this->assetKind1 = null;
             return;
         }
+        $collateral = $this->sendData->getAccountReplyRUTDF()->getCollateral()[$this->idx];
         $this->assetKind0 = null;
         $this->assetKind1 = '';
+        $this->propertyId = $collateral->collateralId;
 
-        foreach ($collaterals as $key => $collateral) {
-            $this->addToPropertyIdGroupUL2326Group(new PropertyIdGroupUL2326GroupAType($this->template, $key));
+        $this->setUL23Collateral(new UL23CollateralAType($this->template, $this->idx));
+        foreach ($this->sendData->getAccountReplyRUTDF()->getCollatInsured() as $key => $collateralInsured){
+            if($collateral->collateralId === $collateralInsured->collateralId){
+                $this->addToUL26Insurance(new UL26InsuranceAType($this->template, $key));
+            }
+        }
+        if(empty($this->fL35Insurance)){
+            $this->addToUL26Insurance(new UL26InsuranceAType($this->template));
         }
     }
 
@@ -195,7 +281,8 @@ class UL2326GroupType extends GutdfSegment
         return [
             'assetKind_0' => 'assetKind0',
             'assetKind_1' => 'assetKind1',
-            'propertyIdGroupUL2326Group',
+            'ul23Collateral',
+            'ul26Insurance',
         ];
     }
 

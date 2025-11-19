@@ -7,19 +7,17 @@ use mfteam\nbch\components\rutdf\template\segments\gutdf\FL6TaxType\TaxNumGroupF
 /**
  * Class representing FL6TaxType
  *
- * Блок 6. Номер налогоплательщика и регистрационный номер
+ * Блок 6. Номер налогоплательщика, регистрационный номер и признак специального налогового режима
  * XSD Type: FL_6_Tax_Type
  */
 class FL6TaxType extends GutdfSegment
 {
     /**
-     * Номер налогоплательщика
+     * Номера налогоплательщика
      *
-     * @var TaxNumGroupFL6TaxAType[] $taxNumGroupFL6Tax
+     * @var TaxNumGroupFL6TaxAType $taxNumGroupFL6Tax
      */
-    private $taxNumGroupFL6Tax = [
-        
-    ];
+    private $taxNumGroupFL6Tax = null;
 
     /**
      * 6.3. Регистрационный номер
@@ -43,51 +41,11 @@ class FL6TaxType extends GutdfSegment
     private $specialMode1 = null;
 
     /**
-     * Adds as taxNumGroupFL6Tax
-     *
-     * Номер налогоплательщика
-     *
-     * @return self
-     * @param TaxNumGroupFL6TaxAType $taxNumGroupFL6Tax
-     */
-    public function addToTaxNumGroupFL6Tax(TaxNumGroupFL6TaxAType $taxNumGroupFL6Tax)
-    {
-        $this->taxNumGroupFL6Tax[] = $taxNumGroupFL6Tax;
-        return $this;
-    }
-
-    /**
-     * isset taxNumGroupFL6Tax
-     *
-     * Номер налогоплательщика
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetTaxNumGroupFL6Tax($index)
-    {
-        return isset($this->taxNumGroupFL6Tax[$index]);
-    }
-
-    /**
-     * unset taxNumGroupFL6Tax
-     *
-     * Номер налогоплательщика
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetTaxNumGroupFL6Tax($index)
-    {
-        unset($this->taxNumGroupFL6Tax[$index]);
-    }
-
-    /**
      * Gets as taxNumGroupFL6Tax
      *
-     * Номер налогоплательщика
+     * Номера налогоплательщика
      *
-     * @return TaxNumGroupFL6TaxAType[]
+     * @return TaxNumGroupFL6TaxAType
      */
     public function getTaxNumGroupFL6Tax()
     {
@@ -97,12 +55,12 @@ class FL6TaxType extends GutdfSegment
     /**
      * Sets a new taxNumGroupFL6Tax
      *
-     * Номер налогоплательщика
+     * Номера налогоплательщика
      *
-     * @param TaxNumGroupFL6TaxAType[] $taxNumGroupFL6Tax
+     * @param TaxNumGroupFL6TaxAType $taxNumGroupFL6Tax
      * @return self
      */
-    public function setTaxNumGroupFL6Tax(array $taxNumGroupFL6Tax = null)
+    public function setTaxNumGroupFL6Tax(?TaxNumGroupFL6TaxAType $taxNumGroupFL6Tax = null)
     {
         $this->taxNumGroupFL6Tax = $taxNumGroupFL6Tax;
         return $this;
@@ -228,17 +186,19 @@ class FL6TaxType extends GutdfSegment
     public function init(): void
     {
         $tax = $this->sendData->getRegnumReply();
-        if($tax === null){
+        if ($tax === null) {
             return;
         }
-        $this->addToTaxNumGroupFL6Tax(new TaxNumGroupFL6TaxAType($this->template));
-        $this->regNum = $tax->regNum;
-        if($tax->spectaxCode){
-            $this->specialMode0 = null;
-            $this->specialMode1 = '';
-        }else{
-            $this->specialMode1 = null;
-            $this->specialMode0 = '';
+
+        $this->setTaxNumGroupFL6Tax(new TaxNumGroupFL6TaxAType($this->template));
+        $this->setRegNum($tax->regNum);
+
+        if ($tax->spectaxCode) {
+            $this->setSpecialMode0(null);
+            $this->setSpecialMode1('');
+        } else {
+            $this->setSpecialMode1(null);
+            $this->setSpecialMode0('');
         }
     }
 

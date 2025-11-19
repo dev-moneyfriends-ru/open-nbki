@@ -34,6 +34,13 @@ class UL16FundType extends GutdfSegment
     private $startSum = null;
 
     /**
+     * 16.4. Валюта задолженности на дату передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     *
+     * @var string $currency
+     */
+    private $currency = null;
+
+    /**
      * Gets as date
      *
      * 16.1. Дата передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
@@ -112,6 +119,32 @@ class UL16FundType extends GutdfSegment
     }
 
     /**
+     * Gets as currency
+     *
+     * 16.4. Валюта задолженности на дату передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * Sets a new currency
+     *
+     * 16.4. Валюта задолженности на дату передачи финансирования субъекту или возникновения обеспечения исполнения обязательства
+     *
+     * @param string $currency
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+        return $this;
+    }
+
+    /**
      * @inheritDoc
      */
     public function getSegmentName(): string
@@ -146,9 +179,10 @@ class UL16FundType extends GutdfSegment
     public function init(): void
     {
         $fund = $this->sendData->getAccountReplyRUTDF()->getFundDateRUTDF()[$this->idx];
-        $this->date = $this->formatDate($fund->fundDate);
-        $this->num = $fund->trancheNum;
-        $this->startSum = $this->formatCurrency($fund->startSum);
+        $this->setDate($this->formatDate($fund->fundDate));
+        $this->setNum($fund->trancheNum);
+        $this->setStartSum($this->formatCurrency($fund->startSum));
+        $this->setCurrency($fund->getFundCurrency());
     }
 
     /**
@@ -160,6 +194,7 @@ class UL16FundType extends GutdfSegment
             'date',
             'num',
             'startSum',
+            'currency',
         ];
     }
 }

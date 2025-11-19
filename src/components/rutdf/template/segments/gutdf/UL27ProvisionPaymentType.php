@@ -27,11 +27,32 @@ class UL27ProvisionPaymentType extends GutdfSegment
     private $exist1 = null;
 
     /**
-     * @var CodeGroupUL27ProvisionPaymentAType[] $codeGroupUL27ProvisionPayment
+     * 27.2. Код использованного обеспечения
+     *
+     * @var int $code
      */
-    private $codeGroupUL27ProvisionPayment = [
-        
-    ];
+    private $code = null;
+
+    /**
+     * 27.3. Дата погашения требований за счет обеспечения
+     *
+     * @var string $date
+     */
+    private $date = null;
+
+    /**
+     * 27.4. Сумма требований, погашенных за счет обеспечения
+     *
+     * @var float $sum
+     */
+    private $sum = null;
+
+    /**
+     * 27.5. Валюта суммы требований, погашенных за счет обеспечения
+     *
+     * @var string $currency
+     */
+    private $currency = null;
 
     /**
      * Gets as exist0
@@ -86,58 +107,106 @@ class UL27ProvisionPaymentType extends GutdfSegment
     }
 
     /**
-     * Adds as codeGroupUL27ProvisionPayment
+     * Gets as code
      *
-     * @param CodeGroupUL27ProvisionPaymentAType $codeGroupUL27ProvisionPayment
-     *@return self
+     * 27.2. Код использованного обеспечения
+     *
+     * @return int
      */
-    public function addToCodeGroupUL27ProvisionPayment(CodeGroupUL27ProvisionPaymentAType $codeGroupUL27ProvisionPayment)
+    public function getCode()
     {
-        $this->codeGroupUL27ProvisionPayment[] = $codeGroupUL27ProvisionPayment;
+        return $this->code;
+    }
+
+    /**
+     * Sets a new code
+     *
+     * 27.2. Код использованного обеспечения
+     *
+     * @param int $code
+     * @return self
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
         return $this;
     }
 
     /**
-     * isset codeGroupUL27ProvisionPayment
+     * Gets as date
      *
-     * @param int|string $index
-     * @return bool
+     * 27.3. Дата погашения требований за счет обеспечения
+     *
+     * @return string
      */
-    public function issetCodeGroupUL27ProvisionPayment($index)
+    public function getDate()
     {
-        return isset($this->codeGroupUL27ProvisionPayment[$index]);
+        return $this->date;
     }
 
     /**
-     * unset codeGroupUL27ProvisionPayment
+     * Sets a new date
      *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetCodeGroupUL27ProvisionPayment($index)
-    {
-        unset($this->codeGroupUL27ProvisionPayment[$index]);
-    }
-
-    /**
-     * Gets as codeGroupUL27ProvisionPayment
+     * 27.3. Дата погашения требований за счет обеспечения
      *
-     * @return CodeGroupUL27ProvisionPaymentAType[]
-     */
-    public function getCodeGroupUL27ProvisionPayment()
-    {
-        return $this->codeGroupUL27ProvisionPayment;
-    }
-
-    /**
-     * Sets a new codeGroupUL27ProvisionPayment
-     *
-     * @param CodeGroupUL27ProvisionPaymentAType[] $codeGroupUL27ProvisionPayment
+     * @param string $date
      * @return self
      */
-    public function setCodeGroupUL27ProvisionPayment(array $codeGroupUL27ProvisionPayment = null)
+    public function setDate(?string $date = null)
     {
-        $this->codeGroupUL27ProvisionPayment = $codeGroupUL27ProvisionPayment;
+        $this->date = $date;
+        return $this;
+    }
+
+    /**
+     * Gets as sum
+     *
+     * 27.4. Сумма требований, погашенных за счет обеспечения
+     *
+     * @return float
+     */
+    public function getSum()
+    {
+        return $this->sum;
+    }
+
+    /**
+     * Sets a new sum
+     *
+     * 27.4. Сумма требований, погашенных за счет обеспечения
+     *
+     * @param float $sum
+     * @return self
+     */
+    public function setSum($sum)
+    {
+        $this->sum = $sum;
+        return $this;
+    }
+
+    /**
+     * Gets as currency
+     *
+     * 27.5. Валюта суммы требований, погашенных за счет обеспечения
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * Sets a new currency
+     *
+     * 27.5. Валюта суммы требований, погашенных за счет обеспечения
+     *
+     * @param string $currency
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
         return $this;
     }
 
@@ -181,18 +250,19 @@ class UL27ProvisionPaymentType extends GutdfSegment
      */
     public function init(): void
     {
-        $provisions = $this->sendData->getAccountReplyRUTDF()->getCollatRepay();
-        if(empty($provisions)){
+        if (empty($this->idx)) {
             $this->exist0 = '';
             $this->exist1 = null;
             return;
         }
+        $provision = $this->sendData->getAccountReplyRUTDF()->getCollatRepay()[$this->idx];
+        $this->exist0 = '';
+        $this->exist1 = null;
 
-        $this->exist0 = null;
-        $this->exist1 = '';
-        foreach ($provisions as $key => $provision){
-            $this->addToCodeGroupUL27ProvisionPayment(new CodeGroupUL27ProvisionPaymentAType($this->template, $key));
-        }
+        $this->setCode($provision->collatRepayCode);
+        $this->setDate($provision->collatRepayDt);
+        $this->setSum($provision->collatRepayAmt);
+        $this->setCurrency($provision->collatCurrency);
     }
 
     /**
@@ -203,7 +273,10 @@ class UL27ProvisionPaymentType extends GutdfSegment
         return [
             'exist_0' => 'exist0',
             'exist_1' => 'exist1',
-            'codeGroupUL27ProvisionPayment',
+            'code',
+            'date',
+            'sum',
+            'currency',
         ];
     }
 }

@@ -94,7 +94,7 @@ class FLEvent11Type extends EventDataType
 
     protected function initAttributes()
     {
-        $this->fL55Application = new FL55ApplicationType($this->template);
+        $this->setFL55Application(new FL55ApplicationType($this->template));
     }
 
     /**

@@ -6,6 +6,7 @@ use mfteam\nbch\models\AccountReplyRUTDF;
 use mfteam\nbch\models\AddressReplyRUTDF;
 use mfteam\nbch\models\BusinessReply;
 use mfteam\nbch\models\CapabilityReply;
+use mfteam\nbch\models\ContactReply;
 use mfteam\nbch\models\IdReply;
 use mfteam\nbch\models\InformationPartReplyRUTDF;
 use mfteam\nbch\models\PersonReply;
@@ -91,7 +92,14 @@ interface NbchDataInterface
      * @return AddressReplyRUTDF|null
      */
     public function getActualAddress(): ?AddressReplyRUTDF;
-    
+
+    /**
+     * Контактные данные.
+     * Указываются сведения, если субъект предоставил соответствующие контактные данные источнику.
+     * @return ContactReply[]
+     */
+    public function getContactReply(): array;
+
     /**
      * Сведения о дееспособности
      * @return CapabilityReply
@@ -116,6 +124,19 @@ interface NbchDataInterface
      * @return string|null
      */
     public function getStartDate(): ?string;
+
+    /**
+     * Код причины изменения кредитной информации.
+     * Обязателен для:
+     * - событий 3.* вместе с кодом операции C.1 и C.2:
+     * 1 – источником допущена ошибка при формировании записи и (или) иных данных кредитной истории;
+     * 2 – запись и (или) иные данные кредитной истории сформированы на основании некорректных сведений, представленных субъектом;
+     * - событий 4.* вместе с кодом операции D.1 и D.2::
+     * 3 – запись и (или) иные данные кредитной истории сформированы в результате противоправных действий третьих лиц, в том числе признанных мошенническими на основании вступившего в силу решения суда.
+     * В иных случаях – не указывается.
+     * @return int|null
+     */
+    public function getChangeReason(): ?int;
 
     /**
      * При передаче данных по исправлению/аннулированию сведении (NbchDataInterface::getCorrectionData()),
