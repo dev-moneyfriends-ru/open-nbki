@@ -285,10 +285,10 @@ class UL18DebtDueAType extends GutdfSegment
         $this->setDebtDueExist0(null);
         $this->setDebtDueExist1('');
         $this->setDebtDueStartDate($this->formatDate($debt->startDt));
-        $this->setDebtDueSum($debt->amtOutstanding);
-        $this->setDebtDueMainSum($debt->principalOutstanding);
-        $this->setDebtDuePercentSum($debt->intOutstanding);
-        $this->setDebtDueOtherSum($debt->otherAmtOutstanding);
+        $this->setDebtDueSum($this->formatCurrency($debt->amtOutstanding));
+        $this->setDebtDueMainSum($this->formatCurrency($debt->principalOutstanding));
+        $this->setDebtDuePercentSum($this->formatCurrency($debt->intOutstanding));
+        $this->setDebtDueOtherSum($this->formatCurrency($debt->otherAmtOutstanding));
     }
 
     /**
