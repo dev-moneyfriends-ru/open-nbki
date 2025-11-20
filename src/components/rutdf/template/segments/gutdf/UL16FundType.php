@@ -178,6 +178,9 @@ class UL16FundType extends GutdfSegment
      */
     public function init(): void
     {
+        if(empty($this->sendData->getAccountReplyRUTDF()->getFundDateRUTDF()) || empty($this->sendData->getAccountReplyRUTDF()->getFundDateRUTDF()[$this->idx])){
+            return;
+        }
         $fund = $this->sendData->getAccountReplyRUTDF()->getFundDateRUTDF()[$this->idx];
         $this->setDate($this->formatDate($fund->fundDate));
         $this->setNum($fund->trancheNum);

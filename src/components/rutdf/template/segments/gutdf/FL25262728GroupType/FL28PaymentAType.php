@@ -70,7 +70,7 @@ class FL28PaymentAType extends GutdfSegment
     /**
      * 28.1. Дата последнего внесенного платежа
      *
-     * @var \DateTime $date
+     * @var string $date
      */
     private $date = null;
 
@@ -337,7 +337,7 @@ class FL28PaymentAType extends GutdfSegment
      * @param \DateTime $date
      * @return self
      */
-    public function setDate(?\DateTime $date = null)
+    public function setDate(?string $date = null)
     {
         $this->date = $date;
         return $this;
