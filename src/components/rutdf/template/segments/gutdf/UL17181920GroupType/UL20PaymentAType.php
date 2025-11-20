@@ -70,7 +70,7 @@ class UL20PaymentAType extends GutdfSegment
     /**
      * 20.1. Дата последнего внесенного платежа
      *
-     * @var \DateTime $date
+     * @var string $date
      */
     private $date = null;
 
@@ -320,10 +320,10 @@ class UL20PaymentAType extends GutdfSegment
      *
      * 20.1. Дата последнего внесенного платежа
      *
-     * @param \DateTime $date
+     * @param string $date
      * @return self
      */
-    public function setDate(?\DateTime $date = null)
+    public function setDate(?string $date = null)
     {
         $this->date = $date;
         return $this;
