@@ -434,8 +434,8 @@ class FL54AccountingType extends GutdfSegment
             $this->sum = $this->formatCurrency($account->offbalanceAmt);
         }
 
-        $this->minInterest = $account->intRate;
-        $this->maxInterest = $account->maxInterest??$account->intRate;
+        $this->minInterest = $this->formatCurrency($account->intRate);
+        $this->maxInterest = $account->intRate? $this->formatCurrency($account->maxInterest ?? 0) : $this->formatCurrency(0);
 
         if($account->preferenFinanc){
             $this->supportExist0 = null;
