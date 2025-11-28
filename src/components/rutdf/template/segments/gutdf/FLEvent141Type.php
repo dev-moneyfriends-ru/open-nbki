@@ -926,7 +926,9 @@ class FLEvent141Type extends EventDataType
 
         $this->setFL20JointDebtors(new FL20JointDebtorsType($this->template));
         $this->setFL21PaymentTerms(new FL21PaymentTermsType($this->template));
-        $this->addToFL24Fund(new FL24FundType($this->template));
+        foreach ($this->sendData->getAccountReplyRUTDF()->getFundDateRUTDF() as $key => $value) {
+            $this->addToFL24Fund(new FL24FundType($this->template, $key));
+        }
         $this->setFL25262728Group(new FL25262728GroupType($this->template));
 
         if (!$this->template->sendData->getAccountReplyRUTDF()->getTrade()->isMoneySource) {

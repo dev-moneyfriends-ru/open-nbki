@@ -395,19 +395,34 @@ class ULEvent24Type extends EventDataType
     protected function initAttributes()
     {
         $this->setUL10DealUid(new UL10DealUidType($this->template));
-        foreach ($this->sendData->getAccountReplyRUTDF()->getCollateral() as $key => $value){
-            $this->addToUL2326Group(new UL2326GroupType($this->template, $key));
+        if($this->sendData->getAccountReplyRUTDF()->getCollateral()) {
+            foreach ($this->sendData->getAccountReplyRUTDF()->getCollateral() as $key => $value){
+                $this->addToUL2326Group(new UL2326GroupType($this->template, $key));
+            }
+        } else {
+            $this->addToUL2326Group(new UL2326GroupType($this->template));
         }
-        foreach ($this->sendData->getAccountReplyRUTDF()->getGuarantor() as $key => $value){
-            $this->addToUL24Warranty(new UL24WarrantyType($this->template, $key));
+        if($this->sendData->getAccountReplyRUTDF()->getGuarantor()) {
+            foreach ($this->sendData->getAccountReplyRUTDF()->getGuarantor() as $key => $value){
+                $this->addToUL24Warranty(new UL24WarrantyType($this->template, $key));
+            }
+        } else {
+            $this->addToUL24Warranty(new UL24WarrantyType($this->template));
         }
-        foreach ($this->sendData->getAccountReplyRUTDF()->getIndepGuarantor() as $key => $value){
-            $this->addToUL25Guarantee(new UL25GuaranteeType($this->template, $key));
+        if($this->sendData->getAccountReplyRUTDF()->getIndepGuarantor()) {
+            foreach ($this->sendData->getAccountReplyRUTDF()->getIndepGuarantor() as $key => $value){
+                $this->addToUL25Guarantee(new UL25GuaranteeType($this->template, $key));
+            }
+        } else {
+            $this->addToUL25Guarantee(new UL25GuaranteeType($this->template));
         }
-        foreach ($this->sendData->getAccountReplyRUTDF()->getCollatRepay() as $key => $value){
-            $this->addToUL27ProvisionPayment(new UL27ProvisionPaymentType($this->template, $key));
+        if($this->sendData->getAccountReplyRUTDF()->getCollatRepay()) {
+            foreach ($this->sendData->getAccountReplyRUTDF()->getCollatRepay() as $key => $value){
+                $this->addToUL27ProvisionPayment(new UL27ProvisionPaymentType($this->template, $key));
+            }
+        } else {
+            $this->addToUL27ProvisionPayment(new UL27ProvisionPaymentType($this->template));
         }
-
     }
 
     /**

@@ -425,7 +425,7 @@ class FL4DocAType extends GutdfSegment
         $this->docSeries = $idReply->seriesNumber;
         $this->docNum = $idReply->idNum;
         $this->issueDate = $this->formatDate($idReply->issueDate);
-        $this->docIssuer = $idReply->issueAuthority;
+        $this->docIssuer = $this->formatString($idReply->issueAuthority);
         $this->deptCode = $idReply->divCode;
         $this->endDate = $this->formatDate($idReply->validTo);
         $this->foreignerCode = $idReply->foreignerCode;
