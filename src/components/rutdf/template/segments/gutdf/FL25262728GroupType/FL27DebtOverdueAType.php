@@ -428,6 +428,9 @@ class FL27DebtOverdueAType extends GutdfSegment
 
         if(empty($debt->amtPastDue)){
             $this->debtOverdueSum = $this->formatCurrency(0);
+            $this->debtOverdueMainSum = $this->formatCurrency(0);
+            $this->debtOverduePercentSum = $this->formatCurrency(0);
+            $this->debtOverdueOtherSum = $this->formatCurrency(0);
             return;
         }
 
