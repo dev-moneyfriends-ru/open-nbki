@@ -782,7 +782,6 @@ class UL45ApplicationType extends GutdfSegment
             'num',
             'loanSum',
             'loanCurrency',
-            'loanCurrency',
             'platformExist_0' => 'platformExist0',
             'platformExist_1' => 'platformExist1',
         ];
