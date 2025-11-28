@@ -435,7 +435,7 @@ class FL54AccountingType extends GutdfSegment
         }
 
         $this->minInterest = $this->formatCurrency($account->intRate);
-        $this->maxInterest = $account->intRate? $this->formatCurrency($account->maxInterest ?? 0) : $this->formatCurrency(0);
+        $this->maxInterest = $account->maxInterest && $this->maxInterest > $account->intRate? $this->formatCurrency($account->maxInterest) : $this->formatCurrency($account->intRate);
 
         if($account->preferenFinanc){
             $this->supportExist0 = null;
