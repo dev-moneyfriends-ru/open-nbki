@@ -351,9 +351,9 @@ class FL21PaymentTermsType extends GutdfSegment
             return;
         }
         $this->mainPaySum = $this->formatCurrency($paymentCond->principalTermsAmt);
-        $this->mainPayDate = $this->formatDate($paymentCond->principalTermsAmtDt);
+        $this->mainPayDate = $paymentCond->principalTermsAmt? $this->formatDate($paymentCond->principalTermsAmtDt): null;
         $this->percentPaySum = $this->formatCurrency($paymentCond->interestTermsAmt);
-        $this->percentPayDate = $this->formatDate($paymentCond->interestTermsAmtDt);
+        $this->percentPayDate = $paymentCond->interestTermsAmt?$this->formatDate($paymentCond->interestTermsAmtDt): null;
         $this->freqCode = $paymentCond->termsFrequency;
         $this->minCardPay = $this->formatCurrency($paymentCond->minPaymt)  ;
         $this->graceDate = $this->formatDate($paymentCond->graceStartDt);
