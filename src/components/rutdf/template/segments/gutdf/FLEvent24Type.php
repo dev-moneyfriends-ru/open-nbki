@@ -404,6 +404,9 @@ class FLEvent24Type extends EventDataType
         foreach ($this->sendData->getAccountReplyRUTDF()->getIndepGuarantor() as $key => $value){
             $this->addToFL34Guarantee(new FL34GuaranteeType($this->template, $key));
         }
+        if(empty($this->getFL34Guarantee())){
+            $this->addToFL34Guarantee(new FL34GuaranteeType($this->template, null));
+        }
         foreach ($this->sendData->getAccountReplyRUTDF()->getCollatRepay() as $key => $value){
             $this->addToFL36ProvisionPayment(new FL36ProvisionPaymentType($this->template, $key));
         }
