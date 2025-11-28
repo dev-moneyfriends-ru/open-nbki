@@ -410,6 +410,9 @@ class FLEvent24Type extends EventDataType
         foreach ($this->sendData->getAccountReplyRUTDF()->getCollatRepay() as $key => $value){
             $this->addToFL36ProvisionPayment(new FL36ProvisionPaymentType($this->template, $key));
         }
+        if(empty($this->getFL36ProvisionPayment())){
+            $this->addToFL36ProvisionPayment(new FL36ProvisionPaymentType($this->template, null));
+        }
     }
 
     /**
