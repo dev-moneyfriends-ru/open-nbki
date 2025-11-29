@@ -483,7 +483,7 @@ class UL23CollateralAType extends GutdfSegment
         return [
             'code',
             'date',
-            'sumGroupFL3235Group',
+            'sumGroupUL2326Group',
             'collateralEndDate',
             'collateralFactEndDate',
             'endReason',
