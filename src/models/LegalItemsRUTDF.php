@@ -58,9 +58,9 @@ class LegalItemsRUTDF extends BaseItem
 
     /**
      * Дополнительные сведения по судебному акту, заполняется по решению Источника.
-     * @var string $info
+     * @var null|string $info
      */
-    public $info = '';
+    public $info = null;
     /**
      * Валюта суммы требований, подлежащих
      * удовлетворению
