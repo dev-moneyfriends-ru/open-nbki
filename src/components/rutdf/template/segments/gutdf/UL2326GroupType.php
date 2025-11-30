@@ -281,6 +281,7 @@ class UL2326GroupType extends GutdfSegment
         return [
             'assetKind_0' => 'assetKind0',
             'assetKind_1' => 'assetKind1',
+            'propertyId',
             'ul23Collateral',
             'ul26Insurance',
         ];
