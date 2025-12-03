@@ -501,7 +501,7 @@ class UL30CourtType extends GutdfSegment
         }
 
         $this->date = $this->formatDate($court->courtActDt);
-        $this->num = $court->courtActNum;
+        $this->num = $this->formatString($court->courtActNum);
         $this->actResolution = $court->resolution;
 
         if($court->courtActEffectCode){
