@@ -398,8 +398,14 @@ class FLEvent24Type extends EventDataType
         foreach ($this->sendData->getAccountReplyRUTDF()->getCollateral() as $key => $value){
             $this->addToFL3235Group(new FL3235GroupType($this->template, $key));
         }
+        if(empty($this->getFL3235Group())){
+            $this->addToFL3235Group(new FL3235GroupType($this->template, null));
+        }
         foreach ($this->sendData->getAccountReplyRUTDF()->getGuarantor() as $key => $value){
             $this->addToFL33Warranty(new FL33WarrantyType($this->template, $key));
+        }
+        if(empty($this->getFL33Warranty())){
+            $this->addToFL33Warranty(new FL33WarrantyType($this->template, null));
         }
         foreach ($this->sendData->getAccountReplyRUTDF()->getIndepGuarantor() as $key => $value){
             $this->addToFL34Guarantee(new FL34GuaranteeType($this->template, $key));
