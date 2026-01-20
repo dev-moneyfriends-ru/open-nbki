@@ -121,9 +121,9 @@ class NbchRequest extends \yii\httpclient\Request
             <OKSM>643</OKSM>
          </BusinessReq>
          <RequestorReq>
-            <MemberCode>ZZ01TT000000</MemberCode>
-            <UserID>ZZ01TT000002</UserID>
-            <Password>password</Password>
+            <MemberCode>TEST_MEMBER_CODE</MemberCode>
+            <UserID>TEST_USER_ID</UserID>
+            <Password>TEST_PASSWORD</Password>
          </RequestorReq>
          <RefReq>
             <product>BHIP</product>

@@ -45,8 +45,8 @@
                 <birthDt>1979-02-21</birthDt>
             </PersonReq>
             <RequestorReq>
-                <MemberCode>EF01BB000000</MemberCode>
-                <UserID>EF01BB000777</UserID>
+                <MemberCode>TEST_MEMBER_CODE</MemberCode>
+                <UserID>TEST_USER_ID</UserID>
             </RequestorReq>
             <RefReq>
                 <product>CHIP</product>
@@ -721,7 +721,7 @@
                 <reportingDt>2022-08-05</reportingDt>
             </ContactReply>
             <ContactReply>
-                <email>lgota@rogov.ru</email>
+                <email>test@example.com</email>
                 <serialNum>1714</serialNum>
                 <fileSinceDt>2022-09-12</fileSinceDt>
                 <lastUpdatedDt>2022-09-12</lastUpdatedDt>

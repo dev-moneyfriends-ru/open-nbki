@@ -89,8 +89,8 @@ modules =>[
     
      'nbch' => [
             'class' => \mfteam\nbch\Module::class,
-            'memberCode' => '2I01RR000000',
-            'partnerName' => 'ООО «МАНИ ФРЕНДС»',
+            'memberCode' => 'YOUR_MEMBER_CODE',
+            'partnerName' => 'ООО «Ваша организация»',
             'components' => [
                 //Компонент для работы с файлами
                 'file' => [
@@ -99,17 +99,17 @@ modules =>[
                 //Настройки передачи данных в НБКИ
                 'rutdf' => [
                     'class' => \mfteam\nbch\components\rutdf\RutdfRequestComponent::class,
-                    'userName' => '2I01RR000005',
-                    'password' => '2I01rr00',
+                    'userName' => 'YOUR_USERNAME',
+                    'password' => 'YOUR_PASSWORD',
                     'reportEmail' => 'RUTDF@nbki.ru',
-                    'sourceInn' => '6163209391',
-                    'sourceOgrn' => '1186196015510'
+                    'sourceInn' => 'YOUR_INN',
+                    'sourceOgrn' => 'YOUR_OGRN'
                 ],
                 //Настройки получения кредитных отчетов
                 'creditHistory' => [
                     'class' => \mfteam\nbch\components\creditHistory\CreditHistoryComponent::class,
-                    'userName' => '2I01RR000005',
-                    'password' => '2I01rr00',
+                    'userName' => 'YOUR_USERNAME',
+                    'password' => 'YOUR_PASSWORD',
                     'apiUrl' => 'https://reports.demo.nbki.ru/products/B2BRequestServlet',
                 ],
                 //Компонент для работы с сервером подписей
@@ -129,6 +129,21 @@ modules =>[
     
 ]
 ```
+
+Конфигурационные параметры:
+-
+Перед использованием модуля замените плейсхолдеры на реальные значения, полученные от НБКИ:
+
+| Параметр | Описание | Где получить |
+|----------|----------|--------------|
+| `YOUR_MEMBER_CODE` | Код участника НБКИ | Форма регистрации НБКИ |
+| `YOUR_USERNAME` | Логин для API | Форма 5 (для КИ) / Форма 7 (для RUTDF) |
+| `YOUR_PASSWORD` | Пароль для API | Выдаётся НБКИ при регистрации |
+| `YOUR_INN` | ИНН вашей организации | — |
+| `YOUR_OGRN` | ОГРН вашей организации | — |
+| `ООО «Ваша организация»` | Наименование организации | — |
+
+Для тестовой среды используйте тестовые доступы, которые выдаёт НБКИ.
 
 Передача сведений:
 -
