@@ -452,6 +452,7 @@ class FL23ContractChangesType extends GutdfSegment
             'startDate',
             'endDate',
             'actualEndDate',
+            'endCode',
             'currencyRate',
         ];
     }

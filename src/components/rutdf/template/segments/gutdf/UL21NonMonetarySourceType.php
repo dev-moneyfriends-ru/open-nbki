@@ -179,7 +179,7 @@ class UL21NonMonetarySourceType extends GutdfSegment
         $model = $this->sendData->getAccountReplyRUTDF()->getSourceNonMonetObligArray()[$this->idx];
         $this->item = $model->srcNonMonetOblig;
         $this->code = $model->srcNonMonetObligCode;
-        $this->propertyId = $model->srcNonMonetObligCodeIdent;
+        $this->propertyId = $this->formatString($model->srcNonMonetObligCodeIdent);
         $this->date = $this->formatDate($model->srcNonMonetObligDt);
     }
 
